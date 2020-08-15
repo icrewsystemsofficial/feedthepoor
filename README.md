@@ -31,8 +31,6 @@ Mark your assigned tasks from "Planned" to "In Progress" while working on it, On
 icrewsystems Software Engineering LLP, India <br>
 <img src="https://icrewsystems.com/logo.png" width="150">   
 
-<br>
-
 GemHosting, United Kingdom <br>
 <img src="https://gem-hosting.com/Assets/img/logos/V4/Logo-Version-4-1500x360.png" width="150">   
 
