@@ -16,6 +16,7 @@
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
+        "laravolt/avatar": "^3.2",
         "mckenziearts/laravel-notify": "^1.1",
         "razorpay/razorpay": "2.*",
         "stripe/stripe-php": "^7.46"

@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 // BASIC ROUTES
 Route::get('/', 'HomeController@index')->name('index');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/coming-soon', 'HomeController@comingsoon')->name('comingsoon');
+Route::get('/logout', 'AdminController@logout');
 
 Route::get('/faq', 'HomeController@faq')->name('faq');
 Route::get('/success', 'HomeController@success')->name('success');
@@ -34,7 +36,11 @@ Route::get('/invoice/{invoice}/pay', 'PaymentsController@index')->name('payments
 Route::post('/request', 'PaymentsController@request');
 Route::post('/response', 'PaymentsController@response');
 
+Auth::routes();
 
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index');
+    Route::get('/logout', 'AdminController@logout');
+
+    Route::get('/donations', 'AdminController@donation');
 });
