@@ -10,6 +10,7 @@ use Akaunting\Money\Currency;
 use Akaunting\Money\Money;
 use Illuminate\Support\Facades\Http;
 use Razorpay\Api\Api;
+use App\Donation;
 
 class PaymentsController extends Controller
 {
@@ -29,6 +30,20 @@ class PaymentsController extends Controller
       // );
       // $payments = $api->payment->all($params);
       $payment = $api->payment->fetch($request->input('razorpay_payment_id'));
+
+          //storing user data to DB
+            if($payment){
+            $donation = new Donation;
+            $donation->payments_id = $request->input('payments_id');
+            $donation->donor_name = $request->input('donor_name');
+            $donation->date = $request->input('date');
+            $donation->save();
+          }
+          else{
+            notify()->error('error', 'There was an error');
+            return redirect('/index');
+          }
+
       return view('payments.success')->with('payment', $payment);
     }
 
