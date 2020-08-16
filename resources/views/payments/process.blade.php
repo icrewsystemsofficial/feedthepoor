@@ -16,6 +16,9 @@
                           <p class="mb-5">
                             Sending request to RazorPay API.
                           </p>
+                          <!-- The Data response from Razorpay is submitted to this route dynamically via JavaScript.
+                            -Leonard, 16/08/2020.
+                          -->
                           <form id="verify-form" action="{{ url('payments/verify') }}" method="POST">
                             @csrf
                             <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id" />
@@ -33,7 +36,7 @@
                                 "description": "Donation by {{ $post->name }}",
                                 "image": "https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png",
                                 "handler": function (response){
-                                    // getPaymentDetails(response.razorpay_payment_id);
+                                  // THIS PART OF THE CODE IS EXECUTED ONCE RAZORPAY SENDS A SUCCESFUL RESPONSE - Leonard, 16/08/2020.
                                     // console.log(response.razorpay_payment_id);
                                     // console.log(response.razorpay_order_id);
                                     // console.log(response.razorpay_signature);
