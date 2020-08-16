@@ -15,5 +15,5 @@ controllers:
     store:
       validate: title, content, author_id
       save: report
-      send: ReportCreated to:report.author.email with:reports            
+      send: Admin\ReportCreated to:report.author.email with:reports
       redirect: reports.index

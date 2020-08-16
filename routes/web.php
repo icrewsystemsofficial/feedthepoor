@@ -37,7 +37,6 @@ Route::get('/invoice/{invoice}/pay', 'PaymentsController@index')->name('payments
 Route::post('/request', 'PaymentsController@request');
 Route::post('/response', 'PaymentsController@response');
 
-Auth::routes();
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', 'AdminController@index');
