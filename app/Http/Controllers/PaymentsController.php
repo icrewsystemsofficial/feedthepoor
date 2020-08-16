@@ -31,6 +31,7 @@ class PaymentsController extends Controller
       // $payments = $api->payment->all($params);
       $payment = $api->payment->fetch($request->input('razorpay_payment_id'));
 
+          //storing user data to DB
             if($payment){
             $donation = new Donation;
             $donation->payments_id = $request->input('payments_id');

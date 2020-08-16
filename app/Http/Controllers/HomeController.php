@@ -11,7 +11,7 @@ class HomeController extends Controller
       return view('home.index');
     }
 
-    public function comingsoon() {      
+    public function comingsoon() {
       return view('home.comingsoon');
     }
 

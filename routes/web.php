@@ -21,7 +21,6 @@ Route::get('/faq', 'HomeController@faq')->name('faq');
 Route::get('/success', 'HomeController@success')->name('success');
 Route::get('/error', 'HomeController@error')->name('error');
 
-
 //DONATION ROUTES
 Route::get('/money/{howmuch?}', 'PaymentsController@money')->name('donate.money');
 
