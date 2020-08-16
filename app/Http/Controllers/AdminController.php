@@ -26,4 +26,8 @@ class AdminController extends Controller
       $payments = $api->payment->all($params);
       return view('admin.payments.payments')->with('payments', $payments->items);
     }
+
+    public function mailer() {
+      return view('admin.emails.index');
+    }
 }

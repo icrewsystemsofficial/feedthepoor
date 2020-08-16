@@ -43,4 +43,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/logout', 'AdminController@logout');
 
     Route::get('/donations', 'AdminController@donation');
+    Route::get('/mailer', 'AdminController@mailer');
+    Route::get('/sendmail', 'AdminController@sendmail');
 });

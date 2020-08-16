@@ -28,7 +28,7 @@ class PaymentsController extends Controller
       //   'skip'  => 1
       // );
       // $payments = $api->payment->all($params);
-      $payment = $api->payment->fetch($request->input('razorpay_payment_id'));
+      $payment = $api->payment->fetch($request->input('razorpay_payment_id'));      
       return view('payments.success')->with('payment', $payment);
     }
 

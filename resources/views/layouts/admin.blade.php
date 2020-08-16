@@ -106,7 +106,7 @@
         </a>
         <div id="emailCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{ url('admin/') }}">To User</a>
+            <a class="collapse-item" href="{{ url('admin/mailer') }}">To User</a>
             <a class="collapse-item" href="{{ url('admin/') }}">To all donors today</a>
           </div>
         </div>
@@ -298,7 +298,7 @@
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="{{ url('/logout') }}">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
