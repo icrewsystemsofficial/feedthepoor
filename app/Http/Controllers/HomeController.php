@@ -11,7 +11,7 @@ class HomeController extends Controller
       return view('home.index');
     }
 
-    public function comingsoon() {      
+    public function comingsoon() {
       return view('home.comingsoon');
     }
 
@@ -31,6 +31,12 @@ class HomeController extends Controller
     public function error() {
       // When Payment is not successful.
       return view('home.error');
+    }
+
+    //Bharath
+    public function testimonials() {
+      // Testimonials 
+      return view('home.testimonials');
     }
 
 }
