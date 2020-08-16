@@ -21,7 +21,6 @@ Route::get('/faq', 'HomeController@faq')->name('faq');
 Route::get('/success', 'HomeController@success')->name('success');
 Route::get('/error', 'HomeController@error')->name('error');
 
-
 //DONATION ROUTES
 Route::get('/money/{howmuch?}', 'PaymentsController@money')->name('donate.money');
 
@@ -34,3 +33,8 @@ Route::post('payments/verify', 'PaymentsController@verify')->name('payments.veri
 Route::get('/invoice/{invoice}/pay', 'PaymentsController@index')->name('payments.index');
 Route::post('/request', 'PaymentsController@request');
 Route::post('/response', 'PaymentsController@response');
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'AdminController@index');
+});
