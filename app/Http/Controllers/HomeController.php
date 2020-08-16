@@ -33,4 +33,10 @@ class HomeController extends Controller
       return view('home.error');
     }
 
+    //Bharath
+    public function testimonials() {
+      // Testimonials 
+      return view('home.testimonials');
+    }
+
 }

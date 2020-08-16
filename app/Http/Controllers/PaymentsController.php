@@ -32,15 +32,17 @@ class PaymentsController extends Controller
       $payment = $api->payment->fetch($request->input('razorpay_payment_id'));
 
           //storing user data to DB
-            if($payment){
-            $donation = new Donation;
-            $donation->payments_id = $request->input('payments_id');
-            $donation->donor_name = $request->input('donor_name');
-            $donation->date = $request->input('date');
-            $donation->save();
-          }
-          else{
-            notify()->error('error', 'There was an error');
+          if($payment){
+            // dd($payment);
+              $donation = new Donation;
+              $donation->payments_id = $payment->id;
+              $donation->donor_name = $payment->notes->name;
+              $donation->donor_email = $payment->email;
+              $donation->donor_instagram = $payment->notes->instagram;
+              $donation->save();
+              notify()->success('Payment details were added to the database. We are generating and sending your report.', 'Yay!');
+          } else {
+            notify()->error('We were not able to find a payment with the specified ID ('.$request->input('razorpay_payment_id').'). If the amount was deducted from your account, please contact us. Further information will be mailed to you by RazorPay.', 'Whoopsie!');
             return redirect('/index');
           }
 
