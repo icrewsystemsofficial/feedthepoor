@@ -20,6 +20,7 @@ Route::get('/coming-soon', 'HomeController@comingsoon')->name('comingsoon');
 Route::get('/faq', 'HomeController@faq')->name('faq');
 Route::get('/success', 'HomeController@success')->name('success');
 Route::get('/error', 'HomeController@error')->name('error');
+Route::get('/testimonials', 'HomeController@testimonials')->name('testimonials');
 
 
 //DONATION ROUTES
