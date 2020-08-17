@@ -1,0 +1,19 @@
+models:
+  Report:
+    title: string:400
+    user_id: id:user
+    payment_id: varchar:50
+    content: longtext
+    published_at: nullable timestamp
+
+controllers:
+  Report:
+    index:
+      query: all
+      render: reports.index with:reports
+
+    store:
+      validate: title, content, author_id
+      save: report
+      send: Admin\ReportCreated to:report.author.email with:reports
+      redirect: reports.index

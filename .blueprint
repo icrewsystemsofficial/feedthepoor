@@ -1,0 +1,4 @@
+models:
+    Donation: { payments_id: 'string:50 nullable', donor_name: 'string:191 nullable', donor_email: 'string:191 nullable', donor_instagram: 'string:191 nullable' }
+    Invoice: {  }
+    User: { name: 'string:191', email: 'string:191', email_verified_at: 'datetime nullable', password: 'string:191', remember_token: 'string:100 nullable' }

@@ -15,12 +15,18 @@ use Illuminate\Support\Facades\Route;
 
 // BASIC ROUTES
 Route::get('/', 'HomeController@index')->name('index');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/coming-soon', 'HomeController@comingsoon')->name('comingsoon');
+Route::get('/logout', 'AdminController@logout');
 
 Route::get('/faq', 'HomeController@faq')->name('faq');
 Route::get('/success', 'HomeController@success')->name('success');
 Route::get('/error', 'HomeController@error')->name('error');
 Route::get('/testimonials', 'HomeController@testimonials')->name('testimonials');
+
+//created by SAURABH, to add manual donations
+Route::get('/add', 'HomeController@add')->name('add');
+Route::post('add/manual', 'HomeController@manual')->name('manual');
 
 
 //DONATION ROUTES
@@ -35,3 +41,13 @@ Route::post('payments/verify', 'PaymentsController@verify')->name('payments.veri
 Route::get('/invoice/{invoice}/pay', 'PaymentsController@index')->name('payments.index');
 Route::post('/request', 'PaymentsController@request');
 Route::post('/response', 'PaymentsController@response');
+
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('/', 'AdminController@index');
+    Route::get('/logout', 'AdminController@logout');
+
+    Route::get('/donations', 'AdminController@donation');
+    Route::get('/mailer', 'AdminController@mailer');
+    Route::post('/sendmail', 'AdminController@sendmail');
+});
