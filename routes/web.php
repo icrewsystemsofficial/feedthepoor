@@ -24,6 +24,11 @@ Route::get('/success', 'HomeController@success')->name('success');
 Route::get('/error', 'HomeController@error')->name('error');
 Route::get('/testimonials', 'HomeController@testimonials')->name('testimonials');
 
+//created by SAURABH, to add manual donations
+Route::get('/add', 'HomeController@add')->name('add');
+Route::post('add/manual', 'HomeController@manual')->name('manual');
+
+
 //DONATION ROUTES
 Route::get('/money/{howmuch?}', 'PaymentsController@money')->name('donate.money');
 

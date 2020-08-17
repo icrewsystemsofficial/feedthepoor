@@ -93,6 +93,9 @@
             border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 15px;
         }
+        .C-nav{
+            
+        }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
