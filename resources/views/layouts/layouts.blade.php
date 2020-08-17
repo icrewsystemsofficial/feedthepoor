@@ -99,6 +99,7 @@
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    @yield('css')
     @notifyCss
 </head>
 
@@ -240,7 +241,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/swipejs/2.2.18/swipe.min.js"></script>
-
+    @yield('js')
     @notifyJs
 </body>
 

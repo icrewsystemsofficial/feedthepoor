@@ -24,6 +24,11 @@ Route::get('/success', 'HomeController@success')->name('success');
 Route::get('/error', 'HomeController@error')->name('error');
 Route::get('/testimonials', 'HomeController@testimonials')->name('testimonials');
 
+//created by SAURABH, to add manual donations
+Route::get('/add', 'HomeController@add')->name('add');
+Route::post('add/manual', 'HomeController@manual')->name('manual');
+
+
 //DONATION ROUTES
 Route::get('/money/{howmuch?}', 'PaymentsController@money')->name('donate.money');
 
@@ -37,7 +42,6 @@ Route::get('/invoice/{invoice}/pay', 'PaymentsController@index')->name('payments
 Route::post('/request', 'PaymentsController@request');
 Route::post('/response', 'PaymentsController@response');
 
-Auth::routes();
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', 'AdminController@index');
@@ -45,5 +49,5 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::get('/donations', 'AdminController@donation');
     Route::get('/mailer', 'AdminController@mailer');
-    Route::get('/sendmail', 'AdminController@sendmail');
+    Route::post('/sendmail', 'AdminController@sendmail');
 });

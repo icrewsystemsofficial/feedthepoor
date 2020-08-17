@@ -31,13 +31,23 @@ $(document).ready( function () {
         <h6 class="m-0 font-weight-bold text-primary">Choose user</h6>
       </div>
       <div class="card-body">
-        <form class="form" method="POST" action="{{ url('/sendmail') }}">
+        <form class="form" method="POST" action="{{ url('admin/sendmail') }}">
           @csrf
 
           <div class="form-group">
-            <input type="text" class="form-control" />
+            <input type="email" name="email" class="form-control" placeholder="Enter email ID" required/>
           </div>
 
+          <div class="form-group">
+            <input type="text" name="subject" class="form-control" placeholder="Enter email subject" required/>
+          </div>
+
+          <div class="form-group">
+            <textarea class="form-control" name="message" rows="10" required placeholder="Enter your message (just text, App will handle markup.)"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-md btn-primary">Send E-mail</button>
+          <button type="reset" class="btn btn-md btn-warning">Reset</button>
         </form>
       </div>
     </div>
