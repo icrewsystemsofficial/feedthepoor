@@ -35,6 +35,7 @@ class PaymentsController extends Controller
           if($payment){
             // dd($payment);
               $donation = new Donation;
+
               $donation->payments_id = $payment->id;
               $donation->donor_name = $payment->notes->name;
               $donation->donor_email = $payment->email;
@@ -48,7 +49,7 @@ class PaymentsController extends Controller
 
               //Send mail confirmation to the user
 
-              
+
           } else {
             notify()->error('We were not able to find a payment with the specified ID ('.$request->input('razorpay_payment_id').'). If the amount was deducted from your account, please contact us. Further information will be mailed to you by RazorPay.', 'Whoopsie!');
             return redirect('/index');
