@@ -115,8 +115,6 @@
             <div class="navbar-collapse offcanvas-collapse" id="navbar_main">
                 <ul class="navbar-nav ml-auto align-items-lg-center">
                     <li class="nav-item">
-
-                    <li class="nav-item active">
                         <a class="nav-link" href="{{ url('/who-did-we-feed-today') }}">Who did we feed today?</a>
                     </li>
                     <li class="nav-item dropdown">
@@ -131,7 +129,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./docs/introduction.html">Docs</a>
+                        <a class="nav-link" href="./docs/introduction.html">Voulenteer</a>
                     </li>
                     <a class="nav-link" href="{{ url('/money') }}">
                         <button class="btn btn-block btn-sm bg-gradient-yellow text-white btn-animated btn-animated-y">
