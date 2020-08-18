@@ -44,5 +44,33 @@ class HomeController extends Controller
       return view('home.testimonials');
     }
 
+  public function about() {
+      // Testimonials
+      return view('home.about');
+    }
 
+    public function work() {
+      // Testimonials
+      return view('home.work');
+    }
+
+    public function volunteers() {
+      // Testimonials
+      return view('home.volunteers');
+    }
+
+    public function partners() {
+      // Testimonials
+      return view('home.partners');
+    }
+
+    public function contact() {
+      // Testimonials
+      return view('home.contact');
+    }
+
+    public function add() {
+      // adding a manual donation, by Saurabh
+        return view('admin.donations.add');
+    }
 }
