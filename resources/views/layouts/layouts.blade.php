@@ -94,7 +94,7 @@
             border-radius: 15px;
         }
         .C-nav{
-            
+
         }
     </style>
 
@@ -126,11 +126,11 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
                         <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
-                            <a class="dropdown-item" href="./pages/about.html">About us</a>
-                            <a class="dropdown-item" href="./pages/sign-in.html">How does it work</a>
-                            <a class="dropdown-item" href="./pages/sign-in.html">Volenteers</a>
-                            <a class="dropdown-item" href="./pages/sign-in.html">Partners</a>
-                            <a class="dropdown-item" href="./pages/contact.html">Contact</a>
+                            <a class="dropdown-item" href="{{url ('/about')}}">About us</a>
+                            <a class="dropdown-item" href="{{url ('/work')}}">How does it work</a>
+                            <a class="dropdown-item" href="{{url ('/volunteers')}}">Volenteers</a>
+                            <a class="dropdown-item" href="{{url ('/partners')}}">Partners</a>
+                            <a class="dropdown-item" href="{{url ('/contact')}}">Contact</a>
                         </div>
                     </li>
                     <li class="nav-item">
