@@ -84,7 +84,7 @@
                                         This is the issue we're trying to fix with the help of technology.
                                         Seeing is beliving.
                                         With our app, the donor will be able to see the happy, smiley face of an
-                                        underprivledged human whom they've just
+                                        underpriviledged human whom they've just
                                         fed. <i>"Trust & Transparency" </i>
                                     </p>
                                 </div>
@@ -102,7 +102,7 @@
                                         #FeedThePoor project is a completely sponsored project. There are many good
                                         hearts and sharp brains behind this project. You can be one of them too.
                                         You can either devote your suggestions or ideas, if you're a developer (Laravel,
-                                        PHP, Android Studio (JAVA) / Flutter / ionic) you can contrinute your time
+                                        PHP, Android Studio (JAVA) / Flutter / ionic) you can contribute your time
                                         into this project.
 
                                         <br><br>
@@ -247,7 +247,7 @@
                     <div class="C-tab-cont mt-5 tab-content" id="myTabContent">
                         <div class="C-tab-item tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <p>
-                                It Only costs INR 60 to feed an underprivledged a day. It's easier than you think.
+                                It Only costs INR 60 to feed an underprivileged a day. It's easier than you think.
                                 The very decision you make now, will defenitely rescue someone from hunger. You will
                                 instantly
                                 receive a recipt of donation, and a picture of the whom you're helping to feed will be
@@ -266,7 +266,7 @@
                         </div>
                         <div class="C-tab-item tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <p>
-                                It Only costs INR 60 to feed an underprivledged a day. It's easier than you think.
+                                It Only costs INR 60 to feed an underpriviledged a day. It's easier than you think.
                                 The very decision you make now, will defenitely rescue someone from hunger.
 
                                 <center>
@@ -280,7 +280,7 @@
                         </div>
                         <div class="C-tab-item tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                             <p>
-                                It Only costs INR 60 to feed an underprivledged a day. It's easier than you think.
+                                It Only costs INR 60 to feed an underpriviledged a day. It's easier than you think.
                                 The very decision you make now, will defenitely rescue someone from hunger.
 
                                 <center>
