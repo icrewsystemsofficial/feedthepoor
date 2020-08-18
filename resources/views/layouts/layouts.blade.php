@@ -94,7 +94,7 @@
             border-radius: 15px;
         }
         .C-nav{
-            
+
         }
     </style>
 
@@ -128,7 +128,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
                             <a class="dropdown-item" href="./pages/about.html">About us</a>
                             <a class="dropdown-item" href="./pages/sign-in.html">How does it work</a>
-                            <a class="dropdown-item" href="./pages/sign-in.html">Volenteers</a>
+                            <a class="dropdown-item" href="./pages/sign-in.html">Volunteers</a>
                             <a class="dropdown-item" href="./pages/sign-in.html">Partners</a>
                             <a class="dropdown-item" href="./pages/contact.html">Contact</a>
                         </div>

@@ -38,8 +38,15 @@ class PaymentsController extends Controller
         //storing user data to DB
         if ($payment) {
 
-            $donation = new Donation;
-            $donation->payments_id = $payment->id;
+
+          //Saurabh
+          $donation = new Donation;
+            //$donation->payments_id = $payment->id;
+            if(count($donation->payments_id->value())>1){
+
+            }else{
+              $donation->payments_id = $payment->id;
+            }
             $donation->donor_name = $payment->notes->name;
             $donation->donor_email = $payment->email;
             $donation->donor_instagram = $payment->notes->instagram;
