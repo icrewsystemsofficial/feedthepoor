@@ -4,9 +4,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Writing code to feed the underprivledged in India">
     <meta name="author" content="icrewsystems.com">
-    <title>#feedThePoor | an Initiative by icrewsystems</title>
+	<!-- Primary Meta Tags -->
+	<title>#feedThePoor Initiative by icrewsystems</title>
+	<meta name="title" content="#feedThePoor Initiative by icrewsystems">
+	<meta name="description" content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
+	
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://feedthepoor.online">
+	<meta property="og:title" content="#feedThePoor Initiative by icrewsystems">
+	<meta property="og:description" content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
+	<meta property="og:image" content="https://cdn.discordapp.com/attachments/703998770332827740/745467105410940978/feedthepoor_meta_poster.png">
+	
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="https://feedthepoor.online">
+	<meta property="twitter:title" content="#feedThePoor Initiative by icrewsystems">
+	<meta property="twitter:description" content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
+	<meta property="twitter:image" content="https://cdn.discordapp.com/attachments/703998770332827740/745467105410940978/feedthepoor_meta_poster.png">
+	<meta name="theme-color" content="#363636">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
     <!-- Theme CSS -->
@@ -136,7 +154,7 @@
                         <a class="nav-link" href="./docs/introduction.html">Voulenteer</a>
                     </li>
                     <a class="nav-link" href="{{ url('/money') }}">
-                        <button class="btn btn-block btn-sm bg-gradient-yellow text-white btn-animated btn-animated-y">
+                        <button class="btn btn-block btn-sm bg-gradient-blue text-white btn-animated btn-animated-y">
                             <span class="btn-inner--visible">Donate Now</span>
                             <span class="btn-inner--hidden"><i class="fas fa-arrow-right"></i></span>
                         </button>
