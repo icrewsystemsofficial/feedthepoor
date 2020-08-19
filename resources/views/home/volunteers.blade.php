@@ -100,50 +100,51 @@
 
 
         <div class="form">
-        <form>
+        <form method="POST" action="{{ url('/volunteerssuccess') }}">
   <div class="form-row">
+    {{ csrf_field() }}
     <div class="col-md-4 mb-3">
       <label for="validationServer01">First name</label>
-      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="First name" value="First Name" required>
+      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="What do we call you?" name="first_name" required>
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationServer02">Last name</label>
-      <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Last name" value="Last Name" required>
+      <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Have a nick name?" name="last_name"  required>
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationServer02">Date of Birth</label>
-  <input type="date" class="form-control is-valid" id="validationServer02" name="birthday">
+  <input type="date" class="form-control is-valid" id="validationServer02" name="DOB">
     </div>
   </div><br>
   <div class="form-row">
-    <div class="col-md-6 mb-3">
-      <label for="validationServer03">City</label>
-      <input type="text" class="form-control is-valid" id="validationServer03" placeholder="City" required>
-    </div><br>
     <div class="col-md-3 mb-3">
       <label for="validationServer04">State</label>
-      <input type="text" class="form-control is-valid" id="validationServer04" placeholder="State" required>
+      <input type="text" class="form-control is-valid" id="validationServer04" placeholder="State" name="state" required>
+    </div><br>
+    <div class="col-md-6 mb-3">
+      <label for="validationServer03">City</label>
+      <input type="text" class="form-control is-valid" id="validationServer03" placeholder="City" name="city" required>
     </div><br>
     <div class="col-md-3 mb-3">
       <label for="validationServer05">Zip</label>
-      <input type="text" class="form-control is-valid" id="validationServer05" placeholder="Zip" required>
+      <input type="text" class="form-control is-valid" id="validationServer05" placeholder="Zip" name="zip" required>
     </div>
   </div><br>
     <div class="form-row">
     <div class="col-lg-9 mb-3">
       <label for="validationServer05">Current institution</label>
-      <input type="text" value="" autocomplete="on" class="form-control is-valid" id="validationServer05" placeholder="Current Institutuion or Organization">
+      <input type="text" value="" autocomplete="on" class="form-control is-valid" id="validationServer05" name="current_institution" placeholder="Current Institutuion or Organization">
     </div>
   </div><br>
   <div class="form-row">
   <div class="col-lg-4 mb-3">
     <label for="validationServer05">Contact Number</label>
-    <input type="text" value="" autocomplete="on" class="form-control is-valid" id="validationServer05" placeholder="Contact Number">
+    <input type="text" value="" autocomplete="on" class="form-control is-valid" id="validationServer05" name="contact" placeholder="Contact Number">
   </div>
 
   <div class="col-lg-4 mb-3">
     <label for="validationServer05">Email id</label>
-    <input type="text" value="" autocomplete="on" class="form-control is-valid" id="validationServer05" placeholder="email id">
+    <input type="text" value="" autocomplete="on" class="form-control is-valid" id="validationServer05" name="email" placeholder="email id">
   </div>
 </div><br>
 
@@ -172,12 +173,9 @@
 </div>
 <br><br>
  <button class="btn btn-primary" type="submit">Submit form</button>
+</form>
  </div>
 
-
-</form>
-
-      </div>
       </div>
     </section><br><br>
 
