@@ -8,12 +8,35 @@
   }
 </style>
 
+<section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen">
+    <span class="mask bg-tertiary alpha-5"></span>
+    <div class="spotlight-holder py-lg pt-lg-xl">
+        <div class="container d-flex align-items-center no-padding">
+            <div class="col">
+                <div class="row cols-xs-space align-items-center text-center text-md-left justify-content-start">
+                    <div class="col-7">
+                        <div class="text-left mt-5">
+                          <img src="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png"
+                              style="width: 200px;" class="img-fluid animated" data-animation-in="jackInTheBox"
+                              data-animation-delay="1000">
 
+                            <!-- <h2 class="heading display-4 font-weight-400 text-white mt-5 animated" data-animation-in="fadeInUp" data-animation-delay="2000">
+                <span class="font-weight-700">812</span> hungry mouths fed today
+              </h2> -->
+                            <h4 class="lead text-white mt-3 lh-180 c-white animated" data-animation-in="fadeInUp"
+                                data-animation-delay="2500">
+                                <span style="font-size: 3rem;">#HungerFreeIndia</span> <br />
+                                "Join our community of passionate Hunger Heroes and lead a movement towards zero hunger."
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section class="slice-lg">
-  <div class="hero bg-light">
-    <h1>About Us</h1>
-  </div>
     <div class="container">
         <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space">
             <div class="col-lg-6">
