@@ -28,7 +28,7 @@
                     <div class="icon-text">
                       <p>
                         <p class="mb-5">
-                          {{ $payment->notes->address }}. We have mailed you the recipt to your email ID {{ $payment->email }}. Once again, thank you so much.
+                          {{ $payment->notes->name }}. We have dispatched the payment recipt to your E-mail ID {{ $payment->email }}. You will receive it within 24 hours.
                         </p>
 
                         <p class="py-2">
