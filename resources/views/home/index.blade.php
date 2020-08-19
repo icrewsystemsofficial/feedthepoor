@@ -92,7 +92,6 @@
     </div>
 </section>
 
-<<<<<<< HEAD
 <section class="slice-lg">
     <div class="container align-items-center">
       <div class="row py-5 align-items-center cols-xs-space cols-sm-space cols-md-space">
@@ -119,59 +118,6 @@
           <div class="card z-depth-3" >
             <div class="card-body">
               <!-- <div class="">Example</div> -->
-=======
-<section class="bg-gradient-lighter slice-lg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="row-wrapper">
-                    <div class="row">
-                        <div class="col">
-                            <div class="d-flex">
-                                <div class="icon-text">
-                                    <h2 class="heading h2">"I don't know...I want to help, but who knows my money is
-                                        actually being used to feed the needy?"</h2>
-                                    <p>
-                                        This, is the first thing that haunts the mind of every good soul that wants to
-                                        help
-                                        <br>
-                                        <strong>"Trust & Transparency"</strong>
-                                        <br><br>
-                                        This is the issue we're trying to fix with the help of technology.
-                                        Seeing is beliving.
-                                        With our app, the donor will be able to see the happy, smiley face of an
-<<<<<<< HEAD
-                                        underprivileged human whom they've just
-=======
-                                        underpriviledged human whom they've just
->>>>>>> f9342a29eedc92907549fd5fadf13555b18ac6f2
-                                        fed. <i>"Trust & Transparency" </i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="d-flex align-items-start">
-                                <div class="icon-text">
-                                    <h2 class="heading h2">
-                                        Do you wish to help?
-                                    </h2>
-                                    <p>
-                                        #FeedThePoor project is a completely sponsored project. There are many good
-                                        hearts and sharp brains behind this project. You can be one of them too.
-                                        You can either devote your suggestions or ideas, if you're a developer (Laravel,
-                                        PHP, Android Studio (JAVA) / Flutter / ionic) you can contribute your time
-                                        into this project.
-
-                                        <br><br>
-                                        Contact us: <a href="mailto:ceo@icrewsystems.com"> ceo@icrewsystems.com </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
->>>>>>> 9d32062b697c5fd50d9b45c9b16eef82b59111c4
 
               <div id="step1-p" class="animate__animated animate__fadeIn" style="display: block;">
                 <h3>You make your donation</h3>
@@ -285,7 +231,6 @@
     <div class="container d-flex align-items-center no-padding">
         <div class="col">
             <div class="row">
-<<<<<<< HEAD
 
                       <div class="col-lg-12 py-5 pr-5">
                           <div style="z-depth-3" class="rounded p-2">
@@ -361,82 +306,6 @@
                               * All numbers mentioned here are for representation purposes
                           </p>
                       </div>
-=======
-                <div class="col-lg-12 pr-5">
-                    <div style="box-shadow: 0 0 50px rgba(0,0,0,0.3);" class="rounded p-2">
-                        <div id="carouselExampleIndicators" class="carousel slide rounded" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img style="height: auto; width: 100%;"
-                                        src="https://b.zmtcdn.com/feeding-india/a0216293d82df205e7d6e19a56d1a1661585293269.png"
-                                        class="img-center img-fluid" alt="">
-                                </div>
-                                <div class="carousel-item">
-                                    <img style="height: auto; width: 100%;"
-                                        src="https://cdn.discordapp.com/attachments/694578470772146237/744470487404380170/icrew_feed_the_poor_2.jpg"
-                                        class="img-center img-fluid" alt="">
-                                </div>
-                                <div class="carousel-item">
-                                    <img style="height: auto; width: 100%;"
-                                        src="https://cdn.discordapp.com/attachments/694578470772146237/744471075697721454/icrew_feeding_india_3.jpg"
-                                        class="img-center img-fluid" alt="">
-                                </div>
-                                <div class="carousel-item">
-                                    <img style="height: auto; width: 100%;"
-                                        src="https://cdn.discordapp.com/attachments/694578470772146237/744472013044973589/icrew_feeding_india_4.jpg"
-                                        class="img-center img-fluid" alt="">
-                                </div>
-                                <div class="carousel-item">
-                                    <img style="height: auto; width: 100%;"
-                                        src="https://cdn.discordapp.com/attachments/694578470772146237/744472703897174036/icrew_feeding_the_poor_5.jpg"
-                                        class="img-center img-fluid" alt="">
-                                </div>
-                                <div class="carousel-item">
-                                    <img style="height: auto; width: 100%;"
-                                        src="https://cdn.discordapp.com/attachments/694578470772146237/744473611909201990/icrew_6.jpg"
-                                        class="img-center img-fluid" alt="">
-                                </div>
-                                <div class="carousel-item">
-                                    <img style="height: auto; width: 100%;"
-                                        src="https://cdn.discordapp.com/attachments/694578470772146237/744474193516822590/icrew_7.jpg"
-                                        class="img-center img-fluid" alt="">
-                                </div>
-                            </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                                data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                                data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 py-5">
-                    <p class="lead text-dark">
-                        <h1>Do you see that smile? <br />
-                            <small>Thanks to our donors, partners & volunteers we've rescued <strong>1,82,109
-                                    people</strong> so far
-                                from <strong><i>hunger</i></strong> and put a <i><strong>smile</strong></i> on their
-                                face</small>
-                        </h1>
-                        * All numbers mentioned here are for representation purposes
-                    </p>
-                </div>
->>>>>>> 9d32062b697c5fd50d9b45c9b16eef82b59111c4
 
                 <div class="col-lg-12 py-5">
                     <ul class="C-donate-nav nav nav-pills nav-fill flex-column flex-sm-row" id="myTab" role="tablist">
@@ -490,11 +359,7 @@
                         </div>
                         <div class="C-tab-item tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <p>
-<<<<<<< HEAD
-                                It Only costs INR 60 to feed an underprivileged a day. It's easier than you think.
-=======
                                 It Only costs INR 60 to feed an underpriviledged a day. It's easier than you think.
->>>>>>> f9342a29eedc92907549fd5fadf13555b18ac6f2
                                 The very decision you make now, will defenitely rescue someone from hunger.
 
                                 <center>
@@ -508,11 +373,7 @@
                         </div>
                         <div class="C-tab-item tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                             <p>
-<<<<<<< HEAD
-                                It Only costs INR 60 to feed an underprivileged a day. It's easier than you think.
-=======
                                 It Only costs INR 60 to feed an underpriviledged a day. It's easier than you think.
->>>>>>> f9342a29eedc92907549fd5fadf13555b18ac6f2
                                 The very decision you make now, will defenitely rescue someone from hunger.
 
                                 <center>
@@ -548,10 +409,10 @@
                                     <div class="col-md-2">
                                       <a class="btn btn-sm  text-dark btn-secondary"><i class="fa fa-plus"></i></a>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-8">
                                       <input type="text" class="form-control" id="input_email" placeholder="Your email" value="1 Meal" required>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 text-right">
                                       <a class="btn btn-sm text-dark  btn-secondary"><i class="fa fa-minus"></i></a>
                                     </div>
                                   </div>
