@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/coming-soon', 'HomeController@comingsoon')->name('comingsoon');
+
+Route::post('/volunteerssuccess', 'HomeController@volunteerssuccess')->name('volunteerssuccess');
+
 Route::get('/logout', 'AdminController@logout');
 
 Route::get('/aboutus', 'HomeController@aboutus')->name('aboutus');
@@ -25,7 +28,6 @@ Route::get('/faq', 'HomeController@faq')->name('faq');
 Route::get('/success', 'HomeController@success')->name('success');
 Route::get('/error', 'HomeController@error')->name('error');
 Route::get('/testimonials', 'HomeController@testimonials')->name('testimonials');
-Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/work', 'HomeController@work')->name('work');
 Route::get('/volunteers', 'HomeController@volunteers')->name('volunteers');
 Route::get('/partners', 'HomeController@partners')->name('partners');
