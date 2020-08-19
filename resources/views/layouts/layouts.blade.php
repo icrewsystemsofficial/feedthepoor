@@ -17,7 +17,8 @@
     <link type="text/css" href="{{ asset('boomerang/assets/css/demo.css')}}" rel="stylesheet">
     <!-- testimonials css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css">
-
+	
+	<link rel="icon" href="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png" type="image/png">
 
     <style>
         ::-webkit-scrollbar {

@@ -28,38 +28,64 @@ class PaymentsController extends Controller
     public function verify(Request $request)
     {
         $api = new Api("rzp_test_tufnOqSwzLJerx", "XS0PnaNKJP9GhuaHtzfrtygg");
-        // $params = array(
-        //   'count' => 5,
-        //   'skip'  => 1
-        // );
-        // $payments = $api->payment->all($params);
         $payment = $api->payment->fetch($request->input('razorpay_payment_id'));
-
         //storing user data to DB
         if ($payment) {
-
-
-          //Saurabh
-          $donation = new Donation;
-            //$donation->payments_id = $payment->id;
-            if(count($donation->payments_id->value())>1){
-
-            }else{
-              $donation->payments_id = $payment->id;
-            }
+        	//This means there's a Payment in RazorPay's API with the given ID, now, we gotta verify if there's a record 
+        	// already existing in our DB with that Payment ID, if yes, we don't have to save it again, if not, then we save it. -Leonard.
+          
+          
+          $check = Donation::where('payment_id', $request->input('razorpay_payment_id'));
+          if($check == true) {
+          	// The payment already exists on the DB, which means this code was already executed once and the user 
+          	// is just trying to reload the page again. So to save our servers, we prevent processing and just display the already existing 
+          	// values.
+          	
+          	
+          } else {
+          	// code is running for the first time, so we let it run. 
+          	
+          	// SAVING TO DB
+          	
+          	$donation = new Donation;
+			$donation->payments_id = $payment->id;
+            // if(count($donation->payments_id->value())>1){
+            // }else{
+            //   $donation->payments_id = $payment->id;
+            // }
+            
+            // Saurabh, this doesn't work. Gave me an error. 
+            // What were you trying to accomplish tho? 
+            // From what I see, you're trying to verify a condition if 
+            // the value of the payment ID is > than 1. Defnitely it will be, because 
+            //this part of the code is ONLY executed if the method is able to verify payments from the API. 
+            // So, No need of it. On the other hand, Instagram is optional, so you gotta add a conditional statement to it. 
+            
+            //- Leonard, 19/08/2020.
             $donation->donor_name = $payment->notes->name;
             $donation->donor_email = $payment->email;
             $donation->donor_instagram = $payment->notes->instagram;
             $donation->save();
-
+            
+        	// PDF GENERATION
+        	
+            //Samay, Generating a PDF and saving it on /recipts.
             $array = [$payment];
-
-            view()->share('paydet', $array);
+            view()->share('payment', $array);
             $pdf = PDF::loadView('receipt.pdf_view', $array);
             $pdf->setPaper('A4', 'portrait');
-            $pdf->save("invoices/invoice_".$payment->id.".pdf");
-
+            $pdf->save("recipts/recipt_".$payment->id.".pdf");
+            
+            // SEND AN EMAIL TO USER, ATTACH THE RECIPT. 
+            
+            // QUEUE AN EMAIL TO ADMINS.
+          }
+          
+				
             notify()->success('Payment details were added to the database. We are generating and sending your report.', 'Yay!');
+            
+            // Use this if you want to test the PDF, -Leonard, 19/8/2020.
+            // return view('receipt.pdf_view')->with('payment', (object) $payment);
         } else {
             notify()->error('We were not able to find a payment with the specified ID (' . $request->input('razorpay_payment_id') . '). If the amount was deducted from your account, please contact us. Further information will be mailed to you by RazorPay.', 'Whoopsie!');
             return redirect('/index');
