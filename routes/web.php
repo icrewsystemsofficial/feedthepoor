@@ -30,6 +30,7 @@ Route::get('/work', 'HomeController@work')->name('work');
 Route::get('/volunteers', 'HomeController@volunteers')->name('volunteers');
 Route::get('/partners', 'HomeController@partners')->name('partners');
 Route::get('/contact', 'HomeController@contact')->name('contact');
+Route::get('/today', 'HomeController@today')->name('today');
 
 
 
