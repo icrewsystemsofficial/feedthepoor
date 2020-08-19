@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="icrewsystems.com">
+<<<<<<< HEAD
   	<!-- Primary Meta Tags -->
   	<title>#feedThePoor Initiative by icrewsystems</title>
   	<meta name="title" content="#feedThePoor Initiative by icrewsystems">
@@ -24,6 +25,27 @@
   	<meta property="twitter:description" content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
   	<meta property="twitter:image" content="https://cdn.discordapp.com/attachments/703998770332827740/745467105410940978/feedthepoor_meta_poster.png">
   	<meta name="theme-color" content="#363636">
+=======
+	<!-- Primary Meta Tags -->
+	<title>#feedThePoor Initiative by icrewsystems</title>
+	<meta name="title" content="#feedThePoor Initiative by icrewsystems">
+	<meta name="description" content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://feedthepoor.online">
+	<meta property="og:title" content="#feedThePoor Initiative by icrewsystems">
+	<meta property="og:description" content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
+	<meta property="og:image" content="https://cdn.discordapp.com/attachments/703998770332827740/745467105410940978/feedthepoor_meta_poster.png">
+
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="https://feedthepoor.online">
+	<meta property="twitter:title" content="#feedThePoor Initiative by icrewsystems">
+	<meta property="twitter:description" content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
+	<meta property="twitter:image" content="https://cdn.discordapp.com/attachments/703998770332827740/745467105410940978/feedthepoor_meta_poster.png">
+	<meta name="theme-color" content="#363636">
+>>>>>>> 9d32062b697c5fd50d9b45c9b16eef82b59111c4
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
@@ -36,9 +58,14 @@
     <!-- testimonials css -->
     <link type="text/css" href="{{ asset('boomerang/assets/css/testimonials.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css">
+<<<<<<< HEAD
     <!-- Campaigns CSS -->
     <link type="text/css" href="{{ asset('boomerang/assets/css/campaigns.css')}}" rel="stylesheet">
 	  <link rel="icon" href="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png" type="image/png">
+=======
+
+	<link rel="icon" href="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png" type="image/png">
+>>>>>>> 9d32062b697c5fd50d9b45c9b16eef82b59111c4
 
     <style>
         ::-webkit-scrollbar {
@@ -148,9 +175,9 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
                         <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
-                            <a class="dropdown-item" href="{{url ('/about')}}">About us</a>
+                            <a class="dropdown-item" href="{{url ('/aboutus')}}">About us</a>
                             <a class="dropdown-item" href="{{url ('/work')}}">How does it work</a>
-                            <a class="dropdown-item" href="{{url ('/volunteers')}}">Volenteers</a>
+                            <a class="dropdown-item" href="{{url ('/volunteers')}}">Volunteers</a>
                             <a class="dropdown-item" href="{{url ('/partners')}}">Partners</a>
                             <a class="dropdown-item" href="{{url ('/contact')}}">Contact</a>
                         </div>

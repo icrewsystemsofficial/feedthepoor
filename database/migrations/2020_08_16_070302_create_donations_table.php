@@ -18,7 +18,7 @@ class CreateDonationsTable extends Migration
             $table->string('payments_id', 50)->nullable();
             $table->string('donor_name')->nullable();
             $table->string('donor_email')->nullable();
-            $table->string('donor_instagram')->nullable();            
+            $table->string('donor_instagram')->nullable();
             $table->timestamps();
         });
     }
