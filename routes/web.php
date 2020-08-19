@@ -19,6 +19,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/coming-soon', 'HomeController@comingsoon')->name('comingsoon');
 Route::get('/logout', 'AdminController@logout');
 
+Route::get('/aboutus', 'HomeController@aboutus')->name('aboutus');
+
 Route::get('/faq', 'HomeController@faq')->name('faq');
 Route::get('/success', 'HomeController@success')->name('success');
 Route::get('/error', 'HomeController@error')->name('error');
@@ -32,9 +34,7 @@ Route::get('/contact', 'HomeController@contact')->name('contact');
 
 
 
-//created by SAURABH, to add manual donations
-Route::get('/add', 'HomeController@add')->name('add');
-Route::post('add/manual', 'HomeController@manual')->name('manual');
+
 
 
 //DONATION ROUTES
@@ -51,6 +51,7 @@ Route::post('/request', 'PaymentsController@request');
 Route::post('/response', 'PaymentsController@response');
 
 
+Auth::routes();
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', 'AdminController@index');
     Route::get('/logout', 'AdminController@logout');
@@ -58,4 +59,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/donations', 'AdminController@donation');
     Route::get('/mailer', 'AdminController@mailer');
     Route::post('/sendmail', 'AdminController@sendmail');
+
+    //created by SAURABH, to add manual donations
+    Route::get('/add', 'AdminController@add')->name('add');
+    Route::post('add/manual', 'AdminController@manual')->name('manual');
 });
