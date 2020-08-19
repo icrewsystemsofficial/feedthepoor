@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVolunteersTable extends Migration
+class CreatePartnersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateVolunteersTable extends Migration
      */
     public function up()
     {
-        Schema::create('volunteers', function (Blueprint $table) {
+        Schema::create('partners', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name', 50)->nullable();
-            $table->string('last_name', 50)->nullable();
-            $table->string('dob', 50)->nullable();
+            $table->string('organisation_name', 50)->nullable();
+            $table->string('organisation_address', 50)->nullable();
             $table->string('state', 50)->nullable();
             $table->string('city', 50)->nullable();
             $table->string('zip', 50)->nullable();
-            $table->string('current_institution', 50)->nullable();
-            $table->string('contact_number', 50)->nullable();
+            $table->string('name', 50)->nullable();
+            $table->string('contact', 50)->nullable();
             $table->string('email', 50)->nullable();
             $table->text('comments', 50)->nullable();
             $table->timestamps();
@@ -36,6 +35,6 @@ class CreateVolunteersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('volunteers');
+        Schema::dropIfExists('partners');
     }
 }

@@ -13,15 +13,14 @@
       }
 
   .form{
-    background-color: #fbf7f7;
-    padding: 10%;
-    border-radius: 5%;
+    border-radius: 10%;
 
   }
 
   .ability{
     font-size: 1.05rem;
   }
+
 
 
 
@@ -91,62 +90,78 @@
     </div>
 </section><br><br>
 
-    <section>
-      <div class="container">
-        <div  class="volunteer_form">
-          <h3>Want to serve as a Volunteer?</h3>
-          <p>why are you waiting for let's join together and end the hunger.</p>
-        </div>
 
 
-        <div class="form">
+            <section class="py-xl">
+              <!-- <span class="mask bg-primary alpha-6"></span> -->
+                <div class="container d-flex align-items-center no-padding">
+                    <div class="col">
+                        <div class="row">
+                          <div class="col-md-12">
+                              <div class="card bg-tertiary text-white">
+                                  <div class="card-body">
+                                      <h2 class="heading pt-3 pb-2 text-white">
+                                        Want to serve as a Volunteer?<br />
+                                      </h2>
+                                      <p class="mb-5">
+                                        why are you waiting for let's join together and end the hunger.
+                                      </p>
+
+
+
         <form method="POST" action="{{ url('/volunteerssuccess') }}">
   <div class="form-row">
     {{ csrf_field() }}
     <div class="col-md-4 mb-3">
       <label for="validationServer01">First name</label>
-      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="What do we call you?" name="first_name" required>
+      <input type="text" class="form-control " id="validationServer01" placeholder="What do we call you?" name="first_name" required>
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationServer02">Last name</label>
-      <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Have a nick name?" name="last_name"  required>
+      <input type="text" class="form-control " id="validationServer02" placeholder="Have a nick name?" name="last_name"  required>
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationServer02">Date of Birth</label>
-  <input type="date" class="form-control is-valid" id="validationServer02" name="DOB">
+  <input type="date" class="form-control " id="validationServer02" name="DOB">
     </div>
   </div><br>
   <div class="form-row">
     <div class="col-md-3 mb-3">
       <label for="validationServer04">State</label>
-      <input type="text" class="form-control is-valid" id="validationServer04" placeholder="State" name="state" required>
+      <input type="text" class="form-control " id="validationServer04" placeholder="State" name="state" required>
     </div><br>
     <div class="col-md-6 mb-3">
       <label for="validationServer03">City</label>
-      <input type="text" class="form-control is-valid" id="validationServer03" placeholder="City" name="city" required>
+      <input type="text" class="form-control " id="validationServer03" placeholder="City" name="city" required>
     </div><br>
     <div class="col-md-3 mb-3">
       <label for="validationServer05">Zip</label>
-      <input type="text" class="form-control is-valid" id="validationServer05" placeholder="Zip" name="zip" required>
+      <input type="text" class="form-control " id="validationServer05" placeholder="Zip" name="zip" required>
     </div>
   </div><br>
     <div class="form-row">
     <div class="col-lg-9 mb-3">
       <label for="validationServer05">Current institution</label>
-      <input type="text" value="" autocomplete="on" class="form-control is-valid" id="validationServer05" name="current_institution" placeholder="Current Institutuion or Organization">
+      <input type="text" value="" autocomplete="on" class="form-control " id="validationServer05" name="current_institution" placeholder="Current Institutuion or Organization">
     </div>
   </div><br>
   <div class="form-row">
-  <div class="col-lg-4 mb-3">
+  <div class="col-lg-6 mb-3">
     <label for="validationServer05">Contact Number</label>
-    <input type="text" value="" autocomplete="on" class="form-control is-valid" id="validationServer05" name="contact" placeholder="Contact Number">
+    <input type="text" value="" autocomplete="on" class="form-control " id="validationServer05" name="contact" placeholder="Contact Number">
   </div>
 
-  <div class="col-lg-4 mb-3">
+  <div class="col-lg-6 mb-3">
     <label for="validationServer05">Email id</label>
-    <input type="text" value="" autocomplete="on" class="form-control is-valid" id="validationServer05" name="email" placeholder="email id">
+    <input type="text" value="" autocomplete="on" class="form-control " id="validationServer05" name="email" placeholder="email id">
   </div>
 </div><br>
+
+<div class="form-row">
+  <div class="col-lg-12 mb-3">
+  <textarea name="comments" rows="8" cols="120" placeholder="Mention any previous experiences"></textarea>
+</div>
+</div>
 
 <div class="ability">
 <div class="form-row">
@@ -167,12 +182,23 @@
   <div class="col-lg-12 mb-6">
     <input type="radio" value=""  placeholder="I can lead initiatives">
     <label for="validationServer05">Twice a month</label>
-  </div>
+  </div><br><br>
 
+
+
+  <button class="btn btn-primary" type="submit">Submit form</button> &nbsp;&nbsp;&nbsp;&nbsp;
+  <button class="btn btn-warning" type="reset">Reset</button>
+
+
+</div><br>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <br><br>
- <button class="btn btn-primary" type="submit">Submit form</button>
+
 </form>
  </div>
 
