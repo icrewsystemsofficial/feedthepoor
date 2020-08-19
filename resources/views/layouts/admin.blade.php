@@ -52,7 +52,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ url('admin/') }}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -79,8 +79,8 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{ url('admin/donations') }}">From Razorypay</a>
-            <a class="collapse-item" href="{{ url('admin/') }}">Add new donation</a>
+            <a class="collapse-item" href="{{ url('admin/donations') }}">From Razorpay</a>
+            <a class="collapse-item" href="{{ url('admin/add') }}">Add manual donation</a>
           </div>
         </div>
       </li>
@@ -156,7 +156,13 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ url('admin/') }}">
           <i class="fas fa-fw fa-table"></i>
-          <span>Voulenteer Signups</span></a>
+          <span>Volunteer Signups</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('admin/data') }}">
+          <i class="fas fa-fw fa-table"></i>
+          <span>View Database Data</span></a>
       </li>
 
       <li class="nav-item">
