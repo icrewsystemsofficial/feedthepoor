@@ -16,7 +16,7 @@ $(document).ready( function () {
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0 text-gray-800">Data from Database</h1>
+  <h1 class="h3 mb-0 text-gray-800">All Donations Data</h1>
 </div>
 
 <!-- Content Row -->
@@ -28,7 +28,7 @@ $(document).ready( function () {
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Retrived payments</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Following is the list of donation details stored on the database.</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -39,49 +39,39 @@ $(document).ready( function () {
                   ID
                 </th>
                 <th>
-                  Amount
+                  Payments ID
                 </th>
                 <th>
-                  When
+                  Donor Name
                 </th>
                 <th>
-                  Date
+                  Donor Email
                 </th>
                 <th>
-                  Email ID
+                  Donor Instagram
                 </th>
-                <th>
-                  Contact No
-                </th>
-                <th>
-                  Captured?
-                </th>
+
               </tr>
             </thead>
             <tbody>
-              @forelse($payments as $payment)
+              @forelse($donations as $donation)
                 <tr>
                   <td>
-                    {{ $payment->id }}
+                    {{ $donation->id }}
                   </td>
                   <td>
-                    {{ ($payment->amount / 100) }} {{ $payment->currency }}
+                    {{ $donation->payments_id }}
                   </td>
                   <td>
-                    {{ \Carbon\Carbon::createFromTimeStamp($payment->created_at)->diffForHumans()  }}
+                    {{  $donation->donor_name  }}
                   </td>
                   <td>
-                    {{ \Carbon\Carbon::createFromTimeStamp($payment->created_at)->format('d/M/Y')  }}
+                    {{  $donation->donor_email  }}
                   </td>
                   <td>
-                    {{ $payment->email }}
+                    {{  $donation->donor_instagram }}
                   </td>
-                  <td>
-                    {{ $payment->contact }}
-                  </td>
-                  <td>
-                    {{ $donation->captured }}
-                  </td>
+
                 </tr>
               @empty
                 <div class="alert alert-danger">

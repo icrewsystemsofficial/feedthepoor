@@ -66,7 +66,7 @@ class AdminController extends Controller
 
     public function data() {
       // display DB data, by Saurabh
-      $donations = Post::all();
-        return view('admin.payments.data');
+        $donations = Donation::all();
+        return view('admin.payments.data')->with('donations', $donations);
     }
 }
