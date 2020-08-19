@@ -84,7 +84,11 @@
                                         This is the issue we're trying to fix with the help of technology.
                                         Seeing is beliving.
                                         With our app, the donor will be able to see the happy, smiley face of an
+<<<<<<< HEAD
                                         underprivileged human whom they've just
+=======
+                                        underpriviledged human whom they've just
+>>>>>>> f9342a29eedc92907549fd5fadf13555b18ac6f2
                                         fed. <i>"Trust & Transparency" </i>
                                     </p>
                                 </div>
@@ -102,7 +106,7 @@
                                         #FeedThePoor project is a completely sponsored project. There are many good
                                         hearts and sharp brains behind this project. You can be one of them too.
                                         You can either devote your suggestions or ideas, if you're a developer (Laravel,
-                                        PHP, Android Studio (JAVA) / Flutter / ionic) you can contrinute your time
+                                        PHP, Android Studio (JAVA) / Flutter / ionic) you can contribute your time
                                         into this project.
 
                                         <br><br>
@@ -266,7 +270,11 @@
                         </div>
                         <div class="C-tab-item tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <p>
+<<<<<<< HEAD
                                 It Only costs INR 60 to feed an underprivileged a day. It's easier than you think.
+=======
+                                It Only costs INR 60 to feed an underpriviledged a day. It's easier than you think.
+>>>>>>> f9342a29eedc92907549fd5fadf13555b18ac6f2
                                 The very decision you make now, will defenitely rescue someone from hunger.
 
                                 <center>
@@ -280,7 +288,11 @@
                         </div>
                         <div class="C-tab-item tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                             <p>
+<<<<<<< HEAD
                                 It Only costs INR 60 to feed an underprivileged a day. It's easier than you think.
+=======
+                                It Only costs INR 60 to feed an underpriviledged a day. It's easier than you think.
+>>>>>>> f9342a29eedc92907549fd5fadf13555b18ac6f2
                                 The very decision you make now, will defenitely rescue someone from hunger.
 
                                 <center>

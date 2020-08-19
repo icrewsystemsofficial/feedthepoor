@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use DB;
 use App\Donation;
 use App\Volunteer;
+=======
+>>>>>>> f9342a29eedc92907549fd5fadf13555b18ac6f2
 
 class HomeController extends Controller
 {
@@ -25,6 +28,11 @@ class HomeController extends Controller
       return view('home.faq');
     }
 
+    public function aboutus() {
+      return view('home.aboutus');
+    }
+
+
     //THARUN.
     public function success() {
       // When Payment is successful.
@@ -42,7 +50,7 @@ class HomeController extends Controller
       return view('home.testimonials');
     }
 
-    public function about() {
+  public function about() {
       // Testimonials
       return view('home.about');
     }
@@ -89,18 +97,5 @@ class HomeController extends Controller
     public function add() {
       // adding a manual donation, by Saurabh
         return view('admin.donations.add');
-    }
-
-    public function manual(Request $request) {
-      // saving to DB, created by Saurabh
-      $donation = new Donation;
-      $donation->donor_name = $request->input('name');
-      $donation->donor_email =  $request->input('email');
-      $donation->donor_instagram =  $request->input('instagram');
-      $donation->save();
-      notify()->success('Payment details were added to the database. We are generating and sending your report.', 'Yay!');
-
-      return view('admin.donations.add');
-
     }
 }
