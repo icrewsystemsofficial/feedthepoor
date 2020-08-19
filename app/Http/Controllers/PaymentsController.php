@@ -44,7 +44,6 @@ class PaymentsController extends Controller
             $donation->donor_email = $payment->email;
             $donation->donor_instagram = $payment->notes->instagram;
             $donation->save();
-
             $array = [$payment];
 
             view()->share('paydet', $array);
@@ -111,6 +110,8 @@ class PaymentsController extends Controller
     {
         return view('payments.request');
     }
+
+
 
     public function response()
     {

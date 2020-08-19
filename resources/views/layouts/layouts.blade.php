@@ -128,7 +128,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
                             <a class="dropdown-item" href="{{url ('/about')}}">About us</a>
                             <a class="dropdown-item" href="{{url ('/work')}}">How does it work</a>
-                            <a class="dropdown-item" href="{{url ('/volunteers')}}">Volenteers</a>
+                            <a class="dropdown-item" href="{{url ('/volunteers')}}">Volunteers</a>
                             <a class="dropdown-item" href="{{url ('/partners')}}">Partners</a>
                             <a class="dropdown-item" href="{{url ('/contact')}}">Contact</a>
                         </div>
