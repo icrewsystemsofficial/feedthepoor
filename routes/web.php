@@ -65,4 +65,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     //created by SAURABH, to add manual donations
     Route::get('/add', 'AdminController@add')->name('add');
     Route::post('add/manual', 'AdminController@manual')->name('manual');
+
+    //created by SAURABH, to display the payment details from DB
+    Route::get('/data', 'AdminController@data');
+    
 });
