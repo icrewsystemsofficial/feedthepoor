@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use DB;
 use App\Donation;
 use App\Volunteer;
-=======
->>>>>>> f9342a29eedc92907549fd5fadf13555b18ac6f2
+
 
 class HomeController extends Controller
 {
@@ -50,11 +48,6 @@ class HomeController extends Controller
       return view('home.testimonials');
     }
 
-  public function about() {
-      // Testimonials
-      return view('home.about');
-    }
-
     public function work() {
       // Testimonials
       return view('home.work');
@@ -62,8 +55,8 @@ class HomeController extends Controller
 
     public function volunteers(Request $request) {
       // Volunteers
-
-      $volunteer = new Volunteer;
+      //{{ dd($request->input()) }}
+      /*$volunteer = new Volunteer;
       $volunteer->first_name = $request->input('first_name');
       $volunteer->last_name = $request->input('last_name');
       $volunteer->DOB = $request->input('DOB');
@@ -73,7 +66,7 @@ class HomeController extends Controller
       $volunteer->Current_Institution = $request->input('current_institution');
       $volunteer->Contact_number = $request->input('contact');
       $volunteer->email = $request->input('email');
-      $volunteer->save();
+      $volunteer->save();*/
 
       return view('home.volunteers');
 

@@ -9,14 +9,14 @@
 	<title>#feedThePoor Initiative by icrewsystems</title>
 	<meta name="title" content="#feedThePoor Initiative by icrewsystems">
 	<meta name="description" content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
-	
+
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://feedthepoor.online">
 	<meta property="og:title" content="#feedThePoor Initiative by icrewsystems">
 	<meta property="og:description" content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
 	<meta property="og:image" content="https://cdn.discordapp.com/attachments/703998770332827740/745467105410940978/feedthepoor_meta_poster.png">
-	
+
 	<!-- Twitter -->
 	<meta property="twitter:card" content="summary_large_image">
 	<meta property="twitter:url" content="https://feedthepoor.online">
@@ -35,7 +35,7 @@
     <link type="text/css" href="{{ asset('boomerang/assets/css/demo.css')}}" rel="stylesheet">
     <!-- testimonials css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css">
-	
+
 	<link rel="icon" href="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png" type="image/png">
 
     <style>
@@ -145,7 +145,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
                         <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
-                            <a class="dropdown-item" href="{{url ('/about')}}">About us</a>
+                            <a class="dropdown-item" href="{{url ('/aboutus')}}">About us</a>
                             <a class="dropdown-item" href="{{url ('/work')}}">How does it work</a>
                             <a class="dropdown-item" href="{{url ('/volunteers')}}">Volunteers</a>
                             <a class="dropdown-item" href="{{url ('/partners')}}">Partners</a>
