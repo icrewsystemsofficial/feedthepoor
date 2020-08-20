@@ -154,11 +154,11 @@
                             <a class="dropdown-item" href="{{url ('/work')}}">How does it work</a>
                             <a class="dropdown-item" href="{{url ('/volunteers')}}">Volunteers</a>
                             <a class="dropdown-item" href="{{url ('/partners')}}">Partners</a>
-                            <a class="dropdown-item" href="{{url ('/contact')}}">Contact</a>
+                            <!-- <a class="dropdown-item" href="{{url ('/contact')}}">Contact</a> -->
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./docs/introduction.html">Voulenteer</a>
+                        <a class="nav-link" href="{{url ('/contacts')}}">Contact</a>
                     </li>
                     <a class="nav-link" href="{{ url('/money') }}">
                         <button class="btn btn-block btn-sm bg-gradient-blue text-white btn-animated btn-animated-y">

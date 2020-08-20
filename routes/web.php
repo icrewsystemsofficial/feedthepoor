@@ -20,6 +20,7 @@ Route::get('/coming-soon', 'HomeController@comingsoon')->name('comingsoon');
 
 Route::post('/volunteerssuccess', 'HomeController@volunteerssuccess')->name('volunteerssuccess');
 Route::post('/partnerssuccess', 'HomeController@partnerssuccess')->name('partnerssuccess');
+Route::post('/contactsuccess', 'HomeController@contactsuccess')->name('contactsuccess');
 
 
 
@@ -34,6 +35,7 @@ Route::get('/testimonials', 'HomeController@testimonials')->name('testimonials')
 Route::get('/work', 'HomeController@work')->name('work');
 Route::get('/volunteers', 'HomeController@volunteers')->name('volunteers');
 Route::get('/partners', 'HomeController@partners')->name('partners');
+Route::post('/contacts', 'HomeController@contact')->name('contact');
 Route::get('/contact', 'HomeController@contact')->name('contact');
 Route::get('/today', 'HomeController@today')->name('today');
 

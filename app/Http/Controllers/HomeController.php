@@ -7,6 +7,10 @@ use DB;
 use App\Donation;
 use App\Volunteer;
 use App\Partner;
+use App\Mail\Contact;
+use Illuminate\Support\Facades\Mail;
+
+
 
 
 class HomeController extends Controller
@@ -71,7 +75,7 @@ class HomeController extends Controller
 
       $volunteer->save();*/
 
-      return view('home.volunters');
+      return view('home.volunteers');
 
     }
 
@@ -108,12 +112,30 @@ class HomeController extends Controller
       return view('home.volunteerssuccess');
     }
 
+    public function contact(Request $request) {
+      // contacts
+      //  $contact = new contact;
+      // $contacts->first_name = $request->input('first_name');
+      // $contacts->contact = $request->input('contact');
+      // $contacts->email = $request->input('email');
+      // $contacts->subject = $request->input('subject');
+      // $contacts->comments = $request->input('comments');
 
 
-    public function contact() {
-      // Testimonials
-      return view('home.contact');
+      // $partner->save();
+      Mail::to($request->input('email'))->send(new Contact($request->input()));
+
+      return view('home.contacts');
+
     }
+
+    public function contactsuccess() {
+      //Bharath
+        notify()->success('You are Successfully registered as a Volunteer', 'Yay!');
+      return view('home.volunteerssuccess');
+    }
+
+
 
     public function add() {
       // adding a manual donation, by Saurabh
