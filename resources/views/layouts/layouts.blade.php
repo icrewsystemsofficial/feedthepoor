@@ -51,7 +51,7 @@
             }
         }
 
-        ::-webkit-scrollbar-track{
+        ::-webkit-scrollbar-track {
             border-left: 1px solid rgba(0, 0, 0, 0.1);
         }
 
@@ -75,27 +75,41 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
-        .C-donate-nav .nav-item .nav-link{
+
+        .C-donate-nav .nav-item .nav-link {
             background-color: white;
             transition: all 0.2s !important;
         }
-        .C-donate-nav .nav-item .nav-link.active{
+
+        .C-donate-nav .nav-item .nav-link.active {
             transform: scale(1.1);
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1) !important;
             border: 1px solid rgba(0, 0, 0, 0.1) !important;
             border-radius: 10px !important;
         }
-        .C-tab-cont{
+
+        .C-tab-cont {
             transition: all 0.2s ease;
         }
-        .C-tab-item{
+
+        .C-tab-item {
             padding: 20px;
             border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 15px;
         }
-        .C-nav{
-            
+        .Nav-scroll-text{
+            color: white !important;
         }
+        .C-brand-feed{
+            color: white;
+        }
+        .C-nav-link{
+            color: white;
+        }
+        .C-nav-top-background{
+
+        }
+
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -104,11 +118,11 @@
 
 <body>
     <!-- <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark bg-dark py-4"> -->
-    <nav class="C-nav navbar fixed-top navbar-expand-lg navbar-light bg-dark"
-        style="background-color: white !important; !important; border-bottom: 1px solid rgba(0,0,0,0.1); transition: all 0.2s;">
+    <nav class="C-nav navbar fixed-top navbar-expand-lg navbar-light"
+        style="transition: all 0.2s;">
         <div class="container">
-            <a class="navbar-brand px-2" href="{{ env('APP_URL') }}" style="color: #708090">
-                <strong style="color: black">#feed</strong>ThePoor
+            <a class="C-nav-link C-brand-feed navbar-brand px-2" href="{{ env('APP_URL') }}">
+                <strong>#feed</strong>ThePoor
             </a>
             <button class="navbar-toggler" type="button" data-action="offcanvas-open" data-target="#navbar_main"
                 aria-controls="navbar_main" aria-expanded="false" aria-label="Toggle navigation">
@@ -116,13 +130,13 @@
             </button>
             <div class="navbar-collapse offcanvas-collapse" id="navbar_main">
                 <ul class="navbar-nav ml-auto align-items-lg-center">
-                    <li class="nav-item">
+
 
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ url('/who-did-we-feed-today') }}">Who did we feed today?</a>
+                        <a class="C-nav-link nav-link" href="{{ url('/who-did-we-feed-today') }}">Who did we feed today?</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button"
+                        <a class="C-nav-link nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
                         <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
                             <a class="dropdown-item" href="./pages/about.html">About us</a>
@@ -133,15 +147,17 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./docs/introduction.html">Docs</a>
+                        <a class="C-nav-link nav-link" href="./docs/introduction.html">Docs</a>
                     </li>
-                    <a class="nav-link" href="{{ url('/money') }}">
-                        <button class="btn btn-block btn-sm bg-gradient-yellow text-white btn-animated btn-animated-y">
-                            <span class="btn-inner--visible">Donate Now</span>
-                            <span class="btn-inner--hidden"><i class="fas fa-arrow-right"></i></span>
-                        </button>
-                    </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/money') }}">
+                            <button class="btn btn-block btn-sm bg-gradient-yellow text-white btn-animated btn-animated-y">
+                                <span class="btn-inner--visible">Donate Now</span>
+                                <span class="btn-inner--hidden"><i class="fas fa-arrow-right"></i></span>
+                            </button>
+                        </a>
                     </li>
+
                 </ul>
             </div>
         </div>
@@ -226,14 +242,18 @@
 
     <script src="{{ asset('boomerang/assets/js/theme.js')}}"></script>
     <script>
-        $(window).scroll(function() {
-            if ($(document).scrollTop() > 50) {
-                $('.C-nav').addClass('C-nav-shadow');
-
-            } else {
-                $('.C-nav').removeClass('C-nav-shadow');
-            }
+        $( window ).on( "load", function() {
+            $(window).scroll(function() {
+                if ($(document).scrollTop() > 50) {
+                    $('.C-nav').addClass('C-nav-shadow');
+                    $('.C-nav-link').removeClass('Nav-scroll-text');
+                } else {
+                    $('.C-nav').removeClass('C-nav-shadow');
+                    $('.C-nav-link').addClass('Nav-scroll-text');
+                }
+            });
         });
+
     </script>
     <!-- FAQ JS -->
     <script src="{{ asset('boomerang/assets/js/faq.js')}}"></script>
