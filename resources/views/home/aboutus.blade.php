@@ -7,7 +7,6 @@
   margin: 0px 0px 70px 0px;
   }
 </style>
-
 <section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen">
     <span class="mask bg-tertiary alpha-5"></span>
     <div class="spotlight-holder py-lg pt-lg-xl">
