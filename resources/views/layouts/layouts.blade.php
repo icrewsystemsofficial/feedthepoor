@@ -6,24 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="icrewsystems.com">
     <!-- Primary Meta Tags -->
-  	<title>#feedThePoor Initiative by icrewsystems</title>
-  	<meta name="title" content="#feedThePoor Initiative by icrewsystems">
-  	<meta name="description" content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
+    <title>#feedThePoor Initiative by icrewsystems</title>
+    <meta name="title" content="#feedThePoor Initiative by icrewsystems">
+    <meta name="description"
+        content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
 
-  	<!-- Open Graph / Facebook -->
-  	<meta property="og:type" content="website">
-  	<meta property="og:url" content="https://feedthepoor.online">
-  	<meta property="og:title" content="#feedThePoor Initiative by icrewsystems">
-  	<meta property="og:description" content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
-  	<meta property="og:image" content="https://cdn.discordapp.com/attachments/703998770332827740/745467105410940978/feedthepoor_meta_poster.png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://feedthepoor.online">
+    <meta property="og:title" content="#feedThePoor Initiative by icrewsystems">
+    <meta property="og:description"
+        content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
+    <meta property="og:image"
+        content="https://cdn.discordapp.com/attachments/703998770332827740/745467105410940978/feedthepoor_meta_poster.png">
 
-  	<!-- Twitter -->
-  	<meta property="twitter:card" content="summary_large_image">
-  	<meta property="twitter:url" content="https://feedthepoor.online">
-  	<meta property="twitter:title" content="#feedThePoor Initiative by icrewsystems">
-  	<meta property="twitter:description" content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
-  	<meta property="twitter:image" content="https://cdn.discordapp.com/attachments/703998770332827740/745467105410940978/feedthepoor_meta_poster.png">
-  	<meta name="theme-color" content="#363636">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://feedthepoor.online">
+    <meta property="twitter:title" content="#feedThePoor Initiative by icrewsystems">
+    <meta property="twitter:description"
+        content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
+    <meta property="twitter:image"
+        content="https://cdn.discordapp.com/attachments/703998770332827740/745467105410940978/feedthepoor_meta_poster.png">
+    <meta name="theme-color" content="#363636">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
@@ -39,7 +44,9 @@
 
     <!-- Campaigns CSS -->
     <link type="text/css" href="{{ asset('boomerang/assets/css/campaigns.css')}}" rel="stylesheet">
-	  <link rel="icon" href="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png" type="image/png">
+    <link rel="icon"
+        href="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png"
+        type="image/png">
 
 
     <style>
@@ -120,15 +127,29 @@
             border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 15px;
         }
-        .C-nav{
 
+        .C-nav-bg {
+            background: rgba(0, 0, 0, 0.8);
+            background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.8)), color-stop(100%, rgba(231, 56, 39, 0)));
+            background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
+            background: -o-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
+            background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#e73827', GradientType=0);
         }
-
+        .C-nav-white-bg{
+            background-color: white;
+        }
+        .C-nav-link{
+            color: white !important;
+            transition: all 0.2s;
+        }
+        .Nav-scroll-text{
+            color: black !important;
+        }
     </style>
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
-      />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     @yield('css')
     @notifyCss
@@ -136,8 +157,7 @@
 
 <body>
     <!-- <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark bg-dark py-4"> -->
-    <nav class="C-nav navbar fixed-top navbar-expand-lg navbar-light"
-        style="transition: all 0.2s;">
+    <nav class="C-nav C-nav-bg navbar fixed-top navbar-expand-lg navbar-light" style="transition: all 0.2s;">
         <div class="container">
             <a class="C-nav-link C-brand-feed navbar-brand px-2" href="{{ env('APP_URL') }}">
                 <strong>#feed</strong>ThePoor
@@ -149,11 +169,11 @@
             <div class="navbar-collapse offcanvas-collapse" id="navbar_main">
                 <ul class="navbar-nav ml-auto align-items-lg-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/who-did-we-feed-today') }}">Who did we feed today?</a>
+                        <a class="C-nav-link nav-link" href="{{ url('/who-did-we-feed-today') }}">Who did we feed today?</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="C-nav-link nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
+                        <a class="C-nav-link nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1"
+                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
                         <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
                             <a class="dropdown-item" href="{{url ('/aboutus')}}">About us</a>
                             <a class="dropdown-item" href="{{url ('/work')}}">How does it work</a>
@@ -163,7 +183,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url ('/contacts')}}">Contact</a>
+                        <a class="C-nav-link nav-link" href="{{url ('/contacts')}}">Contact</a>
                     </li>
                     <a class="nav-link" href="{{ url('/money') }}">
                         <button class="btn btn-block btn-sm bg-gradient-blue text-white btn-animated btn-animated-y">
@@ -258,15 +278,27 @@
     <script src="{{ asset('boomerang/assets/js/theme.js')}}"></script>
     <script>
         $( window ).on( "load", function() {
-            $(window).scroll(function() {
-                if ($(document).scrollTop() > 50) {
-                    $('.C-nav').addClass('C-nav-shadow');
-                    $('.C-nav-link').removeClass('Nav-scroll-text');
-                } else {
-                    $('.C-nav').removeClass('C-nav-shadow');
-                    $('.C-nav-link').addClass('Nav-scroll-text');
-                }
-            });
+            console.log(window.location.pathname);
+            if(window.location.pathname === '/donation/' || window.location.pathname === '/donation/aboutus' || window.location.pathname === '/donation/volunteers' || window.location.pathname === '/donation/partners'){
+                $(window).scroll(function() {
+                    if ($(document).scrollTop() > 50) {
+                        $('.C-nav').removeClass('C-nav-bg');
+                        $('.C-nav').addClass('C-nav-shadow');
+                        $('.C-nav').addClass('C-nav-white-bg');
+                        $('.C-nav-link').addClass('Nav-scroll-text');
+                    } else {
+                        $('.C-nav').removeClass('C-nav-shadow');
+                        $('.C-nav-link').removeClass('Nav-scroll-text');
+                        $('.C-nav').removeClass('C-nav-white-bg');
+                        $('.C-nav').addClass('C-nav-bg');
+                    }
+                });
+            }else{
+                $('.C-nav').removeClass('C-nav-bg');
+                $('.C-nav').addClass('C-nav-white-bg');
+                $('.C-nav').addClass('C-nav-shadow');
+                $('.C-nav-link').addClass('Nav-scroll-text');
+            }
         });
 
     </script>
