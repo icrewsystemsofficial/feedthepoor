@@ -227,7 +227,7 @@
 </section>
 
 
-<section class="py-xl">
+<section>
     <div class="container d-flex align-items-center no-padding">
         <div class="col">
             <div class="row">
