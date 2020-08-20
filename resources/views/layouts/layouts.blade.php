@@ -4,9 +4,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Writing code to feed the underprivledged in India">
     <meta name="author" content="icrewsystems.com">
-    <title>#feedThePoor | an Initiative by icrewsystems</title>
+    <!-- Primary Meta Tags -->
+  	<title>#feedThePoor Initiative by icrewsystems</title>
+  	<meta name="title" content="#feedThePoor Initiative by icrewsystems">
+  	<meta name="description" content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
+
+  	<!-- Open Graph / Facebook -->
+  	<meta property="og:type" content="website">
+  	<meta property="og:url" content="https://feedthepoor.online">
+  	<meta property="og:title" content="#feedThePoor Initiative by icrewsystems">
+  	<meta property="og:description" content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
+  	<meta property="og:image" content="https://cdn.discordapp.com/attachments/703998770332827740/745467105410940978/feedthepoor_meta_poster.png">
+
+  	<!-- Twitter -->
+  	<meta property="twitter:card" content="summary_large_image">
+  	<meta property="twitter:url" content="https://feedthepoor.online">
+  	<meta property="twitter:title" content="#feedThePoor Initiative by icrewsystems">
+  	<meta property="twitter:description" content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
+  	<meta property="twitter:image" content="https://cdn.discordapp.com/attachments/703998770332827740/745467105410940978/feedthepoor_meta_poster.png">
+  	<meta name="theme-color" content="#363636">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
     <!-- Theme CSS -->
@@ -16,7 +34,12 @@
     <!-- Demo CSS - No need to use these in your project -->
     <link type="text/css" href="{{ asset('boomerang/assets/css/demo.css')}}" rel="stylesheet">
     <!-- testimonials css -->
+    <link type="text/css" href="{{ asset('boomerang/assets/css/testimonials.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css">
+
+    <!-- Campaigns CSS -->
+    <link type="text/css" href="{{ asset('boomerang/assets/css/campaigns.css')}}" rel="stylesheet">
+	  <link rel="icon" href="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png" type="image/png">
 
 
     <style>
@@ -97,22 +120,17 @@
             border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 15px;
         }
-        .Nav-scroll-text{
-            color: white !important;
-        }
-        .C-brand-feed{
-            color: white;
-        }
-        .C-nav-link{
-            color: white;
-        }
-        .C-nav-top-background{
+        .C-nav{
 
         }
 
     </style>
-
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+      />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    @yield('css')
     @notifyCss
 </head>
 
@@ -130,32 +148,29 @@
             </button>
             <div class="navbar-collapse offcanvas-collapse" id="navbar_main">
                 <ul class="navbar-nav ml-auto align-items-lg-center">
-
-
-                    <li class="nav-item active">
-                        <a class="C-nav-link nav-link" href="{{ url('/who-did-we-feed-today') }}">Who did we feed today?</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/who-did-we-feed-today') }}">Who did we feed today?</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="C-nav-link nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
                         <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
-                            <a class="dropdown-item" href="./pages/about.html">About us</a>
-                            <a class="dropdown-item" href="./pages/sign-in.html">How does it work</a>
-                            <a class="dropdown-item" href="./pages/sign-in.html">Volenteers</a>
-                            <a class="dropdown-item" href="./pages/sign-in.html">Partners</a>
-                            <a class="dropdown-item" href="./pages/contact.html">Contact</a>
+                            <a class="dropdown-item" href="{{url ('/aboutus')}}">About us</a>
+                            <a class="dropdown-item" href="{{url ('/work')}}">How does it work</a>
+                            <a class="dropdown-item" href="{{url ('/volunteers')}}">Volunteers</a>
+                            <a class="dropdown-item" href="{{url ('/partners')}}">Partners</a>
+                            <!-- <a class="dropdown-item" href="{{url ('/contact')}}">Contact</a> -->
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="C-nav-link nav-link" href="./docs/introduction.html">Docs</a>
+                        <a class="nav-link" href="{{url ('/contacts')}}">Contact</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/money') }}">
-                            <button class="btn btn-block btn-sm bg-gradient-yellow text-white btn-animated btn-animated-y">
-                                <span class="btn-inner--visible">Donate Now</span>
-                                <span class="btn-inner--hidden"><i class="fas fa-arrow-right"></i></span>
-                            </button>
-                        </a>
+                    <a class="nav-link" href="{{ url('/money') }}">
+                        <button class="btn btn-block btn-sm bg-gradient-blue text-white btn-animated btn-animated-y">
+                            <span class="btn-inner--visible">Donate Now</span>
+                            <span class="btn-inner--hidden"><i class="fas fa-arrow-right"></i></span>
+                        </button>
+                    </a>
                     </li>
 
                 </ul>
@@ -257,10 +272,10 @@
     </script>
     <!-- FAQ JS -->
     <script src="{{ asset('boomerang/assets/js/faq.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/swipejs/2.2.18/swipe.min.js"></script>
-
+    <script src="{{ asset('boomerang/assets/js/testimonials.js')}}"></script>
+    @yield('js')
     @notifyJs
 </body>
 
