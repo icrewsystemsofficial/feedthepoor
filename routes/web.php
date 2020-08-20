@@ -19,6 +19,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/coming-soon', 'HomeController@comingsoon')->name('comingsoon');
 
 Route::post('/volunteerssuccess', 'HomeController@volunteerssuccess')->name('volunteerssuccess');
+Route::post('/partnerssuccess', 'HomeController@partnerssuccess')->name('partnerssuccess');
+
+
 
 Route::get('/logout', 'AdminController@logout');
 
