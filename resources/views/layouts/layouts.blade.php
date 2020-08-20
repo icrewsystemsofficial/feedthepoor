@@ -279,7 +279,7 @@
     <script>
         $( window ).on( "load", function() {
             console.log(window.location.pathname);
-            if(window.location.pathname === '/donation/' || window.location.pathname === '/donation/aboutus' || window.location.pathname === '/donation/volunteers' || window.location.pathname === '/donation/partners'){
+            if($(location).attr('pathname') === '/donation/' || $(location).attr('pathname')  === '/donation/aboutus' || $(location).attr('pathname') === '/donation/volunteers' || $(location).attr('pathname') === '/donation/partners'){
                 $(window).scroll(function() {
                     if ($(document).scrollTop() > 50) {
                         $('.C-nav').removeClass('C-nav-bg');
