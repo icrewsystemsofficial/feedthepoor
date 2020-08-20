@@ -2,14 +2,14 @@
 
 $(window).on("load", function() {
 
-}), 
+}),
 
 $(window).on('load resize', function() {
-    
+
     // Background image holder - Static hero with fullscreen autosize
     if ($('.spotlight').length) {
         $('.spotlight').each(function() {
-            
+
             var $this = $(this);
             var holderHeight;
 
@@ -21,13 +21,13 @@ $(window).on('load resize', function() {
                 else {
                     holderHeight = $(window).height();
                 }
-  
+
 
                 if ($(window).width() > 991) {
                     $this.find('.spotlight-holder').css({
                         'height': holderHeight + 'px'
                     });
-                } 
+                }
                 else {
                     $this.find('.spotlight-holder').css({
                         'height': 'auto'
@@ -56,13 +56,13 @@ $(document).ready(function() {
             template: '<div class="popover '+ popoverClass +'" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>'
         })
     });
-    
+
 
     // Floating label
     $('.form-control').on('focus blur', function(e) {
         $(this).parents('.form-group').toggleClass('focused', (e.type === 'focus' || this.value.length > 0));
     }).trigger('blur');
-    
+
 
     // Custom input file
     $('.custom-input-file').each(function() {
@@ -93,8 +93,8 @@ $(document).ready(function() {
             $input.removeClass('has-focus');
         });
     });
-    
-    
+
+
     // NoUI Slider
     if ($(".input-slider-container")[0]) {
         $('.input-slider-container').each(function() {
@@ -159,7 +159,7 @@ $(document).ready(function() {
         event.preventDefault();
     });
 
-}), 
+}),
 
 $(document).ready(function() {
     $("body").on("click", "[data-action]", function(e) {

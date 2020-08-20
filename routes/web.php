@@ -35,8 +35,13 @@ Route::get('/testimonials', 'HomeController@testimonials')->name('testimonials')
 Route::get('/work', 'HomeController@work')->name('work');
 Route::get('/volunteers', 'HomeController@volunteers')->name('volunteers');
 Route::get('/partners', 'HomeController@partners')->name('partners');
-Route::get('/contacts', 'HomeController@contact')->name('contact');
 Route::post('/contacts', 'HomeController@contact')->name('contact');
+Route::get('/contact', 'HomeController@contact')->name('contact');
+Route::get('/today', 'HomeController@today')->name('today');
+
+
+
+
 
 
 
@@ -54,6 +59,7 @@ Route::post('/request', 'PaymentsController@request');
 Route::post('/response', 'PaymentsController@response');
 
 
+
 Auth::routes();
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', 'AdminController@index');
@@ -66,4 +72,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     //created by SAURABH, to add manual donations
     Route::get('/add', 'AdminController@add')->name('add');
     Route::post('add/manual', 'AdminController@manual')->name('manual');
+
+    //created by SAURABH, to display the payment details from DB
+    Route::get('/data', 'AdminController@data');
+
 });

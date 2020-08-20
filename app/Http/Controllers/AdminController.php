@@ -63,4 +63,10 @@ class AdminController extends Controller
       return view('admin.donations.add');
 
     }
+
+    public function data() {
+      // display DB data, by Saurabh
+        $donations = Donation::all();
+        return view('admin.payments.data')->with('donations', $donations);
+    }
 }

@@ -9,8 +9,10 @@ use DB;
 use Akaunting\Money\Currency;
 use Akaunting\Money\Money;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use Razorpay\Api\Api;
 use App\Donation;
+use App\Mail\Confirm;
 use PDF;
 
 class PaymentsController extends Controller
@@ -48,7 +50,7 @@ class PaymentsController extends Controller
           	// SAVING TO DB
 
           	$donation = new Donation;
-			$donation->payments_id = $payment->id;
+			      $donation->payments_id = $payment->id;
             // if(count($donation->payments_id->value())>1){
             // }else{
             //   $donation->payments_id = $payment->id;
@@ -77,13 +79,13 @@ class PaymentsController extends Controller
             $pdf->setPaper('A4', 'portrait');
             $pdf->save("recipts/recipt_".$payment->id.".pdf");
 
-            // SEND AN EMAIL TO USER, ATTACH THE RECIPT.
-
             // QUEUE AN EMAIL TO ADMINS.
           }
+                // SEND AN EMAIL TO USER, ATTACH THE RECIPT.
+                $pdfpath = "recipts/recipt_".$payment->id.".pdf" ;
 
-
-            notify()->success('Payment details were added to the database. We are generating and sending your report.', 'Yay!');
+              Mail::to($payment->email)->send(new Confirm($payment, $pdfpath));
+              notify()->success('Payment details were added to the database. We are generating and sending your report.', 'Yay!');
 
             // Use this if you want to test the PDF, -Leonard, 19/8/2020.
             // return view('receipt.pdf_view')->with('payment', (object) $payment);
