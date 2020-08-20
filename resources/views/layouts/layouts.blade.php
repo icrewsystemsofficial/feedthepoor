@@ -39,13 +39,12 @@
     <!-- Demo CSS - No need to use these in your project -->
     <link type="text/css" href="{{ asset('boomerang/assets/css/demo.css')}}" rel="stylesheet">
     <!-- testimonials css -->
+    <link type="text/css" href="{{ asset('boomerang/assets/css/testimonials.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css">
-  
+
     <!-- Campaigns CSS -->
     <link type="text/css" href="{{ asset('boomerang/assets/css/campaigns.css')}}" rel="stylesheet">
-    <link rel="icon"
-        href="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png"
-        type="image/png">
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png" type="image/png">
 
     <style>
         ::-webkit-scrollbar {
@@ -304,7 +303,7 @@
     </script>
     <!-- FAQ JS -->
     <script src="{{ asset('boomerang/assets/js/faq.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/swipejs/2.2.18/swipe.min.js"></script>
     @yield('js')
