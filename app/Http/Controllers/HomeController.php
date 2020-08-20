@@ -7,7 +7,6 @@ use DB;
 use App\Donation;
 use App\Volunteer;
 use App\Partner;
-use App\Mail\Contact;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -112,7 +111,7 @@ class HomeController extends Controller
       return view('home.volunteerssuccess');
     }
 
-    public function contact(Request $request) {
+    public function contacts(Request $request) {
       // contacts
       //  $contact = new contact;
       // $contacts->first_name = $request->input('first_name');
@@ -123,7 +122,7 @@ class HomeController extends Controller
 
 
       // $partner->save();
-      Mail::to($request->input('email'))->send(new Contact($request->input()));
+      // \Mail::to($request->input('email'))->send(new Contact($request->input()));
 
       return view('home.contacts');
 
@@ -131,7 +130,7 @@ class HomeController extends Controller
 
     public function contactsuccess() {
       //Bharath
-        notify()->success('You are Successfully registered as a Volunteer', 'Yay!');
+        notify()->success('Thank you for Contacting Us', 'Yay!');
       return view('home.volunteerssuccess');
     }
 

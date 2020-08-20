@@ -131,7 +131,7 @@
 
 
 
-<form method="POST" action="{{ url('/contact') }}">
+<form method="POST" action="{{ url('/contactsuccess') }}">
 <div class="form-row">
 {{ csrf_field() }}
 <div class="col-md-12 mb-3">
