@@ -96,25 +96,7 @@
    </ul>
 </div>
 </section>
-<section class="slice bg-tertiary">
-      <div class="container">
-        <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space text-center text-lg-left">
-          <div class="col-lg-7">
-            <h1 class="heading h2 text-white strong-500">
-              Your question isn't listed here?
-            </h1>
-            <p class="lead text-white mb-0">Worry not. We've got your back. Write your question to us here and one of our executives shall get in touch with you at the soonest possible.</p>
-          </div>
-          <div class="col-lg-3 ml-lg-auto">
-            <div class="text-center text-md-right">
-              <a href="https://icrewsystems.com/portal/index.php/tickets" class="btn bg-secondary">
-                Get in touch
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+
 
     <section class="py-xl">
       <!-- <span class="mask bg-primary alpha-6"></span> -->
@@ -184,5 +166,24 @@
 
 </div>
 </section><br><br>
+<section class="slice bg-primary">
+      <div class="container">
+        <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space text-center text-lg-left">
+          <div class="col-lg-7">
+            <h1 class="heading h2 text-white strong-500">
+                We have a suggestion driven FAQ section, your question might have already been answered.
+            </h1>
+            <p class="lead text-white mb-0"></p>
+          </div>
+          <div class="col-lg-3 ml-lg-auto">
+            <div class="text-center text-md-right">
+              <a href="https://icrewsystems.com/portal/index.php/tickets" class="btn bg-secondary">
+                Get in touch
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
 @endsection
