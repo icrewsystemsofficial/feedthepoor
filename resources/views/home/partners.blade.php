@@ -7,9 +7,6 @@
     font-size: 1.05rem;
     }
 
-
-
-
 </style>
 <section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen">
     <span class="mask bg-tertiary alpha-5"></span>
@@ -77,38 +74,146 @@
     </div>
 </section><br><br>
 
-<section>
-  <style media="screen">
-  .row{
-    padding-top: 5%;
-  display: flex;
-flex-wrap: wrap;
-margin-right: ($grid-gutter-width / -2);
-margin-left: ($grid-gutter-width / -2);
-}
+<style media="screen">
 
 .partners{
   text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
 }
+h1{
+             font-size:25px;
+             text-align: left;
+             text-transform:capitalize;
+         }
+        .service-box{
+            position: relative;
+            overflow: hidden;
+            margin-bottom:10px;
+            perspective:1000px;
+            -webkit-perspective:1000px;
+        }
+        .service-icon{
+            width: 100%;
+            height: 220px;
+            padding: 20px;
+            text-align: center;
+            transition: all .5s ease;
+        }
 
-  </style>
-  <div class="container">
-    <h1 class="partners">Our Partners</h1>
+        .service-content{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0;
+            width: 100%;
+            height: 220px;
+            padding: 20px;
+            text-align: center;
+            transition: all .5s ease;
+            background-color: #474747;
+            backface-visibility:hidden;
+            transform-style: preserve-3d;
+            -webkit-transform: translateY(110px) rotateX(-90deg);
+            -moz-transform: translateY(110px) rotateX(-90deg);
+            -ms-transform: translateY(110px) rotateX(-90deg);
+            -o-transform: translateY(110px) rotateX(-90deg);
+            transform: translateY(110px) rotateX(-90deg);
+        }
+        .service-box .service-icon .front-content{
+            position: relative;
+            top:80px;
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
 
-      <div class="row">
-         <a class="col single-img">
+        .service-box .service-icon .front-content  {
+            font-size: 28px;
+            color: #fff;
+            font-weight: normal;
+        }
 
-         <img style="width: 200px; height: auto;" class="img-fluid d-block mx-auto" src="https://icrewsystems.com/logo.png" alt="PLACEHOLDER FOR FSX">
-         </a>
-         <a class="col single-img">
+        .service-box .service-icon .front-content img {
+            width: auto;
+            height: auto;
+        }
 
-         <img style="width: 200px; height: auto;" class="img-fluid d-block mx-auto" src="https://gem-hosting.com/Assets/img/logos/V4/Logo-Version-4-1500x360.png" alt="PLACEHOLDER FOR IVAO">
-         </a>
+        .service-box .service-icon .front-content h3 {
+            font-size: 15px;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .service-box .service-content h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom:10px;
+        }
+        .service-box .service-content p {
+            font-size: 13px;
+            color: #b1b1b1;
+            margin:0;
+        }
+        .red{background-color: #e84b3a;}
+        .grey{background-color: #474747;}
+        .service-box:hover .service-icon{
+            opacity: 0;
+            -webkit-transform: translateY(-110px) rotateX(90deg);
+            -moz-transform: translateY(-110px) rotateX(90deg);
+            -ms-transform: translateY(-110px) rotateX(90deg);
+            -o-transform: translateY(-110px) rotateX(90deg);
+            transform: translateY(-110px) rotateX(90deg);
+        }
+        .service-box:hover .service-content {
+            opacity: 1;
+            -webkit-transform: rotateX(0);
+            -moz-transform: rotateX(0);
+            -ms-transform: rotateX(0);
+            -o-transform: rotateX(0);
+            transform: rotateX(0);
+        }
+</style>
 
+<section class="slice-lg">
+<div class="container">
+  <h1 class="partners">Our Partners</h1><br><br>
 
-    </div>
-  </div>
-</section><br><br><br><br><br><br>
+<div class="row">
+   <div class="col-lg-5 col-sm1-6 ">
+       <div class="service-box">
+           <div class="service-icon yellow">
+               <div class="front-content">
+                   <img style="width: 60%" src="https://icrewsystems.com/logo.png">
+               </div>
+           </div>
+           <div class="service-content bg-tertiary">
+               <h3>icrewsystems</h3>
+               <p> A global web development company which is re-imagining the way web works.<br> <br>Located in Chennai, India.<br><br> Sponsored the entire IT infrastructure.</p>
+           </div>
+       </div>
+   </div>
+   <div class="col-lg-5 col-sm-6 offset-lg-2">
+       <div class="service-box">
+           <div class="service-icon">
+               <div class="front-content ">
+                   <img style="width: 60%" src="https://gem-hosting.com/Assets/img/logos/V4/Logo-Version-4-1500x360.png" width="10px">
+               </div>
+           </div>
+           <div class="service-content bg-tertiary">
+               <h3>Gem Hosting</h3>
+               <p>Gem Hosting: UK, Sponsored Web Hosting</p>
+           </div>
+       </div>
+   </div>
+
+</div>
+</div>
+
 
 <section class="py-xl">
   <!-- <span class="mask bg-primary alpha-6"></span> -->
@@ -187,7 +292,25 @@ margin-left: ($grid-gutter-width / -2);
 </div>
 </div>
 </div>
-</section><br><br>
+</section>
 
-
+<div class="slice stripe bg-primary">
+      <div class="container">
+        <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space text-center text-lg-left">
+          <div class="col-lg-7">
+            <h1 class="heading h2 text-white strong-500">
+                We have a suggestion driven FAQ section, your question might have already been answered.
+            </h1>
+            <p class="lead text-white mb-0"></p>
+          </div>
+          <div class="col-lg-3 ml-lg-auto">
+            <div class="text-center text-md-right">
+              <a href="https://icrewsystems.com/portal/index.php/tickets" class="btn bg-secondary">
+                Get in touch
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 @endsection
