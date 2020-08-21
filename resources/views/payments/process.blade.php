@@ -90,7 +90,7 @@
                               <br />
                               Powered by <img src="https://dashboard.razorpay.com/img/logo_full.png" style="width: 150px; height: auto;" />
                             </center>
-                      </div>
+                          </div>
                   </div>
               </div>
             </div>
