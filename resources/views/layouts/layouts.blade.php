@@ -38,6 +38,8 @@
     <link type="text/css" href="{{ asset('boomerang/assets/css/faq.css')}}" rel="stylesheet">
     <!-- Demo CSS - No need to use these in your project -->
     <link type="text/css" href="{{ asset('boomerang/assets/css/demo.css')}}" rel="stylesheet">
+
+    <!-- Additional CSS codes -Leonard, 21/08/2020  -->
     <!-- testimonials css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css">
     <link type="text/css" href="{{ asset('boomerang/assets/css/testimonials.css')}}" rel="stylesheet">
