@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use DB;
+use PDF;
 use App\User;
 use App\Invoice;
-use DB;
-use Akaunting\Money\Currency;
-use Akaunting\Money\Money;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Mail;
-use Razorpay\Api\Api;
 use App\Donation;
 use App\Mail\Confirm;
-use PDF;
+use Razorpay\Api\Api;
+use Akaunting\Money\Money;
+use Illuminate\Http\Request;
+use Akaunting\Money\Currency;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
+
 
 class PaymentsController extends Controller
 {
@@ -26,6 +30,15 @@ class PaymentsController extends Controller
     {
         return view('payments.process')->with('post', (object) $request->input());
     }
+
+    public function downloadRecipt($id) {
+      //For some reason, we are unable to attach pdf to email. so we made a method to just download it from server.
+      $file= storage_path('recipts/recipt_'.$id.'.pdf');
+      $headers = array('Content-Type: application/pdf');
+      Response::download($file, 'Donation_Recipt.pdf', $headers);
+      return redirect(url(''));
+    }
+
 
     public function verify(Request $request)
     {
@@ -73,18 +86,23 @@ class PaymentsController extends Controller
 
             //Samay, Generating a PDF and saving it on /recipts.
             // f9342a29eedc92907549fd5fadf13555b18ac6f2
+
+            if(!File::exists(storage_path('recipts'))) {
+              File::makeDirectory(storage_path('recipts'), 0755, true, true);
+            }
+
+
             $array = [$payment];
             view()->share('payment', $array);
             $pdf = PDF::loadView('receipt.pdf_view', $array);
             $pdf->setPaper('A4', 'portrait');
-            $pdf->save("recipts/recipt_".$payment->id.".pdf");
-
+            $pdfpath = storage_path("recipts". DIRECTORY_SEPARATOR ."recipt_".$payment->id.".pdf");
+            $pdf->save($pdfpath);
             // QUEUE AN EMAIL TO ADMINS.
           }
-                // SEND AN EMAIL TO USER, ATTACH THE RECIPT.
-                $pdfpath = "recipts/recipt_".$payment->id.".pdf" ;
 
-              Mail::to($payment->email)->send(new Confirm($payment, $pdfpath));
+            // SEND AN EMAIL TO USER, ATTACH THE RECIPT.              
+              Mail::to($payment->email)->send(new Confirm($payment, $payment->id));
               notify()->success('Payment details were added to the database. We are generating and sending your report.', 'Yay!');
 
             // Use this if you want to test the PDF, -Leonard, 19/8/2020.

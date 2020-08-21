@@ -32,7 +32,6 @@ class Confirm extends Mailable
      */
     public function build()
     {
-        $pdfpath = storage_path("../".$this->pdfpath);
-        return $this->markdown('admin.emails.confirm')->subject('['.env("APP_NAME").'] New Mail | Payment Received')->attach($this->pdfpath, ['as'=>'receipt.pdf', 'mime'=>'application/pdf']);
+        return $this->markdown('admin.emails.confirm')->subject('['.env("APP_NAME").'] New Mail | Payment Received');
     }
 }
