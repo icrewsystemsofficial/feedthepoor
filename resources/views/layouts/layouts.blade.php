@@ -42,7 +42,7 @@
     <!-- Additional CSS codes -Leonard, 21/08/2020  -->
     <!-- testimonials css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css">
-
+    <link type="text/css" href="{{ asset('boomerang/assets/css/testimonials.css')}}" rel="stylesheet">
     <!-- Campaigns CSS -->
     <link type="text/css" href="{{ asset('boomerang/assets/css/campaigns.css')}}" rel="stylesheet">
     <link rel="icon"
@@ -307,13 +307,10 @@
     <!-- FAQ JS -->
     <script src="{{ asset('boomerang/assets/js/faq.js')}}"></script>
 
-   
-   <!-- testimonials JS -->
+    <!-- testimonials JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
     <script src="{{ asset('boomerang/assets/js/testimonials.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/swipejs/2.2.18/swipe.min.js"></script>
-    <!-- Partners Card  -->
-
     @yield('js')
     @notifyJs
 </body>
