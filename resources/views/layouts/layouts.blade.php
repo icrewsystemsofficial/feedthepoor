@@ -306,8 +306,11 @@
     </script>
     <!-- FAQ JS -->
     <script src="{{ asset('boomerang/assets/js/faq.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+   
+   <!-- testimonials JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
+    <script src="{{ asset('boomerang/assets/js/testimonials.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/swipejs/2.2.18/swipe.min.js"></script>
     <!-- Partners Card  -->
 
