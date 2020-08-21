@@ -22,7 +22,11 @@ Route::post('/volunteerssuccess', 'HomeController@volunteerssuccess')->name('vol
 Route::post('/partnerssuccess', 'HomeController@partnerssuccess')->name('partnerssuccess');
 Route::post('/contactsuccess', 'HomeController@contactsuccess')->name('contactsuccess');
 
+Route::get('/downloadRecipt/{payment_id}', 'PaymentsController@downloadRecipt');
 
+Route::get('/test', function () {
+  Illuminate\Support\Facades\Mail::to('kashrayks@gmail.com')->send(new App\Mail\Test('pay_FT9tQdRmnYxpbx'));
+});
 
 Route::get('/logout', 'AdminController@logout');
 
