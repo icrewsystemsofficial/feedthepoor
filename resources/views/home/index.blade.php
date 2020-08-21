@@ -98,7 +98,7 @@
         <div class="col-md-12">
           <h1 class="heading">How does it work?</h1>
           <p>
-            It might seem like a heculean task, but it's not. We've simplified it using <strong>technology</strong>
+            It might seem like a herculean task, but it's not. We've simplified it using <strong>technology</strong>
           </p>
         </div>
         <div class="col-md-12">
@@ -406,20 +406,20 @@
                             <form class="form-primary">
                                 <div class="form-group">
                                   <div class="row align-items-center">
-                                    <div class="col-md-2">
-                                      <a class="btn btn-sm  text-dark btn-secondary"><i class="fa fa-plus"></i></a>
+                                    <div class="col-md-2" style="padding: 0px; margin: 0px;">
+                                      <a class="btn btn-sm donate-plus-button text-dark btn-secondary"><i class="fa fa-plus"></i></a>
                                     </div>
                                     <div class="col-md-8">
-                                      <input type="text" class="form-control" id="input_email" placeholder="Your email" value="1 Meal" required>
+                                      <input type="text" class="form-control donate-meal-display" id="input_email" placeholder="Meals" required>
                                     </div>
-                                    <div class="col-md-2 text-right">
-                                      <a class="btn btn-sm text-dark  btn-secondary"><i class="fa fa-minus"></i></a>
+                                    <div class="col-md-2"  style="padding: 0px; margin: 0px;">
+                                      <a class="btn btn-sm text-dark donate-minus-button btn-secondary"><i class="fa fa-minus"></i></a>
                                     </div>
                                   </div>
                                 </div>
                                 <button type="submit"
-                                    class="btn btn-block btn-lg bg-white mt-4 btn-animated btn-animated-x">
-                                    <span class="btn-inner--visible">Donate {} INR</span>
+                                    class="btn btn-block donate-meal-button btn-lg bg-white mt-4 btn-animated btn-animated-x">
+                                    <span class="btn-inner--visible donate-meal-button-span"></span>
                                     <span class="btn-inner--hidden"><i class="fas fa-credit-card"></i></span>
                                 </button>
                             </form>
@@ -449,7 +449,7 @@
                      <span class="author">Campaigns</span>
                      <h1 class="title"><a href="#">Mission: <i> Daily Meal</i></a></h1>
                      <p class="text py-5">This Campaign was launched by icrewsystems to raise donations to serve daily meals to all the underprivledged</p>
-                     <a href="#" class="btn btn-primary btn-sm">Take part in this campaign</a>
+                     <a href="{{url('/mission')}}" class="btn btn-primary btn-sm">Take part in this campaign</a>
                    </div>
                  </div>
                </div>

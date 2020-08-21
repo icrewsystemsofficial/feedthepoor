@@ -211,12 +211,27 @@
             <div class="row">
                 <div class="col-12 col-md-4">
                     <div class="pr-lg-5">
-                        <h1 class="heading h6 text-uppercase font-weight-700 mb-3">icrewsystems LLP</h1>
+                        <h1 class="heading h6 text-uppercase font-weight-700 mb-3">#feedThePoor</h1>
                         <p>
-                            icrewsystems is a start up based out of Chennai, India. We constantly tend to push beyond
-                            the
-                            limits of what is possible with this generations most powerful tool, the internet. We are
-                            re-imagining the web, one page at a time</p>
+                            Possibly, there are chances that you aren't in a phase to donate.
+                          And Know what? You could still help us by spreading a word about our mission
+                        on your Social Media.</p>
+
+                        <ul class="nav ml-lg-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="https://instagram.com/icrewsystemsofficial" target="_blank"><i
+                                        class="fab fa-instagram"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://facebook.com/icrewsystems.com" target="_blank"><i
+                                        class="fab fa-facebook"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://github.com/icrewsystemsofficial" target="_blank"><i
+                                        class="fab fa-github"></i></a>
+                            </li>
+                        </ul>
+
                     </div>
                 </div>
                 <div class="col-6 col-md">
@@ -226,11 +241,8 @@
                 <div class="col-6 col-md">
                     <h5 class="heading h6 text-uppercase font-weight-700 mb-3">QuickLinks</h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">FAQ</a></li>
-                        <li><a class="text-muted" href="#">Support</a></li>
-                        <li><a class="text-muted" href="#">Report a problem</a></li>
-                        <li><a class="text-muted" href="#">Feedback</a></li>
-                        <li><a class="text-muted" href="#">Main Page</a></li>
+                        <li><a class="text-muted" href="{{url ('/faq')}}">FAQ</a></li>
+                        <li><a class="text-muted" href="{{url ('/contacts')}}">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md">
@@ -246,20 +258,7 @@
                         class="footer-link" target="_blank">icrewsystems Software Development LLP</a>. All rights
                     reserved.
                 </span>
-                <ul class="nav ml-lg-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="https://instagram.com/icrewsystemsofficial" target="_blank"><i
-                                class="fab fa-instagram"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://facebook.com/icrewsystems.com" target="_blank"><i
-                                class="fab fa-facebook"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://github.com/icrewsystemsofficial" target="_blank"><i
-                                class="fab fa-github"></i></a>
-                    </li>
-                </ul>
+
             </div>
         </div>
     </footer>
@@ -280,8 +279,7 @@
     <script src="{{ asset('boomerang/assets/js/theme.js')}}"></script>
     <script>
         $( window ).on( "load", function() {
-            console.log(window.location.pathname);
-            if($(location).attr('pathname') === '/donation/' || $(location).attr('pathname')  === '/donation/aboutus' || $(location).attr('pathname') === '/donation/volunteers' || $(location).attr('pathname') === '/donation/partners'){
+            if($(location).attr('pathname') === '/donation/' || $(location).attr('pathname')  === '/donation/aboutus' || $(location).attr('pathname') === '/donation/volunteers' || $(location).attr('pathname') === '/donation/partners' || $(location).attr('pathname') === '/donation/mission'){
                 $(window).scroll(function() {
                     if ($(document).scrollTop() > 50) {
                         $('.C-nav').removeClass('C-nav-bg');
@@ -301,6 +299,32 @@
                 $('.C-nav').addClass('C-nav-shadow');
                 $('.C-nav-link').addClass('Nav-scroll-text');
             }
+
+            function updateMeals(num){
+              $('.donate-meal-display').val(num + ' Meal');
+              $('.donate-meal-button-span').text('Donate '+ (num * 60) +' INR');
+            }
+
+            var total_meals = 1;
+
+            updateMeals(total_meals);
+
+            $('.donate-minus-button').on('click', function (){
+              if(total_meals > 1){
+                total_meals = total_meals - 1;
+                updateMeals(total_meals);
+              }
+            });
+
+            $('.donate-plus-button').on('click', function (){
+                total_meals = total_meals + 1;
+                updateMeals(total_meals);
+            });
+
+            $('.donate-meal-button').on('click', function (){
+              //send post request here
+            });
+
         });
 
     </script>

@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/coming-soon', 'HomeController@comingsoon')->name('comingsoon');
+Route::get('/mission', 'HomeController@mission')->name('mission');
+
 
 Route::post('/volunteerssuccess', 'HomeController@volunteerssuccess')->name('volunteerssuccess');
 Route::post('/partnerssuccess', 'HomeController@partnerssuccess')->name('partnerssuccess');
