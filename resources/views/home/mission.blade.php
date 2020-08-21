@@ -88,19 +88,11 @@ margin: 10px 0;
         </section>
 <section class="py-sm bg-lightest">
   <center>
+    <br><br><br>
     <h3>Why not let we our stats do the talking?</h3>
   </center>
-</section>  <!--
-<section class="py-xl bg-lightest">
-  <center>
-    <h1 style="font-size: 100px;">450+</h1>
-    <h4>Families being fed through our mission</h4>
-    <br><br><br><br><br><br>
-    <h1 style="font-size: 100px;">50+</h1>
-    <h4>Villages are benefitted by our mission</h4>
-  </center>
-</section>  -->
-<section class="counters py-xl">
+</section>
+<section class="counters py-xl bg-lightest">
 
         <center>
 				<div>
@@ -108,33 +100,50 @@ margin: 10px 0;
 				<h4>Children being fed through our mission</h4>
 				</div>
         <br>
-      </center>
+        </center>
 
-        <center>
-				<div>
-          <h1 class="counter on-scroll-fade" style="font-size: 100px;" data-target="5000">0</h1>
-          <h4>Families are benefitted by our mission</h4>
-				</div>
-        <br>
-      </center>
+          <center>
+  				<div>
+            <h1 class="counter on-scroll-fade" style="font-size: 100px;" data-target="5000">0</h1>
+            <h4>Families are benefitted by our mission</h4>
+  				</div>
+          <br>
+        </center>
 
-        <center>
-				<div>
-          <h1 class="counter on-scroll-fade" style="font-size: 100px;" data-target="60000">0</h1>
-					<h3>Likes</h3>
-				</div>
-        <br>
-      </center>
+          <center>
+  				<div>
+            <h1 class="counter on-scroll-fade" style="font-size: 100px;" data-target="100000">0</h1>
+  					<h3>Meals have been served through this mission</h3>
+  				</div>
+          <br>
+        </center>
 
-        <center>
-				<div>
-          <h1 class="counter on-scroll-fade" style="font-size: 100px;" data-target="60000">0</h1>
-					<h3>Connections</h3>
-				</div>
-      </center>
+          <center>
+  				<div>
+            <h1 class="counter on-scroll-fade" style="font-size: 100px;" data-target="60000">0</h1>
+  					<h3>Volunteers and Partners working together all over India</h3>
+  				</div>
+        </center>
 
 		</section>
-
+<section class="py-xl bg-lighter">
+  <center>
+    <div class="container">
+      <div class="row">
+        <div class="col md-6">
+          <h4 class="text-muted"><strong>Not everyone is lucky as us, to get three meals a day.<br>
+                                 Now, it is upto us to raise the underprivileged sections of India<br>
+                                 and bring to their platters,the delicious food we consume.<br>
+                                 And believe us when we say, the smile on their face when they recieve the food, <br>
+                                 is more precious than a million gems.</strong></h4>
+        </div>
+        <div class="col md-6">
+          <h1 style="font-size: 35px;">We strongly believe that <br><br> To raise the poor is better than <br>raising the dead!</h1>
+        </div>
+      </div>
+    </div>
+  </center>
+</section>
     <script type="text/javascript">
     function startCounter(num){
         const counters = document.querySelectorAll('.counter');
