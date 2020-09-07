@@ -6,26 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="icrewsystems.com">
     <!-- Primary Meta Tags -->
-    <title>#feedThePoor Initiative by icrewsystems</title>
-    <meta name="title" content="#feedThePoor Initiative by icrewsystems">
-    <meta name="description"
-        content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
+    <title>#feedThePoor | Donate confidently & Transparently</title>
+    <meta name="title" content="#feedThePoor | Donate confidently & Transparently">
+    <meta name="description" content="#feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://feedthepoor.online">
-    <meta property="og:title" content="#feedThePoor Initiative by icrewsystems">
+    <meta property="og:title" content="#feedThePoor | Donate confidently & Transparently">
     <meta property="og:description"
-        content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
+        content="#feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
     <meta property="og:image"
         content="https://cdn.discordapp.com/attachments/703998770332827740/745467105410940978/feedthepoor_meta_poster.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://feedthepoor.online">
-    <meta property="twitter:title" content="#feedThePoor Initiative by icrewsystems">
+    <meta property="twitter:title" content="#feedThePoor | Donate confidently & Transparently">
     <meta property="twitter:description"
-        content="#feedThePoor is an initiative by icrewsystems. #feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
+        content="#feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
     <meta property="twitter:image"
         content="https://cdn.discordapp.com/attachments/703998770332827740/745467105410940978/feedthepoor_meta_poster.png">
     <meta name="theme-color" content="#363636">
@@ -211,12 +210,13 @@
             <div class="row">
                 <div class="col-12 col-md-4">
                     <div class="pr-lg-5">
-                        <h1 class="heading h6 text-uppercase font-weight-700 mb-3">icrewsystems LLP</h1>
+                        <h1 class="heading h6 font-weight-700 mb-3">{{ env('APP_NAME') }}</h1>
                         <p>
-                            icrewsystems is a start up based out of Chennai, India. We constantly tend to push beyond
-                            the
-                            limits of what is possible with this generations most powerful tool, the internet. We are
-                            re-imagining the web, one page at a time</p>
+                          "Feeding the hungry is greater work than raising the dead".
+                          Join us, in making India a hunger free place.
+                          <br /><br />
+                          This website will be impossible without the efforts and donations of the distinguished <a href="{{ url('/partners') }}" class="btn-link">partners</a>.
+                        </p>
                     </div>
                 </div>
                 <div class="col-6 col-md">
@@ -242,8 +242,8 @@
             <hr>
             <div class="d-flex align-items-center">
                 <span class="">
-                    {{ env('APP_NAME') }} &copy; {{ date('Y') }} developed by <a href="https://icrewsystems.com"
-                        class="footer-link" target="_blank">icrewsystems Software Development LLP</a>. All rights
+                    {{ env('APP_NAME') }} &copy; {{ date('Y') }} developed by <a href="https://icrewsystems.com?ref={{ env('APP_URL') }}"
+                        class="footer-link" target="_blank">icrewsystems</a>. All rights
                     reserved.
                 </span>
                 <ul class="nav ml-lg-auto">

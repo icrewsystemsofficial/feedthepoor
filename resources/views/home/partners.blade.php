@@ -7,9 +7,18 @@
     font-size: 1.05rem;
     }
 
+    .partners-cover {
+        /*background-image: url("https://media.discordapp.net/attachments/530789778912837640/725054207295619123/bg2-min.png");*/
+        background-image: url("https://cdn.discordapp.com/attachments/694578470772146237/744471075697721454/icrew_feeding_india_3.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
 </style>
-<section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen">
-    <span class="mask bg-tertiary alpha-5"></span>
+<!-- <section class="spotlight partners-cover bg-cover bg-size--cover" data-spotlight="fullscreen">
+  <span class="mask bg-tertiary alpha-5"></span>
     <div class="spotlight-holder py-lg pt-lg-xl">
         <div class="container d-flex align-items-center no-padding">
             <div class="col">
@@ -19,60 +28,47 @@
                             <img src="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png"
                                 style="width: 200px;" class="img-fluid animated" data-animation-in="jackInTheBox"
                                 data-animation-delay="1000">
-
-                            <!-- <h2 class="heading display-4 font-weight-400 text-white mt-5 animated" data-animation-in="fadeInUp" data-animation-delay="2000">
-                <span class="font-weight-700">812</span> hungry mouths fed today
-              </h2> -->
-                            <p class="lead text-white mt-3 lh-180 c-white animated" data-animation-in="fadeInUp"
-                                data-animation-delay="2500">
-                                <span style="font-size: 2.2rem;"><strong>#BeAPartner</strong> and Serve.</span> <br />
-                                "Feeding the hungry is greater work than raising the dead"
-</p>
+                                <p class="lead text-white mt-3 lh-180 c-white animated" data-animation-in="fadeInUp" data-animation-delay="2500">
+                                <span style="font-size: 2.2rem;">
+                                The ambassadors of <strong>#feedThePoor</strong></span> <br />
+                                  Inspire the masses in your organization to step up and help. You can be <i><strong>that</strong></i> change.
+                                </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</section> -->
+<section class="slice slice-xl">
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <div class="col-12">
+        <p class="lead mt-3 lh-180 animated" data-animation-in="fadeInUp" data-animation-delay="2500">
+        <span style="font-size: 2.2rem;">
+        <strong>#feedThePoor</strong>
+        is possible, because of them.
+        </span> <br />
+          The pioneers, who trusted in our vision and provided a platform to inspire the masses.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-5 bg-lighter border-top border-bottom" id="scrollToSection">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-center">
+      <a href="#" class="btn btn-danger btn-icon-only btn-zoom--hover rounded-circle">
+        <span class="btn-inner--icon">
+          <i class="fas fa-heart"></i>
+        </span>
+      </a>
+      <span class="heading h4 ml-3 mb-0">We exist, because of their love</span>
+    </div>
+  </div>
 </section>
 
-<section class="slice-lg">
-    <div class="container">
-        <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space">
-            <div class="col-lg-5">
-                <div class="d-flex align-items-start">
-                    <div class="">
-                        <h1>
-                            With your support, we make India No Hunger.
-                        </h1>
-                        <p class="partners_para">
-                            <!-- India is home to the largest undernourished population in the world
-                            <ul>
-                                <li>194.4 million people i.e. 14.5% of our population is undernourished</li>
-                                <li>20.8% of children under 5 are underweight</li>
-                                <li>37.9% of children under 5 years of age are stunted</li>
-                                <li>51.4% women in the reproductive age (15-49 years) are anaemic</li>
-                            </ul>
-
-                            <small>source <a href="https://www.indiafoodbanking.org/hunger"
-                                    target="_blank">indiafoodbanking.org</a></small> -->
-
-                                    When you partner with us - you amplify the efforts of our network of 26,700 volunteers, stand by your brand, and create a sustainable impact on communities supported by us.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-5 offset-lg-2">
-                <div class="block block-image">
-                    <img style="height: auto; width: 90%;"
-                        src="https://cdn.discordapp.com/attachments/530789778912837640/745470613249851512/happy.png"
-                        class="img-center img-fluid rounded z-depth-3" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-</section><br><br>
 
 <style media="screen">
 
@@ -206,7 +202,7 @@ h1{
            </div>
            <div class="service-content bg-tertiary">
                <h3>Gem Hosting</h3>
-               <p>Gem Hosting: UK, Sponsored Web Hosting</p>
+               <p>A web hosting company. <br /><br />Located in London, United Kingdom. <br /><br /> Sponsored Web Hosting</p>
            </div>
        </div>
    </div>
@@ -294,23 +290,5 @@ h1{
 </div>
 </section>
 
-<div class="slice stripe bg-primary">
-      <div class="container">
-        <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space text-center text-lg-left">
-          <div class="col-lg-7">
-            <h1 class="heading h2 text-white strong-500">
-                We have a suggestion driven FAQ section, your question might have already been answered.
-            </h1>
-            <p class="lead text-white mb-0"></p>
-          </div>
-          <div class="col-lg-3 ml-lg-auto">
-            <div class="text-center text-md-right">
-              <a href="https://icrewsystems.com/portal/index.php/tickets" class="btn bg-secondary">
-                Get in touch
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
 @endsection

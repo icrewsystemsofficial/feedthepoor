@@ -79,7 +79,8 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{ url('admin/donations') }}">From Razorpay</a>
+            <a class="collapse-item" href="{{ url('admin/donations') }}">All donations</a>
+            <a class="collapse-item" href="{{ url('admin/donations/razorpay') }}">Get from Razorpay</a>
             <a class="collapse-item" href="{{ url('admin/add') }}">Add manual donation</a>
           </div>
         </div>

@@ -67,6 +67,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/logout', 'AdminController@logout');
 
     Route::get('/donations', 'AdminController@donation');
+    Route::get('/donations/details/{id}', 'AdminController@donation_details');
+    Route::get('/donations/razorpay', 'AdminController@razorpay');
     Route::get('/mailer', 'AdminController@mailer');
     Route::post('/sendmail', 'AdminController@sendmail');
 

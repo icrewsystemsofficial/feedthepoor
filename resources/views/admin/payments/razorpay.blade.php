@@ -16,7 +16,7 @@ $(document).ready( function () {
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0 text-gray-800">All donations</h1>
+  <h1 class="h3 mb-0 text-gray-800">Payments from Razorpay API</h1>
   <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 </div>
 
@@ -29,7 +29,7 @@ $(document).ready( function () {
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Displaying {{ count($payments) }} payments</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Retrived {{ count($payments) }} payments</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -43,55 +43,45 @@ $(document).ready( function () {
                   Amount
                 </th>
                 <th>
+                  When
+                </th>
+                <th>
                   Date
                 </th>
                 <th>
-                  Method
+                  Email ID
                 </th>
                 <th>
-                  Status
+                  Contact No
                 </th>
                 <th>
-                  Donor
-                </th>              
-                <th>
-                  Options
+                  Captured?
                 </th>
               </tr>
             </thead>
             <tbody>
               @forelse($payments as $payment)
-              <?php
-                if($payment->data != null) {
-                  $data = json_decode($payment->data);
-                }
-              ?>
                 <tr>
                   <td>
                     {{ $payment->id }}
                   </td>
                   <td>
-                    @money(($payment->amount * 100), 'INR')
+                    {{ ($payment->amount / 100) }} {{ $payment->currency }}
                   </td>
                   <td>
-                    {{ strtoupper(\Carbon\Carbon::parse($payment->created_at)->format('d M Y'))  }}
-                    <br />
-                    <small>({{ \Carbon\Carbon::parse($payment->created_at)->diffForHumans()  }})</small>
+                    {{ \Carbon\Carbon::createFromTimeStamp($payment->created_at)->diffForHumans()  }}
                   </td>
                   <td>
-                    {{ $payment->payment_method }}
+                    {{ \Carbon\Carbon::createFromTimeStamp($payment->created_at)->format('d/M/Y')  }}
                   </td>
                   <td>
-                    <span class="badge badge-success">{{ $payment->status_text }}</span>
+                    {{ $payment->email }}
                   </td>
                   <td>
-                    {{ $payment->donor_name }}
-                    <br />
-                    <small>({{ $payment->donor_email }})</small>
+                    {{ $payment->contact }}
                   </td>
                   <td>
-                    <a href="#" class="btn btn-sm btn-primary">Edit</a>
-                    <a href="{{ url('admin/donations/details') }}/{{ $payment->id }}" class="btn btn-sm btn-primary">Details</a>
+                    {{ $payment->captured }}
                   </td>
                 </tr>
               @empty
