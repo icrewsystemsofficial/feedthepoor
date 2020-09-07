@@ -24,13 +24,30 @@ class AdminController extends Controller
 
     public function donation() {
       //Use $payments = Donation::all()
+      $payments = Donation::all();
+      return view('admin.payments.payments')->with('payments', $payments);
+    }
+
+    public function donation_details($id = '') {
+      if($id == '') {
+        notify()->error('ID cannot be invalid', 'Whoops');
+        return redirect(url('/admin'));
+      }
+
+      $payment = Donation::where('id', $id)->first();
+      return view('admin.payments.details')->with('payment', $payment);
+    }
+
+
+    public function razorpay() {
+      //Use $payments = Donation::all()
       $api = new Api("rzp_test_tufnOqSwzLJerx", "XS0PnaNKJP9GhuaHtzfrtygg");
       $params = array(
         'count' => 50,
         'skip'  => 1
       );
       $payments = $api->payment->all($params);
-      return view('admin.payments.payments')->with('payments', $payments->items);
+      return view('admin.payments.razorpay')->with('payments', $payments->items);
     }
 
     public function mailer() {

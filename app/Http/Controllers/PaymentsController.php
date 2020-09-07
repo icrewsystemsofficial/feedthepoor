@@ -50,13 +50,11 @@ class PaymentsController extends Controller
         	// already existing in our DB with that Payment ID, if yes, we don't have to save it again, if not, then we save it. -Leonard.
 
 
-          $check = Donation::where('payment_id', $request->input('razorpay_payment_id'));
+          $check = Donation::where('payments_id', $request->input('razorpay_payment_id'))->first();
           if($check == true) {
           	// The payment already exists on the DB, which means this code was already executed once and the user
           	// is just trying to reload the page again. So to save our servers, we prevent processing and just display the already existing
           	// values.
-
-
           } else {
           	// code is running for the first time, so we let it run.
 
@@ -77,9 +75,32 @@ class PaymentsController extends Controller
             // So, No need of it. On the other hand, Instagram is optional, so you gotta add a conditional statement to it.
 
             //- Leonard, 19/08/2020.
+
+            $p_array = array();
+            foreach ($payment as $p => $key) {
+              if(is_object($key)) {
+                $kData = array();
+                foreach ($key as $k => $ks) {
+                  $kData[$k] = $ks;
+                }
+                $p_array[$p] = $kData;
+
+              } else {
+                $p_array[$p] = $key;
+              }
+            }
+
+
+            $donation->payment_method = "Online";
+            $donation->amount = ($payment->amount / 100);
+            $donation->status = "1";
+            $donation->status_text = "Received, processing";
+            $donation->description = $payment->notes->desc;
             $donation->donor_name = $payment->notes->name;
             $donation->donor_email = $payment->email;
+            $donation->donor_phone = $payment->contact;
             $donation->donor_instagram = $payment->notes->instagram;
+            $donation->data = json_encode($p_array);
             $donation->save();
 
         	// PDF GENERATION

@@ -135,9 +135,8 @@ class HomeController extends Controller
     }
 
 
-
-    public function add() {
-      // adding a manual donation, by Saurabh
-        return view('admin.donations.add');
+    public function mission() {
+      return view('home.mission');
     }
+
 }
