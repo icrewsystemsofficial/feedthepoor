@@ -101,7 +101,7 @@ class PaymentsController extends Controller
             // QUEUE AN EMAIL TO ADMINS.
           }
 
-            // SEND AN EMAIL TO USER, ATTACH THE RECIPT.              
+            // SEND AN EMAIL TO USER, ATTACH THE RECIPT.
               Mail::to($payment->email)->send(new Confirm($payment, $payment->id));
               notify()->success('Payment details were added to the database. We are generating and sending your report.', 'Yay!');
 
