@@ -47,9 +47,7 @@ class PaymentsController extends Controller
         //storing user data to DB
         if ($payment) {
         	//This means there's a Payment in RazorPay's API with the given ID, now, we gotta verify if there's a record
-        	// already existing in our DB with that Payment ID, if yes, we don't have to save it again, if not, then we save it. -Leonard.
-
-
+        	// already existing in our DB with that Payment ID, if yes, we don't have to save it again, if not, then we save it. -Leonard.                    
           $check = Donation::where('payments_id', $request->input('razorpay_payment_id'))->first();
           if($check == true) {
           	// The payment already exists on the DB, which means this code was already executed once and the user
