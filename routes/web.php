@@ -23,6 +23,7 @@ Route::get('/mission', 'HomeController@mission')->name('mission');
 Route::post('/volunteerssuccess', 'HomeController@volunteerssuccess')->name('volunteerssuccess');
 Route::post('/partnerssuccess', 'HomeController@partnerssuccess')->name('partnerssuccess');
 Route::post('/contactsuccess', 'HomeController@contactsuccess')->name('contactsuccess');
+Route::post('/testimonialsuccess', 'HomeController@testimonialsuccess')->name('testimonialsuccess');
 
 Route::get('/downloadRecipt/{payment_id}', 'PaymentsController@downloadRecipt');
 

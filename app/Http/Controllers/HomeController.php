@@ -7,6 +7,7 @@ use DB;
 use App\Donation;
 use App\Volunteer;
 use App\Partner;
+use App\Testimonial;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -132,6 +133,17 @@ class HomeController extends Controller
       //Bharath
         notify()->success('Thank you for Contacting Us', 'Yay!');
       return view('home.volunteerssuccess');
+    }
+
+    public function testimonialsuccess(Request $request) {
+      // Apoorv: Handle when a testimonial is submitted from the frontend form.
+      $validatedData = $request->validate([
+        'full_name' => 'required|max:255',
+        'email' => 'required',
+      ]);
+      return view('home.comingsoon');
+      //return dd($request);
+      //$testimonial = new Testimonial;
     }
 
 
