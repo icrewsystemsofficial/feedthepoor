@@ -1,88 +1,101 @@
 @extends('layouts.layouts')
-@section('css')
-<link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
-  />
-<style>
 
-</style>
-@endsection
 @section('content')
-<section class="slice-lg">
-       <div class="container">
-         <div class="row py-5 align-items-center cols-xs-space cols-sm-space cols-md-space">
-           <div class="col-md-12">
-            <div class="d-flex">
-              <div class="stepper-div" >
-                <div class="step1" id="stepper">
-                    <ul class="stepper" >
-                      <li><span>Donate</span></li>
-                      <li><span>Feed</span></li>
-                      <li><span>Pictures</span></li>
-                    </ul>
+
+<style media="screen">
+  .heading3{
+    padding-left: 8%;
+  }
+</style>
+
+<section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen">
+    <span class="mask bg-tertiary alpha-5"></span>
+    <div class="spotlight-holder py-lg pt-lg-xl">
+        <div class="container d-flex align-items-center no-padding">
+            <div class="col">
+                <div class="row cols-xs-space align-items-center text-center text-md-left justify-content-start">
+                    <div class="col-7">
+                        <div class="text-left mt-5">
+                          <img src="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png"
+                              style="width: 200px;" class="img-fluid animated" data-animation-in="jackInTheBox"
+                              data-animation-delay="1000">
+                          <h4 class="lead text-white mt-3 lh-180 c-white animated" data-animation-in="fadeInUp"
+                              data-animation-delay="2500">
+                              <span style="font-size: 3rem;">#ShareYourThoughts</span> <br />
+                              "We always love to hear from you"
+                          </h4>
+                        </div>
+                    </div>
                 </div>
-              </div>
+
             </div>
-           </div>
-           <div class="col-md-12">
-             <div class="card">
-               <div class="card-body">
-                 <!-- <div class="">Example</div> -->
 
-                 <div id="step1-p" class="animate__animated animate__fadeIn" style="display: block;">
-                   <h3>You make your donation</h3>
-                   You donate to our NGO partner via Razorpay payment gateway. The payment is automatically verified and accepted by our website. We immediately place the order for the food to donate the next day. You will recieve a recipt within the next 5 - 10 minutes.
-                 </div>
-
-                 <div id="step2-p" class="animate__animated animate__fadeIn" style="display: none;">
-                   <h3>We distribute the food </h3>
-                   With the help of our Voulenteers, we distribute the food which was arranged by your donation to the underprivileged people in certain locations.
-                 </div>
-
-                 <div id="step3-p" class="animate__animated animate__fadeIn" style="display: none;">
-                   <h3>You get happy pictures</h3>
-                   While we distribute the food, we take a quick moment to click a picture of your donation, along with your name with the person who is receiving it and mail it to you. We post the same
-                   on our NGO partner's instagram account. If you have provided instagram handle, we'll tag you.
-                 </div>
-               </div>
-             </div>
-           </div>
-         </div>
         </div>
+
+    </div>
+
 </section>
-<script>
-var stepper = document.getElementById("stepper");
-
-function toggleVisibility(element) {
-  var x = document.getElementById(element);
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
 
 
-setInterval(function() {
-  if(stepper.classList.contains('step1')) {
+<section class="py-xl">
+  <!-- <span class="mask bg-primary alpha-6"></span> -->
+  <div class="container d-flex align-items-center no-padding">
+    <div class="col">
+      <div class="row">
+        <div class="col-md-12">
+            <div class="card bg-tertiary text-white">
+              <div class="card-body">
+                <h2 class="heading pt-3 pb-2 text-white">
+                  How was your experience with <strong>#feed</strong>ThePoor<br />
+                </h2>
+                <p class="mb-5">
+                  Please note that testimonials can only be submitted after you've donated. To donate now, <strong><a href="{{ url('/money') }}">click here</a></strong>. All fields are required.
+                </p>
+                <form method="POST" action="{{ url('/testimonialsuccess') }}">
+                  <div class="form-row">
+                    {{ csrf_field() }}
+                    <div class="col-md-12 mb-3">
+                      <label for="full_name">Full Name</label>
+                      <input type="text" class="form-control " id="full_name" placeholder="What do we call you?" name="full_name" required>
+                    </div>
+                  </div><br>
+                  <div class="form-row">
 
-    stepper.classList.remove('step1');
-    stepper.classList.add('step2');
-    toggleVisibility('step1-p');
-    toggleVisibility('step2-p');
-  } else if(stepper.classList.contains('step2')) {
-    stepper.classList.remove('step2');
-    stepper.classList.add('step3');
-    toggleVisibility('step2-p');
-    toggleVisibility('step3-p');
-  } else if(stepper.classList.contains('step3')) {
+                    <div class="col-lg-12 mb-3">
+                      <label for="email">Email ID: (which was used while donation)</label>
+                      <input type="text" value="" autocomplete="on" class="form-control " id="email" name="email" placeholder="Email ID">
+                    </div>
+                  </div><br>
 
-    stepper.classList.remove('step3');
-    stepper.classList.add('step1');
-    toggleVisibility('step3-p');
-    toggleVisibility('step1-p');
-  }
-}, 5000);
-</script>
+
+                  <div class="form-row">
+                    <div class="col-lg-12 mb-3">
+                      <label for="message">Testimonial:</label>
+                      <textarea name="message" id="message" rows="8" cols="125" class="form-control" placeholder="Express your thoughts here..."></textarea>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary" type="submit">Submit form</button> &nbsp;&nbsp;&nbsp;&nbsp;
+                  <button class="btn btn-warning" type="reset">Reset</button>
+                </form>
+              </div><br>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slice bg-primary">
+  <div class="container">
+    <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space text-center text-lg-left">
+      <div class="col-lg-12">
+        <h1 class="heading h2 text-white strong-500">
+            It's absolutely amazing for the team to hear what you feel about <strong>#feed</strong>ThePoor! And the best part is, you would help us reach even more changemakers!
+        </h1>
+        <p class="lead text-white mb-0"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 @endsection
