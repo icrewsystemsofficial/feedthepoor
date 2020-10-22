@@ -19,6 +19,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/coming-soon', 'HomeController@comingsoon')->name('comingsoon');
 Route::get('/mission', 'HomeController@mission')->name('mission');
 
+//Testing the deployer.
+// Route::get('deploy', 'DeployController@index');
 
 Route::post('/volunteerssuccess', 'HomeController@volunteerssuccess')->name('volunteerssuccess');
 Route::post('/partnerssuccess', 'HomeController@partnerssuccess')->name('partnerssuccess');
