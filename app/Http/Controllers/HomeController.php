@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use DB;
 use App\Donation;
 use App\Volunteer;
@@ -139,11 +140,31 @@ class HomeController extends Controller
       // Apoorv: Handle when a testimonial is submitted from the frontend form.
       $validatedData = $request->validate([
         'full_name' => 'required|max:255',
-        'email' => 'required',
+        'email' => 'required|email',
+        'message' => 'required',
       ]);
-      return view('home.comingsoon');
+      //Check if hashed email is present atleast once in Donations table.
+      $hashed_email = Hash::make($request->email);
+      $num_donations = Donation::where('donor_email',$hashed_email)->count();
+      if($num_donations>0)
+      {
+        //If donated atleast once, submit testimonial to database.
+        $testimonial = new Testimonial;
+        $testimonial->name = $request->full_name;
+        $testimonial->email = $hashed_email;
+        $testimonial->message = $request->message;
+        $testimonial->status = 0;
+        $testimonial->save();
+        //Return back to the testimonials page with success message.
+        return redirect()->back()->with('success', 'Successfully Submitted');
+      }
+      else
+      {
+        // Return Error that No Donation was found with this email. Provide button to encourage donations. Error Code is sample. Can be changed once project error documentation is ready.
+        return redirect()->back()->withErrors(['general'=>'Code 101','general_title' => 'We couldn\'t find a donation from this email!','general_msg' => 'We couldn\'t find any donation from this email ID. Haven\'t donated yet? Try donating using the button below.', 'btn_text' => 'Donate Now', 'btn_link' => url('/money')]);
+      }
+      //return view('home.comingsoon');
       //return dd($request);
-      //$testimonial = new Testimonial;
     }
 
 
