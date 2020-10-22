@@ -1,17 +1,70 @@
 @extends('layouts.layouts')
-@section('css')	
-  <link	
-    rel="stylesheet"	
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"	
-  />	
-@endsection
-@section('content')
-<style media="screen">
-  .heading3{
-    padding-left: 8%;
-  }
-</style>
+@section('css')
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+  />
 
+  <style media="screen">
+    .heading3{
+      padding-left: 8%;
+    }
+  </style>
+@endsection
+
+@section('js')
+<!-- Axios JS, for client side API calls. -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  function verifyTestimonialEmail() {
+    var inputEmail = document.getElementById('input_email').value;
+    if(inputEmail == '') {
+      swal.fire({
+        icon: 'warning',
+        text: 'Please fill in your email address that you used while donating'
+      });
+    } else {
+      var apiURL = "{{ env('APP_URL') }}/api/verify";
+      axios.post(apiURL, {
+        email: inputEmail
+      })
+      .then(function (response) {
+        if(response.data.status == 200) {
+          swal.fire({
+            icon: 'success',
+            text: response.data.message
+          });
+
+          //Hiding the first container, and showing the second container.
+          var testimonialContainer = document.getElementById('testimonialContainer');
+          var verifyContainer = document.getElementById('verifyContainer');
+          testimonialContainer.style.display = 'block';
+          verifyContainer.style.display = 'none';
+
+          //Filling up the next form from the data retrived from the API
+          document.getElementById('full_name').value = response.data.name;
+          document.getElementById('email').value = response.data.email;
+
+        } else {
+          swal.fire({
+            icon: 'error',
+            text: response.data.message
+          });
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+  }
+
+
+</script>
+@endsection
+
+@section('content')
+
+<!--
 <section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen">
   <span class="mask bg-tertiary alpha-5"></span>
   <div class="spotlight-holder py-lg pt-lg-xl">
@@ -34,13 +87,139 @@
       </div>
     </div>
   </div>
+</section> -->
+
+
+<section class="slice slice-xl bg-secondary">
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <div class="col-12">
+        <p class="lead mt-3 lh-180 animated" data-animation-in="fadeInUp" data-animation-delay="2500">
+        <span style="font-size: 2.2rem;">
+          What's on your mind about
+        <strong>#feedThePoor</strong> ?
+        </span> <br />
+          Tell us all about your experience with us
+        </p>
+      </div>
+    </div>
+  </div>
 </section>
 
 
-<section class="py-xl">
+<section class="slice">
   <!-- <span class="mask bg-primary alpha-6"></span> -->
+
+  <div id="verifyContainer" class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>Attention</strong> You need to donate first in-order for us to publish your testimonial.
+
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="px-5 my-5">
+          <div class="testimonial-slider">
+            <div class="testimonial-slider__wrp swiper-wrapper">
+              <div class="testimonial-slider__item swiper-slide">
+                <div class="testimonial-slider__img">
+                  <img src="https://in.ivao.aero/admin/core/uploads/Staff/leo.jpg" alt="">
+                </div>
+                <div class="testimonial-slider__content">
+                  <span class="testimonial-slider__code">26 JAN 2020</span>
+                  <div class="testimonial-slider__title">Leonard Selvaraja</div>
+                  <div class="testimonial-slider__text">
+                    The website is just brilliant. It makes donation transparent and easy.
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-slider__item swiper-slide">
+                <div class="testimonial-slider__img">
+                  <img src="https://in.ivao.aero/admin/core/uploads/Staff/leo.jpg" alt="">
+                </div>
+                <div class="testimonial-slider__content">
+                  <span class="testimonial-slider__code">26 December 2019</span>
+                  <div class="testimonial-slider__title">Lorem Ipsum Dolor2</div>
+                  <div class="testimonial-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?</div>
+                  <a href="#" class="testimonial-slider__button">READ MORE</a>
+                </div>
+              </div>
+
+              <div class="testimonial-slider__item swiper-slide">
+                <div class="testimonial-slider__img">
+                  <img src="https://in.ivao.aero/admin/core/uploads/Staff/leo.jpg" alt="">
+                </div>
+                <div class="testimonial-slider__content">
+                  <span class="testimonial-slider__code">26 December 2019</span>
+                  <div class="testimonial-slider__title">Lorem Ipsum Dolor</div>
+                  <div class="testimonial-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?</div>
+                  <a href="#" class="testimonial-slider__button">READ MORE</a>
+                </div>
+              </div>
+
+            </div>
+            <div class="testimonial-slider__pagination"></div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-tertiary text-white">
+          <div class="card-body">
+            <p class="text-light">
+              <ol>
+                <li>
+                  You need to donate before you could share your experience.
+                </li>
+                <li>
+                  We will publish your only your name & testimonial. Other details can remain anonymous
+                </li>
+                <li>
+                  We will need to verify your email ID against our donation database
+                </li>
+                <li>
+                  If you wish to make a general testimonial, get in touch with us via email
+                </li>
+              </ol>
+
+              <p class="text-right">
+                <label class="d-block">I understand</label>
+                <label class="toggle-switch">
+                  <input type="checkbox">
+                  <span class="toggle-switch-slider rounded-circle"></span>
+                </label>
+              </p>
+            </p>
+            <h4 class="heading h3 text-white">
+              Are you ready?
+              <small><br />
+                Let's get you started 😇
+              </small>
+            </h4>
+            <form class="form py-5">
+              <div class="form-group">
+                <input type="email" class="form-control" id="input_email" name="email" placeholder="Your email" required>
+              </div>
+              <button onclick="verifyTestimonialEmail();" type="button" class="btn btn-block btn-lg bg-success text-white mt-4">Verify</button>
+
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <div class="container d-flex align-items-center no-padding">
-    <div class="col">  
+
+    <div class="col">
       @error('general')
       <div class="row">
         <div class="col-md-12">
@@ -85,7 +264,7 @@
       </div>
       <br><br>
       @endif
-      <div class="row">
+      <div class="row" id="testimonialContainer"  style="display: none;">
         <div class="col-md-12">
             <div class="card bg-tertiary text-white">
               <div class="card-body">
@@ -98,6 +277,7 @@
                 <form method="POST" action="{{ url('/testimonialsuccess') }}">
                   <div class="form-row">
                     {{ csrf_field() }}
+                    <!-- You can use @ csrf instead. -Leonard -->
                     <div class="col-md-12 mb-3">
                       <label for="full_name">Full Name</label>
                       <input type="text" class="form-control @error('full_name') is-invalid @enderror" id="full_name" placeholder="What do we call you?" name="full_name" required>
@@ -146,8 +326,11 @@
     <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space text-center text-lg-left">
       <div class="col-lg-12">
         <h1 class="heading h2 text-white strong-500">
-            It's absolutely amazing for the team to hear what you feel about <strong>#feed</strong>ThePoor! And the best part is, you would help us reach even more changemakers!
+            We're more than thrilled
         </h1>
+        <p class="text-white">
+          It's absolutely amazing for the team to hear what you feel about <strong>#feed</strong>ThePoor! And the best part is, you would help us reach even more changemakers!
+        </p>
         <p class="lead text-white mb-0"></p>
       </div>
     </div>

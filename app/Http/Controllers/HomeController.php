@@ -54,6 +54,35 @@ class HomeController extends Controller
       return view('home.testimonials');
     }
 
+    public function testimonialVerify(Request $request) {
+      $response = array();
+
+      //Checking the DB.
+      $check = Donation::where('donor_email', $request->email)->first();
+      if($check) {
+        $response['status'] = '200';
+        $response['message'] = 'Your donation was verified. You may now proceed to submit your testimonial.';
+        $response['name'] = $check->donor_name;
+        $response['email'] = $check->donor_email;
+      } else {
+        $response['status'] = '404';
+        $response['message'] = 'No donation was found with the email '.$request->email.'. If you think this is a mistake, please contact us.';
+      }
+
+      // 200 - Shows success Swal.
+      // 404 - shows error swal.
+      // Message - is directly handled by axios, and passed into swal.
+      //
+      //This status code is different from the HTTP status code. The HTTP code
+      //will always return 200 if the request was successful, and we need axios to handle
+      //the 404 response inside the first codeblock of the conditional statement, hence we use
+      //this method of making our own status code inside the response.data.status var.
+      //
+      //
+      // -Leonard, 23/10/2020.
+      return response($response);
+    }
+
     public function work() {
       // Testimonials
       return view('home.work');
