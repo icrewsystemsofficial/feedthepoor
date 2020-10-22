@@ -100,7 +100,7 @@
                     {{ csrf_field() }}
                     <div class="col-md-12 mb-3">
                       <label for="full_name">Full Name</label>
-                      <input type="text" class="form-control " id="full_name" placeholder="What do we call you?" name="full_name" required>
+                      <input type="text" class="form-control @error('full_name') is-invalid @enderror" id="full_name" placeholder="What do we call you?" name="full_name" required>
                       @error('full_name')
                       <div class="invalid-feedback">
                         {{ $message }}
@@ -111,7 +111,7 @@
                   <div class="form-row">
                     <div class="col-lg-12 mb-3">
                       <label for="email">Email ID: (which was used while donation)</label>
-                      <input type="email" value="" autocomplete="on" class="form-control " id="email" name="email" placeholder="Email ID">
+                      <input type="email" value="" autocomplete="on" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Email ID">
                       @error('email')
                       <div class="invalid-feedback">
                         {{ $message }}
@@ -122,7 +122,7 @@
                   <div class="form-row">
                     <div class="col-lg-12 mb-3">
                       <label for="message">Testimonial:</label>
-                      <textarea name="message" id="message" rows="8" cols="125" class="form-control" placeholder="Express your thoughts here..."></textarea>
+                      <textarea name="message" id="message" rows="8" cols="125" class="form-control @error('message') is-invalid @enderror" placeholder="Express your thoughts here..."></textarea>
                       @error('message')
                       <div class="invalid-feedback">
                         {{ $message }}
