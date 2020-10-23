@@ -249,8 +249,8 @@
                     @csrf
                     <div class="col-md-12 mb-3">
                       <label for="full_name">Full Name</label>
-                      <input type="text" class="form-control @error('full_name') is-invalid @enderror" id="full_name_disp" disabled placeholder="What do we call you?" name="full_name_disp" required>
-                      <input type="hidden" class="form-control" id="full_name" placeholder="What do we call you?" name="full_name" required>
+                      <input type="text" value="{{ old('full_name') }}" class="form-control @error('full_name') is-invalid @enderror" id="full_name_disp" disabled placeholder="What do we call you?" name="full_name_disp" required>
+                      <input type="hidden" {{ old('full_name') }} class="form-control" id="full_name" placeholder="What do we call you?" name="full_name" required>
                       @error('full_name')
                       <div class="invalid-feedback">
                         {{ $message }}
@@ -261,8 +261,8 @@
                   <div class="form-row">
                     <div class="col-lg-12 mb-3">
                       <label for="email">Email ID: (which was used while donation)</label>
-                      <input type="email" value="" autocomplete="on" class="form-control @error('email') is-invalid @enderror" disabled id="email_disp" name="email_disp" placeholder="Email ID">
-                      <input type="hidden" value="" autocomplete="on" class="form-control" id="email" name="email" placeholder="Email ID" required>
+                      <input type="email" value="{{ old('email') }}" autocomplete="on" class="form-control @error('email') is-invalid @enderror" disabled id="email_disp" name="email_disp" placeholder="Email ID">
+                      <input type="hidden" value="{{ old('email') }}" autocomplete="on" class="form-control" id="email" name="email" placeholder="Email ID" required>
                       @error('email')
                       <div class="invalid-feedback">
                         {{ $message }}
@@ -273,7 +273,7 @@
                   <div class="form-row">
                     <div class="col-lg-12 mb-3">
                       <label for="message">Testimonial:</label>
-                      <textarea name="message" id="message" rows="8" cols="125" class="form-control @error('message') is-invalid @enderror" placeholder="Express your thoughts here..."></textarea>
+                      <textarea name="message" id="message" rows="8" cols="125" class="form-control @error('message') is-invalid @enderror" placeholder="Express your thoughts here...">{{ old('message') }}</textarea>
                       @error('message')
                       <div class="invalid-feedback">
                         {{ $message }}
