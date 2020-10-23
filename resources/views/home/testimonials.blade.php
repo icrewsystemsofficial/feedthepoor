@@ -24,7 +24,7 @@
         text: 'Please fill in your email address that you used while donating'
       });
     } else {
-      var apiURL = "{{ env('APP_URL') }}/api/verify";
+      var apiURL = "{{ url('/api/verify') }}";
       axios.post(apiURL, {
         email: inputEmail
       })
@@ -42,7 +42,9 @@
           verifyContainer.style.display = 'none';
 
           //Filling up the next form from the data retrived from the API
+          document.getElementById('full_name_disp').value = response.data.name;
           document.getElementById('full_name').value = response.data.name;
+          document.getElementById('email_disp').value = response.data.email;
           document.getElementById('email').value = response.data.email;
 
         } else {
@@ -57,38 +59,10 @@
       });
     }
   }
-
-
 </script>
 @endsection
 
 @section('content')
-
-<!--
-<section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen">
-  <span class="mask bg-tertiary alpha-5"></span>
-  <div class="spotlight-holder py-lg pt-lg-xl">
-    <div class="container d-flex align-items-center no-padding">
-      <div class="col">
-        <div class="row cols-xs-space align-items-center text-center text-md-left justify-content-start">
-          <div class="col-7">
-            <div class="text-left mt-5">
-              <img src="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png"
-                  style="width: 200px;" class="img-fluid animated" data-animation-in="jackInTheBox"
-                  data-animation-delay="1000">
-              <h4 class="lead text-white mt-3 lh-180 c-white animated" data-animation-in="fadeInUp"
-                  data-animation-delay="2500">
-                  <span style="font-size: 3rem;">#ShareYourThoughts</span> <br />
-                  "We always love to hear from you"
-              </h4>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
 
 <section class="slice slice-xl bg-secondary">
   <div class="container">
@@ -109,8 +83,7 @@
 
 
 <section class="slice">
-  <!-- <span class="mask bg-primary alpha-6"></span> -->
-
+  @if(!session()->has('success') && $errors->isEmpty())
   <div id="verifyContainer" class="container">
     <div class="row">
       <div class="col-md-12">
@@ -206,16 +179,13 @@
                 <input type="email" class="form-control" id="input_email" name="email" placeholder="Your email" required>
               </div>
               <button onclick="verifyTestimonialEmail();" type="button" class="btn btn-block btn-lg bg-success text-white mt-4">Verify</button>
-
-
-
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-
+  @endif
 
   <div class="container d-flex align-items-center no-padding">
 
@@ -263,8 +233,8 @@
         </div>
       </div>
       <br><br>
-      @endif
-      <div class="row" id="testimonialContainer"  style="display: none;">
+      @else
+      <div class="row" id="testimonialContainer"  @if($errors->isEmpty()) style="display: none;" @endif>
         <div class="col-md-12">
             <div class="card bg-tertiary text-white">
               <div class="card-body">
@@ -276,11 +246,11 @@
                 </p>
                 <form method="POST" action="{{ url('/testimonialsuccess') }}">
                   <div class="form-row">
-                    {{ csrf_field() }}
-                    <!-- You can use @ csrf instead. -Leonard -->
+                    @csrf
                     <div class="col-md-12 mb-3">
                       <label for="full_name">Full Name</label>
-                      <input type="text" class="form-control @error('full_name') is-invalid @enderror" id="full_name" placeholder="What do we call you?" name="full_name" required>
+                      <input type="text" class="form-control @error('full_name') is-invalid @enderror" id="full_name_disp" disabled placeholder="What do we call you?" name="full_name_disp" required>
+                      <input type="hidden" class="form-control" id="full_name" placeholder="What do we call you?" name="full_name" required>
                       @error('full_name')
                       <div class="invalid-feedback">
                         {{ $message }}
@@ -291,7 +261,8 @@
                   <div class="form-row">
                     <div class="col-lg-12 mb-3">
                       <label for="email">Email ID: (which was used while donation)</label>
-                      <input type="email" value="" autocomplete="on" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Email ID">
+                      <input type="email" value="" autocomplete="on" class="form-control @error('email') is-invalid @enderror" disabled id="email_disp" name="email_disp" placeholder="Email ID">
+                      <input type="hidden" value="" autocomplete="on" class="form-control" id="email" name="email" placeholder="Email ID" required>
                       @error('email')
                       <div class="invalid-feedback">
                         {{ $message }}
@@ -319,8 +290,8 @@
       </div>
     </div>
   </div>
+  @endif
 </section>
-
 <section class="slice bg-primary">
   <div class="container">
     <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space text-center text-lg-left">

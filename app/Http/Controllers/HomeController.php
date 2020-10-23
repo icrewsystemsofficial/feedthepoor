@@ -173,14 +173,13 @@ class HomeController extends Controller
         'message' => 'required',
       ]);
       //Check if hashed email is present atleast once in Donations table.
-      $hashed_email = Hash::make($request->email);
-      $num_donations = Donation::where('donor_email',$hashed_email)->count();
+      $num_donations = Donation::where('donor_email',$request->email)->count();
       if($num_donations>0)
       {
         //If donated atleast once, submit testimonial to database.
         $testimonial = new Testimonial;
         $testimonial->name = $request->full_name;
-        $testimonial->email = $hashed_email;
+        $testimonial->email = $request->email;
         $testimonial->message = $request->message;
         $testimonial->status = 0;
         $testimonial->save();
