@@ -18,6 +18,6 @@ class Testimonial extends Model
   * Status 1: Approved to be shown on Testimonials List Page but not on Home Page Slider
   * Status 2: Approved to be shown on Testimonials List Page and on Home Page Slider
   */
-
+  protected $dates = ['created_at','updated_at'];
   protected $table = 'testimonials';
 }

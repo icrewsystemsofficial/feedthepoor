@@ -18,7 +18,9 @@ class HomeController extends Controller
 {
     public function index() {
       //Create views in resources/home. - Leonard Selvaraja.
-      return view('home.index');
+      //Take 5 recent hero section testimonials to display on the home page.
+      $testimonials = Testimonial::where('status',2)->inRandomOrder()->take(5)->get();
+      return view('home.index',['testimonials'=>$testimonials]);
     }
 
     public function comingsoon() {
@@ -51,7 +53,14 @@ class HomeController extends Controller
     //Bharath
     public function testimonials() {
       // Testimonials
-      return view('home.testimonials');
+      $testimonials = Testimonial::whereIn('status',[1,2])->inRandomOrder()->take(7)->get();
+      return view('home.testimonials', ['testimonials'=>$testimonials]);
+    }
+
+    public function addtestimonial() {
+      // Testimonials
+      $testimonials = Testimonial::where('status',2)->inRandomOrder()->take(5)->get();
+      return view('home.addtestimonials', ['testimonials'=>$testimonials]);
     }
 
     public function testimonialVerify(Request $request) {
