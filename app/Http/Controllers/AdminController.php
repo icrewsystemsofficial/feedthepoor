@@ -10,6 +10,7 @@ use App\Mail\Admin\SendMail;
 use Illuminate\Support\Facades\Mail;
 use DB;
 use App\Donation;
+use App\Testimonial;
 
 class AdminController extends Controller
 {
@@ -85,5 +86,11 @@ class AdminController extends Controller
       // display DB data, by Saurabh
         $donations = Donation::all();
         return view('admin.payments.data')->with('donations', $donations);
+    }
+
+    public function testimonials() {
+      // Display list of all testimonials, by Apoorv
+      $testimonials = Testimonial::orderBy('status','DESC')->orderBy('created_at','DESC')->get();
+      return view('admin.testimonials.list', ['testimonials'=>$testimonials]);
     }
 }

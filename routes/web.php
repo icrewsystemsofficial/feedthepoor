@@ -76,6 +76,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/mailer', 'AdminController@mailer');
     Route::post('/sendmail', 'AdminController@sendmail');
 
+    Route::get('/testimonials', 'AdminController@testimonials');
+
     //created by SAURABH, to add manual donations
     Route::get('/add', 'AdminController@add')->name('add');
     Route::post('add/manual', 'AdminController@manual')->name('manual');
