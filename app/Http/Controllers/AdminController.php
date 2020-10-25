@@ -94,7 +94,19 @@ class AdminController extends Controller
   public function testimonials() {
     // Display list of all testimonials, by Apoorv
     $testimonials = Testimonial::orderBy('status','DESC')->orderBy('created_at','DESC')->get();
-    return view('admin.testimonials.list', ['testimonials'=>$testimonials]);
+    return view('admin.testimonials.list', ['title'=>"All Testimonials",'testimonials'=>$testimonials]);
+  }
+
+  public function unapprovedtestimonials() {
+    // Display list of the unapproved testimonials, by Apoorv
+    $testimonials = Testimonial::where('status',0)->orderBy('created_at','DESC')->get();
+    return view('admin.testimonials.list', ['title'=>"Unapproved Testimonials", 'testimonials'=>$testimonials]);
+  }
+
+  public function deletedtestimonials() {
+    // Display list of deleted testimonials, by Apoorv
+    $testimonials = Testimonial::onlyTrashed()->get();
+    return view('admin.testimonials.deleted', ['title'=>"Deleted Testimonials", 'testimonials'=>$testimonials]);
   }
 
   public function testimonialstatus(Request $request) {
@@ -139,6 +151,7 @@ class AdminController extends Controller
 
   public function approvetestimonials(Request $request)
   {
+    // Approve all the unapproved testimonials (API), by Apoorv
     $validatedData = $request->validate([
       'user' => 'required',
     ]);
@@ -160,6 +173,66 @@ class AdminController extends Controller
       }
       $response['status'] = '200';
       $response['message'] = $testimonials->count().' testimonial(s) have been approved and the donors have been informed! Refreshing the page now!';
+    }
+    return response($response);
+  }
+
+  public function deletetestimonial(Request $request)
+  {
+    // Restore deleted testimonial (API), by Apoorv
+    $validatedData = $request->validate([
+      'id' => 'required',
+      'user' => 'required',
+    ]);
+    //$user_id = Crypt::decryptString($request->user);
+    $user = User::find($request->user);
+    $testimonial = Testimonial::find($request->id);
+    if(!$user)
+    {
+      $response['status'] = '404';
+      $response['message'] = 'No user was found with the ID. If you think this is a mistake, please contact us.';
+    }
+    elseif(!$testimonial)
+    {
+      $response['status'] = '404';
+      $response['message'] = 'No deleted testimonial was found with the ID '.$request->id.'. If you think this is a mistake, please contact us.';
+    }
+    else
+    {
+      $testimonial->delete();
+      $response['status'] = '200';
+      $response['message'] = 'The testimonial has been deleted! To retrieve it, check the Deleted Testimonials page. Refreshing the page now!';
+    }
+    return response($response);
+  }
+
+  public function restoretestimonial(Request $request)
+  {
+    // Restore deleted testimonial (API), by Apoorv
+    $validatedData = $request->validate([
+      'id' => 'required',
+      'user' => 'required',
+    ]);
+    //$user_id = Crypt::decryptString($request->user);
+    $user = User::find($request->user);
+    $testimonial = Testimonial::onlyTrashed()->find($request->id);
+    if(!$user)
+    {
+      $response['status'] = '404';
+      $response['message'] = 'No user was found with the ID. If you think this is a mistake, please contact us.';
+    }
+    elseif(!$testimonial)
+    {
+      $response['status'] = '404';
+      $response['message'] = 'No testimonial was found with the ID '.$request->id.'. If you think this is a mistake, please contact us.';
+    }
+    else
+    {
+      $testimonial->restore();
+      $testimonial->status = 0;
+      $testimonial->save();
+      $response['status'] = '200';
+      $response['message'] = 'The testimonial has been restored and has been marked as Unapproved! Refreshing the page now!';
     }
     return response($response);
   }

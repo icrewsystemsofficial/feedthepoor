@@ -173,9 +173,17 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('admin/') }}">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Testimonials</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Testimonials</span>
+        </a>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{ url('admin/testimonials') }}">All Testimonials</a>
+            <a class="collapse-item" href="{{ url('admin/testimonials/unapproved') }}">Unapproved Testimonials</a>
+            <a class="collapse-item" href="{{ url('admin/testimonials/deleted') }}">Deleted Testimonials</a>
+          </div>
+        </div>
       </li>
 
       <!-- Sidebar Toggler (Sidebar) -->

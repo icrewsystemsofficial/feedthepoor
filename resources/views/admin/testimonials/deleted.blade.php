@@ -13,52 +13,14 @@ $(document).ready( function () {
 <!-- Axios JS, for client side API calls. -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-  function changestatus(id, status) {
-    if(id == '') {
-      swal.fire({
-        icon: 'warning',
-        text: 'Chosen ID invalid.'
-      });
-    } else if(status == '' && status!=0) {
-      swal.fire({
-        icon: 'warning',
-        text: 'Chosen Status invalid.'
-      })
-    } else {
-      var apiURL = "{{ url('/api/admin/testimonials/status') }}";
-      axios.post(apiURL, {
-        id: id,
-        status: status,
-        user: "{{ auth()->user()->id }}"
-      })
-      .then(function (response) {
-        if(response.data.status == 200) {
-          swal.fire({
-            icon: 'success',
-            text: response.data.message
-          }).then((value) => {
-            location.reload();
-          });
-        } else {
-          swal.fire({
-            icon: 'error',
-            text: response.data.message
-          });
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    }
-  }
-  function deletetestimonial(id) {
+  function restoretestimonial(id) {
     if(id == '') {
       swal.fire({
         icon: 'warning',
         text: 'Chosen ID invalid.'
       });
     } else {
-      var apiURL = "{{ url('/api/admin/testimonials/delete') }}";
+      var apiURL = "{{ url('/api/admin/testimonials/restore') }}";
       axios.post(apiURL, {
         id: id,
         user: "{{ auth()->user()->id }}"
@@ -153,9 +115,6 @@ $(document).ready( function () {
                 <th>
                   Status
                 </th>
-                <th>
-                  Delete
-                </th>
               </tr>
             </thead>
             <tbody>
@@ -179,24 +138,12 @@ $(document).ready( function () {
                   {{ \Illuminate\Support\Str::limit($testimonial->message,50) }} <a class="btn btn-primary" href="{{ url('/testimonials/view/'.\Illuminate\Support\Facades\Crypt::encryptString($testimonial->id)) }}" target="_blank"> View </a>
                 </td>
                 <td>
-                  <div class="dropdown mb-4">
-                    <button class="btn {{ array('btn-secondary','btn-primary','btn-success')[$testimonial->status] }} dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      {{ array('Unapproved','Approved','Featured')[$testimonial->status] }}
+                    <button class="btn btn-primary" onclick="restoretestimonial({{ $testimonial->id }});" type="button">
+                    Restore
                     </button>
-                    <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton" style="">
-                      @if($testimonial->status==0 || $testimonial->status==1)<a onclick="changestatus({{ $testimonial->id }},2);" class="dropdown-item" href="#">Featured</a>@endif
-                      @if($testimonial->status==0 || $testimonial->status==2)<a onclick="changestatus({{ $testimonial->id }},1);" class="dropdown-item" href="#">Approved</a>@endif
-                      @if($testimonial->status==1 || $testimonial->status==2)<a onclick="changestatus({{ $testimonial->id }},0);" class="dropdown-item" href="#">Unapproved</a>@endif
-                    </div>
-                  </div>
                 </td>
                 <td>
                   {{ $testimonial->status }}
-                </td>
-                <td>
-                  <button class="btn btn-danger" onclick="deletetestimonial({{ $testimonial->id }});" type="button">
-                    <i class="fa fa-trash"></i>
-                  </button>
                 </td>
               </tr>
               @empty
