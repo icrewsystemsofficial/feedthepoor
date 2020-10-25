@@ -45,9 +45,10 @@ $(document).ready( function () {
       });
     }
   }
-  function approveall() {
-    var apiURL = "{{ url('/api/admin/testimonials/approve') }}";
+  function restoreall() {
+    var apiURL = "{{ url('/api/admin/testimonials/restore') }}";
     axios.post(apiURL, {
+      id: "All",
       user: "{{ auth()->user()->id }}"
     })
     .then(function (response) {
@@ -75,7 +76,7 @@ $(document).ready( function () {
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
   <h1 class="h3 mb-0 text-gray-800">{{ $title }}</h1>
-  <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="approveall();"><i class="fas fa-check fa-sm text-white-50"></i> Approve all Unapproved</a>
+  <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="restoreall();"><i class="fas fa-check fa-sm text-white-50"></i> Restore all Deleted</a>
 </div>
 
 <!-- Content Row -->

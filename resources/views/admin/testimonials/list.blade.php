@@ -148,10 +148,10 @@ $(document).ready( function () {
                   Message
                 </th>            
                 <th>
-                  Options
+                  Status
                 </th>
                 <th>
-                  Status
+                  Status Code
                 </th>
                 <th>
                   Delete

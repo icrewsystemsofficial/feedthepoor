@@ -211,24 +211,35 @@ class AdminController extends Controller
       'user' => 'required',
     ]);
     $user = User::find($request->user);
-    $testimonial = Testimonial::onlyTrashed()->find($request->id);
     if(!$user)
     {
       $response['status'] = '404';
       $response['message'] = 'No user was found with the ID. If you think this is a mistake, please contact us.';
     }
-    elseif(!$testimonial)
+    elseif($request->id!="All")
     {
-      $response['status'] = '404';
-      $response['message'] = 'No deleted testimonial was found with the ID '.$request->id.'. If you think this is a mistake, please contact us.';
+      $testimonial = Testimonial::onlyTrashed()->find($request->id);
+      if(!$testimonial)
+      {
+        $response['status'] = '404';
+        $response['message'] = 'No deleted testimonial was found with the ID '.$request->id.'. If you think this is a mistake, please contact us.';
+      }
+      else
+      {
+        $testimonial->restore();
+        $testimonial->status = 0;
+        $testimonial->save();
+        $response['status'] = '200';
+        $response['message'] = 'The testimonial has been restored and has been marked as Unapproved! Refreshing the page now!';
+      }
     }
     else
     {
-      $testimonial->restore();
-      $testimonial->status = 0;
-      $testimonial->save();
+      $count = Testimonial::onlyTrashed()->count();
+      Testimonial::onlyTrashed()->update(['status'=>0]);
+      $testimonials = Testimonial::onlyTrashed()->restore();
       $response['status'] = '200';
-      $response['message'] = 'The testimonial has been restored and has been marked as Unapproved! Refreshing the page now!';
+      $response['message'] = $count.' testimonial(s) have been restored and has been marked as Unapproved! Refreshing the page now!';
     }
     return response($response);
   }
