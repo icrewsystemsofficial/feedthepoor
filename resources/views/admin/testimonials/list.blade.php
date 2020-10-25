@@ -10,6 +10,47 @@ $(document).ready( function () {
     table.order([ 6, 'desc' ],[ 2, 'desc' ]).draw();
 } );
 </script>
+<!-- Axios JS, for client side API calls. -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  function changestatus(id, status) {
+    if(id == '') {
+      swal.fire({
+        icon: 'warning',
+        text: 'Chosen ID invalid.'
+      });
+    } else if(status == '' && status!=0) {
+      swal.fire({
+        icon: 'warning',
+        text: 'Chosen Status invalid.'
+      })
+    } else {
+      var apiURL = "{{ url('/api/admin/testimonials/status') }}";
+      axios.post(apiURL, {
+        id: id,
+        status: status
+      })
+      .then(function (response) {
+        if(response.data.status == 200) {
+          swal.fire({
+            icon: 'success',
+            text: response.data.message
+          }).then((value) => {
+            location.reload();
+          });
+        } else {
+          swal.fire({
+            icon: 'error',
+            text: response.data.message
+          });
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+  }
+</script>
 @endsection
 @section('content')
 <!-- Page Heading -->
@@ -83,9 +124,9 @@ $(document).ready( function () {
                       {{ array('Unapproved','Approved','Featured')[$testimonial->status] }}
                     </button>
                     <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton" style="">
-                      @if($testimonial->status==0 || $testimonial->status==1)<a class="dropdown-item" href="#">Featured</a>@endif
-                      @if($testimonial->status==0 || $testimonial->status==2)<a class="dropdown-item" href="#">Approved</a>@endif
-                      @if($testimonial->status==1 || $testimonial->status==2)<a class="dropdown-item" href="#">Unapproved</a>@endif
+                      @if($testimonial->status==0 || $testimonial->status==1)<a onclick="changestatus({{ $testimonial->id }},2);" class="dropdown-item" href="#">Featured</a>@endif
+                      @if($testimonial->status==0 || $testimonial->status==2)<a onclick="changestatus({{ $testimonial->id }},1);" class="dropdown-item" href="#">Approved</a>@endif
+                      @if($testimonial->status==1 || $testimonial->status==2)<a onclick="changestatus({{ $testimonial->id }},0);" class="dropdown-item" href="#">Unapproved</a>@endif
                     </div>
                   </div>
                 </td>
