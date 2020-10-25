@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
+use App\Mail\Admin\TestimonialSubmitted;
 use DB;
 use App\Donation;
 use App\Volunteer;
@@ -207,6 +208,7 @@ class HomeController extends Controller
         $testimonial->message = $request->message;
         $testimonial->status = 0;
         $testimonial->save();
+        Mail::to('admin@icrewsystems.com')->send(new TestimonialSubmitted($testimonial));
         //Return back to the testimonials page with success message.
         return redirect()->back()->with('success', 'Successfully Submitted');
       }

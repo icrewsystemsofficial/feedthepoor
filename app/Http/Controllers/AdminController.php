@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Crypt;
 use Razorpay\Api\Api;
 use App\Mail\Admin\SendMail;
+use App\Mail\Admin\TestimonialApproved;
 use Illuminate\Support\Facades\Mail;
 use DB;
 use App\Donation;
@@ -123,8 +124,13 @@ class AdminController extends Controller
     }
     else
     {
+      $email = $testimonial->status;
       $testimonial->status = $request->status;
       $testimonial->save();
+      if($email==0)
+      {
+        Mail::to($testimonial->email)->send(new TestimonialApproved($testimonial));
+      }
       $response['status'] = '200';
       $response['message'] = 'The testimonial status has been updated to '.array('Unapproved','Approved','Featured')[$testimonial->status].'. Refreshing the page now!';
     }
@@ -145,10 +151,15 @@ class AdminController extends Controller
     }
     else
     {
-      $count = Testimonial::where('status',0)->count();
-      $testimonials = Testimonial::where('status',0)->update(['status'=>1]);
+      $testimonials = Testimonial::where('status',0)->get();
+      foreach($testimonials as $testimonial)
+      {
+        $testimonial->status=1;
+        $testimonial->save();
+        Mail::to($testimonial->email)->send(new TestimonialApproved($testimonial));
+      }
       $response['status'] = '200';
-      $response['message'] = $count.' testimonial(s) have been approved. Refreshing the page now!';
+      $response['message'] = $testimonials->count().' testimonial(s) have been approved and the donors have been informed! Refreshing the page now!';
     }
     return response($response);
   }
