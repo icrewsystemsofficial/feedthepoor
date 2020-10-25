@@ -28,7 +28,8 @@ $(document).ready( function () {
       var apiURL = "{{ url('/api/admin/testimonials/status') }}";
       axios.post(apiURL, {
         id: id,
-        status: status
+        status: status,
+        user: "{{ auth()->user()->id }}"
       })
       .then(function (response) {
         if(response.data.status == 200) {
@@ -50,12 +51,37 @@ $(document).ready( function () {
       });
     }
   }
+  function approveall() {
+    var apiURL = "{{ url('/api/admin/testimonials/approve') }}";
+    axios.post(apiURL, {
+      user: "{{ auth()->user()->id }}"
+    })
+    .then(function (response) {
+      if(response.data.status == 200) {
+        swal.fire({
+          icon: 'success',
+          text: response.data.message
+        }).then((value) => {
+          location.reload();
+        });
+      } else {
+        swal.fire({
+          icon: 'error',
+          text: response.data.message
+        });
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
 </script>
 @endsection
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
   <h1 class="h3 mb-0 text-gray-800">All testimonials</h1>
+  <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="approveall();"><i class="fas fa-check fa-sm text-white-50"></i> Approve all Unapproved</a>
 </div>
 
 <!-- Content Row -->

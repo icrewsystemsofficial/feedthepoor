@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Crypt;
 use Razorpay\Api\Api;
 use App\Mail\Admin\SendMail;
 use Illuminate\Support\Facades\Mail;
 use DB;
 use App\Donation;
 use App\Testimonial;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -99,9 +101,17 @@ class AdminController extends Controller
     $validatedData = $request->validate([
       'id' => 'required',
       'status' => 'required',
+      'user' => 'required',
     ]);
+    //$user_id = Crypt::decryptString($request->user);
+    $user = User::find($request->user);
     $testimonial = Testimonial::find($request->id);
-    if(!$testimonial)
+    if(!$user)
+    {
+      $response['status'] = '404';
+      $response['message'] = 'No user was found with the ID. If you think this is a mistake, please contact us.';
+    }
+    elseif(!$testimonial)
     {
       $response['status'] = '404';
       $response['message'] = 'No testimonial was found with the ID '.$request->id.'. If you think this is a mistake, please contact us.';
@@ -117,6 +127,28 @@ class AdminController extends Controller
       $testimonial->save();
       $response['status'] = '200';
       $response['message'] = 'The testimonial status has been updated to '.array('Unapproved','Approved','Featured')[$testimonial->status].'. Refreshing the page now!';
+    }
+    return response($response);
+  }
+
+  public function approvetestimonials(Request $request)
+  {
+    $validatedData = $request->validate([
+      'user' => 'required',
+    ]);
+    //$user_id = Crypt::decryptString($request->user);
+    $user = User::find($request->user);
+    if(!$user)
+    {
+      $response['status'] = '404';
+      $response['message'] = 'No user was found with the ID. If you think this is a mistake, please contact us.';
+    }
+    else
+    {
+      $count = Testimonial::where('status',0)->count();
+      $testimonials = Testimonial::where('status',0)->update(['status'=>1]);
+      $response['status'] = '200';
+      $response['message'] = $count.' testimonial(s) have been approved. Refreshing the page now!';
     }
     return response($response);
   }
