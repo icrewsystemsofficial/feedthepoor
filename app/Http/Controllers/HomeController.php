@@ -208,7 +208,7 @@ class HomeController extends Controller
         $testimonial->message = $request->message;
         $testimonial->status = 0;
         $testimonial->save();
-        Mail::to('admin@icrewsystems.com')->send(new TestimonialSubmitted($testimonial));
+        Mail::to(env('ADMIN_EMAIL'))->send(new TestimonialSubmitted($testimonial));
         //Return back to the testimonials page with success message.
         return redirect()->back()->with('success', 'Successfully Submitted');
       }
