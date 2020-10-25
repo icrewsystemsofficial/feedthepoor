@@ -181,6 +181,7 @@
                             <a class="dropdown-item" href="{{url ('/work')}}">How does it work</a>
                             <a class="dropdown-item" href="{{url ('/volunteers')}}">Volunteers</a>
                             <a class="dropdown-item" href="{{url ('/partners')}}">Partners</a>
+                            <a class="dropdown-item" href="{{url ('/testimonials')}}">Testimonials</a>
                             <!-- <a class="dropdown-item" href="{{url ('/contact')}}">Contact</a> -->
                         </div>
                     </li>
