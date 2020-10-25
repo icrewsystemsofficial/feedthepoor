@@ -43,12 +43,12 @@
 <section id="wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <div class="px-8 my-8">
-                    @if(isset($testimonials) && $testimonials->count()>0)
+            @if(isset($testimonials) && $testimonials->count()>0)
+            @foreach($testimonials as $testimonial)
+            <div class="col-md-6">
+                <a href="{{ url('/testimonials/view/'.\Illuminate\Support\Facades\Crypt::encryptString($testimonial->id)) }}">
                     <div class="testimonial-slider">
                         <div class="testimonial-slider__wrp swiper-wrapper">
-                            @foreach($testimonials as $testimonial)
                             <div class="testimonial-slider__item swiper-slide">
                                 <div class="testimonial-slider__img">
                                     <img src="https://cdn.discordapp.com/attachments/720604361310470146/769171117696483328/testimonials-icon.png" alt="">
@@ -57,37 +57,37 @@
                                     <span class="testimonial-slider__code">{{ $testimonial->created_at->format('j M Y') }}</span>
                                     <div class="testimonial-slider__title">{{ $testimonial->name }}</div>
                                     <div class="testimonial-slider__text">
-                                        {{ $testimonial->message }}
+                                        {{ \Illuminate\Support\Str::limit($testimonial->message,50) }}
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
-                        </div>
-                        <div class="testimonial-slider__pagination"></div>
-                    </div>
-                    @else
-                    <div class="row">
-                        <div class="col-md-12">
-                          <div class="card bg-danger text-white">
-                            <div class="card-body">
-                              <h2 class="heading pt-3 pb-2 text-white">
-                                No Testimonials Found<br />
-                              </h2>
-                              <p class="mb-5">
-                                We don't have any testimonials to show here yet! Submit your testimonial using the button alongside!
-                              </p>
-                              <a class="btn btn-block btn-sm bg-white text-blue btn-animated btn-animated-y" href="{{ url('/testimonials/add') }}">
-                                <span class="btn-inner--visible">Submit Testimonial</span>
-                                <span class="btn-inner--hidden"><i class="fas fa-arrow-right"></i></span>
-                              </a>
-                            </div>
-                          </div>
                         </div>
                     </div>
-                    <br><br>
-                    @endif
+                </a>
+                <br><br>
+            </div>
+            @endforeach
+            @else
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card bg-danger text-white">
+                    <div class="card-body">
+                        <h2 class="heading pt-3 pb-2 text-white">
+                        No Testimonials Found<br />
+                        </h2>
+                        <p class="mb-5">
+                        We don't have any testimonials to show here yet! Submit your testimonial using the button alongside!
+                        </p>
+                        <a class="btn btn-block btn-sm bg-white text-blue btn-animated btn-animated-y" href="{{ url('/testimonials/add') }}">
+                        <span class="btn-inner--visible">Submit Testimonial</span>
+                        <span class="btn-inner--hidden"><i class="fas fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                    </div>
                 </div>
             </div>
+            <br><br>
+            @endif
         </div>
     </div>
 </section>

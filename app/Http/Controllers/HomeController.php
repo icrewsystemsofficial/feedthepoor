@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 use DB;
 use App\Donation;
 use App\Volunteer;
@@ -54,13 +55,13 @@ class HomeController extends Controller
     public function testimonials() {
       // Testimonials
       $testimonials = Testimonial::whereIn('status',[1,2])->inRandomOrder()->take(7)->get();
-      return view('home.testimonials', ['testimonials'=>$testimonials]);
+      return view('home.testimonials.list', ['testimonials'=>$testimonials]);
     }
 
     public function addtestimonial() {
       // Testimonials
       $testimonials = Testimonial::where('status',2)->inRandomOrder()->take(5)->get();
-      return view('home.addtestimonials', ['testimonials'=>$testimonials]);
+      return view('home.testimonials.add', ['testimonials'=>$testimonials]);
     }
 
     public function testimonialVerify(Request $request) {
@@ -90,6 +91,20 @@ class HomeController extends Controller
       //
       // -Leonard, 23/10/2020.
       return response($response);
+    }
+
+    public function viewtestimonial($id)
+    {
+      $id = Crypt::decryptString($id);
+      $testimonial = Testimonial::find($id);
+      if(!$testimonial)
+      {
+        return view('home.testimonials.errors.notfound');
+      }
+      else
+      {
+        return view('home.testimonials.view',['testimonial'=>$testimonial]);
+      }
     }
 
     public function work() {

@@ -55,8 +55,7 @@ $(document).ready( function () {
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0 text-gray-800">All donations</h1>
-  <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+  <h1 class="h3 mb-0 text-gray-800">All testimonials</h1>
 </div>
 
 <!-- Content Row -->
@@ -116,7 +115,7 @@ $(document).ready( function () {
                   {{ $testimonial->email }}
                 </td>
                 <td>
-                  {{ $testimonial->message }}
+                  {{ \Illuminate\Support\Str::limit($testimonial->message,50) }} <a class="btn btn-primary" href="{{ url('/testimonials/view/'.\Illuminate\Support\Facades\Crypt::encryptString($testimonial->id)) }}" target="_blank"> View </a>
                 </td>
                 <td>
                   <div class="dropdown mb-4">
