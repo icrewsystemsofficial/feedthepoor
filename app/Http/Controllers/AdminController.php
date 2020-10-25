@@ -116,7 +116,6 @@ class AdminController extends Controller
       'status' => 'required',
       'user' => 'required',
     ]);
-    //$user_id = Crypt::decryptString($request->user);
     $user = User::find($request->user);
     $testimonial = Testimonial::find($request->id);
     if(!$user)
@@ -155,7 +154,6 @@ class AdminController extends Controller
     $validatedData = $request->validate([
       'user' => 'required',
     ]);
-    //$user_id = Crypt::decryptString($request->user);
     $user = User::find($request->user);
     if(!$user)
     {
@@ -184,7 +182,6 @@ class AdminController extends Controller
       'id' => 'required',
       'user' => 'required',
     ]);
-    //$user_id = Crypt::decryptString($request->user);
     $user = User::find($request->user);
     $testimonial = Testimonial::find($request->id);
     if(!$user)
@@ -195,7 +192,7 @@ class AdminController extends Controller
     elseif(!$testimonial)
     {
       $response['status'] = '404';
-      $response['message'] = 'No deleted testimonial was found with the ID '.$request->id.'. If you think this is a mistake, please contact us.';
+      $response['message'] = 'No testimonial was found with the ID '.$request->id.'. If you think this is a mistake, please contact us.';
     }
     else
     {
@@ -213,7 +210,6 @@ class AdminController extends Controller
       'id' => 'required',
       'user' => 'required',
     ]);
-    //$user_id = Crypt::decryptString($request->user);
     $user = User::find($request->user);
     $testimonial = Testimonial::onlyTrashed()->find($request->id);
     if(!$user)
@@ -224,7 +220,7 @@ class AdminController extends Controller
     elseif(!$testimonial)
     {
       $response['status'] = '404';
-      $response['message'] = 'No testimonial was found with the ID '.$request->id.'. If you think this is a mistake, please contact us.';
+      $response['message'] = 'No deleted testimonial was found with the ID '.$request->id.'. If you think this is a mistake, please contact us.';
     }
     else
     {

@@ -54,13 +54,15 @@ class HomeController extends Controller
 
     //Bharath
     public function testimonials() {
-      // Testimonials
+      // Testimonials Gallery, by Apoorv
+      //Show All Approved Testimonials (including Featured)
       $testimonials = Testimonial::whereIn('status',[1,2])->inRandomOrder()->take(7)->get();
       return view('home.testimonials.list', ['testimonials'=>$testimonials]);
     }
 
     public function addtestimonial() {
-      // Testimonials
+      // Form to add new testimonials, by Apoorv
+      // Show Featured Testimonials, next to the new testimonial form
       $testimonials = Testimonial::where('status',2)->inRandomOrder()->take(5)->get();
       return view('home.testimonials.add', ['testimonials'=>$testimonials]);
     }
@@ -197,7 +199,6 @@ class HomeController extends Controller
         'email' => 'required|email',
         'message' => 'required',
       ]);
-      //Check if hashed email is present atleast once in Donations table.
       $num_donations = Donation::where('donor_email',$request->email)->count();
       if($num_donations>0)
       {
@@ -217,8 +218,6 @@ class HomeController extends Controller
         // Return Error that No Donation was found with this email. Provide button to encourage donations. Error Code is sample. Can be changed once project error documentation is ready.
         return redirect()->back()->withErrors(['general'=>'Code 101','general_title' => 'We couldn\'t find a donation from this email!','general_msg' => 'We couldn\'t find any donation from this email ID. Haven\'t donated yet? Try donating using the button below.', 'btn_text' => 'Donate Now', 'btn_link' => url('/money')]);
       }
-      //return view('home.comingsoon');
-      //return dd($request);
     }
 
 
