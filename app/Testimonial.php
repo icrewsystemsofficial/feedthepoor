@@ -10,7 +10,7 @@ class Testimonial extends Model
   use SoftDeletes;
 
   protected $fillable = [
-    'name','email','message','status'
+    'name','email','message','status','slug'
   ];
 
   /** About Status

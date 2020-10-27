@@ -204,7 +204,7 @@ $(document).ready( function () {
                   {{ $testimonial->email }}
                 </td>
                 <td>
-                  {{ \Illuminate\Support\Str::limit($testimonial->message,50) }} <a class="btn btn-primary" href="{{ url('/testimonials/view/'.\Illuminate\Support\Facades\Crypt::encryptString($testimonial->id)) }}" target="_blank"> View </a>
+                  {{ \Illuminate\Support\Str::limit($testimonial->message,50) }} <a class="btn btn-primary" href="{{ url('/testimonials/view/'.$testimonial->slug) }}" target="_blank"> View </a>
                 </td>
                 <td>
                   <div class="dropdown mb-4">

@@ -181,20 +181,21 @@
           <br /><br />
           <div class="testimonial-slider">
               <div class="testimonial-slider__wrp swiper-wrapper">
-                  @foreach($testimonials as $testimonial)
-                  <div class="testimonial-slider__item swiper-slide">
-                      <div class="testimonial-slider__img">
-                          <img src="https://cdn.discordapp.com/attachments/720604361310470146/769171117696483328/testimonials-icon.png" alt="">
-                      </div>
-                      <div class="testimonial-slider__content">
-                          <span class="testimonial-slider__code">{{ $testimonial->created_at->format('j M Y') }}</span>
-                          <div class="testimonial-slider__title">{{ $testimonial->name }}</div>
-                          <div class="testimonial-slider__text">
-                              {{ $testimonial->message }}
-                          </div>
-                      </div>
-                  </div>
-                  @endforeach
+                @foreach($testimonials as $testimonial)
+                <div class="testimonial-slider__item swiper-slide">
+                    <div class="testimonial-slider__img">
+                        <img src="https://cdn.discordapp.com/attachments/720604361310470146/769171117696483328/testimonials-icon.png" alt="">
+                    </div>
+                    <div class="testimonial-slider__content">
+                        <span class="testimonial-slider__code">{{ $testimonial->created_at->format('j M Y') }}</span>
+                        <div class="testimonial-slider__title">{{ $testimonial->name }}</div>
+                        <div class="testimonial-slider__text">
+                          {{ \Illuminate\Support\Str::limit($testimonial->message,50) }}<br><br>
+                          <a class="btn btn-primary text-white" href="{{ url('/testimonials/view/'.$testimonial->slug) }}"> View </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
               </div>
               <div class="testimonial-slider__pagination"></div>
           </div>

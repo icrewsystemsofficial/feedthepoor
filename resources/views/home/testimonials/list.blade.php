@@ -46,7 +46,7 @@
             @if(isset($testimonials) && $testimonials->count()>0)
             @foreach($testimonials as $testimonial)
             <div class="col-md-6">
-                <a href="{{ url('/testimonials/view/'.\Illuminate\Support\Facades\Crypt::encryptString($testimonial->id)) }}">
+                <a href="{{ url('/testimonials/view/'.$testimonial->slug) }}">
                     <div class="testimonial-slider">
                         <div class="testimonial-slider__wrp swiper-wrapper">
                             <div class="testimonial-slider__item swiper-slide">

@@ -19,6 +19,7 @@ class CreateTestimonialsTable extends Migration
             $table->string('email', 50);
             $table->text('message', 50);
             $table->integer('status');
+            $table->string('slug',config('app.testimonials.slug_length'));
             $table->softDeletes('deleted_at', 0);
             $table->timestamps(
 

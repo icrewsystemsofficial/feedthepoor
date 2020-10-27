@@ -109,7 +109,8 @@
                     <span class="testimonial-slider__code">{{ $testimonial->created_at->format('j M Y') }}</span>
                     <div class="testimonial-slider__title">{{ $testimonial->name }}</div>
                     <div class="testimonial-slider__text">
-                        {{ $testimonial->message }}
+                      {{ \Illuminate\Support\Str::limit($testimonial->message,50) }}<br><br>
+                      <a class="btn btn-primary text-white" href="{{ url('/testimonials/view/'.$testimonial->slug) }}"> View </a>
                     </div>
                 </div>
               </div>

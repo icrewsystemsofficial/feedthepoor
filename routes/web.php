@@ -40,7 +40,7 @@ Route::get('/success', 'HomeController@success')->name('success');
 Route::get('/error', 'HomeController@error')->name('error');
 Route::get('/testimonials', 'HomeController@testimonials')->name('testimonials');
 Route::get('/testimonials/add', 'HomeController@addtestimonial')->name('testimonials.add');
-Route::get('/testimonials/view/{id}', 'HomeController@viewtestimonial')->name('testimonials.view');
+Route::get('/testimonials/view/{slug}', 'HomeController@viewtestimonial')->name('testimonials.view');
 Route::get('/work', 'HomeController@work')->name('work');
 Route::get('/volunteers', 'HomeController@volunteers')->name('volunteers');
 Route::get('/partners', 'HomeController@partners')->name('partners');

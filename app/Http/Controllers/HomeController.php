@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Str;
 use App\Mail\Admin\TestimonialSubmitted;
 use DB;
 use App\Donation;
@@ -96,10 +97,9 @@ class HomeController extends Controller
       return response($response);
     }
 
-    public function viewtestimonial($id)
+    public function viewtestimonial($slug)
     {
-      $id = Crypt::decryptString($id);
-      $testimonial = Testimonial::find($id);
+      $testimonial = Testimonial::where('slug',$slug)->first();
       if(!$testimonial)
       {
         return view('home.testimonials.errors.notfound');
@@ -208,6 +208,7 @@ class HomeController extends Controller
         $testimonial->email = $request->email;
         $testimonial->message = $request->message;
         $testimonial->status = 0;
+        $testimonial->slug = $this->testimonial_slug();
         $testimonial->save();
         Mail::to(env('ADMIN_EMAIL'))->send(new TestimonialSubmitted($testimonial));
         //Return back to the testimonials page with success message.
@@ -220,6 +221,21 @@ class HomeController extends Controller
       }
     }
 
+    public function testimonial_slug()
+    {
+        //Random string to identify the testimonial
+        $slug = Str::random(config('app.testimonials.slug_length'));
+        //Check if slug already exists
+        $slug_exists = Testimonial::where('slug',$slug)->first();
+        if(!$slug_exists)
+        {
+          return $slug;
+        }
+        else
+        {
+          return $this->testimonial_slug();
+        }
+    }
 
     public function mission() {
       return view('home.mission');
