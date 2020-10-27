@@ -20,12 +20,21 @@ $(document).ready( function () {
         text: 'Chosen ID invalid.'
       });
     } else {
+      swal.fire({
+        title: 'Loading...',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        onOpen: () => {
+          swal.showLoading();
+        }
+      });
       var apiURL = "{{ url('/api/admin/testimonials/restore') }}";
       axios.post(apiURL, {
         id: id,
         user: "{{ auth()->user()->id }}"
       })
       .then(function (response) {
+        swal.close();
         if(response.data.status == 200) {
           swal.fire({
             icon: 'success',
@@ -46,12 +55,21 @@ $(document).ready( function () {
     }
   }
   function restoreall() {
+    swal.fire({
+      title: 'Loading...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      onOpen: () => {
+        swal.showLoading();
+      }
+    });
     var apiURL = "{{ url('/api/admin/testimonials/restore') }}";
     axios.post(apiURL, {
       id: "All",
       user: "{{ auth()->user()->id }}"
     })
     .then(function (response) {
+      swal.close();
       if(response.data.status == 200) {
         swal.fire({
           icon: 'success',

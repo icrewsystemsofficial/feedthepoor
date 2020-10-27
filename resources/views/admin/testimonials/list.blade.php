@@ -25,6 +25,14 @@ $(document).ready( function () {
         text: 'Chosen Status invalid.'
       })
     } else {
+      swal.fire({
+        title: 'Loading...',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        onOpen: () => {
+          swal.showLoading();
+        }
+      });
       var apiURL = "{{ url('/api/admin/testimonials/status') }}";
       axios.post(apiURL, {
         id: id,
@@ -32,9 +40,11 @@ $(document).ready( function () {
         user: "{{ auth()->user()->id }}"
       })
       .then(function (response) {
+        swal.close();
         if(response.data.status == 200) {
           swal.fire({
             icon: 'success',
+            type: 'success',
             text: response.data.message
           }).then((value) => {
             location.reload();
@@ -58,12 +68,21 @@ $(document).ready( function () {
         text: 'Chosen ID invalid.'
       });
     } else {
+      swal.fire({
+        title: 'Loading...',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        onOpen: () => {
+          swal.showLoading();
+        }
+      });
       var apiURL = "{{ url('/api/admin/testimonials/delete') }}";
       axios.post(apiURL, {
         id: id,
         user: "{{ auth()->user()->id }}"
       })
       .then(function (response) {
+        swal.close();
         if(response.data.status == 200) {
           swal.fire({
             icon: 'success',
@@ -84,11 +103,20 @@ $(document).ready( function () {
     }
   }
   function approveall() {
+    swal.fire({
+      title: 'Loading...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      onOpen: () => {
+        swal.showLoading();
+      }
+    });
     var apiURL = "{{ url('/api/admin/testimonials/approve') }}";
     axios.post(apiURL, {
       user: "{{ auth()->user()->id }}"
     })
     .then(function (response) {
+      swal.close();
       if(response.data.status == 200) {
         swal.fire({
           icon: 'success',
