@@ -2,17 +2,7 @@
 @section('js')
 <script type="text/javascript">
     function copyLink() {
-        /* Get the text field */
-        var copyText = document.getElementById("testimonial_link");
-
-        /* Select the text field */
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-        console.log(copyText.value);
-
-        /* Copy the text inside the text field */
-        //document.execCommand("copy");
-        navigator.clipboard.writeText(copyText.value);
+        navigator.clipboard.writeText("{{ url('/testimonials/view/'.$testimonial->slug) }}");
         swal.fire({
             icon: 'success',
             title: 'Link copied to clipboard!'
@@ -84,7 +74,6 @@
                                 <a class="btn btn-tertiary btn-icon-only btn-circle rounded-circle" href="#" onClick="copyLink();">
                                     <span class="btn-inner--icon"><i class="fa fa-link"></i></span>
                                 </a>
-                                <input type="text" style="display: none;" id="testimonial_link" value="{{ url('/testimonials/view/'.$testimonial->slug) }}" />
                             </div>
                             </div>
                         </div>
