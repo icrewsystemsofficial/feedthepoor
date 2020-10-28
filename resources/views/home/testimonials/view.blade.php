@@ -1,7 +1,26 @@
 @extends('layouts.layouts')
+@section('js')
+<script type="text/javascript">
+    function copyLink() {
+        /* Get the text field */
+        var copyText = document.getElementById("testimonial_link");
 
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+        console.log(copyText.value);
+
+        /* Copy the text inside the text field */
+        //document.execCommand("copy");
+        navigator.clipboard.writeText(copyText.value);
+        swal.fire({
+            icon: 'success',
+            title: 'Link copied to clipboard!'
+        });
+    }
+</script>
+@endsection
 @section('content')
-
 <section class="slice slice-xl bg-secondary">
     <div class="container">
         <div class="row text-center">
@@ -25,76 +44,53 @@
         <div class="row text-center">
             <div class="col-12">
                 <p class="lead mt-3 lh-180 animated" data-animation-in="fadeInUp" data-animation-delay="2500">
-                  <span style="font-size: 2.2rem;">
-                      <strong>#feedThePoor</strong> <i class="fa fa-heart text-danger"></i> {{ $testimonial->name }}
-                  </span> <br />
+                    <span style="font-size: 2.2rem;">
+                        <strong>#feedThePoor</strong> <i class="fa fa-heart text-danger"></i> {{ $testimonial->name }}
+                    </span> <br />
 
-                  <span class="text-muted">
-                    When you share a testimonial it goes a long way, you inspire another person to donate and #feedThePoor.
-                  </span>
+                    <span class="text-muted">
+                        When you share a testimonial it goes a long way, you inspire another person to donate and #feedThePoor.
+                    </span>
 
-                  <br /><br />
-                  <a href="{{ url('/testimonials/add') }}" class="btn btn-sm btn-success btn-hover">
-                    Write a testimonial
-                  </a>
-
-                  <!-- Add an interactive social share button here. Facebook, Twitter, & copy the text -->
-
-                  <a href="{{ url('/testimonials/add') }}" class="btn btn-sm btn-secondary btn-hover">
-                    Share this testimonial
-                  </a>
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-
-
-<section class="bg-gradient-lighter slice-lg" style="display: none;">
-    <div class="container">
-        <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space">
-            <div class="col-md-12 text-center">
-                <div class="testimonial-slider">
-                    <div class="testimonial-slider__wrp swiper-wrapper">
-                        <div class="testimonial-slider__item swiper-slide">
-                            <div class="testimonial-slider__content">
-                                <span class="testimonial-slider__code">{{ $testimonial->created_at->format('j M Y') }}</span>
-                                <div class="testimonial-slider__title">{{ $testimonial->name }}</div>
-                                <div class="testimonial-slider__text">
-                                    {{ $testimonial->message }}
-                                </div>
+                    <br /><br />
+                    <a href="{{ url('/testimonials/add') }}" class="btn btn-sm btn-success btn-hover">
+                        Write a testimonial
+                    </a>
+                  
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card bg-secondary">
+                            <div class="card-body">
+                                <h2 class="heading pt-3 pb-2">
+                                Share this Testimonial<br />
+                                </h2>
+                                <p class="mb-5">
+                                Sharing is fabulous! Each share helps us reach and inspire so many more changemakers!
+                                </p>
+                                <a class="btn btn-slack btn-icon-only btn-circle rounded-circle" href="https://wa.me/?text={{ urlencode('*'.$testimonial->name.'* says
+"'.\Illuminate\Support\Str::limit($testimonial->message,75).'"
+'.url('/testimonials/view/'.$testimonial->slug)) }}" data-action="share/whatsapp/share" target="_blank">
+                                    <span class="btn-inner--icon"><i class="fab fa-whatsapp"></i></span>
+                                </a>
+                                <a class="btn btn-twitter btn-icon-only btn-circle rounded-circle" href="https://twitter.com/intent/tweet?text={{ urlencode($testimonial->name.' says,
+"'.\Illuminate\Support\Str::limit($testimonial->message,75).'"
+#feedThePoor
+'.url('/testimonials/view/'.$testimonial->slug)) }}" target="_blank">
+                                    <span class="btn-inner--icon"><i class="fab fa-twitter"></i></span>
+                                </a>
+                                <a class="btn btn-facebook btn-icon-only btn-circle rounded-circle" href="https://www.facebook.com/sharer/sharer.php?u={{ url('/testimonials/view//'.$testimonial->slug) }}&t={{ urlencode('Testimonial at #feedThePoor') }}" target="_blank">
+                                    <span class="btn-inner--icon"><i class="fab fa-facebook"></i></span>
+                                </a>
+                                <a class="btn btn-tertiary btn-icon-only btn-circle rounded-circle" href="#" onClick="copyLink();">
+                                    <span class="btn-inner--icon"><i class="fa fa-link"></i></span>
+                                </a>
+                                <input type="text" style="display: none;" id="testimonial_link" value="{{ url('/testimonials/view/'.$testimonial->slug) }}" />
+                            </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <br><br>
-                <a href="{{ url('/testimonials') }}" class="btn bg-primary text-white">
-                    View All Testimonials
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="slice bg-primary" style="display: none;">
-    <div class="container">
-        <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space text-center text-lg-left">
-            <div class="col-lg-7">
-            <h1 class="heading h2 text-white strong-500">
-                Want to share your experience?
-            </h1>
-            <p class="text-white">
-              All testimonials are verified and are displayed with proper consent of the author. To know more about our privacy policy, click <a href="{{ url('privacy') }}">here</a>
-            </p>
-            </div>
-            <div class="col-lg-3 ml-lg-auto">
-            <div class="text-center text-md-right">
-                <a href="{{ url('/testimonials/add') }}" class="btn bg-secondary">
-                  Share
-                </a>
-            </div>
+                    <br><br>
+                </p>
             </div>
         </div>
     </div>
