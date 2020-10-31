@@ -48,6 +48,7 @@
         href="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png"
         type="image/png">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
         ::-webkit-scrollbar {
             width: 14px;
@@ -180,6 +181,7 @@
                             <a class="dropdown-item" href="{{url ('/work')}}">How does it work</a>
                             <a class="dropdown-item" href="{{url ('/volunteers')}}">Volunteers</a>
                             <a class="dropdown-item" href="{{url ('/partners')}}">Partners</a>
+                            <a class="dropdown-item" href="{{url ('/testimonials')}}">Testimonials</a>
                             <!-- <a class="dropdown-item" href="{{url ('/contact')}}">Contact</a> -->
                         </div>
                     </li>

@@ -19,6 +19,7 @@ This, is the first thing that haunts the mind of every good soul that wants to h
 4. Create a seperate branch for yourself in git. ```git branch BRANCHNAME``` & ```git checkout BRANCHNAME``` -- Interns are requested not to use Master branch at all. 
 5. Copy .env file, ```cp .env.example .env```
 6. Generate Key ```php artisan key:generate```
+7. Change the ```ADMIN_EMAIL``` parameter in the .env file to the administrator's email ID.
 
 Done! Your project is now setup. You can now directly run it by going to your [http://localhost/donation](http://localhost/donation), you don't have to run ```php artisan serve``` command since we've changed the server.php to index.php to simulate a production environment. 
 

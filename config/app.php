@@ -231,4 +231,17 @@ return [
 
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Testimonials Configuration
+    |--------------------------------------------------------------------------
+    |
+    | This array contains configuration parameters for the Testimonials module.
+    |
+    */
+
+    'testimonials' => [
+        'slug_length' => 5,
+    ],
+
 ];

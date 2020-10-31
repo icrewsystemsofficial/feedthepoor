@@ -19,3 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('convert/{base}/{end}/{amount}', 'PaymentsController@convert');
+Route::post('verify', 'HomeController@testimonialVerify');
+Route::post('admin/testimonials/status','AdminController@testimonialstatus');
+Route::post('admin/testimonials/approve','AdminController@approvetestimonials');
+Route::post('admin/testimonials/delete','AdminController@deletetestimonial');
+Route::post('admin/testimonials/restore','AdminController@restoretestimonial');

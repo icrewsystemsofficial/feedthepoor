@@ -25,6 +25,7 @@ Route::get('/mission', 'HomeController@mission')->name('mission');
 Route::post('/volunteerssuccess', 'HomeController@volunteerssuccess')->name('volunteerssuccess');
 Route::post('/partnerssuccess', 'HomeController@partnerssuccess')->name('partnerssuccess');
 Route::post('/contactsuccess', 'HomeController@contactsuccess')->name('contactsuccess');
+Route::post('/testimonialsuccess', 'HomeController@testimonialsuccess')->name('testimonialsuccess');
 
 Route::get('/downloadRecipt/{payment_id}', 'PaymentsController@downloadRecipt');
 
@@ -40,6 +41,8 @@ Route::get('/faq', 'HomeController@faq')->name('faq');
 Route::get('/success', 'HomeController@success')->name('success');
 Route::get('/error', 'HomeController@error')->name('error');
 Route::get('/testimonials', 'HomeController@testimonials')->name('testimonials');
+Route::get('/testimonials/add', 'HomeController@addtestimonial')->name('testimonials.add');
+Route::get('/testimonials/view/{slug}', 'HomeController@viewtestimonial')->name('testimonials.view');
 Route::get('/work', 'HomeController@work')->name('work');
 Route::get('/volunteers', 'HomeController@volunteers')->name('volunteers');
 Route::get('/partners', 'HomeController@partners')->name('partners');
@@ -75,6 +78,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/donations/razorpay', 'AdminController@razorpay');
     Route::get('/mailer', 'AdminController@mailer');
     Route::post('/sendmail', 'AdminController@sendmail');
+
+    Route::get('/testimonials', 'AdminController@testimonials');
+    Route::get('/testimonials/unapproved', 'AdminController@unapprovedtestimonials');
+    Route::get('/testimonials/deleted', 'AdminController@deletedtestimonials');
 
     //created by SAURABH, to add manual donations
     Route::get('/add', 'AdminController@add')->name('add');

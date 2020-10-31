@@ -172,56 +172,35 @@
             }
           }, 5000);
         </script>
+        @if(isset($testimonials) && $testimonials->count()>0)
         <div class="col-md-12 py-5 my-5">
-
           <h3 class="text-center"><strong>Testimonials</strong>
             <br />
             <small>What the people say about #feedThePoor</small>
           </h3>
           <br /><br />
           <div class="testimonial-slider">
-            <div class="testimonial-slider__wrp swiper-wrapper">
-              <div class="testimonial-slider__item swiper-slide">
-                <div class="testimonial-slider__img">
-                  <img src="https://in.ivao.aero/admin/core/uploads/Staff/leo.jpg" alt="">
+              <div class="testimonial-slider__wrp swiper-wrapper">
+                @foreach($testimonials as $testimonial)
+                <div class="testimonial-slider__item swiper-slide">
+                    <div class="testimonial-slider__img">
+                        <img src="https://cdn.discordapp.com/attachments/720604361310470146/769171117696483328/testimonials-icon.png" alt="">
+                    </div>
+                    <div class="testimonial-slider__content">
+                        <span class="testimonial-slider__code">{{ $testimonial->created_at->format('j M Y') }}</span>
+                        <div class="testimonial-slider__title">{{ $testimonial->name }}</div>
+                        <div class="testimonial-slider__text">
+                          {{ \Illuminate\Support\Str::limit($testimonial->message,50) }}<br><br>
+                          <a class="btn btn-primary text-white" href="{{ url('/testimonials/view/'.$testimonial->slug) }}"> View </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="testimonial-slider__content">
-                  <span class="testimonial-slider__code">26 JAN 2020</span>
-                  <div class="testimonial-slider__title">Leonard Selvaraja</div>
-                  <div class="testimonial-slider__text">
-                    The website is just brilliant. It makes donation transparent and easy.
-                  </div>
-                </div>
+                @endforeach
               </div>
-              <div class="testimonial-slider__item swiper-slide">
-                <div class="testimonial-slider__img">
-                  <img src="https://res.cloudinary.com/muhammederdem/image/upload/v1535759871/jason-leung-798979-unsplash.jpg" alt="">
-                </div>
-                <div class="testimonial-slider__content">
-                  <span class="testimonial-slider__code">26 December 2019</span>
-                  <div class="testimonial-slider__title">Lorem Ipsum Dolor2</div>
-                  <div class="testimonial-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?</div>
-                  <a href="#" class="testimonial-slider__button">READ MORE</a>
-                </div>
-              </div>
-
-              <div class="testimonial-slider__item swiper-slide">
-                <div class="testimonial-slider__img">
-                  <img src="https://res.cloudinary.com/muhammederdem/image/upload/v1535759871/alessandro-capuzzi-799180-unsplash.jpg" alt="">
-                </div>
-                <div class="testimonial-slider__content">
-                  <span class="testimonial-slider__code">26 December 2019</span>
-                  <div class="testimonial-slider__title">Lorem Ipsum Dolor</div>
-                  <div class="testimonial-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?</div>
-                  <a href="#" class="testimonial-slider__button">READ MORE</a>
-                </div>
-              </div>
-
-            </div>
-            <div class="testimonial-slider__pagination"></div>
+              <div class="testimonial-slider__pagination"></div>
           </div>
-
         </div>
+        @endif
       </div>
     </div>
 </section>
