@@ -19,9 +19,15 @@ This, is the first thing that haunts the mind of every good soul that wants to h
 4. Create a seperate branch for yourself in git. ```git branch BRANCHNAME``` & ```git checkout BRANCHNAME``` -- Interns are requested not to use Master branch at all. 
 5. Copy .env file, ```cp .env.example .env```
 6. Generate Key ```php artisan key:generate```
-7. Change the ```ADMIN_EMAIL``` parameter in the .env file to the administrator's email ID.
+7. Go to phpMyAdmin (or any of your mysql consoles) and create a new database
+8. Go to .env and update the value of your database name in the field "DB_DATABASE", for example: DB_DATABASE=feedthepoor
+9. Run the command ```php artisan migrate```, this will create the tables (if any)
+10. Run the command ```php artisan db:seed``` this will seed the database (if any seeders available)
+11. Change the ```ADMIN_EMAIL``` parameter in the .env file to the administrator's email ID.
 
-Done! Your project is now setup. You can now directly run it by going to your [http://localhost/donation](http://localhost/donation), you don't have to run ```php artisan serve``` command since we've changed the server.php to index.php to simulate a production environment. 
+Done! Your project is now setup. You can now directly run it by going to your [http://localhost/donation](http://localhost/donation), you don't have to run ```php artisan serve``` command since we've changed the server.php to index.php to simulate a production environment.
+
+##### You are requested to run ```composer install``` after each pull, since newer packages may be added while development
 
 ## How to report?
 Mark your assigned tasks from "Planned" to "In Progress" while working on it, Once you've committed & pushed it, change the task status to "Done". You must report your work on the commits.
