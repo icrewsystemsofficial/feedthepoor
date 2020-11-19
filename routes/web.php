@@ -57,7 +57,6 @@ Route::get('/contacts', 'HomeController@contacts')->name('contacts');
 //DONATION ROUTES
 Route::get('/money/{howmuch?}', 'PaymentsController@money')->name('donate.money');
 
-
 Route::post('/process', 'PaymentsController@process')->name('donate.process.post');
 Route::get('/process/{hash?}', 'PaymentsController@process')->name('donate.process.get');
 

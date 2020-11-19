@@ -21,9 +21,12 @@ use Illuminate\Support\Facades\Response;
 
 class PaymentsController extends Controller
 {
-    public function money($money = '300')
-    {
-        return view('payments.money')->with('amount', $money);
+    public function money($howmuch = '')
+    {    
+        if($howmuch == "") {
+          $howmuch = "";
+        } 
+          return view('payments.money')->with('amount', $howmuch );
     }
 
     public function process(Request $request)

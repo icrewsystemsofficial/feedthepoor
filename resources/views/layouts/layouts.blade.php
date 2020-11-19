@@ -323,7 +323,7 @@
             });
 
             $('.donate-meal-button').on('click', function (){
-              //send post request here
+              window.location.href = "{{ route('donate.money') }}/"+(total_meals*60);
             });
 
         });
