@@ -1,5 +1,12 @@
 @extends('layouts.layouts')
-
+@section('js')
+<script>
+  // function handlesubmit() {
+  //   var money = $(".onsubmitmoney").val();
+  //   console.log(money);
+  // }
+</script>
+@endsection
 @section('content')
 <section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen">
     <span class="mask bg-tertiary alpha-5"></span>
@@ -382,26 +389,30 @@
                         <div class="card-body">
                             <h4 class="heading h3 text-white pt-3 pb-5">Hello There,<br>
                                 Fill in credentials to view details</h4>
-                            <form class="form-primary">
+
+
+                            <form  enctype="multipart/form-data"  action="{{ route('donate.money') }}" class="form-primary">
+                                @csrf
                                 <div class="form-group">
                                   <div class="row align-items-center">
                                     <div class="col-md-2" style="padding: 0px; margin: 0px;">
                                       <a class="btn btn-sm donate-plus-button text-dark btn-secondary"><i class="fa fa-plus"></i></a>
                                     </div>
                                     <div class="col-md-8">
-                                      <input type="text" class="form-control donate-meal-display" id="input_email" placeholder="Meals" required>
+                                      <input type="text"  class="form-control donate-meal-display onmoneysubmit" name="meals"  id="input_email" placeholder="Meals" required disabled>
                                     </div>
                                     <div class="col-md-2"  style="padding: 0px; margin: 0px;">
                                       <a class="btn btn-sm text-dark donate-minus-button btn-secondary"><i class="fa fa-minus"></i></a>
                                     </div>
                                   </div>
                                 </div>
-                                <button type="submit"
+                                <button type="button"
                                     class="btn btn-block donate-meal-button btn-lg bg-white mt-4 btn-animated btn-animated-x">
                                     <span class="btn-inner--visible donate-meal-button-span"></span>
                                     <span class="btn-inner--hidden"><i class="fas fa-credit-card"></i></span>
                                 </button>
                             </form>
+
                         </div>
                     </div>
                 </div>
