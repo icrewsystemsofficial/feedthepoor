@@ -211,7 +211,7 @@
         <div class="col">
             <div class="row">
 
-                      <div class="col-lg-12 py-5 pr-5">
+                      <div class="col-lg-12 py-4 pr-3">
                           <div style="z-depth-3" class="rounded p-2">
                               <div id="carouselExampleIndicators" class="carousel slide rounded" data-ride="carousel">
                                   <ol class="carousel-indicators">
@@ -226,39 +226,39 @@
                                   </ol>
                                   <div class="carousel-inner">
                                       <div class="carousel-item active">
-                                          <img style="height: auto; width: 100%;"
+                                          <img 
                                               src="https://b.zmtcdn.com/feeding-india/a0216293d82df205e7d6e19a56d1a1661585293269.png"
-                                              class="img-center img-fluid" alt="">
+                                              class="img-center img-fluid extra" alt="">
                                       </div>
                                       <div class="carousel-item">
-                                          <img style="height: auto; width: 100%;"
+                                          <img 
                                               src="https://cdn.discordapp.com/attachments/694578470772146237/744470487404380170/icrew_feed_the_poor_2.jpg"
-                                              class="img-center img-fluid" alt="">
+                                              class="img-center img-fluid extra" alt="">
                                       </div>
                                       <div class="carousel-item">
-                                          <img style="height: auto; width: 100%;"
+                                          <img 
                                               src="https://cdn.discordapp.com/attachments/694578470772146237/744471075697721454/icrew_feeding_india_3.jpg"
-                                              class="img-center img-fluid" alt="">
+                                              class="img-center img-fluid extra" alt="">
                                       </div>
                                       <div class="carousel-item">
-                                          <img style="height: auto; width: 100%;"
+                                          <img 
                                               src="https://cdn.discordapp.com/attachments/694578470772146237/744472013044973589/icrew_feeding_india_4.jpg"
-                                              class="img-center img-fluid" alt="">
+                                              class="img-center img-fluid extra" alt="">
                                       </div>
                                       <div class="carousel-item">
-                                          <img style="height: auto; width: 100%;"
+                                          <img 
                                               src="https://cdn.discordapp.com/attachments/694578470772146237/744472703897174036/icrew_feeding_the_poor_5.jpg"
-                                              class="img-center img-fluid" alt="">
+                                              class="img-center img-fluid extra" alt="">
                                       </div>
                                       <div class="carousel-item">
-                                          <img style="height: auto; width: 100%;"
+                                          <img 
                                               src="https://cdn.discordapp.com/attachments/694578470772146237/744473611909201990/icrew_6.jpg"
-                                              class="img-center img-fluid" alt="">
+                                              class="img-center img-fluid extra" alt="">
                                       </div>
                                       <div class="carousel-item">
-                                          <img style="height: auto; width: 100%;"
+                                          <img 
                                               src="https://cdn.discordapp.com/attachments/694578470772146237/744474193516822590/icrew_7.jpg"
-                                              class="img-center img-fluid" alt="">
+                                              class="img-center img-fluid extra" alt="">
                                       </div>
                                   </div>
                                   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"

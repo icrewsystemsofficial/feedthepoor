@@ -148,6 +148,20 @@
         .Nav-scroll-text{
             color: black !important;
         }
+
+        /*carousal height media query */
+
+        @media screen and (min-width: 200px){
+        .extra{
+            height: 250px;
+            width : 8000px;
+        }
+
+        @media screen and (min-width: 800px) {
+        .extra{
+            height: 500px;
+        }
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
