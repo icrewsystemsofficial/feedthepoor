@@ -395,15 +395,16 @@
                                 @csrf
                                 <div class="form-group">
                                   <div class="row align-items-center">
-                                    <div class="col-md-2" style="padding: 0px; margin: 0px;">
-                                      <a class="btn btn-sm donate-plus-button text-dark btn-secondary"><i class="fa fa-plus"></i></a>
+                                  <div class="col-md-2"  style="padding: 0px; margin: 0px;">
+                                      <a class="btn btn-sm text-dark donate-minus-button btn-secondary"><i class="fa fa-minus"></i></a>
                                     </div>
                                     <div class="col-md-8">
                                       <input type="text"  class="form-control donate-meal-display onmoneysubmit" name="meals"  id="input_email" placeholder="Meals" required disabled>
                                     </div>
-                                    <div class="col-md-2"  style="padding: 0px; margin: 0px;">
-                                      <a class="btn btn-sm text-dark donate-minus-button btn-secondary"><i class="fa fa-minus"></i></a>
+                                    <div class="col-md-2" style="padding: 0px; margin: 0px;">
+                                      <a class="btn btn-sm donate-plus-button text-dark btn-secondary"><i class="fa fa-plus"></i></a>
                                     </div>
+                                    
                                   </div>
                                 </div>
                                 <button type="button"
