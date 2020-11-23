@@ -8,14 +8,14 @@
   }
 </style>
 
-<section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen">
+<section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen" style="background-image: url({{asset('images/subheader_contactpage.jpg')}})">
     <span class="mask bg-tertiary alpha-5"></span>
     <div class="spotlight-holder py-lg pt-lg-xl">
         <div class="container d-flex align-items-center no-padding">
             <div class="col">
                 <div class="row cols-xs-space align-items-center text-center text-md-left justify-content-start">
-                    <div class="col-7">
-                        <div class="text-left mt-5">
+                    <div class="col-4">
+                        <div class="text-left mt-2">
                           <img src="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png"
                               style="width: 200px;" class="img-fluid animated" data-animation-in="jackInTheBox"
                               data-animation-delay="1000">
@@ -26,7 +26,7 @@
                             <h4 class="lead text-white mt-3 lh-180 c-white animated" data-animation-in="fadeInUp"
                                 data-animation-delay="2500">
                                 <span style="font-size: 3rem;">#AnyQuestions?</span> <br />
-                                "We are always there to clear you."
+                                "We are always here to answer you."
                             </h4>
                         </div>
                     </div>
