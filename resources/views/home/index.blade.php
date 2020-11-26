@@ -424,7 +424,7 @@
     </div>
 </section>
 
-<section class="slice-lg">
+{{-- <section class="slice-lg">
        <div class="container">
          <div class="row py-5 align-items-center cols-xs-space cols-sm-space cols-md-space">
            <div class="col-md-12">
@@ -449,12 +449,107 @@
 
          </div>
         </div>
+</section> --}}
+<section class="slice-lg">
+    <div class="container py-25">
+        <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space">
+            <div class="col-lg-6">
+                <div class="d-flex align-items-start">
+                    <div class="icon-text">
+                        <h3 class="heading">
+                            Feed a Hunger
+                        </h3>
+                        <p>
+                          
+                           <div class="progress progress-md" style="width: 461px">
+                              <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              
+                          </div>
+                          <p style="display: inline">25 Stomach is Still in Hunger</p>
+                          <p style="display: inline; float:right">25%</p>
+                        </p>
+                        <a class="btn btn-primary btn-block" href="#"   role="button">Donate Food</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div>
+                    <img style="height: 250px; width: auto;"
+                        src="https://images.axios.com/4cLkcHn_m-WeAOIHeX3giMbocls=/0x90:6000x3465/1920x1080/2018/02/14/1518574463881.jpg"
+                        class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container py-5">
+        <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space">
+            <div class="col-lg-6">
+                <div class="d-flex align-items-start">
+                    <div class="icon-text">
+                        <h3 class="heading">
+                            Comfort a Homeless 
+                        </h3>
+                        <p>
+                          
+                           <div class="progress progress-md" style="width: 461px">
+                              <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              
+                          </div>
+                          <p style="display: inline">25 Souls are in Streets</p>
+                          <p style="display: inline; float:right">25%</p>
+                        </p>
+                        <a class="btn btn-primary btn-block" href="#"   role="button">Provide Shelter</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div>
+                    <img style="height: 250px; width: auto;"
+                        src="https://c4.wallpaperflare.com/wallpaper/982/461/304/homeless-at-home-childboy-wallpaper-preview.jpg"
+                        class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container py-25">
+        <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space">
+            <div class="col-lg-6">
+                <div class="d-flex align-items-start">
+                    <div class="icon-text">
+                        <h3 class="heading">
+                            Educate a Poor 
+                        </h3>
+                        <p>
+                          
+                           <div class="progress progress-md" style="width: 461px">
+                              <div class="progress-bar"  role="progressbar" style="width: 25%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                              
+                          </div>
+                          <p style="display: inline">25 Kids Need to be in School</p>
+                          <p style="display: inline; float:right">25%</p>
+                        </p>
+                        <a class="btn btn-primary btn-block" href="#"   role="button">Educate</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div>
+                    <img style="height: 250px; width: 453px;"
+                        src="https://images.pexels.com/photos/1098769/pexels-photo-1098769.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                        class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 
 
 <!-- <section class="py-xl">
-    <!-- <span class="mask bg-primary alpha-6"></span>
+     <span class="mask bg-primary alpha-6"></span>
     <div class="container d-flex align-items-center no-padding">
         <div class="col">
             <div class="row">
