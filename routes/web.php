@@ -18,6 +18,8 @@ Route::get('/', 'HomeController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/coming-soon', 'HomeController@comingsoon')->name('comingsoon');
 Route::get('/mission', 'HomeController@mission')->name('mission');
+Route::post('/requestsuccess', 'HomeController@requestsuccess')->name('requestsuccess');
+
 
 //Testing the deployer.
 // Route::get('deploy', 'DeployController@index');
