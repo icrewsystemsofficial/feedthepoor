@@ -49,7 +49,9 @@
         type="image/png">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
     <style>
+        
         ::-webkit-scrollbar {
             width: 14px;
         }
