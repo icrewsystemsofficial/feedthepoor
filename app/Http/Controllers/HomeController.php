@@ -191,6 +191,11 @@ class HomeController extends Controller
         notify()->success('Thank you for Contacting Us', 'Yay!');
       return view('home.volunteerssuccess');
     }
+    public function requestsuccess() {
+      //Bharath
+        notify()->success('Thank you for Contacting Us', 'Yay!');
+      return view('home.requestsuccess');
+    }
 
     public function testimonialsuccess(Request $request) {
       // Apoorv: Handle when a testimonial is submitted from the frontend form.

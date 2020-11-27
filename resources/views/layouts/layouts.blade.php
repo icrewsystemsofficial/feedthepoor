@@ -49,7 +49,9 @@
         type="image/png">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
     <style>
+        
         ::-webkit-scrollbar {
             width: 14px;
         }
@@ -337,7 +339,7 @@
             });
 
             $('.donate-meal-button').on('click', function (){
-              //send post request here
+              window.location.href = "{{ route('donate.money') }}/"+(total_meals*60);
             });
 
         });

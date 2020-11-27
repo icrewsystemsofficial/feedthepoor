@@ -18,6 +18,8 @@ Route::get('/', 'HomeController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/coming-soon', 'HomeController@comingsoon')->name('comingsoon');
 Route::get('/mission', 'HomeController@mission')->name('mission');
+Route::post('/requestsuccess', 'HomeController@requestsuccess')->name('requestsuccess');
+
 
 //Testing the deployer.
 // Route::get('deploy', 'DeployController@index');
@@ -56,7 +58,6 @@ Route::get('/contacts', 'HomeController@contacts')->name('contacts');
 
 //DONATION ROUTES
 Route::get('/money/{howmuch?}', 'PaymentsController@money')->name('donate.money');
-
 
 Route::post('/process', 'PaymentsController@process')->name('donate.process.post');
 Route::get('/process/{hash?}', 'PaymentsController@process')->name('donate.process.get');
