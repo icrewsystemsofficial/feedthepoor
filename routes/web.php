@@ -66,6 +66,8 @@ Route::post('payments/verify', 'PaymentsController@verify')->name('payments.veri
 Route::get('/invoice/{invoice}/pay', 'PaymentsController@index')->name('payments.index');
 Route::post('/request', 'PaymentsController@request');
 Route::post('/response', 'PaymentsController@response');
+Route::get('/operations', 'PdfController@index');
+Route::get('pdfGen/pdf','PdfController@pdf');
 
 
 Auth::routes();
@@ -86,4 +88,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     //created by SAURABH, to add manual donations
     Route::get('/add', 'AdminController@add')->name('add');
     Route::post('add/manual', 'AdminController@manual')->name('manual');
+
+
+    //operation routes 
+    //Route::get('admin/operations', 'PdfController@index');
+
+    //Route::get('admin/operations/pdfGen', 'PdfController@pdf');
 });
