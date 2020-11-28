@@ -455,13 +455,13 @@
         <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space">
             <div class="col-lg-6">
                 <div class="d-flex align-items-start">
-                    <div class="icon-text">
+                    <div class="icon-text" style="width: -webkit-fill-available">
                         <h3 class="heading">
                             Feed a Hunger
                         </h3>
                         <p>
                           
-                           <div class="progress progress-md" style="width: 461px">
+                           <div class="progress progress-md" >
                               <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                               
                           </div>
@@ -486,13 +486,13 @@
         <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space">
             <div class="col-lg-6">
                 <div class="d-flex align-items-start">
-                    <div class="icon-text">
+                    <div class="icon-text" style="width: -webkit-fill-available">
                         <h3 class="heading">
                             Comfort a Homeless 
                         </h3>
                         <p>
                           
-                           <div class="progress progress-md" style="width: 461px">
+                           <div class="progress progress-md" >
                               <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                               
                           </div>
@@ -517,16 +517,16 @@
         <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space">
             <div class="col-lg-6">
                 <div class="d-flex align-items-start">
-                    <div class="icon-text">
+                    <div class="icon-text" style="width: -webkit-fill-available">
                         <h3 class="heading">
                             Educate a Poor 
                         </h3>
                         <p>
                           
-                           <div class="progress progress-md" style="width: 461px">
+                           <div class="progress progress-md" >
                               <div class="progress-bar"  role="progressbar" style="width: 25%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                               
-                          </div>
+                          </div >
                           <p style="display: inline">25 Kids Need to be in School</p>
                           <p style="display: inline; float:right">25%</p>
                         </p>
