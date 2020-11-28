@@ -56,6 +56,7 @@ Route::get('/contacts', 'HomeController@contacts')->name('contacts');
 
 
 
+
 //DONATION ROUTES
 Route::get('/money/{howmuch?}', 'PaymentsController@money')->name('donate.money');
 
@@ -89,6 +90,15 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     //created by SAURABH, to add manual donations
     Route::get('/add', 'AdminController@add')->name('add');
     Route::post('add/manual', 'AdminController@manual')->name('manual');
+    //created by Rohan
+    Route::get('/addvolunteers', 'addvolunteersController@index')->name('addvolunteers');
+    Route::post('/addvolunteers','addvolunteersController@store')->name('addimage');
+    Route::get('/addvolunteersform','addvolunteersController@display');
+    Route::get('/editform/{id}','addvolunteersController@edit');
+    Route::put('/updateform/{id}','addvolunteersController@update');
+    Route::get('/deleteform/{id}', 'addvolunteersController@delete');
+  
+
 
 
     //operation routes 

@@ -14,6 +14,8 @@ use App\Partner;
 use App\Testimonial;
 use Illuminate\Support\Facades\Mail;
 
+use App\addvolunteers;
+
 
 
 
@@ -115,7 +117,7 @@ class HomeController extends Controller
       return view('home.work');
     }
 
-    public function volunteers(Request $request) {
+    public function volunteers() {
       // Volunteers
       /*$volunteer = new Volunteer;
       $volunteer->first_name = $request->input('first_name');
@@ -132,7 +134,12 @@ class HomeController extends Controller
 
       $volunteer->save();*/
 
-      return view('home.volunteers');
+      //return view('home.volunteers');
+  
+
+        $addvolunteersform = addvolunteers::all();
+        return view('home.volunteers')->with('addvolunteersform',$addvolunteersform);
+    
 
     }
 
@@ -245,5 +252,6 @@ class HomeController extends Controller
     public function mission() {
       return view('home.mission');
     }
+    
 
 }

@@ -1,29 +1,234 @@
+
+
 @extends('layouts.layouts')
 
 @section('content')
 
 <style media="screen">
 
-  .volunteer_para{
-    font-size: 1.05rem;
-    }
 
-    .volunteer_form h3{
-      font-size: 2rem;
-      }
+.vol a, .vol a:hover, .vol a:focus, .vol a:active {
+    text-decoration: none;
+    outline: none;
+}
+.vol ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
 
-  .form{
-    border-radius: 10%;
+.vol .site-heading h2 {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
 
-  }
+.vol .site-heading h2 span {
+  color: #192b3f;
+}
 
-  .ability{
-    font-size: 1.05rem;
-  }
+.vol .site-heading h4 {
+  display: inline-block;
+  padding-bottom: 20px;
+  position: relative;
+  text-transform: capitalize;
+  z-index: 1;
+}
 
+.vol .site-heading h4::before {
+  background: #3b70d9 none repeat scroll 0 0;
+  bottom: 0;
+  content: "";
+  height: 2px;
+  left: 50%;
+  margin-left: -25px;
+  position: absolute;
+  width: 50px;
+}
 
+.vol .site-heading h2 span {
+  color: #3b70d9;
+}
 
+.vol .site-heading {
+  margin-bottom: 60px;
+  overflow: hidden;
+  margin-top: -5px;
+}
 
+.vol .team-area .single-item {
+  margin-bottom: 30px;
+}
+
+.vol .team-area .item .thumb {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.vol .team-area .item .thumb::after {
+  background: #192b3f none repeat scroll 0 0;
+  content: "";
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  transition: all 0.35s ease-in-out;
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  -ms-transition: all 0.35s ease-in-out;
+  -o-transition: all 0.35s ease-in-out;
+  width: 100%;
+}
+
+.vol .team-area .team-items .item:hover .thumb::after {
+  opacity: 0.7;
+}
+
+.vol .team-area .item .thumb .overlay {
+  top: -100%;
+  left: 0;
+  padding: 20px;
+  position: absolute;
+  text-align: center;
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  -ms-transition: all 0.35s ease-in-out;
+  -o-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+  width: 100%;
+  z-index: 1;
+}
+
+.vol .team-area .item:hover .thumb .overlay {
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+}
+
+.vol .team-area .item .thumb .overlay p {
+  color: #ffffff;
+}
+
+.vol .team-area .item .thumb .overlay h4 {
+  color: #ffffff;
+  display: inline-block;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.vol .team-area .item .thumb img {
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  -ms-transition: all 0.35s ease-in-out;
+  -o-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+
+.vol .team-area .item:hover .thumb img {
+  opacity: .6;
+}
+
+.vol .team-area .item .thumb .social li {
+  display: inline-block;
+}
+
+.vol .team-area .item .thumb .social li a {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  color: #ffffff;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 2px;
+  text-align: center;
+  width: 40px;
+}
+
+.vol .team-area .info {
+  background: #ffffff none repeat scroll 0 0;
+  -moz-box-shadow: 0 0 10px #cccccc;
+  -webkit-box-shadow: 0 0 10px #cccccc;
+  -o-box-shadow: 0 0 10px #cccccc;
+  box-shadow: 0 0 10px #cccccc;
+  padding: 40px 20px 20px;
+  position: relative;
+  text-align: center;
+  z-index: 9;
+}
+
+.vol .team-area .info .message {
+  height: 50px;
+  line-height: 40px;
+  margin-left: -25px;
+  margin-top: -25px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 50px;
+}
+
+.vol .team-area .info .message a {
+  background: #fff none repeat scroll 0 0;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -moz-box-shadow: 0 0 10px #cccccc;
+  -webkit-box-shadow: 0 0 10px #cccccc;
+  -o-box-shadow: 0 0 10px #cccccc;
+  box-shadow: 0 0 10px #cccccc;
+  box-sizing: border-box;
+  color: #192b3f;
+  display: inline-block;
+  font-size: 20px;
+  height: 50px;
+  line-height: 50px;
+  width: 50px;
+}
+
+.vol .team-area .info .message a i {
+  font-weight: 500;
+}
+
+.vol .team-area .info h4 {
+  font-weight: 600;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+}
+
+.vol .team-area .info span {
+  color: #3b70d9;
+  font-family: "Poppins",sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.vol .team-area .social li.twitter a {
+  background-color: #3b5998;
+}
+
+.vol .team-area .social li.pinterest a {
+  background-color: #3f729b;
+}
+
+.vol .team-area .social li.facebook a {
+  background-color: #3b5998;
+}
+
+.vol .team-area .social li.google-plus a {
+  background-color: #df4a32;
+}
+
+.vol .team-area .social li.vimeo a {
+  background-color: #1ab7ea;
+}
+
+.vol .team-area .social li.instagram a {
+  background-color: #0e76a8;
+}
 </style>
 
 <section class="slice slice-xl bg-secondary">
@@ -79,11 +284,68 @@
             </div>
         </div>
     </div>
-</section><br><br>
+</section><br>
 
+<div class="vol">
+<style type="text/css">
 
+</style>
+<section id="team" class="team-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="site-heading text-center">
+                        <h2>Our <span>Volunteers</span></h2>
+                        <h4>Meet our awesome volunteers</h4>
+                    </div>
+                </div>
+            </div>
+                <div class="row team-items">
+                @foreach ($addvolunteersform as $addvolunteers)
+                    <div class="col-md-4 single-item">
+                        <div class="item">
+                            <div class="thumb">
+                            
+                                <img class="img-fluid" src="{{url('uploads/addvolunteers/' . $addvolunteers->image)  }}" alt="image">
+                                <div class="overlay">
+                                    <h4>{{$addvolunteers->name}}</h4>
+                                    <p>
+                                    {{$addvolunteers->desc}}
+                                    </p>
+                                    <div class="social">
+                                        <ul>
+                                            <li class="twitter">
+                                                <a href="{{$addvolunteers->facebook}}"><i class="fab fa-facebook"></i></a>
+                                            </li>
+                                            <li class="pinterest">
+                                                <a href="{{$addvolunteers->instagram}}"><i class="fab fa-instagram"></i></a>
+                                            </li>
+                                            <li class="instagram">
+                                                <a href="{{$addvolunteers->linkedin}}"><i class="fab fa-linkedin"></i></a>
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info">
+                                <span class="message">
+                                    <a href="#"><i class="fas fa-envelope-open"></i></a>
+                                </span>
+                                <h4>{{$addvolunteers->name}}</h4>
+                                <span>{{$addvolunteers->location}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+        </div>
+    </section>
+</div>
 
-            <section class="py-xl">
+<br>
+
+         <section class="py-xl">
               <!-- <span class="mask bg-primary alpha-6"></span> -->
                 <div class="container d-flex align-items-center no-padding">
                     <div class="col">
@@ -97,7 +359,6 @@
                                       <p class="mb-5">
                                         why are you waiting for let's join together and end the hunger.
                                       </p>
-
 
 
         <form method="POST" action="{{ url('/volunteerssuccess') }}">
@@ -176,10 +437,8 @@
   </div><br><br>
 
 
-
   <button class="btn btn-primary" type="submit">Submit form</button> &nbsp;&nbsp;&nbsp;&nbsp;
   <button class="btn btn-warning" type="reset">Reset</button>
-
 
 </div><br>
 </div>
@@ -197,3 +456,5 @@
     </section><br><br>
 
 @endsection
+
+
