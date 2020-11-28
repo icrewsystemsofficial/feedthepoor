@@ -173,12 +173,10 @@
                 "laravel",
                 "pdf"
             ],
-          //Bhavesh's DOMPDF addition start
             "support": {
                 "issues": "https://github.com/barryvdh/laravel-dompdf/issues",
                 "source": "https://github.com/barryvdh/laravel-dompdf/tree/master"
             },
-          //Bhavesh's DOMPDF addition end
             "funding": [
                 {
                     "url": "https://github.com/barryvdh",
