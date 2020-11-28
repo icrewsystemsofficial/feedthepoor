@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                   <div class="form-group">
-                                    <input type="number" id="amount" name="amount" value="{{ $amount }}" class="form-control" placeholder="How much are you donating?">
+                                 <input type="number" id="amount" name="amount" value="{{ $amount }}" class="form-control" placeholder="How much are you donating?">
                                   </div>
                                 </div>
                                 <div class="col-lg-3 col-md-6">
