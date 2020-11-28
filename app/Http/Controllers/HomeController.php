@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Mail\Admin\TestimonialSubmitted;
 use DB;
 use App\Donation;
+use App\Image;
 use App\Volunteer;
 use App\Partner;
 use App\Testimonial;
@@ -254,4 +255,27 @@ class HomeController extends Controller
     }
     
 
+    public function donationgallery()
+    {
+        $donationData = Donation::all();
+        return view('home.donationgallery',['donationData' => $donationData]);
+    }
+    public function donationsearch(Request $request)
+    {
+        $request->validate([
+            'query'=>'required'
+        ]);
+        $query = $request->input('query');
+        //
+        $donationData = Donation::where('payments_id','like',"%$query%")->paginate(10);
+        return view('home.search-results',compact('donationData'));
+    }
+    public function show($id)
+    {
+        $donationData = Donation::find($id);
+        //dd($donationData);
+        $image = Image::where('payments_id','like',"$donationData->payments_id")->get();
+        //dd($image);
+        return view('home.donationdetails',['donationData'=>$donationData, 'image'=>$image]);
+    }
 }

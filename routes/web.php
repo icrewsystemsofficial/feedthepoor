@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,9 +50,9 @@ Route::get('/work', 'HomeController@work')->name('work');
 Route::get('/volunteers', 'HomeController@volunteers')->name('volunteers');
 Route::get('/partners', 'HomeController@partners')->name('partners');
 Route::get('/contacts', 'HomeController@contacts')->name('contacts');
-
-
-
+Route::get('/who-did-we-feed-today','HomeController@donationgallery')->name('donationgallery');
+Route::get('/who-did-we-feed-today/search-results','HomeController@donationsearch')->name('search');
+Route::get('/who-did-we-feed-today/{data}','HomeController@show')->name('show');
 
 
 
