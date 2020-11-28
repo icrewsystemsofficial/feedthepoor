@@ -159,6 +159,12 @@
           <i class="fas fa-fw fa-table"></i>
           <span>Volunteer Signups</span></a>
       </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('admin/addvolunteersform') }}">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Add Volunteers</span></a>
+      </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{{ url('admin/data') }}">
