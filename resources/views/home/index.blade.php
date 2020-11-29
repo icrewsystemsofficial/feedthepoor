@@ -1,5 +1,12 @@
 @extends('layouts.layouts')
-
+@section('js')
+<script>
+  // function handlesubmit() {
+  //   var money = $(".onsubmitmoney").val();
+  //   console.log(money);
+  // }
+</script>
+@endsection
 @section('content')
 <section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen">
     <span class="mask bg-tertiary alpha-5"></span>
@@ -211,7 +218,7 @@
         <div class="col">
             <div class="row">
 
-                      <div class="col-lg-12 py-5 pr-5">
+                      <div class="col-lg-12 py-4 pr-3">
                           <div style="z-depth-3" class="rounded p-2">
                               <div id="carouselExampleIndicators" class="carousel slide rounded" data-ride="carousel">
                                   <ol class="carousel-indicators">
@@ -226,39 +233,39 @@
                                   </ol>
                                   <div class="carousel-inner">
                                       <div class="carousel-item active">
-                                          <img style="height: auto; width: 100%;"
+                                          <img 
                                               src="https://b.zmtcdn.com/feeding-india/a0216293d82df205e7d6e19a56d1a1661585293269.png"
-                                              class="img-center img-fluid" alt="">
+                                              class="img-center img-fluid extra" alt="">
                                       </div>
                                       <div class="carousel-item">
-                                          <img style="height: auto; width: 100%;"
+                                          <img 
                                               src="https://cdn.discordapp.com/attachments/694578470772146237/744470487404380170/icrew_feed_the_poor_2.jpg"
-                                              class="img-center img-fluid" alt="">
+                                              class="img-center img-fluid extra" alt="">
                                       </div>
                                       <div class="carousel-item">
-                                          <img style="height: auto; width: 100%;"
+                                          <img 
                                               src="https://cdn.discordapp.com/attachments/694578470772146237/744471075697721454/icrew_feeding_india_3.jpg"
-                                              class="img-center img-fluid" alt="">
+                                              class="img-center img-fluid extra" alt="">
                                       </div>
                                       <div class="carousel-item">
-                                          <img style="height: auto; width: 100%;"
+                                          <img 
                                               src="https://cdn.discordapp.com/attachments/694578470772146237/744472013044973589/icrew_feeding_india_4.jpg"
-                                              class="img-center img-fluid" alt="">
+                                              class="img-center img-fluid extra" alt="">
                                       </div>
                                       <div class="carousel-item">
-                                          <img style="height: auto; width: 100%;"
+                                          <img 
                                               src="https://cdn.discordapp.com/attachments/694578470772146237/744472703897174036/icrew_feeding_the_poor_5.jpg"
-                                              class="img-center img-fluid" alt="">
+                                              class="img-center img-fluid extra" alt="">
                                       </div>
                                       <div class="carousel-item">
-                                          <img style="height: auto; width: 100%;"
+                                          <img 
                                               src="https://cdn.discordapp.com/attachments/694578470772146237/744473611909201990/icrew_6.jpg"
-                                              class="img-center img-fluid" alt="">
+                                              class="img-center img-fluid extra" alt="">
                                       </div>
                                       <div class="carousel-item">
-                                          <img style="height: auto; width: 100%;"
+                                          <img 
                                               src="https://cdn.discordapp.com/attachments/694578470772146237/744474193516822590/icrew_7.jpg"
-                                              class="img-center img-fluid" alt="">
+                                              class="img-center img-fluid extra" alt="">
                                       </div>
                                   </div>
                                   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
@@ -382,26 +389,31 @@
                         <div class="card-body">
                             <h4 class="heading h3 text-white pt-3 pb-5">Hello There,<br>
                                 Fill in credentials to view details</h4>
-                            <form class="form-primary">
+
+
+                            <form  enctype="multipart/form-data"  action="{{ route('donate.money') }}" class="form-primary">
+                                @csrf
                                 <div class="form-group">
                                   <div class="row align-items-center">
+                                  <div class="col-md-2"  style="padding: 0px; margin: 0px;">
+                                      <a class="btn btn-sm text-dark donate-minus-button btn-secondary"><i class="fa fa-minus"></i></a>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <input type="text"  class="form-control donate-meal-display onmoneysubmit" name="meals"  id="input_email" placeholder="Meals" required disabled>
+                                    </div>
                                     <div class="col-md-2" style="padding: 0px; margin: 0px;">
                                       <a class="btn btn-sm donate-plus-button text-dark btn-secondary"><i class="fa fa-plus"></i></a>
                                     </div>
-                                    <div class="col-md-8">
-                                      <input type="text" class="form-control donate-meal-display" id="input_email" placeholder="Meals" required>
-                                    </div>
-                                    <div class="col-md-2"  style="padding: 0px; margin: 0px;">
-                                      <a class="btn btn-sm text-dark donate-minus-button btn-secondary"><i class="fa fa-minus"></i></a>
-                                    </div>
+                                    
                                   </div>
                                 </div>
-                                <button type="submit"
+                                <button type="button"
                                     class="btn btn-block donate-meal-button btn-lg bg-white mt-4 btn-animated btn-animated-x">
                                     <span class="btn-inner--visible donate-meal-button-span"></span>
                                     <span class="btn-inner--hidden"><i class="fas fa-credit-card"></i></span>
                                 </button>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -412,7 +424,7 @@
     </div>
 </section>
 
-<section class="slice-lg">
+{{-- <section class="slice-lg">
        <div class="container">
          <div class="row py-5 align-items-center cols-xs-space cols-sm-space cols-md-space">
            <div class="col-md-12">
@@ -437,12 +449,107 @@
 
          </div>
         </div>
+</section> --}}
+<section class="slice-lg">
+    <div class="container py-25">
+        <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space">
+            <div class="col-lg-6">
+                <div class="d-flex align-items-start">
+                    <div class="icon-text">
+                        <h3 class="heading">
+                            Feed a Hunger
+                        </h3>
+                        <p>
+                          
+                           <div class="progress progress-md" style="width: 461px">
+                              <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              
+                          </div>
+                          <p style="display: inline">25 Stomach is Still in Hunger</p>
+                          <p style="display: inline; float:right">25%</p>
+                        </p>
+                        <a class="btn btn-primary btn-block" href="#"   role="button">Donate Food</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div>
+                    <img style="height: 250px; width: auto;"
+                        src="https://images.axios.com/4cLkcHn_m-WeAOIHeX3giMbocls=/0x90:6000x3465/1920x1080/2018/02/14/1518574463881.jpg"
+                        class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container py-5">
+        <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space">
+            <div class="col-lg-6">
+                <div class="d-flex align-items-start">
+                    <div class="icon-text">
+                        <h3 class="heading">
+                            Comfort a Homeless 
+                        </h3>
+                        <p>
+                          
+                           <div class="progress progress-md" style="width: 461px">
+                              <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              
+                          </div>
+                          <p style="display: inline">25 Souls are in Streets</p>
+                          <p style="display: inline; float:right">25%</p>
+                        </p>
+                        <a class="btn btn-primary btn-block" href="#"   role="button">Provide Shelter</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div>
+                    <img style="height: 250px; width: auto;"
+                        src="https://c4.wallpaperflare.com/wallpaper/982/461/304/homeless-at-home-childboy-wallpaper-preview.jpg"
+                        class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container py-25">
+        <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space">
+            <div class="col-lg-6">
+                <div class="d-flex align-items-start">
+                    <div class="icon-text">
+                        <h3 class="heading">
+                            Educate a Poor 
+                        </h3>
+                        <p>
+                          
+                           <div class="progress progress-md" style="width: 461px">
+                              <div class="progress-bar"  role="progressbar" style="width: 25%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                              
+                          </div>
+                          <p style="display: inline">25 Kids Need to be in School</p>
+                          <p style="display: inline; float:right">25%</p>
+                        </p>
+                        <a class="btn btn-primary btn-block" href="#"   role="button">Educate</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div>
+                    <img style="height: 250px; width: 453px;"
+                        src="https://images.pexels.com/photos/1098769/pexels-photo-1098769.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                        class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 
 
 <!-- <section class="py-xl">
-    <!-- <span class="mask bg-primary alpha-6"></span>
+     <span class="mask bg-primary alpha-6"></span>
     <div class="container d-flex align-items-center no-padding">
         <div class="col">
             <div class="row">
