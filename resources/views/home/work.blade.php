@@ -195,7 +195,7 @@
       <div class="col-lg-6" data-aos="fade-up">
         <div>
           <img style="height: 250px; width: auto;"
-          src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+          src="{{asset('images/donationimages/0011241_img2.jpg')}}"
           class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
         </div>
       </div>
@@ -217,9 +217,9 @@
 </section>
 
 
-<section >
+<section  >
  
-          <div class="container d-flex align-items-center no-padding">
+          <div class=" d-flex align-items-center container">
             <div class="col">
               <div class="row">
                 <div class="col-md-12">
@@ -277,7 +277,7 @@
 
 
 
-  <!-- <span class="mask bg-primary alpha-6"></span> -->
+  {{-- <!-- <span class="mask bg-primary alpha-6"></span> -->
   <!-- <div class="container d-flex align-items-center no-padding">
       <div class="col">
           <div class="row">
@@ -330,7 +330,7 @@
           </div>
       </div>
     </div>
-  </div> -->
+  </div> --> --}}
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <br><br>
 <script>
