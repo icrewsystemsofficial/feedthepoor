@@ -6,6 +6,11 @@
   .heading3{
     padding-left: 8%;
   }
+  @media(min-width:1000px){
+      h4 span{
+          font-size: 3rem;
+      }
+  }
 </style>
 
 <section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen" style="background-image: url({{asset('images/subheader_contactpage.jpg')}})">
@@ -25,7 +30,7 @@
               </h2> -->
                             <h4 class="lead text-white mt-3 lh-180 c-white animated" data-animation-in="fadeInUp"
                                 data-animation-delay="2500">
-                                <span style="font-size: 3rem;">#WhoDidWeFeedToday?</span> <br />
+                                <span >#WhoDidWeFeedToday?</span> <br />
                                 "Here's an overview."
                             </h4>
                         </div>
@@ -82,4 +87,42 @@
         @endforeach
     </div>
 </section>
+@endsection
+
+@section('navbar_style')
+    <style>
+        .navbar{
+            background: transparent !important;
+            
+        }
+        
+        
+        #dmenu a{
+            color: #000 !important;
+            @yeild()
+
+        }
+        @media(min-width:766px){
+            .navbar .dropdown-menu a{
+                color: #ffffff !important;
+            }
+            .container a{
+            color: #ffffff !important;
+
+            }
+        }
+        .container>a{
+            color: #ffffff !important;
+
+        }
+        .navbar.scrolled{
+            background: #ffffff !important;
+            
+        }
+        .navbar.scrolled a{
+            color: #000 !important;
+        }
+        
+    </style>
+    
 @endsection

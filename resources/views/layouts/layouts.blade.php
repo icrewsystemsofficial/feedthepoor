@@ -47,34 +47,18 @@
     <link rel="icon"
         href="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png"
         type="image/png">
-
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <link rel="stylesheet" href="{{asset('assets/css/layouts.css')}}">
         
-    <style>
-        .navbar{
-            background: transparent !important;
-            
-        }
-        .navbar a{
-            color: #ffffff !important;
-        }
-        .navbar.scrolled{
-            background: #ffffff !important;
-            
-        }
-        .navbar.scrolled a{
-            color: #000 !important;
-        }
-    </style>
-    
+    @yield('navbar_style')
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     @yield('css')
     @notifyCss
 </head>
-
+ 
 <body>
     <!-- <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark bg-dark py-4"> -->
     <nav class="C-nav C-nav-bg navbar fixed-top navbar-expand-lg navbar-light" style="transition: all 0.2s;">
@@ -96,7 +80,7 @@
                     <li class="nav-item dropdown">
                         <a class="C-nav-link nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1"
                             role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
-                        <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                        <div class="dropdown-menu" id="dmenu" aria-labelledby="navbar_1_dropdown_1">
                             <a class="dropdown-item" href="{{url ('/aboutus')}}">About us</a>
                             <a class="dropdown-item" href="{{url ('/work')}}">How does it work</a>
                             <a class="dropdown-item" href="{{url ('/volunteers')}}">Volunteers</a>
@@ -196,6 +180,8 @@
     <script src="{{ asset('boomerang/assets/vendor/nouislider/js/nouislider.min.js')}}"></script>
     <script src="{{ asset('boomerang/assets/vendor/textarea-autosize/textarea-autosize.min.js')}}"></script>
     <!-- Theme JS -->
+    <!-- JavaScript Bundle with Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
 
     <script src="{{ asset('boomerang/assets/js/theme.js')}}"></script>
     <script>
@@ -253,12 +239,17 @@
     <script src="{{ asset('boomerang/assets/js/faq.js')}}"></script>
 
     <!-- testimonials JS -->
+    <link rel="text/javascript" href="{{ URL::asset('assets/js/jquery.js') }}" />
+    <link rel="text/javascript" href="{{ URL::asset('assets/js/bootstrap.min.js') }}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
     <script src="{{ asset('boomerang/assets/js/testimonials.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/swipejs/2.2.18/swipe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script>
         $(window).scroll(function(){
-        $('nav').toggleClass('scrolled', $(this).scrollTop() > 937);
+            $('nav').toggleClass('scrolled', $(this).scrollTop() > 600);
+        
         });
     </script>
     @yield('js')

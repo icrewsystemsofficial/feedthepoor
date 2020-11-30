@@ -116,110 +116,116 @@
 </section>
 
 <section class="slice-lg">
-  <div class="container">
-    <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space" data-aos="fade-right">
-      <div class="col-lg-6">
-        <div class="d-flex align-items-start">
-          <div class="icon-text">
-            <h3 class="heading" style="text-align: end">
-              You Donate
-            </h3>
-              <blockquote>We make a living by what we get, but we make a life by what we give.</blockquote>
-            <p style="text-align: right" class="h5">
-              All our initiatives are designed to provide essential food support to underserved communities in the form of raw grains, freshly cooked food or packaged food products depending on the need. Our aim is to ensure, hunger never comes in the way of a brighter future.
+  <div class="container" style="overflow: hidden">
+    
+      <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space" data-aos="fade-right" >
+        <div class="col-lg-6">
+          <div class="d-flex align-items-start">
+              <div class="icon-text">
+                <h3 class="heading" style="text-align: end">
+                  You Donate
+                </h3>
+                  <blockquote>We make a living by what we get, but we make a life by what we give.</blockquote>
+                <p style="text-align: right" class="h5">
+                  All our initiatives are designed to provide essential food support to underserved communities in the form of raw grains, freshly cooked food or packaged food products depending on the need. Our aim is to ensure, hunger never comes in the way of a brighter future.
 
-            </p>
+                </p>
+              </div>
+          </div>
+        </div>
+      
+        <div class="col-lg-6" data-aos="fade-up">
+            <div >
+              <img style="height: 250px; width: auto;"
+              src="https://images.pexels.com/photos/271168/pexels-photo-271168.jpeg?cs=srgb&dl=pexels-pixabay-271168.jpg&fm=jpg"
+              class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
+            </div>
+        </div>
+      </div>
+    
+    
+      <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space" data-aos="fade-left" >
+        <div class="col-lg-6" data-aos="fade-up">
+          <div>
+            <img style="height: 250px; width: auto;"
+            src="https://cdn.pixabay.com/photo/2018/04/11/10/00/soup-3310066_960_720.jpg"
+            class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
+          </div>
+        </div>
+
+
+        <div class="col-lg-6">
+          <div class="d-flex align-items-start">
+            <div class="icon-text">
+              <h3 class="heading" >
+                We Distribute
+              </h3>
+              <p class="h5">
+                While we distribute food, the smile we see is worth evey pennny in the world. But we need your support to provide atleast what they deserve.
+
+              </p>
+            </div>
           </div>
         </div>
       </div>
+    
+    
+      <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space" data-aos="fade-right" >
+        <div class="col-lg-6">
+          <div class="d-flex align-items-start">
+            <div class="icon-text">
+              <h3 class="heading" style="text-align: end">
+                They Eat, They Smile <strong id="emoji">😀</strong>
+              </h3>
+              <p style="text-align: right" class="h5">
+                Food is not a luxury but a necesary. But these children have to face more worse situation just to compromise their hunger.
 
-      <div class="col-lg-6" data-aos="fade-up">
-        <div >
-          <img style="height: 250px; width: auto;"
-          src="https://images.pexels.com/photos/271168/pexels-photo-271168.jpeg?cs=srgb&dl=pexels-pixabay-271168.jpg&fm=jpg"
-          class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
 
-    </div>
-    <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space" data-aos="fade-left">
-      <div class="col-lg-6" data-aos="fade-up">
-        <div>
-          <img style="height: 250px; width: auto;"
-          src="https://cdn.pixabay.com/photo/2018/04/11/10/00/soup-3310066_960_720.jpg"
-          class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
+        <div class="col-lg-6" data-aos="fade-up">
+          <div>
+            <img style="height: 250px; width: auto;"
+            src="https://cdn.pixabay.com/photo/2014/04/23/14/47/children-330581_960_720.jpg"
+            class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
+          </div>
         </div>
+
       </div>
+    
+    
+      <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space" data-aos="fade-left" >
+        <div class="col-lg-6" data-aos="fade-up">
+          <div>
+            <img style="height: 250px; width: auto;"
+            src="{{asset('images/donationimages/0011241_img2.jpg')}}"
+            class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
+          </div>
+        </div>
 
-
-      <div class="col-lg-6">
-        <div class="d-flex align-items-start">
-          <div class="icon-text">
-            <h3 class="heading" >
-              We Distribute
-            </h3>
-            <p class="h5">
-              While we distribute food, the smile we see is worth evey pennny in the world. But we need your support to provide atleast what they deserve.
-
-            </p>
+        <div class="col-lg-6">
+          <div class="d-flex align-items-start">
+            <div class="icon-text">
+              <h3 class="heading" >
+                We Share Love
+              </h3>
+              <p class="h5">
+                By donating ,by distributing and by receiving you ,us and them become a family who share love.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space" data-aos="fade-right">
-      <div class="col-lg-6">
-        <div class="d-flex align-items-start">
-          <div class="icon-text">
-            <h3 class="heading" style="text-align: end">
-              They Eat, They Smile <strong id="emoji">😀</strong>
-            </h3>
-            <p style="text-align: right" class="h5">
-              Food is not a luxury but a necesary. But these children have to face more worse situation just to compromise their hunger.
-
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6" data-aos="fade-up">
-        <div>
-          <img style="height: 250px; width: auto;"
-          src="https://cdn.pixabay.com/photo/2014/04/23/14/47/children-330581_960_720.jpg"
-          class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
-        </div>
-      </div>
-
-    </div>
-    <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space" data-aos="fade-left">
-      <div class="col-lg-6" data-aos="fade-up">
-        <div>
-          <img style="height: 250px; width: auto;"
-          src="{{asset('images/donationimages/0011241_img2.jpg')}}"
-          class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
-        </div>
-      </div>
-
-      <div class="col-lg-6">
-        <div class="d-flex align-items-start">
-          <div class="icon-text">
-            <h3 class="heading" >
-              We Share Love
-            </h3>
-            <p class="h5">
-              By donating ,by distributing and by receiving you ,us and them become a family who share love.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    
   </div>
 </section>
 
 
-<section  >
+<section class="py-xl" >
  
-          <div class=" d-flex align-items-center container">
+          <div class="container d-flex align-items-center no-padding">
             <div class="col">
               <div class="row">
                 <div class="col-md-12">
@@ -370,3 +376,40 @@ setInterval(function() {
 </script>
 @endsection
 
+@section('navbar_style')
+    <style>
+        .navbar{
+            background: transparent !important;
+            
+        }
+        
+        
+        #dmenu a{
+            color: #000 !important;
+            @yeild()
+
+        }
+        @media(min-width:766px){
+            .navbar .dropdown-menu a{
+                color: #ffffff !important;
+            }
+            .container a{
+            color: #ffffff !important;
+
+            }
+        }
+        .container a{
+            color: #000 !important;
+
+        }
+        .navbar.scrolled{
+            background: #ffffff !important;
+            
+        }
+        .navbar.scrolled a{
+            color: #000 !important;
+        }
+        
+    </style>
+    
+@endsection
