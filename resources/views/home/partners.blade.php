@@ -300,8 +300,6 @@ h1{
             background: transparent !important;
             
         }
-        
-        
         #dmenu a{
             color: #000 !important;
             @yeild()
