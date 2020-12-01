@@ -91,31 +91,17 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     //created by SAURABH, to add manual donations
     Route::get('/add', 'AdminController@add')->name('add');
     Route::post('add/manual', 'AdminController@manual')->name('manual');
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
     //created by Rohan
->>>>>>> 91d3539e5c5f28087176ae02805388b3dd094aa6
     Route::get('/addvolunteers', 'addvolunteersController@index')->name('addvolunteers');
     Route::post('/addvolunteers','addvolunteersController@store')->name('addimage');
     Route::get('/addvolunteersform','addvolunteersController@display');
     Route::get('/editform/{id}','addvolunteersController@edit');
     Route::put('/updateform/{id}','addvolunteersController@update');
     Route::get('/deleteform/{id}', 'addvolunteersController@delete');
-  
-<<<<<<< HEAD
-=======
-=======
-
->>>>>>> 91d3539e5c5f28087176ae02805388b3dd094aa6
-
 
     //operation routes 
     //Route::get('admin/operations', 'PdfController@index');
 
     //Route::get('admin/operations/pdfGen', 'PdfController@pdf');
-<<<<<<< HEAD
->>>>>>> c183492c3288d952101c25295dd9993b7c69d121
-=======
->>>>>>> 91d3539e5c5f28087176ae02805388b3dd094aa6
 });
