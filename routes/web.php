@@ -36,6 +36,8 @@ Route::get('/test', function () {
   Illuminate\Support\Facades\Mail::to('kashrayks@gmail.com')->send(new App\Mail\Test('pay_FT9tQdRmnYxpbx'));
 });
 
+
+
 Route::get('/logout', 'AdminController@logout');
 
 Route::get('/aboutus', 'HomeController@aboutus')->name('aboutus');
