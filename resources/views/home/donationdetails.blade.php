@@ -48,7 +48,7 @@
                 <div class="col-lg-8">
                     <div class="form-group" style="display:flex">
             <input type="text" class="form-control" value="" name="query" id="query"
-                placeholder="Search">
+                placeholder="Search by Payment id">
             <button class="btn btn-primary navbar-search__button"> Search
             </button>
                  </div>
