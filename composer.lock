@@ -147,12 +147,15 @@
                 }
             ],
             "description": "A DOMPDF Wrapper for Laravel",
-            "keywords": ["dompdf", "laravel", "pdf"],
+            "keywords": [
+                "dompdf",
+                "laravel",
+                "pdf"
+            ],
             "support": {
                 "issues": "https://github.com/barryvdh/laravel-dompdf/issues",
                 "source": "https://github.com/barryvdh/laravel-dompdf/tree/master"
             },
-
             "funding": [
                 {
                     "url": "https://github.com/barryvdh",
