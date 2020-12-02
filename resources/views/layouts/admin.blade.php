@@ -155,6 +155,12 @@
       </div>
 
       <li class="nav-item">
+        <a class="nav-link" href="{{ url('admin/galleryupload') }}">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Gallary</span></a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link" href="{{ url('admin/') }}">
           <i class="fas fa-fw fa-table"></i>
           <span>Volunteer Signups</span></a>

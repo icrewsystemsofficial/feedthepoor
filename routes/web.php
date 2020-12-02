@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\GalleryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,6 +54,10 @@ Route::get('/who-did-we-feed-today','HomeController@donationgallery')->name('don
 Route::get('/who-did-we-feed-today/search-results','HomeController@donationsearch')->name('search');
 Route::get('/who-did-we-feed-today/{data}','HomeController@show')->name('show');
 
+
+Route::get('/gallery', 'GalleryController@gallery')->name('gallery');
+Route::get('/admin/galleryupload','GalleryController@galleryupload');
+Route::post('/admin/upload','GalleryController@upload');
 
 
 

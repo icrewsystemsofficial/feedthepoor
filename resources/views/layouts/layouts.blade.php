@@ -49,7 +49,16 @@
         type="image/png">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    
+
+    <!--gallery-->
+    <link type="text/css" href="{{ asset('boomerang/assets/css/homegallery.css')}}" rel="stylesheet">
+    <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.14/css/lightgallery.css" rel="stylesheet">
+
+    <!-- jQuery version must be >= 1.8.0; -->
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
     <style>
         
         ::-webkit-scrollbar {
@@ -204,6 +213,9 @@
                     <li class="nav-item">
                         <a class="C-nav-link nav-link" href="{{url ('/contacts')}}">Contact</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="C-nav-link nav-link" href="{{url ('/gallery')}}">Gallery</a>
+                    </li>
                     <a class="nav-link" href="{{ url('/money') }}">
                         <button class="btn btn-block btn-sm bg-gradient-blue text-white btn-animated btn-animated-y">
                             <span class="btn-inner--visible">Donate Now</span>
@@ -352,6 +364,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
     <script src="{{ asset('boomerang/assets/js/testimonials.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/swipejs/2.2.18/swipe.min.js"></script>
+        <!-- Gallery -->
+    <script src="{{ asset('boomerang/assets/js/galleryhome.js')}} "  ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.14/js/lightgallery-all.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js" ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" ></script>
     @yield('js')
     @notifyJs
 </body>
