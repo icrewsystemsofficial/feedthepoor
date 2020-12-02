@@ -15,9 +15,10 @@ class GalleryController extends Controller
         if ($request->hasFile('image')){
         $filename = $request->image->getClientOriginalName();
         $request->image->storeAs('Galleryimages',$filename,'public');
+        //stores in storage/app/public/Galleryimages
         }
 
-        return redirect()->back();
+        return redirect()->back()->with("success","uploaded sucessfully");
            
     }
 

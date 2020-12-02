@@ -166,11 +166,13 @@
         .extra{
             height: 250px;
             width : 8000px;
+            object-fit: cover;
         }
 
         @media screen and (min-width: 800px) {
         .extra{
             height: 500px;
+            object-fit: cover;
         }
         }
     </style>
