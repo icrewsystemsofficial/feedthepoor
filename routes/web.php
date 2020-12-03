@@ -95,6 +95,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     //created by SAURABH, to add manual donations
     Route::get('/add', 'AdminController@add')->name('add');
     Route::post('add/manual', 'AdminController@manual')->name('manual');
+
     //created by Rohan
     Route::get('/addvolunteers', 'addvolunteersController@index')->name('addvolunteers');
     Route::post('/addvolunteers','addvolunteersController@store')->name('addimage');
@@ -102,9 +103,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/editform/{id}','addvolunteersController@edit');
     Route::put('/updateform/{id}','addvolunteersController@update');
     Route::get('/deleteform/{id}', 'addvolunteersController@delete');
-  
-
-
 
     //operation routes 
     //Route::get('admin/operations', 'PdfController@index');

@@ -409,9 +409,11 @@
   </div>
 </div><br>
 
+
 <div class="form-row">
   <div class="col-lg-12 mb-3">
-  <textarea name="comments" rows="8" cols="120" placeholder="Mention any previous experiences"></textarea>
+  <textarea name="comments" rows="8" cols="85" class="form-control" placeholder="Mention any previous experiences"></textarea>
+  </div>
 </div>
 </div>
 
@@ -458,3 +460,40 @@
 @endsection
 
 
+@section('navbar_style')
+    <style>
+        .navbar{
+            background: transparent !important;
+            
+        }
+        
+        
+        #dmenu a{
+            color: #000 !important;
+            @yeild()
+
+        }
+        @media(min-width:766px){
+            .navbar .dropdown-menu a{
+                color: #ffffff !important;
+            }
+            .container a{
+            color: #ffffff !important;
+
+            }
+        }
+        .container a{
+            color: #000 !important;
+
+        }
+        .navbar.scrolled{
+            background: #ffffff !important;
+            
+        }
+        .navbar.scrolled a{
+            color: #000 !important;
+        }
+        
+    </style>
+    
+@endsection

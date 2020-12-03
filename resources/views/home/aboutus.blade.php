@@ -6,6 +6,11 @@
   padding: 5% 0 5% 0;
   margin: 0px 0px 70px 0px;
   }
+  @media(min-width:1000px){
+      h4 span{
+          font-size: 3rem;
+      }
+  }
 </style>
 <section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen">
     <span class="mask bg-tertiary alpha-5"></span>
@@ -24,7 +29,7 @@
               </h2> -->
                             <h4 class="lead text-white mt-3 lh-180 c-white animated" data-animation-in="fadeInUp"
                                 data-animation-delay="2500">
-                                <span style="font-size: 3rem;">#HungerFreeIndia</span> <br />
+                                <span >#HungerFreeIndia</span> <br />
                                 "Join our community of passionate Hunger Heroes and lead a movement towards zero hunger."
                             </h4>
                         </div>
@@ -130,4 +135,43 @@
     </div>
 </section>
 
+@endsection
+
+
+@section('navbar_style')
+    <style>
+        .navbar{
+            background: transparent !important;
+            
+        }
+        
+        
+        #dmenu a{
+            color: #000 !important;
+            @yeild()
+
+        }
+        @media(min-width:766px){
+            .navbar .dropdown-menu a{
+                color: #ffffff !important;
+            }
+            .container a{
+            color: #ffffff !important;
+
+            }
+        }
+        .container>a{
+            color: #ffffff !important;
+
+        }
+        .navbar.scrolled{
+            background: #ffffff !important;
+            
+        }
+        .navbar.scrolled a{
+            color: #000 !important;
+        }
+        
+    </style>
+    
 @endsection

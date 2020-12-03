@@ -6,6 +6,12 @@
   .heading3{
     padding-left: 8%;
   }
+  @media(min-width:1000px){
+      h4 span{
+          font-size: 3rem;
+      }
+      
+  }
 </style>
 
 <section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen" style="background-image: url({{asset('images/subheader_contactpage.jpg')}})">
@@ -25,8 +31,8 @@
               </h2> -->
                             <h4 class="lead text-white mt-3 lh-180 c-white animated" data-animation-in="fadeInUp"
                                 data-animation-delay="2500">
-                                <span style="font-size: 3rem;">#AnyQuestions?</span> <br />
-                                "We are always here to answer you."
+                                <span >#AnyQuestions?</span> <br />
+                                <p style="font-size: 1rem"> "We are always here to answer you."</p>
                             </h4>
                         </div>
                     </div>
@@ -140,10 +146,11 @@
 </div>
 </div><br>
 
+
 <div class="form-row">
-<div class="col-lg-12 mb-3">
-<textarea name="comments" rows="8" cols="125" placeholder="Comment your qoutes here..."></textarea>
-</div>
+  <div class="col-lg-12 mb-3">
+  <textarea name="comments" rows="8" cols="85" class="form-control" placeholder="Comment your qoutes here..."></textarea>
+  </div>
 </div>
 
 
@@ -186,4 +193,41 @@
       </div>
     </section>
 
+@endsection
+
+@section('navbar_style')
+    <style>
+        .navbar{
+            background: transparent !important;
+            
+        }
+        
+        
+        #dmenu a{
+            color: #000 !important;
+            @yeild()
+
+        }
+        @media(min-width:766px){
+            .navbar .dropdown-menu a{
+                color: #ffffff !important;
+            }
+            .container a{
+            color: #ffffff !important;
+
+            }
+        }
+        .container>a{
+            color: #ffffff !important;
+
+        }
+        .navbar.scrolled{
+            background: #ffffff !important;
+            
+        }
+        .navbar.scrolled a{
+            color: #000 !important;
+        }
+        
+    </style>
 @endsection
