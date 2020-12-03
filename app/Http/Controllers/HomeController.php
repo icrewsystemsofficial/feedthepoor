@@ -136,11 +136,11 @@ class HomeController extends Controller
       $volunteer->save();*/
 
       //return view('home.volunteers');
-  
+
 
         $addvolunteersform = addvolunteers::all();
         return view('home.volunteers')->with('addvolunteersform',$addvolunteersform);
-    
+
 
     }
 
@@ -253,7 +253,7 @@ class HomeController extends Controller
     public function mission() {
       return view('home.mission');
     }
-    
+
 
     public function donationgallery()
     {

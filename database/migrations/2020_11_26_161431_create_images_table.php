@@ -15,11 +15,9 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('donation_id',50);
+            $table->string('payments_id',50);
             $table->string('image_path');
             $table->timestamps();
-            //Foreign key
-            $table->foreign('donation_id')->references('payments_id')->on('donations')->onDelete('cascade');
         });
     }
 
