@@ -3,7 +3,7 @@
 @section('content')
 
 
-<section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen" style="background-image: url({{asset('images/subheader_contactpage.jpg')}})">
+<section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen" style="background-image: url(https://cdn.pixabay.com/photo/2016/03/27/18/52/flower-1283602_1280.jpg)">
     <span class="mask bg-tertiary alpha-5"></span>
     <div class="spotlight-holder py-lg pt-lg-xl">
         <div class="container d-flex align-items-center no-padding">
@@ -42,17 +42,17 @@
 
   <div class="demo-gallery">
     <ul id="lightgallery">
-      @foreach($images as $image)
+      @foreach($galleryimages as $image)
       <li data-responsive="https://sachinchoolur.github.io/lightGallery/static/img/4-375.jpg 375, https://sachinchoolur.github.io/lightGallery/static/img/4-480.jpg 480, https://sachinchoolur.github.io/lightGallery/static/img/4.jpg 800" data-src="https://sachinchoolur.github.io/lightGallery/static/img/4-1600.jpg"
       data-sub-html="<h4>Coniston Calmness</h4><p>Beautiful morning</p>" data-pinterest-text="Pin it" data-tweet-text="share on twitter ">
-        <a href="">
-          <img class="img-responsive" src="https://sachinchoolur.github.io/lightGallery/static/img/thumb-4.jpg">
+        <a href="storage/app/public/Galleryimages/{{$image['name']}}">
+          <img class="img-responsive" src="storage/app/public/Galleryimages/{{$image['name']}}">
           <div class="demo-gallery-poster">
             <img src="https://sachinchoolur.github.io/lightGallery/static/img/zoom.png">
           </div>
         </a>
       </li>
-      endforeach
+      @endforeach
     </ul>
   </div>
 </div>
