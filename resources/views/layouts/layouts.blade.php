@@ -47,12 +47,99 @@
     <link rel="icon"
         href="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png"
         type="image/png">
+<<<<<<< HEAD
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <!--gallery-->
+    <link type="text/css" href="{{ asset('boomerang/assets/css/homegallery.css')}}" rel="stylesheet">
+    <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.14/css/lightgallery.css" rel="stylesheet">
+
+    <!-- jQuery version must be >= 1.8.0; -->
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
+    <style>
+=======
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <link rel="stylesheet" href="{{asset('assets/css/layouts.css')}}">
+>>>>>>> 44e47f582507c66b392899133b50ef77d00c0d20
         
     @yield('navbar_style')
 
+<<<<<<< HEAD
+        .C-parallax {
+            /*background-image: url("https://media.discordapp.net/attachments/530789778912837640/725054207295619123/bg2-min.png");*/
+            background-image: url("https://cdn.discordapp.com/attachments/694578470772146237/744469327096447056/icrew_feed_the_poor_1.png");
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .C-donate-nav .nav-item .nav-link {
+            background-color: white;
+            transition: all 0.2s !important;
+        }
+
+        .C-donate-nav .nav-item .nav-link.active {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1) !important;
+            border: 1px solid rgba(0, 0, 0, 0.1) !important;
+            border-radius: 10px !important;
+        }
+
+        .C-tab-cont {
+            transition: all 0.2s ease;
+        }
+
+        .C-tab-item {
+            padding: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        .C-nav-bg {
+            background: rgba(0, 0, 0, 0.8);
+            background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.8)), color-stop(100%, rgba(231, 56, 39, 0)));
+            background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
+            background: -o-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
+            background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#e73827', GradientType=0);
+        }
+        .C-nav-white-bg{
+            background-color: white;
+        }
+        .C-nav-link{
+            color: white !important;
+            transition: all 0.2s;
+        }
+        .Nav-scroll-text{
+            color: black !important;
+        }
+
+        /*carousal height media query */
+
+        @media screen and (min-width: 200px){
+        .extra{
+            height: 250px;
+            width : 8000px;
+            object-fit: cover;
+        }
+
+        @media screen and (min-width: 800px) {
+        .extra{
+            height: 500px;
+            object-fit: cover;
+        }
+        }
+    </style>
+=======
+>>>>>>> 44e47f582507c66b392899133b50ef77d00c0d20
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     @yield('css')
@@ -91,6 +178,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="C-nav-link nav-link" href="{{url ('/contacts')}}">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="C-nav-link nav-link" href="{{url ('/gallery')}}">Gallery</a>
                     </li>
                     <a class="nav-link" href="{{ url('/money') }}">
                         <button class="btn btn-block btn-sm bg-gradient-blue text-white btn-animated btn-animated-y" >
@@ -244,6 +334,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
     <script src="{{ asset('boomerang/assets/js/testimonials.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/swipejs/2.2.18/swipe.min.js"></script>
+<<<<<<< HEAD
+        <!-- Gallery -->
+    <script src="{{ asset('boomerang/assets/js/galleryhome.js')}} "  ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.14/js/lightgallery-all.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js" ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" ></script>
+=======
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script>
@@ -252,6 +351,7 @@
         
         });
     </script>
+>>>>>>> 44e47f582507c66b392899133b50ef77d00c0d20
     @yield('js')
     @notifyJs
 </body>
