@@ -54,7 +54,7 @@
                 <div class="col-lg-8">
                     <div class="form-group" style="display:flex">
             <input type="text" class="form-control" value="" name="query" id="query"
-                placeholder="Search">
+                placeholder="Search by Payment id">
             <button class="btn btn-primary navbar-search__button"> Search
             </button>
                  </div>
@@ -93,10 +93,10 @@
     <style>
         .navbar{
             background: transparent !important;
-            
+
         }
-        
-        
+
+
         #dmenu a{
             color: #000 !important;
             @yeild()
@@ -117,12 +117,12 @@
         }
         .navbar.scrolled{
             background: #ffffff !important;
-            
+
         }
         .navbar.scrolled a{
             color: #000 !important;
         }
-        
+
     </style>
-    
+
 @endsection

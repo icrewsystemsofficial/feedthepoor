@@ -49,7 +49,7 @@
                 <div class="col-lg-8">
                     <div class="form-group" style="display:flex">
             <input type="text" class="form-control" value="" name="query" id="query"
-                placeholder="Search">
+                placeholder="Search by Payment id">
             <button class="btn btn-primary navbar-search__button"> Search
             </button>
                  </div>
@@ -64,18 +64,20 @@
 <section id="wrapper">
     <div class="container">
         <div class="row">
-            @foreach($donationData as $data)
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                    <h5 class="heading heading-5 strong-600">{{$data -> donor_name}}</h5>
-                    <h6 class="text-muted mb-4">Donated On {{$data->created_at}}</h6>
-                    <p class="card-text">{{$data->description}}</p>
-                        <a href="{{route('show',$data)}}" class="btn btn-sm btn-primary">View Details</a>
+            @forelse($donationData as $data)
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                        <h5 class="heading heading-5 strong-600">{{$data -> donor_name}}</h5>
+                        <h6 class="text-muted mb-4">Donated On {{$data->created_at}}</h6>
+                        <p class="card-text">{{$data->description}}</p>
+                            <a href="{{route('show',$data)}}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            @endforeach
+                @empty
+                <p class="lead">No match found</p>
+            @endforelse
         </div>
     </div>
 </section>
