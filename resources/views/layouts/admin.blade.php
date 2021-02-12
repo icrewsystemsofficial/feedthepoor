@@ -132,10 +132,10 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Sheets</h6>
             <a class="collapse-item" href="login.html">Generate CSV</a>
-            <a class="collapse-item" href="register.html">Generate PDF</a>
+            <a class="collapse-item" href="{{ url('operations') }}">Generate PDF</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Food</h6>
-            <a class="collapse-item" href="forgot-password.html">Generate Food Order</a>
+            <a class="collapse-item" href="{{ url('admin/operations/foodOrder') }}">Generate Food Order</a>
           </div>
         </div>
       </li>
@@ -158,6 +158,12 @@
         <a class="nav-link" href="{{ url('admin/') }}">
           <i class="fas fa-fw fa-table"></i>
           <span>Volunteer Signups</span></a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('admin/addvolunteersform') }}">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Add Volunteers</span></a>
       </li>
 
       <li class="nav-item">

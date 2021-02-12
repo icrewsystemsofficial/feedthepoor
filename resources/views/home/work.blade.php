@@ -4,16 +4,39 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
   />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+
 <style>
+  textarea{
+    border-radius:8px;
+  }
+  .container>div>div{
+    padding: 25px;
+  }
+  .container img{
+    box-shadow: 8px 8px 2px rgba(0, 0, 0, 0.6)
+  }
+  .container blockquote{
+    text-align-last: right
+  }
+  @media(min-width:1750px){
+    #sub-head{
+      background: url("{{ asset('images/child.png') }}") no-repeat left ;
+    }
+  }
+  
+
+
 </style>
 @endsection
 @section('content')
 
-<section class="slice slice-xl bg-secondary">
+<section class="slice slice-xl bg-secondary" id="sub-head">
   <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="justify-content: left">
 
-      <div class="col-12">
+      <div class="col-12" >
         <p class="lead mt-3 lh-180 animated" data-animation-in="fadeInUp" data-animation-delay="2500">
         <span style="font-size: 2.2rem;">
           How do we <strong>#feedThePoor</strong>?
@@ -26,7 +49,7 @@
 </section>
 
 <section class="slice-lg">
-       <div class="container">
+       <div class="container align-items-center">
          <div class="row py-5 align-items-center cols-xs-space cols-sm-space cols-md-space">
            <div class="col-md-12">
             <div class="d-flex">
@@ -42,7 +65,7 @@
             </div>
            </div>
            <div class="col-md-12">
-             <div class="card">
+             <div class="card z-depth-3">
                <div class="card-body">
                  <!-- <div class="">Example</div> -->
 
@@ -91,12 +114,243 @@
         </div>
       </div>
 </section>
+
+<section class="slice-lg">
+  <div class="container" style="overflow: hidden">
+    
+      <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space" data-aos="fade-right" >
+        <div class="col-lg-6">
+          <div class="d-flex align-items-start">
+              <div class="icon-text">
+                <h3 class="heading" style="text-align: end">
+                  You Donate
+                </h3>
+                  <blockquote>We make a living by what we get, but we make a life by what we give.</blockquote>
+                <p style="text-align: right" class="h5">
+                  All our initiatives are designed to provide essential food support to underserved communities in the form of raw grains, freshly cooked food or packaged food products depending on the need. Our aim is to ensure, hunger never comes in the way of a brighter future.
+
+                </p>
+              </div>
+          </div>
+        </div>
+      
+        <div class="col-lg-6" data-aos="fade-up">
+            <div >
+              <img style="height: 250px; width: auto;"
+              src="https://images.pexels.com/photos/271168/pexels-photo-271168.jpeg?cs=srgb&dl=pexels-pixabay-271168.jpg&fm=jpg"
+              class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
+            </div>
+        </div>
+      </div>
+    
+    
+      <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space" data-aos="fade-left" >
+        <div class="col-lg-6" data-aos="fade-up">
+          <div>
+            <img style="height: 250px; width: auto;"
+            src="https://cdn.pixabay.com/photo/2018/04/11/10/00/soup-3310066_960_720.jpg"
+            class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
+          </div>
+        </div>
+
+
+        <div class="col-lg-6">
+          <div class="d-flex align-items-start">
+            <div class="icon-text">
+              <h3 class="heading" >
+                We Distribute
+              </h3>
+              <p class="h5">
+                While we distribute food, the smile we see is worth evey pennny in the world. But we need your support to provide atleast what they deserve.
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+      <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space" data-aos="fade-right" >
+        <div class="col-lg-6">
+          <div class="d-flex align-items-start">
+            <div class="icon-text">
+              <h3 class="heading" style="text-align: end">
+                They Eat, They Smile <strong id="emoji">😀</strong>
+              </h3>
+              <p style="text-align: right" class="h5">
+                Food is not a luxury but a necesary. But these children have to face more worse situation just to compromise their hunger.
+
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6" data-aos="fade-up">
+          <div>
+            <img style="height: 250px; width: auto;"
+            src="https://cdn.pixabay.com/photo/2014/04/23/14/47/children-330581_960_720.jpg"
+            class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
+          </div>
+        </div>
+
+      </div>
+    
+    
+      <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space" data-aos="fade-left" >
+        <div class="col-lg-6" data-aos="fade-up">
+          <div>
+            <img style="height: 250px; width: auto;"
+            src="{{asset('images/donationimages/0011241_img2.jpg')}}"
+            class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="d-flex align-items-start">
+            <div class="icon-text">
+              <h3 class="heading" >
+                We Share Love
+              </h3>
+              <p class="h5">
+                By donating ,by distributing and by receiving you ,us and them become a family who share love.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</section>
+
+
+<section class="py-xl" >
+ 
+          <div class="container d-flex align-items-center no-padding">
+            <div class="col">
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="card bg-tertiary text-white">
+                        <div class="card-body">
+                            <h2 class="heading pt-3 pb-2 text-white">
+                              Not Enough? Just ask  <br />
+                            </h2>
+
+
+
+
+                            <form method="POST" action="{{ url('/requestsuccess') }}">
+                              <div class="form-row">
+                              {{ csrf_field() }}
+                                <div class="col-md-12 mb-3">
+                                <label for="validationServer01">First name</label>
+                                <input type="text" class="form-control " id="validationServer01" placeholder="What do we call you?" name="first_name" required>
+                                </div>
+                              </div><br>
+                              <div class="form-row">
+                                <div class="col-lg-6 mb-3">
+                                  <label for="validationServer05">Contact Number</label>
+                                  <input type="tel" value="" autocomplete="on" class="form-control " id="validationServer05" name="contact" placeholder="Contact Number">
+                                </div>
+
+                                <div class="col-lg-6 mb-3">
+                                  <label for="validationServer05">E-mail Id</label>
+                                  <input type="text" value="" autocomplete="on" class="form-control " id="validationServer05" name="email" placeholder="E-mail ID">
+                                </div>
+                              </div><br>
+
+                              <div class="form-row">
+                                <div class="col-lg-12 mb-3">
+                                <textarea name="comments" rows="8" cols="85" class="form-control" placeholder="Do you have something in mind? Let us know, we'll answer them"></textarea>
+                                </div>
+                              </div>
+
+
+
+                              <button class="btn btn-primary" type="submit">Submit form</button> &nbsp;&nbsp;&nbsp;&nbsp;
+                              <button class="btn btn-warning" type="reset">Reset</button>
+
+
+                            </form><br>
+                          </div>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+</section>
+
+
+
+
+  {{-- <!-- <span class="mask bg-primary alpha-6"></span> -->
+  <!-- <div class="container d-flex align-items-center no-padding">
+      <div class="col">
+          <div class="row">
+            <div class="col-md-12">
+                <div class="card bg-tertiary text-white">
+                    <div class="card-body">
+                        <h2 class="heading pt-3 pb-2 text-white">
+                          Need more proof &quest; Just ask<br />
+                        </h2><br><br>
+
+
+
+
+                        <form method="POST" action="{{ url('/contactsuccess') }}">
+                          <div class="form-row">
+                          {{ csrf_field() }}
+                            <div class="col-md-12 mb-3">
+                            <label for="validationServer01">First name</label>
+                            <input type="text" class="form-control " id="validationServer01" placeholder="What do we call you?" name="first_name" required>
+                            </div>
+                          </div><br>
+                          <div class="form-row">
+                            <div class="col-lg-6 mb-3">
+                              <label for="validationServer05">Contact Number</label>
+                              <input type="text" value="" autocomplete="on" class="form-control " id="validationServer05" name="contact" placeholder="Contact Number">
+                            </div>
+
+                            <div class="col-lg-6 mb-3">
+                              <label for="validationServer05">Email id</label>
+                              <input type="text" value="" autocomplete="on" class="form-control " id="validationServer05" name="email" placeholder="Email ID">
+                            </div>
+                          </div><br>
+
+                          <div class="form-row">
+                            <div class="col-lg-12 mb-3">
+                            <textarea name="comments" rows="8" cols="125" placeholder="Tell us what more do you need for your trust...."></textarea>
+                            </div>
+                          </div>
+
+
+
+                          <button class="btn btn-primary" type="submit">Submit form</button> &nbsp;&nbsp;&nbsp;&nbsp;
+                          <button class="btn btn-warning" type="reset">Reset</button>
+
+
+                        </form><br>
+                    </div>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div> --> --}}
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<br><br>
 <script>
+  AOS.init({
+    duration: 1200,
+  });
+
+
 var stepper = document.getElementById("stepper");
 function toggleVisibility(element) {
   var x = document.getElementById(element);
   if (x.style.display === "none") {
     x.style.display = "block";
+
   } else {
     x.style.display = "none";
   }
@@ -120,4 +374,42 @@ setInterval(function() {
   }
 }, 5000);
 </script>
+@endsection
+
+@section('navbar_style')
+    <style>
+        .navbar{
+            background: transparent !important;
+            
+        }
+        
+        
+        #dmenu a{
+            color: #000 !important;
+            @yeild()
+
+        }
+        @media(min-width:766px){
+            .navbar .dropdown-menu a{
+                color: #ffffff !important;
+            }
+            .container a{
+            color: #ffffff !important;
+
+            }
+        }
+        .container a{
+            color: #000 !important;
+
+        }
+        .navbar.scrolled{
+            background: #ffffff !important;
+            
+        }
+        .navbar.scrolled a{
+            color: #000 !important;
+        }
+        
+    </style>
+    
 @endsection

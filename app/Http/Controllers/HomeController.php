@@ -9,10 +9,13 @@ use Illuminate\Support\Str;
 use App\Mail\Admin\TestimonialSubmitted;
 use DB;
 use App\Donation;
+use App\Image;
 use App\Volunteer;
 use App\Partner;
 use App\Testimonial;
 use Illuminate\Support\Facades\Mail;
+
+use App\addvolunteers;
 
 
 
@@ -115,7 +118,7 @@ class HomeController extends Controller
       return view('home.work');
     }
 
-    public function volunteers(Request $request) {
+    public function volunteers() {
       // Volunteers
       /*$volunteer = new Volunteer;
       $volunteer->first_name = $request->input('first_name');
@@ -132,7 +135,12 @@ class HomeController extends Controller
 
       $volunteer->save();*/
 
-      return view('home.volunteers');
+      //return view('home.volunteers');
+  
+
+        $addvolunteersform = addvolunteers::all();
+        return view('home.volunteers')->with('addvolunteersform',$addvolunteersform);
+    
 
     }
 
@@ -191,6 +199,11 @@ class HomeController extends Controller
         notify()->success('Thank you for Contacting Us', 'Yay!');
       return view('home.volunteerssuccess');
     }
+    public function requestsuccess() {
+      //Bharath
+        notify()->success('Thank you for Contacting Us', 'Yay!');
+      return view('home.requestsuccess');
+    }
 
     public function testimonialsuccess(Request $request) {
       // Apoorv: Handle when a testimonial is submitted from the frontend form.
@@ -240,5 +253,29 @@ class HomeController extends Controller
     public function mission() {
       return view('home.mission');
     }
+    
 
+    public function donationgallery()
+    {
+        $donationData = Donation::all();
+        return view('home.donationgallery',['donationData' => $donationData]);
+    }
+    public function donationsearch(Request $request)
+    {
+        $request->validate([
+            'query'=>'required'
+        ]);
+        $query = $request->input('query');
+        //
+        $donationData = Donation::where('payments_id','like',"%$query%")->paginate(10);
+        return view('home.search-results',compact('donationData'));
+    }
+    public function show($id)
+    {
+        $donationData = Donation::find($id);
+        //dd($donationData);
+        $image = Image::where('payments_id','like',"$donationData->payments_id")->get();
+        //dd($image);
+        return view('home.donationdetails',['donationData'=>$donationData, 'image'=>$image]);
+    }
 }

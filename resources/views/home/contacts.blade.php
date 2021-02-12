@@ -6,16 +6,22 @@
   .heading3{
     padding-left: 8%;
   }
+  @media(min-width:1000px){
+      h4 span{
+          font-size: 3rem;
+      }
+      
+  }
 </style>
 
-<section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen">
+<section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen" style="background-image: url({{asset('images/subheader_contactpage.jpg')}})">
     <span class="mask bg-tertiary alpha-5"></span>
     <div class="spotlight-holder py-lg pt-lg-xl">
         <div class="container d-flex align-items-center no-padding">
             <div class="col">
                 <div class="row cols-xs-space align-items-center text-center text-md-left justify-content-start">
-                    <div class="col-7">
-                        <div class="text-left mt-5">
+                    <div class="col-4">
+                        <div class="text-left mt-2">
                           <img src="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png"
                               style="width: 200px;" class="img-fluid animated" data-animation-in="jackInTheBox"
                               data-animation-delay="1000">
@@ -25,8 +31,8 @@
               </h2> -->
                             <h4 class="lead text-white mt-3 lh-180 c-white animated" data-animation-in="fadeInUp"
                                 data-animation-delay="2500">
-                                <span style="font-size: 3rem;">#AnyQuestions?</span> <br />
-                                "We are always there to clear you."
+                                <span >#AnyQuestions?</span> <br />
+                                <p style="font-size: 1rem"> "We are always here to answer you."</p>
                             </h4>
                         </div>
                     </div>
@@ -140,10 +146,11 @@
 </div>
 </div><br>
 
+
 <div class="form-row">
-<div class="col-lg-12 mb-3">
-<textarea name="comments" rows="8" cols="125" placeholder="Comment your qoutes here..."></textarea>
-</div>
+  <div class="col-lg-12 mb-3">
+  <textarea name="comments" rows="8" cols="85" class="form-control" placeholder="Comment your qoutes here..."></textarea>
+  </div>
 </div>
 
 
@@ -186,4 +193,41 @@
       </div>
     </section>
 
+@endsection
+
+@section('navbar_style')
+    <style>
+        .navbar{
+            background: transparent !important;
+            
+        }
+        
+        
+        #dmenu a{
+            color: #000 !important;
+            @yeild()
+
+        }
+        @media(min-width:766px){
+            .navbar .dropdown-menu a{
+                color: #ffffff !important;
+            }
+            .container a{
+            color: #ffffff !important;
+
+            }
+        }
+        .container>a{
+            color: #ffffff !important;
+
+        }
+        .navbar.scrolled{
+            background: #ffffff !important;
+            
+        }
+        .navbar.scrolled a{
+            color: #000 !important;
+        }
+        
+    </style>
 @endsection

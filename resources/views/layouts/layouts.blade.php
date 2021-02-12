@@ -47,114 +47,18 @@
     <link rel="icon"
         href="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png"
         type="image/png">
-
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <style>
-        ::-webkit-scrollbar {
-            width: 14px;
-        }
+    <link rel="stylesheet" href="{{asset('assets/css/layouts.css')}}">
+        
+    @yield('navbar_style')
 
-        ::-webkit-scrollbar-thumb {
-            background-clip: content-box;
-            border: 4px solid transparent;
-            border-radius: 7px;
-            box-shadow: inset 0 0 0 10px;
-        }
-
-        ::-webkit-scrollbar-button {
-            width: 0;
-            height: 0;
-            display: none;
-        }
-
-        ::-webkit-scrollbar-corner {
-            background-color: transparent;
-        }
-
-            {
-            overflow: auto;
-            color: #00000000;
-            transition: color 0.3s;
-
-            &:hover {
-                color: #666666FF;
-            }
-        }
-
-        ::-webkit-scrollbar-track {
-            border-left: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        ::-webkit-scrollbar-track-piece:start {
-            background: transparent url("{{ asset('assets/images/backgrounds/scrollbar.png')}}") repeat-y !important;
-        }
-
-        ::-webkit-scrollbar-track-piece:end {
-            background: transparent url("{{ asset('assets/images/backgrounds/scrollbar.png')}}") repeat-y !important;
-        }
-
-        .C-nav-shadow {
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1) !important;
-        }
-
-        .C-parallax {
-            /*background-image: url("https://media.discordapp.net/attachments/530789778912837640/725054207295619123/bg2-min.png");*/
-            background-image: url("https://cdn.discordapp.com/attachments/694578470772146237/744469327096447056/icrew_feed_the_poor_1.png");
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        .C-donate-nav .nav-item .nav-link {
-            background-color: white;
-            transition: all 0.2s !important;
-        }
-
-        .C-donate-nav .nav-item .nav-link.active {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1) !important;
-            border: 1px solid rgba(0, 0, 0, 0.1) !important;
-            border-radius: 10px !important;
-        }
-
-        .C-tab-cont {
-            transition: all 0.2s ease;
-        }
-
-        .C-tab-item {
-            padding: 20px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-        }
-
-        .C-nav-bg {
-            background: rgba(0, 0, 0, 0.8);
-            background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
-            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.8)), color-stop(100%, rgba(231, 56, 39, 0)));
-            background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
-            background: -o-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
-            background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#e73827', GradientType=0);
-        }
-        .C-nav-white-bg{
-            background-color: white;
-        }
-        .C-nav-link{
-            color: white !important;
-            transition: all 0.2s;
-        }
-        .Nav-scroll-text{
-            color: black !important;
-        }
-    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     @yield('css')
     @notifyCss
 </head>
-
+ 
 <body>
     <!-- <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark bg-dark py-4"> -->
     <nav class="C-nav C-nav-bg navbar fixed-top navbar-expand-lg navbar-light" style="transition: all 0.2s;">
@@ -162,7 +66,7 @@
             <a class="C-nav-link C-brand-feed navbar-brand px-2" href="{{ env('APP_URL') }}">
                 <strong>#feed</strong>ThePoor
             </a>
-            <button class="navbar-toggler" type="button" data-action="offcanvas-open" data-target="#navbar_main"
+            <button class="navbar-toggler" type="button" data-action="offcanvas-open" data-target= "#navbar_main"
                 aria-controls="navbar_main" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="fas fa-bars"></span>
             </button>
@@ -176,20 +80,20 @@
                     <li class="nav-item dropdown">
                         <a class="C-nav-link nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1"
                             role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
-                        <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                        <div class="dropdown-menu" id="dmenu" aria-labelledby="navbar_1_dropdown_1">
                             <a class="dropdown-item" href="{{url ('/aboutus')}}">About us</a>
                             <a class="dropdown-item" href="{{url ('/work')}}">How does it work</a>
                             <a class="dropdown-item" href="{{url ('/volunteers')}}">Volunteers</a>
                             <a class="dropdown-item" href="{{url ('/partners')}}">Partners</a>
                             <a class="dropdown-item" href="{{url ('/testimonials')}}">Testimonials</a>
-                            <!-- <a class="dropdown-item" href="{{url ('/contact')}}">Contact</a> -->
+                            {{-- <!-- <a class="dropdown-item" href="{{url ('/contact')}}">Contact</a> --> --}}
                         </div>
                     </li>
                     <li class="nav-item">
                         <a class="C-nav-link nav-link" href="{{url ('/contacts')}}">Contact</a>
                     </li>
                     <a class="nav-link" href="{{ url('/money') }}">
-                        <button class="btn btn-block btn-sm bg-gradient-blue text-white btn-animated btn-animated-y">
+                        <button class="btn btn-block btn-sm bg-gradient-blue text-white btn-animated btn-animated-y" >
                             <span class="btn-inner--visible">Donate Now</span>
                             <span class="btn-inner--hidden"><i class="fas fa-arrow-right"></i></span>
                         </button>
@@ -276,6 +180,8 @@
     <script src="{{ asset('boomerang/assets/vendor/nouislider/js/nouislider.min.js')}}"></script>
     <script src="{{ asset('boomerang/assets/vendor/textarea-autosize/textarea-autosize.min.js')}}"></script>
     <!-- Theme JS -->
+    <!-- JavaScript Bundle with Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
 
     <script src="{{ asset('boomerang/assets/js/theme.js')}}"></script>
     <script>
@@ -323,7 +229,7 @@
             });
 
             $('.donate-meal-button').on('click', function (){
-              //send post request here
+              window.location.href = "{{ route('donate.money') }}/"+(total_meals*60);
             });
 
         });
@@ -333,9 +239,19 @@
     <script src="{{ asset('boomerang/assets/js/faq.js')}}"></script>
 
     <!-- testimonials JS -->
+    <link rel="text/javascript" href="{{ URL::asset('assets/js/jquery.js') }}" />
+    <link rel="text/javascript" href="{{ URL::asset('assets/js/bootstrap.min.js') }}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
     <script src="{{ asset('boomerang/assets/js/testimonials.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/swipejs/2.2.18/swipe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script>
+        $(window).scroll(function(){
+            $('nav').toggleClass('scrolled', $(this).scrollTop() > 600);
+        
+        });
+    </script>
     @yield('js')
     @notifyJs
 </body>

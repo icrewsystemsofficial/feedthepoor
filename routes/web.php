@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,8 @@ Route::get('/', 'HomeController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/coming-soon', 'HomeController@comingsoon')->name('comingsoon');
 Route::get('/mission', 'HomeController@mission')->name('mission');
+Route::post('/requestsuccess', 'HomeController@requestsuccess')->name('requestsuccess');
+
 
 //Testing the deployer.
 // Route::get('deploy', 'DeployController@index');
@@ -33,6 +36,8 @@ Route::get('/test', function () {
   Illuminate\Support\Facades\Mail::to('kashrayks@gmail.com')->send(new App\Mail\Test('pay_FT9tQdRmnYxpbx'));
 });
 
+
+
 Route::get('/logout', 'AdminController@logout');
 
 Route::get('/aboutus', 'HomeController@aboutus')->name('aboutus');
@@ -47,8 +52,9 @@ Route::get('/work', 'HomeController@work')->name('work');
 Route::get('/volunteers', 'HomeController@volunteers')->name('volunteers');
 Route::get('/partners', 'HomeController@partners')->name('partners');
 Route::get('/contacts', 'HomeController@contacts')->name('contacts');
-
-
+Route::get('/who-did-we-feed-today','HomeController@donationgallery')->name('donationgallery');
+Route::get('/who-did-we-feed-today/search-results','HomeController@donationsearch')->name('search');
+Route::get('/who-did-we-feed-today/{data}','HomeController@show')->name('show');
 
 
 
@@ -56,7 +62,6 @@ Route::get('/contacts', 'HomeController@contacts')->name('contacts');
 
 //DONATION ROUTES
 Route::get('/money/{howmuch?}', 'PaymentsController@money')->name('donate.money');
-
 
 Route::post('/process', 'PaymentsController@process')->name('donate.process.post');
 Route::get('/process/{hash?}', 'PaymentsController@process')->name('donate.process.get');
@@ -66,6 +71,8 @@ Route::post('payments/verify', 'PaymentsController@verify')->name('payments.veri
 Route::get('/invoice/{invoice}/pay', 'PaymentsController@index')->name('payments.index');
 Route::post('/request', 'PaymentsController@request');
 Route::post('/response', 'PaymentsController@response');
+Route::get('/operations', 'PdfController@index');
+Route::get('pdfGen/pdf','PdfController@pdf');
 
 
 Auth::routes();
@@ -86,4 +93,17 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     //created by SAURABH, to add manual donations
     Route::get('/add', 'AdminController@add')->name('add');
     Route::post('add/manual', 'AdminController@manual')->name('manual');
+
+    //created by Rohan
+    Route::get('/addvolunteers', 'addvolunteersController@index')->name('addvolunteers');
+    Route::post('/addvolunteers','addvolunteersController@store')->name('addimage');
+    Route::get('/addvolunteersform','addvolunteersController@display');
+    Route::get('/editform/{id}','addvolunteersController@edit');
+    Route::put('/updateform/{id}','addvolunteersController@update');
+    Route::get('/deleteform/{id}', 'addvolunteersController@delete');
+
+    //operation routes 
+    //Route::get('admin/operations', 'PdfController@index');
+
+    //Route::get('admin/operations/pdfGen', 'PdfController@pdf');
 });
