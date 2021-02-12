@@ -110,3 +110,73 @@
             height: 500px;
         }
         }
+
+        .C-parallax {
+        /*background-image: url("https://media.discordapp.net/attachments/530789778912837640/725054207295619123/bg2-min.png");*/
+        background-image: url("https://cdn.discordapp.com/attachments/694578470772146237/744469327096447056/icrew_feed_the_poor_1.png");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .C-donate-nav .nav-item .nav-link {
+        background-color: white;
+        transition: all 0.2s !important;
+    }
+
+    .C-donate-nav .nav-item .nav-link.active {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1) !important;
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        border-radius: 10px !important;
+    }
+
+    .C-tab-cont {
+        transition: all 0.2s ease;
+    }
+
+    .C-tab-item {
+        padding: 20px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+    }
+
+    .C-nav-bg {
+        background: rgba(0, 0, 0, 0.8);
+        background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.8)), color-stop(100%, rgba(231, 56, 39, 0)));
+        background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
+        background: -o-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
+        background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(231, 56, 39, 0) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#e73827', GradientType=0);
+    }
+    .C-nav-white-bg{
+        background-color: white;
+    }
+    .C-nav-link{
+        color: white !important;
+        transition: all 0.2s;
+    }
+    .Nav-scroll-text{
+        color: black !important;
+    }
+
+    /*carousal height media query */
+
+    @media screen and (min-width: 200px){
+    .extra{
+        height: 250px;
+        width : 8000px;
+        object-fit: cover;
+    }
+    }
+
+    @media screen and (min-width: 800px) {
+    .extra{
+        height: 500px;
+        object-fit: cover;
+    }
+    }
+

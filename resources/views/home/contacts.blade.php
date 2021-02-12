@@ -10,7 +10,7 @@
       h4 span{
           font-size: 3rem;
       }
-      
+
   }
 </style>
 
@@ -199,10 +199,10 @@
     <style>
         .navbar{
             background: transparent !important;
-            
+
         }
-        
-        
+
+
         #dmenu a{
             color: #000 !important;
             @yeild()
@@ -223,11 +223,11 @@
         }
         .navbar.scrolled{
             background: #ffffff !important;
-            
+
         }
         .navbar.scrolled a{
             color: #000 !important;
         }
-        
+
     </style>
 @endsection

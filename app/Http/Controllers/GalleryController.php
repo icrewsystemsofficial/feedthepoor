@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Http\Request;
-use App\Galleryimage;
+use App\GalleryImage;
 use Illuminate\Support\Facades\DB;
 
 class GalleryController extends Controller
 {
     public function gallery() {
-        $gallery = Galleryimage::all();
+        $gallery = GalleryImage::all();
         return view('home.gallery',['galleryimages'=>$gallery]);
     }
-  
+
     public function upload(Request $request){
 
         if ($request->hasFile('image')){
@@ -23,7 +23,7 @@ class GalleryController extends Controller
         }
 
         return redirect()->back()->with("success","uploaded sucessfully");
-           
+
     }
 
     public function galleryupload(){
