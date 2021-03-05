@@ -62,9 +62,6 @@
                 margin-bottom: 30px;
             }
 
-            .schadbkhcbadb{
-                color: blue;
-            }
         </style>
     </head>
     <body>
