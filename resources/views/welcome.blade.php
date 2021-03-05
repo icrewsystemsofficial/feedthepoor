@@ -63,7 +63,7 @@
             }
             
             .akdbchvsdjhv{
-                color: black;
+                color: blue;
             }
         </style>
     </head>
