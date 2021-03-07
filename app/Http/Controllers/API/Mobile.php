@@ -18,6 +18,10 @@ class Mobile extends Controller
         return response()->json($response);
     }
 
+    public function getPendingDonations(Request $request) {
+
+    }
+
     public function authenticate(Request $request) {
 
         $response = array();
@@ -25,7 +29,7 @@ class Mobile extends Controller
         $request->validate([
             'email' => 'email|required',
             'password' => 'required',
-            'ngo_id' => 'required',
+            // 'ngo_id' => 'required', NGO ID will be fetched from profile.
         ]);
 
         $email = request('email');

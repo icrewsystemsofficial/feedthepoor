@@ -106,7 +106,12 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::put('/updateform/{id}','addvolunteersController@update');
     Route::get('/deleteform/{id}', 'addvolunteersController@delete');
 
-    //operation routes 
+
+    Route::prefix('ngo')->group(function () {
+        Route::get('/', 'Admin\NGOController@index')->name('ngo.index');
+        Route::get('/view/{id?}', 'Admin\NGOController@view')->name('ngo.view');
+    });
+    //operation routes
     //Route::get('admin/operations', 'PdfController@index');
 
     //Route::get('admin/operations/pdfGen', 'PdfController@pdf');

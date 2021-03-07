@@ -27,7 +27,7 @@ Route::prefix('v1')->group(function () {
         Route::post('/authenticate', 'API\Mobile@authenticate')->name('authenticate.GenerateToken');
 
         Route::middleware('auth:sanctum')->group( function(){
-            Route::get('/test', 'API\Mobile@index');
+            Route::get('/test/{token?}', 'API\Mobile@index');
 
             Route::get('/pending-donations/{ngo_id}', 'API\Mobile@index')->name('pendindDonations');
 
