@@ -1,5 +1,7 @@
 <?php
 
+$version = preg_replace('/\s+/', '', file_get_contents('public/version'));
+
 return [
 
     /*
@@ -14,7 +16,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-
+    'version' => env('APP_VERSION', $version),
     /*
     |--------------------------------------------------------------------------
     | Application Environment
