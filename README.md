@@ -20,13 +20,13 @@ Visit our live site at: https://feedthepoor.online
 
 We have used Laragon for this project. If you do not use Laragon, then skip the steps that are related to Laragon. If you want to use Laragon then please download laragon from here: https://laragon.org/
 
-#### How to get the files cloned on your local machine
+### How to get the files cloned on your local machine
 
 1. Run this command: ```git clone https://github.com/icrewsystemsofficial/feedThePoor-v2.git``` (Clone this into the www directory under your Laragon root directory, only if you are using Laragon)
 2. Rename the directory ```feedThePoor-v2``` to ```feedThePoor```
 3. Enter (CD) into this directory
 
-#### How to set this project on your local machine?
+### How to set this project on your local machine?
 
 1. Make sure you have followed the steps above.
 2. Copy .env file using this command, ```cp .env.example .env```
@@ -42,7 +42,7 @@ We have used Laragon for this project. If you do not use Laragon, then skip the 
 
 12. Try running ```php artisan serve``` and it should spin up a development server. Go to the url given by the development server and you should see Boomerang UI kit's main page. (OPTIONAL)
 
-#### How to configure Laragon for this projects
+### How to configure Laragon for this projects
 
 Normally Laragon should autodetect the file when you clone it inside the **www directory** under laragon root directory. If it doesnot **try restarting laragon or rebooting your machine**. 
 
@@ -67,7 +67,7 @@ If it does not work, follow the steps:
 
 Done! Your project is now set up. You can now directly run it by going to your project going to the http://feedThePoor.test OR https://localhost/feedThePoor. You don't have to run ```php artisan serve``` command since Laragon will serve your project from now on.
 
-#### How to push to Github
+### How to push to Github
 
 1. Make sure you have created a branch with your first name.
 2. Use this command to stage the changes: ```git add .```
@@ -92,7 +92,7 @@ Mark your assigned tasks from "Planned" to "In Progress" while working on it, On
 
 ## Whom to contact in case of doubts?
 
-1. **Samay Bhattacharyya (Lead Software Developer)**
+### 1. Samay Bhattacharyya (Lead Software Developer)
 Email: engineering@icrewsystems.com
 
 ## Whom to contact for Copyright claims
