@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">    
-    <strong>#feedThePoor Initiative, 2020.</strong>
+    <strong>#feedThePoor Initiative, 2021.</strong>
     <br>
     <small>"Feeding the hungry is greater work than raising the dead"</small>
 </p>
