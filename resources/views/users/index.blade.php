@@ -119,10 +119,10 @@
                             <div class="clearfix"></div>
                         </a>
                     </li>
-        
-                    
-        
-                    
+
+
+
+
                     <li class="button-container">
                         <a href="https://www.creative-tim.com/product/now-ui-dashboard-laravel" target="_blank" class="btn btn-primary btn-block btn-round">Download Now</a>
                         <a href="https://now-ui-dashboard-laravel.creative-tim.com/docs/getting-started/laravel-setup.html" target="_blank" class="btn btn-default btn-block btn-round">
@@ -131,10 +131,10 @@
                         </a>
                         <a href="https://www.creative-tim.com/product/now-ui-dashboard-pro-laravel?ref=nud-free-upgrade-live" target="_blank" class="btn btn-primary btn-block btn-round"> <i class="now-ui-icons arrows-1_cloud-download-93"></i> Upgrade to PRO</a>
                     </li>
-                    
-        
+
+
                     <li class="header-title">Thank you for 95 shares!</li>
-        
+
                     <li class="button-container text-center">
                         <button id="twitter" class="btn btn-round btn-info sharrre"><i class="fab fa-twitter"></i> · 45</button>
                         <button id="facebook" class="btn btn-round btn-info sharrre"><i class="fab fa-facebook-f"></i> · 50</button>
@@ -162,7 +162,7 @@
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
           <li >
-            <a href="{{ route('home') }}">
+            <a href="{{ route('admin') }}">
               <i class="now-ui-icons design_app"></i>
               <p>{{ __('Dashboard') }}</p>
             </a>

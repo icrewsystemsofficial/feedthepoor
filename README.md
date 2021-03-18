@@ -1,62 +1,116 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
-
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <img src="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png" width="300">   
 </p>
 
-## About Laravel
+<p align="center">    
+    <strong>#feedThePoor Initiative, 2020.</strong>
+    <br>
+    <small>"Feeding the hungry is greater work than raising the dead"</small>
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Why #feedThePoor?
+<h3>"I don't know...I want to help, but who knows my money is actually being used to feed the needy?"</h3>
+This, is the first thing that haunts the mind of every good soul that wants to help. "Trust & Transparency", This is the issue we're trying to fix with the help of technology. Seeing is beliving. With our app, the donor will be able to see the happy, smiley face of an underprivledged human whom they've just fed. "Trust & Transparency"
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Visit our live site at: [https://feedthepoor.online]
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## How to setup & contribute?
 
-## Learning Laravel
+### Prerequisites
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+We have used Laragon for this project. If you do not use Laragon, then skip the steps that are related to Laragon. If you want to use Laragon then please download laragon from here: [https://laragon.org/]
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### How to get the files cloned on your local machine
 
-## Laravel Sponsors
+1. Run this command: ```git clone https://github.com/icrewsystemsofficial/feedThePoor-v2.git``` (Clone this into the www directory under your Laragon root directory, only if you are using Laragon)
+2. Rename the directory ```feedThePoor-v2``` to ```feedThePoor```
+3. Enter (CD) into this directory
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### How to set this project on your local machine?
 
-### Premium Partners
+1. Make sure you have followed the steps above.
+2. Copy .env file using this command, ```cp .env.example .env```
+3. Run composer install using this command, ```composer install```
+4. Create a seperate branch for yourself in git. ```git branch BRANCHNAME``` & ```git checkout BRANCHNAME``` -- Interns are requested not to use Master/ Main branch at all. 
+5. Generate a Key using this command ```php artisan key:generate``` 
+6. Run composer dumpautoload using this command, ```composer dumpautoload```
+7. Go to phpMyAdmin/ HeidiSQL (or any of your mysql consoles) and create a new database called 'feedThePoor'
+8. Go to .env and update the value of your database name in the field "DB_DATABASE", for example: ```DB_DATABASE=feedthepoor```
+9. Run the command ```php artisan migrate```, this will create the tables (if any)
+10. Run the command ```php artisan db:seed``` this will seed the database (if any seeders available)
+11. Change the ```ADMIN_EMAIL``` parameter in the .env file to the administrator's email ID. (OPTIONAL, only if you have mailtrap account)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+12. Try running ```php artisan serve``` and it should spin up a development server. Go to the url given by the development server and you should see Boomerang UI kit's main page. (OPTIONAL)
 
-## Contributing
+#### How to configure Laragon for this projects
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Normally Laragon should autodetect the file when you clone it inside the *www directory* under laragon root directory. If it doesnot *try restarting laragon or rebooting your machine*. 
 
-## Code of Conduct
+How to know if it worked for you? Well, open Laragon and click on "Start all", then try visiting these routes: [http://feedThePoor.test] or [http://localhost/feedThePoor]. This should load the homepage with all the CSS and JS applied. If the stying is not applied, follow steps-
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+If it does not work, follow the steps:
 
-## Security Vulnerabilities
+1. Copy the path of your Laragon root directory. In my case, its D:/Laragon/ (I will call this directory as *LARAGON_ROOT*)
+2. Open the LARAGON_ROOT and find this file and open it with notepad: ```etc\apache2\sites-enabled\00-default.conf```
+3. Add the following code inside the file. Remember, you will only append the following code and NOT replace any exsisting code with this code:
+```
+<VirtualHost *:80> 
+    DocumentRoot "LARAGON_ROOT\www\feedThePoor\public"
+    ServerName feedThePoor.test
+    ServerAlias *.feedThePoor.test
+    <Directory "LARAGON_ROOT\www\feedThePoor\public">
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Done! Your project is now set up. You can now directly run it by going to your project going to the [feedThePoor.test] OR [https://localhost/feedThePoor]. You don't have to run ```php artisan serve``` command since Laragon will serve your project from now on.
 
-## License
+#### How to push to Github
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Make sure you have created a branch with your first name.
+2. Use this command to stage the changes: ```git add .```
+3. Use this command to commit the changes: ```git commit -m "Your Commit Message"```
+4. Use this command to push the changes to remote repo: ```git push origin YOUR_BRANCH_NAME``` (Replace YOUR_BRANCH_NAME with your own branch name, i.e., your first name)
+5. Send a pull request to *MAIN* branch
+
+Make sure to push your code at the end of each day after you made your changes.
+
+Also make sure to pull the code everyday before starting work.
+
+## Rules and Best Practices
+
+1. Please *do not* send a pull request to the *PRODUCTION* branch. This branch is reserved for the production server. Any pull requests to this branch will be declined unless the pull request is from any Lead Engineer or Project Incharge
+
+2. Please *do not* merge your pull request to Main branch unless said so by the Lead Engineer/ Project Incharge.
+
+3. Write what are the new features added/ bug fixed in your commit message. Keep this message very brief.
+
+## How to report?
+Mark your assigned tasks from "Planned" to "In Progress" while working on it, Once you've committed & pushed it, change the task status to "Done". You must report your work on the commits.
+
+## Whom to contact in case of doubts?
+
+1. *Samay Bhattacharyya (Lead Software Developer)*
+Email: [mailto:engineering@icrewsystems.com]
+
+## Whom to contact for Copyright claims
+
+Please send a mail to [mailto:ceo@icrewsystems.com] in case of any copyright claims. Please note that this project is not-for-profit and open source. See our licenses for more details.
+
+## Project Development is sponsored by
+
+icrewsystems Software Engineering LLP, India <br>
+<img src="https://icrewsystems.com/logo.png" width="150">   
+
+GemHosting, United Kingdom <br>
+<img src="https://gem-hosting.com/Assets/img/logos/V4/Logo-Version-4-1500x360.png" width="150">   
+
+## Credits
+
+1. Boomerang UI: [https://github.com/webpixels/boomerang-free-bootstrap-ui-kit]
+2. NOW UI: [https://github.com/laravel-frontend-presets/now-ui-dashboard]
+3. Laravel: [https://laravel.com/]
+
+
