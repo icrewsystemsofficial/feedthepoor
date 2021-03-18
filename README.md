@@ -92,7 +92,7 @@ Mark your assigned tasks from "Planned" to "In Progress" while working on it, On
 
 ## Whom to contact in case of doubts?
 
-### 1. Samay Bhattacharyya (Lead Software Developer)
+#### 1. Samay Bhattacharyya (Lead Software Developer)
 Email: engineering@icrewsystems.com
 
 ## Whom to contact for Copyright claims
