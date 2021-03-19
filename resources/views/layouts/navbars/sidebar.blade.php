@@ -1,16 +1,16 @@
-<div class="sidebar" data-color="orange">
+<div class="sidebar" data-color="red">
   <!--
     Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
 -->
   <div class="logo">
-    <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-      {{ __('CT') }}
-    </a>
-    <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-      {{ __('Creative Tim') }}
+    <a href="javascript::void(0);"  class="logo-normal" style="padding-left: 20%; text-decoration: none; color: white; font-size: 20px; text-transform: capitalize;">
+      {{ config('app.name') }}
     </a>
   </div>
   <div class="sidebar-wrapper" id="sidebar-wrapper">
+    <p class="text-white">
+        Roshini Foundation
+    </p>
     <ul class="nav">
       <li class="@if ($activePage == 'home') active @endif">
         <a href="{{ route('admin') }}">
