@@ -1,0 +1,12 @@
+composer require realrashid/sweet-alert
+composer require barryvdh/laravel-debugbar --dev
+composer require barryvdh/laravel-dompdf
+composer require spatie/laravel-activitylog
+composer require spatie/laravel-permissions
+Instructions:
+
+1. For Laravel Notify:
+    Add styles links with @notifyCss
+    Add scripts links with @notifyJs
+    use notify() helper function inside your controller to set a toast notification for info, success, warning or error
+    Include notify partial to your master layout @include('notify::messages')

@@ -1,1 +1,28 @@
-<mxfile host="app.diagrams.net" modified="2021-03-19T07:14:46.829Z" agent="5.0 (X11)" etag="_rFawUX7pTzRArEmI-G3" version="14.4.8" type="device"><diagram id="xZaV93bSzTCuTh7gANKU" name="Page-1">1VZNj5swEP01qKeuCJBsctyk2bZSs6qaVm2PBk/AXcNEtsnXr+8YDASRjbpSDt0LMm9mPJ43bzBeuMgPHxXbZivkIL3A5wcv/OAFwXTk09MCxxqIZkENpErwGhp1wFqcwIEuLi0FB91zNIjSiG0fTLAoIDE9jCmF+77bBmU/65alMADWCZND9KfgJnNljf0O/wQizZrMI99ZctY4O0BnjOP+DAqXXrhQiKZe5YcFSMtdw0sd9/iCtT2YgsL8S8DvOcDn5BtfnfTq1wnH6vkpeD92ZzPHpmDgVL97RWUyTLFgctmhc4VlwcHu6tNb5/MFcUvgiMA/YMzRNZOVBgnKTC6dtc5pE71YioM0liqBK+d3YjJMpWCu+EUt4SRUwByMOlKcAsmM2PXPwZxk0tavY5UWjthXkOwOuWOydJkeFRYGCj5gv8/tPhMG1ltWUbCn+erzuBFSLlCiqmJDPoYpjwjXRuEznFmmQRxOJmRJJdPabd7q0W9bsgNl4HC9KUMSm4CJE7qb9FEzI/tubkbNMGRnM9PE3Zz3yRsXd/gWxB0OxP3Ac1EQ9JUV9i64ocI30wSS5JLC4+k4Gt9IyNH9/ybkaMCxF0wkZZ3HilapXa0zKpA+KP4PDcpeuMywmGm4G7oOkSe0DWOucSXtoKsbC0tpt4zBWmMJ1e1LD4lp5cms254qoCz+9wyO76piGnPlq6EKI6KaY3nBwq5orIzAQtevYJK7gVioiea6IjYwqRTBpEgLwhJqMtUfzq0EBN3jD86QC86rCb8kub4oB+ri97PYv9VnctpXV6uaM3VFl9Q1e726PHvRNP8Xle3sJy1c/gU=</diagram></mxfile>
+<mxfile>
+    <diagram id="xZaV93bSzTCuTh7gANKU" name="Page-1">
+        <mxGraphModel dx="501" dy="459" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="YBeeIcRdMzsMXzo5rkN2-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="YBeeIcRdMzsMXzo5rkN2-2" target="YBeeIcRdMzsMXzo5rkN2-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="YBeeIcRdMzsMXzo5rkN2-2" value="Frontend" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;glass=0;shadow=0;" parent="1" vertex="1">
+                    <mxGeometry x="160" y="150" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="YBeeIcRdMzsMXzo5rkN2-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="YBeeIcRdMzsMXzo5rkN2-3" target="YBeeIcRdMzsMXzo5rkN2-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="YBeeIcRdMzsMXzo5rkN2-3" value="Admin Panel" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+                    <mxGeometry x="470" y="150" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="YBeeIcRdMzsMXzo5rkN2-4" value="&lt;br&gt;Shared User database.&lt;br&gt;&lt;br&gt;Non admin users should be able to login as well. They'll login to see their data, donations, etc." style="text;html=1;fillColor=#ffe6cc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#d79b00;" parent="1" vertex="1">
+                    <mxGeometry x="180" y="260" width="420" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="210" width="120" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
