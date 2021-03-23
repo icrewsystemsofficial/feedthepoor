@@ -1,0 +1,28 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "axios": "^0.21.1",
+        "cross-env": "^7.0",
+        "imagemin-webpack-plugin": "^2.4.2",
+        "laravel-mix": "^6.0.13",
+        "laravel-mix-imagemin": "^1.0.3",
+        "lodash": "^4.17.13",
+        "resolve-url-loader": "^3.1.0",
+        "sass": "^1.15.2",
+        "sass-loader": "^8.0.0",
+        "webpack-cli": "^4.5.0"
+    },
+    "name": "feedThePoor",
+    "dependencies": {
+        "copy-webpack-plugin": "^5.1.1"
+    }
+}
