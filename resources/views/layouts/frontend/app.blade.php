@@ -42,5 +42,5 @@
 
     @yield('js')
 </body>
-
+    @yield('footer')
 </html>

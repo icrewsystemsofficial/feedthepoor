@@ -1,4 +1,5 @@
 @extends('layouts.frontend.app')
+@extends('layouts.frontend.footer')
 
 @section('meta')
 <title>
