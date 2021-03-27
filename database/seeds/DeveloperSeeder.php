@@ -50,7 +50,7 @@ class DeveloperSeeder extends Seeder
 
                         $user = User::where('email', $email)->first();
                         if (!$user) {
-                            $encPass = bcrypt($password);
+                            $encPass = $password;
                             $user = new User;
                             $user->name = $firstName;
                             $user->last_name = $lastName;
