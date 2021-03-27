@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.welcome');
-});
+Route::get('/', 'FrontendController@index')->name('frontend.index');
+Route::get('/who-did-we-feed-today', 'FrontendController@whoDidWeFeedToday')->name('frontend.whoDidWeFeedToday');
+Route::get('/about', 'FrontendController@about')->name('frontend.about');
+Route::get('/how-does-it-work', 'FrontendController@howDoesItWork')->name('frontend.howDoesItWork');
+Route::get('/volunteers', 'FrontendController@volunteers')->name('frontend.volunteers');
+Route::get('/partners', 'FrontendController@partners')->name('frontend.partners');
+Route::get('/testimonials', 'FrontendController@testimonials')->name('frontend.testimonials');
+Route::get('/gallery', 'FrontendController@gallery')->name('frontend.gallery');
 
 Route::prefix('/dashboard')->group(function () {
     Auth::routes();
@@ -25,6 +30,7 @@ Route::prefix('/dashboard')->group(function () {
 
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::put('/profile', 'ProfileController@update')->name('profile.update');
+
 });
 
 
