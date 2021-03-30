@@ -3526,3 +3526,1117 @@ Stack trace:
 #26 D:\\laragon\\www\\donation\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
 #27 {main}
 "} 
+[2021-03-25 11:05:31] local.ERROR: Use of undefined constant layouts - assumed 'layouts' (this will throw an Error in a future version of PHP) (View: D:\laragon\www\donation\resources\views\errors\404.blade.php) {"view":{"view":"D:\\laragon\\www\\donation\esources\\views/errors/404.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-360190160 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#399</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-360190160\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","exception":"<pre class=sf-dump id=sf-dump-970866746 data-indent-pad=\"  \"><span class=sf-dump-note>Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException</span> {<a class=sf-dump-ref>#397</a><samp data-depth=1 class=sf-dump-expanded>
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Symfony\\Component\\HttpKernel\\Exception\\HttpException`\">statusCode</span>: <span class=sf-dump-num>404</span>
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Symfony\\Component\\HttpKernel\\Exception\\HttpException`\">headers</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">message</span>: \"\"
+  #<span class=sf-dump-protected title=\"Protected property\">code</span>: <span class=sf-dump-num>0</span>
+  #<span class=sf-dump-protected title=\"Protected property\">file</span>: \"<span class=sf-dump-str title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\AbstractRouteCollection.php
+99 characters\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\AbstractRouteCollection.php</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">line</span>: <span class=sf-dump-num>43</span>
+  <span class=sf-dump-meta>trace</span>: {<samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\AbstractRouteCollection.php:43
+Stack level 25.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\AbstractRouteCollection.php:43</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Routing\\AbstractRouteCollection-&gt;handleMatchedRoute(Request $request, $route)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>AbstractRouteCollection-&gt;handleMatchedRoute(Request $request, $route)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\AbstractRouteCollection-&gt;handleMatchedRoute(Request $request, $route)\">    throw new NotFoundHttpException;</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteCollection.php:162
+Stack level 24.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\RouteCollection.php:162</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Routing\\RouteCollection-&gt;match(Request $request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>RouteCollection-&gt;match(Request $request)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\RouteCollection-&gt;match(Request $request)\">    return $this-&gt;handleMatchedRoute($request, $route);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php:647
+Stack level 23.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\Router.php:647</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Routing\\Router-&gt;findRoute($request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Router-&gt;findRoute($request)</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>{</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\Router-&gt;findRoute($request)\">    $this-&gt;current = $route = $this-&gt;routes-&gt;match($request);</span></code>
+      &rsaquo; 
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php:636
+Stack level 22.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\Router.php:636</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Routing\\Router-&gt;dispatchToRoute(Request $request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Router-&gt;dispatchToRoute(Request $request)</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>{</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\Router-&gt;dispatchToRoute(Request $request)\">    return $this-&gt;runRoute($request, $this-&gt;findRoute($request));</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php:625
+Stack level 21.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\Router.php:625</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Routing\\Router-&gt;dispatch(Request $request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Router-&gt;dispatch(Request $request)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\Router-&gt;dispatch(Request $request)\">    return $this-&gt;dispatchToRoute($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:166
+Stack level 20.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Kernel.php:166</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Kernel-&gt;Illuminate\\Foundation\\Http\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Kernel-&gt;Illuminate\\Foundation\\Http</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Kernel-&gt;Illuminate\\Foundation\\Http\\{closure}\">    return $this-&gt;router-&gt;dispatch($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>};</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:128
+Stack level 19.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:128</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>try {</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">    return $destination($passable);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>} catch (Throwable $e) {</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\barryvdh\\laravel-debugbar\\src\\Middleware\\InjectDebugbar.php:67
+Stack level 18.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\barryvdh\\laravel-debugbar\\</span>src\\Middleware\\InjectDebugbar.php:67</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Barryvdh\\Debugbar\\Middleware\\InjectDebugbar-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Barryvdh\\Debugbar\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>InjectDebugbar-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>    /** @var \\Illuminate\\Http\\Response $response */</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Barryvdh\\Debugbar\\Middleware\\InjectDebugbar-&gt;handle($request, Closure $next)\">    $response = $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>} catch (Exception $e) {</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 17.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21
+Stack level 16.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TransformsRequest-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 15.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21
+Stack level 14.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TransformsRequest-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 13.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php:27
+Stack level 12.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php:27</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ValidatePostSize-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 11.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php:86
+Stack level 10.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php:86</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>PreventRequestsDuringMaintenance-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 9.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php:37
+Stack level 8.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\fruitcake\\laravel-cors\\</span>src\\HandleCors.php:37</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Fruitcake\\Cors\\HandleCors-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Fruitcake\\Cors</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>HandleCors-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>if (! $this-&gt;shouldRun($request)) {</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Fruitcake\\Cors\\HandleCors-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 7.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\fideloper\\proxy\\src\\TrustProxies.php:57
+Stack level 6.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\fideloper\\proxy\\</span>src\\TrustProxies.php:57</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Fideloper\\Proxy\\TrustProxies-&gt;handle(Request $request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Fideloper\\Proxy</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TrustProxies-&gt;handle(Request $request, Closure $next)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Fideloper\\Proxy\\TrustProxies-&gt;handle(Request $request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 5.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:103
+Stack level 4.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:103</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;then(Closure $destination)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Pipeline-&gt;then(Closure $destination)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;then(Closure $destination)\">    return $pipeline($this-&gt;passable);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:141
+Stack level 3.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Kernel.php:141</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Kernel-&gt;sendRequestThroughRouter($request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Kernel-&gt;sendRequestThroughRouter($request)</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                -&gt;through($this-&gt;app-&gt;shouldSkipMiddleware() ? [] : $this-&gt;middleware)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Kernel-&gt;sendRequestThroughRouter($request)\">                -&gt;then($this-&gt;dispatchToRouter());</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:110
+Stack level 2.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Kernel.php:110</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Kernel-&gt;handle($request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Kernel-&gt;handle($request)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Kernel-&gt;handle($request)\">    $response = $this-&gt;sendRequestThroughRouter($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>} catch (Throwable $e) {</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\public\\index.php:55
+Stack level 1.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\</span>public\\index.php:55</span> {<samp data-depth=3 class=sf-dump-compact>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$response = $kernel-&gt;handle(<span class=\"sf-dump-default sf-dump-ns\">\</span></span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"\">    $request = Illuminate\\Http\\Request::capture()<span class=\"sf-dump-default sf-dump-ns\">\</span></span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>);<span class=\"sf-dump-default sf-dump-ns\">\</span></span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+  </samp>}
+</samp>}
+</pre><script>Sfdump(\"sf-dump-970866746\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"exception":"[object] (Facade\\Ignition\\Exceptions\\ViewException(code: 0): Use of undefined constant layouts - assumed 'layouts' (this will throw an Error in a future version of PHP) (View: D:\\laragon\\www\\donation\esources\\views\\errors\\404.blade.php) at D:\\laragon\\www\\donation\esources\\views/errors/404.blade.php:29)
+[stacktrace]
+#0 D:\\laragon\\www\\donation\esources\\views/errors/404.blade.php(29): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Use of undefine...', 'D:\\\\laragon\\\\www\\\\...', 29, Array)
+#1 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(107): require('D:\\\\laragon\\\\www\\\\...')
+#2 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(108): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#3 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\laragon\\\\www\\\\...', Array)
+#4 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(61): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\laragon\\\\www\\\\...', Array)
+#5 D:\\laragon\\www\\donation\\vendor\\facade\\ignition\\src\\Views\\Engines\\CompilerEngine.php(37): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#6 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(139): Facade\\Ignition\\Views\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#7 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(122): Illuminate\\View\\View->getContents()
+#8 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(91): Illuminate\\View\\View->renderContents()
+#9 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(62): Illuminate\\View\\View->render()
+#10 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(34): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#11 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(55): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 404, Array)
+#12 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(85): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 404, Array)
+#13 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(569): Illuminate\\Routing\\ResponseFactory->view('errors::404', Array, 404, Array)
+#14 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(474): Illuminate\\Foundation\\Exceptions\\Handler->renderHttpException(Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#15 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(352): Illuminate\\Foundation\\Exceptions\\Handler->prepareResponse(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#16 D:\\laragon\\www\\donation\\app\\Exceptions\\Handler.php(53): Illuminate\\Foundation\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#17 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(51): App\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#18 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(130): Illuminate\\Routing\\Pipeline->handleException(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#19 D:\\laragon\\www\\donation\\vendor\\barryvdh\\laravel-debugbar\\src\\Middleware\\InjectDebugbar.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Barryvdh\\Debugbar\\Middleware\\InjectDebugbar->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 D:\\laragon\\www\\donation\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fruitcake\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 D:\\laragon\\www\\donation\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(103): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#34 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(141): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#35 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(110): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#36 D:\\laragon\\www\\donation\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#37 {main}
+
+[previous exception] [object] (ErrorException(code: 0): Use of undefined constant layouts - assumed 'layouts' (this will throw an Error in a future version of PHP) at D:\\laragon\\www\\donation\\storage\\framework\\views\\9bf9139897d896aef5eef21669a846107a68205e.php:29)
+[stacktrace]
+#0 D:\\laragon\\www\\donation\\storage\\framework\\views\\9bf9139897d896aef5eef21669a846107a68205e.php(29): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Use of undefine...', 'D:\\\\laragon\\\\www\\\\...', 29, Array)
+#1 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(107): require('D:\\\\laragon\\\\www\\\\...')
+#2 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(108): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#3 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\laragon\\\\www\\\\...', Array)
+#4 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(61): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\laragon\\\\www\\\\...', Array)
+#5 D:\\laragon\\www\\donation\\vendor\\facade\\ignition\\src\\Views\\Engines\\CompilerEngine.php(37): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#6 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(139): Facade\\Ignition\\Views\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#7 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(122): Illuminate\\View\\View->getContents()
+#8 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(91): Illuminate\\View\\View->renderContents()
+#9 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(62): Illuminate\\View\\View->render()
+#10 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(34): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#11 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(55): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 404, Array)
+#12 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(85): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 404, Array)
+#13 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(569): Illuminate\\Routing\\ResponseFactory->view('errors::404', Array, 404, Array)
+#14 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(474): Illuminate\\Foundation\\Exceptions\\Handler->renderHttpException(Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#15 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(352): Illuminate\\Foundation\\Exceptions\\Handler->prepareResponse(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#16 D:\\laragon\\www\\donation\\app\\Exceptions\\Handler.php(53): Illuminate\\Foundation\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#17 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(51): App\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#18 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(130): Illuminate\\Routing\\Pipeline->handleException(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#19 D:\\laragon\\www\\donation\\vendor\\barryvdh\\laravel-debugbar\\src\\Middleware\\InjectDebugbar.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Barryvdh\\Debugbar\\Middleware\\InjectDebugbar->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 D:\\laragon\\www\\donation\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fruitcake\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 D:\\laragon\\www\\donation\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(103): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#34 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(141): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#35 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(110): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#36 D:\\laragon\\www\\donation\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#37 {main}
+"} 
+[2021-03-25 11:05:44] local.ERROR: Use of undefined constant layout - assumed 'layout' (this will throw an Error in a future version of PHP) (View: D:\laragon\www\donation\resources\views\errors\404.blade.php) {"view":{"view":"D:\\laragon\\www\\donation\esources\\views/errors/404.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1150926823 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#399</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1150926823\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","exception":"<pre class=sf-dump id=sf-dump-483712768 data-indent-pad=\"  \"><span class=sf-dump-note>Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException</span> {<a class=sf-dump-ref>#397</a><samp data-depth=1 class=sf-dump-expanded>
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Symfony\\Component\\HttpKernel\\Exception\\HttpException`\">statusCode</span>: <span class=sf-dump-num>404</span>
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Symfony\\Component\\HttpKernel\\Exception\\HttpException`\">headers</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">message</span>: \"\"
+  #<span class=sf-dump-protected title=\"Protected property\">code</span>: <span class=sf-dump-num>0</span>
+  #<span class=sf-dump-protected title=\"Protected property\">file</span>: \"<span class=sf-dump-str title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\AbstractRouteCollection.php
+99 characters\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\AbstractRouteCollection.php</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">line</span>: <span class=sf-dump-num>43</span>
+  <span class=sf-dump-meta>trace</span>: {<samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\AbstractRouteCollection.php:43
+Stack level 25.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\AbstractRouteCollection.php:43</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Routing\\AbstractRouteCollection-&gt;handleMatchedRoute(Request $request, $route)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>AbstractRouteCollection-&gt;handleMatchedRoute(Request $request, $route)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\AbstractRouteCollection-&gt;handleMatchedRoute(Request $request, $route)\">    throw new NotFoundHttpException;</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteCollection.php:162
+Stack level 24.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\RouteCollection.php:162</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Routing\\RouteCollection-&gt;match(Request $request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>RouteCollection-&gt;match(Request $request)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\RouteCollection-&gt;match(Request $request)\">    return $this-&gt;handleMatchedRoute($request, $route);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php:647
+Stack level 23.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\Router.php:647</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Routing\\Router-&gt;findRoute($request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Router-&gt;findRoute($request)</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>{</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\Router-&gt;findRoute($request)\">    $this-&gt;current = $route = $this-&gt;routes-&gt;match($request);</span></code>
+      &rsaquo; 
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php:636
+Stack level 22.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\Router.php:636</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Routing\\Router-&gt;dispatchToRoute(Request $request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Router-&gt;dispatchToRoute(Request $request)</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>{</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\Router-&gt;dispatchToRoute(Request $request)\">    return $this-&gt;runRoute($request, $this-&gt;findRoute($request));</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php:625
+Stack level 21.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\Router.php:625</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Routing\\Router-&gt;dispatch(Request $request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Router-&gt;dispatch(Request $request)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\Router-&gt;dispatch(Request $request)\">    return $this-&gt;dispatchToRoute($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:166
+Stack level 20.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Kernel.php:166</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Kernel-&gt;Illuminate\\Foundation\\Http\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Kernel-&gt;Illuminate\\Foundation\\Http</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Kernel-&gt;Illuminate\\Foundation\\Http\\{closure}\">    return $this-&gt;router-&gt;dispatch($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>};</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:128
+Stack level 19.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:128</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>try {</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">    return $destination($passable);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>} catch (Throwable $e) {</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\barryvdh\\laravel-debugbar\\src\\Middleware\\InjectDebugbar.php:67
+Stack level 18.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\barryvdh\\laravel-debugbar\\</span>src\\Middleware\\InjectDebugbar.php:67</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Barryvdh\\Debugbar\\Middleware\\InjectDebugbar-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Barryvdh\\Debugbar\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>InjectDebugbar-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>    /** @var \\Illuminate\\Http\\Response $response */</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Barryvdh\\Debugbar\\Middleware\\InjectDebugbar-&gt;handle($request, Closure $next)\">    $response = $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>} catch (Exception $e) {</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 17.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21
+Stack level 16.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TransformsRequest-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 15.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21
+Stack level 14.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TransformsRequest-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 13.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php:27
+Stack level 12.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php:27</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ValidatePostSize-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 11.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php:86
+Stack level 10.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php:86</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>PreventRequestsDuringMaintenance-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 9.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php:37
+Stack level 8.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\fruitcake\\laravel-cors\\</span>src\\HandleCors.php:37</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Fruitcake\\Cors\\HandleCors-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Fruitcake\\Cors</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>HandleCors-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>if (! $this-&gt;shouldRun($request)) {</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Fruitcake\\Cors\\HandleCors-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 7.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\fideloper\\proxy\\src\\TrustProxies.php:57
+Stack level 6.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\fideloper\\proxy\\</span>src\\TrustProxies.php:57</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Fideloper\\Proxy\\TrustProxies-&gt;handle(Request $request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Fideloper\\Proxy</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TrustProxies-&gt;handle(Request $request, Closure $next)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Fideloper\\Proxy\\TrustProxies-&gt;handle(Request $request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 5.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:103
+Stack level 4.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:103</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;then(Closure $destination)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Pipeline-&gt;then(Closure $destination)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;then(Closure $destination)\">    return $pipeline($this-&gt;passable);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:141
+Stack level 3.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Kernel.php:141</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Kernel-&gt;sendRequestThroughRouter($request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Kernel-&gt;sendRequestThroughRouter($request)</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                -&gt;through($this-&gt;app-&gt;shouldSkipMiddleware() ? [] : $this-&gt;middleware)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Kernel-&gt;sendRequestThroughRouter($request)\">                -&gt;then($this-&gt;dispatchToRouter());</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:110
+Stack level 2.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Kernel.php:110</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Kernel-&gt;handle($request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Kernel-&gt;handle($request)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Kernel-&gt;handle($request)\">    $response = $this-&gt;sendRequestThroughRouter($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>} catch (Throwable $e) {</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\public\\index.php:55
+Stack level 1.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\</span>public\\index.php:55</span> {<samp data-depth=3 class=sf-dump-compact>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$response = $kernel-&gt;handle(<span class=\"sf-dump-default sf-dump-ns\">\</span></span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"\">    $request = Illuminate\\Http\\Request::capture()<span class=\"sf-dump-default sf-dump-ns\">\</span></span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>);<span class=\"sf-dump-default sf-dump-ns\">\</span></span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+  </samp>}
+</samp>}
+</pre><script>Sfdump(\"sf-dump-483712768\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"exception":"[object] (Facade\\Ignition\\Exceptions\\ViewException(code: 0): Use of undefined constant layout - assumed 'layout' (this will throw an Error in a future version of PHP) (View: D:\\laragon\\www\\donation\esources\\views\\errors\\404.blade.php) at D:\\laragon\\www\\donation\esources\\views/errors/404.blade.php:29)
+[stacktrace]
+#0 D:\\laragon\\www\\donation\esources\\views/errors/404.blade.php(29): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Use of undefine...', 'D:\\\\laragon\\\\www\\\\...', 29, Array)
+#1 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(107): require('D:\\\\laragon\\\\www\\\\...')
+#2 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(108): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#3 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\laragon\\\\www\\\\...', Array)
+#4 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(61): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\laragon\\\\www\\\\...', Array)
+#5 D:\\laragon\\www\\donation\\vendor\\facade\\ignition\\src\\Views\\Engines\\CompilerEngine.php(37): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#6 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(139): Facade\\Ignition\\Views\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#7 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(122): Illuminate\\View\\View->getContents()
+#8 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(91): Illuminate\\View\\View->renderContents()
+#9 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(62): Illuminate\\View\\View->render()
+#10 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(34): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#11 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(55): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 404, Array)
+#12 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(85): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 404, Array)
+#13 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(569): Illuminate\\Routing\\ResponseFactory->view('errors::404', Array, 404, Array)
+#14 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(474): Illuminate\\Foundation\\Exceptions\\Handler->renderHttpException(Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#15 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(352): Illuminate\\Foundation\\Exceptions\\Handler->prepareResponse(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#16 D:\\laragon\\www\\donation\\app\\Exceptions\\Handler.php(53): Illuminate\\Foundation\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#17 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(51): App\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#18 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(130): Illuminate\\Routing\\Pipeline->handleException(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#19 D:\\laragon\\www\\donation\\vendor\\barryvdh\\laravel-debugbar\\src\\Middleware\\InjectDebugbar.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Barryvdh\\Debugbar\\Middleware\\InjectDebugbar->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 D:\\laragon\\www\\donation\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fruitcake\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 D:\\laragon\\www\\donation\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(103): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#34 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(141): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#35 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(110): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#36 D:\\laragon\\www\\donation\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#37 {main}
+
+[previous exception] [object] (ErrorException(code: 0): Use of undefined constant layout - assumed 'layout' (this will throw an Error in a future version of PHP) at D:\\laragon\\www\\donation\\storage\\framework\\views\\9bf9139897d896aef5eef21669a846107a68205e.php:29)
+[stacktrace]
+#0 D:\\laragon\\www\\donation\\storage\\framework\\views\\9bf9139897d896aef5eef21669a846107a68205e.php(29): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Use of undefine...', 'D:\\\\laragon\\\\www\\\\...', 29, Array)
+#1 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(107): require('D:\\\\laragon\\\\www\\\\...')
+#2 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(108): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#3 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\laragon\\\\www\\\\...', Array)
+#4 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(61): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\laragon\\\\www\\\\...', Array)
+#5 D:\\laragon\\www\\donation\\vendor\\facade\\ignition\\src\\Views\\Engines\\CompilerEngine.php(37): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#6 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(139): Facade\\Ignition\\Views\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#7 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(122): Illuminate\\View\\View->getContents()
+#8 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(91): Illuminate\\View\\View->renderContents()
+#9 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(62): Illuminate\\View\\View->render()
+#10 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(34): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#11 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(55): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 404, Array)
+#12 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(85): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 404, Array)
+#13 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(569): Illuminate\\Routing\\ResponseFactory->view('errors::404', Array, 404, Array)
+#14 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(474): Illuminate\\Foundation\\Exceptions\\Handler->renderHttpException(Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#15 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(352): Illuminate\\Foundation\\Exceptions\\Handler->prepareResponse(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#16 D:\\laragon\\www\\donation\\app\\Exceptions\\Handler.php(53): Illuminate\\Foundation\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#17 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(51): App\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#18 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(130): Illuminate\\Routing\\Pipeline->handleException(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#19 D:\\laragon\\www\\donation\\vendor\\barryvdh\\laravel-debugbar\\src\\Middleware\\InjectDebugbar.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Barryvdh\\Debugbar\\Middleware\\InjectDebugbar->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 D:\\laragon\\www\\donation\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fruitcake\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 D:\\laragon\\www\\donation\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(103): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#34 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(141): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#35 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(110): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#36 D:\\laragon\\www\\donation\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#37 {main}
+"} 
+[2021-03-25 11:16:22] local.ERROR: Use of undefined constant layout - assumed 'layout' (this will throw an Error in a future version of PHP) (View: D:\laragon\www\donation\resources\views\errors\404.blade.php) {"view":{"view":"D:\\laragon\\www\\donation\esources\\views/errors/404.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1703280262 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#399</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1703280262\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","exception":"<pre class=sf-dump id=sf-dump-1793315393 data-indent-pad=\"  \"><span class=sf-dump-note>Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException</span> {<a class=sf-dump-ref>#397</a><samp data-depth=1 class=sf-dump-expanded>
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Symfony\\Component\\HttpKernel\\Exception\\HttpException`\">statusCode</span>: <span class=sf-dump-num>404</span>
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Symfony\\Component\\HttpKernel\\Exception\\HttpException`\">headers</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">message</span>: \"\"
+  #<span class=sf-dump-protected title=\"Protected property\">code</span>: <span class=sf-dump-num>0</span>
+  #<span class=sf-dump-protected title=\"Protected property\">file</span>: \"<span class=sf-dump-str title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\AbstractRouteCollection.php
+99 characters\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\AbstractRouteCollection.php</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">line</span>: <span class=sf-dump-num>43</span>
+  <span class=sf-dump-meta>trace</span>: {<samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\AbstractRouteCollection.php:43
+Stack level 25.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\AbstractRouteCollection.php:43</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Routing\\AbstractRouteCollection-&gt;handleMatchedRoute(Request $request, $route)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>AbstractRouteCollection-&gt;handleMatchedRoute(Request $request, $route)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\AbstractRouteCollection-&gt;handleMatchedRoute(Request $request, $route)\">    throw new NotFoundHttpException;</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteCollection.php:162
+Stack level 24.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\RouteCollection.php:162</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Routing\\RouteCollection-&gt;match(Request $request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>RouteCollection-&gt;match(Request $request)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\RouteCollection-&gt;match(Request $request)\">    return $this-&gt;handleMatchedRoute($request, $route);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php:647
+Stack level 23.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\Router.php:647</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Routing\\Router-&gt;findRoute($request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Router-&gt;findRoute($request)</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>{</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\Router-&gt;findRoute($request)\">    $this-&gt;current = $route = $this-&gt;routes-&gt;match($request);</span></code>
+      &rsaquo; 
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php:636
+Stack level 22.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\Router.php:636</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Routing\\Router-&gt;dispatchToRoute(Request $request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Router-&gt;dispatchToRoute(Request $request)</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>{</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\Router-&gt;dispatchToRoute(Request $request)\">    return $this-&gt;runRoute($request, $this-&gt;findRoute($request));</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php:625
+Stack level 21.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Routing\\Router.php:625</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Routing\\Router-&gt;dispatch(Request $request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Router-&gt;dispatch(Request $request)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\Router-&gt;dispatch(Request $request)\">    return $this-&gt;dispatchToRoute($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:166
+Stack level 20.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Kernel.php:166</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Kernel-&gt;Illuminate\\Foundation\\Http\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Kernel-&gt;Illuminate\\Foundation\\Http</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Kernel-&gt;Illuminate\\Foundation\\Http\\{closure}\">    return $this-&gt;router-&gt;dispatch($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>};</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:128
+Stack level 19.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:128</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>try {</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">    return $destination($passable);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>} catch (Throwable $e) {</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\barryvdh\\laravel-debugbar\\src\\Middleware\\InjectDebugbar.php:67
+Stack level 18.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\barryvdh\\laravel-debugbar\\</span>src\\Middleware\\InjectDebugbar.php:67</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Barryvdh\\Debugbar\\Middleware\\InjectDebugbar-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Barryvdh\\Debugbar\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>InjectDebugbar-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>    /** @var \\Illuminate\\Http\\Response $response */</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Barryvdh\\Debugbar\\Middleware\\InjectDebugbar-&gt;handle($request, Closure $next)\">    $response = $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>} catch (Exception $e) {</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 17.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21
+Stack level 16.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TransformsRequest-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 15.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21
+Stack level 14.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TransformsRequest-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 13.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php:27
+Stack level 12.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php:27</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ValidatePostSize-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 11.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php:86
+Stack level 10.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php:86</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>PreventRequestsDuringMaintenance-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 9.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php:37
+Stack level 8.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\fruitcake\\laravel-cors\\</span>src\\HandleCors.php:37</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Fruitcake\\Cors\\HandleCors-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Fruitcake\\Cors</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>HandleCors-&gt;handle($request, Closure $next)</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>if (! $this-&gt;shouldRun($request)) {</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Fruitcake\\Cors\\HandleCors-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 7.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\fideloper\\proxy\\src\\TrustProxies.php:57
+Stack level 6.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\fideloper\\proxy\\</span>src\\TrustProxies.php:57</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Fideloper\\Proxy\\TrustProxies-&gt;handle(Request $request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Fideloper\\Proxy</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TrustProxies-&gt;handle(Request $request, Closure $next)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Fideloper\\Proxy\\TrustProxies-&gt;handle(Request $request, Closure $next)\">    return $next($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:167
+Stack level 5.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:167</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>{closure}</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:103
+Stack level 4.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Pipeline\\Pipeline.php:103</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Pipeline\\Pipeline-&gt;then(Closure $destination)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Pipeline-&gt;then(Closure $destination)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;then(Closure $destination)\">    return $pipeline($this-&gt;passable);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:141
+Stack level 3.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Kernel.php:141</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Kernel-&gt;sendRequestThroughRouter($request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Kernel-&gt;sendRequestThroughRouter($request)</span> &hellip;
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>                -&gt;through($this-&gt;app-&gt;shouldSkipMiddleware() ? [] : $this-&gt;middleware)</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Kernel-&gt;sendRequestThroughRouter($request)\">                -&gt;then($this-&gt;dispatchToRouter());</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:110
+Stack level 2.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Kernel.php:110</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Kernel-&gt;handle($request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Kernel-&gt;handle($request)</span> &hellip;
+      &rsaquo; 
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Kernel-&gt;handle($request)\">    $response = $this-&gt;sendRequestThroughRouter($request);</span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>} catch (Throwable $e) {</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+    <span class=sf-dump-meta title=\"D:\\laragon\\www\\donation\\public\\index.php:55
+Stack level 1.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\laragon\\www\\donation</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\</span>public\\index.php:55</span> {<samp data-depth=3 class=sf-dump-compact>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>$response = $kernel-&gt;handle(<span class=\"sf-dump-default sf-dump-ns\">\</span></span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-const title=\"\">    $request = Illuminate\\Http\\Request::capture()<span class=\"sf-dump-default sf-dump-ns\">\</span></span></code>
+      &rsaquo; <code class=\"php\"><span class=sf-dump-default>);<span class=\"sf-dump-default sf-dump-ns\">\</span></span></code>
+      <span class=sf-dump-meta>arguments</span>: { &hellip;1}
+    </samp>}
+  </samp>}
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1793315393\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"exception":"[object] (Facade\\Ignition\\Exceptions\\ViewException(code: 0): Use of undefined constant layout - assumed 'layout' (this will throw an Error in a future version of PHP) (View: D:\\laragon\\www\\donation\esources\\views\\errors\\404.blade.php) at D:\\laragon\\www\\donation\esources\\views/errors/404.blade.php:31)
+[stacktrace]
+#0 D:\\laragon\\www\\donation\esources\\views/errors/404.blade.php(31): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Use of undefine...', 'D:\\\\laragon\\\\www\\\\...', 31, Array)
+#1 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(107): require('D:\\\\laragon\\\\www\\\\...')
+#2 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(108): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#3 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\laragon\\\\www\\\\...', Array)
+#4 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(61): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\laragon\\\\www\\\\...', Array)
+#5 D:\\laragon\\www\\donation\\vendor\\facade\\ignition\\src\\Views\\Engines\\CompilerEngine.php(37): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#6 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(139): Facade\\Ignition\\Views\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#7 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(122): Illuminate\\View\\View->getContents()
+#8 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(91): Illuminate\\View\\View->renderContents()
+#9 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(62): Illuminate\\View\\View->render()
+#10 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(34): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#11 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(55): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 404, Array)
+#12 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(85): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 404, Array)
+#13 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(569): Illuminate\\Routing\\ResponseFactory->view('errors::404', Array, 404, Array)
+#14 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(474): Illuminate\\Foundation\\Exceptions\\Handler->renderHttpException(Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#15 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(352): Illuminate\\Foundation\\Exceptions\\Handler->prepareResponse(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#16 D:\\laragon\\www\\donation\\app\\Exceptions\\Handler.php(53): Illuminate\\Foundation\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#17 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(51): App\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#18 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(130): Illuminate\\Routing\\Pipeline->handleException(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#19 D:\\laragon\\www\\donation\\vendor\\barryvdh\\laravel-debugbar\\src\\Middleware\\InjectDebugbar.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Barryvdh\\Debugbar\\Middleware\\InjectDebugbar->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 D:\\laragon\\www\\donation\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fruitcake\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 D:\\laragon\\www\\donation\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(103): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#34 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(141): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#35 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(110): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#36 D:\\laragon\\www\\donation\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#37 {main}
+
+[previous exception] [object] (ErrorException(code: 0): Use of undefined constant layout - assumed 'layout' (this will throw an Error in a future version of PHP) at D:\\laragon\\www\\donation\\storage\\framework\\views\\9bf9139897d896aef5eef21669a846107a68205e.php:31)
+[stacktrace]
+#0 D:\\laragon\\www\\donation\\storage\\framework\\views\\9bf9139897d896aef5eef21669a846107a68205e.php(31): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Use of undefine...', 'D:\\\\laragon\\\\www\\\\...', 31, Array)
+#1 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(107): require('D:\\\\laragon\\\\www\\\\...')
+#2 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(108): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#3 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\laragon\\\\www\\\\...', Array)
+#4 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(61): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\laragon\\\\www\\\\...', Array)
+#5 D:\\laragon\\www\\donation\\vendor\\facade\\ignition\\src\\Views\\Engines\\CompilerEngine.php(37): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#6 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(139): Facade\\Ignition\\Views\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#7 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(122): Illuminate\\View\\View->getContents()
+#8 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(91): Illuminate\\View\\View->renderContents()
+#9 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(62): Illuminate\\View\\View->render()
+#10 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(34): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#11 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(55): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 404, Array)
+#12 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(85): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 404, Array)
+#13 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(569): Illuminate\\Routing\\ResponseFactory->view('errors::404', Array, 404, Array)
+#14 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(474): Illuminate\\Foundation\\Exceptions\\Handler->renderHttpException(Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#15 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(352): Illuminate\\Foundation\\Exceptions\\Handler->prepareResponse(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#16 D:\\laragon\\www\\donation\\app\\Exceptions\\Handler.php(53): Illuminate\\Foundation\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#17 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(51): App\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#18 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(130): Illuminate\\Routing\\Pipeline->handleException(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException))
+#19 D:\\laragon\\www\\donation\\vendor\\barryvdh\\laravel-debugbar\\src\\Middleware\\InjectDebugbar.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Barryvdh\\Debugbar\\Middleware\\InjectDebugbar->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 D:\\laragon\\www\\donation\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fruitcake\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 D:\\laragon\\www\\donation\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(103): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#34 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(141): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#35 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(110): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#36 D:\\laragon\\www\\donation\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#37 {main}
+"} 
+[2021-03-26 03:25:54] local.ERROR: Use of undefined constant layouts - assumed 'layouts' (this will throw an Error in a future version of PHP) (View: D:\laragon\www\donation\resources\views\layouts\frontend\homepagecontent.blade.php) {"view":{"view":"D:\\laragon\\www\\donation\esources\\views/layouts/frontend/homepagecontent.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1185274049 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#430</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1185274049\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"exception":"[object] (Facade\\Ignition\\Exceptions\\ViewException(code: 0): Use of undefined constant layouts - assumed 'layouts' (this will throw an Error in a future version of PHP) (View: D:\\laragon\\www\\donation\esources\\views\\layouts\\frontend\\homepagecontent.blade.php) at D:\\laragon\\www\\donation\esources\\views/layouts/frontend/homepagecontent.blade.php:35)
+[stacktrace]
+#0 D:\\laragon\\www\\donation\esources\\views/layouts/frontend/homepagecontent.blade.php(35): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Use of undefine...', 'D:\\\\laragon\\\\www\\\\...', 35, Array)
+#1 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(107): require('D:\\\\laragon\\\\www\\\\...')
+#2 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(108): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#3 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\laragon\\\\www\\\\...', Array)
+#4 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(61): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\laragon\\\\www\\\\...', Array)
+#5 D:\\laragon\\www\\donation\\vendor\\facade\\ignition\\src\\Views\\Engines\\CompilerEngine.php(37): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#6 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(139): Facade\\Ignition\\Views\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#7 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(122): Illuminate\\View\\View->getContents()
+#8 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(91): Illuminate\\View\\View->renderContents()
+#9 D:\\laragon\\www\\donation\esources\\views/layouts/frontend/app.blade.php(26): Illuminate\\View\\View->render()
+#10 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(107): require('D:\\\\laragon\\\\www\\\\...')
+#11 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(108): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#12 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\laragon\\\\www\\\\...', Array)
+#13 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(61): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\laragon\\\\www\\\\...', Array)
+#14 D:\\laragon\\www\\donation\\vendor\\facade\\ignition\\src\\Views\\Engines\\CompilerEngine.php(37): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#15 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(139): Facade\\Ignition\\Views\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#16 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(122): Illuminate\\View\\View->getContents()
+#17 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(91): Illuminate\\View\\View->renderContents()
+#18 D:\\laragon\\www\\donation\esources\\views/frontend/welcome.blade.php(33): Illuminate\\View\\View->render()
+#19 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(107): require('D:\\\\laragon\\\\www\\\\...')
+#20 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(108): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#21 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\laragon\\\\www\\\\...', Array)
+#22 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(61): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\laragon\\\\www\\\\...', Array)
+#23 D:\\laragon\\www\\donation\\vendor\\facade\\ignition\\src\\Views\\Engines\\CompilerEngine.php(37): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#24 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(139): Facade\\Ignition\\Views\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#25 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(122): Illuminate\\View\\View->getContents()
+#26 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(91): Illuminate\\View\\View->renderContents()
+#27 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(62): Illuminate\\View\\View->render()
+#28 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(34): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#29 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(789): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#30 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(759): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#31 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(693): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#32 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(128): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#33 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#34 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#35 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#36 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#38 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#41 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(103): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(695): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#48 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(670): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#49 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(636): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#50 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(625): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#51 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(166): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#52 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(128): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#53 D:\\laragon\\www\\donation\\vendor\\barryvdh\\laravel-debugbar\\src\\Middleware\\InjectDebugbar.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Barryvdh\\Debugbar\\Middleware\\InjectDebugbar->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#58 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#59 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#60 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#61 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#62 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#63 D:\\laragon\\www\\donation\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#64 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fruitcake\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#65 D:\\laragon\\www\\donation\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#66 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#67 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(103): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#68 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(141): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#69 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(110): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#70 D:\\laragon\\www\\donation\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#71 {main}
+
+[previous exception] [object] (ErrorException(code: 0): Use of undefined constant layouts - assumed 'layouts' (this will throw an Error in a future version of PHP) at D:\\laragon\\www\\donation\\storage\\framework\\views\\49ecc96142adcbda7abc6e7af7ac90483500457e.php:35)
+[stacktrace]
+#0 D:\\laragon\\www\\donation\\storage\\framework\\views\\49ecc96142adcbda7abc6e7af7ac90483500457e.php(35): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Use of undefine...', 'D:\\\\laragon\\\\www\\\\...', 35, Array)
+#1 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(107): require('D:\\\\laragon\\\\www\\\\...')
+#2 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(108): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#3 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\laragon\\\\www\\\\...', Array)
+#4 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(61): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\laragon\\\\www\\\\...', Array)
+#5 D:\\laragon\\www\\donation\\vendor\\facade\\ignition\\src\\Views\\Engines\\CompilerEngine.php(37): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#6 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(139): Facade\\Ignition\\Views\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#7 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(122): Illuminate\\View\\View->getContents()
+#8 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(91): Illuminate\\View\\View->renderContents()
+#9 D:\\laragon\\www\\donation\\storage\\framework\\views\\861e8ef9e00243ca7dbf48c87560565d4d7d90e8.php(26): Illuminate\\View\\View->render()
+#10 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(107): require('D:\\\\laragon\\\\www\\\\...')
+#11 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(108): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#12 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\laragon\\\\www\\\\...', Array)
+#13 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(61): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\laragon\\\\www\\\\...', Array)
+#14 D:\\laragon\\www\\donation\\vendor\\facade\\ignition\\src\\Views\\Engines\\CompilerEngine.php(37): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#15 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(139): Facade\\Ignition\\Views\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#16 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(122): Illuminate\\View\\View->getContents()
+#17 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(91): Illuminate\\View\\View->renderContents()
+#18 D:\\laragon\\www\\donation\\storage\\framework\\views\\3cb529ce94e18f60eef8488cf8f87a9ceb79aab0.php(33): Illuminate\\View\\View->render()
+#19 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(107): require('D:\\\\laragon\\\\www\\\\...')
+#20 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(108): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#21 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\laragon\\\\www\\\\...', Array)
+#22 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(61): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\laragon\\\\www\\\\...', Array)
+#23 D:\\laragon\\www\\donation\\vendor\\facade\\ignition\\src\\Views\\Engines\\CompilerEngine.php(37): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#24 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(139): Facade\\Ignition\\Views\\Engines\\CompilerEngine->get('D:\\\\laragon\\\\www\\\\...', Array)
+#25 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(122): Illuminate\\View\\View->getContents()
+#26 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(91): Illuminate\\View\\View->renderContents()
+#27 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(62): Illuminate\\View\\View->render()
+#28 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(34): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#29 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(789): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#30 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(759): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#31 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(693): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#32 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(128): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#33 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#34 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#35 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#36 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#38 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#41 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(103): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(695): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#48 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(670): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#49 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(636): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#50 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(625): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#51 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(166): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#52 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(128): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#53 D:\\laragon\\www\\donation\\vendor\\barryvdh\\laravel-debugbar\\src\\Middleware\\InjectDebugbar.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Barryvdh\\Debugbar\\Middleware\\InjectDebugbar->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#58 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#59 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#60 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#61 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#62 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#63 D:\\laragon\\www\\donation\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#64 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fruitcake\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#65 D:\\laragon\\www\\donation\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#66 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#67 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(103): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#68 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(141): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#69 D:\\laragon\\www\\donation\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(110): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#70 D:\\laragon\\www\\donation\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#71 {main}
+"} 

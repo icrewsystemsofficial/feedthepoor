@@ -1,5 +1,4 @@
-@section('footer')
-<footer class="pt-5 pb-3 footer  footer-dark bg-tertiary">
+<footer class="pt-5 pb-3 footer footer-dark bg-tertiary">
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-4">
@@ -51,4 +50,3 @@
         </div>
     </div>
 </footer>
-@endsection

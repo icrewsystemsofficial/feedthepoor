@@ -23,7 +23,6 @@
 
     @include('layouts.frontend.nav')
 
-    @yield('content')
 
     <!-- Core -->
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
@@ -39,8 +38,9 @@
     <script src="{{asset('vendor/textarea-autosize/textarea-autosize.min.js')}}"></script>
     <!-- Theme JS -->
     <script src="{{asset('js/theme.js')}}"></script>
-
+    @yield('content')
     @yield('js')
+    @yield('404errorcontent')
 </body>
-    @yield('footer')
+    @include('layouts.frontend.footer')
 </html>

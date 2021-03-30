@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('frontend.welcome');
+    return view('frontend.index');
 });
 
 Route::prefix('/dashboard')->group(function () {
