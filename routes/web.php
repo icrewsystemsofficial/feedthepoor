@@ -21,6 +21,9 @@ Route::get('/volunteers', 'FrontendController@volunteers')->name('frontend.volun
 Route::get('/partners', 'FrontendController@partners')->name('frontend.partners');
 Route::get('/testimonials', 'FrontendController@testimonials')->name('frontend.testimonials');
 Route::get('/gallery', 'FrontendController@gallery')->name('frontend.gallery');
+Route::get('/contact', 'FrontendController@contact')->name('frontend.contact');
+Route::get('/contact', 'ContactController@index')->name('contact');
+Route::put('/contact', 'ContactController@register')->name('contact.register');
 
 Route::prefix('/dashboard')->group(function () {
     Auth::routes();

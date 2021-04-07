@@ -8,6 +8,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\User;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class DeveloperSeeder extends Seeder
 {
@@ -21,15 +22,18 @@ class DeveloperSeeder extends Seeder
         if ($shouldSeed) {
             $user = User::where('email', $email)->first();
             if (!$user) {
-                $encPass = bcrypt($password);
-                $user = new User;
-                $user->name = $firstName;
-                $user->last_name = $lastName;
-                $user->email = $email;
-                $user->email_verified_at = now();
-                $user->password =  $encPass;
-                $user->save();
-                $user->assignRole('admin');
+                $encPass = Hash::make($password);
+                DB::table('users')->insert([
+                    'name' => $firstName,
+                    'last_name' => $lastName,
+                    'email' => $email,
+                    'email_verified_at' => now(),
+                    'password' => $encPass,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+                $usern = User::where('email', $email)->first();
+                $usern->assignRole('admin');
                 Storage::disk('public')->append('Developers.txt', $firstName . " " . $lastName . " " . $email . " " . $encPass);
 
                 echo "\nUser: " . $firstName . " " . $lastName . " created.\n";
@@ -51,14 +55,17 @@ class DeveloperSeeder extends Seeder
                         $user = User::where('email', $email)->first();
                         if (!$user) {
                             $encPass = $password;
-                            $user = new User;
-                            $user->name = $firstName;
-                            $user->last_name = $lastName;
-                            $user->email = $email;
-                            $user->email_verified_at = now();
-                            $user->password =  $encPass;
-                            $user->save();
-                            $user->assignRole('admin');
+                            DB::table('users')->insert([
+                                'name' => $firstName,
+                                'last_name' => $lastName,
+                                'email' => $email,
+                                'email_verified_at' => now(),
+                                'password' => $encPass,
+                                'created_at' => now(),
+                                'updated_at' => now(),
+                            ]);
+                            $usern = User::where('email', $email)->first();
+                            $usern->assignRole('admin');
                             echo "\nUser: " . $firstName . " " . $lastName . " created.\n";
                         } else {
                             echo "\nUser already exists!\n";
