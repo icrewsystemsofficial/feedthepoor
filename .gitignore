@@ -9,3 +9,5 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+/database/migrations/*_create_activity_log_table.php
+/database/migrations/*_create_permission_tables.php
