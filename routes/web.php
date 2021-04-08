@@ -21,12 +21,20 @@ Route::get('/volunteers', 'FrontendController@volunteers')->name('frontend.volun
 Route::get('/partners', 'FrontendController@partners')->name('frontend.partners');
 Route::get('/testimonials', 'FrontendController@testimonials')->name('frontend.testimonials');
 Route::get('/gallery', 'FrontendController@gallery')->name('frontend.gallery');
+Route::get('/contact', 'FrontendController@contact')->name('frontend.contact');
+Route::get('/contact', 'ContactController@index')->name('contact');
+Route::put('/contact', 'ContactController@register')->name('contact.register');
 
 Route::prefix('/dashboard')->group(function () {
     Auth::routes();
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/testimonial', 'TestimonialController@index')->name('testimonial');
+    Route::post('/testimonial', 'TestimonialController@addData')->name('testimonial');
+
+    Route::get('/contacts', 'ContactadminController@index')->name('contactadmin');
+    Route::get('/contacts', 'ContactadminController@fetch')->name('contactadmin.fetch');
+    //Route::put('/contactadmin', 'ContactadminController@update')->name('contactadmin.update');
 
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::put('/profile', 'ProfileController@update')->name('profile.update');

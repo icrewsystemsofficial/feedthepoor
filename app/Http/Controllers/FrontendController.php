@@ -37,4 +37,7 @@ class FrontendController extends Controller
     public function gallery(){
         return view('frontend.gallery');
     }
+    public function contact(){
+        return view('frontend.contact');
+    }
 }
