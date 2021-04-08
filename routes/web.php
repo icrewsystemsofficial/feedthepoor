@@ -32,6 +32,10 @@ Route::prefix('/dashboard')->group(function () {
     Route::get('/testimonial', 'TestimonialController@index')->name('testimonial');
     Route::post('/testimonial', 'TestimonialController@addData')->name('testimonial');
 
+    Route::get('/contacts', 'ContactadminController@index')->name('contactadmin');
+    Route::get('/contacts', 'ContactadminController@fetch')->name('contactadmin.fetch');
+    //Route::put('/contactadmin', 'ContactadminController@update')->name('contactadmin.update');
+
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::put('/profile', 'ProfileController@update')->name('profile.update');
 
