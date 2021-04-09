@@ -31,27 +31,23 @@
         $('#fstatus').val(modal_data[6]);
     });
 
-    $(document).on('click', '#footer_action_button', function () {
+ $(document).on('click', '#footer_action_button', function () {
         $.ajax({
             type: 'post',
-            url: '/contactadmin',
+            url: 'update',
             data: {
                 '_token': $('input[name=_token]').val(),
                 'id': $("#fid").val(),
                 'name': $('#fname').val(),
                 'email': $('#femail').val(),
-                'enquire': $('#enquiry').val(),
+                'enquire': $('#fenquiry').val(),
                 'reply': $('#freply').val(),
                 'files': $('#ffiles').val(),
                 'status': $('#fstatus').val()
             },
             success: function (data) {
-                $('#item' + data.id).replaceWith(" < tr class= 'item" + data.id + "' ><td>" +
-                    data.id + "</td><td>" + data.name +
-                    "</td><td>" + data.email + "</td><td>" + data.enquiry + "</td><td>" +
-                    data.reply + "</td><td>" + data.files + "</td><td>" + data.status +
-                    "</td><td><button class='edit-modal btn btn-info' data-info='" + data.id + "," + data.first_name + "," + data.last_name + "," + data.email + "," + data.gender + "," + data.country + "," + data.salary + "'><span class='glyphicon glyphicon-edit'></span> Edit</button>");
-
+                console.log("sucess");
+              
             }
         });
     });
@@ -74,7 +70,10 @@
     </ul>
 </div>
 @endif
-
+<!--@if(Session::has('message'))
+    <div class="alert alert-success" role="alert"></div>
+    {{ Session::get('message') }}
+@endif-->
 <table class="table" id="contacts">
     <thead>
         <tr>
@@ -112,15 +111,16 @@
 <div id="editdata" class="modal fade" role="dialog" aria-labelledby="editdata" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Edit</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="hidden" name="_method" value="PUT">
-                    <div class="form-group">
+                
+                <form  enctype="multipart/form-data"  autocomplete="off">
+                    {{csrf_field()}}                  
+      <div class="form-group">
                         <label class="control-label col-sm2" for="id">ID</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="fid" disabled>
@@ -161,26 +161,25 @@
                         <label class="control-label col-sm2" for="status">Status</label>
                         <div class="col-sm-10">
                             <select class="form-control" id="fstatus">
-                                <option value="" disabled selected>Choose your option</option>
-                                <option value=""></option>
-                                <option value=""></option>
-                                <option value=""></option>
-                                <option value=""></option>
-                                <option value=""></option>
-
-
+                                <option value="Confirmed"  selected>Confirmed</option>
+                                <option value="Processing">Processing</option>
+                                <option value="Processed">Processed</option>
+                                <option value="Delayed">Delayed</option>
+                                <option value="Ignore">Ignore</option>
+                                <option value="Assistance Required">Assistance Required</option>
                             </select>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" data-dismiss="modal">
+                            <span id="footer_action_button" class="glyphicon glyphicon">Update</span>
+                        </button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-remove">Close</span>
+                        </button>
+                    </div>
                 </form>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">
-                        <span id="footer_action_button" class="glyphicon glyphicon">Update</span>
-                    </button>
-                    <button type="button" class="btn btn-warning" data-dismiss="modal">
-                        <span class="glyphicon glyphicon-remove">Close</span>
-                    </button>
-                </div>
+
             </div>
         </div>
     </div>
