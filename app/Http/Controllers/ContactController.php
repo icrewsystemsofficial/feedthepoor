@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\contact;
+use App\Contact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -22,7 +22,7 @@ class ContactController extends Controller
         ]);
 
 
-    $contact =new contact;
+    $contact =new Contact;
         $contact->name = $request->input('name');
         $contact->email = $request->input('email');
         $contact->message = $request->input('message');

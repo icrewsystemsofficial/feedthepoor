@@ -15,27 +15,26 @@ class ContactAdminController extends Controller
     {
         $this->middleware('auth');
     }
+    public function index1($id){
+        //return view('dashboard.contact_admin_edit');
+      //  return Contact::find($id);
+        $data=Contact::find($id);
+        return view('dashboard.contact_admin_edit',compact('data'));
+    
+    }
 
     public function fetch(){
-        $data = contact::all();
+        $data = Contact::all();
         return view ('dashboard.contact_admin' )->with('data', $data );
     }
-     public function update(Request $req){
-        $data = contact::find($req->id);
-        $data->name = ($req->name);
-        $data->email =($req->email);
-        $data->reply= ($req->reply);
-        //$data->files= ($req->files)->getClientOriginalName();
-        $data->status= ($req->status);
+     public function update(Request $req){ 
+        $data=Contact::find($req->id);
+        $data->reply=$req->input('reply');
+        $data->files=$req->file('files')->getClientOriginalName();
+        $data->status= $req->input('status');
         $data->save();
-        dd($data);
-
-        $mail=($req->email);
-        dd($mail) ;
-        return  $req->files('files')->store('docs');
-        $data=[ 'file'=>$req->files('files')];
-        //Mail::to($mail)->send(new Contactmail($data));
-        //return redirect()->route('contact')->withSuccess('contact updated successfully.');
+        $req->file('files')->store('storage');
+       
     }
 
 }

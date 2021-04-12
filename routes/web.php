@@ -33,10 +33,11 @@ Route::prefix('/dashboard')->group(function () {
 
     Route::get('/contacts', 'ContactadminController@index')->name('contactadmin');
     Route::get('/contacts', 'ContactadminController@fetch')->name('contactadmin.fetch');
-    Route::post('/update', 'ContactadminController@update');
+    Route::get('/edit/{id}', 'ContactadminController@index1')->name('contactadmin');
+    Route::put('/contacts', 'ContactAdminController@update')->name('contactadmin.update');
 
     Route::get('/profile', 'ProfileController@index')->name('profile');
-    Route::post('/profile', 'ProfileController@update')->name('profile.update');
+    Route::put('/profile', 'ProfileController@update')->name('profile.update');
 
 });
 
