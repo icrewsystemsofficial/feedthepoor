@@ -10,7 +10,9 @@ class ContactController extends Controller
     {
         $this->middleware('guest');
     }
-
+    public function index(){
+        return view('frontend.contact');
+    }
     public function register(Request $request)
     {
         $request->validate([

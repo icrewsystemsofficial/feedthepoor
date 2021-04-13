@@ -27,16 +27,16 @@
 <BR>
 <BR>
 
-<div class="bg-white"> 
+<div class="bg-white">
                 <div class="flex main-title p-5 text-center">
                     <h1>Contact Form</h1>
                     <p>
                         Fill this up and we'll be right with you within the next 24-48 working hours.
                     </p>
-                </div>           
+                </div>
 <div class="contact-form padding-top60 padding-bottom60 bg-gray-700">
         <div class="custom-width">
-                
+
             <div class="row">
                 <div class="col-6 m-5" wfd-id="102">
                     <img style="height: 350px; width: auto;" src="https://cdn.discordapp.com/attachments/741259606512107602/745210919029702716/20200818_144926.jpg" class="img-center img-fluid rounded z-depth-3 z-depth-3" alt="">
@@ -58,7 +58,7 @@
                                         <textarea class="form-control form-control-user" name="message" placeholder="Your Message" rows="5" required></textarea>
                                     </div>
                                     <div class="form-group ml-3 mr-3">
-                                        <div class="g-recaptcha" data-sitekey="6LccmJ0aAAAAANC3BiSiBOLmaUCz9donN4zAEXD7"></div> 
+                                        <div class="g-recaptcha" data-sitekey="6LccmJ0aAAAAANC3BiSiBOLmaUCz9donN4zAEXD7"></div>
                                     </div>
                                     <div class="form-group ml-3 mr-3">
                                         <button class="btn  btn-large"> <span class="fa fa-envelope"></span>
@@ -67,15 +67,14 @@
                                         </button>
                                     </div>
                     </form>
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>
- </div> 
- </div> 
+ </div>
+ </div>
  <br>
  <br>
- <br>                             
+ <br>
 @endsection
 
-              
