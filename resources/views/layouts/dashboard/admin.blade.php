@@ -59,7 +59,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Icrewsystems 2021</span>
+                    <span>Copyright &copy; Alejandro RH 2020</span>
                 </div>
             </div>
         </footer>
@@ -98,7 +98,8 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+<!-- <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script> -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
