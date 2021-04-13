@@ -20,21 +20,22 @@ class ContactAdminController extends Controller
       //  return Contact::find($id);
         $data=Contact::find($id);
         return view('dashboard.contact_admin_edit',compact('data'));
-    
+
     }
 
     public function fetch(){
         $data = Contact::all();
         return view ('dashboard.contact_admin' )->with('data', $data );
     }
-     public function update(Request $req){ 
+
+    public function update(Request $req){
         $data=Contact::find($req->id);
         $data->reply=$req->input('reply');
         $data->files=$req->file('files')->getClientOriginalName();
         $data->status= $req->input('status');
         $data->save();
         $req->file('files')->store('storage');
-       
+
     }
 
 }
