@@ -20,7 +20,7 @@
 
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="#">Contact</a>
+                <a class="nav-link text-dark" href="/contact">Contact</a>
             </li>
         </ul>
         <!--button type="button" style="margin-right:150px;" class="btn  btn-primary btn-sm btn-animated btn-animated-y">
