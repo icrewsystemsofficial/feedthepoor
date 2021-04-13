@@ -22,6 +22,7 @@
 </head>
 <body class="bg-gradient-primary min-vh-100 d-flex justify-content-center align-items-center">
 @include('sweetalert::alert')
+@notifyCss
 
 @yield('main-content')
 
@@ -29,5 +30,9 @@
 <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+@include('notify::messages')
+
+<x:notify-messages />
+@notifyJs
 </body>
 </html>

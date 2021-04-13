@@ -31,11 +31,16 @@ class ContactAdminController extends Controller
     public function update(Request $req){
         $data=Contact::find($req->id);
         $data->reply=$req->input('reply');
-        $data->files=$req->file('files')->getClientOriginalName();
+
+        if($req->hasFile('files')){
+            $data->files=$req->file('files')->getClientOriginalName();
+            $req->file('files')->store('storage');
+        }
+
         $data->status= $req->input('status');
         $data->save();
-        $req->file('files')->store('storage');
-
+        notify()->success("Successfully Noted!","Reply");
+        return redirect(route('contactadmin.fetch'));
     }
 
 }
