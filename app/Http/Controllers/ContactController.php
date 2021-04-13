@@ -10,9 +10,7 @@ class ContactController extends Controller
     {
         $this->middleware('guest');
     }
-    public function index(){
-        return view('frontend.contact');
-    }
+
     public function register(Request $request)
     {
         $request->validate([
@@ -33,6 +31,6 @@ class ContactController extends Controller
 
         return redirect()->route('contact')->withSuccess('Profile updated successfully.');
     }
-      
-    
+
+
 }
