@@ -10,27 +10,28 @@ use Illuminate\Queue\SerializesModels;
 class Contactmail extends Mailable
 {
     use Queueable, SerializesModels;
-protected $data;
+    public $data;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
+
     public function __construct($data)
     {
-        $this->data=$data; 
-       }
+        $this->data=$data;
+    }
 
     /**
      * Build the message.
      *
      * @return $this
      */
+
     public function build()
     {
-        return $this->subject['Response Mail']
-                   ->attach($this->data['file']->getRealPath(),[
-                       'as' => $this->data['file']->getClientOriginalName()
-                   ]) ;
+            return $this->subject('Response Mail')->markdown('emails.contact.autoreply')->with('data', $this->data);
+
     }
 }

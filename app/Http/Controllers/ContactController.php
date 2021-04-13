@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Contact;
+use App\Mail\Contactmail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -30,8 +32,9 @@ class ContactController extends Controller
         $contact->reply = "";
         $contact->status = "";
         $contact->save();
-
-        return redirect()->route('contact')->withSuccess('Profile updated successfully.');
+        Mail::to($contact->email)->send(new Contactmail($contact));
+        notify()->success("Your message has been saved!","Success");
+        return redirect()->route('contact');
     }
 
 

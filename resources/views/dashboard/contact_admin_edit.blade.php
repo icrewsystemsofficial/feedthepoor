@@ -37,7 +37,7 @@
     </ul>
 </div>
 @endif
-                
+
                 <form action="{{ route('contactadmin.update') }}" method="post" enctype="multipart/form-data"  autocomplete="off">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="_method" value="PUT">
@@ -66,8 +66,8 @@
                     <div class="form-group">
                         <label class="control-label col-sm2" for="reply">Reply</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" name="reply" placeholder="Your Reply" value="{{ $data->reply }}" rows="5"
-                                required></textarea>
+                            <textarea class="form-control" name="reply" placeholder="Your Reply" rows="5"
+                                required>{{ $data->reply }}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -92,6 +92,6 @@
                         <button type="submit" class="btn btn-success" data-dismiss="modal">
                             <span id="footer_action_button" class="glyphicon glyphicon">Update</span>
                         </button>
-                       
+
                 </form>
 @endsection

@@ -90,6 +90,7 @@
     </style>
 
     @yield('css')
+    @notifyCss
 
 </head>
 
@@ -167,6 +168,10 @@
     </script>
 
     @yield('js')
+    @include('notify::messages')
+        // Laravel 7 or greater
+    <x:notify-messages />
+    @notifyJs
 </body>
 
 </html>
