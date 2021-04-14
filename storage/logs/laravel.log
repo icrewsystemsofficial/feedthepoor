@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [2021-04-13 12:55:34] local.ERROR: Call to a member function getClientOriginalName() on null {"userId":3,"exception":"[object] (Error(code: 0): Call to a member function getClientOriginalName() on null at C:\\xampp\\htdocs\\feedThePoor\\app\\Http\\Controllers\\ContactadminController.php:34)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\feedThePoor\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): App\\Http\\Controllers\\ContactAdminController->update(Object(Illuminate\\Http\\Request))
@@ -2268,3 +2269,5 @@
 #13 C:\\xampp\\htdocs\\donation\\server.php(21): require_once('C:\\\\xampp\\\\htdocs...')
 #14 {main}
 "} 
+=======
+>>>>>>> a222a18be1a32651849534d824d51611cd83f786

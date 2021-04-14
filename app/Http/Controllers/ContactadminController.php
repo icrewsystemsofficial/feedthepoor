@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\contact;
-
+use App\Contact;
+use App\Mail\AdminReply;
+use Illuminate\Support\Facades\Mail;
 
 class ContactAdminController extends Controller
 {
@@ -33,13 +34,13 @@ class ContactAdminController extends Controller
         $data->reply=$req->input('reply');
 
         if($req->hasFile('files')){
-            $data->files=$req->file('files')->getClientOriginalName();
-            $req->file('files')->store('storage');
+            $data->files= $req->file('files')->store('storage');
         }
 
         $data->status= $req->input('status');
         $data->save();
         notify()->success("Successfully Noted!","Reply");
+        Mail::to($data->email)->send(new AdminReply($data));
         return redirect(route('contactadmin.fetch'));
     }
 

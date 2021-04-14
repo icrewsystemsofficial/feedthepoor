@@ -33,7 +33,16 @@ Route::prefix('/dashboard')->group(function () {
     Route::get('/error', 'HomeController@error')->name('error');
 
     Route::get('/testimonial', 'TestimonialController@index')->name('testimonial');
-    Route::put('/testimonial', 'TestimonialController@addData')->name('testimonial');
+    Route::get('/testimonial/create', 'TestimonialController@create')->name('testimonials.create');
+    Route::POST('/testimonial/store', 'TestimonialController@store')->name('testimonials.store');
+    Route::put('/testimonial/show', 'TestimonialController@show')->name('testimonials.show');
+
+    Route::get('/testimonial/{testimonial}/edit', 'TestimonialController@edit')->name('testimonials.edit');
+
+    Route::put('/testimonial/{testimonial}', [TestimonialController::class,'update']);
+
+    
+    Route::delete('/testimonial/{testimonial}', 'TestimonialController@destroy')->name('testimonials.destroy');
 
     Route::get('/contacts', 'ContactadminController@index')->name('contactadmin');
     Route::get('/contacts', 'ContactadminController@fetch')->name('contactadmin.fetch');
