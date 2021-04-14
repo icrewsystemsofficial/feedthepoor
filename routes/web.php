@@ -22,12 +22,16 @@ Route::get('/testimonials', 'FrontendController@testimonials')->name('frontend.t
 Route::get('/gallery', 'FrontendController@gallery')->name('frontend.gallery');
 Route::get('/contact', 'FrontendController@contact')->name('frontend.contact');
 Route::get('/contact', 'ContactController@index')->name('contact');
+Route::get('/contact', 'ContactController@index')->name('contact')->middleware('security');
 Route::put('/contact', 'ContactController@register')->name('contact.register');
+Route::get('/error', 'FrontendController@error')->name('frontend.error');
 
 Route::prefix('/dashboard')->group(function () {
     Auth::routes();
 
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/error', 'HomeController@error')->name('error');
+
     Route::get('/testimonial', 'TestimonialController@index')->name('testimonial');
     Route::put('/testimonial', 'TestimonialController@addData')->name('testimonial');
 
