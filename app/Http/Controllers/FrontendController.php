@@ -40,4 +40,7 @@ class FrontendController extends Controller
     public function contact(){
         return view('frontend.contact');
     }
+    public function error(){
+        return view('frontend.error');
+    }
 }
