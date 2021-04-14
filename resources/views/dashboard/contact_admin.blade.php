@@ -60,10 +60,10 @@
             <td>{{ $item->email }}</td>
             <td>{{ $item->message }}</td>
             <td>{{ $item->reply }}</td>
-            <td>{{ $item->files }}</td>
+            <td>{{ ($item->files)? (strlen($item->files) > 20)? "...".substr($item->files, strlen($item->files) - 10) : $item->files : "" }}</td>
             <td>{{ $item->status }}</td>
             <td><a id="mybtn" name="mybtn" type="button" class="btn btn-info edit-modal" href={{ "edit/".$item['id'] }}  >Edit</a>
-               
+
             </td>
         </tr>
         @endforeach
