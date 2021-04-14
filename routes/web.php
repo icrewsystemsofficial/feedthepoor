@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +20,9 @@ Route::get('/volunteers', 'FrontendController@volunteers')->name('frontend.volun
 Route::get('/partners', 'FrontendController@partners')->name('frontend.partners');
 Route::get('/testimonials', 'FrontendController@testimonials')->name('frontend.testimonials');
 Route::get('/gallery', 'FrontendController@gallery')->name('frontend.gallery');
+Route::get('/contact', 'FrontendController@contact')->name('frontend.contact');
+Route::get('/contact', 'ContactController@index')->name('contact');
+Route::put('/contact', 'ContactController@register')->name('contact.register');
 
 Route::prefix('/dashboard')->group(function () {
     Auth::routes();
@@ -38,9 +40,10 @@ Route::prefix('/dashboard')->group(function () {
     
     Route::delete('/testimonial/{testimonial}', 'TestimonialController@destroy')->name('testimonials.destroy');
 
-
-
-
+    Route::get('/contacts', 'ContactadminController@index')->name('contactadmin');
+    Route::get('/contacts', 'ContactadminController@fetch')->name('contactadmin.fetch');
+    Route::get('/edit/{id}', 'ContactadminController@index1')->name('contactadmin');
+    Route::put('/contacts', 'ContactAdminController@update')->name('contactadmin.update');
 
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::put('/profile', 'ProfileController@update')->name('profile.update');

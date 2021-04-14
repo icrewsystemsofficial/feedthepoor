@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @notifyCss
 </head>
 <body>
     @include('sweetalert::alert')
@@ -77,5 +79,10 @@
             @yield('content')
         </main>
     </div>
+
+    @include('notify::messages')
+
+<x:notify-messages />
+@notifyJs
 </body>
 </html>

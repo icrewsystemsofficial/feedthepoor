@@ -49,6 +49,12 @@
         </a>
     </li>
 
+    <li class="nav-item {{ Nav::isRoute('contactadmin.fetch') }}">
+        <a class="nav-link" href="{{ route('contactadmin.fetch') }}">
+            <i class="fas fa-fw fa-comment-alt"></i>
+            <span>{{ __('Contacts') }}</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

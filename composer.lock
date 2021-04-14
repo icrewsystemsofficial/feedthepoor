@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d2e0607a53126a65e27d1155c6284c2",
+    "content-hash": "71b5432e283a91c0da86c00d45f29e18",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1698,6 +1698,72 @@
                 }
             ],
             "time": "2021-01-18T20:58:21+00:00"
+        },
+        {
+            "name": "mckenziearts/laravel-notify",
+            "version": "v2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mckenziearts/laravel-notify.git",
+                "reference": "1511bb97cf9ce4c3562caf6f3785eb55bad822a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mckenziearts/laravel-notify/zipball/1511bb97cf9ce4c3562caf6f3785eb55bad822a6",
+                "reference": "1511bb97cf9ce4c3562caf6f3785eb55bad822a6",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^7.0|^8.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mckenziearts\\Notify\\LaravelNotifyServiceProvider"
+                    ],
+                    "aliases": {
+                        "Notify": "Mckenziearts\\Notify\\Facades\\LaravelNotify"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Mckenziearts\\Notify\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arthur Monney",
+                    "email": "monneylobe@gmail.com",
+                    "homepage": "https://twitter.com/MonneyArthur",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Flexible flash notifications for Laravel",
+            "homepage": "https://github.com/mckenziearts/laravel-notify",
+            "keywords": [
+                "laravel",
+                "laravel-notify",
+                "notification"
+            ],
+            "support": {
+                "issues": "https://github.com/mckenziearts/laravel-notify/issues",
+                "source": "https://github.com/mckenziearts/laravel-notify/tree/v2.1"
+            },
+            "time": "2020-09-12T06:14:18+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -5729,6 +5795,7 @@
         },
         {
             "name": "facade/flare-client-php",
+<<<<<<< HEAD
             "version": "1.5.0",
             "source": {
                 "type": "git",
@@ -5739,6 +5806,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/facade/flare-client-php/zipball/9dd6f2b56486d939c4467b3f35475d44af57cf17",
                 "reference": "9dd6f2b56486d939c4467b3f35475d44af57cf17",
+=======
+            "version": "1.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facade/flare-client-php.git",
+                "reference": "f2b0969f2d9594704be74dbeb25b201570a98098"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/f2b0969f2d9594704be74dbeb25b201570a98098",
+                "reference": "f2b0969f2d9594704be74dbeb25b201570a98098",
+>>>>>>> 9f1c69d456cbab5ec05d720490cf2c0b752526be
                 "shasum": ""
             },
             "require": {
@@ -5782,7 +5861,11 @@
             ],
             "support": {
                 "issues": "https://github.com/facade/flare-client-php/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/facade/flare-client-php/tree/1.5.0"
+=======
+                "source": "https://github.com/facade/flare-client-php/tree/1.6.1"
+>>>>>>> 9f1c69d456cbab5ec05d720490cf2c0b752526be
             },
             "funding": [
                 {
@@ -5790,6 +5873,7 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2021-03-31T07:32:54+00:00"
         },
         {
@@ -5804,12 +5888,28 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/facade/ignition/zipball/bdc8b0b32c888f6edc838ca641358322b3d9506d",
                 "reference": "bdc8b0b32c888f6edc838ca641358322b3d9506d",
+=======
+            "time": "2021-04-08T08:50:01+00:00"
+        },
+        {
+            "name": "facade/ignition",
+            "version": "2.8.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facade/ignition.git",
+                "reference": "cb7f790e6306caeb4a9ffe21e59942b7128cc630"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/cb7f790e6306caeb4a9ffe21e59942b7128cc630",
+                "reference": "cb7f790e6306caeb4a9ffe21e59942b7128cc630",
+>>>>>>> 9f1c69d456cbab5ec05d720490cf2c0b752526be
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "facade/flare-client-php": "^1.3.7",
+                "facade/flare-client-php": "^1.6",
                 "facade/ignition-contracts": "^1.0.2",
                 "filp/whoops": "^2.4",
                 "illuminate/support": "^7.0|^8.0",
@@ -5867,7 +5967,11 @@
                 "issues": "https://github.com/facade/ignition/issues",
                 "source": "https://github.com/facade/ignition"
             },
+<<<<<<< HEAD
             "time": "2021-03-30T15:55:38+00:00"
+=======
+            "time": "2021-04-08T10:42:53+00:00"
+>>>>>>> 9f1c69d456cbab5ec05d720490cf2c0b752526be
         },
         {
             "name": "facade/ignition-contracts",

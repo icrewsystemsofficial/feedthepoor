@@ -1,3 +1,4 @@
+
 @extends('layouts.dashboard.admin')
 
 @section('meta')
@@ -48,10 +49,18 @@
                 </div>
 
                 <div class="card-body">
+                <form action="{{ route('testimonial') }}"  method="post">
 
+                    <div class="input-group mb-3">
+                    @csrf
+                        <input type="text" name="test" class="form-control" placeholder="Write your Testimonial" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary" type="button">Add</button>
+                                </div>
+                    </div>
 
-
-                </div>
+</form>
+                 </div>
 
             </div>
 
@@ -60,3 +69,4 @@
     </div>
 
 @endsection
+

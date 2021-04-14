@@ -26,6 +26,7 @@ php artisan vendor:publish --provider="Barryvdh\DomPDF\ServiceProvider"
 php artisan vendor:publish --provider="Spatie\Activitylog\ActivitylogServiceProvider" --tag="migrations"
 php artisan vendor:publish --provider="Spatie\Activitylog\ActivitylogServiceProvider" --tag="config"
 php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+php artisan vendor:publish --provider="Mckenziearts\Notify\LaravelNotifyServiceProvider"
 call composer dumpautoload
 php artisan migrate:fresh
 php artisan db:seed
