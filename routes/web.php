@@ -27,6 +27,16 @@ Route::prefix('/dashboard')->group(function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/testimonial', 'TestimonialController@index')->name('testimonial');
+    Route::get('/testimonial/create', 'TestimonialController@create')->name('testimonials.create');
+    Route::POST('/testimonial/store', 'TestimonialController@store')->name('testimonials.store');
+    Route::POST('/testimonial/show', 'TestimonialController@show')->name('testimonials.show');
+
+    Route::get('/testimonial/edit', 'TestimonialController@edit')->name('testimonials.edit');
+    Route::POST('/testimonial/destroy', 'TestimonialController@destroy')->name('testimonials.destroy');
+
+
+
+
 
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::put('/profile', 'ProfileController@update')->name('profile.update');
