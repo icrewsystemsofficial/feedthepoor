@@ -40,7 +40,7 @@ class TestimonialController extends Controller
 
     public function edit(Testimonial $testimonial)
     {
-        return view('testimonials.edit',compact('testimonials'));
+        return view('testimonials.edit',['testimonial' => $testimonial]);
     }
 
     public function update(Request $request,Testimonial $testimonial)
@@ -51,7 +51,7 @@ class TestimonialController extends Controller
         
         $testimonial->update($request->all());
 
-        return redirect()->route('testimonial')
+        return redirect()->route('/testimonial')
             ->with('success','Testimonial Updated Successfully');
     }
 

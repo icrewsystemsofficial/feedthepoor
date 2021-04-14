@@ -7,7 +7,7 @@
                 <h2>Edit Testimonial</h2>
             </div>
             <div class="pull-right">
-                <a href="{{ route('testimonials.index') }}" class="btn btn-primary">Back</a>
+                <a href="/dashboard/testimonials/index" class="btn btn-primary">Back</a>
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('testimonials.update',$testimonial->id) }}" method="POST">
+    <form action="/testimonials/{{ $testimonial->id }}" method="POST">
         @csrf
         @method('PUT')
 

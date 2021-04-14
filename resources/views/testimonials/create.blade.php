@@ -34,13 +34,13 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Email: </strong>
-                    <input type="text" name="email" class="form-control" placeholder="email">
+                    <input type="text" name="email" class="form-control" placeholder="Email">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Message: </strong>
-                    <input type="text" name="message" class="form-control" placeholder="fee">
+                    <input type="text" name="message" class="form-control" placeholder="Message">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
