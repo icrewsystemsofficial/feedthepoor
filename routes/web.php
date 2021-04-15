@@ -22,7 +22,6 @@ Route::get('/testimonials', 'FrontendController@testimonials')->name('frontend.t
 Route::get('/gallery', 'FrontendController@gallery')->name('frontend.gallery');
 Route::get('/contact', 'FrontendController@contact')->name('frontend.contact');
 Route::get('/contact', 'ContactController@index')->name('contact');
-//Route::get('/contact', 'ContactController@index')->name('contact')->middleware('security');
 Route::put('/contact', 'ContactController@register')->name('contact.register');
 Route::get('/error', 'FrontendController@error')->name('frontend.error');
 
@@ -51,6 +50,10 @@ Route::prefix('/dashboard')->group(function () {
 
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::put('/profile', 'ProfileController@update')->name('profile.update');
+
+    Route::get('/gallery', 'GalleryController@index')->name('gallery');
+    Route::put('/gallery', 'GalleryController@register')->name('gallery.register');
+
 
 });
 
