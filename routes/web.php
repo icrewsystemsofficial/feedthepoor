@@ -41,7 +41,7 @@ Route::prefix('/dashboard')->group(function () {
 
     Route::put('/testimonial/{testimonial}', [TestimonialController::class,'update']);
 
-    
+
     Route::delete('/testimonial/{testimonial}', 'TestimonialController@destroy')->name('testimonials.destroy');
 
     Route::get('/contacts', 'ContactadminController@index')->name('contactadmin');

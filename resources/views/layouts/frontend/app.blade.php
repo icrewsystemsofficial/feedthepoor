@@ -98,9 +98,9 @@
     @include('sweetalert::alert')
 
     @include('layouts.frontend.nav')
-
-    @yield('content')
-
+        <main class="main">
+            @yield('content')
+        </main>
     @include('layouts.frontend.footer')
 
     <!-- Core -->
@@ -169,8 +169,6 @@
 
     @yield('js')
     @include('notify::messages')
-        // Laravel 7 or greater
-    <x:notify-messages />
     @notifyJs
 </body>
 

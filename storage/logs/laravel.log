@@ -1,0 +1,22 @@
+[2021-04-15 14:57:09] local.ERROR: Uncaught ErrorException: Declaration of App\Http\Middleware\Securitycheck::handle(Illuminate\Http\Request $request, Closure $next) should be compatible with Illuminate\Auth\Middleware\Authenticate::handle($request, Closure $next, ...$guards) in /var/www/html/feedthepoor/app/Http/Middleware/Securitycheck.php:18
+Stack trace:
+#0 /var/www/html/feedthepoor/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /var/www/html/feedthepoor/vendor/composer/ClassLoader.php(444): include()
+#2 /var/www/html/feedthepoor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile()
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass()
+#4 [internal function]: spl_autoload_call()
+#5 Command line code(1): ReflectionMethod->__construct()
+#6 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ErrorException: Declaration of App\\Http\\Middleware\\Securitycheck::handle(Illuminate\\Http\\Request $request, Closure $next) should be compatible with Illuminate\\Auth\\Middleware\\Authenticate::handle($request, Closure $next, ...$guards) in /var/www/html/feedthepoor/app/Http/Middleware/Securitycheck.php:18
+Stack trace:
+#0 /var/www/html/feedthepoor/vendor/composer/ClassLoader.php(444): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError()
+#1 /var/www/html/feedthepoor/vendor/composer/ClassLoader.php(444): include()
+#2 /var/www/html/feedthepoor/vendor/composer/ClassLoader.php(322): Composer\\Autoload\\includeFile()
+#3 [internal function]: Composer\\Autoload\\ClassLoader->loadClass()
+#4 [internal function]: spl_autoload_call()
+#5 Command line code(1): ReflectionMethod->__construct()
+#6 {main}
+  thrown at /var/www/html/feedthepoor/app/Http/Middleware/Securitycheck.php:18)
+[stacktrace]
+#0 {main}
+"} 
