@@ -1,4 +1,4 @@
-<footer class="footer position-relative pt-9 footer-dark bg-gradient-dark" id="footer-main">
+<footer class="footer position-relative pt-9 footer-dark bg-dark" id="footer-main">
     <div class="shape-container" data-shape-position="top" data-shape-orientation="inverse" style="height: 51.8px;">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" class="injected-svg svg-inject">
 <path d="M 0 0 c 0 0 200 50 500 50 s 500 -50 500 -50 v 101 h -1000 v -100 z"></path>
