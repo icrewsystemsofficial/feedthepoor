@@ -15,10 +15,10 @@
 @section('js')
 <script>
    var notify = {
-   timeout: "5000",
-   animatedIn: "bounceInRight",
-   animatedOut: "bounceOutRight",
-   position: "bottom-right"
+    timeout: "5000",
+    animatedIn: "bounceInRight",
+    animatedOut: "bounceOutRight",
+    position: "bottom-right"
    }
 
    var stepper = document.getElementById("stepper");
@@ -35,22 +35,21 @@
 
    setInterval(function() {
    if(stepper.classList.contains('step1')) {
+       stepper.classList.remove('step1');
+        stepper.classList.add('step2');
 
-   stepper.classList.remove('step1');
-   stepper.classList.add('step2');
-   toggleVisibility('step1-p');
-   toggleVisibility('step2-p');
+        toggleVisibility('step1-p');
+        toggleVisibility('step2-p');
    } else if(stepper.classList.contains('step2')) {
-   stepper.classList.remove('step2');
-   stepper.classList.add('step3');
-   toggleVisibility('step2-p');
-   toggleVisibility('step3-p');
+        stepper.classList.remove('step2');
+        stepper.classList.add('step3');
+        toggleVisibility('step2-p');
+        toggleVisibility('step3-p');
    } else if(stepper.classList.contains('step3')) {
-
-   stepper.classList.remove('step3');
-   stepper.classList.add('step1');
-   toggleVisibility('step3-p');
-   toggleVisibility('step1-p');
+        stepper.classList.remove('step3');
+        stepper.classList.add('step1');
+        toggleVisibility('step3-p');
+        toggleVisibility('step1-p');
    }
    }, 5000);
 
@@ -198,29 +197,251 @@
          </div>
       </div>
    </section> --}}
-
-   <section class="slice slice-lg">
+  <section class="slice-lg">
     <div class="container">
-      <div class="row row-grid justify-content-around align-items-center">
-        <div class="col-lg-5">
-          <div class="">
-            <h5 class=" h3">
-                Just another donation website? No.
-            </h5>
-            <p class="my-4">
-                #feedThePoor is backed by ICREWSYSTEMS SOFTWARE ENGINEERING LLP. The MVP of this website,
-                is to make donation as much as transparent it can be.
-            </p>
-            <a href="#" class="link link-underline- font-weight-bold">Find out more</a>
+        <div class="row row-grid justify-content-around align-items-center">
+          <div class="col-md-10">
+             <h1 class="heading h2">How does it <span class="font-weight-700 text-underline font-italic">work</span>?</h1>
+             <p>
+                Getting "proof" for donations have always been a herculean task. We've managed to simplify it using <strong>technology</strong>
+             </p>
           </div>
-        </div>
-        <div class="col-lg-6">
-          <img alt="Image placeholder" src="assets/img/theme/light/presentation-2.png" class="img-fluid img-center">
+          <div class="col-md-10">
+             <div class="d-flex">
+                <div class="stepper-div">
+                   <div class="step3" id="stepper">
+                      <ul class="stepper">
+                         <li><span>Donate</span></li>
+                         <li><span>Food</span></li>
+                         <li><span>Proof</span></li>
+                      </ul>
+                   </div>
+                </div>
+             </div>
+          </div>
+          <div class="col-md-10">
+             <div class="card z-depth-3">
+                <div class="card-body">
+                   <div id="step1-p" class="animate__animated animate__fadeIn" style="display: none;">
+                      <h3 class="h3">You make your donation</h3>
+                      You donate to our NGO partner via Razorpay payment gateway. The payment is automatically verified and accepted by our website. We immediately place the order for the food to donate the next day. You will recieve a recipt within the next 5 - 10 minutes.
+                   </div>
+                   <div id="step2-p" class="animate__animated animate__fadeIn" style="display: none;">
+                    <h3 class="h3">We distribute the food </h3>
+                      With the help of our Voulenteers, we distribute the food which was arranged by your donation to the underprivileged people in certain locations.
+                   </div>
+                   <div id="step3-p" class="animate__animated animate__fadeIn" style="display: block;">
+                    <h3 class="h3">You get happy pictures</h3>
+                      While we distribute the food, we take a quick moment to click a picture of your donation, along with your name with the person who is receiving it and mail it to you. We post the same
+                      on our NGO partner's instagram account. If you have provided instagram handle, we'll tag you.
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+
+ {{-- Reason behind feedthepoor section --}}
+
+
+ <section class="slice slice-lg">
+    <div class="container">
+        <div class="row row-grid justify-content-around align-items-center">
+        <div class="card hover-shadow-lg hover-scale-110 order-2 col-lg-6">
+          <div class="card-body p-5">
+            <h6 class="text-muted">
+                What's the reason behind <strong>#feedThePoor</strong>?
+            </h6>
+            <p class="h4 lh-150">
+                India is home to the largest <span class="font-italic font-weight-700">undernourished</span> population in the world 😔
+                <ul>
+                    <li><strong>194.4 million people</strong> i.e. 14.5% of our population is undernourished</li>
+                    <li><strong>20.8%</strong> of children under 5 are underweight</li>
+                    <li><strong>37.9%</strong> of children under 5 years of age are stunted</li>
+                    <li><strong>51.4%</strong> women in the reproductive age (15-49 years) are anaemic</li>
+                </ul>
+
+                <small>source <a href="https://www.indiafoodbanking.org/hunger?ref={{ config('app.url') }}"
+                        target="_blank">indiafoodbanking.org</a></small>
+
+                <br /><br /><br />
+                There are always people who strive to help. There are people who deep down "want" to help, but they're
+                haunted by one burning question inside their minds
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+
+ <section class="slice slice-lg">
+    <div class="container">
+        <div class="row align-items-center px-5">
+            <div class="col-lg-6">
+                <div class="d-flex align-items-center">
+                  <h3 class="heading h3 text-center">
+
+                  </h3>
+                </div>
+
+                <p>
+                </p>
+            </div>
+
+
+            <div class="col-lg-6">
+                <div class="d-flex">
+                    <div class="icon-text">
+                       <h2 class="heading h2 text-muted">"I want to help..., but who knows my money is
+                          actually being used to feed the poor?"
+                       </h2>
+                       <p>
+                       </p>
+                       <h1>- This is what we are solving</h1>
+                       The first thing that haunts the mind of every good soul that wants to help, is the doubt, the grey area, and lack of <strong>"Transparency"</strong>
+                       <br><br>
+                       <h4>Seeing is beliving.</h4>
+                       #feedThePoor initiative is all about transparency. With the help of our NGO partners, we are able to show our donors who they've fed, and how every penny of their donation is putting a smile across
+                       thousands of faces. <strong><i>Transparency.</i></strong>
+                       <p></p>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+ {{-- Testimonials Section --}}
+ <section class="slice slice-lg">
+    <div class="container">
+      <div class="mb-5 text-center">
+        <h3 class=" mt-4">It's standard practice to boost promotions via advertisements</h3>
+        <div class="fluid-paragraph mt-3">
+          <p class="h4">
+              though, what better advertisement than the <span class="text-underline font-weight-700 font-italic">truth</span>?
+          </p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-11">
+          <div class="swiper-js-container row align-items-center">
+            <div class="col-xl-4 d-none d-xl-block">
+              <div class="pr-4">
+                <p class="lead mt-3">
+                    Testimonials left by our donors. They love <span class="font-weight-700">#feedThePoor</span> for a reason.
+                </p>
+              </div>
+            </div>
+            <div class="col-xl-8">
+              <div class="swiper-container swiper-container-initialized swiper-container-horizontal" data-swiper-items="1" data-swiper-space-between="0" data-swiper-sm-items="2" style="cursor: grab;">
+                <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                  <div class="swiper-slide p-4 swiper-slide-active" style="width: 333.5px;">
+                    <!-- Testimonial entry 1 -->
+                    <div class="card bg-dark">
+                      <div class="card-body">
+                        <div class="d-flex align-items-center">
+                          <div>
+                            <img alt="Image placeholder" src="https://picsum.photos/200/201" class="avatar  rounded-circle">
+                          </div>
+                          <div class="pl-3">
+                            <h5 class="h6 mb-0 text-white">Heather Wright</h5>
+                            <small class="d-block text-muted">Google</small>
+                          </div>
+                        </div>
+                        <p class="mt-4 lh-180">Amazing template! All-in-one, clean code, beautiful design, and really not hard to work with.Highly recommended for any kind on website.</p>
+                        <span class="static-rating static-rating-sm">
+                          <i class="star fas fa-star voted"></i>
+                          <i class="star fas fa-star voted"></i>
+                          <i class="star fas fa-star voted"></i>
+                          <i class="star fas fa-star voted"></i>
+                          <i class="star fas fa-star voted"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide p-4 swiper-slide-next" style="width: 333.5px;">
+                    <!-- Testimonial entry 2 -->
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="d-flex align-items-center">
+                          <div>
+                            <img alt="Image placeholder" src="https://picsum.photos/200/202" class="avatar  rounded-circle">
+                          </div>
+                          <div class="pl-3">
+                            <h5 class="h6 mb-0">Monroe Parker</h5>
+                            <small class="d-block text-muted">Apple</small>
+                          </div>
+                        </div>
+                        <p class="mt-4 lh-180">Amazing template! All-in-one, clean code, beautiful design, and really not hard to work with.Highly recommended for any kind on website.</p>
+                        <span class="static-rating static-rating-sm">
+                          <i class="star fas fa-star voted"></i>
+                          <i class="star fas fa-star voted"></i>
+                          <i class="star fas fa-star voted"></i>
+                          <i class="star fas fa-star voted"></i>
+                          <i class="star fas fa-star voted"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide p-4" style="width: 333.5px;">
+                    <!-- Testimonial entry 3 -->
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="d-flex align-items-center">
+                          <div>
+                            <img alt="Image placeholder" src="https://picsum.photos/200/203" class="avatar  rounded-circle">
+                          </div>
+                          <div class="pl-3">
+                            <h5 class="h6 mb-0">John Sullivan</h5>
+                            <small class="d-block text-muted">Amazon</small>
+                          </div>
+                        </div>
+                        <p class="mt-4 lh-180">Amazing template! All-in-one, clean code, beautiful design, and really not hard to work with.Highly recommended for any kind on website.</p>
+                        <span class="static-rating static-rating-sm">
+                          <i class="star fas fa-star voted"></i>
+                          <i class="star fas fa-star voted"></i>
+                          <i class="star fas fa-star voted"></i>
+                          <i class="star fas fa-star voted"></i>
+                          <i class="star fas fa-star voted"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+              <!-- Add Pagination -->
+              <div class="swiper-pagination w-100 pt-4 d-flex align-items-center justify-content-center swiper-pagination-clickable swiper-pagination-bullets"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section class="slice slice-lg">
+        <div class="container">
+        <div class="row row-grid justify-content-around align-items-center">
+            <div class="col-lg-5">
+            <div class="">
+                <h5 class=" h3">
+                    Just another donation website? No.
+                </h5>
+                <p class="my-4">
+                    #feedThePoor is backed by ICREWSYSTEMS SOFTWARE ENGINEERING LLP. The MVP of this website,
+                    is to make donation as much as transparent it can be.
+                </p>
+                <a href="#" class="link link-underline- font-weight-bold">Find out more</a>
+            </div>
+            </div>
+            <div class="col-lg-6">
+            <img alt="Image placeholder" src="assets/img/theme/light/presentation-2.png" class="img-fluid img-center">
+            </div>
+        </div>
+        </div>
+    </section>
   {{-- <section class="slice slice-lg">
     <div class="container">
       <div class="mb-5 text-center">
@@ -282,106 +503,17 @@
     </div>
   </section> --}}
 
-   <section class="slice-lg">
-    <div class="container">
-        <div class="row align-items-center px-5">
-            <div class="col-lg-6">
-                <div class="d-flex align-items-center">
-                  <h3 class="heading">
-                      What's the reason behind <strong>#feedThePoor</strong>?
-                  </h3>
-                </div>
-            </div>
-            <div class="col-md-6">
-              <p>
-                  India is home to the largest undernourished population in the world
-                  <ul>
-                      <li>194.4 million people i.e. 14.5% of our population is undernourished</li>
-                      <li>20.8% of children under 5 are underweight</li>
-                      <li>37.9% of children under 5 years of age are stunted</li>
-                      <li>51.4% women in the reproductive age (15-49 years) are anaemic</li>
-                  </ul>
 
-                  <small>source <a href="https://www.indiafoodbanking.org/hunger"
-                          target="_blank">indiafoodbanking.org</a></small>
 
-                  <br /><br /><br />
-                  There are always people who strive to help. There are people who deep down "want" to help, but they're
-                  haunted by one burning question inside their minds
-              </p>
-            </div>
-
-        </div>
-    </div>
-</section>
-   <section class="bg-gradient-lighter slice-lg">
+<section class="bg-gradient-lighter slice-lg">
       <div class="container">
          <div class="row">
             <div class="col-lg-6">
-               <div class="d-flex">
-                  <div class="icon-text">
-                     <h2 class="heading h2 text-muted">"I want to help..., but who knows my money is
-                        actually being used to feed the poor?"
-                     </h2>
-                     <p>
-                     </p>
-                     <h1>- This is what we are solving</h1>
-                     The first thing that haunts the mind of every good soul that wants to help, is the doubt, the grey area, and lack of <strong>"Transparency"</strong>
-                     <br><br>
-                     <h4>Seeing is beliving.</h4>
-                     #feedThePoor initiative is all about transparency. With the help of our NGO partners, we are able to show our donors who they've fed, and how every penny of their donation is putting a smile across
-                     thousands of faces. <strong><i>Transparency.</i></strong>
-                     <p></p>
-                  </div>
-               </div>
+
             </div>
             <div class="col-lg-6">
                <div class="block block-image">
                   <img style="height: auto; width: 100%;" src="https://feedthepoor.online/en/public/images/donate_trandparently.png" class="img-center img-fluid rounded z-depth-3" alt="">
-               </div>
-            </div>
-         </div>
-      </div>
-   </section>
-   <section class="slice-lg">
-      <div class="container align-items-center">
-         <div class="row py-5 align-items-center cols-xs-space cols-sm-space cols-md-space">
-            <div class="col-md-12">
-               <h1 class="heading">How does it work?</h1>
-               <p>
-                  It might seem like a herculean task, but it's not. We've simplified it using <strong>technology</strong>
-               </p>
-            </div>
-            <div class="col-md-12">
-               <div class="d-flex">
-                  <div class="stepper-div">
-                     <div class="step3" id="stepper">
-                        <ul class="stepper">
-                           <li><span>Donate</span></li>
-                           <li><span>Food</span></li>
-                           <li><span>Proof</span></li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-12">
-               <div class="card z-depth-3">
-                  <div class="card-body">
-                     <div id="step1-p" class="animate__animated animate__fadeIn" style="display: none;">
-                        <h3>You make your donation</h3>
-                        You donate to our NGO partner via Razorpay payment gateway. The payment is automatically verified and accepted by our website. We immediately place the order for the food to donate the next day. You will recieve a recipt within the next 5 - 10 minutes.
-                     </div>
-                     <div id="step2-p" class="animate__animated animate__fadeIn" style="display: none;">
-                        <h3>We distribute the food </h3>
-                        With the help of our Voulenteers, we distribute the food which was arranged by your donation to the underprivileged people in certain locations.
-                     </div>
-                     <div id="step3-p" class="animate__animated animate__fadeIn" style="display: block;">
-                        <h3>You get happy pictures</h3>
-                        While we distribute the food, we take a quick moment to click a picture of your donation, along with your name with the person who is receiving it and mail it to you. We post the same
-                        on our NGO partner's instagram account. If you have provided instagram handle, we'll tag you.
-                     </div>
-                  </div>
                </div>
             </div>
          </div>

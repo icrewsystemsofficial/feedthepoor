@@ -29,6 +29,8 @@
     <!-- Theme CSS -->
     <link type="text/css" href="https://preview.webpixels.io/purpose-website-ui-kit/assets/css/purpose.css" rel="stylesheet">
     <link type="text/css" href="{{ asset('css/theme.css')}}" rel="stylesheet">
+    <link type="text/css" href="{{ asset('css/additional.css')}}" rel="stylesheet">
+
     <!-- FAQ CSS -->
     <link type="text/css" href="{{ asset('css/faq.css')}}" rel="stylesheet">
     <!-- Demo CSS - No need to use these in your project -->
@@ -152,8 +154,11 @@
     <script src="{{ asset('vendor/input-mask/input-mask.min.js') }}"></script>
     <script src="{{ asset('vendor/nouislider/js/nouislider.min.js') }}"></script>
     <script src="{{ asset('vendor/textarea-autosize/textarea-autosize.min.js') }}"></script>
+
+    <script src="https://preview.webpixels.io/purpose-website-ui-kit/assets/libs/swiper/dist/js/swiper.min.js"></script>
     <!-- Theme JS -->
     <script src="{{ asset('js/theme.js') }}"></script>
+    <script src="https://preview.webpixels.io/purpose-website-ui-kit/assets/js/purpose.js"></script>
 
     <script>
         $(window).on("load", function() {

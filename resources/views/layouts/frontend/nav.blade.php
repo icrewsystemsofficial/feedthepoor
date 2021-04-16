@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md fixed-top py-3 navbar-dark bg-white ">
 
-    <a class="navbar-brand text-dark h4" href="{{ route('frontend.index') }}"><strong>#feed</strong>ThePoor</a>
+    <a class="navbar-brand text-dark h4 px-5" href="{{ route('frontend.index') }}"><strong>#feed</strong>ThePoor</a>
     <button class="navbar-toggler" type="button" data-action="offcanvas-open" data-target= "#navbar_main"
         aria-controls="navbar_main" aria-expanded="false" aria-label="Toggle navigation">
         <span class="fas fa-bars text-dark"></span>
