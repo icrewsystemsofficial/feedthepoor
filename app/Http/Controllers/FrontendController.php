@@ -53,7 +53,7 @@ class FrontendController extends Controller
         $donation_random_images = generateRandomImages(50);
         $donation_names = generateRandomDonorNames(50);
 
-        return view('frontend.welcome', [
+        return view('frontend.index', [
             'donation_images' => $donation_random_images,
             'donation_names' => $donation_names,
             'total_meals_fed' => $total_meals_fed,
