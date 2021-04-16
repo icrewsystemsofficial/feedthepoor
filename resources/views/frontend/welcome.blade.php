@@ -53,9 +53,127 @@
    toggleVisibility('step1-p');
    }
    }, 5000);
+
+
+
+    // Hero Section Dynamic changes.
+
+    var donation_images = {!! $donation_images !!};
+    var donation_names = {!! $donation_names !!};
+    var total_meals_fed = {{ $total_meals_fed }};
+    var total_donations_received = {{ $total_donations_received }};
+
+    // Counter for total meals.
+    var total_people_fed_today = document.getElementById('total-people-fed-today');
+    total_people_fed_today.innerText = total_meals_fed;
+
+
+    var image_count = 0;
+    var next_image = null;
+
+    setInterval(function() {
+    var hidden_container = document.getElementById('hidden-image-for-preload');
+    var container = document.getElementById('hero-section-image-container');
+    if(next_image == null) {
+        current_image = donation_images[image_count];
+        next_image_count = image_count + 1;
+        next_image = donation_images[next_image_count]
+    } else {
+        current_image = hidden_container.src;
+        next_image_count = image_count + 1;
+        next_image = donation_images[next_image_count]
+        // console.log(hidden_container.src);
+    }
+    container.style.backgroundImage = "url('" + current_image + "')";
+
+    hidden_container.src = next_image;
+    // This allows the next image to preload, allowing the transition to be
+    // smooth.
+    // Comment the previous line and see the delay.
+
+    //Leonard, 16 April 2021.
+
+    // console.log('Changning image in hero section to array # ' + image_count);
+    if (image_count == donation_images.length) {
+        image_count = 0;
+    } else {
+        image_count++;
+    }
+
+
+    //To change donor name.
+    var donor = document.getElementById('hero-donor-name');
+    donor.innerText = donation_names[image_count];
+
+    // To change meal count.
+    var meal = document.getElementById('hero-donor-meal-count');
+    meal.innerText = Math.floor(Math.random() * 100);
+
+    }, 4000)
 </script>
 @endsection
 @section('content')
+    <section class="slice slice-xl">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-6">
+              <div class="text-left pt-lg-md">
+                <h2 class="heading h1 mb-2">
+                  We fed
+                    <strong>
+                        <u><span id="total-people-fed-today">0</span></u>
+                    </strong> people on
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ strtolower(date('d-m-Y', strtotime('yesterday'))) }}">
+                        {{ strtolower(date('l', strtotime('yesterday'))) }}.
+                    </span>
+                </h2>
+                <p class="lead lh-180">
+                  with absolute transparency, donate more confidently. <strong>#feedThePoor</strong>
+                  <br><br>
+                  <button onclick="window.location='#how'" class="btn btn-sm btn-primary btn-outline-danger">
+                    How?
+                  </button>
+                </p>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+                <br>
+                <div class="card bg-dark alpha-container text-white border-0 overflow-hidden">
+                  <a href="#" target="_blank">
+                    <div id="hero-section-image-container" class="card-img-bg" style="background-image: url('https://cdn.discordapp.com/attachments/694578470772146237/744472703897174036/icrew_feeding_the_poor_5.jpg');"></div>
+                    {{-- The soul purpose of this container is to preload the images. Don't remove it.--}}
+                    <img id="hidden-image-for-preload" src="null" style="display: none;" />
+                    <span class="mask bg-dark alpha-5 alpha-9--hover"></span>
+                    <div class="card-body px-5 py-5">
+                      <div style="min-height: 100px;">
+                        {{-- <h3 class="heading h1 text-white mb-3">Mr. Dhruv Bhatt</h3> --}}
+                        <p class="mt-4 mb-1 h5 text-white lh-180">
+                          <br><br>
+                            <strong>
+                                <span id="hero-donor-name">
+                                    Leonard
+                                </span>
+                            </strong> donated <span id="hero-donor-meal-count">40</span> meals.
+                          <br>
+                          <small><span class="text-white font-weight-100">Jodhpur campaign</span></small>
+                        </p>
+                      </div>
+                      <span href="#" class="text-white font-weight-500">
+                        #feedThePoor
+                      </span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div>
+            {{-- <svg height="100%" width="100%" id="svg" viewBox="0 0 1440 500" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><defs><linearGradient id="gradient"><stop offset="5%" stop-color="#ff690066"></stop><stop offset="95%" stop-color="#eb144c66"></stop></linearGradient></defs><path d="M 0,500 C 0,500 0,125 0,125 C 71.17179487179487,123.04358974358973 142.34358974358975,121.08717948717948 220,122 C 297.65641025641025,122.91282051282052 381.7974358974359,126.6948717948718 467,136 C 552.2025641025641,145.3051282051282 638.4666666666667,160.13333333333333 723,159 C 807.5333333333333,157.86666666666667 890.3358974358976,140.7717948717949 973,130 C 1055.6641025641024,119.22820512820512 1138.1897435897436,114.77948717948719 1216,115 C 1293.8102564102564,115.22051282051281 1366.9051282051282,120.1102564102564 1440,125 C 1440,125 1440,500 1440,500 Z" stroke="none" stroke-width="0" fill="url(#gradient)" class="transition-all duration-300 ease-in-out delay-150"></path><defs><linearGradient id="gradient"><stop offset="5%" stop-color="#ff690088"></stop><stop offset="95%" stop-color="#eb144c88"></stop></linearGradient></defs><path d="M 0,500 C 0,500 0,250 0,250 C 69.8025641025641,224.74871794871797 139.6051282051282,199.4974358974359 228,210 C 316.3948717948718,220.5025641025641 423.3820512820513,266.75897435897434 502,262 C 580.6179487179487,257.24102564102566 630.8666666666667,201.4666666666667 708,203 C 785.1333333333333,204.5333333333333 889.1512820512821,263.374358974359 972,269 C 1054.8487179487179,274.625641025641 1116.5282051282052,227.03589743589743 1191,215 C 1265.4717948717948,202.96410256410257 1352.7358974358974,226.4820512820513 1440,250 C 1440,250 1440,500 1440,500 Z" stroke="none" stroke-width="0" fill="url(#gradient)" class="transition-all duration-300 ease-in-out delay-150"></path><defs><linearGradient id="gradient"><stop offset="5%" stop-color="#ff6900ff"></stop><stop offset="95%" stop-color="#eb144cff"></stop></linearGradient></defs><path d="M 0,500 C 0,500 0,375 0,375 C 80.08461538461538,373.7794871794872 160.16923076923075,372.55897435897435 241,364 C 321.83076923076925,355.44102564102565 403.4076923076924,339.54358974358973 474,343 C 544.5923076923076,346.45641025641027 604.1999999999999,369.2666666666667 688,375 C 771.8000000000001,380.7333333333333 879.7923076923078,369.3897435897436 972,360 C 1064.2076923076922,350.6102564102564 1140.6307692307691,343.17435897435894 1216,346 C 1291.3692307692309,348.82564102564106 1365.6846153846154,361.91282051282053 1440,375 C 1440,375 1440,500 1440,500 Z" stroke="none" stroke-width="0" fill="url(#gradient)" class="transition-all duration-300 ease-in-out delay-150"></path></svg> --}}
+            <svg height="100%" width="100%" id="svg" viewBox="0 0 1440 400" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><defs><linearGradient id="gradient"><stop offset="5%" stop-color="#ff690066"></stop><stop offset="95%" stop-color="#eb144c66"></stop></linearGradient></defs><path d="M 0,400 C 0,400 0,100 0,100 C 68.42820512820512,85.71282051282051 136.85641025641024,71.42564102564104 221,81 C 305.14358974358976,90.57435897435896 405.00256410256407,124.0102564102564 481,133 C 556.9974358974359,141.9897435897436 609.1333333333334,126.53333333333333 687,115 C 764.8666666666666,103.46666666666667 868.4641025641026,95.85641025641026 963,101 C 1057.5358974358974,106.14358974358974 1143.0102564102565,124.04102564102564 1221,126 C 1298.9897435897435,127.95897435897436 1369.4948717948719,113.97948717948718 1440,100 C 1440,100 1440,400 1440,400 Z" stroke="none" stroke-width="0" fill="url(#gradient)" class="transition-all duration-300 ease-in-out delay-150"></path><defs><linearGradient id="gradient"><stop offset="5%" stop-color="#ff690088"></stop><stop offset="95%" stop-color="#eb144c88"></stop></linearGradient></defs><path d="M 0,400 C 0,400 0,200 0,200 C 88.67179487179487,201.8025641025641 177.34358974358975,203.6051282051282 247,195 C 316.65641025641025,186.3948717948718 367.2974358974359,167.38205128205126 443,162 C 518.7025641025641,156.61794871794874 619.4666666666667,164.86666666666667 704,173 C 788.5333333333333,181.13333333333333 856.8358974358976,189.15128205128204 949,203 C 1041.1641025641024,216.84871794871796 1157.1897435897436,236.52820512820514 1243,237 C 1328.8102564102564,237.47179487179486 1384.4051282051282,218.7358974358974 1440,200 C 1440,200 1440,400 1440,400 Z" stroke="none" stroke-width="0" fill="url(#gradient)" class="transition-all duration-300 ease-in-out delay-150"></path><defs><linearGradient id="gradient"><stop offset="5%" stop-color="#ff6900ff"></stop><stop offset="95%" stop-color="#eb144cff"></stop></linearGradient></defs><path d="M 0,400 C 0,400 0,300 0,300 C 71.36923076923077,316.4153846153846 142.73846153846154,332.83076923076925 216,332 C 289.26153846153846,331.16923076923075 364.4153846153846,313.0923076923077 458,305 C 551.5846153846154,296.9076923076923 663.6,298.8 756,293 C 848.4,287.2 921.1846153846154,273.70769230769235 983,272 C 1044.8153846153846,270.29230769230765 1095.6615384615384,280.36923076923074 1170,287 C 1244.3384615384616,293.63076923076926 1342.1692307692308,296.81538461538463 1440,300 C 1440,300 1440,400 1440,400 Z" stroke="none" stroke-width="0" fill="url(#gradient)" class="transition-all duration-300 ease-in-out delay-150"></path></svg>
+            {{-- <svg height="100%" width="100%" id="svg" viewBox="0 0 1440 400" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><defs><linearGradient id="gradient"><stop offset="5%" stop-color="#002bdc66"></stop><stop offset="95%" stop-color="#32ded466"></stop></linearGradient></defs><path d="M 0,400 C 0,400 0,100 0,100 C 105.01435406698562,117.74162679425837 210.02870813397124,135.48325358851673 307,130 C 403.97129186602876,124.51674641148325 492.8995215311005,95.80861244019137 596,92 C 699.1004784688995,88.19138755980863 816.3732057416267,109.28229665071773 912,114 C 1007.6267942583733,118.71770334928227 1081.6076555023924,107.0622009569378 1166,102 C 1250.3923444976076,96.9377990430622 1345.1961722488038,98.4688995215311 1440,100 C 1440,100 1440,400 1440,400 Z" stroke="none" stroke-width="0" fill="url(#gradient)" class="transition-all duration-300 ease-in-out delay-150"></path><defs><linearGradient id="gradient"><stop offset="5%" stop-color="#002bdc88"></stop><stop offset="95%" stop-color="#32ded488"></stop></linearGradient></defs><path d="M 0,400 C 0,400 0,200 0,200 C 107.00478468899522,204.68899521531102 214.00956937799043,209.37799043062202 298,204 C 381.99043062200957,198.62200956937798 442.96650717703346,183.17703349282297 533,185 C 623.0334928229665,186.82296650717703 742.1244019138757,205.91387559808612 853,209 C 963.8755980861243,212.08612440191388 1066.5358851674641,199.16746411483254 1163,195 C 1259.4641148325359,190.83253588516746 1349.732057416268,195.41626794258372 1440,200 C 1440,200 1440,400 1440,400 Z" stroke="none" stroke-width="0" fill="url(#gradient)" class="transition-all duration-300 ease-in-out delay-150"></path><defs><linearGradient id="gradient"><stop offset="5%" stop-color="#002bdcff"></stop><stop offset="95%" stop-color="#32ded4ff"></stop></linearGradient></defs><path d="M 0,400 C 0,400 0,300 0,300 C 121.3397129186603,313.88516746411483 242.6794258373206,327.77033492822966 322,319 C 401.3205741626794,310.22966507177034 438.62200956937795,278.80382775119614 525,281 C 611.377990430622,283.19617224880386 746.8325358851677,319.0143540669857 848,319 C 949.1674641148323,318.9856459330143 1016.0478468899521,283.1387559808612 1109,274 C 1201.952153110048,264.8612440191388 1320.976076555024,282.4306220095694 1440,300 C 1440,300 1440,400 1440,400 Z" stroke="none" stroke-width="0" fill="url(#gradient)" class="transition-all duration-300 ease-in-out delay-150"></path></svg> --}}
+        </div>
+      </section>
    <section class="spotlight C-parallax bg-cover bg-size--cover" data-spotlight="fullscreen">
       <span class="mask bg-tertiary alpha-5"></span>
       <div class="spotlight-holder py-lg pt-lg-xl" style="height: 722px;">
@@ -78,7 +196,7 @@
          </div>
       </div>
    </section>
-   <section class="slice-lg">
+   <section class="slice-lg" id="how">
       <div class="container">
          <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space">
             <div class="col-lg-6">
@@ -161,7 +279,6 @@
             <div class="col-md-12">
                <div class="card z-depth-3">
                   <div class="card-body">
-                     <!-- <div class="">Example</div> -->
                      <div id="step1-p" class="animate__animated animate__fadeIn" style="display: none;">
                         <h3>You make your donation</h3>
                         You donate to our NGO partner via Razorpay payment gateway. The payment is automatically verified and accepted by our website. We immediately place the order for the food to donate the next day. You will recieve a recipt within the next 5 - 10 minutes.
