@@ -27,6 +27,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
     <!-- Theme CSS -->
+    <link type="text/css" href="https://preview.webpixels.io/purpose-website-ui-kit/assets/css/purpose.css" rel="stylesheet">
     <link type="text/css" href="{{ asset('css/theme.css')}}" rel="stylesheet">
     <!-- FAQ CSS -->
     <link type="text/css" href="{{ asset('css/faq.css')}}" rel="stylesheet">

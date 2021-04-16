@@ -198,35 +198,122 @@
          </div>
       </div>
    </section> --}}
-   <section class="slice slice-lg" id="how">
-      <div class="container">
-         <div class="row justify-content-center">
+
+   <section class="slice slice-lg">
+    <div class="container">
+      <div class="row row-grid justify-content-around align-items-center">
+        <div class="col-lg-5">
+          <div class="">
+            <h5 class=" h3">
+                Just another donation website? No.
+            </h5>
+            <p class="my-4">
+                #feedThePoor is backed by ICREWSYSTEMS SOFTWARE ENGINEERING LLP. The MVP of this website,
+                is to make donation as much as transparent it can be.
+            </p>
+            <a href="#" class="link link-underline- font-weight-bold">Find out more</a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <img alt="Image placeholder" src="assets/img/theme/light/presentation-2.png" class="img-fluid img-center">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{-- <section class="slice slice-lg">
+    <div class="container">
+      <div class="mb-5 text-center">
+        <span class="badge badge-soft-success badge-pill badge-lg">
+          Our process
+        </span>
+        <h3 class=" mt-4">Customize with confidence</h3>
+        <div class="fluid-paragraph mt-3">
+          <p class="lead lh-180">Customization has never been easier. Purpose has all the right tools in order to make your website building process a breeze.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card hover-translate-y-n10 hover-shadow-lg p-2">
+            <div class="card-body">
+              <div class="">
+                <div class="pb-5">
+                  <div class="icon bg-primary text-white rounded-circle icon-lg icon-shape shadow">
+                    <i class="fas fa-file-archive"></i>
+                  </div>
+                </div>
+                <h5 class="font-weight-bold">Download Purpose</h5>
+                <p class="mt-2 mb-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card hover-translate-y-n10 hover-shadow-lg p-2">
+            <div class="card-body">
+              <div class="">
+                <div class="pb-5">
+                  <div class="icon bg-primary text-white rounded-circle icon-lg icon-shape shadow">
+                    <i class="fas fa-palette"></i>
+                  </div>
+                </div>
+                <h5 class="font-weight-bold">Change its colors</h5>
+                <p class="mt-2 mb-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card hover-translate-y-n10 hover-shadow-lg p-2">
+            <div class="card-body">
+              <div class="">
+                <div class="pb-5">
+                  <div class="icon bg-primary text-white rounded-circle icon-lg icon-shape shadow">
+                    <i class="fas fa-tools"></i>
+                  </div>
+                </div>
+                <h5 class="font-weight-bold">Create your website</h5>
+                <p class="mt-2 mb-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> --}}
+
+   <section class="slice-lg">
+    <div class="container">
+        <div class="row align-items-center px-5">
             <div class="col-lg-6">
-               <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center">
                   <h3 class="heading">
-                     What's the reason behind <strong>#feedThePoor</strong>?
+                      What's the reason behind <strong>#feedThePoor</strong>?
                   </h3>
-               </div>
+                </div>
             </div>
             <div class="col-md-6">
-               <p>
+              <p>
                   India is home to the largest undernourished population in the world
-               </p>
-               <ul>
-                  <li>194.4 million people i.e. 14.5% of our population is undernourished</li>
-                  <li>20.8% of children under 5 are underweight</li>
-                  <li>37.9% of children under 5 years of age are stunted</li>
-                  <li>51.4% women in the reproductive age (15-49 years) are anaemic</li>
-               </ul>
-               <small>source <a href="https://www.indiafoodbanking.org/hunger" target="_blank">indiafoodbanking.org</a></small>
-               <br><br><br>
-               There are always people who strive to help. There are people who deep down "want" to help, but they're
-               haunted by one burning question inside their minds
-               <p></p>
+                  <ul>
+                      <li>194.4 million people i.e. 14.5% of our population is undernourished</li>
+                      <li>20.8% of children under 5 are underweight</li>
+                      <li>37.9% of children under 5 years of age are stunted</li>
+                      <li>51.4% women in the reproductive age (15-49 years) are anaemic</li>
+                  </ul>
+
+                  <small>source <a href="https://www.indiafoodbanking.org/hunger"
+                          target="_blank">indiafoodbanking.org</a></small>
+
+                  <br /><br /><br />
+                  There are always people who strive to help. There are people who deep down "want" to help, but they're
+                  haunted by one burning question inside their minds
+              </p>
             </div>
-         </div>
-      </div>
-   </section>
+
+        </div>
+    </div>
+</section>
    <section class="bg-gradient-lighter slice-lg">
       <div class="container">
          <div class="row">
