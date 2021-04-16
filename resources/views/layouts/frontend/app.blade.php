@@ -1,19 +1,58 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description"
-        content="Probably the most complete UI kit out there. Multiple functionalities and controls added,  extended color palette and beautiful typography, designed as its own extended version of Bootstrap at  the highest level of quality.                             ">
-    <meta name="author" content="Webpixels">
+    <meta name="author" content="icrewsystems.com">
+    <!-- Primary Meta Tags -->
+    <title>#feedThePoor | Donate confidently & Transparently</title>
+    <meta name="title" content="#feedThePoor | Donate confidently & Transparently">
+    <meta name="description" content="#feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
 
-    @yield('meta')
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://feedthepoor.online">
+    <meta property="og:title" content="#feedThePoor | Donate confidently & Transparently">
+    <meta property="og:description" content="#feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
+    <meta property="og:image" content="{{ asset('images/feedthepoor_meta_poster.png') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://feedthepoor.online">
+    <meta property="twitter:title" content="#feedThePoor | Donate confidently & Transparently">
+    <meta property="twitter:description" content="#feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
+    <meta property="twitter:image" content="{{ asset('images/feedthepoor_meta_poster.png') }}">
+    <meta name="theme-color" content="#363636">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
     <!-- Theme CSS -->
-    <link type="text/css" href="{{ asset('css/theme.css') }}" rel="stylesheet">
+    <link type="text/css" href="https://preview.webpixels.io/purpose-website-ui-kit/assets/css/purpose.css" rel="stylesheet">
+    <link type="text/css" href="{{ asset('css/theme.css')}}" rel="stylesheet">
+    <link type="text/css" href="{{ asset('css/additional.css')}}" rel="stylesheet">
+
+    <!-- FAQ CSS -->
+    <link type="text/css" href="{{ asset('css/faq.css')}}" rel="stylesheet">
+    <!-- Demo CSS - No need to use these in your project -->
+    <link type="text/css" href="{{ asset('css/demo.css')}}" rel="stylesheet">
+
+    <!-- Additional CSS codes -Leonard, 21/08/2020  -->
+    <!-- testimonials css -->
+
+    <link type="text/css" href="{{ asset('css/testimonials.css')}}" rel="stylesheet">
+    <!-- Campaigns CSS -->
+    <link type="text/css" href="{{ asset('css/campaigns.css')}}" rel="stylesheet">
+    <link rel="icon" href="{{ asset('images/feedthepoor_logo_main.png') }}" type="image/png">
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css">
+    <!--gallery-->
+    {{-- <link type="text/css" href="{{ asset('css/homegallery.css')}}" rel="stylesheet"> --}}
+    <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.14/css/lightgallery.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
 
     <style>
         .C-parallax {
@@ -95,12 +134,12 @@
 </head>
 
 <body>
-    @include('sweetalert::alert')
 
     @include('layouts.frontend.nav')
-
-    @yield('content')
-
+    <main class="main">
+        @include('sweetalert::alert')
+        @yield('content')
+    </main>
     @include('layouts.frontend.footer')
 
     <!-- Core -->
@@ -115,8 +154,11 @@
     <script src="{{ asset('vendor/input-mask/input-mask.min.js') }}"></script>
     <script src="{{ asset('vendor/nouislider/js/nouislider.min.js') }}"></script>
     <script src="{{ asset('vendor/textarea-autosize/textarea-autosize.min.js') }}"></script>
+
+    <script src="https://preview.webpixels.io/purpose-website-ui-kit/assets/libs/swiper/dist/js/swiper.min.js"></script>
     <!-- Theme JS -->
     <script src="{{ asset('js/theme.js') }}"></script>
+    <script src="https://preview.webpixels.io/purpose-website-ui-kit/assets/js/purpose.js"></script>
 
     <script>
         $(window).on("load", function() {
@@ -169,8 +211,6 @@
 
     @yield('js')
     @include('notify::messages')
-        // Laravel 7 or greater
-    <x:notify-messages />
     @notifyJs
 </body>
 
