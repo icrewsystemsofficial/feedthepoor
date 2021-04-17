@@ -24,6 +24,7 @@ Route::get('/contact', 'FrontendController@contact')->name('frontend.contact');
 Route::get('/contact', 'ContactController@index')->name('contact');
 Route::put('/contact', 'ContactController@register')->name('contact.register');
 Route::get('/error', 'FrontendController@error')->name('frontend.error');
+Route::get('/contributors', 'FrontendController@contributors')->name('frontend.contributors');
 
 Route::prefix('/dashboard')->group(function () {
     Auth::routes();

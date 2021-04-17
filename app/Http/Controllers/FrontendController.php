@@ -88,10 +88,19 @@ class FrontendController extends Controller
     public function gallery(){
         return view('frontend.gallery');
     }
+
     public function contact(){
         return view('frontend.contact');
     }
+
     public function error(){
         return view('frontend.error');
+    }
+
+    //This function shall display the contributors to the project
+    //At a later stage this needs to be made dynamic.
+    
+    public function contributors(){
+        return view('frontend.contributors');
     }
 }
