@@ -51,6 +51,12 @@ Route::prefix('/dashboard')->group(function () {
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::put('/profile', 'ProfileController@update')->name('profile.update');
 
+    Route::prefix('/admin')->group(function () {
+        Route::get('/testimonial', 'TestimonialController@adminIndex')->name('testimonials.admin.index');
+        Route::post('/testimonial/changeStatus', 'TestimonialController@status')->name('testimonials.admin.status');
+    });
+
+
 });
 
 

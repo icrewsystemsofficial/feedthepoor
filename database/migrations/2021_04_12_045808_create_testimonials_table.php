@@ -19,6 +19,7 @@ class CreateTestimonialsTable extends Migration
             $table->timestamps();
             $table->unsignedInteger('user_id');
             $table->string('message');
+            $table->unsignedInteger('status_id')->default(0);
         });
     }
 

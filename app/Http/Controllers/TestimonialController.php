@@ -19,8 +19,16 @@ class TestimonialController extends Controller
         $testimonials = Testimonial::where('user_id','=',Auth::user()->id)->get(); //to retreive testimonial specific to the logged in user
 
         //for admin view , select $testimonials= Testimonial::all();
-        
+
         return view('testimonials.index')
+            ->with('testimonials',$testimonials);
+    }
+
+    public function adminIndex(){
+
+        $testimonials= Testimonial::all();
+        
+        return view('testimonials.admin.index')
             ->with('testimonials',$testimonials);
     }
 
@@ -39,6 +47,25 @@ class TestimonialController extends Controller
 
         return redirect()->route('testimonial')
             ->with('success','Testimonial created successfully.');
+    }
+
+    public function status(Request $request)
+    {
+        $testimonial = Testimonial::find($request->id);
+
+        if($testimonial){
+            if($testimonial->status_id == 0){
+                $testimonial->update(['status_id'=>1]);
+                notify()->success('Testimonial Status Changed', 'Enabled!');
+            }else{
+                notify()->success('Testimonial Status Changed', 'Disabled!');
+                $testimonial->update(['status_id'=>0]);
+            }
+            return redirect(route('testimonials.admin.index'));
+        }else{
+            notify()->success('Testimonial was not found.', 'Not Found!');
+            return redirect(route('testimonials.admin.index'));
+        }
     }
 
 
