@@ -7,12 +7,14 @@ use Illuminate\Http\Request;
 
 class GalleryController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+    
     public function index(){
         return view('dashboard.gallery');
+    }
+    public function __construct()
+    {
+        
+        $this->middleware('guest');
     }
     public function register(Request $request)
     {
