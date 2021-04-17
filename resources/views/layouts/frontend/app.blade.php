@@ -9,6 +9,9 @@
     <meta name="title" content="#feedThePoor | Donate confidently & Transparently">
     <meta name="description" content="#feedThePoor makes sure that your donation is transparent and gives you verification that your money actually reaches what you intended to.">
 
+    <!-- favicon -->
+    <link rel="icon" href="{{ asset('images/cover-login.png') }}" type="image/x-icon"/>
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://feedthepoor.online">
