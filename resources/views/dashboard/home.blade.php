@@ -176,17 +176,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-secondary text-white shadow">
-                        <div class="card-body">
-                            Secondary
-                            <div class="text-white-50 small">#858796</div>
+                        <div class="col-lg-6 mb-4">
+                            <div class="card bg-secondary text-white shadow">
+                                <div class="card-body">
+                                    Secondary
+                                <div class="text-white-50 small">#858796</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </div>
 
         <div class="col-lg-6 mb-4">
 

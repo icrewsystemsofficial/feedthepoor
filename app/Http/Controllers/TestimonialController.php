@@ -27,8 +27,8 @@ class TestimonialController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email'=> 'required',
+            'name'=>'required',
+            'email'=>'required',
             'message'=>'required'
         ]);
 
@@ -38,25 +38,23 @@ class TestimonialController extends Controller
             ->with('success','Testimonial created successfully.');
     }
 
-    public function show(Testimonial $testimonial)
-    {
-        return view('testimonials.show',compact('testimonials'));
-    }
 
     public function edit(Testimonial $testimonial)
     {
         return view('testimonials.edit',['testimonial' => $testimonial]);
     }
 
-    public function update(Request $request,Testimonial $testimonial)
+    public function update(Request $request)
     {
         $request->validate([
 
         ]);
+
+        $testimonial = Testimonial::find($request->id);
         
         $testimonial->update($request->all());
 
-        return redirect()->route('/testimonial')
+        return redirect()->route('testimonial')
             ->with('success','Testimonial Updated Successfully');
     }
 

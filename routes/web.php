@@ -35,11 +35,10 @@ Route::prefix('/dashboard')->group(function () {
     Route::get('/testimonial', 'TestimonialController@index')->name('testimonial');
     Route::get('/testimonial/create', 'TestimonialController@create')->name('testimonials.create');
     Route::POST('/testimonial/store', 'TestimonialController@store')->name('testimonials.store');
-    Route::put('/testimonial/show', 'TestimonialController@show')->name('testimonials.show');
 
     Route::get('/testimonial/{testimonial}/edit', 'TestimonialController@edit')->name('testimonials.edit');
 
-    Route::put('/testimonial/{testimonial}', [TestimonialController::class,'update']);
+    Route::post('/testimonial/update', 'TestimonialController@update')->name('testimonials.update');
 
     
     Route::delete('/testimonial/{testimonial}', 'TestimonialController@destroy')->name('testimonials.destroy');
