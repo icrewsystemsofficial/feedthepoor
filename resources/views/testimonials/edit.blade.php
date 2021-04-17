@@ -22,8 +22,7 @@
     <form action="{{ route('testimonials.update') }}" method="POST">
         @csrf
         <input type="hidden" name="id" value="{{ $testimonial->id }}"/>
-        <input type="hidden" name="name" value="{{ Auth::user()->name }}"/>
-        <input type="hidden" name="email" value="{{ Auth::user()->email }}"/>
+        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"/>
         
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="input-group input-group-lg">

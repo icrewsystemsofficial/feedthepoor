@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Testimonial;
+use Auth;
 
 class TestimonialController extends Controller
 {
@@ -15,9 +16,12 @@ class TestimonialController extends Controller
     public function index(){
         // return view('dashboard.testimonial');
 
-        $testimonials = Testimonial::latest()->paginate(5);
-        return view('testimonials.index',compact('testimonials'))
-            ->with('i',(request()->input('page',1) - 1) * 5);
+        $testimonials = Testimonial::where('user_id','=',Auth::user()->id)->get(); //to retreive testimonial specific to the logged in user
+
+        //for admin view , select $testimonials= Testimonial::all();
+        
+        return view('testimonials.index')
+            ->with('testimonials',$testimonials);
     }
 
     public function create()
@@ -27,8 +31,7 @@ class TestimonialController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
-            'email'=>'required',
+            'user_id'=>'required',
             'message'=>'required'
         ]);
 

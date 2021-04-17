@@ -17,8 +17,7 @@ class CreateTestimonialsTable extends Migration
             //add user id 
             $table->id();
             $table->timestamps();
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->unsignedInteger('user_id');
             $table->string('message');
         });
     }
