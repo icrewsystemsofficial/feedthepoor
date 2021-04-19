@@ -22,9 +22,9 @@ Route::get('/testimonials', 'FrontendController@testimonials')->name('frontend.t
 Route::get('/gallery', 'FrontendController@gallery')->name('frontend.gallery');
 Route::get('/contact', 'FrontendController@contact')->name('frontend.contact');
 Route::get('/contact', 'ContactController@index')->name('contact');
-Route::get('/contact', 'ContactController@index')->name('contact')->middleware('security');
 Route::put('/contact', 'ContactController@register')->name('contact.register');
 Route::get('/error', 'FrontendController@error')->name('frontend.error');
+Route::get('/contributors', 'FrontendController@contributors')->name('frontend.contributors');
 
 Route::prefix('/dashboard')->group(function () {
     Auth::routes();
@@ -40,7 +40,7 @@ Route::prefix('/dashboard')->group(function () {
 
     Route::post('/testimonial/update', 'TestimonialController@update')->name('testimonials.update');
 
-    
+
     Route::delete('/testimonial/{testimonial}', 'TestimonialController@destroy')->name('testimonials.destroy');
 
     Route::get('/contacts', 'ContactadminController@index')->name('contactadmin');
@@ -55,6 +55,8 @@ Route::prefix('/dashboard')->group(function () {
         Route::get('/testimonial', 'TestimonialController@adminIndex')->name('testimonials.admin.index');
         Route::post('/testimonial/changeStatus', 'TestimonialController@status')->name('testimonials.admin.status');
     });
+    Route::get('/gallery', 'GalleryController@index')->name('gallery');
+    Route::put('/gallery', 'GalleryController@register')->name('gallery.register');
 
 
 });
