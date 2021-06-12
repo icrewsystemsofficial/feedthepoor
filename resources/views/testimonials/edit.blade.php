@@ -1,13 +1,10 @@
-@extends('testimonials.layout')
+@extends('layouts.dashboard.admin')
 
-@section('content')
+@section('main-content')
     <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
+        <div class="col-lg-12 margin-tb mb-2">
+            <div class="text-center">
                 <h2>Edit Testimonial</h2>
-            </div>
-            <div class="pull-right">
-                <a href="/dashboard/testimonials/index" class="btn btn-primary">Back</a>
             </div>
         </div>
     </div>
@@ -22,33 +19,23 @@
             </ul>
         </div>
     @endif
-    <form action="/testimonials/{{ $testimonial->id }}" method="POST">
+    <form action="{{ route('testimonials.update') }}" method="POST">
         @csrf
-        @method('PUT')
-
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-ms-12">
-                <div class="form-group">
-                    <strong>Name: </strong>
-                    <input type="text" name="name" value="{{ $testimonial->name }}" class="form-control" placeholder="Name">
-
-                </div>
-            </div>
+        <input type="hidden" name="id" value="{{ $testimonial->id }}"/>
+        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"/>
+        
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Email: </strong>
-                    <input type="text" name="email" value="{{ $testimonial->email }}" class="form-control" placeholder="Course">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Message: </strong>
-                    <input type="text" name="message" value="{{ $testimonial->message }}" class="form-control" placeholder="Message">
+                <div class="input-group input-group-lg">
+                   <span class="input-group-text" id="inputGroup-sizing-lg">Edit Message Here</span>
+                   <input type="text" name="message" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="{{ $testimonial->message }}">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-success mt-5">Submit</button>
             </div>
         </div>
     </form> 
+    <div class="pull-left ml-5">
+        <a href="{{ route('testimonial') }}" class="btn btn-dark mt-2 p-2">Go Back</a>
+    </div>
 @endsection       

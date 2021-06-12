@@ -29,8 +29,8 @@ php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvid
 php artisan vendor:publish --provider="Mckenziearts\Notify\LaravelNotifyServiceProvider"
 call composer dumpautoload
 php artisan migrate:fresh
-php artisan db:seed
 php artisan roles:generate
+php artisan db:seed
 echo.
 echo FeedThePoor Project Setup Complete, Have Fun!
 echo.

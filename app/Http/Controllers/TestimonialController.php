@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Testimonial;
+use Auth;
 
 class TestimonialController extends Controller
 {
@@ -15,9 +16,20 @@ class TestimonialController extends Controller
     public function index(){
         // return view('dashboard.testimonial');
 
-        $testimonials = Testimonial::latest()->paginate(5);
-        return view('testimonials.index',compact('testimonials'))
-            ->with('i',(request()->input('page',1) - 1) * 5);
+        $testimonials = Testimonial::where('user_id','=',Auth::user()->id)->get(); //to retreive testimonial specific to the logged in user
+
+        //for admin view , select $testimonials= Testimonial::all();
+
+        return view('testimonials.index')
+            ->with('testimonials',$testimonials);
+    }
+
+    public function adminIndex(){
+
+        $testimonials= Testimonial::all();
+        
+        return view('testimonials.admin.index')
+            ->with('testimonials',$testimonials);
     }
 
     public function create()
@@ -27,8 +39,7 @@ class TestimonialController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email'=> 'required',
+            'user_id'=>'required',
             'message'=>'required'
         ]);
 
@@ -38,25 +49,42 @@ class TestimonialController extends Controller
             ->with('success','Testimonial created successfully.');
     }
 
-    public function show(Testimonial $testimonial)
+    public function status(Request $request)
     {
-        return view('testimonials.show',compact('testimonials'));
+        $testimonial = Testimonial::find($request->id);
+
+        if($testimonial){
+            if($testimonial->status_id == 0){
+                $testimonial->update(['status_id'=>1]);
+                notify()->success('Testimonial Status Changed', 'Enabled!');
+            }else{
+                notify()->success('Testimonial Status Changed', 'Disabled!');
+                $testimonial->update(['status_id'=>0]);
+            }
+            return redirect(route('testimonials.admin.index'));
+        }else{
+            notify()->success('Testimonial was not found.', 'Not Found!');
+            return redirect(route('testimonials.admin.index'));
+        }
     }
+
 
     public function edit(Testimonial $testimonial)
     {
         return view('testimonials.edit',['testimonial' => $testimonial]);
     }
 
-    public function update(Request $request,Testimonial $testimonial)
+    public function update(Request $request)
     {
         $request->validate([
 
         ]);
+
+        $testimonial = Testimonial::find($request->id);
         
         $testimonial->update($request->all());
 
-        return redirect()->route('/testimonial')
+        return redirect()->route('testimonial')
             ->with('success','Testimonial Updated Successfully');
     }
 

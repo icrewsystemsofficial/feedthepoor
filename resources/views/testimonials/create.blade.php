@@ -1,13 +1,10 @@
-@extends('testimonials.layout')
+@extends('layouts.dashboard.admin')
 
-@section('content')
+@section('main-content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
                 <h2>Add New Testimonial</h2>
-            </div>
-            <div class="pull-right">
-                <a href="{{ route('testimonial') }}" class="btn btn-primary">Back</a>
             </div>
         </div>
     </div>
@@ -24,28 +21,25 @@
     
     <form action="{{ route('testimonials.store') }}" method="POST">
         @csrf
-        <div class="row">
+        <div class="row mt-3">
+
+            
+            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"/>
+            
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Name: </strong>
-                    <input type="text" name="name" class="form-control" placeholder="Name">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Message</span>
+                    </div>
+                <textarea class="form-control" name="message" aria-label="With textarea"></textarea>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Email: </strong>
-                    <input type="text" name="email" class="form-control" placeholder="Email">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Message: </strong>
-                    <input type="text" name="message" class="form-control" placeholder="Message">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="col-xs-12 col-sm-12 col-md-12 mt-2 text-center">
+                <button type="submit" class="btn btn-success">Submit</button>
             </div>
         </div>
     </form>
+    <span class="text-center">
+        <a href="{{ route('testimonial') }}" class="btn btn-dark mt-2 p-2">Go Back</a>
+    </span>
 @endsection    
