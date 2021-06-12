@@ -25,16 +25,14 @@
 <BR><BR>
 <BR>
 <BR>
-<BR>
 
 <div class="bg-white">
-                <div class="flex main-title p-5 text-center">
-                    <h1>Contact Form</h1>
-                    <p>
+                    <h1 class="display-4 text-center">Contact Us</h1>
+                    <p class="text-center">
                         Fill this up and we'll be right with you within the next 24-48 working hours.
                     </p>
-                </div>
-<div class="contact-form padding-top60 padding-bottom60 bg-gray-700">
+                    <br><br>
+<div class="contact-form padding-top60 padding-bottom60 ">
         <div class="custom-width">
 
             <div class="row">
