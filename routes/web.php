@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontendDonationsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +27,10 @@ Route::get('/contact', 'ContactController@index')->name('contact');
 Route::put('/contact', 'ContactController@register')->name('contact.register');
 Route::get('/error', 'FrontendController@error')->name('frontend.error');
 Route::get('/contributors', 'FrontendController@contributors')->name('frontend.contributors');
+
+Route::get('/donate', [FrontendDonationsController::class, 'index'])->name('frontend.donate.index');
+Route::get('/donate/{howmuch?}', [FrontendDonationsController::class, 'process'])->name('frontend.donate.process');
+
 
 Route::prefix('/dashboard')->group(function () {
     Auth::routes();
