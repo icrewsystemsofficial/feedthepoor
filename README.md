@@ -14,39 +14,39 @@ This, is the first thing that haunts the mind of every good soul that wants to h
 
 Visit our live site at: https://feedthepoor.online
 
-## How to setup & contribute?
+# How to setup & contribute?
 
-### Prerequisites
+## Prerequisites
 
 We have used Laragon for this project. If you do not use Laragon, then skip the steps that are related to Laragon. If you want to use Laragon then please download laragon from here: https://laragon.org/
 
-### How to get the files cloned on your local machine
+## How to get the files cloned on your local machine
 
 1. Run this command: ```git clone https://github.com/icrewsystemsofficial/donation.git``` (Clone this into the www directory under your Laragon root directory, only if you are using Laragon)
 2. Rename the directory ```donation``` to ```feedThePoor```
 3. Enter (CD) into this directory
 
-### How to set this project on your local machine?
+## How to set this project on your local machine?
 
 Note: If you are using an UNIX based system (ex: MacOS/ Linux), follow the README-unix.md
 
 
-#### 1. Make sure you have followed the steps above.
+### 1. Make sure you have followed the steps above.
 
-#### 2. Create a database called ```feedthepoor```. This is absolutely necessary. Please note that the name is case sensitive, hence should be in lowercase. 
+### 2. Create a database called ```feedthepoor```. This is absolutely necessary. Please note that the name is case sensitive, hence should be in lowercase. 
 
-#### 2. Inside the root directory of the project, find this file: ```setup.bat```. Double click on this to run (Windows ONLY)
+### 2. Inside the root directory of the project, find this file: ```setup.bat```. Double click on this to run (Windows ONLY)
 
 Note: If you have problems with the above step, please follow README-unix.md.
 How to know if you had problems? A command prompt window should open. If everything worked fine, you'll see no errors and the console output will end with "FeedThePoor Project Setup Complete, Have Fun!".
 
-#### 3. Run this command ```php artisan developer:set``` and create an account. 
+### 3. Run this command ```php artisan developer:set``` and create an account. 
 
-#### 4. Change the ```ADMIN_EMAIL``` parameter in the .env file to the administrator's email ID. (OPTIONAL, only if you have mailtrap account)
+### 4. Change the ```ADMIN_EMAIL``` parameter in the .env file to the administrator's email ID. (OPTIONAL, only if you have mailtrap account)
 
-#### 5. Try running ```php artisan serve``` and it should spin up a development server. Go to the url given by the development server and you should see Boomerang UI kit's main page. (OPTIONAL)
+### 5. Try running ```php artisan serve``` and it should spin up a development server. Go to the url given by the development server and you should see Boomerang UI kit's main page. (OPTIONAL)
 
-### How to configure Laragon for this projects
+## How to configure Laragon for this projects
 
 Normally Laragon should autodetect the file when you clone it inside the **www directory** under laragon root directory. If it doesnot **try restarting laragon or rebooting your machine**. 
 
