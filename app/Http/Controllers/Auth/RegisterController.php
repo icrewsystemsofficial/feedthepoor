@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Permission;
 
 class RegisterController extends Controller
 {
@@ -71,6 +72,13 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => $data['password'],      
         ]);
+        //$permission = Permission::create(['name' => 'guest']);
+
+        $user->givePermissionTo('guest');
+
+        $user->assignRole('guest');
+
+
         activity()
         ->causedBy($user)
         ->log('Created a new user called '.$data['name'].'');

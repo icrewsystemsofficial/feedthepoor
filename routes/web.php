@@ -30,4 +30,8 @@ Route::get('/about', function () {
 })->name('about');
         
 Route::get('activity-logs', [SettingsController::class, 'activity'])->name('activity-logs');
+Route::get('/user-management', [SettingsController::class, 'user_module'])->name('user.fetch');
+    Route::get('/edit/{id}',[SettingsController::class, 'user_edit'])->name('user.edit');
+    Route::put('/user-edit', [SettingsController::class, 'update'])->name('user.update');
+    Route::get('/delete/{id}', [SettingsController::class, 'delete'])->name('user.delete');
 

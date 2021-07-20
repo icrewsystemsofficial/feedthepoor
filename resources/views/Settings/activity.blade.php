@@ -1,5 +1,10 @@
 @extends('layouts.admin')
-
+@section('css')
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<style>
+    /* Your Custom Styles Here*/
+</style>
+@endsection
 @section('js')
  <script>
         $(document).ready( function () {
@@ -9,6 +14,7 @@
             });
         });
     </script>
+<script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 
 <script src="{{ asset('vuexy_theme/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('vuexy_theme/app-assets/vendors/js/tables/datatable/dataTables.bootstrap5.min.js') }}"></script>
