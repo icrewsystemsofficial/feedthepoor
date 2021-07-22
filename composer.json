@@ -19,6 +19,7 @@
         "laravel/ui": "^3.0",
         "spatie/laravel-activitylog": "^3.17",
         "spatie/laravel-permission": "^4.2",
+        "webpatser/laravel-uuid": "3.0",
         "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {

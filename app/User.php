@@ -11,7 +11,7 @@ use Spatie\Activitylog\LogOptions;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles, LogsActivity;
+    use Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
