@@ -36,7 +36,7 @@ Route::get('/user-management', [SettingsController::class, 'user_module'])->name
     Route::get('/delete/{id}', [SettingsController::class, 'delete'])->name('user.delete');
     Route::get('/user-management-create', [SettingsController::class, 'create_index'])->name('user.create.view');
     Route::put('/user-created', [SettingsController::class, 'create'])->name('user.create.new');
-    Route::get('/user-inivitation/{unique_code}', [SettingsController::class, 'create_user_inivitation'])->name('user.create');
+    Route::get('/inivitation/{unique_code}', [SettingsController::class, 'create_user_inivitation'])->name('user.create');
     Route::put('/user-inivitation-create', [SettingsController::class, 'create_user_inivitation_create'])->name('user.create.password');
 
 
