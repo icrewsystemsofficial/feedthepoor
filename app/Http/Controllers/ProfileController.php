@@ -6,6 +6,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Activitylog\Models\Activity;
+
 
 class ProfileController extends Controller
 {
@@ -45,6 +47,10 @@ class ProfileController extends Controller
         }
 
         $user->save();
+        
+        activity()
+        ->causedBy($user)
+        ->log('Updated the user called '.$user->name.'');
 
         return redirect()->route('profile')->withSuccess('Profile updated successfully.');
     }
