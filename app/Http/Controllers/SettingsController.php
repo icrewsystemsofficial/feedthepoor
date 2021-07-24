@@ -44,7 +44,8 @@ class SettingsController extends Controller
         ->causedBy(Auth::user()->id)
         ->log('updated the user '.$data->name.' by user module');
         // notify()->success("Successfully sent mail","sent");
-        return redirect(route('user.fetch'));
+        return redirect()->route('user.fetch')->withSuccess('user updated successfully.');
+
     }
     public function delete($id){
         $data=User::find($id);
@@ -53,7 +54,7 @@ class SettingsController extends Controller
        ->causedBy(Auth::user()->id)
        ->log('Deleted the user '.$data->name.' by user module');
      // notify()->success("Successfully Deleted","deleted");
-        return redirect(route('user.fetch'));
+     return redirect()->route('user.fetch')->withSuccess('user deleted successfully.');
 
     }
     public function create_index(){
@@ -74,7 +75,7 @@ class SettingsController extends Controller
         Mail::to($tempuser->email)->send(new UserInivitationMail($tempuser));
         
         $tempuser->save();
-        return redirect(route('user.fetch'));
+        return redirect()->route('user.fetch')->withSuccess('user created successfully.');
                // notify()->success("Successfully sent mail","sent");
 
     }
