@@ -108,7 +108,43 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="address">Address<span class="small text-danger">*</span></label>
+                                        <input type="text" id="address" class="form-control" name="address"  value="{{ old('address', Auth::user()->address) }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group focused">
+                                        <label class="form-control-label" for="name">CIty<span class="small text-danger">*</span></label>
+                                        <select name="city"  id="city" class="form-control">
+                                        @foreach ($city as $cities)
+                                                <option value="{{ $cities->name }}">
+                                                    {{ $cities->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group focused">
+                                        <label class="form-control-label" for="phone">Phone Number</label>
+                                        <input type="text" id="phone" class="form-control" name="phone" placeholder="+91 987456321" value="{{ old('phone', Auth::user()->phone) }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group focused">
+                                        <label class="form-control-label" for="new_password">Gender</label>
+                                        <select name="gender"  id="gender" class="form-control">
+                                           <option value="male">Male</option>
+                                           <option value="female">Female</option>
+                                           <option value="others">Others</option>
+                                        </select> </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group focused">

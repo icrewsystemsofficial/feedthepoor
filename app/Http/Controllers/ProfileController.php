@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\City;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +20,8 @@ class ProfileController extends Controller
 
     public function index()
     {
-        return view('profile');
+        $city = City::all();
+        return view ('profile' )->with(compact('city', $city ));
     }
 
     public function update(Request $request)
@@ -28,6 +31,11 @@ class ProfileController extends Controller
             'last_name' => 'nullable|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . Auth::user()->id,
             'current_password' => 'nullable|required_with:new_password',
+            'address' => 'nullable|required',
+            'phone' => 'nullable|required',
+            'gender' => 'nullable|required',
+            'city' => 'nullable|required',
+
             'new_password' => 'nullable|min:8|max:12|required_with:current_password',
             'password_confirmation' => 'nullable|min:8|max:12|required_with:new_password|same:new_password'
         ]);
@@ -37,6 +45,10 @@ class ProfileController extends Controller
         $user->name = $request->input('name');
         $user->last_name = $request->input('last_name');
         $user->email = $request->input('email');
+        $user->address = $request->input('address');
+        $user->phone = $request->input('phone');
+        $user->cities = $request->input('city');
+        $user->gender = $request->input('gender');
 
         if (!is_null($request->input('current_password'))) {
             if (Hash::check($request->input('current_password'), $user->password)) {
