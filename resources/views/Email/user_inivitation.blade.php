@@ -1,14 +1,17 @@
 @component('mail::message')
 # Hey {{ $tempuser->name }},
-
+An account has been created for you on our admin page.Kindly use inivitation link to Register. 
 
 @component('mail::panel')
-<h2>Please click the below link for registration for the role {{ $tempuser->role }}<a href='http://127.0.0.1:8000/user-inivitation/{{ $tempuser->unique_code }}'>
-        http://127.0.0.1:8000/inivitation//{{ $tempuser->name }}</a> </h2>
+Name:{{ $tempuser->name }}
+Email:{{ $tempuser->email }}
+<a href='http://127.0.0.1:8000/inivitation/{{ $tempuser->unique_code }}'>http://127.0.0.1:8000/inivitation/{{ $tempuser->name }}</a>
+@endcomponent
+@component('mail::button', ['url' => 'http://127.0.0.1:8000/user-inivitation/{{ $tempuser->unique_code }}', 'color' => 'success'])
+Accept Invitation
 @endcomponent
 
-
-For any queries, please feel free to write back to us.
+For any queries, please feel free to write  to us.
 
 Regards,<br>
 Team {{ config('app.name') }}

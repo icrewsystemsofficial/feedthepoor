@@ -51,7 +51,24 @@
         </div>
     </div>
 </div>
+@if (session('success'))
+        <div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
 
+    @if ($errors->any())
+        <div class="alert alert-danger border-left-danger" role="alert">
+            <ul class="pl-4 my-2">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="row">
         <div class="col-md-12 col-12 py--1">
 
@@ -102,7 +119,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->roles->pluck('name')->implode(' ') }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}<td>
+                                    <td>{{ \Carbon\Carbon::parse($item->created_at) }}<td>
                                     <td>{{ \Carbon\Carbon::parse($item->created_at)->format('g:i A, d/m/Y') }}</td>   
                                     <td><a id="mybtn" name="mybtn" type="button" class="btn btn-info edit-modal" href="{{ "edit/".$item['id'] }}"  ><i class="fas fa-pen"></i> Edit</a>
                                    

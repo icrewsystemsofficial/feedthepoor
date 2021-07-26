@@ -11,6 +11,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Mail\UserInivitationMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -85,6 +86,12 @@ class SettingsController extends Controller
 
     } 
     public function create_user_inivitation_create(Request $req){
+        
+        $req->validate([
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+
+        ]);
+
         $user = new User;
         $user->name=$req->input('name');
         $user->last_name=$req->input('name');

@@ -30,13 +30,19 @@ Route::get('/about', function () {
 })->name('about');
         
 Route::get('activity-logs', [SettingsController::class, 'activity'])->name('activity-logs');
-Route::get('/user-management', [SettingsController::class, 'user_module'])->name('user.fetch');
-    Route::get('/edit/{id}',[SettingsController::class, 'user_edit'])->name('user.edit');
-    Route::put('/user-edit', [SettingsController::class, 'update'])->name('user.update');
-    Route::get('/delete/{id}', [SettingsController::class, 'delete'])->name('user.delete');
-    Route::get('/user-management-create', [SettingsController::class, 'create_index'])->name('user.create.view');
-    Route::put('/user-created', [SettingsController::class, 'create'])->name('user.create.new');
-    Route::get('/inivitation/{unique_code}', [SettingsController::class, 'create_user_inivitation'])->name('user.create');
+     Route::get('/inivitation/{unique_code}', [SettingsController::class, 'create_user_inivitation'])->name('user.create');
     Route::put('/user-inivitation-create', [SettingsController::class, 'create_user_inivitation_create'])->name('user.create.password');
 
+    Route::prefix('admin')->group(function () {
 
+        Route::prefix('/users')->group(function ()  {
+            Route::get('/management', [SettingsController::class, 'user_module'])->name('user.fetch');
+            Route::get('/edit/{id}',[SettingsController::class, 'user_edit'])->name('user.edit');
+            Route::put('/user-edit', [SettingsController::class, 'update'])->name('user.update');
+            Route::get('/delete/{id}', [SettingsController::class, 'delete'])->name('user.delete');
+            Route::get('/management/create', [SettingsController::class, 'create_index'])->name('user.create.view');
+            Route::put('/created', [SettingsController::class, 'create'])->name('user.create.new');
+        
+        });
+    
+    });

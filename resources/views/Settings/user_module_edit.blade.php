@@ -2,20 +2,13 @@
 
 
 @section('css')
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 <style>
     /* Your Custom Styles Here*/
 </style>
 @endsection
 
 @section('js')
-<script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#user').DataTable();
-    });
 
-</script>
 @endsection
 
 
@@ -55,12 +48,12 @@
                     <div class="form-group">
                         <label class="control-label col-sm2" for="status">Role</label>
                         <div class="col-sm-10">
-                            <select class="form-control" name="role">
-                                <option value="guest"  selected>Guest</option>
-                                <option value="donor">Donor</option>
-                                <option value="volunteer">Volunteer</option>
-                                <option value="staff">Staff</option>
-                                <option value="admin">Admin</option>
+                        <select class="form-control" name="role">
+                                <option value="guest" {{ (($data->roles->pluck('name')->implode(' ')) === 'guest') ? "selected" : "" }}>Guest</option>
+                                <option value="donor" {{ (($data->roles->pluck('name')->implode(' ')) === 'donor') ? "selected" : "" }}>Donor</option>
+                                <option value="volunteer" {{ (($data->roles->pluck('name')->implode(' ')) === 'volunteer') ? "selected" : "" }}>Volunteer</option>
+                                <option value="staff" {{ (($data->roles->pluck('name')->implode(' ')) === 'staff') ? "selected" : "" }}>Staff</option>
+                                <option value="admin" {{ (( $data->roles->pluck('name')->implode(' ')) === 'admin') ? 'selected' : '' }}>Admin</option>
                             </select>
                         </div>
                     </div>
