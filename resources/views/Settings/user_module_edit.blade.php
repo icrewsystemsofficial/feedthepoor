@@ -45,19 +45,32 @@
                             <input type="text" class="form-control" name="email"   value="{{ $data->email }}" >
                         </div>
                     </div>
+
+
+
+
                     <div class="form-group">
                         <label class="control-label col-sm2" for="status">Role</label>
                         <div class="col-sm-10">
+<<<<<<< HEAD
                         <select class="form-control" name="role">
                                 <option value="guest" {{ (($data->roles->pluck('name')->implode(' ')) === 'guest') ? "selected" : "" }}>Guest</option>
                                 <option value="donor" {{ (($data->roles->pluck('name')->implode(' ')) === 'donor') ? "selected" : "" }}>Donor</option>
                                 <option value="volunteer" {{ (($data->roles->pluck('name')->implode(' ')) === 'volunteer') ? "selected" : "" }}>Volunteer</option>
                                 <option value="staff" {{ (($data->roles->pluck('name')->implode(' ')) === 'staff') ? "selected" : "" }}>Staff</option>
                                 <option value="admin" {{ (( $data->roles->pluck('name')->implode(' ')) === 'admin') ? 'selected' : '' }}>Admin</option>
+=======
+                            <select class="form-control" name="role">
+                                <option value="guest">Guest</option>
+                                <option value="donor">Donor</option>
+                                <option value="volunteer">Volunteer</option>
+                                <option value="staff">Staff</option>
+                                <option value="admin" {{(($data->roles->pluck('name')->implode(' ')) === 'admin') ? "selected" : ""}}>Admin</option>
+>>>>>>> 7f8b60d45da30a9a87881c3db8939aef38661111
                             </select>
                         </div>
                     </div>
-                   
+
                         <button type="submit" class="btn btn-success" data-dismiss="modal">
                             <span id="footer_action_button" class="glyphicon glyphicon">Update</span>
                         </button>

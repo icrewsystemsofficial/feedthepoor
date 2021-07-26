@@ -34,6 +34,7 @@ class SettingsController extends Controller
 
     public function update(Request $req){
         $data=User::find($req->id);
+
         $data->name=$req->input('name');
         $data->email= $req->input('email');
         $role= $req->input('role');
@@ -74,7 +75,7 @@ class SettingsController extends Controller
         ->causedBy(Auth::user()->id)
         ->log('Created a invitation link to  the user '.$tempuser->name.' by user module');
         Mail::to($tempuser->email)->send(new UserInivitationMail($tempuser));
-        
+
         $tempuser->save();
         return redirect()->route('user.fetch')->withSuccess('user created successfully.');
                // notify()->success("Successfully sent mail","sent");
@@ -84,7 +85,7 @@ class SettingsController extends Controller
         $data=TempUser::where('unique_code',$unique_code) -> first();
        return view('settings.password',compact('data'));
 
-    } 
+    }
     public function create_user_inivitation_create(Request $req){
         
         $req->validate([
@@ -110,5 +111,5 @@ class SettingsController extends Controller
        // notify()->success("Successfully Created","created");
        return view('/welcome');
 
-    } 
+    }
 }
