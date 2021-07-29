@@ -22,6 +22,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function donation(){
+        return view('donation');
+    }
     public function index()
     {
         $users = User::count();

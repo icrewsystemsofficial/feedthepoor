@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SettingsController;
-
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +17,8 @@ use App\Http\Controllers\SettingsController;
 
 Route::get('/', function () {
     return view('welcome');
+  
+
 });
 
 Auth::routes();
@@ -32,6 +35,7 @@ Route::get('/about', function () {
 Route::get('activity-logs', [SettingsController::class, 'activity'])->name('activity-logs');
      Route::get('/inivitation/{unique_code}', [SettingsController::class, 'create_user_inivitation'])->name('user.create');
     Route::put('/user-inivitation-create', [SettingsController::class, 'create_user_inivitation_create'])->name('user.create.password');
+    Route::get('/donation', 'HomeController@donation')->name('donation');
 
     Route::prefix('admin')->group(function () {
 
