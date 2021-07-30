@@ -32,7 +32,7 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
         
-Route::get('activity-logs', [SettingsController::class, 'activity'])->name('activity-logs');
+Route::get('activity-logs', [SettingsController::class, 'activity'])->name('activity.logs');
      Route::get('/inivitation/{unique_code}', [SettingsController::class, 'create_user_inivitation'])->name('user.create');
     Route::put('/user-inivitation-create', [SettingsController::class, 'create_user_inivitation_create'])->name('user.create.password');
     Route::get('/donation', 'HomeController@donation')->name('donation');
@@ -50,3 +50,4 @@ Route::get('activity-logs', [SettingsController::class, 'activity'])->name('acti
         });
     
     });
+    Route::get('/donation', 'DonationController@index');

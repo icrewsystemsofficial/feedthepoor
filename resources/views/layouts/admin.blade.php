@@ -76,7 +76,18 @@
                 <span>{{ __('About') }}</span>
             </a>
         </li>
-
+        <li class="nav-item {{ Nav::isRoute('user.fetch') }}">
+            <a class="nav-link" href="{{ route('user.fetch') }}">
+            <i class="fas fa-user-plus"></i>
+            <span>{{ __('User Management') }}</span>
+            </a>
+        </li>
+        <li class="nav-item {{ Nav::isRoute('activity.logs') }}">
+            <a class="nav-link" href="{{ route('activity.logs') }}">
+            <i class="fas fa-clock"></i>
+                <span>{{ __('Activity Log') }}</span>
+            </a>
+        </li>
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
