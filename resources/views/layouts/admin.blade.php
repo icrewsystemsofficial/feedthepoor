@@ -88,6 +88,12 @@
                 <span>{{ __('Activity Log') }}</span>
             </a>
         </li>
+        <li class="nav-item {{ Nav::isRoute('index') }}">
+            <a class="nav-link" href="{{ route('index') }}">
+            <i class="fas fa-cogs "></i>
+                <span>{{ __('Settings') }}</span>
+            </a>
+        </li>
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 

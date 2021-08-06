@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SettingsController;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Http\Controllers\SettingsModuleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,6 +49,13 @@ Route::get('activity-logs', [SettingsController::class, 'activity'])->name('acti
             Route::get('/management/create', [SettingsController::class, 'create_index'])->name('user.create.view');
             Route::put('/created', [SettingsController::class, 'create'])->name('user.create.new');
         
+        });
+        Route::prefix('/setting')->group(function ()  {
+            Route::get('/', [SettingsModuleController::class, 'index'])->name('index');
+            Route::post('/', [SettingsModuleController::class, 'settings_edit'])->name('edit');
+            Route::post('/create', [SettingsModuleController::class, 'settings_create'])->name('setting.create');
+            Route::post('/delete/{id}', [SettingsModuleController::class, 'settings_delete'])->name('delete');
+            Route::post('/group-create', [SettingsModuleController::class, 'setting_group_create'])->name('group.create');            
         });
     
     });

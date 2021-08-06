@@ -51,8 +51,16 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
-        }
+            "Tests\\": "tests/",
+            "App\\": "app/",
+        "Database\\Factories\\": "database/factories/",
+        "Database\\Seeders\\": "database/seeds/"
+        },
+        "files": [
+            "app/Helpers/SettingsHelper.php"
+            
+            
+        ]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

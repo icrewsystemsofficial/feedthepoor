@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\City;
 use Illuminate\Support\Facades\File;
 
+
+
 class CitySeeder extends Seeder
 {
     /**

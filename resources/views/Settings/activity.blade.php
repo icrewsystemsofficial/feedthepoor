@@ -26,6 +26,7 @@
 
 @endsection
 @section('main-content')
+<h1>@settings('APP_NAME')</h1>
 
 <div class="content-header row">
     <div class="content-header col-md-12 col-12 py--1">
@@ -126,3 +127,5 @@
         </div>
     </div>
 @endsection
+
+
