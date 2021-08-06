@@ -81,8 +81,9 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    @setting('APP_NAME')
-                </div>
+                
+                {{ config('settings.message') }}
+                 </div>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>

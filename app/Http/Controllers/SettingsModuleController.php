@@ -85,7 +85,9 @@ class SettingsModuleController extends Controller
             'type' => ['required'],
             'group' => ['required'],
             'core' => ['required'],
+            'type' => ['required'],
             'description' => ['required'],
+
           ]);
         
       Setting::create($validatedData);
