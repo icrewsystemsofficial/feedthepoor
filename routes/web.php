@@ -59,4 +59,10 @@ Route::get('activity-logs', [SettingsController::class, 'activity'])->name('acti
         });
     
     });
-    Route::get('/donation', 'DonationController@index');
+    Route::get('/donation', 'DonationController@index');    
+    Route::get('/index', 'DonationController@donation_customer');
+    Route::get('/index1', 'DonationController@donation_customer1');
+
+    Route::put('/success', 'DonationController@save')->name('donation.save');
+
+

@@ -66,46 +66,7 @@
                                     </center>
                                 </div>
 
-                                <script>
-                                    function updateMoney(value) {
-                                        if(value == '') {
-                                            alert('Choose an amount first');
-                                        } else {
-                                            if(value > 10000) {
-                                            //TODO: Do this via SweetAlert.
-                                                alert('Dear donor, For any amount higher than ₹10,000, please contact staff. donations@feedthepoor.in')
-                                            }
-                                            if(value < 30) {
-                                                alert('Dear donor, it takes us a minimum of ₹30 to feed a person. Please consider a higher amount to continue.')
-                                            }
-                                        }
-                                        var donationAmount = document.getElementById('donationAmount');
-                                        donationAmount.innerHTML = value;
-                                        calculateNumberOfMeals(value);
-                                    }
-                                    function toggleCustomDonation() {
-                                        var customDonationAmountBox = document.getElementById('customDonationAmountBox');
-                                        if(customDonationAmountBox.style.display == 'none') {
-                                            customDonationAmountBox.style.display = '';
-                                        } else {
-                                            customDonationAmountBox.style.display = 'none';
-                                        }
-                                    }
-                                    function calculateNumberOfMeals(money) {
-                                        var costpermeal = 50;
-                                        var meals = 0;
-                                        meals = Math.floor(money / costpermeal);
-                                        if(meals < 0) {
-                                            meals = 0;
-                                        }
-                                        document.getElementById('mealsPossible').innerHTML = meals;
-                                        document.getElementById('moneyPossible').innerHTML = money;
-                                    }
-                                    function processNextStep() {
-                                     var amount = donationAmount.innerHTML;
-                                     window.location.href = "{{ url('donate') }}/" + amount;
-                                    }
-                                </script>
+                               
 
                                 <div class="input-group mb-3" id="customDonationAmountBox" style="display: none;">
                                     <input type="text" class="form-control" placeholder="Minimum of ₹30" id="custom-amount">
@@ -148,5 +109,44 @@
 </section>
 @endsection
 @section('js')
-
+<script>
+                                    function updateMoney(value) {
+                                        if(value == '') {
+                                            alert('Choose an amount first');
+                                        } else {
+                                            if(value > 10000) {
+                                            //TODO: Do this via SweetAlert.
+                                                alert('Dear donor, For any amount higher than ₹10,000, please contact staff. donations@feedthepoor.in')
+                                            }
+                                            if(value < 30) {
+                                                alert('Dear donor, it takes us a minimum of ₹30 to feed a person. Please consider a higher amount to continue.')
+                                            }
+                                        }
+                                        var donationAmount = document.getElementById('donationAmount');
+                                        donationAmount.innerHTML = value;
+                                        calculateNumberOfMeals(value);
+                                    }
+                                    function toggleCustomDonation() {
+                                        var customDonationAmountBox = document.getElementById('customDonationAmountBox');
+                                        if(customDonationAmountBox.style.display == 'none') {
+                                            customDonationAmountBox.style.display = '';
+                                        } else {
+                                            customDonationAmountBox.style.display = 'none';
+                                        }
+                                    }
+                                    function calculateNumberOfMeals(money) {
+                                        var costpermeal = 50;
+                                        var meals = 0;
+                                        meals = Math.floor(money / costpermeal);
+                                        if(meals < 0) {
+                                            meals = 0;
+                                        }
+                                        document.getElementById('mealsPossible').innerHTML = meals;
+                                        document.getElementById('moneyPossible').innerHTML = money;
+                                    }
+                                    function processNextStep() {
+                                     var amount = donationAmount.innerHTML;
+                                     window.location.href = "{{ url('donate') }}/" + amount;
+                                    }
+                                </script>
 @endsection

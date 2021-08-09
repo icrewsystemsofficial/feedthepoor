@@ -98,7 +98,7 @@
                                     User</a>
                             </div>
                         </div>
-                        <div class="mb-2 mt-3">
+                        <div class="mb-2 m-3">
 
                             <table id="user_table" class="table table-hover">
                                 <thead>
@@ -125,7 +125,7 @@
                                             <td><a id="mybtn" name="mybtn" type="button" class="btn btn-info edit-modal"
                                                     href="{{ 'edit/' . $item['id'] }}"><i class="fas fa-pen"></i> Edit</a>
 
-                                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                <button type="button" class="btn btn-danger ml-3" data-toggle="modal"
                                                     data-target="#deletemodal"><i class="fas fa-trash-alt"></i>
                                                     Delete</button>
 
