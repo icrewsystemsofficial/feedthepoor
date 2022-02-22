@@ -20,7 +20,7 @@ class SettingsController extends Controller
     {
         return view('admin.settings.index', [
             'setting_groups' => SettingGroup::where('name', '!=', null)->get(),
-            'setting_types' => SettingsProvider::types(),
+            'setting_types' => SettingsProvider::types(),            
         ]);
     }
 

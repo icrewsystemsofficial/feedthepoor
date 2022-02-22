@@ -66,9 +66,23 @@
 
         }
     }
+
+
+    function showUnsavedAlert() {
+        return {
+            showAlert: false,
+
+            clicked() {                
+                if(this.showAlert == false) {
+                    this.showAlert = true;
+                }
+            }
+
+            
+        }
+    }
 </script>
 @endsection
-
 @section('content')
 
 
@@ -186,81 +200,54 @@
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title mb-0">Input</h5>
-            </div>
-            <div class="card-body">
-                <input type="text" class="form-control" placeholder="Input">
-            </div>
-
-            <div class="card-body">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+        <div class="card mt-3" x-data="showUnsavedAlert()">
+            <form action="">
+                <div class="alert alert-danger" role="alert" x-show="showAlert">
+                    <strong>Attention</strong>
+                    Unsaved settings
                 </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="">
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
-                </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" disabled="">
-                    <label class="form-check-label" for="flexSwitchCheckDisabled">Disabled switch checkbox input</label>
-                </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked="" disabled="">
-                    <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Disabled checked switch checkbox input</label>
-                </div>
-            </div>
-
-            <div class="card-body">
-
-                
-
-
-                <div class="tab">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item">
-                            <a class="btn btn-outline-dark btn-lg btn-square active" href="#tab-1" data-bs-toggle="tab" role="tab">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-outline-dark btn-lg btn-square" href="#tab-2" data-bs-toggle="tab" role="tab">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-outline-dark btn-lg btn-square" href="#tab-3" data-bs-toggle="tab" role="tab">Messages</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content mt-3">
-                        <div class="tab-pane active" id="tab-1" role="tabpanel">
-                            <h4 class="tab-title">Default tabs</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor tellus eget condimentum
-                                rhoncus. Aenean massa. Cum sociis natoque penatibus et magnis neque dis parturient montes, nascetur ridiculus mus.
-                            </p>
-                            <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede
-                                justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                                justo.</p>
-                        </div>
-                        <div class="tab-pane" id="tab-2" role="tabpanel">
-                            <h4 class="tab-title">Another one</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor tellus eget condimentum
-                                rhoncus. Aenean massa. Cum sociis natoque penatibus et magnis neque dis parturient montes, nascetur ridiculus mus.
-                            </p>
-                            <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede
-                                justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                                justo.</p>
-                        </div>
-                        <div class="tab-pane" id="tab-3" role="tabpanel">
-                            <h4 class="tab-title">One more</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor tellus eget condimentum
-                                rhoncus. Aenean massa. Cum sociis natoque penatibus et magnis neque dis parturient montes, nascetur ridiculus mus.
-                            </p>
-                            <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede
-                                justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                                justo.</p>
-                        </div>
+    
+                @foreach ($setting_groups as $group)
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">{{ Str::upper($group->name) }}</h5>
                     </div>
+                    <div class="card-body">                    
+                        @php
+                            $settings = App\Models\Setting::where('group_id', $group->id)->get();                        
+                        @endphp
+    
+                        @forelse ($settings as $setting)                                  
+                            <div class="row mb-2">
+                                <div class="col-md-3">
+                                    <label class="h4" for="{{ $setting->key }}">
+                                        <strong>{{ $setting->name }}</strong>
+                                    </label>
+                                    <p>
+                                        {{ $setting->description }}
+                                    </p>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="{{ $setting->key }}" value="{{ $setting->value }}" placeholder="{{ $setting->name }}" @click="clicked">
+                                </div>
+                            </div>
+                        
+                        @empty
+                            <p>
+                                No setting found in {{ $group->name }}
+                            </p>
+                        @endforelse
+    
+    
+                    </div>  
+                    
+                    <hr>
+                @endforeach
+    
+                
+                <div class="form-control">
+                    <x-loadingbutton type="submit">Save</x-loadingbutton>
                 </div>
-            </div>
+            </form>                        
         </div>
 
         
