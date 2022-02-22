@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Setting extends Model
 {
     use HasFactory;
+
+    protected $table = 'setting';
+
+    protected $fillable = [    
+        'group_id',
+        'key',
+        'name',
+        'description',
+        'value',
+        'core',
+        'type',
+    ];
+
+    
+
 }

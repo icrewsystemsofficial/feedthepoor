@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Models\SettingGroup;
+use App\Providers\SettingsProvider;
 use Illuminate\Http\Request;
 
 class SettingsController extends Controller
@@ -15,7 +17,10 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        return view('admin.settings.index');
+        return view('admin.settings.index', [
+            'setting_groups' => SettingGroup::where('name', '!=', null)->get(),
+            'setting_types' => SettingsProvider::types(),
+        ]);
     }
 
     /**
