@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use Illuminate\Support\Str;
 use App\Models\SettingGroup;
-use App\Providers\SettingsProvider;
 use Illuminate\Http\Request;
+use App\Providers\SettingsProvider;
+use App\Http\Controllers\Controller;
 
 class SettingsController extends Controller
 {
@@ -29,8 +30,19 @@ class SettingsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {        
+        if(request('description') != '') { $description = request('description'); } else { $description = 'No description provided'; }
+
+        $setting = new Setting;
+        $setting->group_id = request('setting_group');
+        $setting->key = Str::snake(request('name'));
+        $setting->name = request('name');
+        $setting->description = $description;
+        $setting->value = request('value');
+        $setting->core = request('core_setting');
+        $setting->type = request('setting_type');
+        $setting->save();
+        return redirect(route('admin.settings.index'));
     }
 
     /**

@@ -6,6 +6,13 @@
     function createSettings() {
         return {
             showalert: false,
+            settingName: '',
+            showSettingNameSuggestion: false,
+            settingGroupName: '',
+            settingValue: '',
+            coreSettingValue: 0,
+
+
             showValueInputs: {
                 showText: true,
                 showTextArea: false,
@@ -38,15 +45,25 @@
                     default: 
                         alert('not working');
 
+                }                
+            },
+
+            submitForm() {
+                setTimeout(() => {
+                    document.getElementById('new_settings_form').submit();
+                }, 2000);
+            }, 
+
+            updateCoreSettingValue() {
+                var core_setting = document.getElementById('core_setting').value;
+                if(core_setting == 'on') {
+                    this.coreSettingValue = 1;
+                } else {
+                    this.coreSettingValue = 0;
                 }
-
-                // this.showValueInputs.showText = true;
-                // this.showValueInputs.showTextArea = true;
-                // this.showValueInputs.showBoolean = true;
-
-                // alert(value);
-
             }
+
+
         }
     }
 </script>
@@ -73,12 +90,12 @@
                     </div>
                     <div class="modal-body m-3">
                         
-                        <form action="{{ route('admin.settings.create') }}" autocomplete="off">
+                        <form action="{{ route('admin.settings.create') }}" id="new_settings_form" method="POST" autocomplete="off">
                             @csrf
                             <div class="form-group mb-2">
                                 <label for="name" class="form-label">Name<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="name">
-                            </div>
+                                <input type="text" class="form-control" name="name" required="required">                                
+                            </div>                            
 
                             <div class="form-group mb-2">
                                 <label for="description" class="form-label">Description</label>                                
@@ -88,8 +105,7 @@
 
                             <div class="form-group mb-2">
                                 <label for="setting_group" class="form-label">Group<span class="text-danger">*</span> <span class="badge bg-success">{{ count($setting_groups) }}</span></label>
-                                <select name="setting_group" class="form-control">
-
+                                <select name="setting_group" class="form-control" required="required">
                                     @foreach ($setting_groups as $setting)
                                         <option value="{{ $setting->id }}">{{ $setting->name }}</option>
                                     @endforeach                                    
@@ -98,51 +114,74 @@
 
                             <div class="form-group mb-2">
                                 <label for="setting_type" class="form-label">Type</label>
-                                <select id="setting_type" name="setting_type" class="form-control" @change="updateSettingType">
+                                <select id="setting_type" name="setting_type" class="form-control" @change="updateSettingType" required="required">
                                     @foreach ($setting_types as $type => $name)
                                         <option value="{{ $type }}">{{ $name }}</option>
                                     @endforeach                                    
                                 </select>
                             </div>
                             
-
                             <div class="">
                                 <div class="form-group mb-2" x-show="showValueInputs.showText">                                
-                                    <label for="value" class="form-label">Value<span class="text-danger">*</span></label>                                
-                                    <input type="text" class="form-control" name="value" placeholder="Enter value for this setting">                                
+                                    <label class="form-label">Value<span class="text-danger">*</span></label>                                
+                                    
+                                    <input 
+                                        x-model="settingValue" 
+                                        type="text" 
+                                        class="form-control" 
+                                        placeholder="Enter value for this setting" 
+                                        required="required" 
+                                    /> 
                                 </div>
     
                                 <div class="form-group mb-2" x-show="showValueInputs.showTextArea">
-                                    <label for="value" class="form-label">Value<span class="text-danger">*</span></label>                                
-                                    <textarea name="value" class="form-control" placeholder="Enter value for this setting"></textarea>                               
+                                    <label class="form-label">Value<span class="text-danger">*</span></label>                                
+                                    <textarea 
+                                        x-model="settingValue" 
+                                        class="form-control" 
+                                        placeholder="Enter value for this setting" 
+                                        required="required"
+                                    ></textarea>                               
                                 </div>
     
                                 <div class="form-check form-switch mb-2 mt-3" x-show="showValueInputs.showBoolean">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                    <label class="form-check-label" for="flexSwitchCheckDefault">
+                                    <input 
+                                        x-model="settingValue" 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        id="value" />
+
+                                    
+                                    <label class="form-check-label" for="value">
                                         <strong>Enabled?</strong>                                        
                                     </label>
                                 </div>
-                            </div>
+
+
+                                {{-- Masking the inputs into this element --}}
+                                <input type="hidden" x-model="settingValue" name="value"></span>
+                            </div>                                                        
                             
                             <div class="form-check form-switch mb-2 mt-3">
-                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                <label class="form-check-label" for="flexSwitchCheckDefault">
+                                <input class="form-check-input" type="checkbox" id="core_setting" @click="updateCoreSettingValue">
+                                <label class="form-check-label">
                                     <strong>Core Setting?</strong>
                                     <span class="text-muted">
                                         this will override default config values with same keys
                                     </span>
                                 </label>
-                            </div>
 
-
-                        </form>
-
+                                <input type="hidden" name="core_setting" x-bind:value="coreSettingValue" />
+                            </div>                                                              
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Create</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>                                                
+                        <span @click="submitForm">
+                            <x-loadingbutton type="submit">Create</x-loadingbutton>
+                        </span>
                     </div>
+
+                    </form>
                 </div>
             </div>
         </div>
