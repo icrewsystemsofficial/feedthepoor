@@ -23,6 +23,7 @@ Route::prefix('admin')->as('admin.')->group(function() {
     Route::prefix('settings')->as('settings.')->group(function() {
         Route::get('/', [SettingsController::class, 'index'])->name('index');
         Route::post('/create', [SettingsController::class, 'create'])->name('create');
+        Route::post('/update', [SettingsController::class, 'update'])->name('update');
     });
 });
 

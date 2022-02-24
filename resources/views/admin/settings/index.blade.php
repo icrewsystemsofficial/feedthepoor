@@ -3,6 +3,10 @@
 @section('css')
 <script src="{{ asset('js/alpine.js') }}" defer></script>
 <script>
+    /*
+        Alpine Function to handle the UI functions of the "create settings" modal. 
+        - Leonard, February 2022. 
+    */
     function createSettings() {
         return {
             showalert: false,
@@ -68,6 +72,11 @@
     }
 
 
+    /*
+        This toggles visibility of the alert box whenever a setting textbox is clicked on. 
+        - Leonard, Feb 2022.
+    */
+
     function showUnsavedAlert() {
         return {
             showAlert: false,
@@ -81,6 +90,12 @@
             
         }
     }
+
+    function createSettingGroup() {
+        return {
+            he: '',
+        }
+    }
 </script>
 @endsection
 @section('content')
@@ -92,8 +107,10 @@
             Settings
         </h3>
 
+        {{-- START CREATE SETTING MODAL --}}
+
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#defaultModalPrimary">
-            Add new setting
+            <i class="fa-solid fa-plus"></i> &nbsp; Add new setting
         </button>
 
         <div x-data="createSettings()" class="modal fade" id="defaultModalPrimary" tabindex="-1" aria-hidden="true" style="display: none;">
@@ -200,11 +217,112 @@
             </div>
         </div>
 
+        {{-- END OF CREATE SETTING MODAL --}}
+
+        {{-- START OF CREATE NEW SETTING MODAL --}}
+
+        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#createNewSettingGroup">
+            <i class="fa-solid fa-gear"></i> &nbsp; Setting Groups
+        </button>
+
+        <div x-data="createSettingGroup()" class="modal fade" id="createNewSettingGroup" tabindex="-1" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Adding new setting group</h5>                        
+                    </div>
+                    <div class="modal-body m-3">
+                        
+                        <form action="{{ route('admin.settings.create') }}" id="new_settings_form" method="POST" autocomplete="off">
+                            @csrf
+
+                            <div class="alert alert-primary mb-2 p-2">
+                                
+                            </div>
+
+                            <div class="form-group mb-2">
+                                <label for="name" class="form-label">Name<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="name" required="required">                                
+                            </div>                            
+
+                            <div class="form-group mb-2">
+                                <label for="description" class="form-label">Description</label>                                
+                                <textarea name="description" class="form-control"></textarea>
+                            </div>
+                            
+                            {{-- <div class="row">                            
+                                @foreach ($setting_groups as $group)                            
+                                <div x-data="{ 
+                                    edit_{{ Str::snake($group->name) }}: false,                                    
+                                }">                                
+                                    <div class="col-md-8">
+                                        <strong>
+                                            {{ $group->name }} <span class="badge bg-success">{{ App\Models\Setting::where('group_id', $group->id)->count() }} settings</span>
+                                        </strong>                            
+                                        <p class="text-muted">
+                                            {{ $group->description }}
+                                        </p>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <button type="button" class="btn btn-primary" @click="edit_{{ Str::snake($group->name) }} = !edit_{{ Str::snake($group->name) }}">
+                                            <i class="fa-solid fa-pen-to-square"></i> &nbsp; Edit
+                                        </button>
+
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-trash-can"></i> &nbsp; Delete
+                                        </button>
+                                    </div>
+                                    
+
+                                    <div
+                                        class="mt-2 mb-2" 
+                                        x-show="edit_{{ Str::snake($group->name) }}"
+                                        x-transition:enter.duration.500ms
+                                        x-transition:leave.duration.400ms
+                                    >
+                                        <div class="form-group mb-2">
+                                            <label for="name" class="form-label">Name<span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="name" required="required" value="{{ $group->name }}">                                
+                                        </div>                            
+            
+                                        <div class="form-group mb-2">
+                                            <label for="description" class="form-label">Description</label>                                
+                                            <textarea name="description" class="form-control">{{ $group->description }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br>
+                                    
+                                @endforeach
+                            </div>                                                                                 --}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>                                                
+                        <span @click="submitForm">
+                            <x-loadingbutton type="submit">Create</x-loadingbutton>
+                        </span>
+                    </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        
+
         <div class="card mt-3" x-data="showUnsavedAlert()">
-            <form action="">
-                <div class="alert alert-danger" role="alert" x-show="showAlert">
-                    <strong>Attention</strong>
-                    Unsaved settings
+            <form action="{{ route('admin.settings.update') }}" method="POST" id="setting_update_form">
+                @csrf
+                <div class="card-body">
+                    <div class="alert alert-danger" role="alert" x-show="showAlert" 
+                        x-transition:enter.duration.500ms
+                        x-transition:leave.duration.400ms
+                    >
+                        <strong>Attention</strong>
+                        Unsaved settings, click "Save" to save the settings
+                    </div>
                 </div>
     
                 @foreach ($setting_groups as $group)
@@ -222,30 +340,72 @@
                                     <label class="h4" for="{{ $setting->key }}">
                                         <strong>{{ $setting->name }}</strong>
                                     </label>
-                                    <p>
-                                        {{ $setting->description }}
+                                    <p class="text-muted">
+                                        <small>
+                                            {{ $setting->description }}
+                                        </small>
                                     </p>
                                 </div>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="{{ $setting->key }}" value="{{ $setting->value }}" placeholder="{{ $setting->name }}" @click="clicked">
+
+                                    @switch($setting->type)
+                                        @case(1)                                            
+                                            <input type="text" class="form-control" name="{{ $setting->key }}" value="{{ $setting->value }}" placeholder="{{ $setting->name }}" @click="clicked">
+                                        @break
+
+                                        @case(2) 
+                                        <textarea                                             
+                                            class="form-control" 
+                                            placeholder="Enter value for {{ $setting->name }}" 
+                                            required="required"
+                                        >{{ $setting->value }}</textarea>                               
+                                        @break
+
+                                        @case(5)
+                                        
+                                        <div class="form-check form-switch mb-2 mt-3" x-data="{
+                                            VALUE_{{ $setting->key }}: '{{ $setting->value }}',
+                                        }">                                        
+                                            <input                                             
+                                                class="form-check-input" 
+                                                type="checkbox"               
+                                                x-model="VALUE_{{ $setting->key }}"                                                                                                                                  
+                                                @if($setting->value == true) checked @endif
+                                            />
+
+                                            
+                                            <label class="form-check-label" for="value">
+                                                <strong>Enabled?</strong>                                        
+                                            </label>
+
+                                            <input type="hidden" name="{{ $setting->key }}" x-model="VALUE_{{ $setting->key }}" >                                             
+                                        </div>
+                                        @break
+                                    
+                                        @default
+
+                                        <input type="text" class="form-control" name="{{ $setting->key }}" value="{{ $setting->value }}" placeholder="{{ $setting->name }}" @click="clicked">
+                                            
+                                    @endswitch                                    
                                 </div>
-                            </div>
-                        
+                            </div>                        
                         @empty
                             <p>
                                 No setting found in {{ $group->name }}
                             </p>
-                        @endforelse
-    
-    
-                    </div>  
-                    
+                        @endforelse        
+                    </div>                      
                     <hr>
                 @endforeach
     
                 
-                <div class="form-control">
-                    <x-loadingbutton type="submit">Save</x-loadingbutton>
+                <div class="card-body">
+                    <div class="form-group">
+                        
+                        <span @click="document.getElementById('setting_update_form').submit();">
+                            <x-loadingbutton>Save</x-loadingbutton>
+                        </span>                        
+                    </div>
                 </div>
             </form>                        
         </div>

@@ -36,7 +36,7 @@ class SettingsController extends Controller
         $setting = new Setting;
         $setting->group_id = request('setting_group');
         $setting->key = Str::snake(request('name'));
-        $setting->name = request('name');
+        $setting->name = Str::ucfirst(request('name'));
         $setting->description = $description;
         $setting->value = request('value');
         $setting->core = request('core_setting');
@@ -87,7 +87,7 @@ class SettingsController extends Controller
      */
     public function update(Request $request, Setting $setting)
     {
-        //
+        dd(request()->input());
     }
 
     /**
