@@ -24,6 +24,11 @@ Route::prefix('admin')->as('admin.')->group(function() {
         Route::get('/', [SettingsController::class, 'index'])->name('index');
         Route::post('/create', [SettingsController::class, 'create'])->name('create');
         Route::post('/update', [SettingsController::class, 'update'])->name('update');
+
+        Route::post('/group/create', [SettingsController::class, 'group_save'])->name('group.create');
+        Route::post('/group/{id}/update', [SettingsController::class, 'group_update'])->name('group.update');
+        Route::post('/group/{id}/delete', [SettingsController::class, 'group_delete'])->name('group.delete');
+
     });
 });
 

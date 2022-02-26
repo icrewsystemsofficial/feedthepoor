@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Exception;
+use App\Models\Setting;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 
 class SettingsProvider extends ServiceProvider
@@ -23,8 +25,11 @@ class SettingsProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
-        //
+    {                       
+        $core_settings = Setting::where('core', 1)->get();
+        foreach($core_settings as $setting) {
+            config(['setting.'.$setting->key.'' => $setting->value]);
+        }
     }
 
      //The types of settings that we support.

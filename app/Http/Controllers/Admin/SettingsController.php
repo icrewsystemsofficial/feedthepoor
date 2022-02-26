@@ -100,4 +100,35 @@ class SettingsController extends Controller
     {
         //
     }
+
+
+    public function group_create() {
+
+    }
+
+    public function group_edit() {
+
+    }
+
+    public function group_save(Request $request) {                        
+        $group = new SettingGroup;
+        $group->name = request('name');
+        $group->description = request('description');
+        $group->save();
+        return redirect()->route('admin.settings.index');        
+    }
+
+    public function group_update($id) {
+        $group = SettingGroup::where('id', $id)->first();        
+        $group->name = request('name');
+        $group->description = request('description');
+        $group->save();
+        return redirect()->route('admin.settings.index');        
+    }
+
+    public function group_delete($id) {
+        $group = SettingGroup::where('id', $id)->delete();
+        return redirect()->route('admin.settings.index');
+    }
 }
+ 
