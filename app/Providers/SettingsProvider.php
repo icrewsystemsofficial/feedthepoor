@@ -5,6 +5,7 @@ namespace App\Providers;
 use Exception;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class SettingsProvider extends ServiceProvider
@@ -25,10 +26,15 @@ class SettingsProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {                       
-        $core_settings = Setting::where('core', 1)->get();
-        foreach($core_settings as $setting) {
-            config(['setting.'.$setting->key.'' => $setting->value]);
+    {
+
+        if(Schema::hasTable('setting')) {
+            $core_settings = Setting::where('core', 1)->get();
+            foreach($core_settings as $setting) {
+                config(['setting.'.$setting->key.'' => $setting->value]);
+            }
+        } else {
+            // dd('works');
         }
     }
 
@@ -38,7 +44,7 @@ class SettingsProvider extends ServiceProvider
     //  public const RICHTEXT = '3';
     //  public const IMAGE = '4';
      public const BOOLEAN = '5';
- 
+
      public static function types() : array {
          $types = array(
              self::TEXT => 'Input Box',
@@ -50,18 +56,18 @@ class SettingsProvider extends ServiceProvider
 
          return $types;
      }
- 
+
      public function getType(int $type_input) {
          if($type_input == '') {
              throw new Exception('Setting type not provided');
          }
- 
+
          foreach(self::types() as $type) {
              if($type_input == $type) {
                  return $type;
              }
          }
- 
+
          //If there are no matches
          return new Exception('Unknown settings type');
      }
