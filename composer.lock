@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "22f4a9df76be4292f56e41a8e2c81304",
+    "content-hash": "ef36ef33f9967de3c90ab065001b1225",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1781,6 +1781,152 @@
                 }
             ],
             "time": "2021-11-21T11:48:40+00:00"
+        },
+        {
+            "name": "markwalet/laravel-changelog",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/markwalet/laravel-changelog.git",
+                "reference": "4d8651c248716691a365e8989b148e049482c523"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/markwalet/laravel-changelog/zipball/4d8651c248716691a365e8989b148e049482c523",
+                "reference": "4d8651c248716691a365e8989b148e049482c523",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-simplexml": "*",
+                "laravel/framework": "6.*|7.*|~8.74|^9.0",
+                "markwalet/laravel-git-state": "~1.0",
+                "php": "~7.4|8.*"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.4",
+                "orchestra/testbench": "4.*|5.*|6.*|7.*",
+                "phpunit/phpunit": "~9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MarkWalet\\Changelog\\ChangelogServiceProvider"
+                    ],
+                    "aliases": {
+                        "Changelog": "MarkWalet\\Changelog\\Facades\\Changelog"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MarkWalet\\Changelog\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Walet",
+                    "email": "mark.walet@gmail.com"
+                }
+            ],
+            "description": "A Laravel package that prevents merge conflicts on your changelog file.",
+            "support": {
+                "issues": "https://github.com/markwalet/laravel-changelog/issues",
+                "source": "https://github.com/markwalet/laravel-changelog/tree/v1.6.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/markwalet",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/markwalet",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/markwalet/laravel-changelog",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-02-08T18:31:19+00:00"
+        },
+        {
+            "name": "markwalet/laravel-git-state",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/markwalet/laravel-git-state.git",
+                "reference": "c0ebbb8eface7eb0808f24f8af3f80844edd74cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/markwalet/laravel-git-state/zipball/c0ebbb8eface7eb0808f24f8af3f80844edd74cb",
+                "reference": "c0ebbb8eface7eb0808f24f8af3f80844edd74cb",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~6.20|~7.29|~8.74|^9.0",
+                "php": "~7.4|8.*",
+                "phpoption/phpoption": ">=1.8",
+                "webmozart/assert": "^1.10"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~4.13|~5.12|6.*|7.*",
+                "phpunit/phpunit": "~9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MarkWalet\\GitState\\GitStateServiceProvider"
+                    ],
+                    "aliases": {
+                        "GitState": "MarkWalet\\GitState\\Facades\\GitState"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MarkWalet\\GitState\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Walet",
+                    "email": "mark.walet@gmail.com",
+                    "homepage": "https://markwalet.me",
+                    "role": "Owner"
+                }
+            ],
+            "description": "A Laravel package that gives you information about the current git state.",
+            "support": {
+                "issues": "https://github.com/markwalet/laravel-git-state/issues",
+                "source": "https://github.com/markwalet/laravel-git-state/tree/v1.6.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/markwalet",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/markwalet",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/markwalet/laravel-git-state",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-02-08T17:36:31+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -8091,5 +8237,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

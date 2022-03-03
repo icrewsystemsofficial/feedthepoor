@@ -1,0 +1,198 @@
+/*
+    These are specific to Roshni Foundation.
+
+    - Leonard, March 2022.
+*/
+
+:root {
+    --theme-color: #ebc04c;
+    --theme-color-secondary: #b29035;
+}
+
+.text-theme {
+    color: var(--theme-color);
+}
+
+.bg-theme {
+    background-color: var(--theme-color) !important;
+}
+
+.btn-theme {
+    color: #ffffff;
+    background-color: var(--theme-color) !important;
+    border-color: var(--theme-color) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(23, 31, 56, 0.075);
+}
+
+
+.btn-theme:hover {
+    color: #ffffff;
+    background-color: var(--theme-color-secondary) !important;
+    border-color: var(--theme-color-secondary) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(23, 31, 56, 0.075);
+}
+
+.btn-hover:hover {
+    transform: scale(1.1) !important;
+    transition: all 0.3s ease-in-out !important;
+    -webkit-box-shadow: 0px 0px 85px -4px rgba(235,192,76,0.41) !important;
+    -moz-box-shadow: 0px 0px 85px -4px rgba(235,192,76,0.41) !important;
+    box-shadow: 0px 0px 85px -4px rgba(235,192,76,0.41) !important;
+}
+
+.btn-zoom--hover:hover {
+    transform: scale(1.1);
+}
+
+.btn-shadow--hover:hover {
+    -webkit-box-shadow: 0px 0px 85px -4px rgba(235,192,76,0.41) !important;
+    -moz-box-shadow: 0px 0px 85px -4px rgba(235,192,76,0.41) !important;
+    box-shadow: 0px 0px 85px -4px rgba(235,192,76,0.41) !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+.hover-shadow-theme:hover {
+    -webkit-box-shadow: 0px 0px 85px 39px rgba(235,192,76,1) !important;
+    -moz-box-shadow: 0px 0px 85px 39px rgba(235,192,76,1) !important;
+    box-shadow: 0px 0px 85px 39px rgba(235,192,76,1) !important;
+
+    /* -webkit-box-shadow: 0px 0px 85px -4px rgba(235,192,76,0.41) !important;
+    -moz-box-shadow: 0px 0px 85px -4px rgba(235,192,76,0.41) !important;
+    box-shadow: 0px 0px 85px -4px rgba(235,192,76,0.41) !important; */
+}
+
+.card-img-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1.25rem;
+}
+.card-img {
+    width: 100%;
+    border-radius: calc(0.375rem - 0.0625rem);
+}
+.card-img-top {
+    width: 100%;
+    border-top-left-radius: calc(0.375rem - 0.0625rem);
+    border-top-right-radius: calc(0.375rem - 0.0625rem);
+}
+.card-img-bottom {
+    width: 100%;
+    border-bottom-right-radius: calc(0.375rem - 0.0625rem);
+    border-bottom-left-radius: calc(0.375rem - 0.0625rem);
+}
+
+.alpha-1,
+.alpha-container:hover .alpha-1--hover {
+    opacity: 0.1;
+}
+.alpha-2,
+.alpha-container:hover .alpha-2--hover {
+    opacity: 0.2;
+}
+.alpha-3,
+.alpha-container:hover .alpha-3--hover {
+    opacity: 0.3;
+}
+.alpha-4,
+.alpha-container:hover .alpha-4--hover {
+    opacity: 0.4;
+}
+.alpha-5,
+.alpha-container:hover .alpha-5--hover {
+    opacity: 0.5;
+}
+.alpha-6,
+.alpha-container:hover .alpha-6--hover {
+    opacity: 0.6;
+}
+.alpha-7,
+.alpha-container:hover .alpha-7--hover {
+    opacity: 0.7;
+}
+.alpha-8,
+.alpha-container:hover .alpha-8--hover {
+    opacity: 0.8;
+}
+.alpha-9,
+.alpha-container:hover .alpha-9--hover {
+    opacity: 0.9;
+}
+
+.mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+}
+
+
+
+
+.card-img-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-size: cover;
+    border-radius: 0.375rem;
+    -webkit-backface-visibility: hidden;
+    transition: all 0.7s cubic-bezier(0.2, 1, 0.22, 1);
+    -webkit-transition: all 0.7s cubic-bezier(0.2, 1, 0.22, 1);
+}
+.card:hover .card-img-bg {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+}
+.card-img-bg ~ .card-body {
+    position: relative;
+}
+
+.btn-animated {
+    position: relative;
+    overflow: hidden;
+}
+.btn-animated .btn-inner--visible {
+    position: relative;
+}
+.btn-animated .btn-inner--hidden {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.btn-animated-x .btn-inner--visible {
+    right: 0;
+    transition: right 0.3s ease 0s;
+}
+.btn-animated-x .btn-inner--hidden {
+    right: -100%;
+    transition: right 0.3s ease 0s;
+}
+.btn-animated-x:hover .btn-inner--hidden {
+    right: 0;
+}
+.btn-animated-x:hover .btn-inner--visible {
+    right: 150%;
+}
+.btn-animated-y .btn-inner--visible {
+    top: 0;
+    transition: top 0.3s ease 0s;
+}
+.btn-animated-y .btn-inner--hidden {
+    left: 0;
+    bottom: -150%;
+    transition: bottom 0.3s ease 0s;
+}
+.btn-animated-y:hover .btn-inner--hidden {
+    bottom: 0;
+}
+.btn-animated-y:hover .btn-inner--visible {
+    top: 100px;
+}
