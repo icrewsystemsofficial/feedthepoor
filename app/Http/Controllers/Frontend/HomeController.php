@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use Faker\Factory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -40,7 +41,7 @@ class HomeController extends Controller
             // - Leonard, 16 April 2021.
 
             $names = array();
-            $faker = Faker\Factory::create('en_IN');
+            $faker = Factory::create('en_IN');
             for($i = 0; $i < $howmany; $i++) {
                 $names[$i] = $faker->firstName;
             }
