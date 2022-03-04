@@ -1,85 +1,101 @@
 @extends('layouts.frontend')
 
+@section('css')
+@php
 
-@section('content')
-<section class="section-header bg-dark pb-lg-12">
-    <div class="container">
-       <div class="row justify-content-center">
-          <div class="col-12 col-md-8 text-center">
-                <h1 class="display-4 text-white">
-                    Thank you for choosing to donate 🙏
-                    <br>
-                    <small>
-                        <span class="display-6">
-                            We're thrilled to help people through your <span class="text-theme">kindness and generosity</span>
-                        </span>
-                    </small>
-                </h1>
-          </div>
-       </div>
-    </div>
- </section>
+/*
+    THE PHP DATA!
+    This data should be sent from Controller / Service Provider
 
- @php
-
-    /*
-        THE PHP DATA!
-        This data should be sent from Controller / Service Provider
-
-        - Leonard,
-        05 March 2022.
-    */
+    - Leonard,
+    05 March 2022.
+*/
 
 
-    $amounts = array(
-        50,
-        100,
-        500,
-        1000,
-        5000,
-        7000,
-        10000,
-    );
+$amounts = array(
+    50,
+    100,
+    500,
+    1000,
+    5000,
+    7000,
+    10000,
+);
 
-    $donation_types = (object) array(
+$donation_types = (object) array(
 
-        0 => (object) array(
-            'name' => 'donation_food',
-            'icon' => 'fas fa-utensils',
-            'per_unit_cost' => 50,
-            'yield_context' => 'About %YIELD% underprivledged people will be fed with fresh cooked food',
-        ),
-
-
-        1 => (object) array(
-            'name' => 'donation_prosthetic_leg',
-            'icon' => 'fas fa-wheelchair',
-            'per_unit_cost' => 2000,
-            'yield_context' => 'About %YIELD% people will get prosthetic leg, and will be able to walk again',
-        ),
-
-        2 => (object) array(
-            'name' => 'donation_sweater',
-            'icon' => 'fas fa-tshirt',
-            'per_unit_cost' => 400,
-            'yield_context' => 'About %YIELD% people will get a brand new sweater, and will be warm',
-        ),
-    );
+    0 => (object) array(
+        'name' => 'donation_food',
+        'icon' => 'fas fa-utensils',
+        'per_unit_cost' => 50,
+        'yield_context' => 'About %YIELD% underprivledged people will be fed with fresh cooked food',
+    ),
 
 
-    // Argh, this is an uneccesary move ig. Will be fixed when sending data from controller.
+    1 => (object) array(
+        'name' => 'donation_prosthetic_leg',
+        'icon' => 'fas fa-wheelchair',
+        'per_unit_cost' => 2000,
+        'yield_context' => 'About %YIELD% handicapped people will get prosthetic leg, and will be able to walk again.',
+    ),
 
-    $donation_types_cleaned = array();
-    foreach($donation_types as $donation_type) {
-        $donation_types_cleaned[$donation_type->name] = $donation_type;
-    }
+    2 => (object) array(
+        'name' => 'donation_sweater',
+        'icon' => 'fas fa-tshirt',
+        'per_unit_cost' => 400,
+        'yield_context' => 'About %YIELD% people will get a brand new sweater, and will be warm.',
+    ),
+
+    3 => (object) array(
+        'name' => 'donation_shoes',
+        'icon' => 'fas fa-shoe-prints',
+        'per_unit_cost' => 250,
+        'yield_context' => 'About %YIELD% people will get a brand new shoe. They will not have to walk with bare foot.',
+    ),
+
+    4 => (object) array(
+        'name' => 'donation_stationary_kit',
+        'icon' => 'fas fa-pen-square',
+        'per_unit_cost' => 50,
+        'yield_context' => 'About %YIELD% children will get a brand new stationary kit, which will help them study.',
+    ),
+
+    5 => (object) array(
+        'name' => 'donation_dry_ration',
+        'icon' => 'fas fa-box',
+        'per_unit_cost' => 50,
+        'yield_context' => 'About %YIELD% house-holds will receive fresh ration to cook and eat meals.',
+    ),
+
+    6 => (object) array(
+        'name' => 'donation_birthday_celebration',
+        'icon' => 'fas fa-birthday-cake',
+        'per_unit_cost' => 50,
+        'yield_context' => 'Your birthday will be celebrated cheerfully with about %YIELD% children. Cakes and sweets will be distrubuted.',
+    ),
+
+    7 => (object) array(
+        'name' => 'donation_prosthetic_arm',
+        'icon' => 'fas fa-wheelchair',
+        'per_unit_cost' => 2000,
+        'yield_context' => 'About %YIELD% handicapped people will get prosthetic leg, and will be able to walk again.',
+    ),
+
+
+);
+
+
+// Argh, this is an uneccesary move ig. Will be fixed when sending data from controller.
+
+$donation_types_cleaned = array();
+foreach($donation_types as $donation_type) {
+    $donation_types_cleaned[$donation_type->name] = $donation_type;
+}
 
 
 @endphp
 
-
-
- <script>
+<script>
 
     // Alpine JS function
 
@@ -93,6 +109,7 @@
 
             donationType: null,
             donationAmount: 0,
+            donationAmount_formatted: 0,
             showCustomDonationBlock: false,
             showCustomDonationButton: true,
 
@@ -149,6 +166,7 @@
             updateDonationAmount(amount) {
                 this.donationAmount = amount;
                 this.calculateYield(amount, this.selectedCause.PerUnitCost);
+                this.formatMoney();
             },
 
 
@@ -194,7 +212,7 @@
                         this.selectedCause.YieldContext = '<span class="text-danger">Please select donation amount</span>';
                     } else {
                         this.errors.insuffucientDonationAmount = true;
-                        this.selectedCause.YieldContext = '<span class="text-danger fw-bolder">We will not be able to generate any yield. Try choosing a different cause or higher donation amount</span>';
+                        this.selectedCause.YieldContext = '<span class="text-danger fw-bolder">Try choosing a different cause or higher donation amount</span>';
                     }
                 } else {
                     this.errors.insuffucientDonationAmount = false;
@@ -216,13 +234,13 @@
                     this.selectedCause.YieldContext = '<span class="text-danger">Please select donation amount</span>';
                 } else {
                     var yield_context = this.donationTypesArray[this.selectedCause.cause]['yield_context'];
-                    var yield = '<span class="fw-bolder text-theme">' + this.selectedCause.Yield + '</span>';
+                    var yield = '<span class="fw-bolder text-success">' + this.selectedCause.Yield + '</span>';
 
                     // In the DB, the context will be saved with a %YIELD% string.
                     // we're replacing it using js.
 
                     yield_context = yield_context.replace("%YIELD%", yield);
-                    this.selectedCause.YieldContext = yield_context;
+                    this.selectedCause.YieldContext = '<span class="mt-2 fw-bold leading-1">' + yield_context + "</span>";
                 }
             },
 
@@ -248,20 +266,64 @@
 
             changeIcon() {
                 var icon = this.donationTypesArray[this.selectedCause.cause]['icon'];
-                this.icon = icon + ' fa-5x';
+                this.selectedCause.icon = icon + ' fa-5x';
+            },
+
+            formatMoney() {
+                this.donationAmount_formatted = (this.donationAmount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
             },
 
 
+            showDonateButton() {
+                if(this.donationAmount != 0 && this.errors.insuffucientDonationAmount == false) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+
+         }
+     }
+
+
+     function razorpay() {
+         return {
+            public: 'rzp_test_SmU75lqcibiulc',
+            secret: 'BSe2Who1QIS4heUJBapZImfr',
+            api_url: 'https://api.razorpay.com/v1/',
 
 
          }
      }
  </script>
+@endsection
 
- <section class="section section-lg pt--2 bg-dark" x-data="donationPage()" x-init="init()">
-    <div class="container mt-lg-n12 z-2">
+@section('content')
+
+
+<section class="section-header bg-dark mb-4">
+    <div class="container">
        <div class="row justify-content-center">
-          <div class="col">
+          <div class="col-12 col-md-8 text-center">
+                <h1 class="display-4 text-white">
+                    Thank you for choosing to donate 🙏
+                    <br>
+                    <small>
+                        <span class="display-6">
+                            We're thrilled to help people through your <span class="text-theme">kindness and generosity</span>
+                        </span>
+                    </small>
+                </h1>
+          </div>
+       </div>
+    </div>
+ </section>
+
+ <section class="" x-data="donationPage()" x-init="init()">
+    <div class="container mt-n6 z-2 mb-5">
+       <div class="row justify-content-center">
+          <div class="col-sm-12 col-md-10 col-lg-8">
              <div class="card shadow-lg border-gray-300 p-4 p-lg-5">
 
                 <div class="row">
@@ -284,6 +346,32 @@
                         </div>
                     </div>
 
+                    <div class="col-md-12 mx-auto text-center border-bottom border-gray-300 my-4 ">
+                        <div class="mb-3">
+                            <i x-bind:class="selectedCause.icon"
+                                x-transition:enter.duration.500ms
+                                x-transition:leave.duration.400ms
+                            ></i>
+                        </div>
+
+                        <div class="h1">
+                            <div class="" x-show="showDonateButton()">
+                                <button type="button" class="btn btn-success btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn">
+                                    <span class="btn-inner--visible">Donate <span class="">₹<span x-text="donationAmount_formatted"></span></span></span>
+                                    <span class="btn-inner--hidden"><i class="fas fa-arrow-right"></i></span>
+                                </button>
+                            </div>
+
+
+
+
+
+                            <p class="text-sm text-bg-gray">
+                                <span x-html="selectedCause.YieldContext"></span>
+                            </p>
+                        </div>
+                    </div>
+
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="exampleInputEmail6">
@@ -295,7 +383,7 @@
 
 
                                 @foreach ($amounts as $amount)
-                                    <button type="button" class="btn btn-sm btn-success text-white" @click="updateDonationAmount({{ $amount }});">
+                                    <button type="button" class="btn btn-sm btn-theme text-white" @click="updateDonationAmount({{ $amount }});">
                                         ₹{{ number_format($amount, '0', ".",",") }}
                                     </button>
                                 @endforeach
@@ -309,9 +397,9 @@
                                     <br>
                                     <br>
 
-                                    <button type="button" class="btn btn-md btn-primary text-white" @click="toggleCustomDonation" x-show="showCustomDonationButton">
-                                        Custom Amount
-                                    </button>
+                                    <a class="text-primary fw-bold" @click="toggleCustomDonation" x-show="showCustomDonationButton" style="text-decoration: underline;">
+                                        Enter a custom amount?
+                                    </a>
 
                                     <div class="" x-show="showCustomDonationBlock">
 
@@ -367,62 +455,8 @@
                         </div>
                     </div>
 
-
-                    <div class="col-md-6 mx-auto text-center border-top border-gray-300 my-4 ">
-                        <div class="mt-3 mb-3">
-                            <i x-bind:class="selectedCause.icon"
-                                x-transition:enter.duration.500ms
-                                x-transition:leave.duration.400ms
-                            ></i>
-                        </div>
-
-                        <div class="h1">
-                            Donating <span class="text-success">₹<span x-text="donationAmount"></span></span>
-
-                            <p class="text-sm text-bg-gray">
-                                <span x-html="selectedCause.YieldContext"></span>
-                            </p>
-                        </div>
-                    </div>
-
                 </div>
 
-
-
-                <div class="text-center border-top border-bottom border-gray-300 my-5 my-lg-6 py-5 py-lg-6">
-                   <h4 class="h4 mb-4 mb-lg-5"><span class="me-1"><i class="far fa-newspaper"></i></span> Was this article helpful?</h4>
-                   <button type="button" class="btn btn-success mb-2 mx-1 animate-up-2 text-white"><span class="me-2"><i class="far fa-thumbs-up"></i></span>Yes, thanks!</button> <button type="button" class="btn btn-danger mb-2 mx-1 animate-down-2"><span class="me-2"><i class="far fa-thumbs-down"></i></span>Not really</button>
-                </div>
-
-                <div class="row">
-                   <div class="col-12 col-md-4 mb-4 mb-lg-0">
-                      <div class="mb-4">
-                         <h3 class="h5 font-weight-medium">Related Articles</h3>
-                      </div>
-                      <ul class="list-unstyled">
-                         <li class="pb-3"><a class="link-muted" href="./support-topic.html">Troubleshoot connection issues</a></li>
-                         <li class="pb-3"><a class="link-muted" href="./support-topic.html">Getting started for workspace creators</a></li>
-                         <li class="pb-3"><a class="link-muted" href="./support-topic.html">Edit your profile</a></li>
-                      </ul>
-                   </div>
-                   <div class="col-12 col-md-4 mb-4 mb-lg-0">
-                      <div class="mb-4">
-                         <h3 class="h5 font-weight-medium">Latest News</h3>
-                      </div>
-                      <ul class="list-unstyled">
-                         <li class="pb-3"><a class="link-muted" href="./support-topic.html">Troubleshoot connection issues</a></li>
-                         <li class="pb-3"><a class="link-muted" href="./support-topic.html">Getting started for workspace creators</a></li>
-                         <li class="pb-3"><a class="link-muted" href="./support-topic.html">Edit your profile</a></li>
-                      </ul>
-                   </div>
-                   <div class="col-12 col-md-4 mb-4 mb-lg-0">
-                      <div class="mb-4">
-                         <h3 class="h5 font-weight-medium">Support</h3>
-                      </div>
-                      <p>Technical support for each product is given directly by the creators of Themesberg.</p>
-                      <a class="btn btn-sm btn-outline-primary" href="./support.html">Support Center <span class="fas fa-long-arrow-alt-right ms-2"></span></a>
-                   </div>
-                </div>
              </div>
           </div>
        </div>

@@ -14,7 +14,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "markwalet/laravel-changelog": "^1.6",
-        "orangehill/iseed": "^3.0"
+        "orangehill/iseed": "^3.0",
+        "razorpay/razorpay": "2.*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

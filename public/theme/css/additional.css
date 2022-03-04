@@ -51,6 +51,10 @@
     transition: all 0.3s ease-in-out !important;
 }
 
+.donate-btn:hover {
+    color: white;
+}
+
 .hover-shadow-theme:hover {
     -webkit-box-shadow: 0px 0px 85px 39px rgba(235,192,76,1) !important;
     -moz-box-shadow: 0px 0px 85px 39px rgba(235,192,76,1) !important;

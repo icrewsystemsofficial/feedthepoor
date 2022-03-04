@@ -131,12 +131,6 @@
             </div>
             <div class="d-flex align-items-center">
 
-                <style>
-                    .donate-btn:hover {
-                        color: white;
-                    }
-                </style>
-
                 <a href="{{ route('frontend.donate') }}" target="_blank" class="btn btn-theme btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn">
                     <span class="btn-inner--visible">Donate Now</span>
                     <span class="btn-inner--hidden"><i class="fas fa-arrow-right"></i></span>
