@@ -3,10 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- Primary Meta Tags -->
-<title>{{ config('app.name') }}</title>
+<title>{{ config('setting.app_name') }}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="title" content="{{ config('app.name') }}">
-<meta name="author" content="icrewsystems">
+<meta name="title" content="{{ config('setting.app_name') }}">
+<meta name="author" content="icrewsystems"
 <meta name="description" content="NO DESCRIPTION">
 <link rel="canonical" href="{{ config('app.url') }}">
 

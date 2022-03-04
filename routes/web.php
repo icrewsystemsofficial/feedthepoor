@@ -28,7 +28,7 @@ Route::name('frontend.')->group(function () {
 
     // DYNAMIC PAGES
 
-    Route::get('/donate/{amount?}', [HomeController::class, 'index'])->name('donate');
+    Route::get('/donate/{amount?}', [HomeController::class, 'donate'])->name('donate');
     Route::get('/activity', [HomeController::class, 'index'])->name('activity');
     Route::get('/campaigns', [HomeController::class, 'index'])->name('campaigns');
     Route::get('/track-donation/{donation_id?}', [HomeController::class, 'index'])->name('track-donation');
