@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\API\RazorpayAPIController;
 use Faker\Factory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -61,7 +62,28 @@ class HomeController extends Controller
         ]);
     }
 
-    public function donate($howmuch = null) {
+    public function donate() {
         return view('frontend.donation.index');
+    }
+
+    public function donate_process($razorpay_order_id = null) {
+        if($razorpay_order_id == null) {
+            return redirect()->route('frontend.donate');
+        }
+
+        $order = app(RazorpayAPIController::class)->fetch_order($razorpay_order_id);
+        //TODO Handle failure
+
+
+        return view('frontend.donation.payment', [
+            'order' => $order,
+        ]);
+    }
+
+    public function thank_you($payment_id = null) {
+        return view('frontend.donation.thank_you', [
+            'payment_id' => $payment_id,
+            'payment' => app(RazorpayAPIController::class)->fetch_payment($payment_id),
+        ]);
     }
 }

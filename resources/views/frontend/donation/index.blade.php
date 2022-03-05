@@ -107,6 +107,11 @@ foreach($donation_types as $donation_type) {
 
             // Defining the variables
 
+            form: {
+                page_1: true,
+                page_2: false,
+            },
+
             donationType: null,
             donationAmount: 0,
             donationAmount_formatted: 0,
@@ -124,6 +129,16 @@ foreach($donation_types as $donation_type) {
 
             errors: {
                 insuffucientDonationAmount: false,
+            },
+
+            razorpayForm: {
+                name: '',
+                email: '',
+                phone: '',
+                pan: '',
+                checkbox_80g: true,
+                checkbox_updates: true,
+                checkbox_terms_and_conditions: false,
             },
 
             donationTypesArray: @json($donation_types_cleaned),
@@ -280,8 +295,24 @@ foreach($donation_types as $donation_type) {
                 } else {
                     return false;
                 }
+            },
 
-            }
+
+            toggle80GExemption() {
+                this.razorpayForm.checkbox_80g = !this.razorpayForm.checkbox_80g;
+            },
+
+            toggleContinueButton() {
+                this.razorpayForm.checkbox_terms_and_conditions = !this.razorpayForm.checkbox_terms_and_conditions;
+            },
+
+            togglePages() {
+                this.form.page_1 = !this.form.page_1;
+                this.form.page_2 = !this.form.page_2;
+            },
+
+
+
 
          }
      }
@@ -326,7 +357,92 @@ foreach($donation_types as $donation_type) {
           <div class="col-sm-12 col-md-10 col-lg-8">
              <div class="card shadow-lg border-gray-300 p-4 p-lg-5">
 
-                <div class="row">
+                <div class="row" x-show="form.page_2">
+                    <div class="col-md-12 mx-auto">
+
+                        <div class="mt-2 mb-3">
+                            <span class="h5">
+                                Processing donation for <span class="text-success">₹<span x-text="donationAmount_formatted"></span></span>
+                            </span>
+                        </div>
+
+                        <form action="{{ route('api.v1.razorpay.create_order') }}" method="GET">
+                            @csrf
+                            <div class="mt-2 mb-3">
+                                <label for="name">Full Name (as per Govt. ID) <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="name" required="required"/>
+                            </div>
+
+                            <div class="mt-2 mb-3">
+                                <label for="name">E-mail ID <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" name="email" required="required"/>
+                            </div>
+
+                            <div class="mt-2 mb-3">
+                                <label for="name">Phone</label>
+                                <input type="phone" class="form-control" name="phone" maxlength="10"/>
+                            </div>
+
+                            <div class="mt-2 mb-3" x-show="razorpayForm.checkbox_80g">
+                                <label for="name">PAN Card</label>
+                                <input type="text" class="form-control" name="pan" maxlength="10" />
+                                <span class=" text-muted mt-2">
+                                    <small>
+                                        80G excemption receipt will carry this PAN number
+                                    </small>
+                                </span>
+                            </div>
+
+                            <div class="mt-2 mb-3">
+                                <div class="form-check form-switch">
+                                    <div @click="toggle80GExemption">
+                                        <input class="form-check-input" type="checkbox" name="checkbox_80g" id="checkbox_80g" x-bind:checked="razorpayForm.checkbox_80g" >
+                                        <label class="form-check-label" for="checkbox_80g">
+                                            I want 80G Income Tax Excemption
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-2 mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" name="checkbox_updates" id="checkbox_updates" x-bind:checked="razorpayForm.checkbox_updates">
+                                    <label class="form-check-label" for="checkbox_updates">
+                                        Send me updates about future campaigns <br>
+                                        <small>
+                                            (we won't spam, we promise <i class="fas fa-heart"></i>)
+                                        </small>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mt-2 mb-3">
+                                <div class="form-check" @click="toggleContinueButton()">
+                                    <input class="form-check-input" type="checkbox" value="" id="terms_and_conditions" x-bind:checked="razorpayForm.checkbox_terms_and_conditions">
+                                    <label class="form-check-label" for="terms_and_conditions">
+                                        I have read and I accept the <a href="#">terms & conditions</a>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="amount" x-model="donationAmount" />
+                            <input type="hidden" name="cause" x-model="selectedCause.cause" />
+
+                            <div class="mt-2 mb-3" x-show="razorpayForm.checkbox_terms_and_conditions">
+                                <x-frontend-loading-button class="btn btn-success btn-md text-white">
+                                    Proceed to donate via Razorpay
+                                </x-frontend-loading-button>
+
+                            </div>
+                        </form>
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="row" x-show="form.page_1">
 
                     <div class="col-md-12 mx-auto" x-show="errors.insuffucientDonationAmount"
                         x-transition:enter="animate__zoomIn"
@@ -356,11 +472,12 @@ foreach($donation_types as $donation_type) {
 
                         <div class="h1">
                             <div class="" x-show="showDonateButton()">
-                                <button type="button" class="btn btn-success btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn">
+                                <button type="button" class="btn btn-success btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="togglePages()">
                                     <span class="btn-inner--visible">Donate <span class="">₹<span x-text="donationAmount_formatted"></span></span></span>
-                                    <span class="btn-inner--hidden"><i class="fas fa-arrow-right"></i></span>
+                                    <span class="btn-inner--hidden"><small>Process <i class="fas fa-arrow-right"></i></small></span>
                                 </button>
                             </div>
+
 
 
 

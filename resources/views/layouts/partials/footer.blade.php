@@ -1,3 +1,4 @@
+@if(!in_array(Route::currentRouteName(), ['frontend.donate', 'frontend.donate.payment', 'frontend.donate.thank_you']))
 <section class="section py-0">
     <div class="container z-2">
        <div class="row position-relative justify-content-center align-items-center">
@@ -46,6 +47,7 @@
        </div>
     </div>
 </section>
+@endif
 
 <footer class="footer pt-6 pb-5 bg-gray text-white mt-n6">
     <div class="container mt-5">

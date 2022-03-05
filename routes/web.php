@@ -28,7 +28,12 @@ Route::name('frontend.')->group(function () {
 
     // DYNAMIC PAGES
 
-    Route::get('/donate/{amount?}', [HomeController::class, 'donate'])->name('donate');
+    Route::get('/donate', [HomeController::class, 'donate'])->name('donate');
+    Route::get('/donate/process/{razorpay_order_id?}', [HomeController::class, 'donate_process'])->name('donate.process');
+
+    Route::get('/thank-you/{donation_id?}', [HomeController::class, 'thank_you'])->name('donate.thank_you');
+
+
     Route::get('/activity', [HomeController::class, 'index'])->name('activity');
     Route::get('/campaigns', [HomeController::class, 'index'])->name('campaigns');
     Route::get('/track-donation/{donation_id?}', [HomeController::class, 'index'])->name('track-donation');

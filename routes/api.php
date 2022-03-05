@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\RazorpayAPIController;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,4 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('v1')->as('api.v1.')->group(function() {
+    Route::get('razorpay/create-order', [RazorpayAPIController::class, 'create_order'])->name('razorpay.create_order');
 });
