@@ -7,7 +7,13 @@ ______            _ _______ _          _____
 
 An initiative by ICREWSYSTEMS SOFTWARE ENGINEERING LLP
 
+This was last generated on 05 March, 2022
+
 # CHANGELOG
 
 
+## [Unreleased]
+
+### Major
+ - Added Razorpay API and works successfully
 

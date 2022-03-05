@@ -9,12 +9,23 @@ use App\Http\Controllers\Controller;
 class RazorpayAPIController extends Controller
 {
 
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->key_id = 'rzp_test_SmU75lqcibiulc'; #Should be loaded from settings module.
         $this->secret = 'BSe2Who1QIS4heUJBapZImfr'; #Should be loaded from settings module.
     }
 
+    /**
+     * create_order
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function create_order(Request $request) {
 
 
@@ -51,12 +62,24 @@ class RazorpayAPIController extends Controller
 
     }
 
+    /**
+     * fetch_order
+     *
+     * @param  mixed $order_id
+     * @return void
+     */
     public function fetch_order($order_id) {
         $api = new RazorpayAPI($this->key_id, $this->secret);
         $order = $api->order->fetch($order_id);
         return $order;
     }
 
+    /**
+     * fetch_payment
+     *
+     * @param  mixed $payment_id
+     * @return void
+     */
     public function fetch_payment($payment_id) {
         $api = new RazorpayAPI($this->key_id, $this->secret);
         $payment = $api->payment->fetch($payment_id);

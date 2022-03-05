@@ -8,6 +8,8 @@
 
 An initiative by ICREWSYSTEMS SOFTWARE ENGINEERING LLP
 
+This was last generated on {{ now()->format('d F, Y') }}
+
 # CHANGELOG
 
 {{ $content }}

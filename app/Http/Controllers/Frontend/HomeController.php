@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
+    /**
+     * index
+     *
+     * @return void
+     */
     public function index() {
                 //Stats that are passed into the frontend page.
         // This will have to be made dyanmic.
@@ -62,10 +67,21 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * donate - the page where users can donate money.
+     *
+     * @return void
+     */
     public function donate() {
         return view('frontend.donation.index');
     }
 
+    /**
+     * donate_process - The payment gateway page
+     *
+     * @param  mixed $razorpay_order_id
+     * @return void
+     */
     public function donate_process($razorpay_order_id = null) {
         if($razorpay_order_id == null) {
             return redirect()->route('frontend.donate');
@@ -80,6 +96,12 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * thank_you - A payment ID is required to enter this page
+     *
+     * @param  mixed $payment_id
+     * @return void
+     */
     public function thank_you($payment_id = null) {
         return view('frontend.donation.thank_you', [
             'payment_id' => $payment_id,
