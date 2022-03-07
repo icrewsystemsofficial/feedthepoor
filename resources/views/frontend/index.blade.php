@@ -185,7 +185,7 @@
 
          <div class="col-lg-8 col-md-6 p-5 col-sm-12">
             <h1 class="display-4 mb-4">
-                We fed <span class="underline">859</span> hungry souls on <span class="underline">{{ now()->format('d F, Y') }}</span>
+                We fed <span class="underline">900</span> hungry souls on <span class="underline">{{ now()->format('d F, Y') }}</span>
             </h1>
             <p class="mb-1">
                 <span class="text-theme fw-bold">₹19,823</span> was donated by <span class="text-theme fw-bold">592</span> donors on <span class="fw-bold text-theme">{{ now()->subDay(1)->format('d F, Y') }}</span>.
