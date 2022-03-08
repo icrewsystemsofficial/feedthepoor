@@ -32,7 +32,7 @@
                             <!-- Validation Errors -->
                             <x-auth-validation-errors class="mb-4" :errors="$errors" />
         
-                            <form method="POST" action="{{ route('login') }}"class="mt-4">
+                            <form id="loginForm" method="POST" action="{{ route('login') }}" class="mt-4">
                                 @csrf
                                 <!-- Form -->
                                 <div class="form-group mb-4">
@@ -70,9 +70,9 @@
                                     </div>
                                 </div>
                                 <div class="d-grid">
-                                    <x-button type="submit" class="btn btn-primary">
-                                        {{ __('Log in') }}
-                                    </x-button>
+                                    <x-loadingbutton @click="submitForm" type="submit" class="btn btn-primary">
+                                        Login 
+                                    </x-loadingbutton>
                                 </div>
                             </form>
                             <div class="mt-3 mb-4 text-center">
@@ -101,5 +101,13 @@
             </div>
         </section>
     </main>
+    <script>
+        submitForm(e) {
+            e.preventDefault();
+                setTimeout(() => {
+                    document.getElementById('loginForm').submit();
+                }, 2000);
+            }
+    </script>
     </x-auth-card>
 </x-guest-layout>
