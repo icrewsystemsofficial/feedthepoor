@@ -28,6 +28,10 @@
                             <div class="text-center text-md-center mb-4 mt-md-0">
                                 <h1 class="mb-0 h3">Sign in to our platform</h1>
                             </div>
+                            
+                            <!-- Validation Errors -->
+                            <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        
                             <form method="POST" action="{{ route('login') }}"class="mt-4">
                                 @csrf
                                 <!-- Form -->
