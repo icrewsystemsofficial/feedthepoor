@@ -14,5 +14,11 @@
         <a class="sidebar-link" href="{{ route('admin.settings.index') }}">
         <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
         </a>
-     </li>
+   </li>
+
+   <li class="sidebar-item {{ Nav::isRoute('admin.location.index') }}">
+        <a class="sidebar-link" href="{{ route('admin.location.index') }}">
+        <i class="align-middle" data-feather="markers"></i> <span class="align-middle">Location</span>
+        </a>
+   </li>
  </ul>
