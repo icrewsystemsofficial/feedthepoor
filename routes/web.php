@@ -53,6 +53,15 @@ Route::name('frontend.')->group(function () {
 */
 
 Route::prefix('admin')->as('admin.')->group(function() {
+
+    Route::prefix('location')->as('location.')->group(function() {
+        Route::get('/', [SettingsController::class, 'location'])->name('index');
+        Route::post('/', [SettingsController::class, 'location_store'])->name('store');
+        Route::get('/edit/{id?}', [SettingsController::class, 'location_edit'])->name('edit');
+        Route::post('/edit/{id?}', [SettingsController::class, 'location_update'])->name('update');
+        Route::get('/delete/{id?}', [SettingsController::class, 'location_delete'])->name('delete');
+    });
+
     Route::prefix('settings')->as('settings.')->group(function() {
         Route::get('/', [SettingsController::class, 'index'])->name('index');
         Route::post('/create', [SettingsController::class, 'create'])->name('create');
@@ -64,6 +73,8 @@ Route::prefix('admin')->as('admin.')->group(function() {
 
     });
 });
+
+
 
 
 
