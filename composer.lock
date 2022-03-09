@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff12219fea472ec6c64101069f5dad8f",
+    "content-hash": "5bbdb0c8d0491f785b4ebbb89dfcc9e7",
     "packages": [
         {
             "name": "brick/math",
@@ -515,14 +515,12 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/fruitcake/laravel-cors/zipball/7c036ec08972d8d5d9db637e772af6887828faf5",
                 "reference": "7c036ec08972d8d5d9db637e772af6887828faf5",
-
                 "shasum": ""
             },
             "require": {
                 "fruitcake/php-cors": "^1.2",
                 "illuminate/contracts": "^6|^7|^8|^9",
                 "illuminate/support": "^6|^7|^8|^9",
-                "php": ">=7.2"
                 "php": "^7.4|^8.0"
             },
             "require-dev": {
@@ -8634,5 +8632,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.1.0"
 }
