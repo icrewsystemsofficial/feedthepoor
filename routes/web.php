@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Routing\RouteGroup;
@@ -54,6 +55,12 @@ Route::name('frontend.')->group(function () {
 
 Route::prefix('admin')->as('admin.')->group(function() {
 
+
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
+    Route::post('/profile/save', [DashboardController::class, 'edit_profile'])->name('profile.save');
+
+
     Route::prefix('location')->as('location.')->group(function() {
         Route::get('/', [SettingsController::class, 'location'])->name('index');
         Route::post('/', [SettingsController::class, 'location_store'])->name('store');
@@ -87,7 +94,9 @@ Route::prefix('admin')->as('admin.')->group(function() {
 */
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    // return view('dashboard');
+    return redirect()->route('admin.dashboard');
+
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
