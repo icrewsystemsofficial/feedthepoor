@@ -21,4 +21,8 @@ class Location extends Model
         'location_manager_id',
         'location_status',
     ];
+
+    public function user(){
+        return $this->belongsTo('App\Models\User', 'location_manager_id');
+    }
 }

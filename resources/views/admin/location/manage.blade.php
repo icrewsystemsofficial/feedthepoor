@@ -45,7 +45,16 @@
                 @method('PUT')
                 <div class="form-group mb-2">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" name="location_name" value="{{ $location->location_name }}">
+                    <select name="location_name" id="name" class="form-control">
+                        @foreach($location->location_name_list as $location_name)
+                            @if ($location_name == $location->location_name)
+                                <option value="{{ $location_name }}" selected>{{ $location_name }}</option>
+                            @else
+                                <option value="{{ $location_name }}">{{ $location_name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                    
                 </div>
                 <div class="form-group mb-2">
                     <label for="address" class="form-label">Address</label>
@@ -68,8 +77,16 @@
                     <input type="text" class="form-control" id="longitude" name="location_longitude" value="{{ $location->location_longitude }}">
                 </div>
                 <div class="form-group mb-2">
-                    <label for="manager_id" class="form-label">Manager ID</label>
-                    <input type="text" class="form-control" id="manager_id" name="location_manager_id" value="{{ $location->location_manager_id }}">
+                    <label for="manager_id" class="form-label">Manager</label>
+                    <select name="location_manager_id" id="manager_id" class="form-control">
+                        @foreach($location->location_manager_list as $location_manager=>$location_manager_name)
+                            @if ($location_manager == $location->location_manager_id)
+                                <option value="{{ $location_manager }}" selected>{{ $location_manager_name }}</option>
+                            @else
+                                <option value="{{ $location_manager }}">{{ $location_manager_name }}</option>
+                            @endif
+                        @endforeach
+                    </select>                    
                 </div>
                 <div class="form-group mb-2">
                     <label for="status" class="form-label">Status</label>

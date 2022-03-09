@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Location;
+use App\Models\User;
 
 class LocationController extends Controller
 {
@@ -14,7 +15,21 @@ class LocationController extends Controller
     }
     
     public function manage(Request $request, Location $location){    
-        $location = Location::find($request->id); 
+        $location = Location::find($request->id);
+        $locations = Location::all();
+        $location_names = array();
+        foreach ($locations as $loc) {
+            if (!in_array($loc->location_name, $location_names)) {
+                array_push($location_names, $loc->location_name);
+            }
+        }
+        $location->location_name_list = $location_names;    
+        $users = User::all();
+        $location_managers = array();
+        foreach ($users as $user) {
+            $location_managers[$user->id] = $user->name;
+        }   
+        $location->location_manager_list = $location_managers;        
         return view('admin.location.manage', compact('location'));
     }
 

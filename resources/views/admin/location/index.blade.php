@@ -16,18 +16,22 @@
     .badge-warning {
         background-color: #f0ad4e;
         width: 50%;
+        color: #fff;
     }
     .badge-success {
         background-color: #5cb85c;
         width: 50%;
+        color: #fff;
     }
     .badge-danger {
         background-color: #d9534f;
         width: 50%;
+        color: #fff;
     }
     .badge-info {
         background-color: #5bc0de;
         width: 50%;
+        color: #fff;
     }
 </style>
 @endsection
@@ -58,11 +62,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php $i = 0; @endphp
                             @foreach($locations as $location)
                             <tr>
-                                <td>{{ $location->id }}</td>
+                                <td>{{ ++$i }}</td>                                
                                 <td>{{ $location->location_name }}</td>
-                                <td><a href="">{{ $location->location_manager_id }}</a></td>
+                                <td><a href="">{{ $location->user->name }}</a></td>
                                 <td>
                                     @php
                                         $status = $location->location_status;
