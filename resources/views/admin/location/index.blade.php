@@ -166,6 +166,7 @@
                                     <td><a href="">{{ $location->user->name }}</a> (TODO)</td>
                                     <td>
                                         {!! App\Helpers\LocationHelper::getStatus($location->location_status) !!}
+                                        {{-- {{ App\Helpers\LocationHelper::getStatus($location->location_status) }} --}}
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.location.manage', $location->id) }}" class="btn btn-primary btn-sm">

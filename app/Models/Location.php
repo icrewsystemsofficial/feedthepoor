@@ -45,6 +45,7 @@ class Location extends Model
         'ACTIVE' => 1,
         'INACTIVE' => 2,
         'PERMANENTLY_CLOSED' => 3,
+        'PROCESSING' => 4,
     ];
 
     public function user(){

@@ -32,7 +32,8 @@ class LocationHelper {
 
         $status = array();
 
-        $status[0] = array(
+        //TODO Anirudh, please implement these changes throughout.
+        $status[Location::$status['INOPERATIONAL']] = array(
             'text' => 'Inoperational',
             'icon' => 'fa-solid fa-exclamation-triangle',
             'color' => 'info',
@@ -64,7 +65,7 @@ class LocationHelper {
      * getStatus Pass the status ID, and get the HTML markup for that status.
      *
      * @param  mixed $id
-     * @return void
+     * @return html
      */
     public static function getStatus($id) {
 
