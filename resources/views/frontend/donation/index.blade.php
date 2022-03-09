@@ -311,6 +311,12 @@ foreach($donation_types as $donation_type) {
                 this.form.page_2 = !this.form.page_2;
             },
 
+            
+            goback() {
+                this.form.page_1 = !this.form.page_1;
+                this.form.page_2 = !this.form.page_2;
+            },
+
 
 
 
@@ -440,6 +446,11 @@ foreach($donation_types as $donation_type) {
 
 
                     </div>
+                    
+                    <button type="button" class="w-auto btn btn-warning btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="goback()">
+                        <span class="btn-inner--visible">Go Back</span>
+                        <span class="btn-inner--hidden"><small><i class="fas fa-arrow-left"></i></small></span>
+                    </button>
                 </div>
 
                 <div class="row" x-show="form.page_1">
