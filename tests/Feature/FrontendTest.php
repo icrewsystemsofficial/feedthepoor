@@ -36,11 +36,6 @@ it('loads transparency report page correctly', function () {
 
     $response->assertStatus(200);
 });
-it('loads thank you page correctly', function () {
-    $response = $this->get(route('frontend.donate.thank_you'));
-
-    $response->assertStatus(302);
-});
 it('loads track donation page correctly', function () {
     $response = $this->get(route('frontend.track-donation'));
 
