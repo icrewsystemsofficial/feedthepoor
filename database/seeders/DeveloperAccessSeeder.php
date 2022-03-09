@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class DeveloperAccessSeeder extends Seeder
 {
@@ -21,7 +22,8 @@ class DeveloperAccessSeeder extends Seeder
             $user->email = 'kashrayks@gmail.com';
             $user->email_verified_at = now();
             $user->password = "$2y$10$8CfoYn2vturcIeuGRQfzfuUb1XOT2G3aSvZZBiISMbz80hxfAHM7.";
-            $user->role = 'superadmin';
+            $user->location_id = 3;
+            $user->address = "Chennai";
             $user->save();
             $this->command->info("User: Leonard Selvaraja created.");
         }
@@ -33,7 +35,8 @@ class DeveloperAccessSeeder extends Seeder
             $user->email = 'm.thirurahul@gmail.com';
             $user->email_verified_at = now();
             $user->password = '$2y$10$gp5aizeQoP2mLDCPj.utb.xXS1rQaM3PkXd.Z1XliBWTxQcdXqqUC';
-            $user->role = 'superadmin';
+            $user->location_id = 2;
+            $user->address = "Chennai";
             $user->save();
             $this->command->info("User: Thirumalai created.");
         }
@@ -44,23 +47,24 @@ class DeveloperAccessSeeder extends Seeder
             $user->name = 'Dinesh Kumar';
             $user->email = 'john.doe@test.com';
             $user->email_verified_at = now();
-            $user->password = '$2y$10$RufvOqmxVVsmvWA0w9P2DuMhbfxLt8lQQrxZNCB1nu7NtpJDj1jvi';
-            $user->role = 'superadmin';
+            $user->password = '$2y$10$WiImPleoUL2PK30muv9pp.CGJpUiuQcpiy2zz9uMMxIDs4TdmPraa';
+            $user->location_id = 1;
+            $user->address = "Chennai";
             $user->save();
             $this->command->info("User: Dinesh Kumar created.");
         }
 
-        $user = User::where('name', 'Samay Bhattacharyya')->first();
-        if (!$user) {
-            $user = new User;
-            $user->name = 'Samay Bhattacharyya';
-            $user->email = 'lyrakerman@gmail.com';
-            $user->email_verified_at = now();
-            $user->password = '$2y$10$Z2fX/TDd7hIjBnamBhW9/eiffpxiVddzY/Kyihap2A074PXHMb2jG';
-            $user->role = 'superadmin';
-            $user->save();
-            $this->command->info("User: Samay Bhattacharyya created.");
-        }
+        // $user = User::where('name', 'Samay Bhattacharyya')->first();
+        // if (!$user) {
+        //     $user = new User;
+        //     $user->name = 'Samay Bhattacharyya';
+        //     $user->email = 'lyrakerman@gmail.com';
+        //     $user->email_verified_at = now();
+        //     $user->password = '$2y$10$Z2fX/TDd7hIjBnamBhW9/eiffpxiVddzY/Kyihap2A074PXHMb2jG';
+        //     $user->role = 'superadmin';
+        //     $user->save();
+        //     $this->command->info("User: Samay Bhattacharyya created.");
+        // }
 
 
     }
