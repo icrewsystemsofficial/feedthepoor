@@ -2,6 +2,21 @@
 
 @section('css')
 <script src="{{ asset('js/alpine.js') }}" defer></script>
+<style>
+    .badge-danger {
+        background-color: #d9534f;
+        color: #fff;
+        border-color: transparent;
+    }
+    .badge-danger:hover {
+        background-color: #d9534f;
+        color: #fff;
+        border-color: transparent;
+    }
+    .delete-modal {
+        font-size: 1.2rem !important;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -30,14 +45,37 @@
                 &nbsp;
             </div>
 
-            <div class="">
-                <form action="{{ route('admin.location.destroy', $location->id) }}" method="POST">
+            <div class="">                
+                <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#defaultModalPrimary">
+                    <i class="fa-solid fa-trash"></i> Delete
+                </button>                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="defaultModalPrimary" tabindex="-1" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Deleting a location</h5>
+            </div>
+            <div class="modal-body m-3">
+                <form action="{{ route('admin.location.destroy', $location->id) }}" id="delete_location_form" method="POST">
                     @csrf
                     @method('DELETE')
-
-                    <x-loadingbutton class="btn btn-danger" type="submit">
-                        <i class="fa-solid fa-trash"></i> Delete
-                    </x-loadingbutton>
+                    <div class="form-group">
+                        <label class="delete-modal">
+                            <strong>Are you sure you want to delete this location?</strong>
+                        </label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Cancel</button>
+                        <span onclick="document.getElementById('delete_location_form').submit()">
+                            <x-loadingbutton class="btn btn-danger" type="submit">
+                                <i class="fa-solid fa-trash"></i> Delete
+                            </x-loadingbutton>                
+                        </span>                        
+                    </div>
                 </form>
             </div>
         </div>
@@ -96,6 +134,9 @@
                     <input type="text" class="form-control" id="longitude" name="location_longitude" value="{{ $location->location_longitude }}">
                 </div>
                 <div class="form-group mb-2">
+                    <a href="https://maps.google.com/maps?q={{ $location->location_latitude }},{{ $location->location_longitude }}" class="btn btn-primary" target="_blank"><i class="fa-solid fa-map-marker-alt"></i> Open in google maps</a>
+                </div>
+                <div class="form-group mb-2">
                     <label for="manager_id" class="form-label">Manager</label>
                     <select name="location_manager_id" id="manager_id" class="form-control">
                         @foreach($location->location_manager_list as $location_manager=>$location_manager_name)
@@ -110,10 +151,7 @@
                 <div class="form-group mb-2">
                     <label for="status" class="form-label">Status</label>
                     <select class="form-control" id="status" name="location_status">
-                        <option value="0" {{ $location->location_status == 0 ? 'selected' : '' }}>Not Ready</option>
-                        <option value="1" {{ $location->location_status == 1 ? 'selected' : '' }}>Ready</option>
-                        <option value="2" {{ $location->location_status == 2 ? 'selected' : '' }}>Inactive</option>
-                        <option value="3" {{ $location->location_status == 3 ? 'selected' : '' }}>Stopped</option>
+                        {!! App\Helpers\LocationHelper::getStatusesForManage($location->location_status) !!}                        
                     </select>
                 </div>
                 <div class="form-group mb-2">

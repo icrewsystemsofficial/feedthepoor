@@ -122,6 +122,20 @@ class LocationHelper {
         return $html;
     }
 
+    public static function getStatusesForManage($status_id){
+        $all_statuses = self::status();
+        $html = '';        
+        foreach($all_statuses as $id => $status) {
+            if ($id == $status_id) {
+                $html .= "<option value='".$id."' selected>".$status['text']."</option>";
+            }
+            else {
+                $html .= "<option value='".$id."'>".$status['text']."</option>";
+            }
+        }
+        return $html;
+    }
+
 }
 
 ?>
