@@ -54,7 +54,7 @@ Route::name('frontend.')->group(function () {
 */
 
 Route::prefix('admin')->as('admin.')->group(function() {
-    
+
     Route::prefix('location')->as('location.')->group(function() {
         Route::get('/', [LocationController::class, 'index'])->name('index');
         Route::get('/manage/{id}', [LocationController::class, 'manage'])->name('manage');
