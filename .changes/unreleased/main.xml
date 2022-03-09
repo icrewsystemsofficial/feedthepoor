@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature>
   <change type="major">Added Razorpay API and works successfully</change>
+  <change type="major">Added PHP Pest Testcases for all frontend routes</change>
 </feature>
