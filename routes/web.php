@@ -66,7 +66,8 @@ Route::prefix('admin')->as('admin.')->group(function() {
 });
 
 
-
+// Routes created by sathish
+Route::get('/track_donation', [HomeController::class, 'track_donation'])->name('track_donation');
 
 
 
