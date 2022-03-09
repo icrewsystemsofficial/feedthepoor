@@ -74,10 +74,7 @@
                             @csrf
                             <div class="form-group mb-2">
                                 <label for="name" class="form-label">Name</label>
-                                <select name="location_name" id="name" class="form-control">
-                                    <option value="" selected>Select a location</option>
-                                    {!! App\Helpers\LocationHelper::getAllLocations() !!}
-                                </select>
+                                <input type="text" class="form-control" name="location_name" placeholder="Name of the location">
                             </div>
                             <div class="form-group mb-2">
                                 <label for="address" class="form-label">Address</label>
@@ -85,7 +82,7 @@
                             </div>
                             <div class="form-group mb-2">
                                 <label for="description" class="form-label">Description</label>
-                                <input type="text" class="form-control" id="description" name="location_description" value="" placeholder="Enter description of location">
+                                <textarea class="form-control" name="location_description" id="description" placeholder="Location's Description"></textarea>
                             </div>
                             <div class="form-group mb-2">
                                 <label for="pin_code" class="form-label">Pin Code</label>
@@ -113,12 +110,12 @@
                                     {!! App\Helpers\LocationHelper::getAllStatuses() !!}
                                 </select>
                             </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <span onclick="document.getElementById('new_location_form').submit()">
-                            <x-loadingbutton type="submit">Create</x-loadingbutton>
-                        </span>
-                    </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <span onclick="document.getElementById('new_location_form').submit()">
+                                    <x-loadingbutton type="submit">Create</x-loadingbutton>
+                                </span>
+                            </div>
 
                     </form>
                 </div>
