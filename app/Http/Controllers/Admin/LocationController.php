@@ -46,13 +46,15 @@ class LocationController extends Controller
         ]);
         $location = Location::find($request->id);
         $location->update($request->all());
-        return redirect(route('admin.location.index'))->with('success', 'Location updated successfully');
+        alert()->success('Yay','Location "'.$request->location_name.'" was successfully updated');
+        return redirect(route('admin.location.index'));
     }
 
     public function destroy(Request $request){
         $location = Location::find($request->id);
+        alert()->success('Yay','Location "'.$location->name.'" was successfully deleted');
         $location->delete();
-        return redirect(route('admin.location.index'))->with('success', 'Location deleted successfully');
+        return redirect(route('admin.location.index'));
     }
 
     public function store(Request $request){
@@ -67,6 +69,7 @@ class LocationController extends Controller
             'location_status' => 'required|in:0,1,2,3',
         ]);
         Location::create($request->all());
-        return redirect(route('admin.location.index'))->with('success', 'Location created successfully');
+        alert()->success('Yay','Location "'.$request->location_name.'" was successfully deleted');
+        return redirect(route('admin.location.index'));
     }
 }

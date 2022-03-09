@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('css')
-<script src="{{ asset('js/alpine.js') }}" defer></script>
 <style>
     .badge-danger {
         background-color: #d9534f;
@@ -17,6 +16,39 @@
         font-size: 1.2rem !important;
     }
 </style>
+@endsection
+
+@section('js')
+<script>
+    function trigger_delete() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+
+            Swal.showLoading();
+
+            if (result.isConfirmed) {
+
+
+                setTimeout(() => {
+                    Swal.fire(
+                        'Alright!',
+                        'Location is being deleted..',
+                        'success'
+                    );
+
+                    document.getElementById('delete_location_form').submit();
+                }, 1500);
+            }
+        });
+    }
+</script>
 @endsection
 
 @section('content')
@@ -45,42 +77,20 @@
                 &nbsp;
             </div>
 
-            <div class="">                
-                <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#defaultModalPrimary">
+
+
+            <div class="">
+                <button class="btn btn-danger" type="button" onclick="trigger_delete();">
                     <i class="fa-solid fa-trash"></i> Delete
-                </button>                
+                </button>
+
+                {{-- This form is submitted by JS method --}}
+                <form action="{{ route('admin.location.destroy', $location->id) }}" id="delete_location_form" method="POST">@csrf @method('DELETE')</form>
             </div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="defaultModalPrimary" tabindex="-1" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Deleting a location</h5>
-            </div>
-            <div class="modal-body m-3">
-                <form action="{{ route('admin.location.destroy', $location->id) }}" id="delete_location_form" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <div class="form-group">
-                        <label class="delete-modal">
-                            <strong>Are you sure you want to delete this location?</strong>
-                        </label>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Cancel</button>
-                        <span onclick="document.getElementById('delete_location_form').submit()">
-                            <x-loadingbutton class="btn btn-danger" type="submit">
-                                <i class="fa-solid fa-trash"></i> Delete
-                            </x-loadingbutton>                
-                        </span>                        
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+
 @if ($errors->any())
     <div class="row">
         <div class="alert alert-danger">
@@ -102,16 +112,7 @@
                 @method('PUT')
                 <div class="form-group mb-2">
                     <label for="name" class="form-label">Name</label>
-                    <select name="location_name" id="name" class="form-control">
-                        @foreach($location->location_name_list as $location_name)
-                            @if ($location_name == $location->location_name)
-                                <option value="{{ $location_name }}" selected>{{ $location_name }}</option>
-                            @else
-                                <option value="{{ $location_name }}">{{ $location_name }}</option>
-                            @endif
-                        @endforeach
-                    </select>
-
+                    <input type="text" id="location_name" name="location_name" class="form-control" value="{{ $location->location_name }}"/>
                 </div>
                 <div class="form-group mb-2">
                     <label for="address" class="form-label">Address</label>
@@ -151,7 +152,7 @@
                 <div class="form-group mb-2">
                     <label for="status" class="form-label">Status</label>
                     <select class="form-control" id="status" name="location_status">
-                        {!! App\Helpers\LocationHelper::getStatusesForManage($location->location_status) !!}                        
+                        {!! App\Helpers\LocationHelper::getStatusesForManage($location->location_status) !!}
                     </select>
                 </div>
                 <div class="form-group mb-2">

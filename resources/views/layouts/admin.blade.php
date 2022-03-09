@@ -39,9 +39,13 @@
       <script src="{{ asset('adminkit/static/js/app.js') }}"></script>
       {{-- ALPINE JS --}}
       <script src="{{ asset('js/alpine.js') }}" defer></script>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       @yield('js')
    </head>
    <body>
+
+    @include('sweetalert::alert')
+
       <div class="wrapper">
          <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
