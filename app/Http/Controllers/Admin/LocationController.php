@@ -13,7 +13,8 @@ class LocationController extends Controller
         return view('admin.location.index', compact('locations'));        
     }
     
-    public function manage(Location $location){
+    public function manage(Request $request, Location $location){    
+        $location = Location::find($request->id); 
         return view('admin.location.manage', compact('location'));
     }
 
@@ -29,11 +30,12 @@ class LocationController extends Controller
             'location_status' => 'required|in:0,1,2,3',
         ]);
         $location->update($request->all());
-        return redirect(route('admin.location.index'));
+        return redirect(route('admin.location.index'))->with('success', 'Location updated successfully');
     }
 
-    public function destroy(Location $location){
+    public function destroy(Request $request, Location $location){
+        $location = Location::find($request->id);
         $location->delete();
-        return redirect(route('admin.location.index'));
+        return redirect(route('admin.location.index'))->with('success', 'Location deleted successfully');
     }
 }

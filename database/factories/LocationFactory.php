@@ -22,7 +22,7 @@ class LocationFactory extends Factory
             'location_latitude' => $this->faker->latitude(),
             'location_longitude' => $this->faker->longitude(),
             'location_manager_id' => User::all()->random()->id,
-            'location_status' => rand(0,4),            
+            'location_status' => rand(0,3),            
         ];
     }
 }

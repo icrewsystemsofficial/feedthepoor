@@ -54,11 +54,12 @@ Route::name('frontend.')->group(function () {
 */
 
 Route::prefix('admin')->as('admin.')->group(function() {
-
+    
     Route::prefix('location')->as('location.')->group(function() {
-        Route::get('/', [LocationController::class, 'location'])->name('index');
-        Route::get('/manage/{id?}', [SettingsController::class, 'location_edit'])->name('edit');
-        Route::post('/edit/{id?}', [SettingsController::class, 'location_update'])->name('update');
+        Route::get('/', [LocationController::class, 'index'])->name('index');
+        Route::get('/manage/{id}', [LocationController::class, 'manage'])->name('manage');
+        Route::delete('/destroy/{id}', [LocationController::class, 'destroy'])->name('destroy');
+        Route::put('/update/{id}', [LocationController::class, 'update'])->name('update');
     });
 
     Route::prefix('settings')->as('settings.')->group(function() {
