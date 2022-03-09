@@ -69,7 +69,15 @@ class LocationHelper {
      */
     public static function getStatus($id) {
 
-        $id = $id ?? throw new Exception('Error: status ID not passed.' . $id);
+        if($id == ''){
+            if($id != 0) {
+
+                // PHP assumes "0" as false, and throws error.
+                // - Leonard
+
+                throw new Exception('Error: status ID not passed.' . $id);
+            }
+        }
 
         $all_statuses = self::status();
 

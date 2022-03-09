@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-12">
         <h3>
-            Locations <span style="color: #777;">></span> Manage
+            Locations <span class="text-muted">></span> Manage
         </h3>
         <p class="mt-n2">
             <small>
@@ -18,15 +18,29 @@
     </div>
 </div>
 <div class="row mb-3">
-    <div class="col-6" style="width: fit-content;">
-        <a href="{{ route('admin.location.index') }}" class="btn btn-primary">Back</a>
-    </div>
-    <div class="col-6" style="width: fit-content;">
-        <form action="{{ route('admin.location.destroy', $location->id) }}" method="POST">
-            @csrf
-            @method('DELETE')            
-            <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
+    <div class="col-6">
+        <div class="flex d-flex">
+            <div>
+                <a href="{{ route('admin.location.index') }}" class="btn btn-primary">
+                    <i class="fa-solid fa-angle-left me-2"></i> Back
+                </a>
+            </div>
+
+            <div class="ml-2">
+                &nbsp;
+            </div>
+
+            <div class="">
+                <form action="{{ route('admin.location.destroy', $location->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+
+                    <x-loadingbutton class="btn btn-danger" type="submit">
+                        <i class="fa-solid fa-trash"></i> Delete
+                    </x-loadingbutton>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 @if ($errors->any())
@@ -59,7 +73,7 @@
                             @endif
                         @endforeach
                     </select>
-                    
+
                 </div>
                 <div class="form-group mb-2">
                     <label for="address" class="form-label">Address</label>
@@ -91,7 +105,7 @@
                                 <option value="{{ $location_manager }}">{{ $location_manager_name }}</option>
                             @endif
                         @endforeach
-                    </select>                    
+                    </select>
                 </div>
                 <div class="form-group mb-2">
                     <label for="status" class="form-label">Status</label>
@@ -101,11 +115,11 @@
                         <option value="2" {{ $location->location_status == 2 ? 'selected' : '' }}>Inactive</option>
                         <option value="3" {{ $location->location_status == 3 ? 'selected' : '' }}>Stopped</option>
                     </select>
-                </div>                
-                <div class="form-group mb-2">                        
+                </div>
+                <div class="form-group mb-2">
                     <span onclick="document.getElementById('update_form').submit();">
                         <x-loadingbutton>Save</x-loadingbutton>
-                    </span>                        
+                    </span>
                 </div>
             </form>
             </div>

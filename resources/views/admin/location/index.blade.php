@@ -45,8 +45,9 @@
                 The places where our donation activities take place
             </small>
         </p>
+
         @if ($errors->any())
-            <div class="row">
+            <div class="row p-3">
                 <div class="alert alert-danger">
                     <strong>Whoops!</strong> There were some problems with your input.<br><br>
                     <ul>
@@ -74,9 +75,9 @@
                             <div class="form-group mb-2">
                                 <label for="name" class="form-label">Name</label>
                                 <select name="location_name" id="name" class="form-control">
-                                    <option value="" selected>Select a location</option>                                    
+                                    <option value="" selected>Select a location</option>
                                     {!! App\Helpers\LocationHelper::getAllLocations() !!}
-                                </select>                                
+                                </select>
                             </div>
                             <div class="form-group mb-2">
                                 <label for="address" class="form-label">Address</label>
@@ -101,9 +102,9 @@
                             <div class="form-group mb-2">
                                 <label for="manager_id" class="form-label">Manager</label>
                                 <select name="location_manager_id" id="manager_id" class="form-control">
-                                    <option value="" selected>Select a manager</option>                                    
+                                    <option value="" selected>Select a manager</option>
                                     {!! App\Helpers\LocationHelper::getAllManagers() !!}
-                                </select>                    
+                                </select>
                             </div>
                             <div class="form-group mb-2">
                                 <label for="status" class="form-label">Status</label>
@@ -124,11 +125,17 @@
             </div>
         </div>
         </div>
+
         @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
+
+            <div class="row p-3">
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
             </div>
+
         @endif
+
         <div class="card mt-3">
             <div class="card-body">
                 <div class="row mb-2">

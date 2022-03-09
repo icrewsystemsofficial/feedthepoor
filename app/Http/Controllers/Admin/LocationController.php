@@ -11,10 +11,10 @@ class LocationController extends Controller
 {
     public function index(){
         $locations = Location::all();
-        return view('admin.location.index', compact('locations'));        
+        return view('admin.location.index', compact('locations'));
     }
-    
-    public function manage(Request $request, Location $location){    
+
+    public function manage(Request $request, Location $location){
         $location = Location::find($request->id);
         $locations = Location::all();
         $location_names = array();
@@ -23,17 +23,17 @@ class LocationController extends Controller
                 array_push($location_names, $loc->location_name);
             }
         }
-        $location->location_name_list = $location_names;    
+        $location->location_name_list = $location_names;
         $users = User::all();
         $location_managers = array();
         foreach ($users as $user) {
             $location_managers[$user->id] = $user->name;
-        }   
-        $location->location_manager_list = $location_managers;        
+        }
+        $location->location_manager_list = $location_managers;
         return view('admin.location.manage', compact('location'));
     }
 
-    public function update(Request $request){        
+    public function update(Request $request){
         $request->validate([
             'location_name' => 'required|string',
             'location_description' => 'required|string',

@@ -32,6 +32,9 @@
 
       {{-- ALPINE JS --}}
       <script src="{{ asset('js/alpine.js') }}" defer></script>
+      <style>
+          [x-cloak] { display: none !important; }
+      </style>
 
 	  @yield('css')
    </head>
