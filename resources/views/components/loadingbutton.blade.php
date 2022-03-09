@@ -2,8 +2,8 @@
 <script>
     function loadingButton() {
         return {
-            loading: false, 
-            disabled: false, 
+            loading: false,
+            disabled: false,
 
             clicked() {
                 if(this.loading == false) {
@@ -23,7 +23,7 @@
     }
 </script>
 
-<button {{ $attributes->merge(['type' => 'submit', 'class' => 'btn btn-primary']) }} x-bind:disabled="disabled" x-data="loadingButton()" @click="clicked">
+<button {{ $attributes->merge(['type' => 'submit', 'class' => 'btn btn-primary']) }} x-bind:disabled="disabled" x-data="loadingButton()" @click="clicked"  x-cloak>
     <span x-show="loading">
         <i class="fa-solid fa-spinner fa-spin"></i>
         &nbsp;

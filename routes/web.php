@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
@@ -62,11 +63,11 @@ Route::prefix('admin')->as('admin.')->group(function() {
 
 
     Route::prefix('location')->as('location.')->group(function() {
-        Route::get('/', [SettingsController::class, 'location'])->name('index');
-        Route::post('/', [SettingsController::class, 'location_store'])->name('store');
-        Route::get('/edit/{id?}', [SettingsController::class, 'location_edit'])->name('edit');
-        Route::post('/edit/{id?}', [SettingsController::class, 'location_update'])->name('update');
-        Route::get('/delete/{id?}', [SettingsController::class, 'location_delete'])->name('delete');
+        Route::get('/', [LocationController::class, 'index'])->name('index');
+        Route::get('/manage/{id}', [LocationController::class, 'manage'])->name('manage');
+        Route::delete('/destroy/{id}', [LocationController::class, 'destroy'])->name('destroy');
+        Route::put('/update/{id}', [LocationController::class, 'update'])->name('update');
+        Route::post('/store', [LocationController::class, 'store'])->name('store');
     });
 
     Route::prefix('settings')->as('settings.')->group(function() {

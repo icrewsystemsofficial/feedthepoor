@@ -20,7 +20,7 @@ class SettingsController extends Controller
     {
         return view('admin.settings.index', [
             'setting_groups' => SettingGroup::where('name', '!=', null)->get(),
-            'setting_types' => SettingsProvider::types(),            
+            'setting_types' => SettingsProvider::types(),
         ]);
     }
 
@@ -30,7 +30,7 @@ class SettingsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {        
+    {
         if(request('description') != '') { $description = request('description'); } else { $description = 'No description provided'; }
 
         $setting = new Setting;
@@ -110,20 +110,20 @@ class SettingsController extends Controller
 
     }
 
-    public function group_save(Request $request) {                        
+    public function group_save(Request $request) {
         $group = new SettingGroup;
         $group->name = request('name');
         $group->description = request('description');
         $group->save();
-        return redirect()->route('admin.settings.index');        
+        return redirect()->route('admin.settings.index');
     }
 
     public function group_update($id) {
-        $group = SettingGroup::where('id', $id)->first();        
+        $group = SettingGroup::where('id', $id)->first();
         $group->name = request('name');
         $group->description = request('description');
         $group->save();
-        return redirect()->route('admin.settings.index');        
+        return redirect()->route('admin.settings.index');
     }
 
     public function group_delete($id) {
@@ -131,4 +131,3 @@ class SettingsController extends Controller
         return redirect()->route('admin.settings.index');
     }
 }
- 
