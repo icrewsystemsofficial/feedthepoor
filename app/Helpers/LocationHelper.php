@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use Exception;
 use App\Models\Location;
+use App\Models\User;
 
 // This is a custom php class to do all our php dirty work, so that
 // we keep our view files clean.
@@ -32,7 +33,6 @@ class LocationHelper {
 
         $status = array();
 
-        //TODO Anirudh, please implement these changes throughout.
         $status[Location::$status['INOPERATIONAL']] = array(
             'text' => 'Inoperational',
             'icon' => 'fa-solid fa-exclamation-triangle',
@@ -40,19 +40,19 @@ class LocationHelper {
         );
 
 
-        $status[1] = array(
+        $status[Location::$status['ACTIVE']] = array(
             'text' => 'Active',
             'icon' => 'fa-solid fa-check-circle',
             'color' => 'success',
         );
 
-        $status[2] = array(
+        $status[Location::$status['INACTIVE']] = array(
             'text' => 'Inactive',
             'icon' => 'fa-solid fa-times',
             'color' => 'warning',
         );
 
-        $status[3] = array(
+        $status[Location::$status['PERMANENTLY_CLOSED']] = array(
             'text' => 'Permanently Closed',
             'icon' => 'fa-solid fa-times-circle',
             'color' => 'danger',
@@ -69,12 +69,7 @@ class LocationHelper {
      */
     public static function getStatus($id) {
 
-        if(is_null($id) || empty($id)) {
-            if($id != 0) {
-                // Because we use "0" as a location status, so allow it to pass...
-                throw new Exception('Error: status ID not passed.' . $id);
-            }
-        }
+        $id = $id ?? throw new Exception('Error: status ID not passed.' . $id);
 
         $all_statuses = self::status();
 
@@ -87,6 +82,38 @@ class LocationHelper {
         $html = "<span class='badge badge-".$status['color']."'><i class='".$status['icon']." me-1'></i>".$status['text']."</span>";
         return $html;
     }
+
+    public static function getAllStatuses() {
+        $all_statuses = self::status();
+        $html = '';
+        foreach($all_statuses as $id => $status) {
+            $html .= "<option value='".$id."'>".$status['text']."</option>";
+        }
+        return $html;
+    }
+
+    public static function getAllLocations(){
+        $locations = Location::all();
+        $html = '';
+        $location_names = array();
+        foreach ($locations as $location) {
+            if (!in_array($location->location_name, $location_names)) {
+                array_push($location_names, $location->location_name);
+                $html .= "<option value='".$location->location_name."'>".$location->location_name."</option>";
+            }
+        }
+        return $html;
+    }
+
+    public static function getAllManagers(){
+        $managers = User::all();
+        $html = '';
+        foreach ($managers as $manager) {
+            $html .= "<option value='".$manager->id."'>".$manager->name."</option>";
+        }
+        return $html;
+    }
+
 }
 
 ?>

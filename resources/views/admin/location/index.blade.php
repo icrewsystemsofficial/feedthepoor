@@ -45,90 +45,76 @@
                 The places where our donation activities take place
             </small>
         </p>
-
+        @if ($errors->any())
+            <div class="row">
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        @endif
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#defaultModalPrimary">
             <i class="fa-solid fa-plus"></i> &nbsp; Add new Location
         </button>
 
-        <div x-data="createSettings()" class="modal fade" id="defaultModalPrimary" tabindex="-1" aria-hidden="true" style="display: none;">
+        <div class="modal fade" id="defaultModalPrimary" tabindex="-1" aria-hidden="true" style="display: none;">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Adding new setting</h5>
+                        <h5 class="modal-title">Adding new location</h5>
                     </div>
                     <div class="modal-body m-3">
 
-                        <form action="{{ route('admin.settings.create') }}" id="new_settings_form" method="POST" autocomplete="off">
+                        <form action="{{ route('admin.location.store') }}" id="new_location_form" method="POST" autocomplete="off">
                             @csrf
                             <div class="form-group mb-2">
-                                <label for="name" class="form-label">Name<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="name" required="required">
+                                <label for="name" class="form-label">Name</label>
+                                <select name="location_name" id="name" class="form-control">
+                                    <option value="" selected>Select a location</option>                                    
+                                    {!! App\Helpers\LocationHelper::getAllLocations() !!}
+                                </select>                                
                             </div>
-
+                            <div class="form-group mb-2">
+                                <label for="address" class="form-label">Address</label>
+                                <textarea class="form-control" id="address" name="location_address" placeholder="Enter full address of location"></textarea>
+                            </div>
                             <div class="form-group mb-2">
                                 <label for="description" class="form-label">Description</label>
-                                <textarea name="description" class="form-control"></textarea>
+                                <input type="text" class="form-control" id="description" name="location_description" value="" placeholder="Enter description of location">
                             </div>
-
-
-
-
-                            <div class="">
-                                <div class="form-group mb-2" x-show="showValueInputs.showText">
-                                    <label class="form-label">Value<span class="text-danger">*</span></label>
-
-                                    <input
-                                        x-model="settingValue"
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="Enter value for this setting"
-                                        required="required"
-                                    />
-                                </div>
-
-                                <div class="form-group mb-2" x-show="showValueInputs.showTextArea">
-                                    <label class="form-label">Value<span class="text-danger">*</span></label>
-                                    <textarea
-                                        x-model="settingValue"
-                                        class="form-control"
-                                        placeholder="Enter value for this setting"
-                                        required="required"
-                                    ></textarea>
-                                </div>
-
-                                <div class="form-check form-switch mb-2 mt-3" x-show="showValueInputs.showBoolean">
-                                    <input
-                                        x-model="settingValue"
-                                        class="form-check-input"
-                                        type="checkbox"
-                                        id="value" />
-
-
-                                    <label class="form-check-label" for="value">
-                                        <strong>Enabled?</strong>
-                                    </label>
-                                </div>
-
-
-                                {{-- Masking the inputs into this element --}}
-                                <input type="hidden" x-model="settingValue" name="value"></span>
+                            <div class="form-group mb-2">
+                                <label for="pin_code" class="form-label">Pin Code</label>
+                                <input type="number" class="form-control" id="pin_code" name="location_pin_code" value="" placeholder="Enter PIN code of location">
                             </div>
-
-                            <div class="form-check form-switch mb-2 mt-3">
-                                <input class="form-check-input" type="checkbox" id="core_setting" @click="updateCoreSettingValue">
-                                <label class="form-check-label">
-                                    <strong>Core Setting?</strong>
-                                    <span class="text-muted">
-                                        this will override default config values with same keys
-                                    </span>
-                                </label>
-
-                                <input type="hidden" name="core_setting" x-bind:value="coreSettingValue" />
+                            <div class="form-group mb-2">
+                                <label for="latitude" class="form-label">Latitude</label>
+                                <input type="text" class="form-control" id="latitude" name="location_latitude" value="" placeholder="Enter latitude of location">
                             </div>
-                    </div>
+                            <div class="form-group mb-2">
+                                <label for="longitude" class="form-label">Longitude</label>
+                                <input type="text" class="form-control" id="longitude" name="location_longitude" value="" placeholder="Enter longitude of location">
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="manager_id" class="form-label">Manager</label>
+                                <select name="location_manager_id" id="manager_id" class="form-control">
+                                    <option value="" selected>Select a manager</option>                                    
+                                    {!! App\Helpers\LocationHelper::getAllManagers() !!}
+                                </select>                    
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="status" class="form-label">Status</label>
+                                <select class="form-control" id="status" name="location_status">
+                                    <option vallue="" selected>Select a status</option>
+                                    {!! App\Helpers\LocationHelper::getAllStatuses() !!}
+                                </select>
+                            </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <span @click="submitForm">
+                        <span onclick="document.getElementById('new_location_form').submit()">
                             <x-loadingbutton type="submit">Create</x-loadingbutton>
                         </span>
                     </div>
@@ -137,7 +123,7 @@
                 </div>
             </div>
         </div>
-
+        </div>
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}

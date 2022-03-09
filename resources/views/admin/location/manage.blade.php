@@ -10,6 +10,11 @@
         <h3>
             Locations <span style="color: #777;">></span> Manage
         </h3>
+        <p class="mt-n2">
+            <small>
+                Edit/delete existing locations
+            </small>
+        </p>
     </div>
 </div>
 <div class="row mb-3">

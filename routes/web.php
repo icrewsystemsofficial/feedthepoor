@@ -60,6 +60,7 @@ Route::prefix('admin')->as('admin.')->group(function() {
         Route::get('/manage/{id}', [LocationController::class, 'manage'])->name('manage');
         Route::delete('/destroy/{id}', [LocationController::class, 'destroy'])->name('destroy');
         Route::put('/update/{id}', [LocationController::class, 'update'])->name('update');
+        Route::post('/store', [LocationController::class, 'store'])->name('store');
     });
 
     Route::prefix('settings')->as('settings.')->group(function() {
