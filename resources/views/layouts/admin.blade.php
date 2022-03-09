@@ -85,6 +85,8 @@
             </footer>
          </div>
       </div>
+
+      <script src="{{ asset('js/alpine.js') }}" defer></script>
 	  @yield('js')
 
    </body>
