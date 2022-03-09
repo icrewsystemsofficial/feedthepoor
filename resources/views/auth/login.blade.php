@@ -30,7 +30,7 @@
                             </div>
                             
                             <!-- Validation Errors -->
-                            <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                            <x-auth-validation-errors class="mb-4 alert alert-danger" :errors="$errors" />
         
                             <form id="loginForm" method="POST" action="{{ route('login') }}" class="mt-4">
                                 @csrf
@@ -75,7 +75,7 @@
                                     </x-loadingbutton>
                                 </div>
                             </form>
-                            <div class="mt-3 mb-4 text-center">
+                            <!-- <div class="mt-3 mb-4 text-center">
                                 <span class="fw-normal">or login with</span>
                             </div>
                             <div class="btn-wrapper my-4 text-center">
@@ -88,7 +88,7 @@
                                 <a href="#" class="btn btn-icon-only btn-pill btn-outline-gray-300 text-facebook" aria-label="github button" title="github button">
                                     <span aria-hidden="true" class="fab fa-github"></span>
                                 </a>
-                            </div>
+                            </div> -->
                             <div class="d-flex justify-content-center align-items-center mt-4">
                                 <span class="fw-normal">
                                     Not registered?

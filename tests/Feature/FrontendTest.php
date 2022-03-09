@@ -3,7 +3,7 @@
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-uses(RefreshDatabase::class);
+// uses(RefreshDatabase::class);
 
 
 it('loads landing page correctly', function () {
@@ -13,7 +13,6 @@ it('loads landing page correctly', function () {
 });
 it('loads donate page correctly', function () {
     $response = $this->get(route('frontend.donate'));
-
     $response->assertStatus(200);
 });
 it('loads donation process correctly', function () {
@@ -35,11 +34,6 @@ it('loads transparency report page correctly', function () {
     $response = $this->get(route('frontend.transparency-report'));
 
     $response->assertStatus(200);
-});
-it('loads thank you page correctly', function () {
-    $response = $this->get(route('frontend.donate.thank_you'));
-
-    $response->assertStatus(302);
 });
 it('loads track donation page correctly', function () {
     $response = $this->get(route('frontend.track-donation'));
