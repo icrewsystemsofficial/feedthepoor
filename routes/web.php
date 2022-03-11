@@ -36,7 +36,7 @@ Route::name('frontend.')->group(function () {
 
     Route::get('/activity', [HomeController::class, 'index'])->name('activity');
     Route::get('/campaigns', [HomeController::class, 'index'])->name('campaigns');
-    Route::get('/track-donation/{donation_id?}', [HomeController::class, 'index'])->name('track-donation');
+    Route::get('/track-donation/{donation_id?}', [HomeController::class, 'track_donation'])->name('track-donation');
     Route::get('/transparency-report', [HomeController::class, 'index'])->name('transparency-report');
 
 
@@ -64,11 +64,6 @@ Route::prefix('admin')->as('admin.')->group(function() {
 
     });
 });
-
-
-// Routes created by sathish
-Route::get('/track_donation', [HomeController::class, 'track_donation'])->name('track_donation');
-
 
 
 

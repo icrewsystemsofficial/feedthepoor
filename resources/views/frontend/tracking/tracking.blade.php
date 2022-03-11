@@ -2,90 +2,85 @@
 
 @section('css')
 <style>
+
+    /* TODO Put this CSS in a separate file */
+
     .vertical-timeline {
-    width: 100%;
-    position: relative;
-    padding: 1.5rem 0 1rem
+        width: 100%;
+        position: relative;
+        padding: 1.5rem 0 1rem
     }
 
     .vertical-timeline::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 67px;
-    height: 100%;
-    width: 4px;
-    background: #e9ecef;
-    border-radius: .25rem
-    }
-
-    .vertical-timeline-element {
-    position: relative;
-    margin: 0 0 1rem
-    }
-
-    .vertical-timeline--animate .vertical-timeline-element-icon.bounce-in {
-    visibility: visible;
-    animation: cd-bounce-1 .8s
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 27px;
+        height: 100%;
+        width: 4px;
+        background: #e9ecef;
+        border-radius: .25rem
     }
 
     .vertical-timeline-element-icon {
-    position: absolute;
-    top: 0;
-    left: 60px
+        position: absolute;
+        top: 0;
+        left: 20px
     }
 
+    .vertical-timeline-element {
+        position: relative;
+        margin: 0 0 1rem
+    }
+
+    .vertical-timeline--animate .vertical-timeline-element-icon.bounce-in {
+        visibility: visible;
+        animation: cd-bounce-1 .8s
+    }
+
+
+
     .vertical-timeline-element-icon .badge-dot-xl {
-    box-shadow: 0 0 0 5px #fff
+        box-shadow: 0 0 0 5px #fff
     }
 
     .badge-dot-xl {
-    width: 18px;
-    height: 18px;
-    position: relative
+        width: 18px;
+        height: 18px;
+        position: relative
     }
 
     .badge:empty {
-    display: none
+        display: none
     }
 
     .badge-dot-xl::before {
-    content: '';
-    width: 10px;
-    height: 10px;
-    border-radius: .25rem;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin: -5px 0 0 -5px;
-    background: #fff
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: .25rem;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -5px 0 0 -5px;
+        background: #fff
     }
 
     .vertical-timeline-element-content {
-    position: relative;
-    margin-left: 90px;
-    font-size: .8rem
+        position: relative;
+        margin-left: 60px;
+        font-size: .8rem
     }
 
     .vertical-timeline-element-content .timeline-title {
-    font-size: .8rem;
-    text-transform: uppercase;
-    margin: 0 0 .5rem;
-    padding: 2px 0 0;
-    font-weight: bold
+        font-size: .8rem;
+        text-transform: uppercase;
+        margin: 0 0 .5rem;
+        padding: 2px 0 0;
+        font-weight: bold
     }
 
-    .vertical-timeline-element-content .vertical-timeline-element-date {
-    display: block;
-    position: absolute;
-    left: -90px;
-    top: 0;
-    padding-right: 10px;
-    text-align: right;
-    color: #adb5bd;
-    font-size: .7619rem;
-    white-space: nowrap
-    }
+
 
     .vertical-timeline-element-content:after {
     content: "";
@@ -142,7 +137,7 @@
 <section class="" x-data="trackingPage()" x-init="init()">
     <div class="container mt-n6 z-2 mb-5">
         <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-10 col-lg-8">
+            <div class="col-sm-12 col-md-12 col-lg-12">
 
                 {{-- FORM | FIRST PAGE --}}
                 <div x-show="showTrackingForm" class="card shadow-lg border-gray-300 p-4 p-lg-5">
@@ -175,7 +170,7 @@
                             <div class="">
                                 <div >
                                     <span class="font-extrabold">₹5,000 INR</span> was donated with <i class="fas fa-heart text-danger"></i> by
-                                    <span class="font-bold">{{ $donation_names[0] }}</span>, from <span class="font-bold">Chennai</span>.
+                                    <span class="font-bold">{{ $donation_name }}</span>, from <span class="font-bold">Chennai</span>.
                                 </div>
 
                                 {{-- <div class="float-right">
@@ -235,115 +230,6 @@
                     </div>
 
                     {{-- DONATION STATUS --}}
-
-
-                    <div class="row mt-4 ms-4 position-relative mb-5" x-show="false">
-
-                        <div class="col text-center">
-                            <div class="flex flex-col text-center">
-                                <i class="fas fa-check-circle text-success fa-3x"></i>
-                            </div>
-                            <div class="mt-1" x-data="{}">
-                                <a
-                                    @click="$dispatch('img-modal', {  imgModalSrc: '{{asset('tracking-images/donation.png')}}', imgModalDesc: 'The Donation was received by the Mr.User on this date' })"
-                                    class="uppercase font-bold"
-                                >
-                                    {{-- <img src="{{asset('tracking-images/donation.png')}}" alt="" width="50px" height="50px" class="image-link ms-1 rounded ml-2"> --}}
-                                    Donation Received
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col text-center">
-                            <div class="flex flex-col text-center">
-                                <i class="fas fa-check-circle text-success fa-3x"></i>
-                            </div>
-                            <div class="mt-1" x-data="{}">
-                                <a
-                                    @click="$dispatch('img-modal', {
-                                        imgModalSrc: '{{asset('tracking-images/donation.png')}}',
-                                        imgModalDesc: 'The Donation was received by the Mr.User on this date' })
-                                    "
-                                    class="uppercase font-bold"
-                                >
-                                    {{-- <img src="{{asset('tracking-images/donation.png')}}" alt="" width="50px" height="50px" class="image-link ms-1 rounded ml-2"> --}}
-                                    RECEPT GENERATED
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col text-center">
-                            <div class="flex flex-col text-center">
-                                <i class="fas fa-clock text-muted fa-3x"></i>
-                            </div>
-                            <div class="mt-1" x-data="{}">
-                                <a
-                                    @click="$dispatch('img-modal', {
-                                        imgModalSrc: '{{asset('tracking-images/donation.png')}}',
-                                        imgModalDesc: 'The Donation was received by the Mr.User on this date' })
-                                    "
-                                    class="uppercase font-bold"
-                                >
-                                    {{-- <img src="{{asset('tracking-images/donation.png')}}" alt="" width="50px" height="50px" class="image-link ms-1 rounded ml-2"> --}}
-                                    ORDER PLACED
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col text-center">
-                            <div class="flex flex-col text-center">
-                                <i class="fas fa-clock text-muted fa-3x"></i>
-                            </div>
-                            <div class="mt-1" x-data="{}">
-                                <a
-                                    @click="$dispatch('img-modal', {
-                                        imgModalSrc: '{{asset('tracking-images/donation.png')}}',
-                                        imgModalDesc: 'The Donation was received by the Mr.User on this date' })
-                                    "
-                                    class="uppercase font-bold"
-                                >
-                                    {{-- <img src="{{asset('tracking-images/donation.png')}}" alt="" width="50px" height="50px" class="image-link ms-1 rounded ml-2"> --}}
-                                    Mission Assigned
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col text-center">
-                            <div class="flex flex-col text-center">
-                                <i class="fas fa-clock text-muted fa-3x"></i>
-                            </div>
-                            <div class="mt-1" x-data="{}">
-                                <a
-                                    @click="$dispatch('img-modal', {
-                                        imgModalSrc: '{{asset('tracking-images/donation.png')}}',
-                                        imgModalDesc: 'The Donation was received by the Mr.User on this date' })
-                                    "
-                                    class="uppercase font-bold"
-                                >
-                                    {{-- <img src="{{asset('tracking-images/donation.png')}}" alt="" width="50px" height="50px" class="image-link ms-1 rounded ml-2"> --}}
-                                    Volunteers Assigned
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col text-center">
-                            <div class="flex flex-col text-center">
-                                <i class="fas fa-clock text-muted fa-3x"></i>
-                            </div>
-                            <div class="mt-1" x-data="{}">
-                                <a
-                                    @click="$dispatch('img-modal', {
-                                        imgModalSrc: '{{asset('tracking-images/donation.png')}}',
-                                        imgModalDesc: 'The Donation was received by the Mr.User on this date' })
-                                    "
-                                    class="uppercase font-bold"
-                                >
-                                    {{-- <img src="{{asset('tracking-images/donation.png')}}" alt="" width="50px" height="50px" class="image-link ms-1 rounded ml-2"> --}}
-                                    Activity Complete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="">
 
@@ -448,8 +334,7 @@
                                 <div class="flex flex-col">
                                     @foreach ($statuses as $status)
                                         <span class="p-2 fw-bold">
-
-                                            <span class="float-left">
+                                            <span class="float-left uppercase">
                                                 {{ $status['title']}}
                                             </span>
 
@@ -490,18 +375,6 @@
                                         </span>
                                     @endforeach
                                 </div>
-
-
-
-                                {{-- <span class="p-2">
-                                    Receipt Generated <i class="fas fa-check-circle text-success"></i>
-                                </span> --}}
-
-                                {{-- <p class="text-white text-center bg-dark fw-bolder border border-light rounded">
-                                    {{-- <span class="spinner-grow text-white" role="status" style="width: 7px; height:7px;">
-                                    </span> <span class="spinner-grow text-white" role="status" style="width: 7px; height:7px;">
-                                    </span> <span class="spinner-grow text-white" role="status" style="width: 7px; height:7px;"></span>
-                                </p> --}}
                             </div>
                         </div>
                     </div>
@@ -515,55 +388,64 @@
                                 <h5 class="card-title">
                                     Donation Timeline
                                 </h5>
+
+                                @php
+
+                                    $donation_timeline = array(
+                                        array(
+                                            'header' => 'Donation was received',
+                                            'body' => 'Donation was initiated by ' . $donation_name .' through Razorpay. The amount was received successfully by ' . config('app.ngo_name'),
+                                            'time' => now()->subDays(2)->format('d F, Y | H:i A'),
+                                            'icon' => 'fas fa-check-circle text-success',
+                                        ),
+
+
+                                        array(
+                                            'header' => 'Receipt was generated',
+                                            'body' => 'Donation was initiated by through Razorpay. The amount was received successfully by ' . config('app.ngo_name'),
+                                            'time' => now()->subDays(2)->format('d F, Y | H:i A'),
+                                            'icon' => 'fas fa-check-circle text-success',
+                                        ),
+                                    );
+
+
+                                @endphp
+
                                 <div class="card-body" style="height: 400px; overflow: scroll;">
                                         <div class="vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
 
-                                            <div class="vertical-timeline-item vertical-timeline-element">
-                                                <div> <span class="vertical-timeline-element-icon bounce-in"> <i class="fas fa-info-circle"> </i> </span>
-                                                    <div class="vertical-timeline-element-content bounce-in">
-                                                        <p>Another meeting with UK client today, at <b class="text-danger">3:00 PM</b></p>
-                                                        <p>Yet another one, at <span class="text-success">5:00 PM</span></p> <span class="vertical-timeline-element-date">12:25 PM</span>
-                                                    </div>
-                                                </div>
-                                            </div>
 
-                                            <div class="vertical-timeline-item vertical-timeline-element">
-                                                <div> <span class="vertical-timeline-element-icon bounce-in"> <i class="fas fa-exclamation-circle"></i> </span>
-                                                    <div class="vertical-timeline-element-content bounce-in">
-                                                        <h4 class="timeline-title">Meeting with client</h4>
-                                                        <p>
-                                                            Meeting with USA Client, today at <a href="javascript:void(0);" data-abc="true">12:00 PM</a>
-                                                        </p>
-                                                        <span class="vertical-timeline-element-date uppercase">
-                                                            Pending
-                                                        </span>
+                                            <style>
+                                                .vertical-timeline-element-content .vertical-timeline-element-date {
+                                                    display: block;
+                                                    position: absolute;
+                                                    left: -130px;
+                                                    top: 0;
+                                                    padding-right: 10px;
+                                                    text-align: right;
+                                                    color: #adb5bd;
+                                                    font-size: .7619rem;
+                                                    white-space: nowrap;
+                                                }
+                                            </style>
+
+                                            @foreach ($donation_timeline as $log)
+                                                <div class="vertical-timeline-item vertical-timeline-element">
+                                                    <div> <span class="vertical-timeline-element-icon bounce-in"> <i class="{{ $log['icon'] }}"></i> </span>
+                                                        <div class="vertical-timeline-element-content bounce-in">
+
+                                                            <span class="uppercase text-muted">
+                                                                {{ $log['time'] }}
+                                                            </span>
+
+                                                            <h4 class="timeline-title font-bold">{{ $log['header'] }}</h4>
+                                                            <p>
+                                                                {!! $log['body'] !!}
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        <div class="vertical-timeline-item vertical-timeline-element">
-                                            <div> <span class="vertical-timeline-element-icon bounce-in"> <i class="fas fa-info-circle"> </i> </span>
-                                                <div class="vertical-timeline-element-content bounce-in">
-                                                    <h4 class="timeline-title">Discussion with team about new product launch</h4>
-                                                    <p>meeting with team mates about the launch of new product. and tell them about new features</p> <span class="vertical-timeline-element-date">6:00 PM</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="vertical-timeline-item vertical-timeline-element">
-                                            <div> <span class="vertical-timeline-element-icon bounce-in"> <i class="fas fa-info-circle"> </i> </span>
-                                                <div class="vertical-timeline-element-content bounce-in">
-                                                    <h4 class="timeline-title text-success">Discussion with marketing team</h4>
-                                                    <p>Discussion with marketing team about the popularity of last product</p> <span class="vertical-timeline-element-date">9:00 AM</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="vertical-timeline-item vertical-timeline-element">
-                                            <div> <span class="vertical-timeline-element-icon bounce-in"> <i class="fas fa-info-circle"> </i> </span>
-                                                <div class="vertical-timeline-element-content bounce-in">
-                                                    <p>Another conference call today, at <b class="text-danger">11:00 AM</b></p>
-                                                    <p>Yet another one, at <span class="text-success">1:00 PM</span></p> <span class="vertical-timeline-element-date">12:25 PM</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -572,8 +454,117 @@
 
 
 
-                    {{-- <br>
 
+                    {{--
+                        ALPINE JS MODAL CREATED BY SATISH
+
+                        <div class="row mt-4 ms-4 position-relative mb-5" x-show="false">
+
+                        <div class="col text-center">
+                            <div class="flex flex-col text-center">
+                                <i class="fas fa-check-circle text-success fa-3x"></i>
+                            </div>
+                            <div class="mt-1" x-data="{}">
+                                <a
+                                    @click="$dispatch('img-modal', {  imgModalSrc: '{{asset('tracking-images/donation.png')}}', imgModalDesc: 'The Donation was received by the Mr.User on this date' })"
+                                    class="uppercase font-bold"
+                                >
+
+                                    Donation Received
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col text-center">
+                            <div class="flex flex-col text-center">
+                                <i class="fas fa-check-circle text-success fa-3x"></i>
+                            </div>
+                            <div class="mt-1" x-data="{}">
+                                <a
+                                    @click="$dispatch('img-modal', {
+                                        imgModalSrc: '{{asset('tracking-images/donation.png')}}',
+                                        imgModalDesc: 'The Donation was received by the Mr.User on this date' })
+                                    "
+                                    class="uppercase font-bold"
+                                >
+
+                                    RECEPT GENERATED
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col text-center">
+                            <div class="flex flex-col text-center">
+                                <i class="fas fa-clock text-muted fa-3x"></i>
+                            </div>
+                            <div class="mt-1" x-data="{}">
+                                <a
+                                    @click="$dispatch('img-modal', {
+                                        imgModalSrc: '{{asset('tracking-images/donation.png')}}',
+                                        imgModalDesc: 'The Donation was received by the Mr.User on this date' })
+                                    "
+                                    class="uppercase font-bold"
+                                >
+
+                                    ORDER PLACED
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col text-center">
+                            <div class="flex flex-col text-center">
+                                <i class="fas fa-clock text-muted fa-3x"></i>
+                            </div>
+                            <div class="mt-1" x-data="{}">
+                                <a
+                                    @click="$dispatch('img-modal', {
+                                        imgModalSrc: '{{asset('tracking-images/donation.png')}}',
+                                        imgModalDesc: 'The Donation was received by the Mr.User on this date' })
+                                    "
+                                    class="uppercase font-bold"
+                                >
+
+                                    Mission Assigned
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col text-center">
+                            <div class="flex flex-col text-center">
+                                <i class="fas fa-clock text-muted fa-3x"></i>
+                            </div>
+                            <div class="mt-1" x-data="{}">
+                                <a
+                                    @click="$dispatch('img-modal', {
+                                        imgModalSrc: '{{asset('tracking-images/donation.png')}}',
+                                        imgModalDesc: 'The Donation was received by the Mr.User on this date' })
+                                    "
+                                    class="uppercase font-bold"
+                                >
+
+                                    Volunteers Assigned
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col text-center">
+                            <div class="flex flex-col text-center">
+                                <i class="fas fa-clock text-muted fa-3x"></i>
+                            </div>
+                            <div class="mt-1" x-data="{}">
+                                <a
+                                    @click="$dispatch('img-modal', {
+                                        imgModalSrc: '{{asset('tracking-images/donation.png')}}',
+                                        imgModalDesc: 'The Donation was received by the Mr.User on this date' })
+                                    "
+                                    class="uppercase font-bold"
+                                >
+
+                                    Activity Complete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="d-flex justify-content-end bottom-0 end-0 position-absolute pe-3">
                         <i class="fas fa-info-circle"></i>
                         <h6 class="ps-2 text-secondary fs-6"> Click on each image to know more info </h6>
