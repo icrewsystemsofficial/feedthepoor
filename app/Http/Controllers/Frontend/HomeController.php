@@ -93,4 +93,19 @@ class HomeController extends Controller
             'payment' => app(RazorpayAPIController::class)->fetch_payment($payment_id),
         ]);
     }
+
+
+    // function created by sathish
+    public function track_donation($donation_id = ''){
+
+
+        $faker = Factory::create('en_IN');
+        $donation_name = $faker->firstName();
+
+        // dd($names_json);
+        return view('frontend.tracking.tracking', [
+            'donation_name' => $donation_name,
+        ]);
+    }
+
 }

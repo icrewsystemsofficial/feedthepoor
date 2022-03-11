@@ -7,7 +7,7 @@ ______            _ _______ _          _____
 
 An initiative by ICREWSYSTEMS SOFTWARE ENGINEERING LLP
 
-This was last generated on 05 March, 2022
+This was last generated on 09 March, 2022
 
 # CHANGELOG
 
@@ -15,5 +15,10 @@ This was last generated on 05 March, 2022
 ## [Unreleased]
 
 ### Major
+ - Added PHP Pest Testcases for all frontend routes
  - Added Razorpay API and works successfully
+ - Location management module has been added to the app
+
+### Task
+ - Integrated the theme for the app&#039;s authentication pages
 

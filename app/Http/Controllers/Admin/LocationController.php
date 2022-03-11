@@ -52,7 +52,7 @@ class LocationController extends Controller
 
     public function destroy(Request $request){
         $location = Location::find($request->id);
-        alert()->success('Yay','Location "'.$location->name.'" was successfully deleted');
+        alert()->success('Yay','Location "'.$location->location_name.'" was successfully deleted');
         $location->delete();
         return redirect(route('admin.location.index'));
     }

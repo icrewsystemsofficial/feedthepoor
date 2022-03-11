@@ -2,4 +2,5 @@
 <feature>
   <change type="major">Added Razorpay API and works successfully</change>
   <change type="major">Added PHP Pest Testcases for all frontend routes</change>
+  <change type="major">Location management module has been added to the app</change>
 </feature>
