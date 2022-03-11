@@ -22,42 +22,6 @@ class HomeController extends Controller
         $total_donations_received = 42500;
         $howmany = 50;
 
-        // function generateRandomImages($howmany) {
-
-        //     // This function gets images from a picture generator.
-        //     // Once "picture-upload" feature is ready for this project,
-        //     // we should update this function.
-        //     // - Leonard, 16 April 2021.
-
-        //     $images = array();
-        //     $height = 300;
-        //     for($i = 0; $i < $howmany; $i++) {
-        //         $url = "https://picsum.photos/800/". $height ."";
-        //         $images[$i] = $url;
-        //         $height++;
-        //     }
-
-        //     return json_encode($images);
-        // }
-
-        // function generateRandomDonorNames($howmany) {
-
-        //     // This function gets random donor names from FakerPHP
-        //     // Once "donation" feature is ready for this project,
-        //     // we should update this function.
-        //     // - Leonard, 16 April 2021.
-
-        //     $names = array();
-        //     $faker = Factory::create('en_IN');
-        //     for($i = 0; $i < $howmany; $i++) {
-        //         $names[$i] = $faker->firstName;
-        //     }
-
-        //     return json_encode($names);
-        // }
-
-        
-
         $images = array();
         $height = 300;
         for($i = 0; $i < $howmany; $i++) {
@@ -84,7 +48,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function about () {                
+    public function about () {
         return view('frontend.about.index');
     }
 

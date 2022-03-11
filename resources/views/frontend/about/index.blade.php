@@ -1,424 +1,293 @@
 @extends('layouts.frontend')
-@section('meta')
-<title>
-   {{ config('app.name') }} | Donate Transparently
-</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-@endsection
-@section('css')
-<link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
-<style>
-    .about-hero-header {
-        background-image:linear-gradient(rgba(28, 44, 52, 0.4), rgba(28, 44, 52, 0.4)), url(https://b.zmtcdn.com/feedingIndia/7c19381e3cea2e1113bfe0f02ae8d7671585280710.png);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 100vh;
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 8vw));
-    }
-    .about-hero-header .container {
-        position: relative;
-        top: 50%;
-    }
-    .about-hero-header .hero-section {
-        
-    }
-    .about-hero-header .hero-section .col-md-12 .about-hero-head {
-        font-size: 3rem;
-        font-weight: bold;
-        color: #fff;
-        letter-spacing: 2px;
-        text-align: center;
-    }
-    .mb-50 {
-        margin-bottom: 50px;
-    }
-    .mb-20 {
-        margin-bottom: 20px;
-    }
-    .heading {
-        margin-bottom: 40px;
-    }
-    .heading-title-main {
-        font-size: 2rem;
-        font-weight: bold;
-        letter-spacing: 1px;
-    }
-    .boxShadow {
-        box-shadow: 0 12px 15px rgb(0 0 0 / 10%), 0 17px 50px rgb(0 0 0 / 10%);
-    }
-    .about-image {
-        width: 60%;
-        height: 100%;
-        margin-bottom: 20px;
-        display: block;
-        margin: 0 auto;
-    }
-    .slightlyDown {
-        transform: translateY(70px) !important;
-    }
-    .methodOfOp {
-        height: 100%;
-        width: 100%;   
-        padding: 40px;     
-        display: block;
-        margin: 0 auto;
-        
-    }
-    .methodOfOp h1 {
-        text-align: center;
-    }
-    .methodOfOp-title {
-        font-size: 2rem;
-        font-weight: bold;
-        letter-spacing: 1px;
-        text-align: center;
-        color: rgba(28, 44, 52, 1);
-        margin-bottom: 20px;
-    }
-    .active-method {
-        background-color: rgba(28, 44, 52, 1);
-    }
-    .active-method h1 span {
-        color: #fff;
-    }
-    .hide {
-        display: none;
-        opacity: 0;
-    }
-    .show {
-        display: block;
-        opacity: 1;
-    }
-    .about-content {
-        position: relative;
-        padding: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-    .feed-img {
-        width: 100%;
-        height: 100%;
-    }
-    .about-method {
-        padding: 0px;
-    }
-    .about-method p{
-        font-size: 1.3rem;
-    }
-    .aboutDonate {
-        background-image: url(https://demo.themefisher.com/wishfund/images/bg/bg-3.jpg);
-        background-size: cover;
-        padding: 120px 0px !important;
-        height: 80vh;
-        width: 100vw;
-    }
-    .aboutDonate::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-    }
-    .aboutDonate .container {
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-    .donateContent {
-        display: block;
-        margin: 0 auto;
-    }
-    .donateContent .donateText {
-        font-size: 2rem;
-        font-weight: bold;
-        letter-spacing: 1px;
-        text-align: center;
-        color: #fff;
-        margin-bottom: 20px;
-    }
-    .justify-content-center {
-        justify-content: center !important;
-    }
-    .mb-100 {
-        margin-bottom: 100px;
-    }
-    img {
-        border-radius: 20px;
-        box-shadow: 0 12px 15px rgb(0 0 0 / 10%), 0 17px 50px rgb(0 0 0 / 10%);
-    }
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-    @keyframes fadeOut {
-        from {
-            opacity: 1;
-        }
-        to {
-            opacity: 0;
-        }
-    }
-    .fadeIn {
-        animation: fadeIn 0.7s ease-in-out forwards;
-    }
-    .fadeOut {
-        animation: fadeOut 0.7s ease-in-out forwards;
-    }
-</style>
-<style>
-    @media (max-width: 768px){
-        .col-md-6, .methodCol {
-            width: 100% !important;
-        }
-        .methodOP {
-            padding: 0px !important;  
-            width: 33.33%;          
-        }        
-        .methodCol:nth-child(2) {
-            margin: 20px 0px !important;
-        }
-    }
-    @media (max-width: 576px){
-        .methodOfOp {
-            padding: 0px !important;
-        }
-        .methodOfOp h1 span{
-            font-size: 1.5rem;
-        }
-        .about-hero-head {
-            font-size: 2rem !important;
-        }
-    }
-    @media (min-width: 769px){
-        .methodOP {
-            width: 100%;
-        }
-    }
-</style>
-@endsection
-@section('js')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script defer>
-    let changeMethod = (methods,targetEle) => {
-        methods.forEach(method => {
-            $(method).removeClass('active-method');            
-        });
-        targetEle.addClass('active-method');
-        let target = targetEle.attr('data-target');        
-        $('.opData').each((i,e) => {
-            if($(e).attr('id') == target){
-                $(e).removeClass('fadeOut');
-                $(e).removeClass('hide');
-                $(e).addClass('fadeIn');
-                $(e).addClass('show');                
-            }else{
-                $(e).removeClass('show');
-                $(e).addClass('hide');
-            }
-        });
-    }
-    let autoSwitch = (methods) => {
-        let currentMethod = $('.active-method');   
-        [...methods].indexOf(currentMethod[0]) == methods.length - 1 ? changeMethod(methods,$(methods[0])) : changeMethod(methods,$(methods[[...methods].indexOf(currentMethod[0]) + 1]));    
-    }
-    $(document).ready(() => {
-        let methods = document.querySelectorAll('#methodOfOp');
-        let timer = setInterval(() => {         
-            autoSwitch(methods);
-        }, 3000);
-        methods.forEach(e => {
-            $(e).on('mouseover tap',() =>{
-                clearTimeout(timer);
-                changeMethod(methods,$(e));
-                timer = setInterval(() => {         
-                    autoSwitch(methods);
-                }, 3000);
-            })            
-        });        
-    });    
-</script>
-@endsection
-
 
 @section('content')
-<section class="section section-header text-white pb-md-10 about-hero-header">
-    <div class="container">
-       <div class="row justify-content-between align-items-center hero-section">
-            <div class="col-md-12">
-                 <h1 class="about-hero-head">
-                    #HungerFreeIndia
-                 </h1>
-            </div>            
-         </div>
-       </div>
-    </div>
- </section>
-<section class="section section-lg pt-0 mb-50">    
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="heading">
-                    <h2 class="heading-title">
-                        <span class="heading-title-main">
-                            #whoWeAre
-                        </span>
-                    </h2>
+    <!-- Hero -->
+    <section class="section-header bg-secondary text-white">
+        <div class="container">
+           <div class="row justify-content-between align-items-center">
+              <div class="col-12 col-md-7 col-lg-6 text-center text-md-left">
+                    <h1 class="display-2 mb-4">
+                        Full-Service <br class="d-none d-md-inline">Digital Agency
+                    </h1>
+                    <p class="lead mb-4 text-muted">Themesberg can help you build a modern website, a creative logo or PWA, that will bring you customers and and stay on top of your competition.</p>
+                    <a href="./services.html" class="btn btn-tertiary me-3 animate-up-2">What we do <span class="ms-2"><span class="fas fa-arrow-right"></span></span></a>
                 </div>
-                <div class="content">
-                    <p><span>#feedThePoor</span> is an initiative brought forward by Roshni Charitable Trust. We believe no-one should suffer the grief of going to sleep empty stomach. Our motive at <span>#feedThePoor</span> is to feed the underpivileged half of our nation, that is heavily affeccted by the pangs of poverty and isn't capable of earning their bread. Basically, we raise funds or collect food donated by generous hearted people and direct it to the poor. Each meal we provide, brings a smile to the face of these people, who'd otherwise have to grieve without food.</p>
-                </div>
-            </div>
-            <div class="col-md-6 slightlyDown">
-                <img src="https://cdn.discordapp.com/attachments/530789778912837640/691801343723307068/1585008642050.png" class="about-image boxShadow">
-            </div>
+              <div class="col-12 col-md-5 d-none d-md-block text-center"><img src="../../assets/img/illustrations/about-illustration.svg" alt=""></div>
+           </div>
         </div>
-    </div>
-</section>
-<section class="section section-lg pt-0 mb-50">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="heading">
-                    <h2 class="heading-title" style="text-align: center;">
-                        <span class="heading-title-main">
-                            #howWeFeed
-                        </span>
-                    </h2>
+    </section>
+    <!-- End of Hero section -->
+    <!-- Section -->
+    <section class="section section-md">
+        <div class="container">
+            <div class="row align-items-center justify-content-around">
+                <div class="col-md-6 col-xl-6 mb-5">
+                    <img class="organic-radius img-fluid" src="../../assets/img/sections/about-us-1.jpg" alt="Office Desk">
+                </div>
+                <div class="col-md-6 col-xl-5 text-center text-md-left">
+                    <h2 class="h1 mb-5">All challenges accepted.</h2>
+                    <p class="lead">Themesberg is an experienced and passionate group of designers, developers, project managers, writers and artists. Every client we work with becomes a part of the team. Together we face the challenges and celebrate the victories.</p>
+                    <p class="lead">With a culture of collaboration, a roster of talent, and several office pooches, the Themesberg team is active in the creative community, endlessly interested in what’s next, and generally pleasant to be around.</p>
+                    <img src="../../assets/img/signature.svg" alt="signature" class="mt-4" width="150">
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4 methodCol" style="width: 40%">
-                <img class="show feed-img opData" id="donate" src="https://cdn.discordapp.com/attachments/741259606512107602/745210919029702716/20200818_144926.jpg">
-                <img class="hide feed-img opData" id="feed" src="https://cdn.discordapp.com/attachments/694578470772146237/744474193516822590/icrew_7.jpg">
-                <img class="hide feed-img opData" id="feel" src="https://cdn.discordapp.com/attachments/741259606512107602/745210139396538438/20200818_144848.jpg">
-            </div>
-            <div class="col-md-4 methodCol" style="width: 20%;">
-                <div class="row">
-                    <div class="col-md-4 methodOP">
-                        <div class="methodOfOp active-method" id="methodOfOp" data-target="donate">
-                            <h1>
-                                <span class="methodOfOp-title">
-                                    Donate
-                                </span>
-                            </h1>
+    </section>
+    <!-- End of section -->
+    <!-- Section -->
+    <section class="section section-lg pt-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-lg-4 text-center">
+                    <!-- Visit Box -->
+                    <div class="icon-box mb-4">
+                        <div class="icon icon-primary mb-4">
+                            <span class="fas fa-user"></span>
                         </div>
+                        <h3 class="h5">Team Members</h3>
+                        <span class="counter display-3 text-gray d-block">500</span>
                     </div>
-                    <div class="col-md-4 methodOP">
-                        <div class="methodOfOp" id="methodOfOp" data-target="feed">
-                            <h1>
-                                <span class="methodOfOp-title">
-                                    Feed
-                                </span>
-                            </h1>
-                        </div>
-                    </div>
-                    <div class="col-md-4 methodOP">
-                        <div class="methodOfOp" id="methodOfOp" data-target="feel">
-                            <h1>
-                                <span class="methodOfOp-title">
-                                    Feel
-                                </span>
-                            </h1>
-                        </div>
-                    </div>
+                    <!-- End of Visit Box -->
                 </div>
-                <!--<div class="row">
-                    <div class="col-md-12">
-                        <div class="methodOfOp active-method" id="methodOfOp" data-target="donate">
-                            <h1>
-                                <span class="methodOfOp-title">
-                                    Donate
-                                </span>
-                            </h1>
+                <div class="col-md-4 col-lg-4 text-center">
+                    <!-- Call Box -->
+                    <div class="icon-box mb-4">
+                        <div class="icon icon-primary mb-4">
+                            <span class="fas fa-money-check"></span>
                         </div>
+                        <h3 class="h5">Projects Published</h3>
+                        <span class="counter display-3 text-gray d-block">2400</span>
                     </div>
+                    <!-- End of Call Box -->
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="methodOfOp" id="methodOfOp" data-target="feed">
-                            <h1>
-                                <span class="methodOfOp-title">
-                                    Feed
-                                </span>
-                            </h1>
+                <div class="col-md-4 col-lg-4 text-center">
+                    <!-- Email Box -->
+                    <div class="icon-box mb-4">
+                        <div class="icon icon-primary mb-4">
+                            <span class="fas fa-globe-europe"></span>
                         </div>
+                        <h3 class="h5">Countries</h3>
+                        <span class="counter display-3 text-gray d-block">80</span>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="methodOfOp" id="methodOfOp" data-target="feel">
-                            <h1>
-                                <span class="methodOfOp-title">
-                                    Feel
-                                </span>
-                            </h1>
-                        </div>
-                    </div>
-                </div>-->
-            </div>
-            <div class="col-md-4 methodCol" style="width: 40%;">
-                <div class="about-content show about-method opData" id="donate">
-                    <p>You donate to our NGO partner via Razorpay payment gateway. The payment is automatically verified and accepted by our website. We immediately place the order for the food to donate the next day. You will recieve a recipt within the next 5 - 10 minutes.</p>
-                </div>
-                <div class="about-content hide about-method opData" id="feed">
-                    <p>With the help of our Voulenteers, we distribute the food which was arranged by your donation to the underprivileged people in certain locations.</p>
-                </div>
-                <div class="about-content hide about-method opData" id="feel">
-                    <p>While we distribute the food, we take a quick moment to click a picture of your donation, along with your name with the person who is receiving it and mail it to you. We post the same on our NGO partner's instagram account. If you have provided instagram handle, we'll tag you.</p>
+                    <!-- End of Email Box -->
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<section class="section section-lg pt-0 mb-100 aboutDonate">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-7 col-md-12">
-                <div class="donateContent">
-                    <h1 class="donateText">We’re not getting younger so together let’s fight hunger!</h1><br>
-                    <div class="d-flex align-items-center justify-content-center">
-                        <a href="http://127.0.0.1:8000/donate" target="_blank" class="btn btn-theme btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn">
-                            <span class="btn-inner--visible">Donate Now</span>
-                            <span class="btn-inner--hidden"><i class="fas fa-arrow-right"></i></span>
-                        </a>      
+    </section>
+    <!-- End of section -->
+    <!-- Section -->
+    <section class="section section-lg bg-gray-200">
+        <figure class="position-absolute top-0 left-0 w-100 d-none d-md-block mt-n3">
+            <svg class="fill-gray-200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1920 43.4" style="enable-background:new 0 0 1920 43.4;" xml:space="preserve">
+               <path d="M0,23.3c0,0,405.1-43.5,697.6,0c316.5,1.5,108.9-2.6,480.4-14.1c0,0,139-12.2,458.7,14.3 c0,0,67.8,19.2,283.3-22.7v35.1H0V23.3z"></path>
+            </svg>
+         </figure>
+        <div class="container">
+            <div class="row text-center">
+                <div class="col">
+                    <h2 class="h1 fw-light"><span class="fw-bold">Our</span> history</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-6">
+                <div class="row justify-content-center">
+                    <div class="col-md-12 col-lg-8">
+                        <div class="timeline timeline-one dark px-3 px-sm-0">
+                            <!-- Timeline Item 1 -->
+                            <div class="timeline-item">
+                                <h3 class="h4 mb-4">Present</h3>
+                                <p>Now over seven years old, Bootstrap is an established and widely-used HTML, CSS, and JavaScript framework. It can be used as a basis for creating responsive web and mobile sites and web applications.</p>
+                            </div>
+                            <!-- Timeline Item 2 -->
+                            <div class="timeline-item">
+                                <h3 class="h4 mb-4">Our first products</h3>
+                                <div class="my-3">
+                                    <span class="icon icon-sm icon-purple me-2"><span class="fab fa-bootstrap"></span></span>
+                                    <span class="icon icon-sm icon-info me-2"><span class="fab fa-react"></span></span>
+                                    <span class="icon icon-sm icon-success me-2"><span class="fab fa-vuejs"></span></span>
+                                    <span class="icon icon-sm icon-danger"><span class="fab fa-angular"></span></span>
+                                </div>
+                                <p>Bootstrap. Build responsive, mobile-first projects on the web with the world's most popular front-end component library. Bootstrap is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your
+                                    ideas.
+                                </p>
+                            </div>
+                            <!-- Timeline Item 3 -->
+                            <div class="timeline-item">
+                                <h3 class="h4 mb-4">Our office</h3>
+                                <img class="mt-2" src="../../assets/img/office.png" alt="Themesberg workspace" width="300">
+                                <p>AngularJS is a JavaScript-based open-source front-end web application framework mainly maintained by Google and by a community of individuals and corporations to address many of the challenges encountered in developing
+                                    single-page applications.
+                                </p>
+                            </div>
+                            <!-- Timeline Item 4 -->
+                            <div class="timeline-item">
+                                <h3 class="h4 mb-4">An ideea becomes a business</h3>
+                                <p>AngularJS is a JavaScript-based open-source front-end web application framework mainly maintained by Google and by a community of individuals and corporations to address many of the challenges encountered in developing
+                                    single-page applications.
+                                </p>
+                                <img class="mt-2" src="../../assets/img/signature.svg" alt="signature" width="100">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<section class="section section-lg pt-0 mb-50">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <img src="https://cdn.discordapp.com/attachments/741259606512107602/745210139396538438/20200818_144848.jpg">
+        <figure class="position-absolute bottom-0 left-0 w-100 d-none d-md-block mb-n2">
+            <svg class="fill-white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1920 43.4" style="enable-background:new 0 0 1920 43.4;" xml:space="preserve">
+               <path d="M0,23.3c0,0,405.1-43.5,697.6,0c316.5,1.5,108.9-2.6,480.4-14.1c0,0,139-12.2,458.7,14.3 c0,0,67.8,19.2,283.3-22.7v35.1H0V23.3z"></path>
+            </svg>
+         </figure>
+    </section>
+    <!-- Section -->
+    <section class="section section-lg">
+        <div class="container">
+            <div class="row mb-5 mb-lg-6">
+                <div class="col-12 col-md-9 col-lg-8 text-center mx-auto">
+                    <h2 class="h1 mb-4">Funny &amp; Creative Team</h2>
+                    <p class="lead">We have developed a multi-discipline portfolio as a digital marketing agency, we also have roots in print media and even photography.
+                    </p>
+                </div>
             </div>
-            <div class="col-md-6">                
-                <div class="about-content">
-                    <div class="heading">
-                        <h2 class="heading-title">
-                            <span class="heading-title-main">
-                                #whereWeAre
-                            </span>
-                        </h2>
+            <div class="row mb-5 mb-lg-6">
+                <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+                    <div class="card shadow border-gray-300">
+                        <img src="../../assets/img/team/profile-picture-1.jpg" class="card-img-top rounded-top" alt="Joseph Portrait">
+                        <div class="card-body">
+                            <h3 class="h4 card-title mb-2">Joseph Garth</h3>
+                            <span class="card-subtitle text-gray fw-normal">Co-Founder</span>
+                            <p class="card-text my-3">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <ul class="list-unstyled d-flex mt-3 mb-0">
+                                <li>
+                                    <a href="#" target="_blank" aria-label="facebook social link" class="icon-facebook me-3">
+                                        <span class="fab fa-facebook-f"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" aria-label="twitter social link" class="icon-twitter me-3">
+                                        <span class="fab fa-twitter"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" aria-label="slack social link" class="icon-slack me-3">
+                                        <span class="fab fa-slack-hash"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" aria-label="dribbble social link" class="icon-dribbble me-3">
+                                        <span class="fab fa-dribbble"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <p>Presently #feedThePoor is functioning in the villages of Rajasthan and several other remote villages located in the Northern states of India. With a web of over 1.5k volunteers, we are now spreading far and wide, for better accomplishment of our motive. We are being offered constant support from volunteers and donors all over India and by their support, we are able to succeed in our goal. More and more volunteers are now joining us, everyday, and becuase of that, we are now about to shift to a larger domain, and by that, we will be able to serve a larger section of the underprivileged parts of India.</p>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+                    <div class="card shadow border-gray-300">
+                        <img src="../../assets/img/team/profile-picture-3.jpg" class="card-img-top rounded-top" alt="Bonnie portrait">
+                        <div class="card-body">
+                            <h3 class="h4 card-title mb-2">Bonnie Green</h3>
+                            <span class="card-subtitle text-gray fw-normal">Web Developer</span>
+                            <p class="card-text my-3">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <ul class="list-unstyled d-flex mt-3 mb-0">
+                                <li>
+                                    <a href="#" target="_blank" aria-label="facebook social link" class="icon-facebook me-3">
+                                        <span class="fab fa-facebook-f"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" aria-label="twitter social link" class="icon-twitter me-3">
+                                        <span class="fab fa-twitter"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" aria-label="slack social link" class="icon-slack me-3">
+                                        <span class="fab fa-slack-hash"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" aria-label="dribbble social link" class="icon-dribbble me-3">
+                                        <span class="fab fa-dribbble"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card shadow border-gray-300">
+                        <img src="../../assets/img/team/profile-picture-4.jpg" class="card-img-top rounded-top" alt="Jose Avatar">
+                        <div class="card-body">
+                            <h3 class="h4 card-title mb-2">Jose Leos</h3>
+                            <span class="card-subtitle text-gray fw-normal">Web publications designer</span>
+                            <p class="card-text my-3">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <ul class="list-unstyled d-flex mt-3 mb-0">
+                                <li>
+                                    <a href="#" target="_blank" aria-label="facebook social link" class="icon-facebook me-3">
+                                        <span class="fab fa-facebook-f"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" aria-label="twitter social link" class="icon-twitter me-3">
+                                        <span class="fab fa-twitter"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" aria-label="slack social link" class="icon-slack me-3">
+                                        <span class="fab fa-slack-hash"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" aria-label="dribbble social link" class="icon-dribbble me-3">
+                                        <span class="fab fa-dribbble"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <!-- Contact Card -->
+                    <div class="card border-0 p-2 p-md-3 p-lg-5">
+                        <div class="card-header bg-white border-0 text-center">
+                            <h2>Want to work with us?</h2>
+                            <p>Cool! Let’s talk about your project</p>
+                        </div>
+                        <div class="card-body pt-0">
+                            <form action="#">
+                                <!-- Form -->
+                                <div class="mb-4">
+                                    <label for="name">Your Name</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon3"><span class="fas fa-user-circle"></span></span>
+                                        <input type="text" class="form-control" placeholder="e.g. Bonnie Green" id="name" required>
+                                    </div>
+                                </div>
+                                <!-- End of Form -->
+                                <!-- Form -->
+                                <div class="mb-4">
+                                    <label for="email">Your Email</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon4"><span class="fas fa-envelope"></span></span>
+                                        <input type="email" class="form-control" placeholder="example@company.com" id="email" required>
+                                    </div>
+                                </div>
+                                <!-- End of Form -->
+                                <div class="mb-4">
+                                    <label for="message">Your Message</label>
+                                    <textarea placeholder="Your message" class="form-control" id="message" rows="4" required></textarea>
+                                </div>
+                                <!-- End of Form -->
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-secondary">Send message</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- End of Contact Card -->
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    <!-- End of section -->
 @endsection

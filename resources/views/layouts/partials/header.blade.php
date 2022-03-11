@@ -4,7 +4,10 @@
             <a class="navbar-brand me-lg-5" href="{{ route('frontend.index') }}">
                 {{-- <img class="navbar-brand-dark" src="{{ asset('theme/assets/img/icrewsystems_logo_white_highres.png') }}" alt="Logo light">
                 <img class="navbar-brand-light" src="{{ asset('theme/assets/img/icrewsystems_logo_highres.png') }}" alt="Logo dark"> --}}
-                ROSHNI FOUNDATION LOGO
+
+                <img style="width: 70px; height: auto;" class="navbar-brand-dark" src="{{ asset('images/branding/roshni-foundation.png') }}" alt="Logo light">
+                <img style="width: 70px; height: auto;" class="navbar-brand-light" src="{{ asset('images/branding/roshni-foundation.png') }}" alt="Logo dark">
+
             </a>
             <div class="navbar-collapse collapse me-auto" id="navbar_global">
                 <div class="navbar-collapse-header">
