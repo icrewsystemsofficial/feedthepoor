@@ -66,7 +66,7 @@
         padding: 40px;     
         display: block;
         margin: 0 auto;
-        transition: all 0.7s;
+        
     }
     .methodOfOp h1 {
         text-align: center;
@@ -87,9 +87,11 @@
     }
     .hide {
         display: none;
+        opacity: 0;
     }
     .show {
         display: block;
+        opacity: 1;
     }
     .about-content {
         position: relative;
@@ -152,6 +154,28 @@
         border-radius: 20px;
         box-shadow: 0 12px 15px rgb(0 0 0 / 10%), 0 17px 50px rgb(0 0 0 / 10%);
     }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+    .fadeIn {
+        animation: fadeIn 0.7s ease-in-out forwards;
+    }
+    .fadeOut {
+        animation: fadeOut 0.7s ease-in-out forwards;
+    }
 </style>
 <style>
     @media (max-width: 768px){
@@ -159,10 +183,22 @@
             width: 100% !important;
         }
         .methodOP {
-            padding: 0px !important;
-        }
+            padding: 0px !important;  
+            width: 33.33%;          
+        }        
         .methodCol:nth-child(2) {
             margin: 20px 0px !important;
+        }
+    }
+    @media (max-width: 576px){
+        .methodOfOp {
+            padding: 0px !important;
+        }
+        .methodOfOp h1 span{
+            font-size: 1.5rem;
+        }
+        .about-hero-head {
+            font-size: 2rem !important;
         }
     }
     @media (min-width: 769px){
@@ -183,8 +219,10 @@
         let target = targetEle.attr('data-target');        
         $('.opData').each((i,e) => {
             if($(e).attr('id') == target){
+                $(e).removeClass('fadeOut');
                 $(e).removeClass('hide');
-                $(e).addClass('show');
+                $(e).addClass('fadeIn');
+                $(e).addClass('show');                
             }else{
                 $(e).removeClass('show');
                 $(e).addClass('hide');
