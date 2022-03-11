@@ -1,11 +1,10 @@
 @extends('layouts.admin')
 
 @section('css')
-<script src="{{ asset('js/alpine.js') }}" defer></script>
 <script>
     /*
-        Alpine Function to handle the UI functions of the "create settings" modal. 
-        - Leonard, February 2022. 
+        Alpine Function to handle the UI functions of the "create settings" modal.
+        - Leonard, February 2022.
     */
     function createSettings() {
         return {
@@ -22,9 +21,9 @@
                 showTextArea: false,
                 showBoolean: false,
             },
-            
+
             updateSettingType() {
-                
+
                 value = document.getElementById('setting_type').value;
 
                 this.showValueInputs.showText = false;
@@ -34,29 +33,29 @@
                 console.log(value);
 
                 switch(value) {
-                    case "1": 
+                    case "1":
                         this.showValueInputs.showText = true;
                     break;
 
-                    case "2": 
+                    case "2":
                         this.showValueInputs.showTextArea = true;
                     break;
 
-                    case "5": 
+                    case "5":
                         this.showValueInputs.showBoolean = true;
-                    break;                    
+                    break;
 
-                    default: 
+                    default:
                         alert('not working');
 
-                }                
+                }
             },
 
             submitForm() {
                 setTimeout(() => {
                     document.getElementById('new_settings_form').submit();
                 }, 2000);
-            }, 
+            },
 
             updateCoreSettingValue() {
                 var core_setting = document.getElementById('core_setting').value;
@@ -73,7 +72,7 @@
 
 
     /*
-        This toggles visibility of the alert box whenever a setting textbox is clicked on. 
+        This toggles visibility of the alert box whenever a setting textbox is clicked on.
         - Leonard, Feb 2022.
     */
 
@@ -81,13 +80,13 @@
         return {
             showAlert: false,
 
-            clicked() {                
+            clicked() {
                 if(this.showAlert == false) {
                     this.showAlert = true;
                 }
             }
 
-            
+
         }
     }
 
@@ -99,7 +98,7 @@
                 setTimeout(() => {
                     document.getElementById('new_settings_group_form').submit();
                 }, 2000);
-            }, 
+            },
         }
     }
 </script>
@@ -123,19 +122,19 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Adding new setting</h5>                        
+                        <h5 class="modal-title">Adding new setting</h5>
                     </div>
                     <div class="modal-body m-3">
-                        
+
                         <form action="{{ route('admin.settings.create') }}" id="new_settings_form" method="POST" autocomplete="off">
                             @csrf
                             <div class="form-group mb-2">
                                 <label for="name" class="form-label">Name<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="name" required="required">                                
-                            </div>                            
+                                <input type="text" class="form-control" name="name" required="required">
+                            </div>
 
                             <div class="form-group mb-2">
-                                <label for="description" class="form-label">Description</label>                                
+                                <label for="description" class="form-label">Description</label>
                                 <textarea name="description" class="form-control"></textarea>
                             </div>
 
@@ -145,7 +144,7 @@
                                 <select name="setting_group" class="form-control" required="required">
                                     @foreach ($setting_groups as $setting)
                                         <option value="{{ $setting->id }}">{{ $setting->name }}</option>
-                                    @endforeach                                    
+                                    @endforeach
                                 </select>
                             </div>
 
@@ -154,51 +153,51 @@
                                 <select id="setting_type" name="setting_type" class="form-control" @change="updateSettingType" required="required">
                                     @foreach ($setting_types as $type => $name)
                                         <option value="{{ $type }}">{{ $name }}</option>
-                                    @endforeach                                    
+                                    @endforeach
                                 </select>
                             </div>
-                            
+
                             <div class="">
-                                <div class="form-group mb-2" x-show="showValueInputs.showText">                                
-                                    <label class="form-label">Value<span class="text-danger">*</span></label>                                
-                                    
-                                    <input 
-                                        x-model="settingValue" 
-                                        type="text" 
-                                        class="form-control" 
-                                        placeholder="Enter value for this setting" 
-                                        required="required" 
-                                    /> 
-                                </div>
-    
-                                <div class="form-group mb-2" x-show="showValueInputs.showTextArea">
-                                    <label class="form-label">Value<span class="text-danger">*</span></label>                                
-                                    <textarea 
-                                        x-model="settingValue" 
-                                        class="form-control" 
-                                        placeholder="Enter value for this setting" 
+                                <div class="form-group mb-2" x-show="showValueInputs.showText">
+                                    <label class="form-label">Value<span class="text-danger">*</span></label>
+
+                                    <input
+                                        x-model="settingValue"
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Enter value for this setting"
                                         required="required"
-                                    ></textarea>                               
+                                    />
                                 </div>
-    
+
+                                <div class="form-group mb-2" x-show="showValueInputs.showTextArea">
+                                    <label class="form-label">Value<span class="text-danger">*</span></label>
+                                    <textarea
+                                        x-model="settingValue"
+                                        class="form-control"
+                                        placeholder="Enter value for this setting"
+                                        required="required"
+                                    ></textarea>
+                                </div>
+
                                 <div class="form-check form-switch mb-2 mt-3" x-show="showValueInputs.showBoolean">
-                                    <input 
-                                        x-model="settingValue" 
-                                        class="form-check-input" 
-                                        type="checkbox" 
+                                    <input
+                                        x-model="settingValue"
+                                        class="form-check-input"
+                                        type="checkbox"
                                         id="value" />
 
-                                    
+
                                     <label class="form-check-label" for="value">
-                                        <strong>Enabled?</strong>                                        
+                                        <strong>Enabled?</strong>
                                     </label>
                                 </div>
 
 
                                 {{-- Masking the inputs into this element --}}
                                 <input type="hidden" x-model="settingValue" name="value"></span>
-                            </div>                                                        
-                            
+                            </div>
+
                             <div class="form-check form-switch mb-2 mt-3">
                                 <input class="form-check-input" type="checkbox" id="core_setting" @click="updateCoreSettingValue">
                                 <label class="form-check-label">
@@ -209,10 +208,10 @@
                                 </label>
 
                                 <input type="hidden" name="core_setting" x-bind:value="coreSettingValue" />
-                            </div>                                                              
+                            </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>                                                
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <span @click="submitForm">
                             <x-loadingbutton type="submit">Create</x-loadingbutton>
                         </span>
@@ -235,24 +234,24 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Adding a new setting group</h5>                        
+                        <h5 class="modal-title">Adding a new setting group</h5>
                     </div>
 
                     <form action="{{ route('admin.settings.group.create') }}" id="new_settings_group_form" method="POST" autocomplete="off">
-                    <div class="modal-body m-3">                                                
-                        @csrf                            
+                    <div class="modal-body m-3">
+                        @csrf
                         <div class="form-group mb-2">
                             <label for="name" class="form-label">Name<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="name" required="required">                                
-                        </div>                            
+                            <input type="text" class="form-control" name="name" required="required">
+                        </div>
 
                         <div class="form-group mb-2">
-                            <label for="description" class="form-label">Description</label>                                
+                            <label for="description" class="form-label">Description</label>
                             <textarea name="description" class="form-control"></textarea>
-                        </div>                                                        
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>                                                
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <span @click="submitForm">
                             <x-loadingbutton type="submit">Create</x-loadingbutton>
                         </span>
@@ -264,13 +263,13 @@
 
         {{-- END OF CREATE NEW SETTING MODAL --}}
 
-                
+
 
         <div class="card mt-3" x-data="showUnsavedAlert()">
             <form action="{{ route('admin.settings.update') }}" method="POST" id="setting_update_form">
                 @csrf
                 <div class="card-body">
-                    <div class="alert alert-danger" role="alert" x-show="showAlert" 
+                    <div class="alert alert-danger" role="alert" x-show="showAlert"
                         x-transition:enter.duration.500ms
                         x-transition:leave.duration.400ms
                     >
@@ -278,64 +277,64 @@
                         Unsaved settings, click "Save" to save the settings
                     </div>
                 </div>
-    
+
                 @forelse ($setting_groups as $group)
                     <div class="card-header">
                         <h5 class="card-title mb-0">{{ Str::upper($group->name) }}</h5>
 
                         <button type="button" class="btn btn-sm btn-outline-primary mt-2" data-bs-toggle="modal" data-bs-target="#setting_group_edit_{{ Str::snake($group->name) }}">
                             <i class="fa-solid fa-gear"></i> &nbsp; Edit
-                        </button>                                        
+                        </button>
                     </div>
 
                     <div class="modal fade" id="setting_group_edit_{{ Str::snake($group->name) }}" tabindex="-1" aria-hidden="true" style="display: none;">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Editing Setting Group: <strong>{{ $group->name }}</strong></h5>                        
-                                </div>                                                    
-                                <div class="modal-body m-3">                                                
+                                    <h5 class="modal-title">Editing Setting Group: <strong>{{ $group->name }}</strong></h5>
+                                </div>
+                                <div class="modal-body m-3">
                                     <form id="setting_group_edit_{{ $group->id }}" action="{{ route('admin.settings.group.update', $group->id) }}" method="GET">
-                                        @csrf                            
+                                        @csrf
                                         <div class="form-group mb-2">
                                             <label for="name" class="form-label">Name<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="name" required="required" value="{{ $group->name }}">                                
-                                        </div>                            
-            
+                                            <input type="text" class="form-control" name="name" required="required" value="{{ $group->name }}">
+                                        </div>
+
                                         <div class="form-group mb-2">
-                                            <label for="description" class="form-label">Description</label>                                
+                                            <label for="description" class="form-label">Description</label>
                                             <textarea name="description" class="form-control">{{ $group->description }}</textarea>
-                                        </div>     
-                                    </form>                                                                                   
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>                                                
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 
                                     <button class="btn btn-primary" type="button" onclick="document.getElementById('setting_group_edit_{{ $group->id }}').submit();">
                                         Edit
                                     </button>
 
                                     {{-- <span @click="submit">
-                                        {{-- <x-loadingbutton type="submit">Edit</x-loadingbutton>                                            
+                                        {{-- <x-loadingbutton type="submit">Edit</x-loadingbutton>
                                     </span> --}}
-                                </div>                                                                    
+                                </div>
                             </div>
                         </div>
                     </div>
 
 
-                    <div class="card-body">                    
+                    <div class="card-body">
                         @php
-                            $settings = App\Models\Setting::where('group_id', $group->id)->get();                        
+                            $settings = App\Models\Setting::where('group_id', $group->id)->get();
                         @endphp
-    
-                        @forelse ($settings as $setting)                                  
+
+                        @forelse ($settings as $setting)
                             <div class="row mb-2">
                                 <div class="col-md-3">
                                     <label class="h4" for="{{ $setting->key }}">
                                         <strong>{{ $setting->name }}</strong>
                                     </label>
-                                    <p class="text-muted">                                        
+                                    <p class="text-muted">
                                         <small>
                                             {{ $setting->description }}
                                         </small>
@@ -344,7 +343,7 @@
                                     @if($setting->core == true)
                                         <div x-data="{
                                             code: false,
-                                        }">                                            
+                                        }">
 
                                             <button class="btn btn-sm btn-outline-primary" @click="code = !code;">
                                                 <i class="fa-solid fa-eye"></i> &nbsp; Core
@@ -361,89 +360,89 @@
                                                 </small>
                                             </span>
                                             <br><br>
-                                        </div>                                            
+                                        </div>
                                     @endif
                                 </div>
                                 <div class="col-md-9">
 
                                     @switch($setting->type)
-                                        @case(1)                                            
+                                        @case(1)
                                             <input type="text" class="form-control" name="{{ $setting->key }}" value="{{ $setting->value }}" placeholder="{{ $setting->name }}" @change="clicked">
                                         @break
 
-                                        @case(2) 
-                                        <textarea                                             
-                                            class="form-control" 
-                                            placeholder="Enter value for {{ $setting->name }}" 
+                                        @case(2)
+                                        <textarea
+                                            class="form-control"
+                                            placeholder="Enter value for {{ $setting->name }}"
                                             required="required"
                                             @change="clicked"
-                                        >{{ $setting->value }}</textarea>                               
+                                        >{{ $setting->value }}</textarea>
                                         @break
 
                                         @case(5)
-                                        
+
                                         <div class="form-check form-switch mb-2 mt-3" x-data="{
                                             VALUE_{{ $setting->key }}: '{{ $setting->value }}',
-                                        }">                                        
-                                            <input                                             
-                                                class="form-check-input" 
-                                                type="checkbox"    
-                                                @change="clicked"           
-                                                x-model="VALUE_{{ $setting->key }}"                                                                                                                                  
+                                        }">
+                                            <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                @change="clicked"
+                                                x-model="VALUE_{{ $setting->key }}"
                                                 @if($setting->value == true) checked @endif
                                             />
 
-                                            
+
                                             <label class="form-check-label" for="value">
-                                                <strong>Enabled?</strong>                                        
+                                                <strong>Enabled?</strong>
                                             </label>
 
-                                            <input type="hidden" name="{{ $setting->key }}" x-model="VALUE_{{ $setting->key }}" >                                             
+                                            <input type="hidden" name="{{ $setting->key }}" x-model="VALUE_{{ $setting->key }}" >
                                         </div>
                                         @break
-                                    
+
                                         @default
 
                                         <input type="text" class="form-control" name="{{ $setting->key }}" value="{{ $setting->value }}" placeholder="{{ $setting->name }}" @click="clicked">
-                                            
-                                    @endswitch                                    
+
+                                    @endswitch
                                 </div>
-                            </div>                        
+                            </div>
                         @empty
                             <p>
                                 No setting found in {{ $group->name }}
                             </p>
-                        @endforelse        
-                    </div>                      
+                        @endforelse
+                    </div>
                     <hr>
 
-                    @empty 
+                    @empty
 
                     <div class="card-body">
                         <div class="alert alert-danger">
-                            No settings found. The basic application settings are 
+                            No settings found. The basic application settings are
                             provided as seeders, please run <br><br><strong>php artisan db:seed --force</strong>
                         </div>
                     </div>
-                
+
                 @endforelse
-    
+
 
                 @if(count($setting_groups) > 0)
-                
+
                 <div class="card-body">
-                    <div class="form-group">                        
+                    <div class="form-group">
                         <span @click="document.getElementById('setting_update_form').submit();">
                             <x-loadingbutton>Save</x-loadingbutton>
-                        </span>                        
+                        </span>
                     </div>
                 </div>
 
                 @endif
-            </form>                        
+            </form>
         </div>
 
-        
+
     </div>
 </div>
 @endsection
