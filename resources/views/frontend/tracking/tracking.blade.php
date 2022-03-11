@@ -356,7 +356,7 @@ $donation_types_cleaned[$donation_type->name] = $donation_type;
 
 
                     <div>
-                        <p class="text-dark fs-5 fw-bolder">Donator Name : {{$donation_names[0]}}</p>
+                        <p class="text-dark fs-5 fw-bolder">Donator Name : {{$track_names[0]}}</p>
                         <p class="text-dark fs-5 fw-bolder"> Tracking ID : F5452578262721 </p>
                     </div>
 

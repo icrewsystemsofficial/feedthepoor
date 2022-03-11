@@ -59,9 +59,15 @@ class HomeController extends Controller
         $donation_random_images = generateRandomImages(50);
         $donation_names = generateRandomDonorNames(50);
 
-        return view('frontend.index', [
+        $images_json = json_decode($donation_random_images, true);
+        $names_json = json_decode($donation_names, true);  
+
+
+        return view('frontend.tracking.tracking', [
             'donation_images' => $donation_random_images,
             'donation_names' => $donation_names,
+            'track_names' => $names_json,
+            'track_images' => $images_json,
             'total_meals_fed' => $total_meals_fed,
             'total_donations_received' => $total_donations_received
         ]);
@@ -110,47 +116,5 @@ class HomeController extends Controller
     }
 
 
-// function created by sathish
-    public function track_donation(){
-
-        $total_meals_fed = 850;
-        $total_donations_received = 42500;
-
-        function generateRandomImage($howmany) {
-            $images = array();
-            $height = 300;
-            for($i = 0; $i < $howmany; $i++) {
-                $url = "https://picsum.photos/800/". $height ."";
-                $images[$i] = $url;
-                $height++;
-            }
-            return json_encode($images);
-        }
-
-        function generateRandomDonorName($howmany) {
-            $names = array();
-            $faker = Factory::create('en_IN');
-            for($i = 0; $i < $howmany; $i++) {
-                $names[$i] = $faker->firstName;
-            }
-            return json_encode($names);
-        }
-
-
-        $donation_random_images = generateRandomImage(50);
-        $images_json = json_decode($donation_random_images, true);
-
-
-        $donation_names = generateRandomDonorName(50);
-        $names_json = json_decode($donation_names, true);  
-
-        // dd($names_json);
-        return view('frontend.tracking.tracking', [
-            'donation_images' => $images_json,
-            'donation_names' => $names_json,
-            'total_meals_fed' => $total_meals_fed,
-            'total_donations_received' => $total_donations_received
-        ]);
-    }
 
 }
