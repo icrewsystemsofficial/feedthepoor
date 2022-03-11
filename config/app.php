@@ -14,6 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'ngo_name' => 'Roshni Moolchandani Charitable Trust',
 
     /*
     |--------------------------------------------------------------------------

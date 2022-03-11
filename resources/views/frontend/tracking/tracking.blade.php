@@ -1,329 +1,115 @@
 @extends('layouts.frontend')
 
 @section('css')
-@php
+<style>
+    .vertical-timeline {
+    width: 100%;
+    position: relative;
+    padding: 1.5rem 0 1rem
+    }
 
-/*
-THE PHP DATA!
-This data should be sent from Controller / Service Provider
+    .vertical-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 67px;
+    height: 100%;
+    width: 4px;
+    background: #e9ecef;
+    border-radius: .25rem
+    }
 
-- Leonard,
-05 March 2022.
-*/
+    .vertical-timeline-element {
+    position: relative;
+    margin: 0 0 1rem
+    }
 
+    .vertical-timeline--animate .vertical-timeline-element-icon.bounce-in {
+    visibility: visible;
+    animation: cd-bounce-1 .8s
+    }
 
-$amounts = array(
-50,
-100,
-500,
-1000,
-5000,
-7000,
-10000,
-);
+    .vertical-timeline-element-icon {
+    position: absolute;
+    top: 0;
+    left: 60px
+    }
 
-$donation_types = (object) array(
+    .vertical-timeline-element-icon .badge-dot-xl {
+    box-shadow: 0 0 0 5px #fff
+    }
 
-0 => (object) array(
-'name' => 'donation_food',
-'icon' => 'fas fa-utensils',
-'per_unit_cost' => 50,
-'yield_context' => 'About %YIELD% underprivledged people will be fed with fresh cooked food',
-),
+    .badge-dot-xl {
+    width: 18px;
+    height: 18px;
+    position: relative
+    }
 
+    .badge:empty {
+    display: none
+    }
 
-1 => (object) array(
-'name' => 'donation_prosthetic_leg',
-'icon' => 'fas fa-wheelchair',
-'per_unit_cost' => 2000,
-'yield_context' => 'About %YIELD% handicapped people will get prosthetic leg, and will be able to walk again.',
-),
+    .badge-dot-xl::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: .25rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -5px 0 0 -5px;
+    background: #fff
+    }
 
-2 => (object) array(
-'name' => 'donation_sweater',
-'icon' => 'fas fa-tshirt',
-'per_unit_cost' => 400,
-'yield_context' => 'About %YIELD% people will get a brand new sweater, and will be warm.',
-),
+    .vertical-timeline-element-content {
+    position: relative;
+    margin-left: 90px;
+    font-size: .8rem
+    }
 
-3 => (object) array(
-'name' => 'donation_shoes',
-'icon' => 'fas fa-shoe-prints',
-'per_unit_cost' => 250,
-'yield_context' => 'About %YIELD% people will get a brand new shoe. They will not have to walk with bare foot.',
-),
+    .vertical-timeline-element-content .timeline-title {
+    font-size: .8rem;
+    text-transform: uppercase;
+    margin: 0 0 .5rem;
+    padding: 2px 0 0;
+    font-weight: bold
+    }
 
-4 => (object) array(
-'name' => 'donation_stationary_kit',
-'icon' => 'fas fa-pen-square',
-'per_unit_cost' => 50,
-'yield_context' => 'About %YIELD% children will get a brand new stationary kit, which will help them study.',
-),
+    .vertical-timeline-element-content .vertical-timeline-element-date {
+    display: block;
+    position: absolute;
+    left: -90px;
+    top: 0;
+    padding-right: 10px;
+    text-align: right;
+    color: #adb5bd;
+    font-size: .7619rem;
+    white-space: nowrap
+    }
 
-5 => (object) array(
-'name' => 'donation_dry_ration',
-'icon' => 'fas fa-box',
-'per_unit_cost' => 50,
-'yield_context' => 'About %YIELD% house-holds will receive fresh ration to cook and eat meals.',
-),
-
-6 => (object) array(
-'name' => 'donation_birthday_celebration',
-'icon' => 'fas fa-birthday-cake',
-'per_unit_cost' => 50,
-'yield_context' => 'Your birthday will be celebrated cheerfully with about %YIELD% children. Cakes and sweets will be distrubuted.',
-),
-
-7 => (object) array(
-'name' => 'donation_prosthetic_arm',
-'icon' => 'fas fa-wheelchair',
-'per_unit_cost' => 2000,
-'yield_context' => 'About %YIELD% handicapped people will get prosthetic leg, and will be able to walk again.',
-),
-
-
-);
-
-
-// Argh, this is an uneccesary move ig. Will be fixed when sending data from controller.
-
-$donation_types_cleaned = array();
-foreach($donation_types as $donation_type) {
-$donation_types_cleaned[$donation_type->name] = $donation_type;
-}
-
-
-@endphp
+    .vertical-timeline-element-content:after {
+    content: "";
+    display: table;
+    clear: both
+    }
+</style>
 
 <script>
-    // Alpine JS function
-
-    function donationPage() {
-
-
-
+    function trackingPage() {
         return {
 
-            // Defining the variables
-
-            form: {
-                page_1: true,
-                page_2: false,
-            },
-
-            donationType: null,
-            donationAmount: 0,
-            donationAmount_formatted: 0,
-            showCustomDonationBlock: false,
-            showCustomDonationButton: true,
-
-
-            selectedCause: {
-                cause: null,
-                icon: '',
-                PerUnitCost: 0,
-                Yield: 0,
-                YieldContext: 'Please choose a cause to know what your donation will yield',
-            },
-
-            errors: {
-                insuffucientDonationAmount: false,
-            },
-
-            razorpayForm: {
-                name: '',
-                email: '',
-                phone: '',
-                pan: '',
-                checkbox_80g: true,
-                checkbox_updates: true,
-                checkbox_terms_and_conditions: false,
-            },
-
-            donationTypesArray: @json($donation_types_cleaned),
-
-
-            // FUNCTIONS START!
-
-            /*
-                init - initialized when alpine takes over the DOM.
-            */
+            showTrackingForm: true,
+            showTrackingPage: false,
 
             init() {
-                this.selectedCause.cause = document.getElementById('selectedCause').value;
-                this.updateDonationCause();
-            },
-
-
-            /*
-                updateDonationCause - updates the cause.
-
-                Triggered by @change event on the selector.
-
-                Triggers to change the yield context, icon and then automatically
-                calculates the yield based on the mounted donationAmount.
-            */
-            updateDonationCause() {
-                this.changeYieldContext();
-                this.changeIcon();
-                this.calculateYield(this.donationAmount);
-            },
-
-            /*
-                updateDonationAmount - the amount is passed into the fn.
-
-                Triggered by @click event.
-
-                Updates the donation amount on DOM,
-                calculates the yield based on that amount.
-            */
-            updateDonationAmount(amount) {
-                this.donationAmount = amount;
-                this.calculateYield(amount, this.selectedCause.PerUnitCost);
-                this.formatMoney();
-            },
-
-
-            updateDonationAmount_cus() {
-
-                var amount = document.getElementById('custom_donation').value;
-
-                // Rounding off to the nearest 100.
-                amount = Math.round(amount / 100) * 100;
-
-
-                this.updateDonationAmount(amount);
-                this.showCustomDonationBlock = false;
-                this.showCustomDonationButton = true;
-            },
-
-            updateDonationAmount_custom() {
-                this.calculateYield(this.donationAmount, this.selectedCause.PerUnitCost);
-                this.showCustomDonationBlock = false;
-            },
-
-
-            /*
-                calculateYield - amount as parameter.
-
-                is a protected fn, called from other fns.
-                calculates the yield based on the donationTypesArray
-                which is a js array, which is generated from a php json_encoded
-                object.
-            */
-
-            calculateYield(amount) {
-                var per_unit_cost = this.donationTypesArray[this.selectedCause.cause]['per_unit_cost'];
-                var yield = Math.floor(amount / per_unit_cost);
-
-                // Now, if the yield is less than 1, we should alert the user
-                // that their donation will not be sufficient.
-
-                if (yield == 0 || yield < 0) {
-
-                    if (this.donationAmount == 0) {
-                        this.errors.insuffucientDonationAmount = false;
-                        this.selectedCause.YieldContext = '<span class="text-danger">Please select donation amount</span>';
-                    } else {
-                        this.errors.insuffucientDonationAmount = true;
-                        this.selectedCause.YieldContext = '<span class="text-danger fw-bolder">Try choosing a different cause or higher donation amount</span>';
-                    }
-                } else {
-                    this.errors.insuffucientDonationAmount = false;
-                    this.selectedCause.Yield = yield;
-                    this.changeYieldContext();
-                }
-            },
-
-
-            /*
-                Change Yield Context.
-
-                When a specific cause is selected, the context of the yield
-                is also updated from the js array.
-            */
-
-            changeYieldContext() {
-                if (this.donationAmount == 0) {
-                    this.selectedCause.YieldContext = '<span class="text-danger">Please select donation amount</span>';
-                } else {
-                    var yield_context = this.donationTypesArray[this.selectedCause.cause]['yield_context'];
-                    var yield = '<span class="fw-bolder text-success">' + this.selectedCause.Yield + '</span>';
-
-                    // In the DB, the context will be saved with a %YIELD% string.
-                    // we're replacing it using js.
-
-                    yield_context = yield_context.replace("%YIELD%", yield);
-                    this.selectedCause.YieldContext = '<span class="mt-2 fw-bold leading-1">' + yield_context + "</span>";
-                }
-            },
-
-
-
-            /*
-                toggleCustomDonation.
-
-                Toggles custom donation block.
-            */
-
-            toggleCustomDonation() {
-                this.showCustomDonationBlock = !this.showCustomDonationBlock;
-                this.showCustomDonationButton = !this.showCustomDonationButton;
-            },
-
-
-            /*
-                changeIcon
-
-                Changes the icon of the cause.
-            */
-
-            changeIcon() {
-                var icon = this.donationTypesArray[this.selectedCause.cause]['icon'];
-                this.selectedCause.icon = icon + ' fa-5x';
-            },
-
-            formatMoney() {
-                this.donationAmount_formatted = (this.donationAmount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-            },
-
-
-            showDonateButton() {
-                if (this.donationAmount != 0 && this.errors.insuffucientDonationAmount == false) {
-                    return true;
-                } else {
-                    return false;
-                }
-            },
-
-
-            toggle80GExemption() {
-                this.razorpayForm.checkbox_80g = !this.razorpayForm.checkbox_80g;
-            },
-
-            toggleContinueButton() {
-                this.razorpayForm.checkbox_terms_and_conditions = !this.razorpayForm.checkbox_terms_and_conditions;
+                this.togglePages();
+                console.log('mounted');
             },
 
             togglePages() {
-                this.form.page_1 = !this.form.page_1;
-                this.form.page_2 = !this.form.page_2;
-            },
-
-
-
-
-        }
-    }
-
-
-    function razorpay() {
-        return {
-            public: 'rzp_test_SmU75lqcibiulc',
-            secret: 'BSe2Who1QIS4heUJBapZImfr',
-            api_url: 'https://api.razorpay.com/v1/',
-
-
+                this.showTrackingForm = !this.showTrackingForm;
+                this.showTrackingPage = !this.showTrackingPage;
+            }
         }
     }
 </script>
@@ -336,11 +122,16 @@ $donation_types_cleaned[$donation_type->name] = $donation_type;
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 text-center">
-                <h1 class="display-4 text-white fs-1 d-flex justify-content-center">
-                    Donation Tracking
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-hourglass-split text-center" viewBox="0 0 16 16">
-                        <path d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2h-7zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48V8.35zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z" />
-                    </svg>
+                <h1 class="display-4 text-white">
+                    Donation Tracking ⌛
+
+                    <br>
+                    <small>
+                        <span class="display-6">
+                            With <strong><span class="text-theme">{{ config('app.ngo_name') }}</span></strong>, you will be able to track
+                            your donation, <span class="text-theme">every step of the way.</span>
+                        </span>
+                    </small>
 
                 </h1>
             </div>
@@ -348,156 +139,487 @@ $donation_types_cleaned[$donation_type->name] = $donation_type;
     </div>
 </section>
 
-<section class="" x-data="donationPage()" x-init="init()">
+<section class="" x-data="trackingPage()" x-init="init()">
     <div class="container mt-n6 z-2 mb-5">
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-10 col-lg-8">
-                <div class="card shadow-lg border-gray-300 p-4 p-lg-5">
 
+                {{-- FORM | FIRST PAGE --}}
+                <div x-show="showTrackingForm" class="card shadow-lg border-gray-300 p-4 p-lg-5">
 
-                    <div>
-                        <p class="text-dark fs-5 fw-bolder">Donator Name : {{$donation_names[0]}}</p>
-                        <p class="text-dark fs-5 fw-bolder"> Tracking ID : F5452578262721 </p>
-                    </div>
+                    <span class="mt-2 text-muted p-2">
+                        Demo tracking ID: FTP-RMCT-12389
+                    </span>
 
-                    <div class="progress-wrapper ">
-                        <div class="m-auto" style="width: 210px;">
-                            <p class="text-white text-center bg-danger  fw-bolder text-center fs-2 border border-light rounded"> Pending
-                                <span class="spinner-grow text-white" role="status" style="width: 7px; height:7px;">
-                                </span> <span class="spinner-grow text-white" role="status" style="width: 7px; height:7px;">
-                                </span> <span class="spinner-grow text-white" role="status" style="width: 7px; height:7px;"></span>
-                            </p>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 15%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-4 ms-4 position-relative">
-
-                        <div class="col">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-check-circle-fill text-success" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                            </svg>
-                            <div class="ps-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
-                                </svg>
-                            </div>
-                            <div class="mt-1" x-data="{}">
-                                <a @click="$dispatch('img-modal', {  imgModalSrc: '{{asset('tracking-images/donation.png')}}', imgModalDesc: 'The Donation was received by the Mr.User on this date' })" class="cursor-pointer">
-                                    <img src="{{asset('tracking-images/donation.png')}}" alt="" width="50px" height="50px" class="image-link ms-1 rounded">
-                                </a>
-                            </div>
-                            <p class="pt-3"> <b>Donation Received</b> </p>
-                            <small>17th Jan 2022</small>
+                    <div class="flex">
+                        <div class="w-4/6">
+                            <input type="text" class="form-control" placeholder="Enter donation tracking #" />
                         </div>
 
-
-                        <div class="col">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                            </svg>
-                            <div class="ps-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
-                                </svg>
-                            </div>
-                            <div class="mt-1" x-data="{}">
-                                <a @click="$dispatch('img-modal', {  imgModalSrc: '{{asset('tracking-images/receipt.png')}}', imgModalDesc: 'The Receipt was generated to the donator with the ID' })" class="cursor-pointer">
-                                    <img src="{{asset('tracking-images/receipt.png')}}" alt="" width="50px" height="50px" class="image-link ms-1 rounded">
-                                </a>
-                            </div>
-                            <p class="pt-3"> <b>Receipt Generated</b> </p>
-                            <small>18th Jan 2022</small>
-                        </div>
-
-                        <div class="col">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-check-circle-fill " viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                            </svg>
-                            <div class="ps-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
-                                </svg>
-                            </div>
-                            <div class="mt-1" x-data="{}">
-                                <a @click="$dispatch('img-modal', {  imgModalSrc: '{{asset('tracking-images/procurement.png')}}', imgModalDesc: 'The procurement order was placed in this date' })" class="cursor-pointer">
-                                    <img src="{{asset('tracking-images/procurement.png')}}" alt="" width="50px" height="50px" class="image-link ms-1 rounded">
-                                </a>
-                            </div>
-                            <p class="pt-3 "> <b>Procurement Placed</b> </p>
-                            <small>19th Jan 2022</small>
-                        </div>
-
-                        <div class="col">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-check-circle-fill " viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                            </svg>
-                            <div class="ps-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
-                                </svg>
-                            </div>
-                            <div class="mt-1" x-data="{}">
-                                <a @click="$dispatch('img-modal', {  imgModalSrc: '{{asset('tracking-images/mission.png')}}', imgModalDesc: 'The mission id is generated for the given procurement order' })" class="cursor-pointer">
-                                    <img src="{{asset('tracking-images/mission.png')}}" alt="" width="50px" height="50px" class="image-link ms-1 rounded">
-                                </a>
-                            </div>
-                            <p class="pt-3"> <b>Mission ID Generated</b> </p>
-                            <small>20th Jan 2022</small>
-                        </div>
-
-                        <div class="col">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                            </svg>
-                            <div class="ps-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
-                                </svg>
-                            </div>
-                            <div class="mt-1" x-data="{}">
-                                <a @click="$dispatch('img-modal', {  imgModalSrc: '{{asset('tracking-images/volunteers.png')}}', imgModalDesc: 'The volunteers are generated for the given mission' })" class="cursor-pointer">
-                                    <img src="{{asset('tracking-images/volunteers.png')}}" alt="" width="50px" height="50px" class="image-link ms-1 rounded">
-                                </a>
-                            </div>
-                            <p class="pt-3"> <b>Volunteers Generated</b> </p>
-                            <small>21st Jan 2022</small>
+                        <div class="ml-3">
+                            <button class="btn btn-success text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x" type="button" @click="togglePages()">
+                                <span class="btn-inner--visible">Track Donation</span>
+                                <span class="btn-inner--hidden"><i class="fas fa-arrow-right"></i></span>
+                            </button>
                         </div>
                     </div>
 
-                    <br>
+                </div>
+
+                {{-- TRACKING | SECOND PAGE --}}
+                <div x-show="showTrackingPage" class="card shadow-lg border-gray-300 p-4 p-lg-5">
+
+
+                    <div class="accordion card shadow-xl cursor-pointer bg-success text-white mt-n6 sm:mt-n5 border-success" id="accordionExample1" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                        <div class="card-body">
+                            <div class="">
+                                <div >
+                                    <span class="font-extrabold">₹5,000 INR</span> was donated with <i class="fas fa-heart text-danger"></i> by
+                                    <span class="font-bold">{{ $donation_names[0] }}</span>, from <span class="font-bold">Chennai</span>.
+                                </div>
+
+                                {{-- <div class="float-right">
+                                    <i class="fas fa-check-circle"></i>
+                                </div> --}}
+                            </div>
+
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample1" style="">
+
+                                <br>
+
+                                <div class="card-body text-left">
+                                    Donation ID # <span class="font-bold">FPT-RMCT-01042022-19823</span>
+                                    <br>
+                                    Donation date <span class="font-bold">{{ now()->subDays(2)->format('d F, Y H:i A')}}</span>
+                                    <br>
+                                    Donated via <span class="font-bold">Razorpay</span>
+                                    <br>
+                                    80 G Tax Excemption <span class="font-bold">Eligible <i class="fas fa-check-circle"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <span class="text-muted px-2 py-3 text-sm">
+                        <i class="fas fa-info-circle"></i> Click the green box to know more about the donation
+                    </span>
+
+                    {{-- <div class="card shadow-xl bg-success text-white mt-n7 border-success">
+                        <div class="card-body px-5 py-5 text-center text-md-left">
+                           <div class="row align-items-center">
+                            <div class="col-md-12">
+
+
+
+                            </div>
+                           </div>
+                        </div>
+                    </div> --}}
+
+                    <div class="float-top mb-4 mt-4">
+                        <button class="btn btn-danger btn-sm text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x" type="button" @click="togglePages()">
+                            <span class="btn-inner--visible">
+                                <i class="fas fa-arrow-left mr-1"></i>
+                                Go back
+                            </span>
+                            <span class="btn-inner--hidden"><i class="fas fa-arrow-left"></i></span>
+                        </button>
+
+                        <button class="ml-1 btn btn-dark btn-sm text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x" type="button" @click="togglePages()">
+                            <span class="btn-inner--visible">
+                                <i class="fas fa-sync mr-1"></i>
+                                Refresh
+                            </span>
+                            <span class="btn-inner--hidden"><i class="fas fa-sync"></i></span>
+                        </button>
+                    </div>
+
+                    {{-- DONATION STATUS --}}
+
+
+                    <div class="row mt-4 ms-4 position-relative mb-5" x-show="false">
+
+                        <div class="col text-center">
+                            <div class="flex flex-col text-center">
+                                <i class="fas fa-check-circle text-success fa-3x"></i>
+                            </div>
+                            <div class="mt-1" x-data="{}">
+                                <a
+                                    @click="$dispatch('img-modal', {  imgModalSrc: '{{asset('tracking-images/donation.png')}}', imgModalDesc: 'The Donation was received by the Mr.User on this date' })"
+                                    class="uppercase font-bold"
+                                >
+                                    {{-- <img src="{{asset('tracking-images/donation.png')}}" alt="" width="50px" height="50px" class="image-link ms-1 rounded ml-2"> --}}
+                                    Donation Received
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col text-center">
+                            <div class="flex flex-col text-center">
+                                <i class="fas fa-check-circle text-success fa-3x"></i>
+                            </div>
+                            <div class="mt-1" x-data="{}">
+                                <a
+                                    @click="$dispatch('img-modal', {
+                                        imgModalSrc: '{{asset('tracking-images/donation.png')}}',
+                                        imgModalDesc: 'The Donation was received by the Mr.User on this date' })
+                                    "
+                                    class="uppercase font-bold"
+                                >
+                                    {{-- <img src="{{asset('tracking-images/donation.png')}}" alt="" width="50px" height="50px" class="image-link ms-1 rounded ml-2"> --}}
+                                    RECEPT GENERATED
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col text-center">
+                            <div class="flex flex-col text-center">
+                                <i class="fas fa-clock text-muted fa-3x"></i>
+                            </div>
+                            <div class="mt-1" x-data="{}">
+                                <a
+                                    @click="$dispatch('img-modal', {
+                                        imgModalSrc: '{{asset('tracking-images/donation.png')}}',
+                                        imgModalDesc: 'The Donation was received by the Mr.User on this date' })
+                                    "
+                                    class="uppercase font-bold"
+                                >
+                                    {{-- <img src="{{asset('tracking-images/donation.png')}}" alt="" width="50px" height="50px" class="image-link ms-1 rounded ml-2"> --}}
+                                    ORDER PLACED
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col text-center">
+                            <div class="flex flex-col text-center">
+                                <i class="fas fa-clock text-muted fa-3x"></i>
+                            </div>
+                            <div class="mt-1" x-data="{}">
+                                <a
+                                    @click="$dispatch('img-modal', {
+                                        imgModalSrc: '{{asset('tracking-images/donation.png')}}',
+                                        imgModalDesc: 'The Donation was received by the Mr.User on this date' })
+                                    "
+                                    class="uppercase font-bold"
+                                >
+                                    {{-- <img src="{{asset('tracking-images/donation.png')}}" alt="" width="50px" height="50px" class="image-link ms-1 rounded ml-2"> --}}
+                                    Mission Assigned
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col text-center">
+                            <div class="flex flex-col text-center">
+                                <i class="fas fa-clock text-muted fa-3x"></i>
+                            </div>
+                            <div class="mt-1" x-data="{}">
+                                <a
+                                    @click="$dispatch('img-modal', {
+                                        imgModalSrc: '{{asset('tracking-images/donation.png')}}',
+                                        imgModalDesc: 'The Donation was received by the Mr.User on this date' })
+                                    "
+                                    class="uppercase font-bold"
+                                >
+                                    {{-- <img src="{{asset('tracking-images/donation.png')}}" alt="" width="50px" height="50px" class="image-link ms-1 rounded ml-2"> --}}
+                                    Volunteers Assigned
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col text-center">
+                            <div class="flex flex-col text-center">
+                                <i class="fas fa-clock text-muted fa-3x"></i>
+                            </div>
+                            <div class="mt-1" x-data="{}">
+                                <a
+                                    @click="$dispatch('img-modal', {
+                                        imgModalSrc: '{{asset('tracking-images/donation.png')}}',
+                                        imgModalDesc: 'The Donation was received by the Mr.User on this date' })
+                                    "
+                                    class="uppercase font-bold"
+                                >
+                                    {{-- <img src="{{asset('tracking-images/donation.png')}}" alt="" width="50px" height="50px" class="image-link ms-1 rounded ml-2"> --}}
+                                    Activity Complete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+
+                        <h5 class="display-5">
+                            Donation Status
+                        </h5>
+
+                        <div class="progress-wrapper ">
+
+                            <script>
+                                function runProgress() {
+                                    return {
+                                        progress_bar_start: 0,
+                                        progress_bar_end: 45,
+                                        progress_bar_style: 'width: 10%',
+                                        progress_bar_class: null,
+
+                                        init() {
+
+                                            this.progress_bar_class = 'bg-muted';
+
+                                            setInterval(() => {
+
+                                                for(i = this.progress_bar_start; i < this.progress_bar_end; i++) {
+                                                    if(i > 20) {
+                                                        this.progress_bar_class = 'bg-success';
+                                                    }
+
+                                                    this.progress_bar_style = 'width: ' + i + '%';
+                                                    // console.log(this.progress_bar_style);
+                                                }
+
+                                            }, 2000);
+                                        }
+                                    }
+                                }
+                            </script>
+
+
+                            <div class="progress progress-lg" x-data="runProgress()" x-init="init()">
+                                <div class="progress-bar" :class="progress_bar_class" role="progressbar" :style="progress_bar_style" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+
+                            <div class="text-center mb-5">
+
+
+                                @php
+
+                                    $statuses = array(
+                                        0 => array(
+                                            'title' => 'Donation Received',
+                                            'complete' => true,
+                                            'in_progress' => false,
+                                        ),
+
+                                        1 => array(
+                                            'title' => 'Receipt Generated',
+                                            'complete' => true,
+                                            'in_progress' => false,
+                                        ),
+
+                                        2 => array(
+                                            'title' => 'Order Placed',
+                                            'complete' => false,
+                                            'in_progress' => true,
+                                        ),
+
+                                        3 => array(
+                                            'title' => 'Mission Assigned',
+                                            'complete' => false,
+                                            'in_progress' => false,
+                                        ),
+
+                                        4 => array(
+                                            'title' => 'Volunteers Assigned',
+                                            'complete' => false,
+                                            'in_progress' => false,
+                                        ),
+
+                                        5 => array(
+                                            'title' => 'Fieldwork done',
+                                            'complete' => false,
+                                            'in_progress' => false,
+                                        ),
+
+                                        6 => array(
+                                            'title' => 'Pictures Updated',
+                                            'complete' => false,
+                                            'in_progress' => false,
+                                        ),
+
+                                        7 => array(
+                                            'title' => 'Mission Complete',
+                                            'complete' => false,
+                                            'in_progress' => false,
+                                        )
+                                    );
+
+                                @endphp
+
+
+                                <div class="flex flex-col">
+                                    @foreach ($statuses as $status)
+                                        <span class="p-2 fw-bold">
+
+                                            <span class="float-left">
+                                                {{ $status['title']}}
+                                            </span>
+
+                                            <span class="float-right">
+                                                <span class="mr-5">
+
+                                                    @php
+
+                                                        $color = '';
+                                                        $icon = '';
+
+                                                        if($status['complete'] == true) {
+                                                            $color = 'success';
+                                                        }
+                                                        elseif($status['in_progress'] == true) {
+                                                            $color = 'info';
+                                                        }
+                                                        else {
+                                                            $color = 'dark';
+                                                        }
+
+                                                        if($status['complete'] == true) {
+                                                            $icon = 'fa-check-circle';
+                                                        }
+                                                        elseif($status['in_progress'] == true) {
+                                                            $icon = 'fa-sync fa-spin';
+                                                        }
+                                                        else {
+                                                            $icon = 'fa-times-circle';
+                                                        }
+                                                    @endphp
+
+
+
+                                                    <i class="fas {{ $icon }} text-{{ $color }}"></i>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    @endforeach
+                                </div>
+
+
+
+                                {{-- <span class="p-2">
+                                    Receipt Generated <i class="fas fa-check-circle text-success"></i>
+                                </span> --}}
+
+                                {{-- <p class="text-white text-center bg-dark fw-bolder border border-light rounded">
+                                    {{-- <span class="spinner-grow text-white" role="status" style="width: 7px; height:7px;">
+                                    </span> <span class="spinner-grow text-white" role="status" style="width: 7px; height:7px;">
+                                    </span> <span class="spinner-grow text-white" role="status" style="width: 7px; height:7px;"></span>
+                                </p> --}}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {{-- DONATION TIMELINE --}}
+                    <div class="border-top border-gray-300 mb-5"></div>
+                    <div class="row d-flex justify-content-center mt-70 mb-70">
+                        <div class="col-md-12">
+                            <div class="main-card mb-3">
+                                <h5 class="card-title">
+                                    Donation Timeline
+                                </h5>
+                                <div class="card-body" style="height: 400px; overflow: scroll;">
+                                        <div class="vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+
+                                            <div class="vertical-timeline-item vertical-timeline-element">
+                                                <div> <span class="vertical-timeline-element-icon bounce-in"> <i class="fas fa-info-circle"> </i> </span>
+                                                    <div class="vertical-timeline-element-content bounce-in">
+                                                        <p>Another meeting with UK client today, at <b class="text-danger">3:00 PM</b></p>
+                                                        <p>Yet another one, at <span class="text-success">5:00 PM</span></p> <span class="vertical-timeline-element-date">12:25 PM</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="vertical-timeline-item vertical-timeline-element">
+                                                <div> <span class="vertical-timeline-element-icon bounce-in"> <i class="fas fa-exclamation-circle"></i> </span>
+                                                    <div class="vertical-timeline-element-content bounce-in">
+                                                        <h4 class="timeline-title">Meeting with client</h4>
+                                                        <p>
+                                                            Meeting with USA Client, today at <a href="javascript:void(0);" data-abc="true">12:00 PM</a>
+                                                        </p>
+                                                        <span class="vertical-timeline-element-date uppercase">
+                                                            Pending
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <div class="vertical-timeline-item vertical-timeline-element">
+                                            <div> <span class="vertical-timeline-element-icon bounce-in"> <i class="fas fa-info-circle"> </i> </span>
+                                                <div class="vertical-timeline-element-content bounce-in">
+                                                    <h4 class="timeline-title">Discussion with team about new product launch</h4>
+                                                    <p>meeting with team mates about the launch of new product. and tell them about new features</p> <span class="vertical-timeline-element-date">6:00 PM</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="vertical-timeline-item vertical-timeline-element">
+                                            <div> <span class="vertical-timeline-element-icon bounce-in"> <i class="fas fa-info-circle"> </i> </span>
+                                                <div class="vertical-timeline-element-content bounce-in">
+                                                    <h4 class="timeline-title text-success">Discussion with marketing team</h4>
+                                                    <p>Discussion with marketing team about the popularity of last product</p> <span class="vertical-timeline-element-date">9:00 AM</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="vertical-timeline-item vertical-timeline-element">
+                                            <div> <span class="vertical-timeline-element-icon bounce-in"> <i class="fas fa-info-circle"> </i> </span>
+                                                <div class="vertical-timeline-element-content bounce-in">
+                                                    <p>Another conference call today, at <b class="text-danger">11:00 AM</b></p>
+                                                    <p>Yet another one, at <span class="text-success">1:00 PM</span></p> <span class="vertical-timeline-element-date">12:25 PM</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    {{-- <br>
 
                     <div class="d-flex justify-content-end bottom-0 end-0 position-absolute pe-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill " viewBox="0 0 16 16">
-                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-                        </svg> 
+                        <i class="fas fa-info-circle"></i>
                         <h6 class="ps-2 text-secondary fs-6"> Click on each image to know more info </h6>
-                    </div>
+                    </div> --}}
 
-
-
-                    <div x-data="{ imgModal : false, imgModalSrc : '', imgModalDesc : '' }">
-                        <template @img-modal.window="imgModal = true; imgModalSrc = $event.detail.imgModalSrc; imgModalDesc = $event.detail.imgModalDesc;" x-if="imgModal">
-                            <div x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90" x-on:click.away="imgModalSrc = ''" class="p-2 fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center bg-black bg-opacity-75">
-                                <div @click.away="imgModal = ''" class="flex flex-col max-w-3xl max-h-full overflow-auto">
+                    {{-- <div x-data="{ imgModal : false, imgModalSrc : '', imgModalDesc : '' }">
+                        <template
+                            x-if="imgModal"
+                            @img-modal.window="imgModal = true;
+                                imgModalSrc = $event.detail.imgModalSrc;
+                                imgModalDesc = $event.detail.imgModalDesc;"
+                        >
+                            <div
+                                class="p-2 fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center bg-white bg-opacity-75"
+                                    x-transition:enter="transition ease-out duration-300"
+                                    x-transition:enter-start="opacity-0 transform scale-10"
+                                    x-transition:enter-end="opacity-100 transform scale-100"
+                                    x-transition:leave="transition ease-in duration-300"
+                                    x-transition:leave-start="opacity-100 transform scale-100"
+                                    x-transition:leave-end="opacity-0 transform scale-10"
+                                    x-on:click.away="imgModalSrc = ''"
+                                >
+                                <div
+                                    @click.away="imgModal = ''"
+                                    class="flex flex-col max-w-3xl max-h-full overflow-auto"
+                                >
                                     <div class="z-50">
                                         <button @click="imgModal = ''" class="float-right pt-2 pr-2 outline-none focus:outline-none">
-                                            <svg class="fill-current text-white " xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                            <svg class="fill-current text-dark " xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
                                                 <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
                                                 </path>
                                             </svg>
                                         </button>
                                     </div>
                                     <div class="p-2">
-                                        <img :alt="imgModalSrc" class="object-contain h-1/2-screen" :src="imgModalSrc">
-                                        <p x-text="imgModalDesc" class="text-center text-white"></p>
+                                        <div class="justify-content-center">
+                                            <center>
+                                                <img :alt="imgModalSrc" class="text-center" :src="imgModalSrc">
+                                            </center>
+                                            <p x-text="imgModalDesc" class="text-center text-dark"></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </template>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
