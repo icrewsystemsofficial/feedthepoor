@@ -11,7 +11,7 @@ class UsersController extends Controller
 {
     public function index($role = ''){
         $location = Location::all();
-        $users = User::all();
+        $users = User::role($role)->get();
         return view('admin.users.index', compact('users', 'location', 'role'));
     }
 

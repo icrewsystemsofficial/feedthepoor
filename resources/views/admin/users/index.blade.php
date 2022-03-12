@@ -193,7 +193,17 @@
                                     <td>
                                         {!! $user->phone_number ? $user->phone_number : '<span class="badge bg-secondary">Not Updated</span>' !!}
                                     </td>
-                                    <td>{{ $user->getRoleNames() }}</td>
+                                    <td>
+                                    @if ($user->getRoleNames()[0] == 'superadmin')
+                                        <span class="badge bg-info">Super Admin</span>
+                                    @endif
+                                    @if ($user->getRoleNames()[0] == 'donor')
+                                       <span class="badge bg-info"> Donor</span>
+                                    @endif
+                                    @if ($user->getRoleNames()[0] == 'volunteer')
+                                        <span class="badge bg-info">Volunteer</span>
+                                    @endif
+                                    </td>
                                     <td>
                                         <button onclick="trigger_delete({{$user->id}})" class="btn btn-danger btn-sm">
                                             <i class="fa-solid fa-edit"></i> &nbsp;
