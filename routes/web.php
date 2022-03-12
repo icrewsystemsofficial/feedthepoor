@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
@@ -78,6 +79,12 @@ Route::prefix('admin')->as('admin.')->group(function() {
         Route::post('/group/create', [SettingsController::class, 'group_save'])->name('group.create');
         Route::post('/group/{id}/update', [SettingsController::class, 'group_update'])->name('group.update');
         Route::post('/group/{id}/delete', [SettingsController::class, 'group_delete'])->name('group.delete');
+
+    });
+        Route::prefix('users')->as('users.')->group(function() {
+        Route::get('/{role}', [UsersController::class, 'index'])->name('index');
+        Route::post('/create', [UsersController::class, 'create'])->name('create');
+        Route::delete('/destroy/{id}', [UsersController::class, 'destroy'])->name('destroy');
 
     });
 });
