@@ -40,13 +40,13 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('frontend.index') }}" class="nav-link">
+                        <a href="{{ route('frontend.about') }}" class="nav-link">
                             About
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('frontend.index') }}" class="nav-link">
+                        <a href="{{ route('frontend.activity') }}" class="nav-link">
                             Activity
                         </a>
                     </li>
