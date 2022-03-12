@@ -83,7 +83,9 @@ class HomeController extends Controller
             'total_donations_received' => $total_donations_received
         ]);
     }
-
+    public function volunteer () {                
+        return view('frontend.volunteer.index');
+    }
     /**
      * donate - the page where users can donate money.
      *
