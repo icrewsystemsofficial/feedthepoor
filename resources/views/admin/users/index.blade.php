@@ -95,9 +95,12 @@
                 </div>
             </div>
         @endif
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#defaultModalPrimary">
-            <i class="fa-solid fa-plus"></i> &nbsp; Add new user
-        </button>
+        @if ($role != 'donor')
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#defaultModalPrimary">
+                <i class="fa-solid fa-plus"></i> &nbsp; Add new user
+            </button>            
+        @endif
+
 
         <div class="modal fade" id="defaultModalPrimary" tabindex="-1" aria-hidden="true" style="display: none;">
             <div class="modal-dialog modal-lg" role="document">

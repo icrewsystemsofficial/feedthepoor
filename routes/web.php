@@ -55,38 +55,40 @@ Route::name('frontend.')->group(function () {
   ------DASHBOARD ROUTES------
 */
 
-Route::prefix('admin')->as('admin.')->group(function() {
+Route::middleware(['auth'])->group(function () {
+  Route::prefix('admin')->as('admin.')->group(function() {
 
 
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
-    Route::post('/profile/save', [DashboardController::class, 'edit_profile'])->name('profile.save');
+      Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+      Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
+      Route::post('/profile/save', [DashboardController::class, 'edit_profile'])->name('profile.save');
 
 
-    Route::prefix('location')->as('location.')->group(function() {
-        Route::get('/', [LocationController::class, 'index'])->name('index');
-        Route::get('/manage/{id}', [LocationController::class, 'manage'])->name('manage');
-        Route::delete('/destroy/{id}', [LocationController::class, 'destroy'])->name('destroy');
-        Route::put('/update/{id}', [LocationController::class, 'update'])->name('update');
-        Route::post('/store', [LocationController::class, 'store'])->name('store');
-    });
+      Route::prefix('location')->as('location.')->group(function() {
+          Route::get('/', [LocationController::class, 'index'])->name('index');
+          Route::get('/manage/{id}', [LocationController::class, 'manage'])->name('manage');
+          Route::delete('/destroy/{id}', [LocationController::class, 'destroy'])->name('destroy');
+          Route::put('/update/{id}', [LocationController::class, 'update'])->name('update');
+          Route::post('/store', [LocationController::class, 'store'])->name('store');
+      });
 
-    Route::prefix('settings')->as('settings.')->group(function() {
-        Route::get('/', [SettingsController::class, 'index'])->name('index');
-        Route::post('/create', [SettingsController::class, 'create'])->name('create');
-        Route::post('/update', [SettingsController::class, 'update'])->name('update');
+      Route::prefix('settings')->as('settings.')->group(function() {
+          Route::get('/', [SettingsController::class, 'index'])->name('index');
+          Route::post('/create', [SettingsController::class, 'create'])->name('create');
+          Route::post('/update', [SettingsController::class, 'update'])->name('update');
 
-        Route::post('/group/create', [SettingsController::class, 'group_save'])->name('group.create');
-        Route::post('/group/{id}/update', [SettingsController::class, 'group_update'])->name('group.update');
-        Route::post('/group/{id}/delete', [SettingsController::class, 'group_delete'])->name('group.delete');
+          Route::post('/group/create', [SettingsController::class, 'group_save'])->name('group.create');
+          Route::post('/group/{id}/update', [SettingsController::class, 'group_update'])->name('group.update');
+          Route::post('/group/{id}/delete', [SettingsController::class, 'group_delete'])->name('group.delete');
 
-    });
-        Route::prefix('users')->as('users.')->group(function() {
-        Route::get('/{role}', [UsersController::class, 'index'])->name('index');
-        Route::post('/create/{role}', [UsersController::class, 'create'])->name('create');
-        Route::delete('/destroy/{id}', [UsersController::class, 'destroy'])->name('destroy');
+      });
+          Route::prefix('users')->as('users.')->group(function() {
+          Route::get('/{role}', [UsersController::class, 'index'])->name('index');
+          Route::post('/create/{role}', [UsersController::class, 'create'])->name('create');
+          Route::delete('/destroy/{id}', [UsersController::class, 'destroy'])->name('destroy');
 
-    });
+      });
+  });
 });
 
 
