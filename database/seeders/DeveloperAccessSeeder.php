@@ -54,6 +54,19 @@ class DeveloperAccessSeeder extends Seeder
             $this->command->info("User: Dinesh Kumar created.");
         }
 
+        $user = User::where('name', 'Anirudh')->first();
+        if (!$user) {
+            $user = new User;
+            $user->name = 'Anirudh';
+            $user->email = 'john.doe2@test.com';
+            $user->email_verified_at = now();
+            $user->password = '$2y$10$WiImPleoUL2PK30muv9pp.CGJpUiuQcpiy2zz9uMMxIDs4TdmPraa';
+            $user->location_id = 4;
+            $user->address = "Chennai";
+            $user->save();
+            $this->command->info("User: Anirudh created.");
+        }
+
         // $user = User::where('name', 'Samay Bhattacharyya')->first();
         // if (!$user) {
         //     $user = new User;

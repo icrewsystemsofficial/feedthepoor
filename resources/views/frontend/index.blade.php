@@ -13,103 +13,6 @@
 </style>
 @endsection
 @section('js')
-<script>
-   var notify = {
-    timeout: "5000",
-    animatedIn: "bounceInRight",
-    animatedOut: "bounceOutRight",
-    position: "bottom-right"
-   }
-
-   var stepper = document.getElementById("stepper");
-
-   function toggleVisibility(element) {
-   var x = document.getElementById(element);
-   if (x.style.display === "none") {
-   x.style.display = "block";
-   } else {
-   x.style.display = "none";
-   }
-   }
-
-
-   setInterval(function() {
-   if(stepper.classList.contains('step1')) {
-       stepper.classList.remove('step1');
-        stepper.classList.add('step2');
-
-        toggleVisibility('step1-p');
-        toggleVisibility('step2-p');
-   } else if(stepper.classList.contains('step2')) {
-        stepper.classList.remove('step2');
-        stepper.classList.add('step3');
-        toggleVisibility('step2-p');
-        toggleVisibility('step3-p');
-   } else if(stepper.classList.contains('step3')) {
-        stepper.classList.remove('step3');
-        stepper.classList.add('step1');
-        toggleVisibility('step3-p');
-        toggleVisibility('step1-p');
-   }
-   }, 5000);
-
-
-
-    // Hero Section Dynamic changes.
-
-    var donation_images = {!! $donation_images !!};
-    var donation_names = {!! $donation_names !!};
-    var total_meals_fed = {{ $total_meals_fed }};
-    var total_donations_received = {{ $total_donations_received }};
-
-    // Counter for total meals.
-    var total_people_fed_today = document.getElementById('total-people-fed-today');
-    total_people_fed_today.innerText = total_meals_fed;
-
-
-    var image_count = 0;
-    var next_image = null;
-
-    setInterval(function() {
-    var hidden_container = document.getElementById('hidden-image-for-preload');
-    var container = document.getElementById('hero-section-image-container');
-    if(next_image == null) {
-        current_image = donation_images[image_count];
-        next_image_count = image_count + 1;
-        next_image = donation_images[next_image_count]
-    } else {
-        current_image = hidden_container.src;
-        next_image_count = image_count + 1;
-        next_image = donation_images[next_image_count]
-        // console.log(hidden_container.src);
-    }
-    container.style.backgroundImage = "url('" + current_image + "')";
-
-    hidden_container.src = next_image;
-    // This allows the next image to preload, allowing the transition to be
-    // smooth.
-    // Comment the previous line and see the delay.
-
-    //Leonard, 16 April 2021.
-
-    // console.log('Changning image in hero section to array # ' + image_count);
-    if (image_count == donation_images.length) {
-        image_count = 0;
-    } else {
-        image_count++;
-    }
-
-
-    //To change donor name.
-    var donor = document.getElementById('hero-donor-name');
-    donor.innerText = donation_names[image_count];
-
-    // To change meal count.
-    var meal = document.getElementById('hero-donor-meal-count');
-    meal.innerText = Math.floor(Math.random() * 100);
-
-    }, 4000)
-</script>
 @endsection
 
 
@@ -247,7 +150,25 @@
 </section>
 
 <section class="section-header bg-white ">
+
+    <script>
+        function elfsight() {
+            setInterval(() => {
+                var button = document.getElementsByClassName('eapps-link');
+                button.style.visibility = 'hidden';
+                alert('hidden');
+            }, 5000);
+        }
+
+        elfsight();
+    </script>
+
+
    <div class="container">
+
+    <div class="elfsight-app-b37396fb-2d16-45e6-a146-d6e37fd6a553"></div>
+
+
       <div class="row justify-content-between align-items-center">
          <div class="col-12 col-md-7 col-lg-6 text-center text-md-left">
             <p>
@@ -258,6 +179,9 @@
       </div>
    </div>
 </section>
+
+<script src="https://apps.elfsight.com/p/platform.js" defer></script>
+
 @endsection
 
 @section('content')

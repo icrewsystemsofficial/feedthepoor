@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\API\RazorpayAPIController;
 use Faker\Factory;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\API\RazorpayAPIController;
 
 class HomeController extends Controller
 {
@@ -21,42 +22,6 @@ class HomeController extends Controller
         $total_meals_fed = 850;
         $total_donations_received = 42500;
         $howmany = 50;
-
-        // function generateRandomImages($howmany) {
-
-        //     // This function gets images from a picture generator.
-        //     // Once "picture-upload" feature is ready for this project,
-        //     // we should update this function.
-        //     // - Leonard, 16 April 2021.
-
-        //     $images = array();
-        //     $height = 300;
-        //     for($i = 0; $i < $howmany; $i++) {
-        //         $url = "https://picsum.photos/800/". $height ."";
-        //         $images[$i] = $url;
-        //         $height++;
-        //     }
-
-        //     return json_encode($images);
-        // }
-
-        // function generateRandomDonorNames($howmany) {
-
-        //     // This function gets random donor names from FakerPHP
-        //     // Once "donation" feature is ready for this project,
-        //     // we should update this function.
-        //     // - Leonard, 16 April 2021.
-
-        //     $names = array();
-        //     $faker = Factory::create('en_IN');
-        //     for($i = 0; $i < $howmany; $i++) {
-        //         $names[$i] = $faker->firstName;
-        //     }
-
-        //     return json_encode($names);
-        // }
-
-        
 
         $images = array();
         $height = 300;
@@ -81,6 +46,15 @@ class HomeController extends Controller
             'donation_names' => $donation_names,
             'total_meals_fed' => $total_meals_fed,
             'total_donations_received' => $total_donations_received
+        ]);
+    }
+
+    public function about () {
+
+        $locations = Location::where('location_status', 1)->get();
+
+        return view('frontend.about.index', [
+            'locations' => $locations,
         ]);
     }
 

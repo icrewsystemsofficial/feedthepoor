@@ -7,16 +7,20 @@ ______            _ _______ _          _____
 
 An initiative by ICREWSYSTEMS SOFTWARE ENGINEERING LLP
 
-This was last generated on 09 March, 2022
+This was last generated on 12 March, 2022
 
 # CHANGELOG
 
 
 ## [Unreleased]
 
+### Frontend
+ - Added about us page
+
 ### Major
  - Added PHP Pest Testcases for all frontend routes
  - Added Razorpay API and works successfully
+ - Donation tracking page has been added. The page is currently static
  - Location management module has been added to the app
 
 ### Task
