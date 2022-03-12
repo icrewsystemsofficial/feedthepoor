@@ -333,7 +333,7 @@
                     </h2>
                 </div>
                 <div class="content text-white">
-                    Share your helping hands with us! volunteers do not necessarily have the time; they just have the heart.You make a living by what you get. You make a life by what you give. Volunteers are the only human beings on the face of the earth who reflect this nation's compassion, unselfish caring, patience, and just plain loving one another. Our motive is to feed the underpivileged half of our nation, that is heavily affeccted by the pangs of poverty and isn't capable of earning their bread. Let's join our together to make our country hunger free</p>
+                    Share your helping hands with us! volunteers do not necessarily have the time; they just have the heart. You make a living by what you get. You make a life by what you give. Volunteers are the only human beings on the face of the earth who reflect this nation's compassion, unselfish caring, patience, and just plain loving one another. Our motive is to feed the underpivileged half of our nation, that is heavily affeccted by the pangs of poverty and isn't capable of earning their bread. Let's join our hands together to make our country hunger free</p>
                 </div>
             </div>
         </div>
