@@ -178,6 +178,10 @@
         box-shadow: 0 12px 15px rgb(0 0 0 / 10%), 0 17px 50px rgb(0 0 0 / 10%);
     }
 
+    .bgcl {
+        background-color: #1c2540 !important;
+    }
+
 
     @keyframes fadeIn {
         from {
@@ -315,7 +319,7 @@
 </section>
 
 <section class="section section-lg pt-0 mb-50 mt-6">
-    <div class="container">
+    <div class="container bgcl pb-7">
         <div class="row">
             <div class="col-md-6 slightlyDown">
                 <img src="https://images.assetsdelivery.com/compings_v2/dizanna/dizanna1807/dizanna180700148.jpg" class="about-image boxShadow">
@@ -323,12 +327,12 @@
             <div class="col-md-6 mt-6">
                 <div class="heading">
                     <h2 class="heading-title">
-                        <span class="heading-title-main">
+                        <span class="heading-title-main text-white">
                             #joinWithUsToFeedThePoor
                         </span>
                     </h2>
                 </div>
-                <div class="content">
+                <div class="content text-white">
                     Share your helping hands with us! volunteers do not necessarily have the time; they just have the heart.You make a living by what you get. You make a life by what you give. Volunteers are the only human beings on the face of the earth who reflect this nation's compassion, unselfish caring, patience, and just plain loving one another. Our motive is to feed the underpivileged half of our nation, that is heavily affeccted by the pangs of poverty and isn't capable of earning their bread. Let's join our together to make our country hunger free</p>
                 </div>
             </div>
