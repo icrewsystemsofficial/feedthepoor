@@ -83,7 +83,7 @@ Route::prefix('admin')->as('admin.')->group(function() {
     });
         Route::prefix('users')->as('users.')->group(function() {
         Route::get('/{role}', [UsersController::class, 'index'])->name('index');
-        Route::post('/create', [UsersController::class, 'create'])->name('create');
+        Route::post('/create/{role}', [UsersController::class, 'create'])->name('create');
         Route::delete('/destroy/{id}', [UsersController::class, 'destroy'])->name('destroy');
 
     });

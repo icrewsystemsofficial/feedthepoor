@@ -48,10 +48,10 @@
         </a>
         <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
             <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('admin.users.index', 'donors') }}">Donors</a>
+                <a class="sidebar-link" href="{{ route('admin.users.index', 'donor') }}">Donors</a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link" href="#">Volunteers</a>
+                <a class="sidebar-link" href="{{ route('admin.users.index', 'volunteer') }}">Volunteers</a>
             </li>
             <li class="sidebar-item">
                 <a class="sidebar-link" href="#">Volunteer Applications</a>
