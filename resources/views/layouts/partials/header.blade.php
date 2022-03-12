@@ -56,14 +56,18 @@
                             Campaigns
                             <span class="fas fa-angle-down nav-link-arrow ms-1"></span>
                         </a>
-                        <div class="dropdown-menu dropdown-megamenu-md p-0" aria-labelledby="componentsDropdown">
+                        <div class="dropdown-menu dropdown-megamenu-sm p-0" aria-labelledby="componentsDropdown">
                             <div class="row g-0">
-                                <div class="col-lg-6 bg-dark d-none d-lg-block me-0 me-3">
-                                    <div class="px-0 py-3 text-center">
-                                        <img src="{{ asset('theme/assets/img/megamenu_image.png') }}" alt="Pixel Components">
+                                {{-- <div class="col-lg-6 bg-gray d-none d-lg-block me-0 me-3">
+                                    <div class="py-9 mx-auto text-center">
+                                        <center>
+                                            <img src="{{ asset('images/branding/roshni-foundation-black.png') }}"
+                                            alt="Roshni_fondation_campaigns"
+                                            style="width: 150px; height: auto;">
+                                        </center>
                                     </div>
-                                </div>
-                                <div class="col ps-0 py-3">
+                                </div> --}}
+                                <div class="col p-3">
                                     <ul class="list-style-none">
                                         <li><a class="dropdown-item" href="../../html/components/accordions.html">Accordions</a></li>
                                         <li><a class="dropdown-item" href="../../html/components/alerts.html">Alerts</a></li>
@@ -74,32 +78,6 @@
                                         <li><a class="dropdown-item" href="../../html/components/breadcrumbs.html">Breadcrumbs</a></li>
                                         <li><a class="dropdown-item" href="../../html/components/buttons.html">Buttons</a></li>
                                         <li><a class="dropdown-item" href="https://demo.themesberg.com/pixel-pro/v5/html/components/counters.html" target="_blank">Counters <span class="badge bg-tertiary">Pro</span></a></li>
-                                    </ul>
-                                </div>
-                                <div class="col ps-0 py-3">
-                                    <ul class="list-style-none">
-                                        <li><a class="dropdown-item" href="../../html/components/dropdowns.html">Dropdowns</a></li>
-                                        <li><a class="dropdown-item" href="https://demo.themesberg.com/pixel-pro/v5/html/components/e-commerce.html" target="_blank">E-commerce <span class="badge bg-tertiary">Pro</span></a></li>
-                                        <li><a class="dropdown-item" href="../../html/components/forms.html">Forms</a></li>
-                                        <li><a class="dropdown-item" href="https://demo.themesberg.com/pixel-pro/v5/html/components/icon-boxes.html" target="_blank">Icon Boxes <span class="badge bg-tertiary">Pro</span></a></li>
-                                        <li><a class="dropdown-item" href="../../html/components/modals.html">Modals</a></li>
-                                        <li><a class="dropdown-item" href="../../html/components/navs.html">Navs</a></li>
-                                        <li><a class="dropdown-item" href="https://demo.themesberg.com/pixel-pro/v5/html/components/glidejs-carousels.html" target="_blank">GlideJS <span class="badge bg-tertiary">Pro</span></a></li>
-                                        <li><a class="dropdown-item" href="../../html/components/pagination.html">Pagination</a></li>
-                                        <li><a class="dropdown-item" href="../../html/components/popovers.html">Popovers</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col ps-0 py-3">
-                                    <ul class="list-style-none">
-                                        <li><a class="dropdown-item" href="../../html/components/progress-bars.html">Progress Bars</a></li>
-                                        <li><a class="dropdown-item" href="https://demo.themesberg.com/pixel-pro/v5/html/components/steps.html" target="_blank">Steps <span class="badge bg-tertiary">Pro</span></a></li>
-                                        <li><a class="dropdown-item" href="../../html/components/tables.html">Tables</a></li>
-                                        <li><a class="dropdown-item" href="../../html/components/tabs.html">Tabs</a> </li>
-                                        <li><a class="dropdown-item" href="../../html/components/toasts.html">Toasts</a> </li>
-                                        <li><a class="dropdown-item" href="https://demo.themesberg.com/pixel-pro/v5/html/components/timelines.html" target="_blank">Timelines <span class="badge bg-tertiary">Pro</span></a></li>
-                                        <li><a class="dropdown-item" href="../../html/components/tooltips.html">Tooltips</a></li>
-                                        <li><a class="dropdown-item" href="../../html/components/typography.html">Typography</a></li>
-                                        <li><a class="dropdown-item" href="https://demo.themesberg.com/pixel-pro/v5/html/components/widgets.html" target="_blank">Widgets <span class="badge bg-tertiary">Pro</span></a></li>
                                     </ul>
                                 </div>
                             </div>
