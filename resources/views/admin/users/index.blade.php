@@ -21,6 +21,34 @@
             error.classList.remove('visually-hidden');
         }
     }
+    function trigger_delete(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+
+            Swal.showLoading();
+
+            if (result.isConfirmed) {
+
+
+                setTimeout(() => {
+                    Swal.fire(
+                        'Alright!',
+                        'User is being deleted..',
+                        'success'
+                    );
+
+                    document.getElementById(`delete_user_form_${id}`).submit();
+                }, 1500);
+            }
+        });
+    }
 </script>
 <style>
     .badge-warning {
@@ -165,12 +193,13 @@
                                     <td>
                                         {!! $user->phone_number ? $user->phone_number : '<span class="badge bg-secondary">Not Updated</span>' !!}
                                     </td>
-                                    <td>{{ $user->getRoleNames()[0] }}</td>
+                                    <td>{{ $user->getRoleNames() }}</td>
                                     <td>
-                                        <a href="{{ route('admin.users.destroy', $user->id) }}" class="btn btn-danger btn-sm">
+                                        <button onclick="trigger_delete({{$user->id}})" class="btn btn-danger btn-sm">
                                             <i class="fa-solid fa-edit"></i> &nbsp;
                                             Delete
-                                        </a>
+                                        </button>
+                                        <form action="{{ route('admin.users.destroy', $user->id) }}" id="delete_user_form_{{$user->id}}" method="POST">@csrf @method('DELETE')</form>
                                     </td>
                                 </tr>
                                 @endforeach
