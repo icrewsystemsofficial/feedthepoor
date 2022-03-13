@@ -1,5 +1,37 @@
 @extends('layouts.admin')
 
+
+@section('js')
+    <script>
+        function updateProfile(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Update it!'
+                }).then((result) => {
+
+                Swal.showLoading();
+
+                if (result.isConfirmed) {
+
+
+                    setTimeout(() => {
+                        Swal.fire(
+                            'Alright!',
+                            'Profile has been Updated..',
+                            'success'
+                        );
+
+                        document.getElementById(id).submit();
+                    }, 1500);
+                }
+            });
+        }
+    </script>
+@endsection
 @section('content')
 <main class="content">
     <div class="container-fluid p-0">
@@ -38,7 +70,7 @@
                                 <h5 class="card-title mb-0">Private info</h5>
                             </div>
                             <div class="card-body">
-                                <form method="POST" action="{{ route('admin.users.update', $user->id) }}" >
+                                <form method="POST" action="{{ route('admin.users.update', $user->id) }}" id="update_profile">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-8">
@@ -96,7 +128,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    <button type="button" onclick="updateProfile('update_profile')" class="btn btn-primary">Save changes</button>
                                 </form>
 
                             </div>
