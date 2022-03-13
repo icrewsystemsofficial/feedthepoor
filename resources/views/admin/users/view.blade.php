@@ -1,0 +1,137 @@
+@extends('layouts.admin')
+
+@section('content')
+<main class="content">
+    <div class="container-fluid p-0">
+
+        <h1 class="h3 mb-3">Settings</h1>
+
+        <div class="row">
+            <div class="col-md-3 col-xl-2">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Profile Settings</h5>
+                    </div>
+
+                    <div class="list-group list-group-flush" role="tablist">
+                        <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#account" role="tab">
+                            Account
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#password" role="tab">
+                            Password
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#" role="tab">
+                            Delete account
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9 col-xl-10">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="account" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h5 class="card-title mb-0">Private info</h5>
+                            </div>
+                            <div class="card-body">
+                                <form method="POST" action="{{ route('admin.users.update', $user->id) }}" >
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="name">Name</label>
+                                                <input name="name" value="{{ $user->name }}" type="text" class="form-control" id="name" placeholder="First name">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="email">Email</label>
+                                                <input name="email" value="{{ $user->email }}" type="email" class="form-control" id="email" placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="text-center">
+                                                <img alt="Charles Hall" src="{{ asset('adminkit/static/img/avatars/avatar.jpg') }}" class="rounded-circle img-responsive mt-2" width="128" height="128">
+                                                <div class="mt-2">
+                                                    <span class="btn btn-primary"><i class="fas fa-upload"></i> Upload</span>
+                                                </div>
+                                                <small>For best results, use an image at least 128px by 128px in .jpg format</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-check form-switch mb-3">
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Available for Mission</label>
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" 
+                                            @if ($user->available_for_mission)
+                                                checked
+                                            @endif
+                                        >
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="pan_number">Pan Number</label>
+                                        <input name="pan_number" value="{{ $user->pan_number }}" type="text" class="form-control" id="pan_number" placeholder="AAAPZ1234C">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="phone_number">Phone Number</label>
+                                        <input name="phone_number" value="{{ $user->phone_number }}" type="number" class="form-control" id="phone_number" placeholder="99999 99999">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="address">Address</label>
+                                        <input name="address" value="{{ $user->address }}" type="text" class="form-control" id="address" placeholder="Apartment, studio, or floor">
+                                    </div>
+                                    <div class="row">
+                                        <div class="mb-3">
+                                            <label for="location_id" class="form-label">Location</label>
+                                            <select name="location_id" id="location_id" class="form-control">
+                                                <option value="" selected>Select a Location</option>
+                                                @foreach ($location as $loc)
+                                                    <option 
+                                                    @if ($user->location_id == $loc->id)
+                                                        selected
+                                                    @endif
+                                                    value='{{$loc->id}}'>{{$loc->location_name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="password" role="tabpanel">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Password</h5>
+
+                                <form>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="inputPasswordCurrent">Current password</label>
+                                        <input type="password" class="form-control" id="inputPasswordCurrent">
+                                        <small><a href="#">Forgot your password?</a></small>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="inputPasswordNew">New password</label>
+                                        <input type="password" class="form-control" id="inputPasswordNew">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="inputPasswordNew2">Verify password</label>
+                                        <input type="password" class="form-control" id="inputPasswordNew2">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+@endsection
