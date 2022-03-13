@@ -122,7 +122,7 @@
                 <div class="form-group mb-2">
                     <div class="form-check form-switch">
                         <label class="form-check-label" for="category_status"> Status </label>
-                        <input class="form-check-input" type="checkbox" id="category_status" name="category_status" checked = "{{ $category->category_status ? 'checked':'' }}">
+                        <input class="form-check-input" type="checkbox" id="category_status" name="category_status" {{ ($category->category_status == 1) ? 'checked' : '' }}">
                     </div>
                 </div>
                 <div class="form-group mb-2">
