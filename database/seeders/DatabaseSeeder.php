@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(DeveloperAccessSeeder::class);
         $this->call(SettingGroupTableSeeder::class);
         $this->call(SettingTableSeeder::class);
-        $this->call(LocationSeeder::class);        
+        $this->call(LocationSeeder::class);       
+        $this->call(FaqCategoriesSeeder::class);
+        $this->call(FaqEntriesSeeder::class); 
     }
 }
