@@ -15,6 +15,10 @@ class UsersController extends Controller
         return view('admin.users.index', compact('users', 'location', 'role'));
     }
 
+    public function view(){
+        return view('admin.users.view');
+    }
+
     public function create(Request $req, $role){
         $user = new User;
         $user->name = $req->input('user_name');
