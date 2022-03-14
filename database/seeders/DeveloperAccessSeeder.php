@@ -58,9 +58,9 @@ class DeveloperAccessSeeder extends Seeder
         if (!$user) {
             $user = new User;
             $user->name = 'Anirudh';
-            $user->email = 'john.doe2@test.com';
+            $user->email = 'anirudh@anirudh.com';
             $user->email_verified_at = now();
-            $user->password = '$2y$10$WiImPleoUL2PK30muv9pp.CGJpUiuQcpiy2zz9uMMxIDs4TdmPraa';
+            $user->password = '$2y$10$F8756dBH2iMFEWSxGZsCAOI0EY0D6h.PMrg2cQOABdQKruU5ehcF2';
             $user->location_id = 4;
             $user->address = "Chennai";
             $user->save();

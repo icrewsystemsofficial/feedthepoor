@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\CausesController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Admin\FaqController;
 use Illuminate\Routing\RouteGroup;
@@ -97,6 +98,14 @@ Route::prefix('admin')->as('admin.')->group(function() {
             Route::put('/update/{id}', [FaqController::class, 'category_update'])->name('update');
             Route::post('/store', [FaqController::class, 'category_store'])->name('store');
         });
+    });
+
+    Route::prefix('causes')->as('causes.')->group(function() {
+        Route::get('/', [CausesController::class, 'index'])->name('index');
+        Route::post('/store', [CausesController::class, 'store'])->name('store');
+        Route::put('/update/{id}', [CausesController::class, 'update'])->name('update');
+        Route::get('/manage/{id}', [CausesController::class, 'manage'])->name('manage');
+        Route::delete('/destroy/{id}', [CausesController::class, 'destroy'])->name('destroy');
     });
 
     

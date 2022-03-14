@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Causes;
 
 class CausesSeeder extends Seeder
 {
@@ -13,6 +14,6 @@ class CausesSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Causes::factory()->times(10)->create();
     }
 }

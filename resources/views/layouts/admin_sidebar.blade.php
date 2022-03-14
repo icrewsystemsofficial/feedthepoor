@@ -72,11 +72,12 @@
         </a>
    </li>
 
-   {{--<li class="sidebar-item {{ Nav::isRoute('admin.location.index') }}">
-    <a class="sidebar-link" href="{{ route('admin.location.index') }}">
-    <i class="align-middle" data-feather="package"></i> <span class="align-middle">Causes</span>
+   <li class="sidebar-item {{ Nav::isRoute('admin.causes.index') }}">
+    <a class="sidebar-link" href="{{ route('admin.causes.index') }}">
+    <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Causes</span>
     </a>
-</li> --}}
+</li>
+
     <li class="sidebar-item">
         <a data-bs-target="#faqs" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
             <i class="align-middle" data-feather="help-circle"></i>

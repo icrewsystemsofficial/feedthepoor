@@ -57,7 +57,7 @@
 <div class="row">
     <div class="col-12">
         <h3>
-            Questions <span class="text-muted">></span> Manage
+            FAQs <span class="text-muted">></span> Questions <span class="text-muted">></span> Manage
         </h3>
         <p class="mt-n2">
             <small>
