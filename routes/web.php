@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\LocationController;
-use App\Http\Controllers\admin\UsersController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
