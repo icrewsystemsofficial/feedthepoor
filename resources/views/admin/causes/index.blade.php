@@ -70,8 +70,9 @@
                                 <input type="text" class="form-control" name="per_unit_cost" placeholder="Cost per unit for the cause">
                             </div>
                             <div class="form-group mb-2">
-                                <label for="yield_context" class="form-label">Yield context</label><br>
-                                <button type="button" class="btn btn-primary mb-2" onclick="document.getElementById('yield_context').innerText = 'About %YIELD% underprivledged people will be fed with fresh cooked food'">Load default context</button><br>
+                                <label for="yield_context" class="form-label">Yield context</label>
+                                <p class="text-muted"><small>This conveys details about the number of benfeciaries to the end user.<br> Your input needs to contain the character %YIELD% which signifies the number of people benefiting from the aid</small></p>
+                                <button type="button" class="btn btn-primary mb-2" onclick="document.getElementById('yield_context').innerText = 'About %YIELD% underprivledged people will be fed with fresh cooked food'">Load an example</button><br>
                                 <textarea class="form-control" id="yield_context" name="yield_context" required></textarea>
                             </div>
                             <div class="modal-footer">

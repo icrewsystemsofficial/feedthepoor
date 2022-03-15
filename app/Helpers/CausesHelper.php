@@ -6,7 +6,6 @@ use Exception;
 use App\Models\Causes;
 use Illuminate\Support\Facades\Storage;
 
-
 class CausesHelper {
 
     private static function icons(){
