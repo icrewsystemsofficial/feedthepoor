@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class causes extends Model
+class Causes extends Model
 {
     use HasFactory;
 
@@ -15,6 +15,6 @@ class causes extends Model
         'name',
         'icon',
         'per_unit_cost',
-        'yield_context'        
+        'yield_context'
     ];
 }

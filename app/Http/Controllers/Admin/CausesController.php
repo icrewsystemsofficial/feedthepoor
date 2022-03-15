@@ -45,7 +45,7 @@ class CausesController extends Controller
             'icon' => 'required|string',
             'per_unit_cost' => 'required|numeric',
             'yield_context' => 'required|string',
-        ]);  
+        ]);
         $yield = Str::is('*%YIELD%*',$request->yield_context);
         if (!$yield){
             throw ValidationException::withMessages(['yield_context' => 'Yield context must have a value %YIELD% denoting the number of people benifiting from the donation']);
@@ -64,7 +64,7 @@ class CausesController extends Controller
     public function manage(Request $request, Causes $cause)
     {
         $cause = Causes::find($request->id);
-        return view('admin.causes.manage', compact('cause'));   
+        return view('admin.causes.manage', compact('cause'));
     }
 
     /**
@@ -108,8 +108,8 @@ class CausesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
-    {   
-        $cause = Causes::find($request->id);     
+    {
+        $cause = Causes::find($request->id);
         $cause->delete();
         alert()->success('Yay','Cause "'.$cause->name.'" was successfully deleted');
         return redirect(route('admin.causes.index'));
