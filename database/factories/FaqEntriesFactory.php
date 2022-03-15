@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class FaqEntriesFactory extends Factory
@@ -17,7 +18,7 @@ class FaqEntriesFactory extends Factory
             'category_id' => rand(1, 10),
             'entry_question' => $this->faker->text,
             'entry_answer' => $this->faker->text,
-            'author_name' => $this->faker->word,
+            'author_name' => User::all()->random()->name,
         ];
     }
 }

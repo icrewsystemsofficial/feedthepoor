@@ -14,6 +14,6 @@ class FaqEntriesSeeder extends Seeder
      */
     public function run()
     {
-        FaqEntries::factory()->times(10)->create();        
+        FaqEntries::factory()->times(5)->create();
     }
 }
