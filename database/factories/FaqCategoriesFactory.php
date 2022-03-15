@@ -14,7 +14,7 @@ class FaqCategoriesFactory extends Factory
     public function definition()
     {
         return [
-            'category_name' => $this->faker->word,
+            'category_name' => array('Donation', 'Payments', 'General')[rand(0,2)],
             'category_description' => $this->faker->text,
             'category_status' => rand(0, 1),
         ];

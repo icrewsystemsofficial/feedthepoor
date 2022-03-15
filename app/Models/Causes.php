@@ -15,6 +15,6 @@ class Causes extends Model
         'name',
         'icon',
         'per_unit_cost',
-        'yield_context'        
+        'yield_context'
     ];
 }

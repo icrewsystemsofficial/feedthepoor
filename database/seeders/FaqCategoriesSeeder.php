@@ -14,6 +14,6 @@ class FaqCategoriesSeeder extends Seeder
      */
     public function run()
     {
-        FaqCategories::factory()->times(10)->create();        
+        FaqCategories::factory()->times(3)->create();
     }
 }
