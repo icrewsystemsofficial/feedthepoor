@@ -6,6 +6,7 @@ use App\Models\Causes;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Str;
 
 
 class CausesController extends Controller
@@ -44,8 +45,9 @@ class CausesController extends Controller
             'icon' => 'required|string',
             'per_unit_cost' => 'required|numeric',
             'yield_context' => 'required|string',
-        ]);      
-        if (!str_contains($request->yield_context,"%YIELD%")){
+        ]);  
+        $yield = Str::is('*%YIELD%*',$request->yield_context);
+        if (!$yield){
             throw ValidationException::withMessages(['yield_context' => 'Yield context must have a value %YIELD% denoting the number of people benifiting from the donation']);
         }
         Causes::create($request->all());
