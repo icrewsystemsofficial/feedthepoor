@@ -52,6 +52,17 @@ class UsersController extends Controller
         return(redirect(route('admin.dashboard')));
     }
 
+    public function update_password(Request $req, $id){
+        $user = User::find($id);
+        if($user->password == $req->curr_password){
+            $user->password = $req->new_password;
+            return(redirect(route('admin.dashboard')));
+        }else{
+            alert()->error('OOPS!','The Password you enetered is incorrect');
+            return redirect()->back();
+        }
+    }
+
     public function create(Request $req, $role){
         $user = new User;
         $user->name = $req->input('user_name');

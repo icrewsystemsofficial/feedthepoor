@@ -86,6 +86,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{role}', [UsersController::class, 'index'])->name('index');
         Route::get('{name}/view', [UsersController::class, 'view'])->name('view');
         Route::post('{id}/update', [UsersController::class, 'update'])->name('update');
+        Route::post('{id}/password_update', [UsersController::class, 'update_password'])->name('password_update');
         Route::post('/create/{role}', [UsersController::class, 'create'])->name('create');
         Route::delete('/destroy/{id}', [UsersController::class, 'destroy'])->name('destroy');
 

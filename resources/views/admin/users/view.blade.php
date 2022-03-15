@@ -3,32 +3,55 @@
 
 @section('js')
     <script>
-        function updateProfile(id) {
-            Swal.fire({
-                title: 'Are you sure?',
-                icon: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, Update it!'
-                }).then((result) => {
-
-                Swal.showLoading();
-
-                if (result.isConfirmed) {
-
-
-                    setTimeout(() => {
-                        Swal.fire(
-                            'Alright!',
-                            'Profile has been Updated..',
-                            'success'
-                        );
-
-                        document.getElementById(id).submit();
-                    }, 1500);
+        passwordVerification = (id, password, cpassword) => {
+            if(id === "update_password"){
+                if(password != cpassword){
+                    Swal.fire(
+                        'OOPS!',
+                        'Passwords do not match..',
+                        'error'
+                    );
+                    return false;
+                }else{
+                    return true;
                 }
-            });
+            }else{
+                return true;                
+            }       
+
+        }
+        async function updateProfile(id) {
+            const password = document.getElementById('new_password').value;
+            const cpassword = document.getElementById('cnew_password').value;
+            const response = await passwordVerification(id, password, cpassword);
+            if(response){
+                Swal.fire({
+                    title: 'Are you sure?',
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Update it!'
+                    }).then((result) => {
+
+                    Swal.showLoading();
+
+                    if (result.isConfirmed) {
+
+
+                        setTimeout(() => {
+                            Swal.fire(
+                                'Alright!',
+                                'Profile has been Updated..',
+                                'success'
+                            );
+
+                            document.getElementById(id).submit();
+                        }, 1500);
+                    }
+                });                
+            }
+
         }
     </script>
 @endsection
@@ -141,21 +164,22 @@
                             <div class="card-body">
                                 <h5 class="card-title">Password</h5>
 
-                                <form>
+                                <form method="POST" action="{{ route('admin.users.password_update', $user->id) }}" id="update_password">
+                                    @csrf
                                     <div class="mb-3">
                                         <label class="form-label" for="inputPasswordCurrent">Current password</label>
-                                        <input type="password" class="form-control" id="inputPasswordCurrent">
-                                        <small><a href="#">Forgot your password?</a></small>
+                                        <input name="curr_password" type="password" class="form-control" id="inputPasswordCurrent">
+                                        <small><a href="{{ route('password.request') }}">Forgot your password?</a></small>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="inputPasswordNew">New password</label>
-                                        <input type="password" class="form-control" id="inputPasswordNew">
+                                        <input name="new_password" type="password" class="form-control" id="new_password">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="inputPasswordNew2">Verify password</label>
-                                        <input type="password" class="form-control" id="inputPasswordNew2">
+                                        <input name="cnew_password" type="password" class="form-control" id="cnew_password">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    <button type="button" onclick="updateProfile('update_password')" class="btn btn-primary">Save changes</button>
                                 </form>
 
                             </div>
