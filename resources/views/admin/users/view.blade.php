@@ -88,7 +88,7 @@
                                                 <img id="avatar" alt="Charles Hall" src="{{ asset('adminkit/static/img/avatars/avatar.jpg') }}" class="rounded-circle img-responsive mt-2" width="128" height="128">
                                                 <div class="mt-2">
                                                     <label class="form-label w-100">File input</label>
-                                                    <input id="input_avatar" type="file">
+                                                    <input name="avatar" id="input_avatar" type="file">
                                                 </div>
                                                 <small>For best results, use an image at least 128px by 128px in .jpg format</small>
                                             </div>

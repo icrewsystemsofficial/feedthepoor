@@ -7,6 +7,8 @@ use App\Models\Location;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class UsersController extends Controller
 {
@@ -24,6 +26,22 @@ class UsersController extends Controller
 
     public function update(Request $req, $id){
         $user = User::find($id);
+        if ($req->hasFile('avatar')) {
+
+            $path = $req->file('avatar')->store('public/avatars');
+
+            $url = Storage::url($path);
+
+            $imgpath = str_replace('/storage', storage_path() . '/app/public', $url);
+
+            $img = Image::make($imgpath);
+
+            $img->fit(250);
+
+            $img->save();
+
+            $user->avatar = $url;
+        }
         $user->name = $req->name;
         $user->email = $req->email;
         $user->pan_number = $req->pan_number;
