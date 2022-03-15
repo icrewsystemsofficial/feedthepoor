@@ -70,8 +70,12 @@
                         <form action="{{ route('admin.faq.questions.store') }}" id="new_question_form" method="POST" autocomplete="off">
                             @csrf
                             <div class="form-group mb-2">
-                                <label for="author_name">Author Name</label>
-                                <input type="text" class="form-control" id="author_name" name="author_name" required>
+                                <label for="entry_question">Question</label>
+                                <input type="text" class="form-control" id="entry_question" name="entry_question" required>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="entry_answer">Answer</label>
+                                <textarea name="entry_answer" id="entry_answer" class="form-control" required></textarea>
                             </div>
                             <div class="form-group mb-2">
                                 <label for="category_id" class="form-label">Category</label>
@@ -81,13 +85,9 @@
                                 </select>
                             </div>
                             <div class="form-group mb-2">
-                                <label for="entry_question">Question</label>
-                                <input type="text" class="form-control" id="entry_question" name="entry_question" required>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="entry_answer">Answer</label>
-                                <textarea name="entry_answer" id="entry_answer" class="form-control" required></textarea>
-                            </div>
+                                <label for="author_name">Author Name</label>
+                                <input type="text" class="form-control" id="author_name" name="author_name" required value="{{ auth()->user()->name }}" disabled>
+                            </div>                            
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                 <span onclick="document.getElementById('new_question_form').submit();">
@@ -134,9 +134,12 @@
                                     <td>{{ $entry->category }}</td>
                                     <td>{{ $entry->author_name }}</td>
                                     <td>
-                                        <a href="{{ route('admin.faq.questions.manage', $entry->id) }}" class="btn btn-primary btn-sm">
+                                        <a href="{{ route('admin.faq.questions.manage', $entry->id) }}">
+                                        <button class="btn btn-primary btn-sm" >
+                {{-- {{ (auth()->user()->name != $entry->author_name) ? 'disabled':'' }} -> This will only allow the author of the question to interact with the button --}}
                                             <i class="fa-solid fa-edit"></i> &nbsp;
                                             Edit
+                                        </button>
                                         </a>
                                     </td>
                                 </tr>
