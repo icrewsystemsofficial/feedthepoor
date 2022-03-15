@@ -7,7 +7,7 @@ ______            _ _______ _          _____
 
 An initiative by ICREWSYSTEMS SOFTWARE ENGINEERING LLP
 
-This was last generated on 12 March, 2022
+This was last generated on 15 March, 2022
 
 # CHANGELOG
 
@@ -22,6 +22,10 @@ This was last generated on 12 March, 2022
  - Added Razorpay API and works successfully
  - Donation tracking page has been added. The page is currently static
  - Location management module has been added to the app
+
+### Module
+ - Added Causes module. The causes are tied to donation, a user can donate to a specific cause
+ - Added FAQ module. The module is capable of adding FAQ entries and categories
 
 ### Task
  - Integrated the theme for the app&#039;s authentication pages

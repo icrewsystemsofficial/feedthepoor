@@ -4,7 +4,9 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\CausesController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Admin\FaqController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
@@ -94,6 +96,34 @@ Route::middleware(['auth'])->group(function () {
   });
 });
 
+    Route::prefix('faq')->as('faq.')->group(function() {
+        Route::prefix('questions')->as('questions.')->group(function() {
+            Route::get('/', [FaqController::class, 'index'])->name('index');
+            Route::get('/manage/{id}', [FaqController::class, 'manage'])->name('manage');
+            Route::delete('/destroy/{id}', [FaqController::class, 'destroy'])->name('destroy');
+            Route::put('/update/{id}', [FaqController::class, 'update'])->name('update');
+            Route::post('/store', [FaqController::class, 'store'])->name('store');
+        });
+        Route::prefix('categories')->as('categories.')->group(function() {
+            Route::get('/', [FaqController::class, 'categories'])->name('index');
+            Route::get('/manage/{id}', [FaqController::class, 'category_manage'])->name('manage');
+            Route::delete('/destroy/{id}', [FaqController::class, 'category_destroy'])->name('destroy');
+            Route::put('/update/{id}', [FaqController::class, 'category_update'])->name('update');
+            Route::post('/store', [FaqController::class, 'category_store'])->name('store');
+        });
+    });
+
+    Route::prefix('causes')->as('causes.')->group(function() {
+        Route::get('/', [CausesController::class, 'index'])->name('index');
+        Route::post('/store', [CausesController::class, 'store'])->name('store');
+        Route::put('/update/{id}', [CausesController::class, 'update'])->name('update');
+        Route::get('/manage/{id}', [CausesController::class, 'manage'])->name('manage');
+        Route::delete('/destroy/{id}', [CausesController::class, 'destroy'])->name('destroy');
+    });
+
+    
+    
+});
 
 /*
   ------LARAVEL DEFAULT AUTHENTICATION ROUTES------
