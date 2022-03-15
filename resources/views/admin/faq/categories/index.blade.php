@@ -68,8 +68,8 @@
                             </div>
                             <div class="form-group mb-2">
                                 <div class="form-check form-switch">
-                                    <label class="form-check-label" for="category_status"> Active </label>
-                                    <input class="form-check-input" type="checkbox" id="category_status" name="category_status" checked>
+                                    <label class="form-check-label" for="category_status" id="status_label"> Active </label>
+                                    <input class="form-check-input" type="checkbox" id="category_status" name="category_status" checked onchange="((this).checked) ? $('#status_label').text('Active'):$('#status_label').text('Inactive') ">
                                 </div>
                             </div>                            
                             <div class="modal-footer">
