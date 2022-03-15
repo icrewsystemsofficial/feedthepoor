@@ -71,4 +71,25 @@
         <i class="align-middle" data-feather="map-pin"></i> <span class="align-middle">Locations</span>
         </a>
    </li>
+
+   <li class="sidebar-item {{ Nav::isRoute('admin.causes.index') }}">
+    <a class="sidebar-link" href="{{ route('admin.causes.index') }}">
+    <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Causes</span>
+    </a>
+</li>
+
+    <li class="sidebar-item">
+        <a data-bs-target="#faqs" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
+            <i class="align-middle" data-feather="help-circle"></i>
+            <span class="align-middle">FAQs</span>
+        </a>
+        <ul id="faqs" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('admin.faq.questions.index') }}">Questions</a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('admin.faq.categories.index') }}">Categories</a>
+            </li>
+        </ul>
+    </li>
  </ul>
