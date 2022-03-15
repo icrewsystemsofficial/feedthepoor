@@ -85,9 +85,10 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="text-center">
-                                                <img alt="Charles Hall" src="{{ asset('adminkit/static/img/avatars/avatar.jpg') }}" class="rounded-circle img-responsive mt-2" width="128" height="128">
+                                                <img id="avatar" alt="Charles Hall" src="{{ asset('adminkit/static/img/avatars/avatar.jpg') }}" class="rounded-circle img-responsive mt-2" width="128" height="128">
                                                 <div class="mt-2">
-                                                    <span class="btn btn-primary"><i class="fas fa-upload"></i> Upload</span>
+                                                    <label class="form-label w-100">File input</label>
+                                                    <input id="input_avatar" type="file">
                                                 </div>
                                                 <small>For best results, use an image at least 128px by 128px in .jpg format</small>
                                             </div>
@@ -165,5 +166,16 @@
         </div>
 
     </div>
+    <script>
+        const inpAvatar = document.getElementById('input_avatar');
+        inpAvatar.addEventListener('change', (event) => {
+            let reader = new FileReader();
+            reader.addEventListener('load', () => {
+                const optAvatar = document.getElementById('avatar');
+                optAvatar.src = reader.result
+            })
+            reader.readAsDataURL(event.target.files[0]);
+        })
+    </script>
 </main>
 @endsection
