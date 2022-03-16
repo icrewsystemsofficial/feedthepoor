@@ -48,6 +48,9 @@
         </a>
         <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
             <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('admin.users.index', 'all') }}">All Users</a>
+            </li>
+            <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('admin.users.index', 'superadmin') }}">Administrator</a>
             </li>
             <li class="sidebar-item">
