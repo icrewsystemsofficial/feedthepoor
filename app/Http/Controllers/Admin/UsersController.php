@@ -29,6 +29,13 @@ class UsersController extends Controller
     }
 
     public function update(Request $req, $id){
+        $this->validate($req, [
+            'name' => 'name|required',
+            'email' => 'email|required',
+            'password' => 'password|required',
+            'address' => 'address|required',
+            'location_id' => 'location_id|required',
+        ]);
         $user = User::find($id);
         if ($req->hasFile('avatar')) {
 
@@ -57,6 +64,10 @@ class UsersController extends Controller
     }
 
     public function update_password(Request $req, $id){
+        $this->validate($req, [
+            'curr_password' => 'curr_password|required',
+            'new_password' => 'new_password|required',
+        ]);
         $user = User::find($id);
         if($user->password == $req->curr_password){
             $user->password = $req->new_password;
@@ -68,6 +79,13 @@ class UsersController extends Controller
     }
 
     public function create(Request $req, $role){
+        $this->validate($req, [
+            'name' => 'name|required',
+            'email' => 'email|required',
+            'password' => 'password|required',
+            'address' => 'address|required',
+            'location_id' => 'location_id|required',
+        ]);
         $user = new User;
         $user->name = $req->input('user_name');
         $user->email = $req->input('user_email');
