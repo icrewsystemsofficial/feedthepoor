@@ -93,8 +93,6 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/destroy/{id}', [UsersController::class, 'destroy'])->name('destroy');
 
       });
-  });
-});
 
     Route::prefix('faq')->as('faq.')->group(function() {
         Route::prefix('questions')->as('questions.')->group(function() {
@@ -121,9 +119,9 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/destroy/{id}', [CausesController::class, 'destroy'])->name('destroy');
     });
 
-    
-    
+  });
 });
+    
 
 /*
   ------LARAVEL DEFAULT AUTHENTICATION ROUTES------
