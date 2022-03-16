@@ -108,7 +108,15 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="text-center">
-                                                <img id="avatar" alt="Charles Hall" src="{{ asset('adminkit/static/img/avatars/avatar.jpg') }}" class="rounded-circle img-responsive mt-2" width="128" height="128">
+                                                <img id="avatar" alt="Charles Hall" 
+                                                src="
+                                                    @if(Auth::user()->avatar == null)
+                                                        https://ui-avatars.com/api/?name={{Auth::user()->name}}
+                                                    @else
+                                                        {{ asset(Auth::user()->avatar) }}
+                                                    @endif
+                                                "
+                                                class="rounded-circle img-responsive mt-2" width="128" height="128">
                                                 <div class="mt-2">
                                                     <label class="form-label w-100">File input</label>
                                                     <input name="avatar" id="input_avatar" type="file">
