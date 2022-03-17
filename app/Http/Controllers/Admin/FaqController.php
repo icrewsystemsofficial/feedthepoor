@@ -87,6 +87,9 @@ class FaqController extends Controller
 
     public function category_store(Request $request)
     {
+        if (!isset($request->category_status)) {
+            $request->merge(['category_status' => 'off']);
+        }
         $request->validate([
             'category_name' => 'required|string',
             'category_description' => 'required|string',
@@ -99,7 +102,10 @@ class FaqController extends Controller
     }
 
     public function category_update(Request $request)
-    {
+    {   
+        if (!isset($request->category_status)) {
+            $request->merge(['category_status' => 'off']);
+        }
         $request->validate([
             'category_name' => 'required|string',
             'category_description' => 'required|string',

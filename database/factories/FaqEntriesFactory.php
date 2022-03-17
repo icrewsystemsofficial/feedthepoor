@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\User;
 
 class FaqEntriesFactory extends Factory
 {
@@ -21,15 +20,9 @@ class FaqEntriesFactory extends Factory
         $answer = ["We believe that unless members of the civil society are involved proactively in the process of development, sustainable change will not happen. Believing in this principle of 'Civic Driven Change'.","#feedThePoor is a national level development organization with its welfare projects spread across India.","#feedThePoor was established in the year 2002.","While working in the remote rural areas, #feedThePoor realized that capacities of community based organisations (CBOs) were not adequate to meet expectations of social investors. Under outreach model, #feedThePoor implements the development interventions directly as it requires intensive and professional engagement for a wider and sustained outcome."][$rand];
         return [
             'category_id' => rand(1, 10),
-<<<<<<< HEAD
             'entry_question' => $question,
             'entry_answer' => $answer,
             'author_name' => $user,
-=======
-            'entry_question' => $this->faker->text,
-            'entry_answer' => $this->faker->text,
-            'author_name' => User::all()->random()->name,
->>>>>>> 900be9d4448844d044281f5311a2fbb3f71c1d9c
         ];
     }
 }
