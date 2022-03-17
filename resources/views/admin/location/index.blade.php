@@ -145,10 +145,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php $i = 0; @endphp
                                 @foreach($locations as $location)
                                 <tr>
-                                    <td>{{ ++$i }}</td>
+                                    <td>{{ $location->id }}</td>
                                     <td>{{ $location->location_name }}</td>
                                     <td><a href="">{{ $location->user->name }}</a> (TODO)</td>
                                     <td>
