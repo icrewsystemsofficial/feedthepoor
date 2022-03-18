@@ -73,7 +73,7 @@ class CampaignsController extends Controller
             'campaign_status' => 'required|integer',
         ]);
         $request->merge(['is_campaign_goal_based' => ($request->campaign_end_date) ? true : false]);
-        $request->merge(['campaign_has_cause' => ($request->campaign_causes) ? true : false]);
+        $request->merge(['campaign_has_cause' => ($request->campaign_causes) ? true : false]);        
         if ($request->campaign_poster) {
             $fileInfo = Filepond::field($request->campaign_poster)->getFile();        
             $fileNameWithExt = $fileInfo->getClientOriginalName();
@@ -82,6 +82,10 @@ class CampaignsController extends Controller
             $path = $fileInfo->storeAs('public/campaigns', $filename);
             $request->merge(['campaign_poster' => $path]);
         }
+        else{
+            $request->request->remove('campaign_poster');
+        }
+        //dd($request->all());
         $request->merge(['campaign_location' => json_encode($request->campaign_location)]);
         $request->merge(['campaign_causes' => json_encode($request->campaign_causes)]);
         $campaign = Campaigns::find($request->id);

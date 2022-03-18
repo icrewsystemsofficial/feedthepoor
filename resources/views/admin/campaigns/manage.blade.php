@@ -200,7 +200,7 @@
                     <label for="name" class="form-label">Campaign start date</label>
                     <input type="date" id="campaign_start_date" name="campaign_start_date" class="form-control" value="{{ $campaign->campaign_start_date }}"/>
                 </div>
-                <div class="form-group mb-3 {{ $campaign->is_campaign_goal_based ? '':'hide-date' }}">
+                <div class="form-group mb-3>
                     <label for="name" class="form-label">Campaign end date</label>
                     <input type="date" id="campaign_end_date" name="campaign_end_date" class="form-control" value="{{ $campaign->campaign_end_date }}"/>
                 </div>
@@ -216,7 +216,7 @@
                         <input class="form-check-input" type="checkbox" id="campaign_has_cause" name="campaign_has_cause" {{ $campaign->campaign_has_cause ? 'checked':'' }}>
                     </div>   
                 </div>--}}
-                <div class="form-group mb-3 {{ $campaign->campaign_has_cause ? '':'hide-cause' }}">
+                <div class="form-group mb-3>
                     <label for="campaign_causes" class="form-label">Campaign causes</label><br>
                     <select name="campaign_causes[]" id="campaign_causes" class="form-control" multiple>                        
                         {!! App\Helpers\CampaignsHelper::getCausesForManage($campaign->campaign_causes) !!}
