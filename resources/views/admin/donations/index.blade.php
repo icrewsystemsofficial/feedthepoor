@@ -192,9 +192,13 @@
 <script>
 $(document).ready(function() {
     $('#donor_id').select2({
+        dropdownParent: $("#defaultModalPrimary .modal-body"),
+        dropdownAutoWidth : false,
         placeholder: 'Select donor'
     });
     $('#cause_id').select2({
+        dropdownParent: $("#defaultModalPrimary .modal-body"),
+        dropdownAutoWidth : false,
         placeholder: 'Select cause'
     });
     $('#table').DataTable();
@@ -208,5 +212,14 @@ $(document).ready(function() {
         }
     });
 });
+$(document).on('select2:open', (e) => {
+    const selectId = e.target.id    
+    $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
+        key,
+        value,
+    ){
+        value.focus();
+    })
+})
 </script>
 @endsection

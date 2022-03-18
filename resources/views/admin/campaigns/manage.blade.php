@@ -300,27 +300,15 @@
     //
 </script>
 <script>    
-    $(document).ready(function(){
-        $('#is_campaign_goal_based').on('switchChange.bootstrapSwitch', function (event, state){
-            console.log($(this));
-            if ($(this).prop('checked')) {
-                $('.hide-date').addClass('show-date');
-                $(this).attr('required', true);
-            } else {
-                $(this).attr('required', false);
-                $('.show-date').removeClass('show-date');                
-            }
-        });
-        $('#campaign_has_cause').on('switchChange.bootstrapSwitch', function (event, state){
-            console.log($(this));
-            if ($(this).prop('checked')) {                
-                $('.hide-cause').addClass('show-cause');
-                $(this).attr('required', true);
-            } else {
-                $(this).attr('required', false);
-                $('.show-cause').removeClass('show-cause');                
-            }
-        });
-    });
+    $(document).on('select2:open', (e) => {
+        const selectId = e.target.id
+
+        $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
+            key,
+            value,
+        ){
+            value.focus();
+        })
+    })
 </script>
 @endsection

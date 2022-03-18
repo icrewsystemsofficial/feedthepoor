@@ -8,6 +8,8 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/1.3/bootstrapSwitch.min.js" integrity="sha512-DAc/LqVY2liDbikmJwUS1MSE3pIH0DFprKHZKPcJC7e3TtAOzT55gEMTleegwyuIWgCfOPOM8eLbbvFaG9F/cA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <style>
     .badge-warning {
         background-color: #f0ad4e;
@@ -27,6 +29,15 @@
     }
     .action-btns {
         width: fit-content;
+    }
+    .select2 {
+        width: 100% !important;
+    }
+    .select2-close-mask{
+        z-index: 2099;
+    }
+    .select2-dropdown{
+        z-index: 3051;
     }
 </style>
 @endsection
@@ -80,7 +91,7 @@
                             <div class="form-group mb-2">
                                 <label for="category_id" class="form-label">Category</label>
                                 <select name="category_id" id="category_id" class="form-control">
-                                    <option value="" selected>Select category</option>
+                                    <option></option>
                                     {!! App\Helpers\FaqHelper::getAllCategories()  !!} 
                                 </select>
                             </div>
@@ -156,6 +167,20 @@
     $(document).ready(function() {
         CKEDITOR.replace('entry_answer');
         $('#table').DataTable();
+        $('#category_id').select2({
+            dropdownParent: $("#newQuestionModalPrimary .modal-body"),
+            dropdownAutoWidth : false,
+            placeholder: 'Select a category',
+        });
+    });
+    $(document).on('select2:open', (e) => {
+        const selectId = e.target.id    
+        $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
+            key,
+            value,
+        ){
+            value.focus();
+        })
     });
 </script>
 @endsection

@@ -219,9 +219,6 @@
             $(val).removeClass('hide-badge');
             $(val).addClass('show-badge');            
         });
-        $('#donor_id').select2({
-        placeholder: 'Select donor'
-        });
         $('#cause_id').select2({
             placeholder: 'Select cause'
         });
@@ -235,6 +232,16 @@
             }
         });
 
+    });
+    $(document).on('select2:open', (e) => {
+        const selectId = e.target.id
+
+        $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
+            key,
+            value,
+        ){
+            value.focus();
+        })
     });
     //
 </script>

@@ -61,7 +61,7 @@
                             <div class="form-group mb-3">
                                 <label for="name" class="form-label">Icon &nbsp;&nbsp;</label><i class="" id="iconPreview" style="font-size: 30px;"></i><br>
                                 <select class="form-control" id="icon" name="icon" style="width: 100%;">
-                                    <option value="">Display icon for the cause</option>
+                                    <option></option>
                                     {!! App\Helpers\CausesHelper::getIcons() !!}
                                 </select>
                             </div>                     
@@ -140,13 +140,24 @@
     $(document).ready(function() {
         let icon = $('#icon');
         icon.select2({
-            dropdownParent: $("#defaultModalPrimary"),
+            dropdownParent: $("#defaultModalPrimary .modal-body"),
             dropdownAutoWidth : false,
+            placeholder: "Choose a display icon",
             templateResult : showIcon
         });
         icon.on('change',function (){
             $('#iconPreview')[0].className = "fas fa-"+$(this)[0].value;
         });
+    });
+    $(document).on('select2:open', (e) => {
+        const selectId = e.target.id
+
+        $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
+            key,
+            value,
+        ){
+            value.focus();
+        })
     });
 </script>
 @endsection
