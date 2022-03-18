@@ -46,15 +46,18 @@ class DonationsController extends Controller
 
     public function update(Request $request){
         $this->validate($request, [
-            'donor_id' => 'required|integer',
+            'donor_name' => 'required|string',
             'donation_amount' => 'required|numeric',
             'cause_id' => 'required|integer',
             'donation_status' => 'required|integer',
             'payment_method' => 'required|integer',
             'razorpay_payment_id' => 'required_if:payment_method,4',
         ]);
-        $donor_name = User::find($request->donor_id)->name;
+        $donor = User::whereRaw('LOWER(`name`) LIKE ?', [strtolower($request->donor_name)])->first();        
         $cause_name = Causes::find($request->cause_id)->name;
+        $donor_name = $donor ? $donor->name : $request->donor_name;
+        $donor_id = $donor ? $donor->id : null;
+        $donor_id ? $request->merge(['donor_id' => $donor_id]) : null;        
         $donation_in_words = Donations::Show_Amount_In_Words($request->donation_amount);
         $request->merge(['donor_name' => $donor_name, 'cause_name' => $cause_name, 'donation_in_words' => $donation_in_words]);
         event(new AddDonation($request->all(), 0, $request->id));//1-> add record, 0-> update record

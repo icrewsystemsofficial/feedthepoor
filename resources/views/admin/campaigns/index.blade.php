@@ -129,17 +129,17 @@
                                 <label for="campaign_status">Expected campaign amount (in INR)</label>
                                 <input type="number" class="form-control" id="campaign_goal_amount" name="campaign_goal_amount" placeholder="Enter campaign goal amount" required>
                             </div>                               
-                            <div class="form-group mb-3">
+                            {{--<div class="form-group mb-3">
                                 <label for="campaign_description">Does the campaign have a goal ?</label>
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" id="is_campaign_goal_based" name="is_campaign_goal_based" onchange="toggleFunct(this);">
                                 </div>                                
-                            </div>                            
+                            </div>       --}}                     
                             <div class="form-group mb-3">
                                 <label for="campaign_start_date">Start date</label>
                                 <input type="date" class="form-control" id="campaign_start_date" name="campaign_start_date" required>
                             </div>
-                            <div class="form-group mb-3 hide-date">
+                            <div class="form-group mb-3">
                                 <label for="campaign_end_date">End date</label>
                                 <input type="date" class="form-control" id="campaign_end_date" name="campaign_end_date">
                             </div>
@@ -151,13 +151,13 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group mb-3">
+                            {{--<div class="form-group mb-3">
                                 <label for="campaign_description">Does the campaign have a cause ?</label>
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" id="campaign_has_cause" name="campaign_has_cause" onchange="toggleFunct2(this);">
                                 </div>                                
-                            </div>
-                            <div class="form-group mb-3 hide-cause">
+                            </div>--}}
+                            <div class="form-group mb-3">
                                 <label for="campaign_location">Campaign causes</label><br>
                                 <select class="form-control" id="campaign_causes" name="campaign_causes[]" multiple style="width: 100%;">                                                                                                        
                                     @foreach($causes as $cause)                                        
@@ -251,7 +251,7 @@
 <script>
     $("#newCampaignModalPrimary").css('position', 'fixed');
     $(document).ready(function() {
-        $('#campaign_has_cause').bootstrapSwitch({
+        /*$('#campaign_has_cause').bootstrapSwitch({
             onText: 'Yes',
             offText: 'No',
             onColor: 'primary',
@@ -262,13 +262,15 @@
             offText: 'No',
             onColor: 'primary',
             offColor: 'danger',
-        });
+        });*/
         $('#table').DataTable();
         const picker = new Litepicker({ 
-            element: document.getElementById('campaign_start_date') 
+            element: document.getElementById('campaign_start_date'),
+            resetButton: true,
         });
         const picker2 = new Litepicker({ 
-            element: document.getElementById('campaign_end_date') 
+            element: document.getElementById('campaign_end_date'),
+            resetButton: true, 
         });
         $('#campaign_location').select2({
             multiple: true,

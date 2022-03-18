@@ -190,12 +190,12 @@
                     <label for="campaign_goal_amount" class="form-label">Expected campaign amount (in INR)</label>
                     <input type="number" id="campaign_goal_amount" name="campaign_goal_amount" class="form-control" value="{{ $campaign->campaign_goal_amount }}"/>
                 </div>            
-                <div class="form-group mb-3">
+                {{--<div class="form-group mb-3">
                     <label for="is_campaign_based_on_goal" class="form-label">Does the campaign have a goal?</label>
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="is_campaign_goal_based" name="is_campaign_goal_based" {{ $campaign->is_campaign_goal_based ? 'checked':'' }}>
                     </div>   
-                </div>    
+                </div> --}}
                 <div class="form-group mb-3">
                     <label for="name" class="form-label">Campaign start date</label>
                     <input type="date" id="campaign_start_date" name="campaign_start_date" class="form-control" value="{{ $campaign->campaign_start_date }}"/>
@@ -210,12 +210,12 @@
                         {!! App\Helpers\CampaignsHelper::getLocationsForManage($campaign->campaign_location) !!}
                     </select>
                 </div>
-                <div class="form-group mb-3">
+                {{--<div class="form-group mb-3">
                     <label for="campaign_has_cause" class="form-label">Does the campaign have a cause?</label>
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="campaign_has_cause" name="campaign_has_cause" {{ $campaign->campaign_has_cause ? 'checked':'' }}>
                     </div>   
-                </div>
+                </div>--}}
                 <div class="form-group mb-3 {{ $campaign->campaign_has_cause ? '':'hide-cause' }}">
                     <label for="campaign_causes" class="form-label">Campaign causes</label><br>
                     <select name="campaign_causes[]" id="campaign_causes" class="form-control" multiple>                        
@@ -226,7 +226,7 @@
                     <label for="status" class="form-label">Campaign status&nbsp;&nbsp;</label>
                     <div class="mb-2">{!! App\Helpers\CampaignsHelper::getStatusBadges($campaign->campaign_status) !!}</div>
                     <select class="form-control" id="status" name="campaign_status">
-                        {!! App\Helpers\CampaignsHelper::getStatusesForManage($campaign->campaign_status) !!}
+                        {!! App\Helpers\CampaignsHelper::getAllStatuses($campaign->campaign_status) !!}
                     </select>
                 </div>
                 <div class="form-group mb-3">
@@ -248,7 +248,7 @@
             $(val).removeClass('hide-badge');
             $(val).addClass('show-badge');            
         });
-        $('#campaign_has_cause').bootstrapSwitch({
+        /*$('#campaign_has_cause').bootstrapSwitch({
             onText: 'Yes',
             offText: 'No',
             onColor: 'primary',
@@ -259,12 +259,14 @@
             offText: 'No',
             onColor: 'primary',
             offColor: 'danger',
-        });
+        });*/
         const picker = new Litepicker({ 
-            element: document.getElementById('campaign_start_date') 
+            element: document.getElementById('campaign_start_date'),
+            resetButton: true,
         });
         const picker2 = new Litepicker({ 
-            element: document.getElementById('campaign_end_date') 
+            element: document.getElementById('campaign_end_date'),
+            resetButton: true, 
         });
         $('#campaign_location').select2({
             multiple: true,

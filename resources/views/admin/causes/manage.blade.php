@@ -121,7 +121,7 @@
                 <div class="form-group mb-3">
                     <label for="name" class="form-label">Icon &nbsp;&nbsp;</label><i class="" id="iconPreview" style="font-size: 30px;"></i><br>
                     <select class="form-control" id="icon" name="icon" style="width: 100%;">
-                        {!! App\Helpers\CausesHelper::getIconsForManage($cause->icon) !!}
+                        {!! App\Helpers\CausesHelper::getIcons($cause->icon) !!}
                     </select>
                 </div>       
                 <div class="form-group mb-2">

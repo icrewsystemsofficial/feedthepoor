@@ -170,10 +170,8 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group mb-3">
-                    <label for="name" class="form-label">Donor</label>
-                    <select name="donor_id" id="donor_id" class="form-control select2">
-                        {!! App\Helpers\DonationsHelper::getAllDonors($donation->donor_id) !!}
-                    </select>
+                    <label for="name" class="form-label">Donor</label>                    
+                    <input type="text" class="form-control" id="donor_name" name="donor_name" value="{{ $donation->donor_name }}">
                 </div>                
                 <div class="form-group mb-3">
                     <label for="name" class="form-label">Donation amount (in INR)</label>

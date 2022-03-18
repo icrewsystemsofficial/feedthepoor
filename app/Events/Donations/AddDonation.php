@@ -13,7 +13,7 @@ use Illuminate\Queue\SerializesModels;
 class AddDonation{
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $donation;
+    
 
     /**
      * Create a new event instance.
