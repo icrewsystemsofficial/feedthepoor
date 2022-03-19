@@ -16,15 +16,19 @@ class CampaignsFactory extends Factory
      */
     public function definition()
     {
-        $location_names = [];
-        $locations = Location::inRandomOrder()->limit(5)->get();
-        foreach ($locations as $location) {
-            $location_names[] = $location->location_name;
+        $locations = [];
+        $locations_list = Location::inRandomOrder()->limit(3)->get();
+        foreach ($locations_list as $location) {
+            if (!in_array($location->id, $locations)) {
+                $locations[] = $location->id;
+            }
         }
-        $causes = Causes::inRandomOrder()->limit(5)->get();
-        $cause_names = [];
-        foreach ($causes as $cause) {
-            $cause_names[] = $cause->name;
+        $causes_list = Causes::inRandomOrder()->limit(3)->get();
+        $causes = [];
+        foreach ($causes_list as $cause) {
+            if (!in_array($cause->id, $causes)) {
+                $cause_names[] = $cause->id;
+            }
         }
         $cause_bool = rand(0, 1);
         $is_goal = rand(0, 1);
@@ -36,9 +40,9 @@ class CampaignsFactory extends Factory
             'campaign_goal_amount' => $this->faker->numberBetween(1, 100),
             'campaign_start_date' => $this->faker->date,
             'campaign_end_date' => ($is_goal) ? $this->faker->date : null,
-            'campaign_location' => json_encode($location_names),
+            'campaign_location' => json_encode($locations),
             'campaign_has_cause' => $cause_bool,
-            'campaign_causes' => ($cause_bool) ? json_encode($cause_names) : json_encode([]),
+            'campaign_causes' => ($cause_bool) ? json_encode($causes) : json_encode([]),
             'campaign_status' => $this->faker->numberBetween(0, 1),            
         ];
     }

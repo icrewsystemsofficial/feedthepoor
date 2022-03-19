@@ -118,11 +118,11 @@
 <div class="row">
     <div class="col-12">
         <h3>
-            Locations <span class="text-muted">></span> Manage
+            Campaigns <span class="text-muted">></span> Manage
         </h3>
         <p class="mt-n2">
             <small>
-                Edit/delete existing locations
+                Edit/delete existing campaigns
             </small>
         </p>
     </div>
@@ -184,7 +184,7 @@
                 <div class="form-group mb-3">
                     <label for="campaign_poster" class="form-label">Campaign poster</label>                    
                     <input type="file" id="campaign_poster" name="campaign_poster" class="form-control mb-3"/>
-                    <a href="{{ $campaign->campaign_poster }}" target="_blank" class="btn btn-primary"><i class="fa-solid fa-eye"></i> View poster</a>
+                    <a href="/storage/{{ $campaign->campaign_poster }}" target="_blank" class="btn btn-primary"><i class="fa-solid fa-eye"></i> View poster</a>
                 </div>
                 <div class="form-group mb-3">
                     <label for="campaign_goal_amount" class="form-label">Expected campaign amount (in INR)</label>
@@ -283,7 +283,7 @@
             name: 'campaign_poster',
             required: true,
             server: {
-                url: '/filepond',
+                url: '/admin/campaigns/upload',
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'

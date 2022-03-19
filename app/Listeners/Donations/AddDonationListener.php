@@ -28,7 +28,15 @@ class AddDonationListener
     public function handle(AddDonation $event)
     {   
         $id = $event->id;
-        ($event->action) ? Donations::create($event->donation) : Donations::find($id)->update($event->donation); 
+        $user = auth()->user()->name;
+        if ($event->action){
+            Donations::create($event->donation);
+            activity()->log('Added a new donation (#'.$id.') by '.$user);
+        } 
+        else{
+            Donations::find($id)->update($event->donation); 
+            activity()->log('Updated a donation (#'.$id.') by '.$user);
+        }
 
         //1-> add record, 0-> update record
         

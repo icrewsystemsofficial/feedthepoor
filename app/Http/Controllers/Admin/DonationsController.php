@@ -33,7 +33,7 @@ class DonationsController extends Controller
         $cause_name = Causes::find($request->cause_id)->name;
         $donation_in_words = Donations::Show_Amount_In_Words($request->donation_amount);
         $request->merge(['donor_name' => $donor_name, 'cause_name' => $cause_name, 'donation_in_words' => $donation_in_words]);                
-        event(new AddDonation($request->all(), 1));//1-> add record, 0-> update record
+        event(new AddDonation($request->all(), 1));//1-> add record, 0-> update record        
         alert()->success('Yay','Donation was successfully created');
         return redirect()->route('admin.donations.index');
     }
@@ -69,6 +69,8 @@ class DonationsController extends Controller
     {
         $donation = Donations::find($request->id);
         $donation->delete();
+        $user = auth()->user()->name;
+        activity()->log('Deleted a donation (#'.$request->id.') by '.$user);
         alert()->success('Yay','Donation was successfully deleted');
         return redirect()->route('admin.donations.index');
     }

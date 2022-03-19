@@ -147,7 +147,7 @@
                                 <label for="campaign_location">Campaign locations</label><br>
                                 <select class="form-control" id="campaign_location" name="campaign_location[]" multiple required style="width: 100%;">                                                                                                        
                                     @foreach($locations as $location)                                        
-                                        <option value="{{ $location }}">{{ $location }}</option>
+                                        <option value="{{ $location->id }}">{{ $location->location_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -161,7 +161,7 @@
                                 <label for="campaign_location">Campaign causes</label><br>
                                 <select class="form-control" id="campaign_causes" name="campaign_causes[]" multiple style="width: 100%;">                                                                                                        
                                     @foreach($causes as $cause)                                        
-                                        <option value="{{ $cause }}">{{ $cause }}</option>
+                                        <option value="{{ $cause->id }}">{{ $cause->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -287,8 +287,7 @@
             name: 'campaign_poster',
             required: true,
             server: {
-                url: '/filepond',
-                method: 'POST',
+                url: '/admin/campaigns/upload',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 }

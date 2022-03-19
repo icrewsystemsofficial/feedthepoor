@@ -104,10 +104,10 @@ class CampaignsHelper {
         $html = '';
         foreach($all_statuses as $id => $status) {
             if ($status_id == $id) {
-                $html .= "<option value='".$id."' selected>".$status['text']."</option>";
+                $html .= "<option value=".$id." selected>".$status['text']."</option>";
             }
             else {
-                $html .= "<option value='".$id."'>".$status['text']."</option>";
+                $html .= "<option value=".$id.">".$status['text']."</option>";
             }
         }
         return $html;
@@ -119,15 +119,14 @@ class CampaignsHelper {
 
     public static function getLocationsForManage($arr){
         $arr = json_decode($arr);
-        $locations = Location::all();
+        $locations = Location::groupBy('id')->get(['id','location_name']);
         $html = '';   
         foreach($locations as $location) {
-            $html .= "<option value='".$location->location_name."'>".$location->location_name."</option>";
-            if (in_array($location->location_name, $arr)) {
-                $html .= "<option value='".$location->location_name."' selected>".$location->location_name."</option>";
+            if (in_array($location->id, $arr)) {
+                $html .= "<option value=".$location->id." selected>".$location->location_name."</option>";
             }
             else {
-                $html .= "<option value='".$location->location_name."'>".$location->location_name."</option>";
+                $html .= "<option value=".$location->id.">".$location->location_name."</option>";
             }
         }
         return $html;
@@ -135,14 +134,14 @@ class CampaignsHelper {
 
     public static function getCausesForManage($arr){
         $arr = json_decode($arr);
-        $causes = Causes::all();
+        $causes = Causes::groupBy('id')->get(['id','name']);
         $html = '';        
         foreach($causes as $cause) {
-            if (in_array($cause->name, $arr)) {
-                $html .= "<option value='".$cause->name."' selected>".$cause->name."</option>";
+            if (in_array($cause->id, $arr)) {
+                $html .= "<option value=".$cause->id." selected>".$cause->name."</option>";
             }
             else {
-                $html .= "<option value='".$cause->name."'>".$cause->name."</option>";
+                $html .= "<option value=".$cause->id.">".$cause->name."</option>";
             }
         }
         return $html;

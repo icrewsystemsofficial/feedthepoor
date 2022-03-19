@@ -15,9 +15,9 @@
         "laravel/tinker": "^2.5",
         "markwalet/laravel-changelog": "^1.6",
         "orangehill/iseed": "^3.0",
-        "rahulhaque/laravel-filepond": "^1.6",
         "razorpay/razorpay": "2.*",
-        "realrashid/sweet-alert": "^5.0"
+        "realrashid/sweet-alert": "^5.0",
+        "spatie/laravel-activitylog": "^4.4"
     },
     "require-dev": {
         "brianium/paratest": "^6.4",
