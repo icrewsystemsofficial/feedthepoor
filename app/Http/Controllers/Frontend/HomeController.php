@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use Faker\Factory;
 use App\Models\Location;
+use App\Models\Causes;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\API\RazorpayAPIController;
@@ -41,6 +42,8 @@ class HomeController extends Controller
         $donation_random_images = json_encode($images);
         $donation_names = json_encode($names);
 
+       
+
         return view('frontend.index', [
             'donation_images' => $donation_random_images,
             'donation_names' => $donation_names,
@@ -64,7 +67,8 @@ class HomeController extends Controller
      * @return void
      */
     public function donate() {
-        return view('frontend.donation.index');
+        $donation_causes = Causes::all();
+        return view('frontend.donation.index', ['donation_causes'=>$donation_causes]);
     }
 
     /**

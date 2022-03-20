@@ -16,7 +16,7 @@ class CausesFactory extends Factory
     public function definition()
     {
 
-        $random = array("wheelchair","box","tshirt")[rand(0,2)];
+        $random = array("Wheelchair","Stationary","Sweater", "Prosthetic leg","Shoes", "Dry Ration","Prosthetic arm", "Food")[rand(0,2)];
 
         return [
             "name" => Str::ucfirst($random),
