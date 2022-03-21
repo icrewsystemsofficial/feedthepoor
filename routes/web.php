@@ -86,6 +86,15 @@ Route::middleware(['auth'])->group(function () {
       });
       Route::prefix('users')->as('users.')->group(function() {
         Route::get('/{role}', [UsersController::class, 'index'])->name('index');
+
+
+        // Dinesh, passing a name, which will have spaces is not good in
+        // routes. Irrespective, this is a profile module. Which should be shown in /profile, but you've
+        // added the route in user/{name}/view, which means it's a part of user module. Please fix it by
+        // putting the profile page in appropriate routes. Once done, clear this comment.
+
+        // - Leonard, 22 March 2022.
+
         Route::get('{name}/view', [UsersController::class, 'view'])->name('view');
         Route::post('{id}/update', [UsersController::class, 'update'])->name('update');
         Route::post('{id}/password_update', [UsersController::class, 'update_password'])->name('password_update');
@@ -121,7 +130,7 @@ Route::middleware(['auth'])->group(function () {
 
   });
 });
-    
+
 
 /*
   ------LARAVEL DEFAULT AUTHENTICATION ROUTES------
