@@ -7,7 +7,8 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/1.3/bootstrapSwitch.min.js" integrity="sha512-DAc/LqVY2liDbikmJwUS1MSE3pIH0DFprKHZKPcJC7e3TtAOzT55gEMTleegwyuIWgCfOPOM8eLbbvFaG9F/cA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/js/bootstrap-switch.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/css/bootstrap-switch.min.css" rel="stylesheet">
 <style>
     .badge-warning {
         background-color: #f0ad4e;
@@ -27,6 +28,9 @@
     }
     .action-btns {
         width: fit-content;
+    }
+    .form-check {
+        padding-left: 0px !important;
     }
 </style>
 @endsection
@@ -68,7 +72,6 @@
                             </div>
                             <div class="form-group mb-2">
                                 <div class="form-check form-switch">
-                                    <label class="form-check-label" for="category_status"> Active </label>
                                     <input class="form-check-input" type="checkbox" id="category_status" name="category_status" checked>
                                 </div>
                             </div>                            
@@ -155,6 +158,12 @@
 <script>
     $(document).ready(function() {
         $('#table2').DataTable();
+        $('#category_status').bootstrapSwitch({
+            onText: 'Active',
+            offText: 'Inactive',
+            onColor: 'primary',
+            offColor: 'danger',
+        });
     });
 </script>
 @endsection
