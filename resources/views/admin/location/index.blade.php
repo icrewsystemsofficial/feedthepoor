@@ -5,11 +5,8 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-<script defer>
-    $(document).ready(function() {
-        $('#table').DataTable();
-    } );
-</script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <style>
     .badge-warning {
         background-color: #f0ad4e;
@@ -27,6 +24,15 @@
         background-color: #5bc0de;
         color: #fff;
     }
+    .select2 {
+        width: 100% !important;
+    }
+    .select2-close-mask{
+        z-index: 2099;
+    }
+    .select2-dropdown{
+        z-index: 3051;
+    } 
 </style>
 @endsection
 
@@ -59,7 +65,7 @@
             <i class="fa-solid fa-plus"></i> &nbsp; Add new Location
         </button>
 
-        <div class="modal fade" id="defaultModalPrimary" tabindex="-1" aria-hidden="true" style="display: none;">
+        <div class="modal fade" id="defaultModalPrimary" tabindex="-1" aria-hidden="true" style="display: none;" data-focus="false">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -86,20 +92,20 @@
                                 <input type="number" class="form-control" id="pin_code" name="location_pin_code" value="" placeholder="Enter PIN code of location">
                             </div>
                             <div class="form-group mb-2">
+                                <label for="manager_id" class="form-label">Manager</label>
+                                <select name="location_manager_id" id="manager_id" class="form-control">
+                                    <option></option>
+                                    {!! App\Helpers\LocationHelper::getAllManagers() !!}
+                                </select>
+                            </div>
+                            <div class="form-group mb-2">
                                 <label for="latitude" class="form-label">Latitude</label>
                                 <input type="text" class="form-control" id="latitude" name="location_latitude" value="" placeholder="Enter latitude of location">
                             </div>
                             <div class="form-group mb-2">
                                 <label for="longitude" class="form-label">Longitude</label>
                                 <input type="text" class="form-control" id="longitude" name="location_longitude" value="" placeholder="Enter longitude of location">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="manager_id" class="form-label">Manager</label>
-                                <select name="location_manager_id" id="manager_id" class="form-control">
-                                    <option value="" selected>Select a manager</option>
-                                    {!! App\Helpers\LocationHelper::getAllManagers() !!}
-                                </select>
-                            </div>
+                            </div>                            
                             <div class="form-group mb-2">
                                 <label for="status" class="form-label">Status</label>
                                 <select class="form-control" id="status" name="location_status">
@@ -145,10 +151,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php $i = 0; @endphp
                                 @foreach($locations as $location)
                                 <tr>
-                                    <td>{{ ++$i }}</td>
+                                    <td>{{ $location->id }}</td>
                                     <td>{{ $location->location_name }}</td>
                                     <td><a href="">{{ $location->user->name }}</a> (TODO)</td>
                                     <td>
@@ -171,4 +176,24 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('#table').DataTable();
+        $('#manager_id').select2({
+            dropdownParent: $("#defaultModalPrimary .modal-body"),
+            dropdownAutoWidth : false,
+            placeholder: 'Select a manager'
+        });
+    });
+$(document).on('select2:open', (e) => {
+    const selectId = e.target.id
+
+    $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
+        key,
+        value,
+    ){
+        value.focus();
+    })
+})
+</script>
 @endsection

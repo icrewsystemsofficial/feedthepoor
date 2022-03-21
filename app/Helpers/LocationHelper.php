@@ -91,11 +91,16 @@ class LocationHelper {
         return $html;
     }
 
-    public static function getAllStatuses() {
+    public static function getAllStatuses($status_id = null) {
         $all_statuses = self::status();
         $html = '';
         foreach($all_statuses as $id => $status) {
-            $html .= "<option value='".$id."'>".$status['text']."</option>";
+            if ($id == $status_id) {
+                $html .= "<option value='".$id."' selected>".$status['text']."</option>";
+            }
+            else {
+                $html .= "<option value='".$id."'>".$status['text']."</option>";
+            }
         }
         return $html;
     }
@@ -122,18 +127,20 @@ class LocationHelper {
         return $html;
     }
 
-    public static function getStatusesForManage($status_id){
+    public static function getStatusBadges($id){
+
         $all_statuses = self::status();
-        $html = '';        
-        foreach($all_statuses as $id => $status) {
-            if ($id == $status_id) {
-                $html .= "<option value='".$id."' selected>".$status['text']."</option>";
+        $html = '';
+        foreach($all_statuses as $sid => $status){
+            if ($sid == $id) {
+                $html .= "<span id='".explode(' ',$status['text'])[0]."' class='show-badge badge badge-".$status['color']."'><i class='".$status['icon']." me-1'></i>".$status['text']."</span>";
             }
             else {
-                $html .= "<option value='".$id."'>".$status['text']."</option>";
+                $html .= "<span id='".explode(' ',$status['text'])[0]."' class='hide-badge badge badge-".$status['color']."'><i class='".$status['icon']." me-1'></i>".$status['text']."</span>";
             }
         }
         return $html;
+
     }
 
 }
