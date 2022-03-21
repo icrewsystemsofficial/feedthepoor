@@ -1,19 +1,41 @@
 @extends('layouts.admin')
 
 @section('css')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <style>
+    .badge-warning {
+        background-color: #f0ad4e;
+        color: #fff;
+    }
+    .badge-success {
+        background-color: #5cb85c;
+        color: #fff;
+    }
     .badge-danger {
         background-color: #d9534f;
         color: #fff;
-        border-color: transparent;
     }
-    .badge-danger:hover {
-        background-color: #d9534f;
+    .badge-info {
+        background-color: #5bc0de;
         color: #fff;
-        border-color: transparent;
+    }
+    .action-btns {
+        width: fit-content;
     }
     .delete-modal {
         font-size: 1.2rem !important;
+    }
+    .hide-badge {
+        display: none;
+    }
+    .show-badge {
+        display: block;
+        width: fit-content;
+    }
+    .select2 {
+        width: 100%;
     }
 </style>
 @endsection
@@ -151,8 +173,9 @@
                 </div>
                 <div class="form-group mb-2">
                     <label for="status" class="form-label">Status</label>
-                    <select class="form-control" id="status" name="location_status">
-                        {!! App\Helpers\LocationHelper::getStatusesForManage($location->location_status) !!}
+                    <div class="mb-2">{!! App\Helpers\LocationHelper::getStatusBadges($location->location_status) !!}</div>
+                    <select class="form-control" id="location_status" name="location_status">
+                        {!! App\Helpers\LocationHelper::getAllStatuses($location->location_status) !!}
                     </select>
                 </div>
                 <div class="form-group mb-2">
@@ -165,4 +188,17 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(()=>{
+        $('#location_status').on('change',()=>{
+            let val = '#'+$('#location_status option:selected').text().split(' ')[0];
+            console.log(val);
+            $('.show-badge').addClass('hide-badge');
+            $('.show-badge').removeClass('show-badge');            
+            $(val).removeClass('hide-badge');
+            $(val).addClass('show-badge');            
+        });
+        $('#manager_id').select2();
+    });
+</script>
 @endsection

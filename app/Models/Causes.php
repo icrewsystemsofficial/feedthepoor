@@ -9,7 +9,7 @@ class Causes extends Model
 {
     use HasFactory;
 
-    protected $table = 'Causes';
+    protected $table = 'causes';
 
     protected $fillable = [
         'name',

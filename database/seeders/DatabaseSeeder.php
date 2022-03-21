@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FaqCategoriesSeeder::class);
         $this->call(FaqEntriesSeeder::class);
         $this->call(CausesSeeder::class);
+        $this->call(CampaignsSeeder::class);
+        $this->call(DonationsSeeder::class);
     }
 }
