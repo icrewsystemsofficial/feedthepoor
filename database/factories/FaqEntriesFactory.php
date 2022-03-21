@@ -15,7 +15,7 @@ class FaqEntriesFactory extends Factory
     public function definition()
     {
         return [
-            'category_id' => rand(1, 10),
+            'category_id' => rand(1, 3),
             'entry_question' => $this->faker->text,
             'entry_answer' => $this->faker->text,
             'author_name' => User::all()->random()->name,

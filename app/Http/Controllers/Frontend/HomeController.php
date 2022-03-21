@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Frontend;
 use Faker\Factory;
 use App\Models\Location;
 use App\Models\Causes;
+use App\Models\FaqCategories;
+use App\Models\FaqEntries;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\API\RazorpayAPIController;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -118,4 +121,12 @@ class HomeController extends Controller
         ]);
     }
 
+
+    public function faq(){
+        $faq_categories = DB::table('faq_categories')->where('category_status', 1)->get();
+        $faq_entries =   FaqEntries::get();
+        // dd($faq_entries);
+        // dd($faq_categories);
+        return view('frontend.faq.index',['faq_entries'=>$faq_entries],['faq_categories'=>$faq_categories]);
+    }
 }

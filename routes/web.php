@@ -48,7 +48,7 @@ Route::name('frontend.')->group(function () {
 
     Route::get('/about', [HomeController::class, 'about'])->name('about');
     Route::get('/volunteer', [HomeController::class, 'index'])->name('volunteer');
-    Route::get('/faq', [HomeController::class, 'index'])->name('faq');
+    Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
     Route::get('/contact', [HomeController::class, 'index'])->name('contact');
 });
 

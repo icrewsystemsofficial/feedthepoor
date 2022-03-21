@@ -103,7 +103,7 @@
                 <span class="h5">Support</span>
                 <ul class="footer-links mt-2">
                     <li>
-                        <a href="#">F.A.Q</a>
+                        <a href="{{route('frontend.faq')}}">F.A.Q</a>
                     </li>
                     <li>
                         <a href="#">Contact Us</a>
