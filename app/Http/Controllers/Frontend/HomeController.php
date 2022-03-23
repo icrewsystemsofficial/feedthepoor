@@ -58,6 +58,9 @@ class HomeController extends Controller
         ]);
     }
 
+    public function volunteer () {
+        return view('frontend.volunteer.index');
+    }
     /**
      * donate - the page where users can donate money.
      *

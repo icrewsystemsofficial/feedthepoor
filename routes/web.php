@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::name('frontend.')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('index');    
+    Route::get('/', [HomeController::class, 'index'])->name('index');
 
 
     // DYNAMIC PAGES
@@ -124,9 +124,9 @@ Route::prefix('admin')->as('admin.')->group(function() {
         Route::post('/store', [DonationsController::class, 'store'])->name('store');
         Route::get('/manage/{id}', [DonationsController::class, 'manage'])->name('manage');
         Route::delete('/destroy/{id}', [DonationsController::class, 'destroy'])->name('destroy');
-        Route::put('/update/{id}', [DonationsController::class, 'update'])->name('update');        
+        Route::put('/update/{id}', [DonationsController::class, 'update'])->name('update');
     });
-    
+
 });
 
 /*
