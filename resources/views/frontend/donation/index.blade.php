@@ -11,7 +11,6 @@
     05 March 2022.
 */
 
-
 $amounts = array(
     50,
     100,
@@ -21,19 +20,6 @@ $amounts = array(
     7000,
     10000,
 );
-
-$donation_types = App\Models\Causes ::all();
-
-
-// Argh, this is an uneccesary move ig. Will be fixed when sending data from controller.
-
-$donation_types_cleaned = array();
-foreach($donation_types as $donation_type) {
-    echo $donation_type->id;
-    $donation_types_cleaned[$donation_type->name] = $donation_type;
-}
-
-
 @endphp
 
 <script>
@@ -82,7 +68,7 @@ foreach($donation_types as $donation_type) {
                 checkbox_terms_and_conditions: false,
             },
 
-            donationTypesArray: @json($donation_types_cleaned),
+            donationTypesArray: @json($donation_types), // Converting php array to json. Thanks to Laravel
 
 
             // FUNCTIONS START!
@@ -253,7 +239,7 @@ foreach($donation_types as $donation_type) {
                 this.form.page_2 = !this.form.page_2;
             },
 
-            
+
             goback() {
                 this.form.page_1 = !this.form.page_1;
                 this.form.page_2 = !this.form.page_2;
@@ -388,7 +374,7 @@ foreach($donation_types as $donation_type) {
 
 
                     </div>
-                    
+
                     <button type="button" class="w-auto btn btn-warning btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="goback()">
                         <span class="btn-inner--visible">Go Back</span>
                         <span class="btn-inner--hidden"><small><i class="fas fa-arrow-left"></i></small></span>
