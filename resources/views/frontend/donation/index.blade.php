@@ -22,73 +22,14 @@ $amounts = array(
     10000,
 );
 
-$donation_types = (object) array(
-
-    0 => (object) array(
-        'name' => 'donation_food',
-        'icon' => 'fas fa-utensils',
-        'per_unit_cost' => 50,
-        'yield_context' => 'About %YIELD% underprivledged people will be fed with fresh cooked food',
-    ),
-
-
-    1 => (object) array(
-        'name' => 'donation_prosthetic_leg',
-        'icon' => 'fas fa-wheelchair',
-        'per_unit_cost' => 2000,
-        'yield_context' => 'About %YIELD% handicapped people will get prosthetic leg, and will be able to walk again.',
-    ),
-
-    2 => (object) array(
-        'name' => 'donation_sweater',
-        'icon' => 'fas fa-tshirt',
-        'per_unit_cost' => 400,
-        'yield_context' => 'About %YIELD% people will get a brand new sweater, and will be warm.',
-    ),
-
-    3 => (object) array(
-        'name' => 'donation_shoes',
-        'icon' => 'fas fa-shoe-prints',
-        'per_unit_cost' => 250,
-        'yield_context' => 'About %YIELD% people will get a brand new shoe. They will not have to walk with bare foot.',
-    ),
-
-    4 => (object) array(
-        'name' => 'donation_stationary_kit',
-        'icon' => 'fas fa-pen-square',
-        'per_unit_cost' => 50,
-        'yield_context' => 'About %YIELD% children will get a brand new stationary kit, which will help them study.',
-    ),
-
-    5 => (object) array(
-        'name' => 'donation_dry_ration',
-        'icon' => 'fas fa-box',
-        'per_unit_cost' => 50,
-        'yield_context' => 'About %YIELD% house-holds will receive fresh ration to cook and eat meals.',
-    ),
-
-    6 => (object) array(
-        'name' => 'donation_birthday_celebration',
-        'icon' => 'fas fa-birthday-cake',
-        'per_unit_cost' => 50,
-        'yield_context' => 'Your birthday will be celebrated cheerfully with about %YIELD% children. Cakes and sweets will be distrubuted.',
-    ),
-
-    7 => (object) array(
-        'name' => 'donation_prosthetic_arm',
-        'icon' => 'fas fa-wheelchair',
-        'per_unit_cost' => 2000,
-        'yield_context' => 'About %YIELD% handicapped people will get prosthetic leg, and will be able to walk again.',
-    ),
-
-
-);
+$donation_types = App\Models\Causes ::all();
 
 
 // Argh, this is an uneccesary move ig. Will be fixed when sending data from controller.
 
 $donation_types_cleaned = array();
 foreach($donation_types as $donation_type) {
+    echo $donation_type->id;
     $donation_types_cleaned[$donation_type->name] = $donation_type;
 }
 
@@ -152,6 +93,7 @@ foreach($donation_types as $donation_type) {
 
             init() {
                 this.selectedCause.cause = document.getElementById('selectedCause').value;
+                console.log(this.selectedCause.cause);
                 this.updateDonationCause();
             },
 
@@ -281,7 +223,7 @@ foreach($donation_types as $donation_type) {
 
             changeIcon() {
                 var icon = this.donationTypesArray[this.selectedCause.cause]['icon'];
-                this.selectedCause.icon = icon + ' fa-5x';
+                this.selectedCause.icon = 'fas fa-' + icon + ' fa-5x';
             },
 
             formatMoney() {
@@ -480,7 +422,9 @@ foreach($donation_types as $donation_type) {
                                 x-transition:leave.duration.400ms
                             ></i>
                         </div>
-
+                        <div class="h1">
+                            <span x-text="selectedCause.cause"></span>
+                        </div>
                         <div class="h1">
                             <div class="" x-show="showDonateButton()">
                                 <button type="button" class="btn btn-success btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="togglePages()">
@@ -506,7 +450,7 @@ foreach($donation_types as $donation_type) {
                                 How much would you like to donate?
                             </label>
 
-                            <div class="flex">
+                            <div class="flex" style="flex-wrap: wrap">
 
 
 
@@ -576,7 +520,7 @@ foreach($donation_types as $donation_type) {
 
                                 @foreach ($donation_types as $donation_type)
                                     <option value="{{ $donation_type->name }}" @if($first_iteration == true) selected="selected" @endif>
-                                        {{ ucfirst(str_replace('_', ' ', explode('donation_', $donation_type->name)[1])) }}
+                                        {{ ucfirst($donation_type->name) }}
                                     </option>
                                 @endforeach
                             </select>
