@@ -25,73 +25,32 @@ $amounts = array(
 
 $donation_types = (object) array(
 
-0 => (object) array(
-'name' => 'Food',
+"Food" => (object) array(
 'icon' => 'fas fa-utensils',
-'per_unit_cost' => 50,
-'yield_context' => 'The cost of 1 Food packet is Rs.50 . Total cost -  %YIELD%',
 ),
 
-
-1 => (object) array(
-'name' => 'Wheelchair',
+"Wheelchair" => (object) array(
 'icon' => 'fas fa-wheelchair',
-'per_unit_cost' => $donation_causes[0]['per_unit_cost'],
-'yield_context' => 'The cost of 1 Wheel Chair is '. $donation_causes[0]['per_unit_cost']. '. Total cost -  %YIELD%',
 ),
 
-2 => (object) array(
-'name' => 'Sweater',
+"Sweater" => (object) array(
 'icon' => 'fas fa-tshirt',
-'per_unit_cost' => 400,
-'yield_context' => 'The cost of 1 T-Shirt is Rs.400 . Total cost -  %YIELD%',
 ),
 
-3 => (object) array(
-'name' => 'Shoes',
+"Shoes" => (object) array(
 'icon' => 'fas fa-shoe-prints',
-'per_unit_cost' => 250,
-'yield_context' => 'The cost of 1 Shoes is Rs.250 . Total cost -  %YIELD%',
 ),
 
-4 => (object) array(
-'name' => 'Stationary',
+"Stationary" => (object) array(
 'icon' => 'fas fa-pen-square',
-'per_unit_cost' => $donation_causes[1]['per_unit_cost'],
-'yield_context' => 'The cost of 1 Stationary is ' .$donation_causes[1]['per_unit_cost'].'. Total cost -  %YIELD%',
 ),
 
-5 => (object) array(
-'name' => 'Dry Ration',
+"Dry Ration" => (object) array(
 'icon' => 'fas fa-box',
-'per_unit_cost' => 50,
-'yield_context' => 'The cost of 1 Dry Ration is Rs.50 . Total cost -  %YIELD%',
 ),
-
-6 => (object) array(
-'name' => 'donation_birthday_celebration',
-'icon' => 'fas fa-birthday-cake',
-'per_unit_cost' => 50,
-'yield_context' => 'The cost of Birthday Celebration is Rs.50 . Total cost -  %YIELD%',
-),
-
-7 => (object) array(
-'name' => 'Prosthetic arm',
-'icon' => 'fas fa-wheelchair',
-'per_unit_cost' => 2000,
-'yield_context' => 'It costs about %YIELD%',
-),
-
 
 );
 
-
-// Argh, this is an uneccesary move ig. Will be fixed when sending data from controller.
-
-$donation_types_cleaned = array();
-foreach($donation_types as $donation_type) {
-$donation_types_cleaned[$donation_type->name] = $donation_type;
-}
 
 
 @endphp
@@ -117,6 +76,7 @@ $donation_types_cleaned[$donation_type->name] = $donation_type;
             donationAmount_formatted: 0,
             showCustomDonationBlock: false,
             showCustomDonationButton: true,
+            price: 0,
 
 
             selectedCause: {
@@ -141,7 +101,8 @@ $donation_types_cleaned[$donation_type->name] = $donation_type;
                 checkbox_terms_and_conditions: false,
             },
 
-            donationTypesArray: @json($donation_types_cleaned),
+            causesArray: @json($new),
+            donationType: @json($donation_types),
 
 
             // FUNCTIONS START!
@@ -152,6 +113,7 @@ $donation_types_cleaned[$donation_type->name] = $donation_type;
 
             init() {
                 this.selectedCause.cause = document.getElementById('selectedCause').value;
+                this.price = this.causesArray[this.selectedCause.cause]['per_unit_cost'];
                 this.updateDonationCause();
             },
 
@@ -179,8 +141,8 @@ $donation_types_cleaned[$donation_type->name] = $donation_type;
                 calculates the yield based on that amount.
             */
             updateDonationAmount(amount) {
-                
-                this.donationAmount = amount*this.donationTypesArray[this.selectedCause.cause]['per_unit_cost'];
+
+                this.donationAmount = amount * this.price;
                 this.calculateYield(amount, this.selectedCause.PerUnitCost);
                 this.formatMoney();
             },
@@ -215,8 +177,8 @@ $donation_types_cleaned[$donation_type->name] = $donation_type;
             */
 
             calculateYield(amount) {
-                var per_unit_cost = this.donationTypesArray[this.selectedCause.cause]['per_unit_cost'];
-                var yield = amount*per_unit_cost;
+                var per_unit_cost = this.causesArray[this.selectedCause.cause]['per_unit_cost'];
+                var yield = amount * per_unit_cost;
 
                 // Now, if the yield is less than 1, we should alert the user
                 // that their donation will not be sufficient.
@@ -249,14 +211,16 @@ $donation_types_cleaned[$donation_type->name] = $donation_type;
                 if (this.donationAmount == 0) {
                     this.selectedCause.YieldContext = '<span class="text-danger">Please select quantity and click donate</span>';
                 } else {
-                    var yield_context = this.donationTypesArray[this.selectedCause.cause]['yield_context'];
+                    var yield_context = this.causesArray[this.selectedCause.cause]['yield_context'];
                     var yield = '<span class="fw-bolder text-success">' + '₹' + this.selectedCause.Yield + '</span>';
 
                     // In the DB, the context will be saved with a %YIELD% string.
                     // we're replacing it using js.
 
                     yield_context = yield_context.replace("%YIELD%", yield);
-                
+                    yield_context = yield_context.replace("%YIELD_PRICE%", this.price);
+                    yield_context = yield_context.replace("%YIELD_CAUSE%", this.selectedCause.cause );
+
                     this.selectedCause.YieldContext = '<span class="mt-2 fw-bold leading-1">' + yield_context + "</span>";
                 }
             },
@@ -282,7 +246,7 @@ $donation_types_cleaned[$donation_type->name] = $donation_type;
             */
 
             changeIcon() {
-                var icon = this.donationTypesArray[this.selectedCause.cause]['icon'];
+                var icon = this.donationType[this.selectedCause.cause]['icon'];
                 this.selectedCause.icon = icon + ' fa-5x';
             },
 
@@ -568,13 +532,27 @@ $donation_types_cleaned[$donation_type->name] = $donation_type;
                                     @endphp
 
 
-                                    @foreach ($donation_causes as $causes)
-                                    <option value="{{ $causes['name'] }}" @if($first_iteration==true) selected="selected" @endif>
-                                        {{ $causes['name'] }}
-                                    </option>
-                                    @endforeach
+                                   
+
+                                    @php
+                                    $length = $donation_causes->count();
+                                    @endphp
+
+
+                                    @for($i = 0 ; $i < $length ; $i++)
+                                        <option value="{{$donation_causes[$i]['name'] }}" @if($first_iteration==true) selected="selected" @endif>
+                                        {{ $donation_causes[$i]['name'] }}
+                                        </option>
+                                    @endfor
+
+                                    
+
                                 </select>
+
+
                             </div>
+
+                          
                         </div>
 
                     </div>

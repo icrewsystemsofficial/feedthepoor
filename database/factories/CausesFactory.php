@@ -22,7 +22,7 @@ class CausesFactory extends Factory
             "name" => Str::ucfirst($random),
             "icon" => $random,
             "per_unit_cost" => rand(2,100),
-            "yield_context" => "This donation will help %YIELD% people",
+            "yield_context" => "The cost of 1 %YIELD_CAUSE% is Rs.%YIELD_PRICE% . Total cost - %YIELD%",
         ];
     }
 }

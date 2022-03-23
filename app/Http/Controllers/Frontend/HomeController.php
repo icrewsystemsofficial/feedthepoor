@@ -71,7 +71,16 @@ class HomeController extends Controller
      */
     public function donate() {
         $donation_causes = Causes::all();
-        return view('frontend.donation.index', ['donation_causes'=>$donation_causes]);
+      
+
+        $length = $donation_causes->count();
+        $new = array();
+        for($i = 0 ; $i < $length; $i++){
+            $new[$donation_causes[$i]['name']] =  $donation_causes[$i];
+        }
+
+        
+        return view('frontend.donation.index', ['donation_causes'=>$donation_causes], ['new' => $new]);
     }
 
     /**
