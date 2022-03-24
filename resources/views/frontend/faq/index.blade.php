@@ -43,18 +43,19 @@
             </p>
             @endif
 
-            <p class="ps-5 pt-1 fs-5 fw-bold" id="description">{{$category->category_description}}</p>
+            <p class="ps-5  pt-1 fs-5 fw-bold" id="description">{{$category->category_description}}</p>
 
-            @foreach($faq_entries as $entry)
-            <div class="accordion ps-5 m-1" id="accordionExample1">
+            <div class="accordion ps-5 m-1" id="accordionExample{{$category->id}}">
+                @foreach($faq_entries as $entry)
+
                 @if($category->id == $entry->category_id)
                 <div class="card card-sm card-body border-light mb-0 shadow-lg">
-                    <a href="#panel-1" data-target="#panel-1" class="accordion-panel-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-1">
+                    <a href="#{{$entry->id}}" data-target="#{{$entry->id}}" class="accordion-panel-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-1">
 
                         <span class="h6 mb-0 font-weight-bold"> <i class="fa-solid fa-lightbulb pe-2"></i> {{ $entry->entry_question }} </span>
                         <span class="icon  float-end"><i class="fas fa-plus"></i></span>
                     </a>
-                    <div class="collapse" id="panel-1">
+                    <div class="collapse" id="{{$entry->id}}">
                         <div class="pt-3">
                             <p class="mb-0">
                                 {{ $entry->entry_answer }}
@@ -63,8 +64,10 @@
                     </div>
                 </div>
                 @endif
+
+                @endforeach
             </div>
-            @endforeach
+
             @endforeach
 
         </div>
