@@ -55,7 +55,7 @@
         @if($category->id == $entry->category_id)
 
         <div class="accordion-item" >
-          <h2 class="accordion-header" id="heading{{$entry->id}}">
+          <h2 class="accordion-header" style="background-color: white;" id="heading{{$entry->id}}">
             <button class="accordion-button collapsed border " type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$entry->id}}" aria-expanded="false" aria-controls="collapse{{$entry->id}}">
             <i class="fa-solid fa-lightbulb pe-2"></i> {{$entry->entry_question}}
             </button>
