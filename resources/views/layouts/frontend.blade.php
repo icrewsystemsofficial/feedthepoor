@@ -23,6 +23,9 @@
 <!-- Pixel CSS -->
 <link type="text/css" href="{{ asset('theme/css/additional.css') }}" rel="stylesheet">
 <link type="text/css" href="{{ asset('theme/css/pixel.css') }}" rel="stylesheet">
+
+{!! NoCaptcha::renderJs() !!}
+
 @yield('css')
 
 </head>

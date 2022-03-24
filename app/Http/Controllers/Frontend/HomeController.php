@@ -149,7 +149,7 @@ class HomeController extends Controller
     public function savecontact(Request $request){
         
         $details = $request->validate([
-            // 'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => 'required|captcha',
             'name'=> 'required|min:5',
             'email' => 'required|email|unique:users',
             'phone' => 'required|digits:10',
