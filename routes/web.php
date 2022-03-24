@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Admin\FaqController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactsController;
 
 /*
 
@@ -49,14 +50,15 @@ Route::name('frontend.')->group(function () {
     Route::get('/about', [HomeController::class, 'about'])->name('about');
     Route::get('/volunteer', [HomeController::class, 'index'])->name('volunteer');
     Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
-    Route::get('/contact', [HomeController::class, 'index'])->name('contact');
+    Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+    Route::post('/contact', [HomeController::class, 'savecontact'])->name('savecontact');
 });
 
 /*
   ------DASHBOARD ROUTES------
 */
 
-Route::prefix('admin')->as('admin.')->group(function() {
+Route::prefix('admin')->as('admin.')->group(function () {
 
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -64,7 +66,7 @@ Route::prefix('admin')->as('admin.')->group(function() {
     Route::post('/profile/save', [DashboardController::class, 'edit_profile'])->name('profile.save');
 
 
-    Route::prefix('location')->as('location.')->group(function() {
+    Route::prefix('location')->as('location.')->group(function () {
         Route::get('/', [LocationController::class, 'index'])->name('index');
         Route::get('/manage/{id}', [LocationController::class, 'manage'])->name('manage');
         Route::delete('/destroy/{id}', [LocationController::class, 'destroy'])->name('destroy');
@@ -72,7 +74,7 @@ Route::prefix('admin')->as('admin.')->group(function() {
         Route::post('/store', [LocationController::class, 'store'])->name('store');
     });
 
-    Route::prefix('settings')->as('settings.')->group(function() {
+    Route::prefix('settings')->as('settings.')->group(function () {
         Route::get('/', [SettingsController::class, 'index'])->name('index');
         Route::post('/create', [SettingsController::class, 'create'])->name('create');
         Route::post('/update', [SettingsController::class, 'update'])->name('update');
@@ -80,18 +82,17 @@ Route::prefix('admin')->as('admin.')->group(function() {
         Route::post('/group/create', [SettingsController::class, 'group_save'])->name('group.create');
         Route::post('/group/{id}/update', [SettingsController::class, 'group_update'])->name('group.update');
         Route::post('/group/{id}/delete', [SettingsController::class, 'group_delete'])->name('group.delete');
-
     });
 
-    Route::prefix('faq')->as('faq.')->group(function() {
-        Route::prefix('questions')->as('questions.')->group(function() {
+    Route::prefix('faq')->as('faq.')->group(function () {
+        Route::prefix('questions')->as('questions.')->group(function () {
             Route::get('/', [FaqController::class, 'index'])->name('index');
             Route::get('/manage/{id}', [FaqController::class, 'manage'])->name('manage');
             Route::delete('/destroy/{id}', [FaqController::class, 'destroy'])->name('destroy');
             Route::put('/update/{id}', [FaqController::class, 'update'])->name('update');
             Route::post('/store', [FaqController::class, 'store'])->name('store');
         });
-        Route::prefix('categories')->as('categories.')->group(function() {
+        Route::prefix('categories')->as('categories.')->group(function () {
             Route::get('/', [FaqController::class, 'categories'])->name('index');
             Route::get('/manage/{id}', [FaqController::class, 'category_manage'])->name('manage');
             Route::delete('/destroy/{id}', [FaqController::class, 'category_destroy'])->name('destroy');
@@ -100,7 +101,7 @@ Route::prefix('admin')->as('admin.')->group(function() {
         });
     });
 
-    Route::prefix('causes')->as('causes.')->group(function() {
+    Route::prefix('causes')->as('causes.')->group(function () {
         Route::get('/', [CausesController::class, 'index'])->name('index');
         Route::post('/store', [CausesController::class, 'store'])->name('store');
         Route::put('/update/{id}', [CausesController::class, 'update'])->name('update');
@@ -108,8 +109,13 @@ Route::prefix('admin')->as('admin.')->group(function() {
         Route::delete('/destroy/{id}', [CausesController::class, 'destroy'])->name('destroy');
     });
 
-    
-    
+    Route::prefix('contact')->as('contact.')->group(function () {
+        Route::get('/', [ContactsController::class, 'index'])->name('index');
+        Route::get('/view/{id}', [ContactsController::class, 'viewContact'])->name('view');
+        Route::delete('/delete/{id}', [ContactsController::class, 'deleteContact'])->name('delete');
+        Route::post('/spam/{id}', [ContactsController::class, 'mark_Spam'])->name('spam');
+        Route::post('/contacted/{id}', [ContactsController::class, 'mark_Contacted'])->name('contacted');
+    });
 });
 
 /*
@@ -119,7 +125,6 @@ Route::prefix('admin')->as('admin.')->group(function() {
 Route::get('/dashboard', function () {
     // return view('dashboard');
     return redirect()->route('admin.dashboard');
-
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

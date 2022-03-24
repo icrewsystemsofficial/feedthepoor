@@ -72,6 +72,12 @@
         </a>
    </li>
 
+   <li class="sidebar-item {{ Nav::isRoute('admin.contact.index') }}">
+        <a class="sidebar-link" href="{{ route('admin.contact.index') }}">
+            <i class="align-middle" data-feather="mail"></i> <span class="align-middle">Contacts</span>
+        </a>
+    </li>
+
    <li class="sidebar-item {{ Nav::isRoute('admin.causes.index') }}">
     <a class="sidebar-link" href="{{ route('admin.causes.index') }}">
     <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Causes</span>

@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\API\RazorpayAPIController;
 use Illuminate\Support\Facades\DB;
+use App\Models\userContact;
+use App\Jobs\SendAdminJob;
+use App\Jobs\SendConfirmationJob;
 
 class HomeController extends Controller
 {
@@ -137,5 +140,31 @@ class HomeController extends Controller
         // dd($faq_entries);
         // dd($faq_categories);
         return view('frontend.faq.index',['faq_entries'=>$faq_entries],['faq_categories'=>$faq_categories]);
+    }
+
+    public function contact(){
+        return view('frontend.contact.contactus');
+    }
+
+    public function savecontact(Request $request){
+        
+        $details = $request->validate([
+            // 'g-recaptcha-response' => 'required|captcha',
+            'name'=> 'required|min:5',
+            'email' => 'required|email|unique:users',
+            'phone' => 'required|digits:10',
+            'message' => 'required|max:255',
+        ]);
+
+      
+        userContact::create($details);
+
+        SendConfirmationJob::dispatch($details);
+        SendAdminJob::dispatch($details);
+
+        
+
+        return redirect()->back()->with('message','Form Submitted Successfully');
+        
     }
 }
