@@ -29,7 +29,6 @@ $donation_types = App\Models\Causes ::all();
 
 $donation_types_cleaned = array();
 foreach($donation_types as $donation_type) {
-    echo $donation_type->id;
     $donation_types_cleaned[$donation_type->name] = $donation_type;
 }
 
@@ -219,6 +218,12 @@ foreach($donation_types as $donation_type) {
                 changeIcon
 
                 Changes the icon of the cause.
+
+                
+                Icons in the DB are just stored as part of the class identifier without the prefix
+
+                Anirudh
+                March 25, 2022
             */
 
             changeIcon() {
@@ -511,6 +516,12 @@ foreach($donation_types as $donation_type) {
 
                                     Leonard,
                                     March 04, 2022.
+
+                                    As of today the database entries for causes does not contain the string "donation_"
+                                    So capitalization of first letter alone is sufficient
+
+                                    Anirudh 
+                                    March 25, 2022
                                 --}}
 
 
@@ -519,7 +530,7 @@ foreach($donation_types as $donation_type) {
                                 @endphp
 
                                 @foreach ($donation_types as $donation_type)
-                                    <option value="{{ $donation_type->name }}" @if($first_iteration == true) selected="selected" @endif>
+                                    <option value="{{ $donation_type->name }}" {{ $first_iteration == true ? 'selected':'' }}>
                                         {{ ucfirst($donation_type->name) }}
                                     </option>
                                 @endforeach

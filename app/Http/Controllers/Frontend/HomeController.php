@@ -77,11 +77,9 @@ class HomeController extends Controller
         if($razorpay_order_id == null) {
             return redirect()->route('frontend.donate');
         }
-
+        
         $order = app(RazorpayAPIController::class)->fetch_order($razorpay_order_id);
-        //TODO Handle failure
-
-
+        //TODO Handle failure        
         return view('frontend.donation.payment', [
             'order' => $order,
         ]);

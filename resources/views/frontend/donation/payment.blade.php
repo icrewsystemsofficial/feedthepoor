@@ -1,5 +1,8 @@
 @extends('layouts.frontend')
 
+@php
+    event(new App\Events\Donations\DonationReceived($order));
+@endphp
 @section('js')
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>

@@ -133,6 +133,10 @@ Route::prefix('admin')->as('admin.')->group(function() {
   ------LARAVEL DEFAULT AUTHENTICATION ROUTES------
 */
 
+Route::get('/test', function(){
+    return view('emails.donation');
+})->name('test');
+
 Route::get('/dashboard', function () {
     // return view('dashboard');
     return redirect()->route('admin.dashboard');
