@@ -1,6 +1,3 @@
-@php
-
-@endphp
 <!DOCTYPE html>
 <html>
 <body>    
@@ -12,7 +9,7 @@
         We have received your generous donation of <strong>₹ {{ $details['amount'] }}</strong> ({{ $details['amt_in_words'] }}) successfully for <strong>{{ $details['cause'] }}</strong>
         <br><br>
         The receipt for your donation is attached herewith this email.<br>
-        @if ($details['pan']) 
+        @if (isset($details['pan'])) 
             This receipt will be valid for 80G tax exemptions
         @endif
         <br><br>

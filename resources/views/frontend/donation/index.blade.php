@@ -20,21 +20,6 @@ $amounts = array(
     7000,
     10000,
 );
-<<<<<<< HEAD
-
-$donation_types = App\Models\Causes ::all();
-
-
-// Argh, this is an uneccesary move ig. Will be fixed when sending data from controller.
-
-$donation_types_cleaned = array();
-foreach($donation_types as $donation_type) {
-    $donation_types_cleaned[$donation_type->name] = $donation_type;
-}
-
-
-=======
->>>>>>> c5734659478e587781ef77448fd88bf6ad4e8bb5
 @endphp
 
 <script>
