@@ -93,7 +93,7 @@
                                 <h5 class="card-title mb-0">Private info</h5>
                             </div>
                             <div class="card-body">
-                                <form method="POST" action="{{ route('admin.users.update', $user->id) }}" id="update_profile">
+                                <form method="POST" action="{{ route('admin.profile.update', $user->id) }}" id="update_profile">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-8">
@@ -172,7 +172,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Password</h5>
 
-                                <form method="POST" action="{{ route('admin.users.password_update', $user->id) }}" id="update_password">
+                                <form method="POST" action="{{ route('admin.profile.password_update', $user->id) }}" id="update_password">
                                     @csrf
                                     <div class="mb-3">
                                         <label class="form-label" for="inputPasswordCurrent">Current password</label>

@@ -86,28 +86,20 @@ Route::middleware(['auth'])->group(function () {
           Route::post('/group/{id}/delete', [SettingsController::class, 'group_delete'])->name('group.delete');
 
       });
-
-      Route::prefix('users')->as('users.')->group(function() {
-
-
-
-        Route::get('role/{role}', [UsersController::class, 'index'])->name('index');
+      Route::prefix('profile')->as('profile.')->group(function() {
         Route::get('view', [UsersController::class, 'view'])->name('view');
-
-        // Dinesh, passing a name, which will have spaces is not good in
-        // routes. Irrespective, this is a profile module. Which should be shown in /profile, but you've
-        // added the route in user/{name}/view, which means it's a part of user module. Please fix it by
-        // putting the profile page in appropriate routes. Once done, clear this comment.
-
-        // - Leonard, 22 March 2022.
-
-
         Route::post('{id}/update', [UsersController::class, 'update'])->name('update');
         Route::post('{id}/password_update', [UsersController::class, 'update_password'])->name('password_update');
+
+      });
+
+
+      Route::prefix('users')->as('users.')->group(function() {
+        Route::get('role/{role}', [UsersController::class, 'index'])->name('index');
         Route::post('/create/{role}', [UsersController::class, 'create'])->name('create');
         Route::delete('/destroy/{id}', [UsersController::class, 'destroy'])->name('destroy');
 
-        });
+      });
 
         Route::prefix('faq')->as('faq.')->group(function() {
             Route::prefix('questions')->as('questions.')->group(function() {
