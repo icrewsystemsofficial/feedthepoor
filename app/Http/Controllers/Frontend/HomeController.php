@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use Faker\Factory;
+use App\Models\Causes;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -58,13 +59,28 @@ class HomeController extends Controller
         ]);
     }
 
+    public function volunteer () {
+        return view('frontend.volunteer.index');
+    }
     /**
      * donate - the page where users can donate money.
      *
      * @return void
      */
     public function donate() {
-        return view('frontend.donation.index');
+        $causes = Causes::all();
+
+
+        // Argh, this is an uneccesary move ig. Will be fixed when sending data from controller.
+
+        $donation_types = array();
+        foreach($causes as $cause) {
+            $donation_types[$cause->name] = $cause;
+        }
+
+        return view('frontend.donation.index', [
+            'donation_types' => $donation_types,
+        ]);
     }
 
     /**
