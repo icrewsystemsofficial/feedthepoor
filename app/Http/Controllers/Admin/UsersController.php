@@ -9,17 +9,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
+use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
 {
     public function index($role = 'administrator'){
+        $allRoles = Role::all();
         $location = Location::all();
         if($role == 'all'){
             $users = User::all();
         }else{
             $users = User::role($role)->get();
         }
-        return view('admin.users.index', compact('users', 'location', 'role'));
+        return view('admin.users.index', compact('users', 'location', 'role', 'allRoles'));
     }
 
     public function view(){

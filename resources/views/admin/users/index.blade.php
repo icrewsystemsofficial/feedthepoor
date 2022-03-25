@@ -49,6 +49,10 @@
             }
         });
     }
+
+    alterRole = () => {
+        console.log(event.target.value);
+    }
 </script>
 <style>
     .badge-warning {
@@ -95,11 +99,16 @@
                 </div>
             </div>
         @endif
-        @if ($role != 'donor')
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#defaultModalPrimary">
+        <div class="row card-body" style="justify-content: space-between">
+            <button type="button" class="btn btn-primary col-md-2" data-bs-toggle="modal" data-bs-target="#defaultModalPrimary">
                 <i class="fa-solid fa-plus"></i> &nbsp; Add new user
-            </button>            
-        @endif
+            </button> 
+            <select onchange="alterRole()" class="form-control mb-3 col-md-3 w-auto">
+                @foreach ($allRoles as $role)
+                    <option>{{ $role->name }}</option>    
+                @endforeach
+            </select>
+        </div>
 
 
         <div class="modal fade" id="defaultModalPrimary" tabindex="-1" aria-hidden="true" style="display: none;">
