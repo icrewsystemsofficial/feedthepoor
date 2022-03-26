@@ -102,19 +102,12 @@
             <div class="col-6 col-md-2 mb-5 mb-lg-0">
                 <span class="h5">Support</span>
                 <ul class="footer-links mt-2">
-                    <li>
-<<<<<<< HEAD
-                        <a href="{{route('frontend.faq')}}">F.A.Q</a>
-                    </li>
+                   
                     <li>
                         <a href="{{route('frontend.contact')}}"> Contact Us </a>
-=======
                         <a href="{{ route('frontend.faq') }}">F.A.Q</a>
                     </li>
-                    <li>
-                        <a href="{{ route('frontend.contact') }}">Contact Us</a>
->>>>>>> 03944227ffff924332ec565735b0b7cce60c9a3f
-                    </li>
+                   
                 </ul>
             </div>
             <div class="col-12 col-md-4 mb-5 mb-lg-0">
