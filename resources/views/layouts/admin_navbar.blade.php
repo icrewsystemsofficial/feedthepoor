@@ -74,14 +74,19 @@
                  <i class="align-middle" data-feather="settings"></i>
              </a>
              <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                 <img src="{{ asset('adminkit/static/img/avatars/avatar.jpg') }}" class="avatar img-fluid rounded me-1" alt="Charles Hall" />
-                <span class="text-dark">
-                   
-                </span>
+               <img src="
+               @if(Auth::user()->avatar == null) https://ui-avatars.com/api/?name={{ auth()->user()->name }}
+               @else
+                  {{ asset(Auth::user()->avatar) }}
+               @endif
+               " class="avatar img-fluid rounded me-1" alt="Charles Hall" />
+               <span class="text-dark">
+                  {{ auth()->user()->name }}
+               </span>
              </a>
 
              <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href=""><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+                <a class="dropdown-item" href="{{ route('admin.profile.view') }}"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
                 <div class="dropdown-divider"></div>
                 <form action="{{ route('logout') }}" id="logoutForm" method="POST">@csrf</form>
                 <a class="dropdown-item" onclick="document.getElementById('logoutForm').submit();">Log out</a>

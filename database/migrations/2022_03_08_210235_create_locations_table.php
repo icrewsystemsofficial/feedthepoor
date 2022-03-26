@@ -24,7 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('location_manager_id')->nullable();// foreign key
             $table->integer('location_status')->default(0);
             $table->timestamps();
-            $table->foreign('location_manager_id')->references('id')->on('users');
+            $table->foreign('location_manager_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
