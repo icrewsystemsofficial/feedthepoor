@@ -122,7 +122,7 @@
                     </div>
                     <div class="modal-body m-3">
 
-                        <form action="{{ route('admin.users.create', $role) }}" id="new_user_form" method="POST" autocomplete="off">
+                        <form action="{{ route('admin.users.create') }}" id="new_user_form" method="POST" autocomplete="off">
                             @csrf
                             <div class="form-group mb-2">
                                 <label for="name" class="form-label">Name</label>
@@ -135,6 +135,15 @@
                             <div class="form-group mb-2">
                                 <label for="email" class="form-label">E Mail</label>
                                 <input class="form-control" name="user_email" id="email" placeholder="E Mail">
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="role" class="form-label">Role</label>
+                                <select name="user_role" id="role" class="form-control">
+                                    <option value="" selected>Select a Role</option>
+                                    @foreach ($allRoles as $role)
+                                        <option value='{{$role->name}}'>{{$role->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group mb-2">
                                 <label for="password" class="form-label">Password</label>
@@ -237,6 +246,9 @@
                                             {{-- @if ($user->hasAnyRole(['superadmin', 'donor', 'volunteer'])) --}}
                                                 @if ($user->getRoleNames()[0] == 'superadmin')
                                                     <span class="badge bg-info">Super Admin</span>
+                                                @endif
+                                                @if ($user->getRoleNames()[0] == 'administrator')
+                                                    <span class="badge bg-info">Administrator</span>
                                                 @endif
                                                 @if ($user->getRoleNames()[0] == 'donor')
                                                     <span class="badge bg-info">Donor</span>

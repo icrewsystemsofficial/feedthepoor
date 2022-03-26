@@ -80,21 +80,23 @@ class UsersController extends Controller
         }
     }
 
-    public function create(Request $req, $role){
+    public function create(Request $req){
         $this->validate($req, [
-            'name' => 'name|required',
-            'email' => 'email|required',
-            'password' => 'password|required',
-            'address' => 'address|required',
-            'location_id' => 'location_id|required',
+            'user_name' => 'required',
+            'user_email' => 'required',
+            'user_password' => 'required',
+            'user_address' => 'required',
+            'user_location_id' => 'required',
+            'user_role' => 'required',
         ]);
         $user = new User;
         $user->name = $req->input('user_name');
         $user->email = $req->input('user_email');
         $user->password = $req->input('user_password');
+        $user->address = $req->input('user_address');
         $user->phone_number = $req->input('user_phone_number');
         $user->location_id = $req->input('user_location_id');
-        $user->assignRole($role);
+        $user->assignRole($req->input('user_role'));
         $user->save();
         return(redirect()->back());
     }
