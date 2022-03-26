@@ -294,15 +294,9 @@
                                             </td>
                                             <td>
                                             {{-- @if ($user->hasAnyRole(['superadmin', 'donor', 'volunteer'])) --}}
-                                                @if ($user->getRoleNames()[0] == 'superadmin')
-                                                    <span class="badge bg-info">Super Admin</span>
+                                                @if ($user->getRoleNames()[0] == 'administrator')
+                                                    <span class="badge bg-info">Administrator</span>
                                                 @endif
-                                                @if ($user->getRoleNames()[0] == 'donor')
-                                                    <span class="badge bg-info">Donor</span>
-                                                @endif
-                                                @if ($user->getRoleNames()[0] == 'volunteer')
-                                                    <span class="badge bg-info">Volunteer</span>
-                                                @endif  
                                             {{-- @endif --}}
                                             </td>
                                             <td>
@@ -341,12 +335,6 @@
                                             </td>
                                             <td>
                                             {{-- @if ($user->hasAnyRole(['superadmin', 'donor', 'volunteer'])) --}}
-                                                @if ($user->getRoleNames()[0] == 'superadmin')
-                                                    <span class="badge bg-info">Super Admin</span>
-                                                @endif
-                                                @if ($user->getRoleNames()[0] == 'donor')
-                                                    <span class="badge bg-info">Donor</span>
-                                                @endif
                                                 @if ($user->getRoleNames()[0] == 'volunteer')
                                                     <span class="badge bg-info">Volunteer</span>
                                                 @endif  
@@ -388,15 +376,9 @@
                                             </td>
                                             <td>
                                             {{-- @if ($user->hasAnyRole(['superadmin', 'donor', 'volunteer'])) --}}
-                                                @if ($user->getRoleNames()[0] == 'superadmin')
-                                                    <span class="badge bg-info">Super Admin</span>
-                                                @endif
                                                 @if ($user->getRoleNames()[0] == 'donor')
                                                     <span class="badge bg-info">Donor</span>
                                                 @endif
-                                                @if ($user->getRoleNames()[0] == 'volunteer')
-                                                    <span class="badge bg-info">Volunteer</span>
-                                                @endif  
                                             {{-- @endif --}}
                                             </td>
                                             <td>
