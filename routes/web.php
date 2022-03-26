@@ -91,12 +91,6 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::post('/group/{id}/delete', [SettingsController::class, 'group_delete'])->name('group.delete');
 
     });
-    Route::prefix('profile')->as('profile.')->group(function() {
-    Route::get('view', [UsersController::class, 'view'])->name('view');
-    Route::post('{id}/update', [UsersController::class, 'update'])->name('update');
-    Route::post('{id}/password_update', [UsersController::class, 'update_password'])->name('password_update');
-
-    });
 
 
     Route::prefix('users')->as('users.')->group(function() {

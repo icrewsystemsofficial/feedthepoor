@@ -13,15 +13,15 @@ use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
 {
-    public function index($role = 'administrator'){
+    public function index(){
         $allRoles = Role::all();
         $location = Location::all();
-        if($role == 'all'){
-            $users = User::all();
-        }else{
-            $users = User::role($role)->get();
-        }
-        return view('admin.users.index', compact('users', 'location', 'role', 'allRoles'));
+        $role = 'admin';
+        $users = User::all();
+        $admins = User::role('administrator')->get();
+        $volunteers = User::role('volunteer')->get();
+        $donors = User::role('donor')->get();
+        return view('admin.users.index', compact('users', 'admins', 'volunteers', 'donors', 'location', 'role', 'allRoles'));
     }
 
     public function view(){
