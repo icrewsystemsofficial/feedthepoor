@@ -10,7 +10,12 @@ class FaqHelper {
 
     public static function getCategoryName($id){
         $category = FaqCategories::find($id);
-        return $category->category_name;
+        if($category) {
+            return $category->category_name;
+        } else {
+            return "Unknown";
+        }
+
     }
 
     public static function getAllCategories(){

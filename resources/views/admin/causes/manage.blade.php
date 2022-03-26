@@ -118,14 +118,14 @@
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" name="name" value="{{ $cause->name }}" required>
                 </div>
-                <div class="form-group mb-2">
+                <div class="form-group mb-3">
                     <label for="name" class="form-label">Icon &nbsp;&nbsp;</label><i class="" id="iconPreview" style="font-size: 30px;"></i><br>
                     <select class="form-control" id="icon" name="icon" style="width: 100%;">
-                        {!! App\Helpers\CausesHelper::getIconsForManage($cause->icon) !!}
+                        {!! App\Helpers\CausesHelper::getIcons($cause->icon) !!}
                     </select>
                 </div>       
                 <div class="form-group mb-2">
-                    <label for="per_unit_cost">Cost per unit</label>
+                    <label for="per_unit_cost">Cost per unit (in INR)</label>
                     <input type="number" class="form-control" id="per_unit_cost" name="per_unit_cost" value="{{ $cause->per_unit_cost }}" required>
                 </div>
                 <div class="form-group mb-2">
@@ -155,6 +155,16 @@
             $('#iconPreview')[0].className = "fas fa-"+$(this)[0].value;
         });
         $('#iconPreview')[0].className = "fas fa-"+icon[0].value;
+    });
+    $(document).on('select2:open', (e) => {
+        const selectId = e.target.id
+
+        $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
+            key,
+            value,
+        ){
+            value.focus();
+        })
     });
 </script>
 @endsection
