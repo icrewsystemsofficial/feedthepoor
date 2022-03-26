@@ -234,11 +234,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-<<<<<<< HEAD
-        'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
-=======
+        // 'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class, # Not found on Dinesh's branch, should be added FROM Sathish's branch.
         'Image' => Intervention\Image\Facades\Image::class,
->>>>>>> fe92a6a091500273df68fa7106fa3634b0b0d5bd
 
     ],
 

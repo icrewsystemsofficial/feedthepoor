@@ -43,7 +43,7 @@
     <li class="sidebar-item {{ Nav::isRoute('admin.users.index') }}">
         <a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
             <i class="align-middle" data-feather="users"></i>
-            <span class="align-middle">Users</span>
+            <span class="align-middle">Users [WIP]</span>
         </a>
         <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
             <li class="sidebar-item">
