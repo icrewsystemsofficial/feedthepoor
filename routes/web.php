@@ -99,7 +99,6 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
     });
 
 
-
     Route::prefix('users')->as('users.')->group(function() {
         Route::get('role/{role}', [UsersController::class, 'index'])->name('index');
         Route::post('/create/{role}', [UsersController::class, 'create'])->name('create');
