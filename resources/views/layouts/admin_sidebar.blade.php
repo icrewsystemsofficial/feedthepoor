@@ -50,15 +50,6 @@
                 <a class="sidebar-link" href="{{ route('admin.users.index', 'all') }}">All Users</a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('admin.users.index', 'superadmin') }}">Administrator</a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('admin.users.index', 'donor') }}">Donors</a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('admin.users.index', 'volunteer') }}">Volunteers</a>
-            </li>
-            <li class="sidebar-item">
                 <a class="sidebar-link" href="#">Volunteer Applications</a>
             </li>
         </ul>
