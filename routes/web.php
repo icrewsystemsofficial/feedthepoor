@@ -111,7 +111,6 @@ Route::prefix('admin')->as('admin.')->group(function () {
         Route::delete('/destroy/{id}', [CausesController::class, 'destroy'])->name('destroy');
     });
 
-<<<<<<< HEAD
     Route::prefix('contact')->as('contact.')->group(function () {
         Route::get('/', [ContactsController::class, 'index'])->name('index');
         Route::get('/view/{id}', [ContactsController::class, 'viewContact'])->name('view');
@@ -119,7 +118,6 @@ Route::prefix('admin')->as('admin.')->group(function () {
         Route::post('/spam/{id}', [ContactsController::class, 'mark_Spam'])->name('spam');
         Route::post('/contacted/{id}', [ContactsController::class, 'mark_Contacted'])->name('contacted');
     });
-=======
     Route::prefix('campaigns')->as('campaigns.')->group(function() {
         Route::get('/', [CampaignsController::class, 'index'])->name('index');
         Route::post('/store', [CampaignsController::class, 'store'])->name('store');
@@ -137,7 +135,6 @@ Route::prefix('admin')->as('admin.')->group(function () {
         Route::put('/update/{id}', [DonationsController::class, 'update'])->name('update');
     });
 
->>>>>>> 03944227ffff924332ec565735b0b7cce60c9a3f
 });
 
 /*
