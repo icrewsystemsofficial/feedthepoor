@@ -353,12 +353,6 @@ $donation_types_cleaned[$donation_type->name] = $donation_type;
 </style>
 @endsection
 
-@section('js')
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-@endsection
-
 @section('content')
 
 
@@ -369,7 +363,7 @@ $donation_types_cleaned[$donation_type->name] = $donation_type;
                 <h1 class="display-4 text-white fs-1">
                     Contact us
                 </h1>
-                <p class="text-warning fs-2 fw-bolder">For all enquiries, email us using form below</p>
+                <p class="text-theme fs-2 fw-bolder">For all enquiries, email us using form below</p>
             </div>
         </div>
     </div>
@@ -402,31 +396,31 @@ $donation_types_cleaned[$donation_type->name] = $donation_type;
 
                         <div class="mb-3">
                             <label for="name" class="d-flex">
-                                <i class="fa-solid fa-user pe-2 fs-4"></i>
+                                <i class="fas fa-user pe-2 fs-4"></i>
                                 Name : </label>
-                            <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}" placeholder="Enter your name...">
+                            <input required="required" type="text" name="name" class="form-control" id="name" value="{{ old('name') }}" placeholder="Enter your name...">
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="d-flex">
-                                <i class="fa-solid fa-envelope pe-2 fs-4"></i>
+                                <i class="fas fa-envelope pe-2 fs-4"></i>
                                 Email : </label>
-                            <input type="email" name="email" class="form-control" id="email" value="{{ old('email') }}" placeholder="Enter your email...">
+                            <input required="required" type="email" name="email" class="form-control" id="email" value="{{ old('email') }}" placeholder="Enter your email...">
                         </div>
 
                         <div class="mb-3">
                             <label for="number" class="d-flex">
-                                <i class="fa-solid fa-phone pe-2 fs-4"></i>
+                                <i class="fas fa-phone pe-2 fs-4"></i>
                                 Phone number : </label>
-                            <input type="text" name="phone" class="form-control" id="phone" value="{{ old('phone') }}" placeholder="Enter your phone number...">
+                            <input  required="required" type="text" name="phone" class="form-control" id="phone" value="{{ old('phone') }}" placeholder="Enter your phone number...">
                         </div>
 
                         <div class="mb-3">
 
                             <label for="message" class="d-flex">
-                                <i class="fa-solid fa-comment pe-2 fs-4" id="font"></i>
+                                <i class="fas fa-comment pe-2 fs-4" id="font"></i>
                                 Message : </label>
-                            <textarea class="form-control" name="message" value="{{old('message') }}" placeholder="Enter your message..." id="message" rows="4">
+                            <textarea  required="required"  class="form-control" name="message" value="{{old('message') }}" placeholder="Enter your message..." id="message" rows="4">
                             </textarea>
 
                             
