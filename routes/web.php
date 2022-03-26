@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\CausesController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\CampaignsController;
+use App\Http\Controllers\Admin\DonationsController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactsController;
@@ -109,6 +111,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
         Route::delete('/destroy/{id}', [CausesController::class, 'destroy'])->name('destroy');
     });
 
+<<<<<<< HEAD
     Route::prefix('contact')->as('contact.')->group(function () {
         Route::get('/', [ContactsController::class, 'index'])->name('index');
         Route::get('/view/{id}', [ContactsController::class, 'viewContact'])->name('view');
@@ -116,6 +119,25 @@ Route::prefix('admin')->as('admin.')->group(function () {
         Route::post('/spam/{id}', [ContactsController::class, 'mark_Spam'])->name('spam');
         Route::post('/contacted/{id}', [ContactsController::class, 'mark_Contacted'])->name('contacted');
     });
+=======
+    Route::prefix('campaigns')->as('campaigns.')->group(function() {
+        Route::get('/', [CampaignsController::class, 'index'])->name('index');
+        Route::post('/store', [CampaignsController::class, 'store'])->name('store');
+        Route::put('/update/{id}', [CampaignsController::class, 'update'])->name('update');
+        Route::get('/manage/{id}', [CampaignsController::class, 'manage'])->name('manage');
+        Route::delete('/destroy/{id}', [CampaignsController::class, 'destroy'])->name('destroy');
+        Route::post('/upload', [CampaignsController::class, 'upload'])->name('upload');
+    });
+
+    Route::prefix('donations')->as('donations.')->group(function() {
+        Route::get('/', [DonationsController::class, 'index'])->name('index');
+        Route::post('/store', [DonationsController::class, 'store'])->name('store');
+        Route::get('/manage/{id}', [DonationsController::class, 'manage'])->name('manage');
+        Route::delete('/destroy/{id}', [DonationsController::class, 'destroy'])->name('destroy');
+        Route::put('/update/{id}', [DonationsController::class, 'update'])->name('update');
+    });
+
+>>>>>>> 03944227ffff924332ec565735b0b7cce60c9a3f
 });
 
 /*

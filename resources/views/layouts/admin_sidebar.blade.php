@@ -25,22 +25,6 @@
         </ul>
     </li>
 
-
-    <li class="sidebar-item {{ Nav::isRoute('admin.settings.index') }}">
-        <a data-bs-target="#donations" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
-            <i class="align-middle" data-feather="dollar-sign"></i>
-            <span class="align-middle">Donations</span>
-        </a>
-        <ul id="donations" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">All Donations</a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">Recipts</a>
-            </li>
-        </ul>
-    </li>
-
     <li class="sidebar-item {{ Nav::isRoute('admin.settings.index') }}">
         <a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
             <i class="align-middle" data-feather="users"></i>
@@ -66,12 +50,21 @@
         </a>
 </li>
 
+
+    <li class="sidebar-item {{ Nav::isRoute('admin.donations.index') }}">
+        <a class="sidebar-link" href="{{ route('admin.donations.index') }}">
+            <i class="align-middle" data-feather="dollar-sign"></i> <span class="align-middle">Donations</span>
+        </a>
+    </li>
+
+
    <li class="sidebar-item {{ Nav::isRoute('admin.location.index') }}">
         <a class="sidebar-link" href="{{ route('admin.location.index') }}">
         <i class="align-middle" data-feather="map-pin"></i> <span class="align-middle">Locations</span>
         </a>
    </li>
 
+<<<<<<< HEAD
    <li class="sidebar-item {{ Nav::isRoute('admin.contact.index') }}">
         <a class="sidebar-link" href="{{ route('admin.contact.index') }}">
             <i class="align-middle" data-feather="mail"></i> <span class="align-middle">Contacts</span>
@@ -83,6 +76,19 @@
     <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Causes</span>
     </a>
 </li>
+=======
+    <li class="sidebar-item {{ Nav::isRoute('admin.causes.index') }}">
+        <a class="sidebar-link" href="{{ route('admin.causes.index') }}">
+            <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Causes</span>
+        </a>
+    </li>
+
+    <li class="sidebar-item {{ Nav::isRoute('admin.campaigns.index') }}">
+        <a class="sidebar-link" href="{{ route('admin.campaigns.index') }}">
+            <i class="align-middle" data-feather="volume"></i> <span class="align-middle">Campaigns</span>
+        </a>
+    </li>
+>>>>>>> 03944227ffff924332ec565735b0b7cce60c9a3f
 
     <li class="sidebar-item">
         <a data-bs-target="#faqs" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
