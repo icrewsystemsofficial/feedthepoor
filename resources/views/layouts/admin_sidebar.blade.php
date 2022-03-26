@@ -1,13 +1,13 @@
 <ul class="sidebar-nav">
     <li class="sidebar-header">
-       Administration
+        Administration
     </li>
 
 
     <li class="sidebar-item {{ Nav::isRoute('admin.dashboard') }}">
-       <a class="sidebar-link" href="{{ route('admin.dashboard') }}">
-       <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-       </a>
+        <a class="sidebar-link" href="{{ route('admin.dashboard') }}">
+            <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+        </a>
     </li>
 
     <li class="sidebar-item {{ Nav::isRoute('admin.settings.index') }}">
@@ -46,9 +46,9 @@
 
     <li class="sidebar-item {{ Nav::isRoute('admin.settings.index') }}">
         <a class="sidebar-link" href="{{ route('admin.settings.index') }}">
-        <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
+            <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
         </a>
-</li>
+    </li>
 
 
     <li class="sidebar-item {{ Nav::isRoute('admin.donations.index') }}">
@@ -58,28 +58,24 @@
     </li>
 
 
-   <li class="sidebar-item {{ Nav::isRoute('admin.location.index') }}">
+    <li class="sidebar-item {{ Nav::isRoute('admin.location.index') }}">
         <a class="sidebar-link" href="{{ route('admin.location.index') }}">
-        <i class="align-middle" data-feather="map-pin"></i> <span class="align-middle">Locations</span>
+            <i class="align-middle" data-feather="map-pin"></i> <span class="align-middle">Locations</span>
         </a>
-   </li>
+    </li>
 
-   <li class="sidebar-item {{ Nav::isRoute('admin.contact.index') }}">
+    <li class="sidebar-item {{ Nav::isRoute('admin.contact.index') }}">
         <a class="sidebar-link" href="{{ route('admin.contact.index') }}">
             <i class="align-middle" data-feather="mail"></i> <span class="align-middle">Contacts</span>
         </a>
     </li>
 
-   <li class="sidebar-item {{ Nav::isRoute('admin.causes.index') }}">
-    <a class="sidebar-link" href="{{ route('admin.causes.index') }}">
-    <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Causes</span>
-    </a>
-</li>
     <li class="sidebar-item {{ Nav::isRoute('admin.causes.index') }}">
         <a class="sidebar-link" href="{{ route('admin.causes.index') }}">
             <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Causes</span>
         </a>
     </li>
+   
 
     <li class="sidebar-item {{ Nav::isRoute('admin.campaigns.index') }}">
         <a class="sidebar-link" href="{{ route('admin.campaigns.index') }}">
@@ -101,4 +97,4 @@
             </li>
         </ul>
     </li>
- </ul>
+</ul>
