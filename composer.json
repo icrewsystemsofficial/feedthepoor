@@ -13,17 +13,17 @@
         "devmarketer/easynav": "^1.0",
         "fruitcake/laravel-cors": "^3.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "intervention/image": "^2.6",
         "laravel/breeze": "^1.8",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "intervention/image": "^2.6",
         "markwalet/laravel-changelog": "^1.6",
         "orangehill/iseed": "^3.0",
         "razorpay/razorpay": "2.*",
         "realrashid/sweet-alert": "^5.0",
-        "spatie/laravel-permission": "^5.5",
-        "spatie/laravel-activitylog": "^4.4"
+        "spatie/laravel-activitylog": "^3.17",
+        "spatie/laravel-permission": "^5.5"
     },
     "require-dev": {
         "brianium/paratest": "^6.4",
