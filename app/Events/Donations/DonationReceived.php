@@ -29,8 +29,8 @@ class DonationReceived
         $cause_id = Causes::where('name', $details['notes']['cause'])->first()->id;
         $this->details['yield_context'] = Causes::where('name', $details['notes']['cause'])->first()->yield_context;
         $this->details['amt_in_words'] = Donations::Show_Amount_In_Words($details['notes']['amount']);
-        $this->details['tracking_url'] = "http://127.0.0.1:8000/track-donation/".$details['id'];                        
-        $this->details['id'] = $details['id'];        
+        $this->details['tracking_url'] = route('frontend.track-donation', $details['id']);
+        $this->details['id'] = $details['id'];
     }
 
     /**
