@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+// TO BE REFACTORED! NAME OF MODELs should ALWAYS be Singular, and should begin with Capital letters.
 class userContact extends Model
 {
     use HasFactory;
