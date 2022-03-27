@@ -16,12 +16,16 @@
 <!-- Fontawesome -->
 <link type="text/css" href="{{ asset('theme/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
 
+
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
 <!-- Pixel CSS -->
 <link type="text/css" href="{{ asset('theme/css/additional.css') }}" rel="stylesheet">
 <link type="text/css" href="{{ asset('theme/css/pixel.css') }}" rel="stylesheet">
+
+{!! NoCaptcha::renderJs() !!}
+
 @yield('css')
 
 </head>

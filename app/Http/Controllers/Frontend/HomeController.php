@@ -4,9 +4,16 @@ namespace App\Http\Controllers\Frontend;
 
 use Faker\Factory;
 use App\Models\Location;
+use App\Models\Causes;
+use App\Models\FaqCategories;
+use App\Models\FaqEntries;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\API\RazorpayAPIController;
+use Illuminate\Support\Facades\DB;
+use App\Models\userContact;
+use App\Jobs\SendAdminJob;
+use App\Jobs\SendConfirmationJob;
 
 class HomeController extends Controller
 {
@@ -41,6 +48,8 @@ class HomeController extends Controller
         $donation_random_images = json_encode($images);
         $donation_names = json_encode($names);
 
+
+
         return view('frontend.index', [
             'donation_images' => $donation_random_images,
             'donation_names' => $donation_names,
@@ -67,7 +76,17 @@ class HomeController extends Controller
      * @return void
      */
     public function donate() {
-        return view('frontend.donation.index');
+        $donation_causes = Causes::all();
+
+
+        $length = $donation_causes->count();
+        $new = array();
+        for($i = 0 ; $i < $length; $i++){
+            $new[$donation_causes[$i]['name']] =  $donation_causes[$i];
+        }
+
+
+        return view('frontend.donation.index', ['donation_causes'=>$donation_causes], ['new' => $new]);
     }
 
     /**
@@ -117,4 +136,38 @@ class HomeController extends Controller
         ]);
     }
 
+
+    public function faq(){
+        $faq_categories = DB::table('faq_categories')->where('category_status', 1)->get();
+        $faq_entries =   FaqEntries::get();
+        // dd($faq_entries);
+        // dd($faq_categories);
+        return view('frontend.faq.index',['faq_entries'=>$faq_entries],['faq_categories'=>$faq_categories]);
+    }
+
+    public function contact(){
+        return view('frontend.contact.contactus');
+    }
+
+    public function savecontact(Request $request){
+
+        $details = $request->validate([
+            'g-recaptcha-response' => 'required|captcha',
+            'name'=> 'required|min:5',
+            'email' => 'required|email',
+            'phone' => 'required|digits:10',
+            'message' => 'required|max:255',
+        ]);
+
+
+        userContact::create($details);
+
+        SendConfirmationJob::dispatch($details);
+        SendAdminJob::dispatch($details);
+
+
+
+        return redirect()->back()->with('message','Your contact request has been sent to our team successfully. One of our representatives will contact you within 72 hours. Thank you');
+
+    }
 }

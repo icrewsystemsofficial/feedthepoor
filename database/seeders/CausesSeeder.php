@@ -14,6 +14,6 @@ class CausesSeeder extends Seeder
      */
     public function run()
     {
-        Causes::factory()->times(3)->create();
+        Causes::factory()->times(2)->create();
     }
 }
