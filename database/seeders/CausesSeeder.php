@@ -14,7 +14,7 @@ class CausesSeeder extends Seeder
      */
     public function run()
     {
-        /*
+          /*
 
             Birthday celebration and food causes can be grouped together and 
             the days/kids can be stored as nested arrays along with their respective amounts (json_encode).

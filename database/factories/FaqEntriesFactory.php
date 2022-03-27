@@ -25,7 +25,7 @@ class FaqEntriesFactory extends Factory
             'category_id' => $category_id,
             'entry_question' => $question,
             'entry_answer' => $answer,
-            'author_name' => $user,
+            'author_name' => $user, 
         ];
     }
 }

@@ -76,7 +76,7 @@
              <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
                  <img src="{{ asset('adminkit/static/img/avatars/avatar.jpg') }}" class="avatar img-fluid rounded me-1" alt="Charles Hall" />
                 <span class="text-dark">
-                    {{ auth()->user()->name }}
+                   
                 </span>
              </a>
 
