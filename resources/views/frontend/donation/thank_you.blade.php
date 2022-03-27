@@ -28,7 +28,7 @@
 
                     <br><br>
 
-                    <a href="#" class="btn btn-theme text-white">
+                    <a href="{{ route('frontend.track-donation', $payment->id) }}" target="_blank" class="btn btn-theme text-white">
                         Track Donation
                     </a>
                 </p>

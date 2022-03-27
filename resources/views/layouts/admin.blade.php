@@ -15,7 +15,6 @@
    <title>{{ config('app.name') }} | Dashboard</title>
 
    {{-- <link rel="stylesheet" href="https://demo.adminkit.io/css/dark.css"> --}}
-   {{-- BOOTSTRAP 5 CDN --}}
 
    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
 

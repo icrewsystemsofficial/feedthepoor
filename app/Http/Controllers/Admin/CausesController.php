@@ -46,10 +46,10 @@ class CausesController extends Controller
             'per_unit_cost' => 'required|numeric',
             'yield_context' => 'required|string',
         ]);
-        $yield = Str::is('*%YIELD%*',$request->yield_context);
-        if (!$yield){
-            throw ValidationException::withMessages(['yield_context' => 'Yield context must have a value %YIELD% denoting the number of people benifiting from the donation']);
-        }
+        // $yield = Str::is('*%YIELD%*',$request->yield_context);
+        // if (!$yield){
+        //     throw ValidationException::withMessages(['yield_context' => 'Yield context must have a value %YIELD% denoting the number of people benifiting from the donation']);
+        // }
         Causes::create($request->all());
         alert()->success('Yay','Cause "'.$request->name.'" was successfully created');
         return redirect(route('admin.causes.index'));
@@ -93,9 +93,9 @@ class CausesController extends Controller
             'per_unit_cost' => 'required|numeric',
             'yield_context' => 'required|string',
         ]);
-        if (!str_contains($request->yield_context,"%YIELD%")){
-            throw ValidationException::withMessages(['yield_context' => 'Yield context must have a value %YIELD% denoting the number of people benifiting from the donation']);
-        }
+        // if (!str_contains($request->yield_context,"%YIELD%")){
+        //     throw ValidationException::withMessages(['yield_context' => 'Yield context must have a value %YIELD% denoting the number of people benifiting from the donation']);
+        // }
         Causes::find($request->id)->update($request->all());
         alert()->success('Yay','Cause "'.$request->name.'" was successfully updated');
         return redirect(route('admin.causes.index'));

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use Faker\Factory;
-use App\Models\Location;
 use App\Models\Causes;
+use App\Models\Location;
 use App\Models\FaqCategories;
 use App\Models\FaqEntries;
 use Illuminate\Http\Request;
@@ -76,17 +76,19 @@ class HomeController extends Controller
      * @return void
      */
     public function donate() {
-        $donation_causes = Causes::all();
+       $causes = Causes::all();
 
 
-        $length = $donation_causes->count();
-        $new = array();
-        for($i = 0 ; $i < $length; $i++){
-            $new[$donation_causes[$i]['name']] =  $donation_causes[$i];
+        // Argh, this is an uneccesary move ig. Will be fixed when sending data from controller.
+
+        $donation_types = array();
+        foreach($causes as $cause) {
+            $donation_types[$cause->name] = $cause;
         }
 
-
-        return view('frontend.donation.index', ['donation_causes'=>$donation_causes], ['new' => $new]);
+        return view('frontend.donation.index', [
+            'donation_types' => $donation_types,
+        ]);
     }
 
     /**
@@ -102,8 +104,6 @@ class HomeController extends Controller
 
         $order = app(RazorpayAPIController::class)->fetch_order($razorpay_order_id);
         //TODO Handle failure
-
-
         return view('frontend.donation.payment', [
             'order' => $order,
         ]);
