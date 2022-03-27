@@ -1,34 +1,10 @@
 @extends('layouts.frontend')
 
 @section('css')
-@php
-
-/*
-THE PHP DATA!
-This data should be sent from Controller / Service Provider
-
-- Leonard,
-05 March 2022.
-*/
-
-$amounts = array(
-1,
-2,
-5,
-10,
-25,
-50,
-75,
-100
-);
-@endphp
-
 <script>
     // Alpine JS function
 
     function donationPage() {
-
-
 
         return {
 
@@ -69,7 +45,7 @@ $amounts = array(
                 checkbox_terms_and_conditions: false,
             },
 
-            causesArray: @json($new),
+            causesArray: @json($donation_types),
             //donationType: @json($donation_types),
             donationTypesArray: @json($donation_types), // Converting php array to json. Thanks to Laravel
 
@@ -212,7 +188,7 @@ $amounts = array(
 
                 Changes the icon of the cause.
 
-                
+
                 Icons in the DB are just stored as part of the class identifier without the prefix
 
                 Anirudh
@@ -221,7 +197,7 @@ $amounts = array(
 
             changeIcon() {
                 var icon = this.donationTypesArray[this.selectedCause.cause]['icon'];
-                this.selectedCause.icon = 'fas fa-' + icon + ' fa-5x';  
+                this.selectedCause.icon = 'fas fa-' + icon + ' fa-5x';
             },
 
             formatMoney() {
@@ -256,20 +232,6 @@ $amounts = array(
                 this.form.page_1 = !this.form.page_1;
                 this.form.page_2 = !this.form.page_2;
             },
-
-
-
-
-        }
-    }
-
-
-    function razorpay() {
-        return {
-            public: 'rzp_test_SmU75lqcibiulc',
-            secret: 'BSe2Who1QIS4heUJBapZImfr',
-            api_url: 'https://api.razorpay.com/v1/',
-
 
         }
     }
@@ -447,7 +409,7 @@ $amounts = array(
                                     How many quantity would you like to donate?
                                 </label>
 
-          
+
 
 
                                    <div class="flex" style="flex-wrap: wrap">
@@ -513,7 +475,7 @@ $amounts = array(
                                     As of today the database entries for causes does not contain the string "donation_"
                                     So capitalization of first letter alone is sufficient
 
-                                    Anirudh 
+                                    Anirudh
                                     March 25, 2022
                                 --}}
 
@@ -527,7 +489,7 @@ $amounts = array(
                                         {{ ucfirst($donation_type->name) }}
                                     </option>
                                 @endforeach
-                            </select> 
+                            </select>
                         </div>
 
                     </div>

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Frontend;
 use Faker\Factory;
 use App\Models\Causes;
 use App\Models\Location;
-use App\Models\Causes;
 use App\Models\FaqCategories;
 use App\Models\FaqEntries;
 use Illuminate\Http\Request;
@@ -102,9 +101,9 @@ class HomeController extends Controller
         if($razorpay_order_id == null) {
             return redirect()->route('frontend.donate');
         }
-        
+
         $order = app(RazorpayAPIController::class)->fetch_order($razorpay_order_id);
-        //TODO Handle failure        
+        //TODO Handle failure
         return view('frontend.donation.payment', [
             'order' => $order,
         ]);
