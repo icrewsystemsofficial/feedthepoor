@@ -29,6 +29,6 @@ class DonationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Donation received !!')->view('emails.donation');
+        return $this->subject('['.config('app.ngo_name').'] Your donation was received successfully ✅💚')->view('emails.donation');
     }
 }
