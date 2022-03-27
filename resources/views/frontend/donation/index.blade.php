@@ -1,6 +1,17 @@
 @extends('layouts.frontend')
 
 @section('css')
+@php
+    $amounts = array(
+    50,
+    100,
+    500,
+    1000,
+    5000,
+    7000,
+    10000,
+);
+@endphp
 <script>
     // Alpine JS function
 
@@ -267,13 +278,11 @@
 
                     <div class="row" x-show="form.page_2">
                         <div class="col-md-12 mx-auto">
-
                             <div class="mt-2 mb-3">
                                 <span class="h5">
                                     Processing donation for <span class="text-success">₹<span x-text="donationAmount_formatted"></span></span>
                                 </span>
                             </div>
-
                             <form action="{{ route('api.v1.razorpay.create_order') }}" method="GET">
                                 @csrf
                                 <div class="mt-2 mb-3">
@@ -343,16 +352,6 @@
 
                                 </div>
                             </form>
-
-
-                </div>
-
-                    <button type="button" class="w-auto btn btn-warning btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="goback()">
-                        <span class="btn-inner--visible">Go Back</span>
-                        <span class="btn-inner--hidden"><small><i class="fas fa-arrow-left"></i></small></span>
-                    </button>
-                </div>
-
                         </div>
 
                         <button type="button" class="w-auto btn btn-warning btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="goback()">
@@ -360,9 +359,9 @@
                             <span class="btn-inner--hidden"><small><i class="fas fa-arrow-left"></i></small></span>
                         </button>
                     </div>
-
                     <div class="row" x-show="form.page_1">
 
+                        {{-- Error template --}}
                         <div class="col-md-12 mx-auto" x-show="errors.insuffucientDonationAmount" x-transition:enter="animate__zoomIn" x-transition:enter-start="animate__zoomIn" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90">
                             <div class="alert alert-danger text-danger" role="alert">
                                 <span class="h4 fw-bolder text-danger">
@@ -373,10 +372,26 @@
                                 You can either choose a higher donation amount or try a different cause
                             </div>
                         </div>
-                        <div class="h1">
-                            <span x-text="selectedCause.cause"></span>
+
+                        {{-- END Error template --}}
+
+
+                        <div class="col-md-12 mx-auto text-center border-bottom border-gray-300 my-4 ">
+                            <div class="mb-3">
+                                <i x-bind:class="selectedCause.icon"
+                                    x-transition:enter.duration.500ms
+                                    x-transition:leave.duration.400ms
+                                ></i>
+                            </div>
+                            <div class="h1">
+                                <span x-text="selectedCause.cause"></span>
+                            </div>
+
                         </div>
-                        <div class="h1">
+
+
+
+                        <div class="text-center">
                             <div class="" x-show="showDonateButton()">
                                 <button type="button" class="btn btn-success btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="togglePages()">
                                     <span class="btn-inner--visible">Donate <span class="">₹<span x-text="donationAmount_formatted"></span></span></span>
@@ -384,24 +399,12 @@
                                 </button>
                             </div>
 
-                            <div class="h1">
-                                <div class="" x-show="showDonateButton()">
-                                    <button type="button" class="btn btn-success btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="togglePages()">
-                                        <span class="btn-inner--visible">Donate <span class="">₹<span x-text="donationAmount_formatted"></span></span></span>
-                                        <span class="btn-inner--hidden"><small>Process <i class="fas fa-arrow-right"></i></small></span>
-                                    </button>
-                                </div>
-
-
-
-
-
-
-                                <p class="text-sm text-bg-gray">
-                                    <span x-html="selectedCause.YieldContext"></span>
-                                </p>
-                            </div>
+                            <p class="text-sm text-bg-gray">
+                                <span x-html="selectedCause.YieldContext"></span>
+                            </p>
                         </div>
+
+
 
                         <div class="col-md-6">
                             <div class="mb-3">
