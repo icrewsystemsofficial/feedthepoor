@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use Faker\Factory;
-use App\Models\Location;
 use App\Models\Causes;
+use App\Models\Location;
 use App\Models\FaqCategories;
 use App\Models\FaqEntries;
 use Illuminate\Http\Request;
@@ -48,7 +48,7 @@ class HomeController extends Controller
         $donation_random_images = json_encode($images);
         $donation_names = json_encode($names);
 
-       
+
 
         return view('frontend.index', [
             'donation_images' => $donation_random_images,
@@ -67,23 +67,28 @@ class HomeController extends Controller
         ]);
     }
 
+    public function volunteer () {
+        return view('frontend.volunteer.index');
+    }
     /**
      * donate - the page where users can donate money.
      *
      * @return void
      */
     public function donate() {
-        $donation_causes = Causes::all();
-      
+       $causes = Causes::all();
 
-        $length = $donation_causes->count();
-        $new = array();
-        for($i = 0 ; $i < $length; $i++){
-            $new[$donation_causes[$i]['name']] =  $donation_causes[$i];
+
+        // Argh, this is an uneccesary move ig. Will be fixed when sending data from controller.
+
+        $donation_types = array();
+        foreach($causes as $cause) {
+            $donation_types[$cause->name] = $cause;
         }
 
-        
-        return view('frontend.donation.index', ['donation_causes'=>$donation_causes], ['new' => $new]);
+        return view('frontend.donation.index', [
+            'donation_types' => $donation_types,
+        ]);
     }
 
     /**
@@ -99,8 +104,6 @@ class HomeController extends Controller
 
         $order = app(RazorpayAPIController::class)->fetch_order($razorpay_order_id);
         //TODO Handle failure
-
-
         return view('frontend.donation.payment', [
             'order' => $order,
         ]);
@@ -147,24 +150,24 @@ class HomeController extends Controller
     }
 
     public function savecontact(Request $request){
-        
+
         $details = $request->validate([
             'g-recaptcha-response' => 'required|captcha',
             'name'=> 'required|min:5',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'phone' => 'required|digits:10',
             'message' => 'required|max:255',
         ]);
 
-      
+
         userContact::create($details);
 
         SendConfirmationJob::dispatch($details);
         SendAdminJob::dispatch($details);
 
-        
 
-        return redirect()->back()->with('message','Form Submitted Successfully');
-        
+
+        return redirect()->back()->with('message','Your contact request has been sent to our team successfully. One of our representatives will contact you within 72 hours. Thank you');
+
     }
 }

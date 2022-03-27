@@ -21,6 +21,7 @@ class SendAdminJob implements ShouldQueue
      * @return void
      */
     protected $details;
+
     public function __construct($details)
     {
         $this->details = $details;

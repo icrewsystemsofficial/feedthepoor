@@ -82,10 +82,10 @@
         </a>
     </li>
 
-    <li class="sidebar-item {{ Nav::isRoute('admin.causes.index') }}">
-        <a class="sidebar-link" href="{{ route('admin.causes.index') }}">
-            <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Causes</span>
-        </a>
+   <li class="sidebar-item {{ Nav::isRoute('admin.causes.index') }}">
+      <a class="sidebar-link" href="{{ route('admin.causes.index') }}">
+        <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Causes</span>
+      </a>
     </li>
 
     <li class="sidebar-item {{ Nav::isRoute('admin.campaigns.index') }}">

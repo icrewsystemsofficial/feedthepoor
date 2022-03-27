@@ -93,7 +93,7 @@
                 <span class="h5">QUICKLINKS</span>
                 <ul class="footer-links mt-2">
                     <li><a target="_blank" href="#">Track Donation</a></li>
-                    <li><a target="_blank" href="#">Volunteer</a></li>
+                    <li><a target="_blank" href="{{ route('frontend.volunteer') }}">Volunteer</a></li>
                     <li><a target="_blank" href="#">View Certifications</a></li>
                     <li><a target="_blank" href="#">Transparency Reports</a></li>
                     <li><a target="_blank" href="#">Request for food</a></li>
@@ -103,10 +103,10 @@
                 <span class="h5">Support</span>
                 <ul class="footer-links mt-2">
                     <li>
-                        <a href="{{route('frontend.faq')}}">F.A.Q</a>
+                        <a href="{{ route('frontend.faq') }}">F.A.Q</a>
                     </li>
                     <li>
-                        <a href="{{route('frontend.contact')}}"> Contact Us </a>
+                        <a href="{{ route('frontend.contact') }}">Contact Us</a>
                     </li>
                 </ul>
             </div>

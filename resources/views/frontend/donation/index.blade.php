@@ -2,65 +2,20 @@
 
 @section('css')
 @php
-
-/*
-THE PHP DATA!
-This data should be sent from Controller / Service Provider
-
-- Leonard,
-05 March 2022.
-*/
-
-
-$amounts = array(
-1,
-2,
-5,
-10,
-25,
-50,
-75,
-100
-);
-
-$donation_types = (object) array(
-
-"Food" => (object) array(
-'icon' => 'fas fa-utensils',
-),
-
-"Wheelchair" => (object) array(
-'icon' => 'fas fa-wheelchair',
-),
-
-"Sweater" => (object) array(
-'icon' => 'fas fa-tshirt',
-),
-
-"Shoes" => (object) array(
-'icon' => 'fas fa-shoe-prints',
-),
-
-"Stationary" => (object) array(
-'icon' => 'fas fa-pen-square',
-),
-
-"Dry Ration" => (object) array(
-'icon' => 'fas fa-box',
-),
-
-);
-
-
-
+$donation_quantities = array(
+    1,
+    2,
+    5,
+    10,
+    15,
+    20,
+    50
+)
 @endphp
-
 <script>
     // Alpine JS function
 
     function donationPage() {
-
-
 
         return {
 
@@ -73,6 +28,7 @@ $donation_types = (object) array(
 
             donationType: null,
             donationAmount: 0,
+            donationQuantity: 1,
             donationAmount_formatted: 0,
             showCustomDonationBlock: false,
             showCustomDonationButton: true,
@@ -101,9 +57,9 @@ $donation_types = (object) array(
                 checkbox_terms_and_conditions: false,
             },
 
-            causesArray: @json($new),
-            donationType: @json($donation_types),
-
+            causesArray: @json($donation_types),
+            //donationType: @json($donation_types),
+            donationTypesArray: @json($donation_types), // Converting php array to json. Thanks to Laravel
 
             // FUNCTIONS START!
 
@@ -129,7 +85,8 @@ $donation_types = (object) array(
             updateDonationCause() {
                 this.changeYieldContext();
                 this.changeIcon();
-                this.calculateYield(this.donationAmount);
+                // this.calculateYield(this.donationAmount);
+                this.calculatePrice(this.donationQuantity);
             },
 
             /*
@@ -140,64 +97,64 @@ $donation_types = (object) array(
                 Updates the donation amount on DOM,
                 calculates the yield based on that amount.
             */
+
+            // TODO DEPRECATE THIS!
             updateDonationAmount(amount) {
 
                 this.donationAmount = amount * this.price;
-                this.calculateYield(amount, this.selectedCause.PerUnitCost);
+                this.donationQuantity = amount;
+                // this.calculateYield(amount, this.selectedCause.PerUnitCost);
                 this.formatMoney();
             },
 
+            updateDonationQuantity(quantity) {
+                this.donationQuantity = quantity;
+                this.calculatePrice(quantity);
+                this.formatMoney();
+            },
 
-            updateDonationAmount_cus() {
+            updateDonationQuantity_custom() {
 
-                var amount = document.getElementById('custom_donation').value;
-
-                // Rounding off to the nearest 100.
-                amount = Math.round(amount / 100) * 100;
+                var quantity = document.getElementById('custom_donation').value;
 
 
-                this.updateDonationAmount(amount);
+                this.donationQuantity = quantity;
+                this.calculatePrice(quantity);
+                this.formatMoney();
+
                 this.showCustomDonationBlock = false;
                 this.showCustomDonationButton = true;
             },
 
             updateDonationAmount_custom() {
-                this.calculateYield(this.donationAmount, this.selectedCause.PerUnitCost);
+                // this.calculateYield(this.donationAmount, this.selectedCause.PerUnitCost);
                 this.showCustomDonationBlock = false;
             },
 
 
-            /*
-                calculateYield - amount as parameter.
-
-                is a protected fn, called from other fns.
-                calculates the yield based on the donationTypesArray
-                which is a js array, which is generated from a php json_encoded
-                object.
-            */
-
-            calculateYield(amount) {
+            calculatePrice(quantity) {
                 var per_unit_cost = this.causesArray[this.selectedCause.cause]['per_unit_cost'];
-                var yield = amount * per_unit_cost;
 
-                // Now, if the yield is less than 1, we should alert the user
-                // that their donation will not be sufficient.
+                this.donationAmount = per_unit_cost * quantity;
+                this.formatMoney();
 
-                if (yield == 0 || yield < 0) {
-
+                if (quantity == 0 || quantity < 0) {
                     if (this.donationAmount == 0) {
                         this.errors.insuffucientDonationAmount = false;
-                        this.selectedCause.YieldContext = '<span class="text-danger">Please select quantity and click donate</span>';
+                        this.selectedCause.YieldContext = '<span class="text-danger font-medium">Please choose a quantity to process</span>';
                     } else {
                         this.errors.insuffucientDonationAmount = true;
                         this.selectedCause.YieldContext = '<span class="text-danger fw-bolder">Try choosing a different cause or higher donation amount</span>';
                     }
                 } else {
                     this.errors.insuffucientDonationAmount = false;
-                    this.selectedCause.Yield = yield;
+                    // this.selectedCause.Yield = yield;
                     this.changeYieldContext();
                 }
             },
+
+
+
 
 
             /*
@@ -212,14 +169,15 @@ $donation_types = (object) array(
                     this.selectedCause.YieldContext = '<span class="text-danger">Please select quantity and click donate</span>';
                 } else {
                     var yield_context = this.causesArray[this.selectedCause.cause]['yield_context'];
-                    var yield = '<span class="fw-bolder text-success">' + '₹' + this.selectedCause.Yield + '</span>';
+                    var yield = '<span class="fw-bolder text-success">' + this.selectedCause.Yield + '</span>';
 
                     // In the DB, the context will be saved with a %YIELD% string.
                     // we're replacing it using js.
 
-                    yield_context = yield_context.replace("%YIELD%", yield);
-                    yield_context = yield_context.replace("%YIELD_PRICE%", this.price);
-                    yield_context = yield_context.replace("%YIELD_CAUSE%", this.selectedCause.cause );
+                    // yield_context = yield_context.replace("%YIELD%", yield); # DEPRECATED.
+                    yield_context = yield_context.replace("%CALCULATED_AMOUNT%", this.donationAmount);
+                    yield_context = yield_context.replace("%CAUSE%", this.selectedCause.cause );
+                    yield_context = yield_context.replace("%USER_INPUT_QUANTITY%", this.donationQuantity);
 
                     this.selectedCause.YieldContext = '<span class="mt-2 fw-bold leading-1">' + yield_context + "</span>";
                 }
@@ -243,11 +201,17 @@ $donation_types = (object) array(
                 changeIcon
 
                 Changes the icon of the cause.
+
+
+                Icons in the DB are just stored as part of the class identifier without the prefix
+
+                Anirudh
+                March 25, 2022
             */
 
             changeIcon() {
-                var icon = this.donationType[this.selectedCause.cause]['icon'];
-                this.selectedCause.icon = icon + ' fa-5x';
+                var icon = this.donationTypesArray[this.selectedCause.cause]['icon'];
+                this.selectedCause.icon = 'fas fa-' + icon + ' fa-5x';
             },
 
             formatMoney() {
@@ -283,20 +247,6 @@ $donation_types = (object) array(
                 this.form.page_2 = !this.form.page_2;
             },
 
-
-
-
-        }
-    }
-
-
-    function razorpay() {
-        return {
-            public: 'rzp_test_SmU75lqcibiulc',
-            secret: 'BSe2Who1QIS4heUJBapZImfr',
-            api_url: 'https://api.razorpay.com/v1/',
-
-
         }
     }
 </script>
@@ -326,18 +276,16 @@ $donation_types = (object) array(
 <section class="" x-data="donationPage()" x-init="init()">
     <div class="container mt-n6 z-2 mb-5">
         <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-10 col-lg-8">
+            <div class="col-sm-12 col-md-10 col-lg-10   ">
                 <div class="card shadow-lg border-gray-300 p-4 p-lg-5">
 
                     <div class="row" x-show="form.page_2">
                         <div class="col-md-12 mx-auto">
-
                             <div class="mt-2 mb-3">
                                 <span class="h5">
                                     Processing donation for <span class="text-success">₹<span x-text="donationAmount_formatted"></span></span>
                                 </span>
                             </div>
-
                             <form action="{{ route('api.v1.razorpay.create_order') }}" method="GET">
                                 @csrf
                                 <div class="mt-2 mb-3">
@@ -407,10 +355,6 @@ $donation_types = (object) array(
 
                                 </div>
                             </form>
-
-
-
-
                         </div>
 
                         <button type="button" class="w-auto btn btn-warning btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="goback()">
@@ -418,9 +362,9 @@ $donation_types = (object) array(
                             <span class="btn-inner--hidden"><small><i class="fas fa-arrow-left"></i></small></span>
                         </button>
                     </div>
-
                     <div class="row" x-show="form.page_1">
 
+                        {{-- Error template --}}
                         <div class="col-md-12 mx-auto" x-show="errors.insuffucientDonationAmount" x-transition:enter="animate__zoomIn" x-transition:enter-start="animate__zoomIn" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90">
                             <div class="alert alert-danger text-danger" role="alert">
                                 <span class="h4 fw-bolder text-danger">
@@ -432,31 +376,57 @@ $donation_types = (object) array(
                             </div>
                         </div>
 
-                        <div class="col-md-12 mx-auto text-center border-bottom border-gray-300 my-4 ">
-                            <div class="mb-3">
-                                <i x-bind:class="selectedCause.icon" x-transition:enter.duration.500ms x-transition:leave.duration.400ms></i>
-                            </div>
-
-                            <div class="h1">
-                                <div class="" x-show="showDonateButton()">
-                                    <button type="button" class="btn btn-success btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="togglePages()">
-                                        <span class="btn-inner--visible">Donate <span class="">₹<span x-text="donationAmount_formatted"></span></span></span>
-                                        <span class="btn-inner--hidden"><small>Process <i class="fas fa-arrow-right"></i></small></span>
-                                    </button>
-                                </div>
+                        {{-- END Error template --}}
 
 
-
-
-
-
-                                <p class="text-sm text-bg-gray">
-                                    <span x-html="selectedCause.YieldContext"></span>
-                                </p>
-                            </div>
+                        <div class="text-center col-md-12 mb-4">
+                            <p class="small text-muted border-3 rounded-lg p-2">
+                                <i class="fas fa-info-circle"></i> We are currently supporting <strong class="underline">{{ count($donation_types) }} causes</strong>. You can choose any cause,
+                                and instantly see the calculated donation amount.
+                            </p>
                         </div>
 
                         <div class="col-md-6">
+
+                            <div class="mb-3">
+                                <label class="my-1 ml-1" for="inlineFormCustomSelectPref">
+                                    Which cause would you like to donate for?
+                                </label>
+                                <select class="form-select" id="selectedCause" x-model="selectedCause.cause" aria-label="Please select a cause" @change="updateDonationCause">
+                                    {{--
+                                        We're passing the string, exploding it based on "donation_", then replacing the other "_" (dashses)
+                                        and then capitalizing the first letter of the string.
+
+                                        Phew!
+
+                                        Leonard,
+                                        March 04, 2022.
+
+                                        As of today the database entries for causes does not contain the string "donation_"
+                                        So capitalization of first letter alone is sufficient
+
+                                        Anirudh
+                                        March 25, 2022
+                                    --}}
+
+
+                                    @php
+                                     $first_iteration = true;
+                                    @endphp
+
+                                    @foreach ($donation_types as $donation_type)
+                                        <option value="{{ $donation_type->name }}" {{ $first_iteration == true ? 'selected':'' }}>
+                                            {{ ucfirst($donation_type->name) }} - (₹{{ number_format($donation_type->per_unit_cost, 0, '.', ',') }} per donation/unit)
+                                        </option>
+                                        @php
+                                            $first_iteration = false;
+                                        @endphp
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 text-center">
                             <div class="mb-3">
                                 <label for="exampleInputEmail6">
                                     How many quantity would you like to donate?
@@ -465,98 +435,96 @@ $donation_types = (object) array(
 
 
 
-                                <div class="flex">
+                                   <div class="flex" style="flex-wrap: wrap">
 
-                                    @foreach ($amounts as $amount)
-                                    <button type="button" class="btn btn-sm btn-theme text-white" @click="updateDonationAmount({{ $amount }});" style="width:80px;height:40px">
-                                        {{ $amount}}
+                                    @foreach ($donation_quantities as $quantity)
+                                    <button type="button" class="border-3 m-1 rounded-lg" @click="updateDonationQuantity({{ $quantity }});" style="width:80px;height:40px">
+                                        {{ $quantity }}
                                     </button>
                                     @endforeach
 
-                                    <div class="text-center">
-                                        <br>
-                                        <span class="h4 pt-5">
-                                            OR
-                                        </span>
-                                        <br>
-
-                                        <br>
-
-                                        <a class="text-primary text-center fw-bold" @click="toggleCustomDonation" x-show="showCustomDonationButton" style="text-decoration: underline;">
-                                            Enter a custom amount?
-                                        </a>
-
-                                        <div class="" x-show="showCustomDonationBlock">
-
-                                            <input type="number" class="form-control mt-3 mb-3" id="custom_donation" />
-
-                                            <p class="text-muted">
-                                                <small>
-                                                    The amount you enter will be automatically rounded off to the
-                                                    nearest 100.
-                                                </small>
-                                            </p>
-
-                                            <button type="button" class="btn btn-md btn-primary text-white" @click="updateDonationAmount_cus()">
-                                                Process
-                                            </button>
-                                        </div>
+                                    <button type="button" class="border-3 border-success m-1 rounded-lg" @click="toggleCustomDonation" x-show="showCustomDonationButton" style="width:80px;height:40px">
+                                        Custom?
+                                    </button>
                                     </div>
 
 
+
+                                    <div class="" x-show="showCustomDonationBlock" @click.away="toggleCustomDonation">
+
+
+                                        <p class="text-muted mt-2">
+                                            <small>
+                                                Enter a valid quantity and press "process" button.
+                                            </small>
+                                        </p>
+
+                                        <input type="number" class="form-control mt-3 mb-3" id="custom_donation" value="3" />
+
+
+
+                                        <button type="button" class="btn btn-md btn-primary text-white" @click="updateDonationQuantity_custom()">
+                                            Process
+                                        </button>
+                                    </div>
+
+                            </div>
+                        </div>
+
+                        {{-- START Causes name & icon card --}}
+
+
+
+                        <div class="col-md-12 mx-auto text-center border-top border-gray-300 my-4 ">
+
+                            <div class="mb-3 mt-4">
+
+
+                                <div class="card alpha-container text-white border-0 overflow-hidden mt-2">
+                                    <div id="hero-section-image-container" class="card-img-bg" style="background-image: url('https://images.milaap.org/milaap/image/upload/v1590737431/production/images/uploader_images/IMG-20200426-WA0015_1590737429.jpg?format=jpg&mode=max&width=1170');"></div>
+
+                                    <span class="mask bg-dark alpha-9"></span>
+
+                                    <div class="card-body px-5 py-5">
+                                      <div style="min-height: 100px;">
+                                            <div class="mt-2 mb-1 lh-180">
+                                                <div style="padding-top: 50px;">
+                                                  <i x-bind:class="selectedCause.icon"
+                                                      x-transition:enter.duration.500ms
+                                                      x-transition:leave.duration.400ms
+                                                  ></i>
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-5 h3">
+                                              <span x-text="selectedCause.cause"></span>
+                                            </div>
+
+                                            <div class="text-center mt-4">
+                                              <div class="" x-show="showDonateButton()">
+                                                  <button type="button" class="btn btn-success btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="togglePages()">
+                                                      <span class="btn-inner--visible">Donate <span class="">₹<span x-text="donationAmount_formatted"></span></span></span>
+                                                      <span class="btn-inner--hidden"><small>Process <i class="fas fa-arrow-right"></i></small></span>
+                                                  </button>
+                                              </div>
+
+                                              <p class="text-sm text-bg-gray mt-2">
+                                                  <span x-html="selectedCause.YieldContext"></span>
+                                              </p>
+                                          </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-6 text-center">
-
-                            <div class="mb-3">
-                                <label class="my-1 me-2" for="inlineFormCustomSelectPref">
-                                    What cause would you like to donate for?
-                                </label>
-                                <select class="form-select" id="selectedCause" x-model="selectedCause.cause" aria-label="Default select example" @change="updateDonationCause">
-                                    {{--
-                                    We're passing the string, exploding it based on "donation_", then replacing the other "_" (dashses)
-                                    and then capitalizing the first letter of the string.
-
-                                    Phew!
-
-                                    Leonard,
-                                    March 04, 2022.
-                                --}}
-
-
-                                    @php
-                                    $first_iteration = true;
-                                    @endphp
-
-
-                                   
-
-                                    @php
-                                    $length = $donation_causes->count();
-                                    @endphp
-
-
-                                    @for($i = 0 ; $i < $length ; $i++)
-                                        <option value="{{$donation_causes[$i]['name'] }}" @if($first_iteration==true) selected="selected" @endif>
-                                        {{ $donation_causes[$i]['name'] }}
-                                        </option>
-                                    @endfor
-
-                                    
-
-                                </select>
 
 
                             </div>
 
-                          
+
                         </div>
+
+                        {{-- END Causes name & icon card --}}
 
                     </div>
-
                 </div>
             </div>
         </div>
