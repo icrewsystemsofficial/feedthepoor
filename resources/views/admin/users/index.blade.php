@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('css')
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -111,7 +110,7 @@
         @endif
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#defaultModalPrimary">
                 <i class="fa-solid fa-plus"></i> &nbsp; Add new user
-            </button> 
+            </button>
 
 
         <div class="modal fade" id="defaultModalPrimary" tabindex="-1" aria-hidden="true" style="display: none;">
@@ -255,7 +254,7 @@
                                                 @endif
                                                 @if ($user->getRoleNames()[0] == 'volunteer')
                                                     <span class="badge bg-info">Volunteer</span>
-                                                @endif  
+                                                @endif
                                             {{-- @endif --}}
                                             </td>
                                             <td>
@@ -337,7 +336,7 @@
                                             {{-- @if ($user->hasAnyRole(['superadmin', 'donor', 'volunteer'])) --}}
                                                 @if ($user->getRoleNames()[0] == 'volunteer')
                                                     <span class="badge bg-info">Volunteer</span>
-                                                @endif  
+                                                @endif
                                             {{-- @endif --}}
                                             </td>
                                             <td>

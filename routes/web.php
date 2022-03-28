@@ -149,17 +149,6 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::delete('/destroy/{id}', [DonationsController::class, 'destroy'])->name('destroy');
         Route::put('/update/{id}', [DonationsController::class, 'update'])->name('update');
     });
-<<<<<<< HEAD
-
-    Route::prefix('contact')->as('contact.')->group(function () {
-        Route::get('/', [ContactsController::class, 'index'])->name('index');
-        Route::get('/view/{id}', [ContactsController::class, 'viewContact'])->name('view');
-        Route::delete('/delete/{id}', [ContactsController::class, 'deleteContact'])->name('delete');
-        Route::post('/spam/{id}', [ContactsController::class, 'mark_Spam'])->name('spam');
-        Route::post('/contacted/{id}', [ContactsController::class, 'mark_Contacted'])->name('contacted');
-    });
-=======
->>>>>>> main
 });
 
 
