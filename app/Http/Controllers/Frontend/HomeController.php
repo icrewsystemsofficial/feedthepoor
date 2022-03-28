@@ -142,7 +142,8 @@ class HomeController extends Controller
         $faq_entries =   FaqEntries::get();
         // dd($faq_entries);
         // dd($faq_categories);
-        return view('frontend.faq.index',['faq_entries'=>$faq_entries],['faq_categories'=>$faq_categories]);
+        // return view('frontend.faq.index',['faq_entries'=>$faq_entries],['faq_categories'=>$faq_categories]);
+        return view('receipt.index');
     }
 
     public function contact(){
@@ -159,25 +160,14 @@ class HomeController extends Controller
             'message' => 'required|max:255',
         ]);
 
-<<<<<<< HEAD
       
         Contact::create($details);
-=======
-
-        userContact::create($details);
->>>>>>> c59e8dbebb0aad057ecb9195d09bace58220fc59
 
         SendConfirmationJob::dispatch($details);
         SendAdminJob::dispatch($details);
 
 
-<<<<<<< HEAD
         return redirect()->back()->with('message','Hurray, We will extend our hands to help you very soon');
         
-=======
-
-        return redirect()->back()->with('message','Your contact request has been sent to our team successfully. One of our representatives will contact you within 72 hours. Thank you');
-
->>>>>>> c59e8dbebb0aad057ecb9195d09bace58220fc59
     }
 }
