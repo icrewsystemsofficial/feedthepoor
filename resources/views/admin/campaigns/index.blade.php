@@ -56,6 +56,9 @@
     .select2-dropdown{
         z-index: 3051;
     }
+    .required {
+        color: red;
+    }
 </style>
 @endsection
 
@@ -112,21 +115,24 @@
                         <h5 class="modal-title">Adding new campaign</h5>
                     </div>                    
                     <div class="modal-body m-3">
+                        <div class="mb-3">
+                            <strong><span class="required">*</span> -> Required fields</strong>
+                        </div>
                         <form action="{{ route('admin.campaigns.store') }}" id="new_campaign_form" method="POST" autocomplete="off">
                             @csrf
                             <div class="form-group mb-3">
-                                <label for="campaign_name">Campaign Name</label>
+                                <label for="campaign_name">Campaign Name <span class="required">*</span></label>
                                 <input type="text" class="form-control" id="campaign_name" name="campaign_name" required placeholder="Enter name of the campaign">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="campaign_description">Campaign Description</label>
+                                <label for="campaign_description">Campaign Description <span class="required">*</span></label>
                                 <textarea class="form-control" id="campaign_description" name="campaign_description" required placeholder="Enter description of the campaign"></textarea>
                             </div>            
                             <div class="form-group mb-3">
-                                <label for="campaign_poster">Campaign poster</label>
+                                <label for="campaign_poster">Campaign poster <span class="required">*</span></label>
                                 <input type="file" class="form-control" id="campaign_poster" name="campaign_poster" accept="image/*">
                             </div><div class="form-group mb-3">
-                                <label for="campaign_status">Expected campaign amount (in INR)</label>
+                                <label for="campaign_status">Expected campaign amount (in INR) <span class="required">*</span></label>
                                 <input type="number" class="form-control" id="campaign_goal_amount" name="campaign_goal_amount" placeholder="Enter campaign goal amount" required>
                             </div>                               
                             {{--<div class="form-group mb-3">
@@ -136,7 +142,7 @@
                                 </div>                                
                             </div>       --}}                     
                             <div class="form-group mb-3">
-                                <label for="campaign_start_date">Start date</label>
+                                <label for="campaign_start_date">Start date <span class="required">*</span></label>
                                 <input type="date" class="form-control" id="campaign_start_date" name="campaign_start_date" required>
                             </div>
                             <div class="form-group mb-3">
@@ -144,7 +150,7 @@
                                 <input type="date" class="form-control" id="campaign_end_date" name="campaign_end_date">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="campaign_location">Campaign locations</label><br>
+                                <label for="campaign_location">Campaign locations <span class="required">*</span></label><br>
                                 <select class="form-control" id="campaign_location" name="campaign_location[]" multiple required style="width: 100%;">                                                                                                        
                                     @foreach($locations as $location)                                        
                                         <option value="{{ $location->id }}">{{ $location->location_name }}</option>
@@ -166,7 +172,7 @@
                                 </select>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="campaign_status">Campaign Status</label>
+                                <label for="campaign_status">Campaign Status <span class="required">*</span></label>
                                 <select class="form-control" id="campaign_status" name="campaign_status" required>                                    
                                     {!! App\Helpers\CampaignsHelper::getAllStatuses() !!}
                                 </select>

@@ -16,7 +16,7 @@ class DonationsController extends Controller
     public function index()
     {
         $donations = Donations::all();
-        return view('admin.donations.index', compact('donations'));        
+        return view('admin.donations.index', compact('donations'));
     }
 
     public function store(Request $request)
@@ -32,8 +32,8 @@ class DonationsController extends Controller
         $donor_name = User::find($request->donor_id)->name;
         $cause_name = Causes::find($request->cause_id)->name;
         $donation_in_words = Donations::Show_Amount_In_Words($request->donation_amount);
-        $request->merge(['donor_name' => $donor_name, 'cause_name' => $cause_name, 'donation_in_words' => $donation_in_words]);                
-        event(new AddDonation($request->all(), 1));//1-> add record, 0-> update record        
+        $request->merge(['donor_name' => $donor_name, 'cause_name' => $cause_name, 'donation_in_words' => $donation_in_words]);
+        event(new AddDonation($request->all(), 1));//1-> add record, 0-> update record
         alert()->success('Yay','Donation was successfully created');
         return redirect()->route('admin.donations.index');
     }
@@ -53,11 +53,11 @@ class DonationsController extends Controller
             'payment_method' => 'required|integer',
             'razorpay_payment_id' => 'required_if:payment_method,4',
         ]);
-        $donor = User::whereRaw('LOWER(`name`) LIKE ?', [strtolower($request->donor_name)])->first();        
+        $donor = User::whereRaw('LOWER(`name`) LIKE ?', [strtolower($request->donor_name)])->first();
         $cause_name = Causes::find($request->cause_id)->name;
         $donor_name = $donor ? $donor->name : $request->donor_name;
         $donor_id = $donor ? $donor->id : null;
-        $donor_id ? $request->merge(['donor_id' => $donor_id]) : null;        
+        $donor_id ? $request->merge(['donor_id' => $donor_id]) : null;
         $donation_in_words = Donations::Show_Amount_In_Words($request->donation_amount);
         $request->merge(['donor_name' => $donor_name, 'cause_name' => $cause_name, 'donation_in_words' => $donation_in_words]);
         event(new AddDonation($request->all(), 0, $request->id));//1-> add record, 0-> update record

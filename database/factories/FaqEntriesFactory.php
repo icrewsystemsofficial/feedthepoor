@@ -23,6 +23,7 @@ class FaqEntriesFactory extends Factory
         $category_id = FaqCategories::inRandomOrder()->first()->id;
         return [
 <<<<<<< HEAD
+<<<<<<< HEAD
             'category_id' => rand(1, 3),
             'entry_question' => $this->faker->text,
             'entry_answer' => $this->faker->text,
@@ -33,6 +34,12 @@ class FaqEntriesFactory extends Factory
             'entry_answer' => $answer,
             'author_name' => $user,
 >>>>>>> 03944227ffff924332ec565735b0b7cce60c9a3f
+=======
+            'category_id' => $category_id,
+            'entry_question' => $question,
+            'entry_answer' => $answer,
+            'author_name' => $user, 
+>>>>>>> c59e8dbebb0aad057ecb9195d09bace58220fc59
         ];
     }
 }

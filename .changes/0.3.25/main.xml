@@ -5,4 +5,5 @@
   <change type="major">Location management module has been added to the app</change>
   <change type="module">Added FAQ module. The module is capable of adding FAQ entries and categories</change>
   <change type="module">Added Causes module. The causes are tied to donation, a user can donate to a specific cause</change>
+  <change type="module">Contact us module added. Frontend and backend</change>
 </feature>
