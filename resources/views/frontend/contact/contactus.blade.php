@@ -379,8 +379,8 @@ $donation_types_cleaned[$donation_type->name] = $donation_type;
 
                     @if(session()->has('message'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <span class="alert-inner--icon"><i class="far fa-thumbs-up"></i></span>
-                        <span class="alert-inner--text"><strong>Well done!</strong> {{ session()->get('message') }}.</span>
+                    
+                        <span class="alert-inner--text"><strong> <i class="fas fa-handshake"></i></strong> {{ session()->get('message') }}.</span>
                     </div>
 
                     @endif
@@ -416,15 +416,11 @@ $donation_types_cleaned[$donation_type->name] = $donation_type;
                         </div>
 
                         <div class="mb-3">
-
                             <label for="message" class="d-flex">
                                 <i class="fas fa-comment pe-2 fs-4" id="font"></i>
                                 Message : </label>
-                            <textarea  required="required"  class="form-control" name="message" value="{{old('message') }}" placeholder="Enter your message..." id="message" rows="4">
+                            <textarea  required="required"  class="form-control" name="message" value="{{old('message') }}" id="message" rows="3" placeholder="Enter your message...">
                             </textarea>
-
-                            
-
                         </div>
 
                         <div class="mb-3 mt-3">

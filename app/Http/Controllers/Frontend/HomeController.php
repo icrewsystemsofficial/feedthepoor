@@ -11,9 +11,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\API\RazorpayAPIController;
 use Illuminate\Support\Facades\DB;
-use App\Models\userContact;
 use App\Jobs\SendAdminJob;
 use App\Jobs\SendConfirmationJob;
+use App\Models\Contact;
 
 class HomeController extends Controller
 {
@@ -154,20 +154,20 @@ class HomeController extends Controller
         $details = $request->validate([
             'g-recaptcha-response' => 'required|captcha',
             'name'=> 'required|min:5',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'phone' => 'required|digits:10',
             'message' => 'required|max:255',
         ]);
 
       
-        userContact::create($details);
+        Contact::create($details);
 
         SendConfirmationJob::dispatch($details);
         SendAdminJob::dispatch($details);
 
         
 
-        return redirect()->back()->with('message','Form Submitted Successfully');
+        return redirect()->back()->with('message','Hurray, We will extend our hands to help you very soon');
         
     }
 }
