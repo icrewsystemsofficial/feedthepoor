@@ -7,6 +7,8 @@ use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\API\RazorpayAPIController;
+use Spatie\Activitylog\Models\Activity;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -15,8 +17,9 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function index() {
-                //Stats that are passed into the frontend page.
+    public function index()
+    {
+        //Stats that are passed into the frontend page.
         // This will have to be made dyanmic.
 
         $total_meals_fed = 850;
@@ -25,8 +28,8 @@ class HomeController extends Controller
 
         $images = array();
         $height = 300;
-        for($i = 0; $i < $howmany; $i++) {
-            $url = "https://picsum.photos/800/". $height ."";
+        for ($i = 0; $i < $howmany; $i++) {
+            $url = "https://picsum.photos/800/" . $height . "";
             $images[$i] = $url;
             $height++;
         }
@@ -34,7 +37,7 @@ class HomeController extends Controller
 
         $names = array();
         $faker = Factory::create('en_IN');
-        for($i = 0; $i < $howmany; $i++) {
+        for ($i = 0; $i < $howmany; $i++) {
             $names[$i] = $faker->firstName;
         }
 
@@ -49,7 +52,8 @@ class HomeController extends Controller
         ]);
     }
 
-    public function about () {
+    public function about()
+    {
 
         $locations = Location::where('location_status', 1)->get();
 
@@ -58,15 +62,23 @@ class HomeController extends Controller
         ]);
     }
 
-    public function volunteer () {
-        return view('frontend.volunteer.index');
+    public function volunteer()
+    {
+        return view('layouts.admin');
+    }
+
+    public function activity()
+    {
+        $activity = Activity::all();
+        return view('admin.activitylog.index', ['Activitys' => $activity]);
     }
     /**
      * donate - the page where users can donate money.
      *
      * @return void
      */
-    public function donate() {
+    public function donate()
+    {
         return view('frontend.donation.index');
     }
 
@@ -76,8 +88,9 @@ class HomeController extends Controller
      * @param  mixed $razorpay_order_id
      * @return void
      */
-    public function donate_process($razorpay_order_id = null) {
-        if($razorpay_order_id == null) {
+    public function donate_process($razorpay_order_id = null)
+    {
+        if ($razorpay_order_id == null) {
             return redirect()->route('frontend.donate');
         }
 
@@ -96,7 +109,8 @@ class HomeController extends Controller
      * @param  mixed $payment_id
      * @return void
      */
-    public function thank_you($payment_id = null) {
+    public function thank_you($payment_id = null)
+    {
         return view('frontend.donation.thank_you', [
             'payment_id' => $payment_id,
             'payment' => app(RazorpayAPIController::class)->fetch_payment($payment_id),
@@ -105,7 +119,8 @@ class HomeController extends Controller
 
 
     // function created by sathish
-    public function track_donation($donation_id = ''){
+    public function track_donation($donation_id = '')
+    {
 
 
         $faker = Factory::create('en_IN');
@@ -116,5 +131,4 @@ class HomeController extends Controller
             'donation_name' => $donation_name,
         ]);
     }
-
 }
