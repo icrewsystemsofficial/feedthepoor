@@ -1,46 +1,45 @@
 <!DOCTYPE html>
-<html>
-<body>    
-    <div class="cont" style="padding: 40px; background: #fffef7; border-radius: 12px;">
-        <img src="{{ asset('images/branding/roshni-foundation.png') }}" style="display: block; margin: 0 auto; height: 120px;">
-        
-        <hr style="background-color: #ebc04c; height: 2px; border: none; margin: 50px;">
-        Dear <strong>{{ $details['name'] }}</strong>,<br><br>
-        We have received your generous donation of <strong>₹ {{ $details['amount'] }}</strong> ({{ $details['amt_in_words'] }}) successfully for <strong>{{ $details['cause'] }}</strong>
-        <br><br>
-        The receipt for your donation is attached herewith this email.<br>
-        @if (isset($details['pan'])) 
-            This receipt will be valid for 80G tax exemptions
-        @endif
-        <br><br>
-        In an effort to keep the donations transparent, we have provided the ability to track your donation using a unique identification number.
-        <br><br>
-        <div class="panel" style="border-radius: 10px; background-color: #1c2540;padding: 30px;width: fit-content;">
-            <div class="row" style="display: flex; flex-wrap: wrap;">
-                <p style="color: #ebc04c"><strong>
-                    DATE : &nbsp;
-                </strong></p>
-                <p style="color: #fff">{!! App\Helpers\CampaignsHelper::formatDate(date('Y-m-d')) !!}</p>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="m-auto w-50 text-dark p-4">
+    @component('mail::message')
+        <h1 class="text-dark fs-2"> Hey {{ $details['name'] }}</h1>
+        <p class="text-dark fs-3 fw-bolder">We have received your generous donation of <strong>₹ {{ $details['amount'] }}</strong> ({{ $details['amt_in_words'] }}) successfully for <strong>{{ $details['cause'] }}</strong></p>
+        <p class="text-secondary fs-3 fw-bolder">
+            The receipt for your donation is attached herewith this email.<br>
+            @if (isset($details['pan'])) This receipt will be valid for 80G tax exemptions @endif
+            <br><br>
+            In an effort to keep the donations transparent, we have provided the ability to track your donation using a unique identification number.        
+        </p><br><br>
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">Donation details</h1>
+                <p class="card-text">
+                    <strong>Date : </strong> {!! App\Helpers\CampaignsHelper::formatDate(date('Y-m-d')) !!}<br>
+                    <strong>Amount : </strong> ₹ {{ $details['amount'] }}<br>
+                    <strong>Donation ID : </strong> {{ $details['id'] }}<br>
+                </p>                
+                @component('mail::button', ['url' => $details['tracking_url']])Track donation @endcomponent
             </div>
-            <div class="row" style="display: flex; flex-wrap: wrap;">
-                <p style="color: #ebc04c"><strong>
-                    AMOUNT : &nbsp;
-                </strong></p>
-                <p style="color: #fff">₹ {{ $details['amount'] }}</p>
-            </div>
-            <div class="row" style="display: flex; flex-wrap: wrap;">
-                <p style="color: #ebc04c"><strong>
-                    DONATION ID : &nbsp;
-                </strong></p>
-                <p style="color: #fff">{{ $details['id'] }}</p>
-            </div>
-        </div><br><br>
-        <a target="_blank" href="{{ $details['tracking_url'] }}" style="background: #ebc04c;border-radius: 12px; border: 1px solid #ebc04c; color: #1f2937; box-shadow: #ebc04c 0px 0px 85px -4px; font-weight: 600; line-height: 24px; padding: 8px; text-alignt: center; text-decoration: none;">
-            Track Donation
-        </a><br><br>
-        Regards,<br>
-        Operations Team,<br>    
-        {{ Config::get('app.ngo_name'); }}
+        </div><br>
+        <p class="text-secondary fs-3 fw-bolder">
+            Regards,<br>
+            Operations Team,<br>    
+            {{ Config::get('app.ngo_name'); }}
+        </p>
+    @endcomponent
     </div>
+
+
 </body>
-</html> 
+
+</html>
