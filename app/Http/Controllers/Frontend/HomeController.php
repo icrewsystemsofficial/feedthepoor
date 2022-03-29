@@ -64,7 +64,7 @@ class HomeController extends Controller
 
     public function volunteer()
     {
-        return view('layouts.admin');
+        return view('frontend.volunteer.index');
     }
 
     public function activity()
