@@ -54,6 +54,8 @@ Route::name('frontend.')->group(function () {
     Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     Route::post('/contact', [HomeController::class, 'savecontact'])->name('savecontact');
+    
+    Route::get('/receipt', [HomeController::class, 'receipt'])->name('receipt');
 });
 
 /*
