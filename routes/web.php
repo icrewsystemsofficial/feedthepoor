@@ -54,6 +54,8 @@ Route::name('frontend.')->group(function () {
     Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     Route::post('/contact', [HomeController::class, 'savecontact'])->name('savecontact');
+    
+    Route::get('/receipt', [HomeController::class, 'receipt'])->name('receipt');
 });
 
 /*
@@ -140,14 +142,6 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
 /*
   ------LARAVEL DEFAULT AUTHENTICATION ROUTES------
-*/
-/*
-
-Test route for email template
-
-Route::get('/test', function(){
-    return view('emails.donation');
-})->name('test');
 */
 Route::get('/dashboard', function () {
     // return view('dashboard');

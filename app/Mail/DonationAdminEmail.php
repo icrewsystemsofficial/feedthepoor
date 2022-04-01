@@ -7,16 +7,15 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendConfirmationMail extends Mailable
+class DonationAdminEmail extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $details;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public $details;
     public function __construct($details)
     {
         $this->details = $details;
@@ -29,7 +28,8 @@ class SendConfirmationMail extends Mailable
      */
     public function build()
     {
-        return $this->view('Confirmation Message')
-            ->markdown('frontend.verificationEmail.emailToUser', $this->details);
+        return $this->markdown('mail.donation-admin-email', [
+            'details' => $this->details,
+        ]);
     }
 }

@@ -18,6 +18,8 @@ class DonationReceived
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $details;
+
     /**
      * Create a new event instance.
      *

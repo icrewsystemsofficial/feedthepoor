@@ -8,12 +8,15 @@ use App\Models\Location;
 use App\Models\FaqCategories;
 use App\Models\FaqEntries;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Markdown;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\API\RazorpayAPIController;
 use Illuminate\Support\Facades\DB;
 use App\Models\userContact;
 use App\Jobs\SendAdminJob;
 use App\Jobs\SendConfirmationJob;
+use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class HomeController extends Controller
 {
@@ -22,8 +25,9 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function index() {
-                //Stats that are passed into the frontend page.
+    public function index()
+    {
+        //Stats that are passed into the frontend page.
         // This will have to be made dyanmic.
 
         $total_meals_fed = 850;
@@ -32,8 +36,8 @@ class HomeController extends Controller
 
         $images = array();
         $height = 300;
-        for($i = 0; $i < $howmany; $i++) {
-            $url = "https://picsum.photos/800/". $height ."";
+        for ($i = 0; $i < $howmany; $i++) {
+            $url = "https://picsum.photos/800/" . $height . "";
             $images[$i] = $url;
             $height++;
         }
@@ -41,7 +45,7 @@ class HomeController extends Controller
 
         $names = array();
         $faker = Factory::create('en_IN');
-        for($i = 0; $i < $howmany; $i++) {
+        for ($i = 0; $i < $howmany; $i++) {
             $names[$i] = $faker->firstName;
         }
 
@@ -58,7 +62,8 @@ class HomeController extends Controller
         ]);
     }
 
-    public function about () {
+    public function about()
+    {
 
         $locations = Location::where('location_status', 1)->get();
 
@@ -67,7 +72,8 @@ class HomeController extends Controller
         ]);
     }
 
-    public function volunteer () {
+    public function volunteer()
+    {
         return view('frontend.volunteer.index');
     }
     /**
@@ -75,14 +81,15 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function donate() {
-       $causes = Causes::all();
+    public function donate()
+    {
+        $causes = Causes::all();
 
 
         // Argh, this is an uneccesary move ig. Will be fixed when sending data from controller.
 
         $donation_types = array();
-        foreach($causes as $cause) {
+        foreach ($causes as $cause) {
             $donation_types[$cause->name] = $cause;
         }
 
@@ -97,8 +104,9 @@ class HomeController extends Controller
      * @param  mixed $razorpay_order_id
      * @return void
      */
-    public function donate_process($razorpay_order_id = null) {
-        if($razorpay_order_id == null) {
+    public function donate_process($razorpay_order_id = null)
+    {
+        if ($razorpay_order_id == null) {
             return redirect()->route('frontend.donate');
         }
 
@@ -115,7 +123,8 @@ class HomeController extends Controller
      * @param  mixed $payment_id
      * @return void
      */
-    public function thank_you($payment_id = null) {
+    public function thank_you($payment_id = null)
+    {
         return view('frontend.donation.thank_you', [
             'payment_id' => $payment_id,
             'payment' => app(RazorpayAPIController::class)->fetch_payment($payment_id),
@@ -124,7 +133,8 @@ class HomeController extends Controller
 
 
     // function created by sathish
-    public function track_donation($donation_id = ''){
+    public function track_donation($donation_id = '')
+    {
 
 
         $faker = Factory::create('en_IN');
@@ -137,23 +147,26 @@ class HomeController extends Controller
     }
 
 
-    public function faq(){
+    public function faq()
+    {
         $faq_categories = DB::table('faq_categories')->where('category_status', 1)->get();
         $faq_entries =   FaqEntries::get();
         // dd($faq_entries);
         // dd($faq_categories);
-        return view('frontend.faq.index',['faq_entries'=>$faq_entries],['faq_categories'=>$faq_categories]);
+        return view('frontend.faq.index', ['faq_entries' => $faq_entries], ['faq_categories' => $faq_categories]);
     }
 
-    public function contact(){
+    public function contact()
+    {
         return view('frontend.contact.contactus');
     }
 
-    public function savecontact(Request $request){
+    public function savecontact(Request $request)
+    {
 
         $details = $request->validate([
             'g-recaptcha-response' => 'required|captcha',
-            'name'=> 'required|min:5',
+            'name' => 'required|min:5',
             'email' => 'required|email',
             'phone' => 'required|digits:10',
             'message' => 'required|max:255',
@@ -167,7 +180,38 @@ class HomeController extends Controller
 
 
 
-        return redirect()->back()->with('message','Your contact request has been sent to our team successfully. One of our representatives will contact you within 72 hours. Thank you');
+        return redirect()->back()->with('message', 'Your contact request has been sent to our team successfully. One of our representatives will contact you within 72 hours. Thank you');
+    }
 
+    public function receipt()
+    {
+        $data = [
+            'donor_name' => 'Sathish',
+            'donation_amount' => 10000,
+            'donor_PAN' => 'AGB123OK12',
+            'receiver_PAN' => 'AXI198OR19',
+        ];
+
+        $markdown = new Markdown(view(), config('mail.markdown'));
+        // // return $markdown->render('receipt');
+
+        $file_name = 'filename_' . date('d_m_Y_H_i_A');
+        $html = $markdown->render('pdf.receipts.receipt', ['data' => $data]);
+
+        Storage::disk('public')->put($file_name .'.html', $html);
+
+        return PDF::loadFile(storage_path('app/public/' . $file_name . '.html'))
+            ->setPaper('a4', 'portrait')
+            ->stream($file_name . '.pdf');
+
+        // $storage_path = storage_path('app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'receipts' . DIRECTORY_SEPARATOR . $file_name . '.pdf');
+        // $pdf = PDF::loadView('pdf.receipts.receipt', ['data' => $data])
+        //     ->setPaper('a4', 'portrait')
+        //     ->save($storage_path);
+
+
+        // return view('receipt');
+        // $pdf = PDF::loadView('receipt', $data);
+        // return $pdf->download('receipts.pdf');
     }
 }
