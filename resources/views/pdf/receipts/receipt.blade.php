@@ -4,7 +4,7 @@
     <table width="100%">
       <tr>
         <td width="75px">
-            <img src="{{ asset('images/branding/roshni-foundation.png') }}" alt="" srcset="" style="width: 90px; height: auto;">
+            <img src="{{ asset('images/branding/roshni-foundation.png') }}" alt="" srcset="" style="width: 90px; height: auto; padding-top: 20px;">
         </td>
         <td width="300px">
             <p style="padding-left: 10px; ">
@@ -18,9 +18,9 @@
       </tr>
     </table>
     <br><br>
-    <p style="line-height: 18px;">
+    <p style="line-height: 18px; margin-top: -25px;">
         <strong>Dear USER</strong>, <br><br>
-        <small>
+
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Thank you for your generous donation towards CAUSE, CAMPAIGN. Please take comfort in knowing that this good deed,
         will be putting smiles in the faces of the less fortunate. Continue to support us, share the news with
@@ -32,7 +32,7 @@
                 Founder, <br>
                 {{ config('app.ngo_name') }}
             </span>
-        </small>
+
         </i>
     </p>
     <table width="100%" style="border-collapse: collapse;">
@@ -128,10 +128,10 @@
             {{ config('app.ngo_name') }}.
             <br>
         </span>
-        <span style="font-size:17px; color: #292929;">
+        <span style="font-size:15px; color: #292929;">
             India's most trusted NGO with 100% transparency.
         </span>
-        <br>
+        <br><br>
 
         (Regd. as. {{ config('app.ngo_name') }},
         #3, Srinivasa Road, Nehru Nagar, <br> Chrompet, Chennai 600044.)

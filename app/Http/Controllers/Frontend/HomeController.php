@@ -193,15 +193,22 @@ class HomeController extends Controller
         ];
 
         $markdown = new Markdown(view(), config('mail.markdown'));
-        // return $markdown->render('receipt');
+        // // return $markdown->render('receipt');
 
         $file_name = 'filename_' . date('d_m_Y_H_i_A');
         $html = $markdown->render('pdf.receipts.receipt', ['data' => $data]);
 
         Storage::disk('public')->put($file_name .'.html', $html);
+
         return PDF::loadFile(storage_path('app/public/' . $file_name . '.html'))
             ->setPaper('a4', 'portrait')
             ->stream($file_name . '.pdf');
+
+        // $storage_path = storage_path('app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'receipts' . DIRECTORY_SEPARATOR . $file_name . '.pdf');
+        // $pdf = PDF::loadView('pdf.receipts.receipt', ['data' => $data])
+        //     ->setPaper('a4', 'portrait')
+        //     ->save($storage_path);
+
 
         // return view('receipt');
         // $pdf = PDF::loadView('receipt', $data);
