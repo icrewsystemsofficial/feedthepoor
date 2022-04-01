@@ -50,6 +50,7 @@ Route::name('frontend.')->group(function () {
     // STATIC PAGES
 
     Route::get('/about', [HomeController::class, 'about'])->name('about');
+    Route::get('/partners', [HomeController::class, 'partners'])->name('partners');
     Route::get('/volunteer', [HomeController::class, 'index'])->name('volunteer');
     Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
