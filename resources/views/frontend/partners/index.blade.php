@@ -1291,12 +1291,15 @@ $(function () {
             </a>
         </form>
     </div>
+    <br>
 
-    <div style="color: aliceblue; padding: 5% 0 5% 0;" class="text-center justify-content">
-        <h3>Re-imagining how the web works</h3>
+    <section>
+        <h2>Re-imagining how the web works</h2>
+    </section>
+
     </div>
 
-    <section style="padding: 0 10% 2% 10%;">
+    <section style="padding: 3% 13% 2% 5%;">
         <div class="row align-items-center content">
             <div class="col-md-6 text-center">
                 <div class="row justify-content-center">
