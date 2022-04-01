@@ -7,19 +7,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendConfirmationMail extends Mailable
+class NewDonorWelcomeEmail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public $details;
-    public function __construct($details)
+    public function __construct($user)
     {
-        $this->details = $details;
+        $this->user = $user;
     }
 
     /**
@@ -29,7 +29,8 @@ class SendConfirmationMail extends Mailable
      */
     public function build()
     {
-        return $this->view('Confirmation Message')
-            ->markdown('frontend.verificationEmail.emailToUser', $this->details);
+        return $this->markdown('mail.new-donor-welcome-email', [
+            'user' => $this->user,
+        ])->subject('Hey '.$this->user->name.', welcome to '.config('app.ngo_name').'');
     }
 }

@@ -39,7 +39,7 @@ class Donations extends Model
         'DEMAND DRAFT' => 3,
         'RAZORPAY' => 4,
     ];
-    
+
     public function donor_id()
     {
         return $this->belongsTo(Users::class, 'donor_id', 'id');
@@ -48,7 +48,7 @@ class Donations extends Model
     public function cause_id()
     {
         return $this->belongsTo(Causes::class, 'cause_id', 'id');
-    }    
+    }
 
     public static function Show_Amount_In_Words($num) {
         $ones =array('',' One',' Two',' Three',' Four',' Five',' Six',' Seven',' Eight',' Nine',' Ten',' Eleven',' Twelve',' Thirteen',' Fourteen',' Fifteen',' Sixteen',' Seventeen',' Eighteen',' Nineteen');
@@ -56,7 +56,7 @@ class Donations extends Model
         $triplets = array('',' Thousand',' Lac',' Crore',' Arab',' Kharab');
 
         $str ="";
-        $th= (int)($num/1000); 
+        $th= (int)($num/1000);
         $x = (int)($num/100) %10;
         $fo= explode('.',$num);
 
@@ -71,7 +71,7 @@ class Donations extends Model
             $str =$ones[$x].' Hundred';
         }
         if($y>0){
-            if($y<20){        
+            if($y<20){
                 $str .=$ones[$y];
             }
         else {
@@ -131,6 +131,6 @@ class Donations extends Model
         }
         }
         return $str;
-    }  
+    }
 
 }
