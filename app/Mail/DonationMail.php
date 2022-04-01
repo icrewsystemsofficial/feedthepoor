@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class DonationMail extends Mailable
+class DonationMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -29,6 +29,7 @@ class DonationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('['.config('app.ngo_name').'] Your donation was received successfully ✅💚')->view('emails.donation');
+        // TODO Attach PDF along with this
+        return $this->subject('['.config('app.ngo_name').'] Your donation was received successfully ✅💚')->markdown('emails.donation', ['details' => $this->details]);
     }
 }

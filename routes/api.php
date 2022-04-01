@@ -22,4 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->as('api.v1.')->group(function() {
     Route::get('razorpay/create-order', [RazorpayAPIController::class, 'create_order'])->name('razorpay.create_order');
+    Route::get('razorpay/payment-received/{payment_id?}', [RazorpayAPIController::class, 'payment_received'])->name('razorpay.payment_received');
 });

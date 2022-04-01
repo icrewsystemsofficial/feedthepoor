@@ -18,7 +18,7 @@
         <p class="text-secondary fs-3 fw-bolder">This message is send by {{ $details['name'] }}  </p>
         <p class="text-secondary fs-3 fw-bolder"> The query : {{ $details['message'] }}</p>
         <p class="text-danger fs-5 fw-bolder"> Lets start the process !!!</p>
-        
+
     @endcomponent
     </div>
 
