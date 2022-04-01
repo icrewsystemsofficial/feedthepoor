@@ -1317,9 +1317,10 @@ $(function () {
             </div>
         </div>
     </section>
+    <br><br>
 
 
-    <h2>Our Clients</h2>
+    <!-- <h2>Our Clients</h2>
     <section class="trigger section gutter-horizontal bg-gray gutter-vertical--m gutter-horizontal outline">
         <div class="customer-logos slider">
             <div class="slide-in-right slide"><img
@@ -1331,7 +1332,7 @@ $(function () {
             <div class="slide-in-right slide"><img
                     src="https://images.yourstory.com/cs/images/companies/logo-1586419567684.jpg?fm=png&auto=format&w=400&h=400&fit=fill&fill=solid"
                     height="150" width="150"></a></div>
-    </section>
+    </section> -->
 
     <div class="container">
         <form action="">
