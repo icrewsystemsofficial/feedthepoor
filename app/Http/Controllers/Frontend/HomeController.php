@@ -196,7 +196,8 @@ class HomeController extends Controller
         // return $markdown->render('receipt');
 
         $file_name = 'filename_' . date('d_m_Y_H_i_A');
-        $html = $markdown->render('receipt', ['data' => $data]);
+        $html = $markdown->render('pdf.receipts.receipt', ['data' => $data]);
+
         Storage::disk('public')->put($file_name .'.html', $html);
         return PDF::loadFile(storage_path('app/public/' . $file_name . '.html'))
             ->setPaper('a4', 'portrait')
