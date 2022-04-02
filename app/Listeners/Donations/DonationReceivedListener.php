@@ -5,15 +5,16 @@ namespace App\Listeners\Donations;
 use App\Models\User;
 use App\Models\Donations;
 use App\Mail\DonationMail;
+use App\Mail\DonationAdminEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Jobs\Donation\AddOrUpdateUser;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Events\Donations\DonationReceived;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Jobs\Donation\CreateDonationReceipt;
 use App\Jobs\Donation\AddOrUpdateDonationEntry;
-use App\Mail\DonationAdminEmail;
 
-class DonationReceivedListener
+class DonationReceivedListener implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -49,11 +50,20 @@ class DonationReceivedListener
         $user = User::where('email', $payment->email)->first();
         AddOrUpdateDonationEntry::dispatch($payment, $user);
 
+
+        # Generate Donation receipt
+        CreateDonationReceipt::dispatch([
+            'payment' => $payment,
+            'user' => $user,
+        ]);
+
+
         # Email admins
         Mail::to('kashrayks@gmail.com')->send(new DonationAdminEmail($event->details));
 
         # Email donor about confirmation
         Mail::to($event->details['email'])->send(new DonationMail($event->details));
+
 
         # Add "Operations" logic TODO
 
