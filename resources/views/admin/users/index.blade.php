@@ -7,18 +7,15 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 <script defer>
     $(document).ready(function() {
-        $('#table1').DataTable();
-    } );
-    $(document).ready(function() {
-        $('#table2').DataTable();
-    } );
-    $(document).ready(function() {
-        $('#table3').DataTable();
-    } );
-    $(document).ready(function() {
-        $('#table4').DataTable();
+        $('#table').DataTable();
     } );
 
+    const getUsers =async (role) => {
+        const table = $('#table').DataTable();
+        table.search(role);
+        // $('.form-control-sm')[0].value = "";
+        // $('.form-control-sm')[0].value = role;
+    }
     createUser = (id) => {
         const password = document.getElementById('password');
         const cpassword = document.getElementById('confirm_password');
@@ -195,209 +192,45 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-md-12">
-                        <div class="bd-example">
-                        <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#users" type="button" role="tab" aria-controls="home" aria-selected="false">
-                                    All User
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#admin" type="button" role="tab" aria-controls="profile" aria-selected="false">
-                                    Administrators
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#volunteers" type="button" role="tab" aria-controls="contact" aria-selected="true">
-                                    Volunteers
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#donors" type="button" role="tab" aria-controls="contact" aria-selected="true">
-                                    Donors
-                                </button>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade active show" id="users" role="tabpanel" aria-labelledby="home-tab">
-                                <table id="table1" class="table table-striped" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>NAME</th>
-                                            <th>E Mail</th>
-                                            <th>Phone number</th>
-                                            <th>Role</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php $i = 0; @endphp
-                                        @foreach($users as $user)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            <td>{{ $user->name }}</td>
-                                            <td><a href="">{{ $user->email }}</a></td>
-                                            <td>
-                                                {!! $user->phone_number ? $user->phone_number : '<span class="badge bg-secondary">Not Updated</span>' !!}
-                                            </td>
-                                            <td>
-                                            {{-- @if ($user->hasAnyRole(['superadmin', 'donor', 'volunteer'])) --}}
-                                                @if ($user->getRoleNames()[0] == 'superadmin')
-                                                    <span class="badge bg-info">Super Admin</span>
-                                                @endif
-                                                @if ($user->getRoleNames()[0] == 'administrator')
-                                                    <span class="badge bg-info">Administrator</span>
-                                                @endif
-                                                @if ($user->getRoleNames()[0] == 'donor')
-                                                    <span class="badge bg-info">Donor</span>
-                                                @endif
-                                                @if ($user->getRoleNames()[0] == 'volunteer')
-                                                    <span class="badge bg-info">Volunteer</span>
-                                                @endif
-                                            {{-- @endif --}}
-                                            </td>
-                                            <td class="d-flex justify-content-around">
-                                                <button class="btn btn-primary btn-sm">
-                                                    <i class="fa-solid fa-edit"></i> &nbsp;
-                                                    Manage
-                                                </button>
-                                                <button onclick="trigger_delete({{$user->id}})" class="btn btn-danger btn-sm">
-                                                    <i class="fa-solid fa-edit"></i> &nbsp;
-                                                    Delete
-                                                </button>
-                                                <form action="{{ route('admin.users.destroy', $user->id) }}" id="delete_user_form_{{$user->id}}" method="POST">@csrf @method('DELETE')</form>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="tab-pane fade" id="admin" role="tabpanel" aria-labelledby="profile-tab">
-                                <table id="table2" class="table table-striped" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>NAME</th>
-                                            <th>E Mail</th>
-                                            <th>Phone number</th>
-                                            <th>Role</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php $i = 0; @endphp
-                                        @foreach($admins as $user)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            <td>{{ $user->name }}</td>
-                                            <td><a href="">{{ $user->email }}</a></td>
-                                            <td>
-                                                {!! $user->phone_number ? $user->phone_number : '<span class="badge bg-secondary">Not Updated</span>' !!}
-                                            </td>
-                                            <td>
-                                            {{-- @if ($user->hasAnyRole(['superadmin', 'donor', 'volunteer'])) --}}
-                                                @if ($user->getRoleNames()[0] == 'administrator')
-                                                    <span class="badge bg-info">Administrator</span>
-                                                @endif
-                                            {{-- @endif --}}
-                                            </td>
-                                            <td>
-                                                <button onclick="trigger_delete({{$user->id}})" class="btn btn-danger btn-sm">
-                                                    <i class="fa-solid fa-edit"></i> &nbsp;
-                                                    Delete
-                                                </button>
-                                                <form action="{{ route('admin.users.destroy', $user->id) }}" id="delete_user_form_{{$user->id}}" method="POST">@csrf @method('DELETE')</form>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="tab-pane fade" id="volunteers" role="tabpanel" aria-labelledby="contact-tab">
-                                <table id="table3" class="table table-striped" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>NAME</th>
-                                            <th>E Mail</th>
-                                            <th>Phone number</th>
-                                            <th>Role</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php $i = 0; @endphp
-                                        @foreach($volunteers as $user)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            <td>{{ $user->name }}</td>
-                                            <td><a href="">{{ $user->email }}</a></td>
-                                            <td>
-                                                {!! $user->phone_number ? $user->phone_number : '<span class="badge bg-secondary">Not Updated</span>' !!}
-                                            </td>
-                                            <td>
-                                            {{-- @if ($user->hasAnyRole(['superadmin', 'donor', 'volunteer'])) --}}
-                                                @if ($user->getRoleNames()[0] == 'volunteer')
-                                                    <span class="badge bg-info">Volunteer</span>
-                                                @endif
-                                            {{-- @endif --}}
-                                            </td>
-                                            <td>
-                                                <button onclick="trigger_delete({{$user->id}})" class="btn btn-danger btn-sm">
-                                                    <i class="fa-solid fa-edit"></i> &nbsp;
-                                                    Delete
-                                                </button>
-                                                <form action="{{ route('admin.users.destroy', $user->id) }}" id="delete_user_form_{{$user->id}}" method="POST">@csrf @method('DELETE')</form>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="tab-pane fade" id="donors" role="tabpanel" aria-labelledby="contact-tab">
-                                <table id="table4" class="table table-striped" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>NAME</th>
-                                            <th>E Mail</th>
-                                            <th>Phone number</th>
-                                            <th>Role</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php $i = 0; @endphp
-                                        @foreach($donors as $user)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            <td>{{ $user->name }}</td>
-                                            <td><a href="">{{ $user->email }}</a></td>
-                                            <td>
-                                                {!! $user->phone_number ? $user->phone_number : '<span class="badge bg-secondary">Not Updated</span>' !!}
-                                            </td>
-                                            <td>
-                                            {{-- @if ($user->hasAnyRole(['superadmin', 'donor', 'volunteer'])) --}}
-                                                @if ($user->getRoleNames()[0] == 'donor')
-                                                    <span class="badge bg-info">Donor</span>
-                                                @endif
-                                            {{-- @endif --}}
-                                            </td>
-                                            <td>
-                                                <button onclick="trigger_delete({{$user->id}})" class="btn btn-danger btn-sm">
-                                                    <i class="fa-solid fa-trash-can"></i> &nbsp;
-                                                    Delete
-                                                </button>
-                                                <form action="{{ route('admin.users.destroy', $user->id) }}" id="delete_user_form_{{$user->id}}" method="POST">@csrf @method('DELETE')</form>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        </div>
+                        <table id="table" class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>NAME</th>
+                                    <th>E Mail</th>
+                                    <th>Phone number</th>
+                                    <th>Role</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php $i = 0; @endphp
+                                @foreach($users as $user)
+                                <tr>
+                                    <td>{{ ++$i }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td><a href="">{{ $user->email }}</a></td>
+                                    <td>
+                                        {!! $user->phone_number ? $user->phone_number : '<span class="badge bg-secondary">Not Updated</span>' !!}
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-info cursor-pointer" onclick="getUsers('{{$user->getRoleNames()[0]}}')">{{strtoupper($user->getRoleNames()[0])}}</span>
+                                    </td>
+                                    <td class="d-flex justify-content-around">
+                                        <button class="btn btn-primary btn-sm">
+                                            <i class="fa-solid fa-edit"></i> &nbsp;
+                                            Manage
+                                        </button>
+                                        <button onclick="trigger_delete({{$user->id}})" class="btn btn-danger btn-sm">
+                                            <i class="fa-solid fa-edit"></i> &nbsp;
+                                            Delete
+                                        </button>
+                                        <form action="{{ route('admin.users.destroy', $user->id) }}" id="delete_user_form_{{$user->id}}" method="POST">@csrf @method('DELETE')</form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
