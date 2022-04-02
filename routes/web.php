@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\CampaignsController;
 use App\Http\Controllers\Admin\DonationsController;
+use App\Http\Controllers\Admin\OperationsController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactsController;
@@ -135,6 +136,21 @@ Route::prefix('admin')->as('admin.')->group(function () {
         Route::get('/manage/{id}', [DonationsController::class, 'manage'])->name('manage');
         Route::delete('/destroy/{id}', [DonationsController::class, 'destroy'])->name('destroy');
         Route::put('/update/{id}', [DonationsController::class, 'update'])->name('update');
+    });
+
+    Route::prefix('operations')->as('operations.')->group(function(){
+        Route::prefix('status')->as('status.')->group(function(){
+            Route::get('/', [OperationsController::class, 'status_index'])->name('index');
+        });
+        Route::prefix('procurement')->as('procurement.')->group(function(){
+            Route::get('/', [OperationsController::class, 'procurement_index'])->name('index');
+        });
+        Route::prefix('missions')->as('missions.')->group(function(){
+            Route::get('/', [OperationsController::class, 'missions_index'])->name('index');
+        });
+        Route::prefix('volunteer')->as('volunteer.')->group(function(){
+            Route::get('/', [OperationsController::class, 'volunteer_index'])->name('index');
+        });
     });
 });
 

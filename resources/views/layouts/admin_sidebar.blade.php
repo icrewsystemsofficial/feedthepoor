@@ -50,6 +50,25 @@
         </a>
 </li>
 
+    <a data-bs-target="#operations" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
+        <i class="align-middle" data-feather="truck"></i>
+        <span class="align-middle">Operations</span>
+    </a>
+    <ul id="operations" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('admin.operations.status.index') }}">Status</a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('admin.operations.procurement.index') }}">Procurement list</a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('admin.operations.missions.index') }}">Missions</a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('admin.operations.volunteer.index') }}">Volunteer roster</a>
+        </li>
+    </ul>
+    
 
     <li class="sidebar-item {{ Nav::isRoute('admin.donations.index') }}">
         <a class="sidebar-link" href="{{ route('admin.donations.index') }}">
