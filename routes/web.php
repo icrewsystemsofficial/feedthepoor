@@ -141,17 +141,10 @@ Route::prefix('admin')->as('admin.')->group(function () {
     });
 
     Route::prefix('operations')->as('operations.')->group(function(){
-        Route::prefix('status')->as('status.')->group(function(){
-            Route::get('/', [OperationsController::class, 'status_index'])->name('index');
-        });
         Route::prefix('procurement')->as('procurement.')->group(function(){
             Route::get('/', [OperationsController::class, 'procurement_index'])->name('index');
-        });
-        Route::prefix('missions')->as('missions.')->group(function(){
-            Route::get('/', [OperationsController::class, 'missions_index'])->name('index');
-        });
-        Route::prefix('volunteer')->as('volunteer.')->group(function(){
-            Route::get('/', [OperationsController::class, 'volunteer_index'])->name('index');
+            Route::post('/update/{id}', [OperationsController::class, 'procurement_update'])->name('update');
+            Route::delete('/destroy/{id}', [OperationsController::class, 'procurement_destroy'])->name('destroy');
         });
     });
 });

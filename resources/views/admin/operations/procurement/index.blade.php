@@ -8,6 +8,9 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <style>
+    .badge {
+        cursor: pointer;
+    }
     .badge-warning {
         background-color: #f0ad4e;
         color: #fff;
@@ -94,18 +97,22 @@
                                 @endphp
                                 <tr>
                                     <td>{{ $operation->id }}</td>
-                                    <td>{{ $operation->procurement_item }}
-                                        
+                                    <td>
+                                        {{ $operation->procurement_item }}                                        
+                                        <br>
+                                        <div id="badge_{{ $operation->id }}">
+                                        {!! App\Helpers\OperationsHelper::getProcurementBadge($operation->status,$operation->id) !!}
+                                        </div>
                                     </td>
                                     <td>{{ $operation->procurement_quantity }} Number(s)</td>
-                                    <td>
-                                        {!! App\Helpers\OperationsHelper::getProcurementBadge($operation->status) !!}
-                                        {{-- App\Helpers\OperationsHelper::getProcurementStatus($operation->status,$operation->id) --}}
+                                    <td>                                        
+                                        {!! App\Helpers\OperationsHelper::getProcurementStatus($operation->status,$operation->id) !!}
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger" type="button" onclick="">
+                                        <button class="btn btn-danger" type="button" onclick="trigger_delete({{ $operation->id }})">
                                             <i class="fa-solid fa-trash"></i> Delete
                                         </button>
+                                        <form action="{{ route('admin.operations.procurement.destroy', $operation->id) }}" id="delete_procurement_{{ $operation->id }}" method="POST">@csrf @method('DELETE')</form>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -117,9 +124,33 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('#table').DataTable({
+<script async>
+    function trigger_delete(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+
+            Swal.showLoading();
+
+            if (result.isConfirmed) {
+                document.getElementById('delete_procurement_'+id).submit();                                
+            }
+        });
+    }
+    $(document).ready(function() {        
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000
+        });
+        let table = $('#table').DataTable({
             "columnDefs": [
                 { "searchable": true, "targets": 0 },
                 { "searchable": true, "targets": 1 },
@@ -127,7 +158,22 @@
                 { "searchable": true, "targets": 3 },
                 { "searchable": false, "targets": 4 }
             ]
-        });    
+        });
+        $("input[type='search']").attr('id','search');
+        $.fn.DataTable.ext.search.push((_,__,i) => {
+            const currentTr = table.row(i).node();
+            const inputMatch = $(currentTr)
+                .find('select,input')
+                .toArray()
+                .some(x => $(x).val().toLowerCase().includes( $('input[type="search"]').val().toLowerCase()));
+            const textMatch = $(currentTr)
+                .children()
+                .not('td:has("input,select")')
+                .toArray()
+                .some(x => $(x).text().toLowerCase().includes( $('input[type="search"]').val().toLowerCase()));
+            return inputMatch || textMatch || $('input[type="search"]').val() == '';
+        });
+        $('input[type="search"]').on('keyup', () => table.draw());        
         let selects = {{ json_encode($tot) }};
         selects.forEach(id => {            
             $('#status_'+id).select2();
@@ -138,18 +184,25 @@
                     type: 'POST',
                     data: {
                         _token: '{{ csrf_token() }}',
-                        status: status
+                        status: status,
+                        last_updated_by: {{ Auth::user()->id }}
                     },
                     success: function(data) {
-                        window.location.reload();
+                        Toast.fire({
+                            type: 'success',
+                            title: 'Status updated successfully'
+                        });   
+                        console.log(data);
+                        console.log($('#badge_'+id));
+                        $('#badge_'+id)[0].innerHTML = data;
+                    },
+                    error: function(data) {
+                        console.log(data);
                     }
                 });
             });
         });
-        let select2s = document.querySelectorAll('.select2');
-        select2s.forEach(select2 => {
-            select2.style.display = 'none';
-        });
+        
     });
 </script>
 @endsection

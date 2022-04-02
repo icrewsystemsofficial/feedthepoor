@@ -56,16 +56,16 @@
     </a>
     <ul id="operations" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
         <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('admin.operations.status.index') }}">Status</a>
+            <a class="sidebar-link" href="#">Status</a>
         </li>
         <li class="sidebar-item">
             <a class="sidebar-link" href="{{ route('admin.operations.procurement.index') }}">Procurement list</a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('admin.operations.missions.index') }}">Missions</a>
+            <a class="sidebar-link" href="#">Missions</a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('admin.operations.volunteer.index') }}">Volunteer roster</a>
+            <a class="sidebar-link" href="#">Volunteer roster</a>
         </li>
     </ul>
     

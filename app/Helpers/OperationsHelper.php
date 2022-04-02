@@ -60,18 +60,20 @@ class OperationsHelper {
     public static function getProcurementBadge($status) {
 
         if($status == ''){
-            throw new Exception('Error: status not passed.' . $id);
+            throw new Exception('Error: status not passed');
         }
 
         $all_statuses = self::status();
 
         if(!isset($all_statuses[$status])){
-            throw new Exception('Error: No status with ID '. $id. ' was found');
+            throw new Exception('Error: No status with was found');
         }
 
         $status = $all_statuses[$status];
-
-        $html = "<span class='badge' style='background-color: ".$status['color']."'><i class='".$status['icon']." me-1'></i>".$status['text']."</span>";
+        $onclick = <<<EOF
+        $("#search").val($(this).text());$("#search").keyup();$("#search").focus();
+        EOF;
+        $html = "<span class='badge' style='background-color: ".$status['color']."' onclick='".$onclick."'><i class='".$status['icon']." me-1'></i>".$status['text']."</span>";
         
         return $html;
     }
