@@ -1,17 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Payment Receipt</title>
-
     <link type="text/css" href="{{ asset('theme/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
-
 <body>
     <div class="mx-auto my-5 w-50">
         <div class="card border border-dark  border-4">
@@ -26,7 +20,7 @@
 
                 <div class="row">
                     <div class="float-start mt-4 fs-6 fw-bolder ps-5 text-dark">
-                        <p> SathishKumar </p>
+                        <p> {{ $donor_name }} </p>
                         <p> Invoice ID : 12345</p>
                         <p> Invoice Date : 28/Mar/2022</p>
                     </div>
@@ -34,7 +28,7 @@
 
                 <div class="row mt-2 ps-5 text-secondary fw-bolder">
                     <div class="col">
-                         Cause
+                        Cause
                     </div>
                     <div class="col">
                         Quantity
@@ -57,7 +51,7 @@
                         2
                     </div>
                     <div class="col">
-                        10000.00
+                        {{ $donation_amount}}
                     </div>
                     <div class="col">
                         20000.00
@@ -71,7 +65,7 @@
 
                 <p class="text-center text-secondary pt-2 fs-4"> Your <strong class="text-success">GREATNESS</strong> is not what you have, it's what you <strong class="text-success">GIVE</strong> </p>
 
-                
+
             </div>
         </div>
     </div>
