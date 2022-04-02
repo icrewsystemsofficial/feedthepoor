@@ -7,6 +7,7 @@ use App\Models\Causes;
 use App\Models\Location;
 use App\Models\FaqCategories;
 use App\Models\FaqEntries;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Markdown;
 use App\Http\Controllers\Controller;
@@ -14,11 +15,7 @@ use App\Http\Controllers\API\RazorpayAPIController;
 use Illuminate\Support\Facades\DB;
 use App\Jobs\SendAdminJob;
 use App\Jobs\SendConfirmationJob;
-<<<<<<< HEAD
-use App\Models\Contact;
-=======
 use Illuminate\Support\Facades\Storage;
->>>>>>> 3aab1dc9bd99e7be7bc09899f3327086e6debce5
 use PDF;
 
 class HomeController extends Controller
@@ -55,13 +52,15 @@ class HomeController extends Controller
         $donation_random_images = json_encode($images);
         $donation_names = json_encode($names);
 
-
+        $causes = Causes::all();
+        
 
         return view('frontend.index', [
             'donation_images' => $donation_random_images,
             'donation_names' => $donation_names,
             'total_meals_fed' => $total_meals_fed,
-            'total_donations_received' => $total_donations_received
+            'total_donations_received' => $total_donations_received,
+            'causes' => $causes
         ]);
     }
 
@@ -70,14 +69,18 @@ class HomeController extends Controller
 
         $locations = Location::where('location_status', 1)->get();
 
+        $causes = Causes::all();    
+
         return view('frontend.about.index', [
             'locations' => $locations,
+            'causes' => $causes
         ]);
     }
 
     public function volunteer()
     {
-        return view('frontend.volunteer.index');
+        $causes = Causes::all();   
+        return view('frontend.volunteer.index' , ['causes' => $causes]);
     }
     /**
      * donate - the page where users can donate money.
@@ -98,6 +101,8 @@ class HomeController extends Controller
 
         return view('frontend.donation.index', [
             'donation_types' => $donation_types,
+            'causes' => $causes
+            
         ]);
     }
 
@@ -109,6 +114,7 @@ class HomeController extends Controller
      */
     public function donate_process($razorpay_order_id = null)
     {
+        $causes = Causes::all();
         if ($razorpay_order_id == null) {
             return redirect()->route('frontend.donate');
         }
@@ -117,6 +123,7 @@ class HomeController extends Controller
         //TODO Handle failure
         return view('frontend.donation.payment', [
             'order' => $order,
+            'causes' => $causes
         ]);
     }
 
@@ -128,9 +135,11 @@ class HomeController extends Controller
      */
     public function thank_you($payment_id = null)
     {
+        $causes = Causes::all();
         return view('frontend.donation.thank_you', [
             'payment_id' => $payment_id,
             'payment' => app(RazorpayAPIController::class)->fetch_payment($payment_id),
+            'causes' => $causes
         ]);
     }
 
@@ -139,29 +148,32 @@ class HomeController extends Controller
     public function track_donation($donation_id = '')
     {
 
-
+        $causes = Causes::all();
         $faker = Factory::create('en_IN');
         $donation_name = $faker->firstName();
 
         // dd($names_json);
         return view('frontend.tracking.tracking', [
             'donation_name' => $donation_name,
+            'causes' => $causes
         ]);
     }
 
 
     public function faq()
     {
+        $causes = Causes::all();
         $faq_categories = DB::table('faq_categories')->where('category_status', 1)->get();
         $faq_entries =   FaqEntries::get();
         // dd($faq_entries);
         // dd($faq_categories);
-        return view('frontend.faq.index', ['faq_entries' => $faq_entries], ['faq_categories' => $faq_categories]);
+        return view('frontend.faq.index', ['faq_entries' => $faq_entries], ['faq_categories' => $faq_categories,'causes' => $causes]);
     }
 
     public function contact()
     {
-        return view('frontend.contact.contactus');
+        $causes = Causes::all();
+        return view('frontend.contact.contactus',[ 'causes' => $causes]);
     }
 
     public function savecontact(Request $request)
@@ -182,9 +194,6 @@ class HomeController extends Controller
         SendAdminJob::dispatch($details);
 
 
-<<<<<<< HEAD
-        return redirect()->back()->with('message', 'Hurray, We will extend our hands to help you very soon');
-=======
 
         return redirect()->back()->with('message', 'Your contact request has been sent to our team successfully. One of our representatives will contact you within 72 hours. Thank you');
     }
@@ -219,6 +228,5 @@ class HomeController extends Controller
         // return view('receipt');
         // $pdf = PDF::loadView('receipt', $data);
         // return $pdf->download('receipts.pdf');
->>>>>>> 3aab1dc9bd99e7be7bc09899f3327086e6debce5
     }
 }

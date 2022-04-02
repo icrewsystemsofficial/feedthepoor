@@ -137,6 +137,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Address and other details of roshni foundation
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'address' => '4TH FLR, KAMLESHWAR BUILDING, 19-JAI HIND SOCIETY, N.S. ROAD, 11/12, J.V.P.D. SCHEME, JUHU, Mumbai, Maharashtra 400049',
+    'facebook_link' => 'https://www.facebook.com/Roshnifoundationdahanu/',
+    'instagram_link' => 'https://www.instagram.com/roshni_foundation1/?hl=en',
+
+
+    /*
+    |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
     |
@@ -245,12 +257,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
-<<<<<<< HEAD
-        'PDF' => Barryvdh\DomPDF::class,
-       
-=======
         'PDF' => Barryvdh\DomPDF\Facade\PDF::class,
->>>>>>> 3aab1dc9bd99e7be7bc09899f3327086e6debce5
 
     ],
 

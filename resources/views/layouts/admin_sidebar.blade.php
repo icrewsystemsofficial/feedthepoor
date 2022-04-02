@@ -70,14 +70,6 @@
         </a>
     </li>
 
-<<<<<<< HEAD
-    <li class="sidebar-item {{ Nav::isRoute('admin.causes.index') }}">
-        <a class="sidebar-link" href="{{ route('admin.causes.index') }}">
-            <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Causes</span>
-        </a>
-    </li>
-   
-=======
    <li class="sidebar-item {{ Nav::isRoute('admin.contact.index') }}">
         <a class="sidebar-link" href="{{ route('admin.contact.index') }}">
             <i class="align-middle" data-feather="mail"></i> <span class="align-middle">Contacts</span>
@@ -89,7 +81,6 @@
         <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Causes</span>
       </a>
     </li>
->>>>>>> c59e8dbebb0aad057ecb9195d09bace58220fc59
 
     <li class="sidebar-item {{ Nav::isRoute('admin.campaigns.index') }}">
         <a class="sidebar-link" href="{{ route('admin.campaigns.index') }}">

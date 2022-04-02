@@ -53,23 +53,22 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-4">
-                {{-- <img class="navbar-brand-dark mb-4" height="35" src="../../assets/img/brand/light.svg"
-                    alt="Logo light"> --}}
+                 <img class="navbar-brand-dark mb-4" height="180" width="180" src="{{asset('images/branding/roshni-foundation.png')}}"
+                    alt="Logo light"> 
 
-                LOGO
-
+                 
                 <p>
                     {{ config('setting.app_description') }}
 
                     <hr>
-
-                    ADDRESS OF THE NGO!
+                    ADDRESS: <br>
+                    {{ config('app.address')}}
 
                 </p>
 
                 <ul class="social-buttons mb-5 mb-lg-0">
                     <li>
-                        <a href="https://instagram.com/" aria-label="github social link" class="icon-white me-2">
+                        <a href="{{ config('app.instagram_link')}}" aria-label="github social link" class="icon-white me-2">
                             <span class="fab fa-instagram"></span>
                         </a>
                     </li>
@@ -80,7 +79,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.facebook.com//" class="icon-white me-2"
+                        <a href="{{ config('app.facebook_link')}}" class="icon-white me-2"
                             aria-label="facebook social link">
                             <span class="fab fa-facebook"></span>
                         </a>
@@ -92,11 +91,11 @@
             <div class="col-6 col-md-2 mb-5 mb-lg-0">
                 <span class="h5">QUICKLINKS</span>
                 <ul class="footer-links mt-2">
-                    <li><a target="_blank" href="#">Track Donation</a></li>
+                    <li><a target="_blank" href="{{ route('frontend.track-donation') }}">Track Donation</a></li>
                     <li><a target="_blank" href="{{ route('frontend.volunteer') }}">Volunteer</a></li>
                     <li><a target="_blank" href="#">View Certifications</a></li>
-                    <li><a target="_blank" href="#">Transparency Reports</a></li>
-                    <li><a target="_blank" href="#">Request for food</a></li>
+                    <li><a target="_blank" href="{{ route('frontend.transparency-report') }}">Transparency Reports</a></li>
+                    <li><a target="_blank" href="{{ route('frontend.donate') }}">Request for food</a></li>
                 </ul>
             </div>
             <div class="col-6 col-md-2 mb-5 mb-lg-0">
