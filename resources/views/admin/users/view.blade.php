@@ -93,7 +93,7 @@
                                 <h5 class="card-title mb-0">Private info</h5>
                             </div>
                             <div class="card-body">
-                                <form method="POST" action="{{ route('admin.profile.update', $user->id) }}" id="update_profile">
+                                <form method="POST" action="{{ route('admin.profile.update', $user->id) }}" enctype="multipart/form-data" id="update_profile">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-8">
@@ -110,10 +110,10 @@
                                             <div class="text-center">
                                                 <img id="avatar" alt="Charles Hall" 
                                                 src="
-                                                    @if(Auth::user()->avatar == null)
-                                                        https://ui-avatars.com/api/?name={{Auth::user()->name}}
+                                                    @if($user->avatar == null)
+                                                        https://ui-avatars.com/api/?name={{$user->name}}
                                                     @else
-                                                        {{ asset(Auth::user()->avatar) }}
+                                                        {{ asset($user->avatar) }}
                                                     @endif
                                                 "
                                                 class="rounded-circle img-responsive mt-2" width="128" height="128">

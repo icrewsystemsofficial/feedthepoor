@@ -30,6 +30,13 @@ class UsersController extends Controller
         return view('admin.users.view', compact('location', 'user'));
     }
 
+    
+    public function manage($id){
+        $location = Location::all();
+        $user = User::find($id);
+        return view('admin.users.view', compact('location', 'user'));
+    }
+
     public function update(Request $req, $id){
         $this->validate($req, [
             'name' => 'name|required',

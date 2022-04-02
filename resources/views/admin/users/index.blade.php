@@ -217,10 +217,10 @@
                                         <span class="badge bg-info cursor-pointer" onclick="getUsers('{{$user->getRoleNames()[0]}}')">{{strtoupper($user->getRoleNames()[0])}}</span>
                                     </td>
                                     <td class="d-flex justify-content-around">
-                                        <button class="btn btn-primary btn-sm">
+                                        <a href="{{ route('admin.users.manage', $user->id) }}" class="btn btn-primary btn-sm">
                                             <i class="fa-solid fa-edit"></i> &nbsp;
                                             Manage
-                                        </button>
+                                        </a>
                                         <button onclick="trigger_delete({{$user->id}})" class="btn btn-danger btn-sm">
                                             <i class="fa-solid fa-edit"></i> &nbsp;
                                             Delete

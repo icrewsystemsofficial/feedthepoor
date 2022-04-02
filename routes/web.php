@@ -94,7 +94,8 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
 
 
     Route::prefix('users')->as('users.')->group(function() {
-        Route::get('role/{role}', [UsersController::class, 'index'])->name('index');
+        Route::get('/', [UsersController::class, 'index'])->name('index');
+        Route::get('/manage/{id}', [UsersController::class, 'manage'])->name('manage');
         Route::post('/create', [UsersController::class, 'create'])->name('create');
         Route::delete('/destroy/{id}', [UsersController::class, 'destroy'])->name('destroy');
     });
