@@ -222,7 +222,7 @@
                                             Manage
                                         </a>
                                         <button onclick="trigger_delete({{$user->id}})" class="btn btn-danger btn-sm">
-                                            <i class="fa-solid fa-edit"></i> &nbsp;
+                                            <i class="fa-solid fa-trash-can"></i> &nbsp;
                                             Delete
                                         </button>
                                         <form action="{{ route('admin.users.destroy', $user->id) }}" id="delete_user_form_{{$user->id}}" method="POST">@csrf @method('DELETE')</form>
