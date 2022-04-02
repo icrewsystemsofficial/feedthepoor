@@ -174,7 +174,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
-        
         Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
@@ -246,8 +245,12 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
+<<<<<<< HEAD
         'PDF' => Barryvdh\DomPDF::class,
        
+=======
+        'PDF' => Barryvdh\DomPDF\Facade\PDF::class,
+>>>>>>> 3aab1dc9bd99e7be7bc09899f3327086e6debce5
 
     ],
 

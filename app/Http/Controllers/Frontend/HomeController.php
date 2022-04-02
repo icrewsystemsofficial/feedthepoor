@@ -8,12 +8,17 @@ use App\Models\Location;
 use App\Models\FaqCategories;
 use App\Models\FaqEntries;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Markdown;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\API\RazorpayAPIController;
 use Illuminate\Support\Facades\DB;
 use App\Jobs\SendAdminJob;
 use App\Jobs\SendConfirmationJob;
+<<<<<<< HEAD
 use App\Models\Contact;
+=======
+use Illuminate\Support\Facades\Storage;
+>>>>>>> 3aab1dc9bd99e7be7bc09899f3327086e6debce5
 use PDF;
 
 class HomeController extends Controller
@@ -144,22 +149,13 @@ class HomeController extends Controller
         ]);
     }
 
-    public function receipt()
-    {
-        $data = [
-            'donor_name' => 'Sathish',
-            'donation_amount' => 10000,
-            'donor_PAN' => 'AGB123OK12',
-            'receiver_PAN' => 'AXI198OR19',
-        ];
-        $pdf = PDF::loadView('receipt.index' , $data);
-        return $pdf->download('receipt.pdf');
-    }
 
     public function faq()
     {
         $faq_categories = DB::table('faq_categories')->where('category_status', 1)->get();
         $faq_entries =   FaqEntries::get();
+        // dd($faq_entries);
+        // dd($faq_categories);
         return view('frontend.faq.index', ['faq_entries' => $faq_entries], ['faq_categories' => $faq_categories]);
     }
 
@@ -186,6 +182,43 @@ class HomeController extends Controller
         SendAdminJob::dispatch($details);
 
 
+<<<<<<< HEAD
         return redirect()->back()->with('message', 'Hurray, We will extend our hands to help you very soon');
+=======
+
+        return redirect()->back()->with('message', 'Your contact request has been sent to our team successfully. One of our representatives will contact you within 72 hours. Thank you');
+    }
+
+    public function receipt()
+    {
+        $data = [
+            'donor_name' => 'Sathish',
+            'donation_amount' => 10000,
+            'donor_PAN' => 'AGB123OK12',
+            'receiver_PAN' => 'AXI198OR19',
+        ];
+
+        $markdown = new Markdown(view(), config('mail.markdown'));
+        // // return $markdown->render('receipt');
+
+        $file_name = 'filename_' . date('d_m_Y_H_i_A');
+        $html = $markdown->render('pdf.receipts.receipt', ['data' => $data]);
+
+        Storage::disk('public')->put($file_name .'.html', $html);
+
+        return PDF::loadFile(storage_path('app/public/' . $file_name . '.html'))
+            ->setPaper('a4', 'portrait')
+            ->stream($file_name . '.pdf');
+
+        // $storage_path = storage_path('app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'receipts' . DIRECTORY_SEPARATOR . $file_name . '.pdf');
+        // $pdf = PDF::loadView('pdf.receipts.receipt', ['data' => $data])
+        //     ->setPaper('a4', 'portrait')
+        //     ->save($storage_path);
+
+
+        // return view('receipt');
+        // $pdf = PDF::loadView('receipt', $data);
+        // return $pdf->download('receipts.pdf');
+>>>>>>> 3aab1dc9bd99e7be7bc09899f3327086e6debce5
     }
 }

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
-use Razorpay\Api\Api as RazorpayAPI;
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Razorpay\Api\Api as RazorpayAPI;
+use App\Events\Donations\DonationReceived;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class RazorpayAPIController extends Controller
 {
@@ -85,5 +88,35 @@ class RazorpayAPIController extends Controller
         $api = new RazorpayAPI($this->key_id, $this->secret);
         $payment = $api->payment->fetch($payment_id);
         return $payment;
+    }
+
+    public function payment_received($payment_id) {
+
+        # Check if the payment is received
+        $api = new RazorpayAPI($this->key_id, $this->secret);
+        $payment = $api->payment->fetch($payment_id);
+        // dd($payment);
+            # Trigger the event
+        event(new DonationReceived($payment));
+
+
+        # Redirect to the thank-you page.
+        return redirect()->route("frontend.donate.thank_you", $payment_id);
+
+
+        // try {
+
+        // } catch (Exception $e) {
+
+        //     # The app is unable to fetch the Razorpay payment details using the given
+        //     # payment_ID
+
+        //     throw new Exception('Razorpay API Error: '.$e->getMessage());
+        //     # hopefully, this throws an error to Larabug.
+
+        //     # Fire's a Payment Failed e-mail
+        //     // TODO PAyment failed e-mail
+
+        // }
     }
 }

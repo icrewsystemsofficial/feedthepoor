@@ -7,18 +7,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendAdminMail extends Mailable
+class NewDonorWelcomeEmail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -28,6 +29,8 @@ class SendAdminMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->markdown('mail.new-donor-welcome-email', [
+            'user' => $this->user,
+        ])->subject('Hey '.$this->user->name.', welcome to '.config('app.ngo_name').'');
     }
 }

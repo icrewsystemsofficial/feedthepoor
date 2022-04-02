@@ -22,11 +22,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        AddDonation::class => [
-            AddDonationListener::class,
-        ],
+        // AddDonation::class => [
+        //     AddDonationListener::class,
+        // ],
         DonationReceived::class => [
             DonationReceivedListener::class,
+            // AddDonationListener::class,
         ],
     ];
 
