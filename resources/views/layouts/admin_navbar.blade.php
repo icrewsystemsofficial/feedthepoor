@@ -86,7 +86,7 @@
              </a>
 
              <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="{{ route('admin.profile.view', Auth::user()->name) }}"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+                <a class="dropdown-item" href="{{ route('admin.profile.view', Auth::user()->id) }}"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
                 <div class="dropdown-divider"></div>
                 <form action="{{ route('logout') }}" id="logoutForm" method="POST">@csrf</form>
                 <a class="dropdown-item" onclick="document.getElementById('logoutForm').submit();">Log out</a>
