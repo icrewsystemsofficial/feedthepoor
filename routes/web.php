@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\CampaignsController;
 use App\Http\Controllers\Admin\DonationsController;
+use App\Http\Controllers\Admin\OperationsController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactsController;
@@ -28,6 +29,8 @@ use App\Http\Controllers\ContactsController;
 /*
   ------FRONTEND ROUTES------
 */
+
+
 
 Route::name('frontend.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
@@ -54,7 +57,7 @@ Route::name('frontend.')->group(function () {
     Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     Route::post('/contact', [HomeController::class, 'savecontact'])->name('savecontact');
-    
+
     Route::get('/receipt', [HomeController::class, 'receipt'])->name('receipt');
 });
 
@@ -121,7 +124,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
         Route::post('/spam/{id}', [ContactsController::class, 'mark_Spam'])->name('spam');
         Route::post('/contacted/{id}', [ContactsController::class, 'mark_Contacted'])->name('contacted');
     });
-  
+
     Route::prefix('campaigns')->as('campaigns.')->group(function() {
         Route::get('/', [CampaignsController::class, 'index'])->name('index');
         Route::post('/store', [CampaignsController::class, 'store'])->name('store');
@@ -138,6 +141,21 @@ Route::prefix('admin')->as('admin.')->group(function () {
         Route::delete('/destroy/{id}', [DonationsController::class, 'destroy'])->name('destroy');
         Route::put('/update/{id}', [DonationsController::class, 'update'])->name('update');
     });
+
+    Route::prefix('operations')->as('operations.')->group(function(){
+        Route::prefix('procurement')->as('procurement.')->group(function(){
+            Route::get('/', [OperationsController::class, 'procurement_index'])->name('index');
+            Route::post('/update/{id}', [OperationsController::class, 'procurement_update'])->name('update');
+            Route::delete('/destroy/{id}', [OperationsController::class, 'procurement_destroy'])->name('destroy');
+        });
+    });
+
+});
+
+Route::prefix('admin/jobs')->group(function () {
+    # The views of this package cannot take in "name" arguments
+    # hence it's routes are isolated.
+    Route::queueMonitor();
 });
 
 /*

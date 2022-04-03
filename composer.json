@@ -8,6 +8,7 @@
         "php": "^7.3|^8.0",
         "anhskohbo/no-captcha": "^3.4",
         "barryvdh/laravel-dompdf": "^1.0",
+        "consoletvs/charts": "7.*",
         "devmarketer/easynav": "^1.0",
         "fruitcake/laravel-cors": "^3.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -19,6 +20,7 @@
         "orangehill/iseed": "^3.0",
         "razorpay/razorpay": "2.*",
         "realrashid/sweet-alert": "^5.0",
+        "romanzipp/laravel-queue-monitor": "^2.3",
         "spatie/laravel-activitylog": "^4.4"
     },
     "require-dev": {
