@@ -1,5 +1,45 @@
+
+
+@section('js')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script defer>
+    const viewBtn = document.querySelector(".view"),
+            popup = document.querySelector(".popup"),
+            close = popup.querySelector(".close"),
+            field = popup.querySelector(".field"),
+            input = field.querySelector("input"),
+            copy = field.querySelector("button");
+
+        viewBtn.onclick = () => {
+            popup.classList.toggle("show");
+        }
+        close.onclick = () => {
+            viewBtn.click();
+        }
+
+        copy.onclick = () => {
+            input.select(); 
+            if (document.execCommand("copy")) {
+                field.classList.add("active");
+                copy.innerText = "Copied";
+                setTimeout(() => {
+                    window.getSelection().removeAllRanges(); 
+                    field.classList.remove("active");
+                    copy.innerText = "Copy";
+                }, 3000);
+            }
+        }
+</script>
+@endsection
+
+<link rel="stylesheet" href="{{ asset ('/css/share.css')  }}">
+<script type="text/javascript" src="{{ asset('/javascript/share.js' )}}"></script>
+
+<script type="text/javascript" src="share.js"></script>
 @if(!in_array(Route::currentRouteName(), ['frontend.donate', 'frontend.donate.payment', 'frontend.donate.thank_you']))
+
 <section class="section py-0">
+
     <div class="container z-2">
        <div class="row position-relative justify-content-center align-items-center">
           <div class="col-12">
@@ -28,13 +68,67 @@
                                 Donate Now
                             </a>
 
-                            <a href="#" class="btn btn-primary btn-white">
+                            <!-- <a href="#" class="btn btn-primary btn-white">
                                 <span class="me-1">
                                     <span class="fas fa-share"></span>
                                 </span>
                                 Share website
-                            </a>
+                            </a> -->
+<button class="view">Share</button>
+    <div class="popup">
+        <header>
+            <span>Share</span>
+            <div class="close"><i class="uil uil-times"></i></div>
+        </header>
+        <div class="content">
+            <p>Share this link via</p>
+            <ul class="icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-telegram-plane"></i></a>
+            </ul>
+            <p>Or copy link</p>
+            <div class="field">
+                <i class="url-icon uil uil-link"></i>
+                <input type="text" readonly value="example.com/share-link">
+                <button>Copy</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const viewBtn = document.querySelector(".view"),
+            popup = document.querySelector(".popup"),
+            close = popup.querySelector(".close"),
+            field = popup.querySelector(".field"),
+            input = field.querySelector("input"),
+            copy = field.querySelector("button");
+
+        viewBtn.onclick = () => {
+            popup.classList.toggle("show");
+        }
+        close.onclick = () => {
+            viewBtn.click();
+        }
+
+        copy.onclick = () => {
+            input.select(); //select input value
+            if (document.execCommand("copy")) { //if the selected text copy
+                field.classList.add("active");
+                copy.innerText = "Copied";
+                setTimeout(() => {
+                    window.getSelection().removeAllRanges(); //remove selection from document
+                    field.classList.remove("active");
+                    copy.innerText = "Copy";
+                }, 3000);
+            }
+        }
+    </script>
+
                         </div>
+                            
 
                         {{-- <div class="col-12 col-md-6 mt-5 mt-md-0 text-md-right">
                             <img src="../../assets/img/illustrations/reading-side.svg" alt="">
@@ -46,6 +140,37 @@
           </div>
        </div>
     </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script defer>
+    const viewBtn = document.querySelector(".view"),
+            popup = document.querySelector(".popup"),
+            close = popup.querySelector(".close"),
+            field = popup.querySelector(".field"),
+            input = field.querySelector("input"),
+            copy = field.querySelector("button");
+
+        viewBtn.onclick = () => {
+            popup.classList.toggle("show");
+        }
+        close.onclick = () => {
+            viewBtn.click();
+        }
+
+        copy.onclick = () => {
+            input.select(); 
+            if (document.execCommand("copy")) {
+                field.classList.add("active");
+                copy.innerText = "Copied";
+                setTimeout(() => {
+                    window.getSelection().removeAllRanges(); 
+                    field.classList.remove("active");
+                    copy.innerText = "Copy";
+                }, 3000);
+            }
+        }
+</script>
+
+
 </section>
 @endif
 
@@ -142,4 +267,9 @@
             </div>
         </div>
     </div>
+
+    <script>
+    </script>
 </footer>
+
+
