@@ -2,108 +2,22 @@
 
 @section('css')
 @php
-
-/*
-    THE PHP DATA!
-    This data should be sent from Controller / Service Provider
-
-    - Leonard,
-    05 March 2022.
-*/
-
-
-$amounts = array(
-    50,
-    100,
-    500,
-    1000,
-    5000,
-    7000,
-    10000,
-);
-
-$donation_types = (object) array(
-
-    0 => (object) array(
-        'name' => 'donation_food',
-        'icon' => 'fas fa-utensils',
-        'per_unit_cost' => 50,
-        'yield_context' => 'About %YIELD% underprivledged people will be fed with fresh cooked food',
-    ),
-
-
-    1 => (object) array(
-        'name' => 'donation_prosthetic_leg',
-        'icon' => 'fas fa-wheelchair',
-        'per_unit_cost' => 2000,
-        'yield_context' => 'About %YIELD% handicapped people will get prosthetic leg, and will be able to walk again.',
-    ),
-
-    2 => (object) array(
-        'name' => 'donation_sweater',
-        'icon' => 'fas fa-tshirt',
-        'per_unit_cost' => 400,
-        'yield_context' => 'About %YIELD% people will get a brand new sweater, and will be warm.',
-    ),
-
-    3 => (object) array(
-        'name' => 'donation_shoes',
-        'icon' => 'fas fa-shoe-prints',
-        'per_unit_cost' => 250,
-        'yield_context' => 'About %YIELD% people will get a brand new shoe. They will not have to walk with bare foot.',
-    ),
-
-    4 => (object) array(
-        'name' => 'donation_stationary_kit',
-        'icon' => 'fas fa-pen-square',
-        'per_unit_cost' => 50,
-        'yield_context' => 'About %YIELD% children will get a brand new stationary kit, which will help them study.',
-    ),
-
-    5 => (object) array(
-        'name' => 'donation_dry_ration',
-        'icon' => 'fas fa-box',
-        'per_unit_cost' => 50,
-        'yield_context' => 'About %YIELD% house-holds will receive fresh ration to cook and eat meals.',
-    ),
-
-    6 => (object) array(
-        'name' => 'donation_birthday_celebration',
-        'icon' => 'fas fa-birthday-cake',
-        'per_unit_cost' => 50,
-        'yield_context' => 'Your birthday will be celebrated cheerfully with about %YIELD% children. Cakes and sweets will be distrubuted.',
-    ),
-
-    7 => (object) array(
-        'name' => 'donation_prosthetic_arm',
-        'icon' => 'fas fa-wheelchair',
-        'per_unit_cost' => 2000,
-        'yield_context' => 'About %YIELD% handicapped people will get prosthetic leg, and will be able to walk again.',
-    ),
-
-
-);
-
-
-// Argh, this is an uneccesary move ig. Will be fixed when sending data from controller.
-
-$donation_types_cleaned = array();
-foreach($donation_types as $donation_type) {
-    $donation_types_cleaned[$donation_type->name] = $donation_type;
-}
-
-
+$donation_quantities = array(
+    1,
+    2,
+    5,
+    10,
+    15,
+    20,
+    50
+)
 @endphp
-
 <script>
-
     // Alpine JS function
 
-     function donationPage() {
+    function donationPage() {
 
-
-
-         return {
+        return {
 
             // Defining the variables
 
@@ -114,9 +28,11 @@ foreach($donation_types as $donation_type) {
 
             donationType: null,
             donationAmount: 0,
+            donationQuantity: 1,
             donationAmount_formatted: 0,
             showCustomDonationBlock: false,
             showCustomDonationButton: true,
+            price: 0,
 
 
             selectedCause: {
@@ -141,8 +57,9 @@ foreach($donation_types as $donation_type) {
                 checkbox_terms_and_conditions: false,
             },
 
-            donationTypesArray: @json($donation_types_cleaned),
-
+            causesArray: @json($donation_types),
+            //donationType: @json($donation_types),
+            donationTypesArray: @json($donation_types), // Converting php array to json. Thanks to Laravel
 
             // FUNCTIONS START!
 
@@ -152,6 +69,7 @@ foreach($donation_types as $donation_type) {
 
             init() {
                 this.selectedCause.cause = document.getElementById('selectedCause').value;
+                this.price = this.causesArray[this.selectedCause.cause]['per_unit_cost'];
                 this.updateDonationCause();
             },
 
@@ -167,7 +85,8 @@ foreach($donation_types as $donation_type) {
             updateDonationCause() {
                 this.changeYieldContext();
                 this.changeIcon();
-                this.calculateYield(this.donationAmount);
+                // this.calculateYield(this.donationAmount);
+                this.calculatePrice(this.donationQuantity);
             },
 
             /*
@@ -178,63 +97,64 @@ foreach($donation_types as $donation_type) {
                 Updates the donation amount on DOM,
                 calculates the yield based on that amount.
             */
+
+            // TODO DEPRECATE THIS!
             updateDonationAmount(amount) {
-                this.donationAmount = amount;
-                this.calculateYield(amount, this.selectedCause.PerUnitCost);
+
+                this.donationAmount = amount * this.price;
+                this.donationQuantity = amount;
+                // this.calculateYield(amount, this.selectedCause.PerUnitCost);
                 this.formatMoney();
             },
 
+            updateDonationQuantity(quantity) {
+                this.donationQuantity = quantity;
+                this.calculatePrice(quantity);
+                this.formatMoney();
+            },
 
-            updateDonationAmount_cus() {
+            updateDonationQuantity_custom() {
 
-                var amount = document.getElementById('custom_donation').value;
-
-                // Rounding off to the nearest 100.
-                amount = Math.round(amount / 100) * 100;
+                var quantity = document.getElementById('custom_donation').value;
 
 
-                this.updateDonationAmount(amount);
+                this.donationQuantity = quantity;
+                this.calculatePrice(quantity);
+                this.formatMoney();
+
                 this.showCustomDonationBlock = false;
                 this.showCustomDonationButton = true;
             },
 
             updateDonationAmount_custom() {
-                this.calculateYield(this.donationAmount, this.selectedCause.PerUnitCost);
+                // this.calculateYield(this.donationAmount, this.selectedCause.PerUnitCost);
                 this.showCustomDonationBlock = false;
             },
 
 
-            /*
-                calculateYield - amount as parameter.
+            calculatePrice(quantity) {
+                var per_unit_cost = this.causesArray[this.selectedCause.cause]['per_unit_cost'];
 
-                is a protected fn, called from other fns.
-                calculates the yield based on the donationTypesArray
-                which is a js array, which is generated from a php json_encoded
-                object.
-            */
+                this.donationAmount = per_unit_cost * quantity;
+                this.formatMoney();
 
-            calculateYield(amount) {
-                var per_unit_cost = this.donationTypesArray[this.selectedCause.cause]['per_unit_cost'];
-                var yield = Math.floor(amount / per_unit_cost);
-
-                // Now, if the yield is less than 1, we should alert the user
-                // that their donation will not be sufficient.
-
-                if(yield == 0 || yield < 0) {
-
-                    if(this.donationAmount == 0) {
+                if (quantity == 0 || quantity < 0) {
+                    if (this.donationAmount == 0) {
                         this.errors.insuffucientDonationAmount = false;
-                        this.selectedCause.YieldContext = '<span class="text-danger">Please select donation amount</span>';
+                        this.selectedCause.YieldContext = '<span class="text-danger font-medium">Please choose a quantity to process</span>';
                     } else {
                         this.errors.insuffucientDonationAmount = true;
                         this.selectedCause.YieldContext = '<span class="text-danger fw-bolder">Try choosing a different cause or higher donation amount</span>';
                     }
                 } else {
                     this.errors.insuffucientDonationAmount = false;
-                    this.selectedCause.Yield = yield;
+                    // this.selectedCause.Yield = yield;
                     this.changeYieldContext();
                 }
             },
+
+
+
 
 
             /*
@@ -245,16 +165,20 @@ foreach($donation_types as $donation_type) {
             */
 
             changeYieldContext() {
-                if(this.donationAmount == 0) {
-                    this.selectedCause.YieldContext = '<span class="text-danger">Please select donation amount</span>';
+                if (this.donationAmount == 0) {
+                    this.selectedCause.YieldContext = '<span class="text-danger">Please select quantity and click donate</span>';
                 } else {
-                    var yield_context = this.donationTypesArray[this.selectedCause.cause]['yield_context'];
+                    var yield_context = this.causesArray[this.selectedCause.cause]['yield_context'];
                     var yield = '<span class="fw-bolder text-success">' + this.selectedCause.Yield + '</span>';
 
                     // In the DB, the context will be saved with a %YIELD% string.
                     // we're replacing it using js.
 
-                    yield_context = yield_context.replace("%YIELD%", yield);
+                    // yield_context = yield_context.replace("%YIELD%", yield); # DEPRECATED.
+                    yield_context = yield_context.replace("%CALCULATED_AMOUNT%", this.donationAmount);
+                    yield_context = yield_context.replace("%CAUSE%", this.selectedCause.cause );
+                    yield_context = yield_context.replace("%USER_INPUT_QUANTITY%", this.donationQuantity);
+
                     this.selectedCause.YieldContext = '<span class="mt-2 fw-bold leading-1">' + yield_context + "</span>";
                 }
             },
@@ -277,11 +201,17 @@ foreach($donation_types as $donation_type) {
                 changeIcon
 
                 Changes the icon of the cause.
+
+
+                Icons in the DB are just stored as part of the class identifier without the prefix
+
+                Anirudh
+                March 25, 2022
             */
 
             changeIcon() {
                 var icon = this.donationTypesArray[this.selectedCause.cause]['icon'];
-                this.selectedCause.icon = icon + ' fa-5x';
+                this.selectedCause.icon = 'fas fa-' + icon + ' fa-5x';
             },
 
             formatMoney() {
@@ -290,7 +220,7 @@ foreach($donation_types as $donation_type) {
 
 
             showDonateButton() {
-                if(this.donationAmount != 0 && this.errors.insuffucientDonationAmount == false) {
+                if (this.donationAmount != 0 && this.errors.insuffucientDonationAmount == false) {
                     return true;
                 } else {
                     return false;
@@ -311,29 +241,15 @@ foreach($donation_types as $donation_type) {
                 this.form.page_2 = !this.form.page_2;
             },
 
-            
+
             goback() {
                 this.form.page_1 = !this.form.page_1;
                 this.form.page_2 = !this.form.page_2;
             },
 
-
-
-
-         }
-     }
-
-
-     function razorpay() {
-         return {
-            public: 'rzp_test_SmU75lqcibiulc',
-            secret: 'BSe2Who1QIS4heUJBapZImfr',
-            api_url: 'https://api.razorpay.com/v1/',
-
-
-         }
-     }
- </script>
+        }
+    }
+</script>
 @endsection
 
 @section('content')
@@ -341,8 +257,8 @@ foreach($donation_types as $donation_type) {
 
 <section class="section-header bg-dark mb-4">
     <div class="container">
-       <div class="row justify-content-center">
-          <div class="col-12 col-md-8 text-center">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 text-center">
                 <h1 class="display-4 text-white">
                     Thank you for choosing to donate 🙏
                     <br>
@@ -352,243 +268,267 @@ foreach($donation_types as $donation_type) {
                         </span>
                     </small>
                 </h1>
-          </div>
-       </div>
+            </div>
+        </div>
     </div>
- </section>
+</section>
 
- <section class="" x-data="donationPage()" x-init="init()">
+<section class="" x-data="donationPage()" x-init="init()">
     <div class="container mt-n6 z-2 mb-5">
-       <div class="row justify-content-center">
-          <div class="col-sm-12 col-md-10 col-lg-8">
-             <div class="card shadow-lg border-gray-300 p-4 p-lg-5">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-10 col-lg-10   ">
+                <div class="card shadow-lg border-gray-300 p-4 p-lg-5">
 
-                <div class="row" x-show="form.page_2">
-                    <div class="col-md-12 mx-auto">
-
-                        <div class="mt-2 mb-3">
-                            <span class="h5">
-                                Processing donation for <span class="text-success">₹<span x-text="donationAmount_formatted"></span></span>
-                            </span>
-                        </div>
-
-                        <form action="{{ route('api.v1.razorpay.create_order') }}" method="GET">
-                            @csrf
+                    <div class="row" x-show="form.page_2">
+                        <div class="col-md-12 mx-auto">
                             <div class="mt-2 mb-3">
-                                <label for="name">Full Name (as per Govt. ID) <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="name" required="required"/>
-                            </div>
-
-                            <div class="mt-2 mb-3">
-                                <label for="name">E-mail ID <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" name="email" required="required"/>
-                            </div>
-
-                            <div class="mt-2 mb-3">
-                                <label for="name">Phone</label>
-                                <input type="phone" class="form-control" name="phone" maxlength="10"/>
-                            </div>
-
-                            <div class="mt-2 mb-3" x-show="razorpayForm.checkbox_80g">
-                                <label for="name">PAN Card</label>
-                                <input type="text" class="form-control" name="pan" maxlength="10" />
-                                <span class=" text-muted mt-2">
-                                    <small>
-                                        80G excemption receipt will carry this PAN number
-                                    </small>
+                                <span class="h5">
+                                    Processing donation for <span class="text-success">₹<span x-text="donationAmount_formatted"></span></span>
                                 </span>
                             </div>
+                            <form action="{{ route('api.v1.razorpay.create_order') }}" method="GET">
+                                @csrf
+                                <div class="mt-2 mb-3">
+                                    <label for="name">Full Name (as per Govt. ID) <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="name" required="required" />
+                                </div>
 
-                            <div class="mt-2 mb-3">
-                                <div class="form-check form-switch">
-                                    <div @click="toggle80GExemption">
-                                        <input class="form-check-input" type="checkbox" name="checkbox_80g" id="checkbox_80g" x-bind:checked="razorpayForm.checkbox_80g" >
-                                        <label class="form-check-label" for="checkbox_80g">
-                                            I want 80G Income Tax Excemption
+                                <div class="mt-2 mb-3">
+                                    <label for="name">E-mail ID <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" name="email" required="required" />
+                                </div>
+
+                                <div class="mt-2 mb-3">
+                                    <label for="name">Phone</label>
+                                    <input type="phone" class="form-control" name="phone" maxlength="10" />
+                                </div>
+
+                                <div class="mt-2 mb-3" x-show="razorpayForm.checkbox_80g">
+                                    <label for="name">PAN Card</label>
+                                    <input type="text" class="form-control" name="pan" maxlength="10" />
+                                    <span class=" text-muted mt-2">
+                                        <small>
+                                            80G excemption receipt will carry this PAN number
+                                        </small>
+                                    </span>
+                                </div>
+
+                                <div class="mt-2 mb-3">
+                                    <div class="form-check form-switch">
+                                        <div @click="toggle80GExemption">
+                                            <input class="form-check-input" type="checkbox" name="checkbox_80g" id="checkbox_80g" x-bind:checked="razorpayForm.checkbox_80g">
+                                            <label class="form-check-label" for="checkbox_80g">
+                                                I want 80G Income Tax Excemption
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2 mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="checkbox_updates" id="checkbox_updates" x-bind:checked="razorpayForm.checkbox_updates">
+                                        <label class="form-check-label" for="checkbox_updates">
+                                            Send me updates about future campaigns <br>
+                                            <small>
+                                                (we won't spam, we promise <i class="fas fa-heart"></i>)
+                                            </small>
                                         </label>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="mt-2 mb-3">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" name="checkbox_updates" id="checkbox_updates" x-bind:checked="razorpayForm.checkbox_updates">
-                                    <label class="form-check-label" for="checkbox_updates">
-                                        Send me updates about future campaigns <br>
-                                        <small>
-                                            (we won't spam, we promise <i class="fas fa-heart"></i>)
-                                        </small>
-                                    </label>
+                                <div class="mt-2 mb-3">
+                                    <div class="form-check" @click="toggleContinueButton()">
+                                        <input class="form-check-input" type="checkbox" value="" id="terms_and_conditions" x-bind:checked="razorpayForm.checkbox_terms_and_conditions">
+                                        <label class="form-check-label" for="terms_and_conditions">
+                                            I have read and I accept the <a href="#">terms & conditions</a>
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="mt-2 mb-3">
-                                <div class="form-check" @click="toggleContinueButton()">
-                                    <input class="form-check-input" type="checkbox" value="" id="terms_and_conditions" x-bind:checked="razorpayForm.checkbox_terms_and_conditions">
-                                    <label class="form-check-label" for="terms_and_conditions">
-                                        I have read and I accept the <a href="#">terms & conditions</a>
-                                    </label>
+                                <input type="hidden" name="amount" x-model="donationAmount" />
+                                <input type="hidden" name="cause" x-model="selectedCause.cause" />
+
+                                <div class="mt-2 mb-3" x-show="razorpayForm.checkbox_terms_and_conditions">
+                                    <x-frontend-loading-button class="btn btn-success btn-md text-white">
+                                        Proceed to donate via Razorpay
+                                    </x-frontend-loading-button>
+
                                 </div>
-                            </div>
-
-                            <input type="hidden" name="amount" x-model="donationAmount" />
-                            <input type="hidden" name="cause" x-model="selectedCause.cause" />
-
-                            <div class="mt-2 mb-3" x-show="razorpayForm.checkbox_terms_and_conditions">
-                                <x-frontend-loading-button class="btn btn-success btn-md text-white">
-                                    Proceed to donate via Razorpay
-                                </x-frontend-loading-button>
-
-                            </div>
-                        </form>
-
-
-
-
-                    </div>
-                    
-                    <button type="button" class="w-auto btn btn-warning btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="goback()">
-                        <span class="btn-inner--visible">Go Back</span>
-                        <span class="btn-inner--hidden"><small><i class="fas fa-arrow-left"></i></small></span>
-                    </button>
-                </div>
-
-                <div class="row" x-show="form.page_1">
-
-                    <div class="col-md-12 mx-auto" x-show="errors.insuffucientDonationAmount"
-                        x-transition:enter="animate__zoomIn"
-                        x-transition:enter-start="animate__zoomIn"
-                        x-transition:enter-end="opacity-100 scale-100"
-                        x-transition:leave="transition ease-in duration-300"
-                        x-transition:leave-start="opacity-100 scale-100"
-                        x-transition:leave-end="opacity-0 scale-90"
-                    >
-                        <div class="alert alert-danger text-danger" role="alert">
-                            <span class="h4 fw-bolder text-danger">
-                                Ooops!
-                            </span>
-                            <br>
-                            The procurement / per unit cost for "<span x-text="selectedCause.cause" class="fw-bold"></span>" is higher than the chosen donation amount.
-                            You can either choose a higher donation amount or try a different cause
-                        </div>
-                    </div>
-
-                    <div class="col-md-12 mx-auto text-center border-bottom border-gray-300 my-4 ">
-                        <div class="mb-3">
-                            <i x-bind:class="selectedCause.icon"
-                                x-transition:enter.duration.500ms
-                                x-transition:leave.duration.400ms
-                            ></i>
+                            </form>
                         </div>
 
-                        <div class="h1">
-                            <div class="" x-show="showDonateButton()">
-                                <button type="button" class="btn btn-success btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="togglePages()">
-                                    <span class="btn-inner--visible">Donate <span class="">₹<span x-text="donationAmount_formatted"></span></span></span>
-                                    <span class="btn-inner--hidden"><small>Process <i class="fas fa-arrow-right"></i></small></span>
-                                </button>
+                        <button type="button" class="w-auto btn btn-warning btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="goback()">
+                            <span class="btn-inner--visible">Go Back</span>
+                            <span class="btn-inner--hidden"><small><i class="fas fa-arrow-left"></i></small></span>
+                        </button>
+                    </div>
+                    <div class="row" x-show="form.page_1">
+
+                        {{-- Error template --}}
+                        <div class="col-md-12 mx-auto" x-show="errors.insuffucientDonationAmount" x-transition:enter="animate__zoomIn" x-transition:enter-start="animate__zoomIn" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90">
+                            <div class="alert alert-danger text-danger" role="alert">
+                                <span class="h4 fw-bolder text-danger">
+                                    Ooops!
+                                </span>
+                                <br>
+                                The procurement / per unit cost for "<span x-text="selectedCause.cause" class="fw-bold"></span>" is higher than the chosen donation amount.
+                                You can either choose a higher donation amount or try a different cause
                             </div>
+                        </div>
+
+                        {{-- END Error template --}}
 
 
-
-
-
-
-                            <p class="text-sm text-bg-gray">
-                                <span x-html="selectedCause.YieldContext"></span>
+                        <div class="text-center col-md-12 mb-4">
+                            <p class="small text-muted border-3 rounded-lg p-2">
+                                <i class="fas fa-info-circle"></i> We are currently supporting <strong class="underline">{{ count($donation_types) }} causes</strong>. You can choose any cause,
+                                and instantly see the calculated donation amount.
                             </p>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail6">
-                                How much would you like to donate?
-                            </label>
+                        <div class="col-md-6">
 
-                            <div class="flex">
+                            <div class="mb-3">
+                                <label class="my-1 ml-1" for="inlineFormCustomSelectPref">
+                                    Which cause would you like to donate for?
+                                </label>
+                                <select class="form-select" id="selectedCause" x-model="selectedCause.cause" aria-label="Please select a cause" @change="updateDonationCause">
+                                    {{--
+                                        We're passing the string, exploding it based on "donation_", then replacing the other "_" (dashses)
+                                        and then capitalizing the first letter of the string.
+
+                                        Phew!
+
+                                        Leonard,
+                                        March 04, 2022.
+
+                                        As of today the database entries for causes does not contain the string "donation_"
+                                        So capitalization of first letter alone is sufficient
+
+                                        Anirudh
+                                        March 25, 2022
+                                    --}}
+
+
+                                    @php
+                                     $first_iteration = true;
+                                    @endphp
+
+                                    @foreach ($donation_types as $donation_type)
+                                        <option value="{{ $donation_type->name }}" {{ $first_iteration == true ? 'selected':'' }}>
+                                            {{ ucfirst($donation_type->name) }} - (₹{{ number_format($donation_type->per_unit_cost, 0, '.', ',') }} per donation/unit)
+                                        </option>
+                                        @php
+                                            $first_iteration = false;
+                                        @endphp
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 text-center">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail6">
+                                    How many quantity would you like to donate?
+                                </label>
 
 
 
-                                @foreach ($amounts as $amount)
-                                    <button type="button" class="btn btn-sm btn-theme text-white" @click="updateDonationAmount({{ $amount }});">
-                                        ₹{{ number_format($amount, '0', ".",",") }}
+
+                                   <div class="flex" style="flex-wrap: wrap">
+
+                                    @foreach ($donation_quantities as $quantity)
+                                    <button type="button" class="border-3 m-1 rounded-lg" @click="updateDonationQuantity({{ $quantity }});" style="width:80px;height:40px">
+                                        {{ $quantity }}
                                     </button>
-                                @endforeach
+                                    @endforeach
+
+                                    <button type="button" class="border-3 border-success m-1 rounded-lg" @click="toggleCustomDonation" x-show="showCustomDonationButton" style="width:80px;height:40px">
+                                        Custom?
+                                    </button>
+                                    </div>
 
 
-                                <div class="text-center">
-                                    <br>
-                                    <span class="h4">
-                                        OR
-                                    </span>
-                                    <br>
-                                    <br>
 
-                                    <a class="text-primary fw-bold" @click="toggleCustomDonation" x-show="showCustomDonationButton" style="text-decoration: underline;">
-                                        Enter a custom amount?
-                                    </a>
+                                    <div class="" x-show="showCustomDonationBlock" @click.away="toggleCustomDonation">
 
-                                    <div class="" x-show="showCustomDonationBlock">
 
-                                        <input type="number" class="form-control mt-3 mb-3" id="custom_donation" />
-
-                                        <p class="text-muted">
+                                        <p class="text-muted mt-2">
                                             <small>
-                                                The amount you enter will be automatically rounded off to the
-                                            nearest 100.
+                                                Enter a valid quantity and press "process" button.
                                             </small>
                                         </p>
 
-                                        <button type="button" class="btn btn-md btn-primary text-white" @click="updateDonationAmount_cus()">
+                                        <input type="number" class="form-control mt-3 mb-3" id="custom_donation" value="3" />
+
+
+
+                                        <button type="button" class="btn btn-md btn-primary text-white" @click="updateDonationQuantity_custom()">
                                             Process
                                         </button>
+                                    </div>
+
+                            </div>
+                        </div>
+
+                        {{-- START Causes name & icon card --}}
+
+
+
+                        <div class="col-md-12 mx-auto text-center border-top border-gray-300 my-4 ">
+
+                            <div class="mb-3 mt-4">
+
+
+                                <div class="card alpha-container text-white border-0 overflow-hidden mt-2">
+                                    <div id="hero-section-image-container" class="card-img-bg" style="background-image: url('https://images.milaap.org/milaap/image/upload/v1590737431/production/images/uploader_images/IMG-20200426-WA0015_1590737429.jpg?format=jpg&mode=max&width=1170');"></div>
+
+                                    <span class="mask bg-dark alpha-9"></span>
+
+                                    <div class="card-body px-5 py-5">
+                                      <div style="min-height: 100px;">
+                                            <div class="mt-2 mb-1 lh-180">
+                                                <div style="padding-top: 50px;">
+                                                  <i x-bind:class="selectedCause.icon"
+                                                      x-transition:enter.duration.500ms
+                                                      x-transition:leave.duration.400ms
+                                                  ></i>
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-5 h3">
+                                              <span x-text="selectedCause.cause"></span>
+                                            </div>
+
+                                            <div class="text-center mt-4">
+                                              <div class="" x-show="showDonateButton()">
+                                                  <button type="button" class="btn btn-success btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="togglePages()">
+                                                      <span class="btn-inner--visible">Donate <span class="">₹<span x-text="donationAmount_formatted"></span></span></span>
+                                                      <span class="btn-inner--hidden"><small>Process <i class="fas fa-arrow-right"></i></small></span>
+                                                  </button>
+                                              </div>
+
+                                              <p class="text-sm text-bg-gray mt-2">
+                                                  <span x-html="selectedCause.YieldContext"></span>
+                                              </p>
+                                          </div>
+                                        </div>
                                     </div>
                                 </div>
 
 
                             </div>
+
+
                         </div>
+
+                        {{-- END Causes name & icon card --}}
+
                     </div>
-
-
-                    <div class="col-md-6 text-center">
-
-                        <div class="mb-3">
-                            <label class="my-1 me-2" for="inlineFormCustomSelectPref">
-                                What cause would you like to donate for?
-                            </label>
-                            <select class="form-select" id="selectedCause" x-model="selectedCause.cause" aria-label="Default select example" @change="updateDonationCause">
-                                {{--
-                                    We're passing the string, exploding it based on "donation_", then replacing the other "_" (dashses)
-                                    and then capitalizing the first letter of the string.
-
-                                    Phew!
-
-                                    Leonard,
-                                    March 04, 2022.
-                                --}}
-
-
-                                @php
-                                    $first_iteration = true;
-                                @endphp
-
-                                @foreach ($donation_types as $donation_type)
-                                    <option value="{{ $donation_type->name }}" @if($first_iteration == true) selected="selected" @endif>
-                                        {{ ucfirst(str_replace('_', ' ', explode('donation_', $donation_type->name)[1])) }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
                 </div>
-
-             </div>
-          </div>
-       </div>
+            </div>
+        </div>
     </div>
- </section>
+</section>
 
 @endsection

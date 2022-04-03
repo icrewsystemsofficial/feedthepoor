@@ -8,6 +8,8 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 use App\Events\Donations\AddDonation;
 use App\Listeners\Donations\AddDonationListener;
+use App\Events\Donations\DonationReceived;
+use App\Listeners\Donations\DonationReceivedListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -20,8 +22,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        AddDonation::class => [
-            AddDonationListener::class,
+        // AddDonation::class => [
+        //     AddDonationListener::class,
+        // ],
+        DonationReceived::class => [
+            DonationReceivedListener::class,
+            // AddDonationListener::class,
         ],
     ];
 

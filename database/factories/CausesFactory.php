@@ -16,13 +16,13 @@ class CausesFactory extends Factory
     public function definition()
     {
 
-        $random = array("wheelchair","box","tshirt")[rand(0,2)];
+        $random = array("Wheelchair","Stationary","Sweater", "Prosthetic leg","Shoes", "Dry Ration","Prosthetic arm", "Food")[rand(0,2)];
 
         return [
             "name" => Str::ucfirst($random),
             "icon" => $random,
             "per_unit_cost" => rand(2,100),
-            "yield_context" => "This donation will help %YIELD% people",
+            "yield_context" => "The cost of 1 %YIELD_CAUSE% is Rs.%YIELD_PRICE% . Total cost - %YIELD%",
         ];
     }
 }

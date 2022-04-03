@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-
+{{-- call email event event(new App\Events\Donations\DonationReceived($order)); --}}
 @section('js')
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
@@ -12,7 +12,11 @@
         "image": "https://icrewsystems.com/logo.png",
         "order_id": "{{ $order->id }}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         "handler": function (response){
-            window.location.href = '{{ route("frontend.donate.thank_you") }}' + '/' + response.razorpay_payment_id;
+
+            // We are sending the payment ID to the API handler, from there
+            // rest of the events & jobs are handled.
+
+            window.location.href = '{{ route("api.v1.razorpay.payment_received") }}' + '/' + response.razorpay_payment_id
         },
         "prefill": {
             "name": "{{ $order->notes->name }}",
