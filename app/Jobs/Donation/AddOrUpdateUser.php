@@ -55,8 +55,6 @@ class AddOrUpdateUser implements ShouldQueue
             $user->account_claimed = $this->account_claimed;
             $user->save();
 
-            // TODO Send welcome e-mail, schedule it.
-
             Mail::to($this->email)->send(new NewDonorWelcomeEmail($user));
 
             return $user->id;
