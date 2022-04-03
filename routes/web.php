@@ -30,6 +30,8 @@ use App\Http\Controllers\ContactsController;
   ------FRONTEND ROUTES------
 */
 
+
+
 Route::name('frontend.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
 
@@ -55,7 +57,7 @@ Route::name('frontend.')->group(function () {
     Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     Route::post('/contact', [HomeController::class, 'savecontact'])->name('savecontact');
-    
+
     Route::get('/receipt', [HomeController::class, 'receipt'])->name('receipt');
 });
 
@@ -122,7 +124,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
         Route::post('/spam/{id}', [ContactsController::class, 'mark_Spam'])->name('spam');
         Route::post('/contacted/{id}', [ContactsController::class, 'mark_Contacted'])->name('contacted');
     });
-  
+
     Route::prefix('campaigns')->as('campaigns.')->group(function() {
         Route::get('/', [CampaignsController::class, 'index'])->name('index');
         Route::post('/store', [CampaignsController::class, 'store'])->name('store');
@@ -147,6 +149,13 @@ Route::prefix('admin')->as('admin.')->group(function () {
             Route::delete('/destroy/{id}', [OperationsController::class, 'procurement_destroy'])->name('destroy');
         });
     });
+
+});
+
+Route::prefix('admin/jobs')->group(function () {
+    # The views of this package cannot take in "name" arguments
+    # hence it's routes are isolated.
+    Route::queueMonitor();
 });
 
 /*

@@ -68,7 +68,7 @@
             <a class="sidebar-link" href="#">Volunteer roster</a>
         </li>
     </ul>
-    
+
 
     <li class="sidebar-item {{ Nav::isRoute('admin.donations.index') }}">
         <a class="sidebar-link" href="{{ route('admin.donations.index') }}">
@@ -112,6 +112,21 @@
             </li>
             <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('admin.faq.categories.index') }}">Categories</a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="sidebar-item">
+        <a data-bs-target="#admin_tools" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
+            <i class="align-middle" data-feather="activity"></i>
+            <span class="align-middle">Admin Tools</span>
+        </a>
+        <ul id="admin_tools" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('queue-monitor::index') }}">Jobs</a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="#">Server Monitor (WIP)</a>
             </li>
         </ul>
     </li>
