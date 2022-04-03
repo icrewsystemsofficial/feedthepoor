@@ -100,4 +100,21 @@ class OperationsHelper {
 
     }
 
+    public static function getStatusNumbers(){
+        $operations = Operations::all();
+        $status = [
+                'UNACKNOWLEDGED' => 0,
+                'ACKNOWLEDGED' => 0,
+                'PROCUREMENT ORDER INITIATED' => 0,
+                'DELAYED' => 0,
+                'READY FOR MISSION DISPATCH' => 0,
+                'ASSIGNED TO MISSION' => 0,
+                'FULFILLED' => 0,
+        ];        
+        foreach ($operations as $operation) {
+            $status[$operation->status]++;
+        }
+        return $status;
+    }
+
 }

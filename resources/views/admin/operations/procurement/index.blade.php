@@ -74,7 +74,118 @@
             </div>
 
         @endif
+        @php
+            $total = 0;
+            $toProcure = 0;
+            $procured = 0;
+            foreach ($operations as $operation) {
+                $total++;
+                if ($operation->status != 'FULFILLED'){
+                    $toProcure++;
+                }
+                else{
+                    $procured++;
+                }
+            }
+        @endphp
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="card" style="height: 100%;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col mt-0">
+                                <h1 class="card-title">Items Delivered</h1>
+                            </div>
 
+                            <div class="col-auto">
+                                <div class="stat text-primary">
+                                    <i class="align-middle" data-feather="truck"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h1 class="mt-1 mb-3">{{ $procured }}</h1>
+                        <div class="mb-0">
+                            <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> {{ $procured/$total*100 }}% </span>
+                            <span class="text-muted">of total</span>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-md-4">
+                <div class="card" style="height: 100%;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col mt-0">
+                                <h1 class="card-title">Items To Procure</h1>
+                            </div>
+
+                            <div class="col-auto">
+                                <div class="stat text-primary">
+                                    <i class="align-middle" data-feather="truck"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h1 class="mt-1 mb-3">{{ $toProcure }}</h1>
+                        <div class="mb-0">
+                            <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> {{ $toProcure/$total*100 }}% </span>
+                            <span class="text-muted">of total</span>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-md-4">
+                <div class="card" style="height: 100%;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col mt-0">
+                                <h1 class="card-title">Average items procured per month</h1>
+                            </div>
+
+                            <div class="col-auto">
+                                <div class="stat text-primary">
+                                    <i class="align-middle" data-feather="truck"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h1 class="mt-1 mb-3">{{ round($procured/12,2) }}</h1>
+                    </div>
+                </div>
+            </div>          
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card" style="height: 90%;">
+                    <div class="card-body">
+                        <div id="chart1" style="height: 100%;"></div>
+                    </div>
+                </div>
+            </div>        
+            <div class="col-md-6">
+                <div class="card" style="height: 90%;">
+                    <div class="card-body">
+                        @php
+                            $statuses = App\Helpers\OperationsHelper::getStatusNumbers();
+                        @endphp
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Count</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($statuses as $status => $val)
+                                    <tr>
+                                        <td>{!! App\Helpers\OperationsHelper::getProcurementBadge($status) !!}</td>
+                                        <td>{{ $val }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="card mt-3">
             <div class="card-body">
                 <div class="row mb-2">
@@ -101,7 +212,7 @@
                                         {{ $operation->procurement_item }}                                        
                                         <br>
                                         <div id="badge_{{ $operation->id }}">
-                                        {!! App\Helpers\OperationsHelper::getProcurementBadge($operation->status,$operation->id) !!}
+                                        {!! App\Helpers\OperationsHelper::getProcurementBadge($operation->status) !!}
                                         </div>
                                     </td>
                                     <td>{{ $operation->procurement_quantity }} Number(s)</td>
@@ -148,7 +259,7 @@
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 1000
+            timer: 2000
         });
         let table = $('#table').DataTable({
             "columnDefs": [
@@ -181,7 +292,7 @@
                 let status = $(this).val();
                 $.ajax({
                     url: '/admin/operations/procurement/update/'+id,
-                    type: 'POST',
+                    type: 'POST',   
                     data: {
                         _token: '{{ csrf_token() }}',
                         status: status,
@@ -203,6 +314,24 @@
             });
         });
         
+    });
+</script>
+<script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>    
+<script src="https://unpkg.com/@chartisan/echarts/dist/chartisan_echarts.js"></script>
+<script>
+    const chart1 = new Chartisan({
+      el: '#chart1',
+      url: "@chart('daily_procurement')",
+      hooks: new ChartisanHooks()
+                .colors(['#388299', '#ff9c9c'])
+                .legend({ bottom: 0 })
+                .datasets('line') 
+                .title({
+                    textAlign: 'center',
+                    left: '50%',
+                    text: 'Monthly orders',
+                })                               
+                .tooltip(),
     });
 </script>
 @endsection

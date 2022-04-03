@@ -8,6 +8,7 @@
         "php": "^7.3|^8.0",
         "anhskohbo/no-captcha": "^3.4",
         "barryvdh/laravel-dompdf": "^1.0",
+        "consoletvs/charts": "7.*",
         "devmarketer/easynav": "^1.0",
         "fruitcake/laravel-cors": "^3.0",
         "guzzlehttp/guzzle": "^7.0.1",
