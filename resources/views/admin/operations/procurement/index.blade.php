@@ -189,7 +189,7 @@
                                 @foreach ($statuses as $status => $val)
                                     <tr>
                                         <td>{!! App\Helpers\OperationsHelper::getProcurementBadge($status) !!}</td>
-                                        <td id="table_{{ $status }}">{{ $val }}</td>
+                                        <td id="table_{{ substr($status,0,3) }}">{{ $val }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -311,8 +311,9 @@
                         last_updated_by: {{ Auth::user()->id }}
                     },
                     success: function(data) {
-                        $('#table_'+data.status_new).text(parseInt($('#table_'+data.status_new).text())+1);
-                        $('#table_'+data.status_old).text(parseInt($('#table_'+data.status_old).text())-1);
+                        $('#table_'+data.status_new.slice(0,3)).text(parseInt($('#table_'+data.status_new.slice(0,3)).text())+1);
+                        console.log(data.status_old);
+                        $('#table_'+data.status_old.slice(0,3)).text(parseInt($('#table_'+data.status_old.slice(0,3)).text())-1);
                         let oldStatus = data.status_old;
                         let newStatus = data.status_new;
                         let total = {{ $total }};
@@ -325,7 +326,7 @@
                             $('#toProcurePercent').text(newToProcure/total*100);
                             $('#avgProcured').text((newProcured/12).toFixed(2));
                         }
-                        else {
+                        else if (oldStatus == 'FULFILLED'){
                             let newProcured = parseInt($('#procured').text()) - 1;
                             let newToProcure = parseInt($('#toProcure').text()) + 1;
                             $('#procured').text(newProcured);
