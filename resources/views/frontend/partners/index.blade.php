@@ -654,13 +654,13 @@ h2{
 }
 
 
-.container {
+.formbox {
   padding: 16px;
   background-color: #b29c8f;
   border-radius: 2%;
   opacity: 9;
  
-}
+} 
 
 .formfont {
 font-family: sans-serif;
@@ -815,7 +815,7 @@ hr {
 
     <div class="container">
         <form action="">
-            <div class="container">
+            <div class="container formbox">
                 <h1 class="formfont">Join hands to make a difference</h1>
                 <p class="formfont">Please fill in this form to create an account.</p>
                 <hr>
