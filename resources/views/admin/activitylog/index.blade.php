@@ -5,53 +5,18 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<style>
-    .badge-warning {
-        background-color: #f0ad4e;
-        color: #fff;
-    }
-
-    .badge-success {
-        background-color: #5cb85c;
-        color: #fff;
-    }
-
-    .badge-danger {
-        background-color: #d9534f;
-        color: #fff;
-    }
-
-    .badge-info {
-        background-color: #5bc0de;
-        color: #fff;
-    }
-
-    .select2 {
-        width: 100% !important;
-    }
-
-    .select2-close-mask {
-        z-index: 2099;
-    }
-
-    .select2-dropdown {
-        z-index: 3051;
-    }
-</style>
 @endsection
 
 @section('content')
 <div class="row">
     <div class="col-12">
         <h3>
-            Activitiy log
+            Settings > Activity logs
         </h3>
 
         <p class="mt-n2">
             <small>
-                Review your activities
+                Application logs for all the activities that happened within the app.
             </small>
         </p>
 
@@ -62,20 +27,19 @@
                         <table id="table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>TIME</th>
                                     <th>ACTIVITY</th>
                                     <th>USER</th>
+                                    <th>TIME</th>
+                                    <th>TIMESTAMP</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($Activitys as $Activity)
+                                @foreach($activities as $activity)
                                 <tr>
-                                    <td>{{ $Activity->id }}</td>
-                                    <td>{{$Activity->updated_at }}</td>
-                                    <td>{{$Activity->description }}</td>
-                                    <td>{{$Activity->log_name }}</td>
-
+                                    <td>{{ $activity->description }}</td>
+                                    <td>{{ ($activity->causer_id == null) ? 'No user associated' : App\Models\User::find($activity->causer_id)->name }} (WIP)</td>
+                                    <td>{{ $activity->created_at->format('d/m/Y H:i A ') }}</td>
+                                    <td>{{ $activity->created_at->diffForHumans() }}</td>
                                 </tr>
                                 @endforeach
 

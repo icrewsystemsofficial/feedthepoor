@@ -40,8 +40,6 @@ Route::name('frontend.')->group(function () {
 
     Route::get('/thank-you/{donation_id?}', [HomeController::class, 'thank_you'])->name('donate.thank_you');
 
-
-    Route::get('/activity', [HomeController::class, 'activity'])->name('activity');
     Route::get('/campaigns', [HomeController::class, 'index'])->name('campaigns');
     Route::get('/track-donation/{donation_id?}', [HomeController::class, 'track_donation'])->name('track-donation');
     Route::get('/transparency-report', [HomeController::class, 'index'])->name('transparency-report');
@@ -83,6 +81,10 @@ Route::prefix('admin')->as('admin.')->group(function () {
         Route::post('/group/create', [SettingsController::class, 'group_save'])->name('group.create');
         Route::post('/group/{id}/update', [SettingsController::class, 'group_update'])->name('group.update');
         Route::post('/group/{id}/delete', [SettingsController::class, 'group_delete'])->name('group.delete');
+
+
+        # Activity logs
+        Route::get('/activity', [SettingsController::class, 'activity_logs'])->name('activity');
     });
 
     Route::prefix('faq')->as('faq.')->group(function () {

@@ -50,6 +50,12 @@
         </a>
     </li>
 
+    <li class="sidebar-item {{ Nav::isRoute('admin.settings.activity') }}">
+        <a class="sidebar-link" href="{{ route('admin.settings.activity') }}">
+            <i class="align-middle" data-feather="activity"></i> <span class="align-middle">Activities</span>
+        </a>
+    </li>
+
 
     <li class="sidebar-item {{ Nav::isRoute('admin.donations.index') }}">
         <a class="sidebar-link" href="{{ route('admin.donations.index') }}">
@@ -64,11 +70,6 @@
         </a>
     </li>
 
-    <li class="sidebar-item">
-        <a class="sidebar-link" href="/activity">
-            <i class="align-middle" data-feather="users"></i> <span class="align-middle">Activitylog</span>
-        </a>
-    </li>
 
     <li class="sidebar-item {{ Nav::isRoute('admin.causes.index') }}">
         <a class="sidebar-link" href="{{ route('admin.causes.index') }}">

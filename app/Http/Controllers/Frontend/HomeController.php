@@ -67,11 +67,6 @@ class HomeController extends Controller
         return view('frontend.volunteer.index');
     }
 
-    public function activity()
-    {
-        $activity = Activity::all();
-        return view('admin.activitylog.index', ['Activitys' => $activity]);
-    }
     /**
      * donate - the page where users can donate money.
      *
