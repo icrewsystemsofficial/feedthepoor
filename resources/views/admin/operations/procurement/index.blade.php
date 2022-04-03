@@ -35,7 +35,7 @@
     }
     .select2-dropdown{
         z-index: 3051;
-    } 
+    }
 </style>
 @endsection
 
@@ -105,12 +105,18 @@
                         </div>
                         <h1 class="mt-1 mb-3">{{ $procured }}</h1>
                         <div class="mb-0">
-                            <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> {{ $procured/$total*100 }}% </span>
-                            <span class="text-muted">of total</span>
+                            <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i>
+                                @if($total > 0)
+                                {{ $procured / $total * 100 }}% <span class="text-muted">of total</span>
+                                @else
+                                Not enough data
+                                @endif
+                            </span>
+
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="col-md-4">
                 <div class="card" style="height: 100%;">
                     <div class="card-body">
@@ -127,12 +133,18 @@
                         </div>
                         <h1 class="mt-1 mb-3">{{ $toProcure }}</h1>
                         <div class="mb-0">
-                            <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> {{ $toProcure/$total*100 }}% </span>
-                            <span class="text-muted">of total</span>
+                            <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i>
+                                @if($total > 0)
+                                {{ $toProcure/$total*100 }}% <span class="text-muted">of total</span>
+                                @else
+                                Not enough data
+                                @endif
+                            </span>
+
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="col-md-4">
                 <div class="card" style="height: 100%;">
                     <div class="card-body">
@@ -150,7 +162,7 @@
                         <h1 class="mt-1 mb-3">{{ round($procured/12,2) }}</h1>
                     </div>
                 </div>
-            </div>          
+            </div>
         </div>
         <div class="row">
             <div class="col-md-6">
@@ -159,7 +171,7 @@
                         <div id="chart1" style="height: 100%;"></div>
                     </div>
                 </div>
-            </div>        
+            </div>
             <div class="col-md-6">
                 <div class="card" style="height: 90%;">
                     <div class="card-body">
@@ -203,20 +215,20 @@
                             <tbody>
                                 @php $tot = array(); @endphp
                                 @foreach($operations as $operation)
-                                @php 
+                                @php
                                     array_push($tot, $operation->id);
                                 @endphp
                                 <tr>
                                     <td>{{ $operation->id }}</td>
                                     <td>
-                                        {{ $operation->procurement_item }}                                        
+                                        {{ $operation->procurement_item }}
                                         <br>
                                         <div id="badge_{{ $operation->id }}">
                                         {!! App\Helpers\OperationsHelper::getProcurementBadge($operation->status) !!}
                                         </div>
                                     </td>
                                     <td>{{ $operation->procurement_quantity }} Number(s)</td>
-                                    <td>                                        
+                                    <td>
                                         {!! App\Helpers\OperationsHelper::getProcurementStatus($operation->status,$operation->id) !!}
                                     </td>
                                     <td>
@@ -250,11 +262,11 @@
             Swal.showLoading();
 
             if (result.isConfirmed) {
-                document.getElementById('delete_procurement_'+id).submit();                                
+                document.getElementById('delete_procurement_'+id).submit();
             }
         });
     }
-    $(document).ready(function() {        
+    $(document).ready(function() {
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -284,15 +296,15 @@
                 .some(x => $(x).text().toLowerCase().includes( $('input[type="search"]').val().toLowerCase()));
             return inputMatch || textMatch || $('input[type="search"]').val() == '';
         });
-        $('input[type="search"]').on('keyup', () => table.draw());        
+        $('input[type="search"]').on('keyup', () => table.draw());
         let selects = {{ json_encode($tot) }};
-        selects.forEach(id => {            
+        selects.forEach(id => {
             $('#status_'+id).select2();
             $('#status_'+id).on('change', function() {
                 let status = $(this).val();
                 $.ajax({
                     url: '/admin/operations/procurement/update/'+id,
-                    type: 'POST',   
+                    type: 'POST',
                     data: {
                         _token: '{{ csrf_token() }}',
                         status: status,
@@ -302,7 +314,7 @@
                         Toast.fire({
                             type: 'success',
                             title: 'Status updated successfully'
-                        });   
+                        });
                         console.log(data);
                         console.log($('#badge_'+id));
                         $('#badge_'+id)[0].innerHTML = data;
@@ -313,10 +325,10 @@
                 });
             });
         });
-        
+
     });
 </script>
-<script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>    
+<script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
 <script src="https://unpkg.com/@chartisan/echarts/dist/chartisan_echarts.js"></script>
 <script>
     const chart1 = new Chartisan({
@@ -325,12 +337,12 @@
       hooks: new ChartisanHooks()
                 .colors(['#388299', '#ff9c9c'])
                 .legend({ bottom: 0 })
-                .datasets('line') 
+                .datasets('line')
                 .title({
                     textAlign: 'center',
                     left: '50%',
                     text: 'Monthly orders',
-                })                               
+                })
                 .tooltip(),
     });
 </script>

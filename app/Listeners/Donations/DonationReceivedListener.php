@@ -16,6 +16,7 @@ use App\Jobs\Donation\AddOrUpdateDonationEntry;
 
 class DonationReceivedListener implements ShouldQueue
 {
+
     /**
      * Create the event listener.
      *

@@ -17,7 +17,7 @@ class OperationsHelper {
             'icon' => 'fa-solid fa-exclamation-triangle',
             'color' => '#d9534f',
         );
-        
+
         $status['ACKNOWLEDGED'] = array(
             'text' => 'Acknowledged',
             'icon' => 'fa-solid fa-check-circle',
@@ -74,12 +74,12 @@ class OperationsHelper {
         $("#search").val($(this).text());$("#search").keyup();$("#search").focus();
         EOF;
         $html = "<span class='badge' style='background-color: ".$status['color']."' onclick='".$onclick."'><i class='".$status['icon']." me-1'></i>".$status['text']."</span>";
-        
+
         return $html;
     }
 
     public static function getProcurementStatus($status, $i){
-        
+
         if($status == ''){
             throw new Exception('Error: status not passed.' . $id);
         }
@@ -95,7 +95,7 @@ class OperationsHelper {
         foreach($all_statuses as $id => $val) {
             $html .= ($id == $status) ? "<option value='".$id."' selected>".$id."</option>" : "<option value='".$id."'>".$id."</option>";
         }
-        
+
         return $html;
 
     }
@@ -110,7 +110,7 @@ class OperationsHelper {
                 'READY FOR MISSION DISPATCH' => 0,
                 'ASSIGNED TO MISSION' => 0,
                 'FULFILLED' => 0,
-        ];        
+        ];
         foreach ($operations as $operation) {
             $status[$operation->status]++;
         }
