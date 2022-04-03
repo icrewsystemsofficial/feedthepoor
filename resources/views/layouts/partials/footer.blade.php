@@ -83,11 +83,11 @@
         <div class="content">
             <p>Share this link via</p>
             <ul class="icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-                <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+                <a href="https://whatsapp.com/"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://telegram.com/"><i class="fab fa-telegram-plane"></i></a>
             </ul>
             <p>Or copy link</p>
             <div class="field">

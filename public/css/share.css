@@ -186,7 +186,7 @@ header .close:hover {
     height: 45px;
     border-radius: 4px;
     padding: 0 5px;
-    border: 1px solid #e1e1e1;
+    border: 1px solid #fff;
 }
 
 .field.active {
