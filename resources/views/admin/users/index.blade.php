@@ -272,7 +272,23 @@
                                         {!! $user->phone_number ? $user->phone_number : '<span class="badge bg-secondary">Not Updated</span>' !!}
                                     </td>
                                     <td>
-                                        <span class="badge bg-info cursor-pointer" onclick="getUsers('{{$user->getRoleNames()[0]}}')">{{strtoupper($user->getRoleNames()[0])}}</span>
+                                        <span class="badge 
+                                        @if($user->getRoleNames()[0] == 'superadmin')
+                                            bg-info
+                                        @endif
+                                        @if($user->getRoleNames()[0] == 'administrator')
+                                            bg-primary
+                                        @endif
+                                        @if($user->getRoleNames()[0] == 'manager')
+                                            bg-secondary
+                                        @endif
+                                        @if($user->getRoleNames()[0] == 'volunteer')
+                                            bg-warning
+                                        @endif
+                                        @if($user->getRoleNames()[0] == 'donor')
+                                            bg-danger
+                                        @endif
+                                        cursor-pointer" onclick="getUsers('{{$user->getRoleNames()[0]}}')">{{strtoupper($user->getRoleNames()[0])}}</span>
                                     </td>
                                     <td class="d-flex justify-content-around">
                                         <a href="{{ route('admin.users.manage', $user->id) }}" class="btn btn-primary btn-sm">
