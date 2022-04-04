@@ -29,7 +29,7 @@ class NewDonorWelcomeEmail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('mail.new-donor-welcome-email', [
+        return $this->markdown('emails.newDonor', [
             'user' => $this->user,
         ])->subject('Hey '.$this->user->name.', welcome to '.config('app.ngo_name').'');
     }
