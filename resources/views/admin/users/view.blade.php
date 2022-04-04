@@ -134,6 +134,18 @@
                                         >
                                     </div>
                                     <div class="mb-3">
+                                        <label for="role" class="form-label">Role</label>
+                                        <select name="user_role" id="user_role" class="form-control">
+                                            <option value="" selected>Select a Role</option>
+                                            @foreach ($allRoles as $role)
+                                                <option 
+                                                @if ($user->getRoleNames()[0] == $role->name)
+                                                    selected
+                                                @endif value='{{$role->name}}'>{{$role->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
                                         <label class="form-label" for="pan_number">Pan Number</label>
                                         <input name="pan_number" value="{{ $user->pan_number }}" type="text" class="form-control" id="pan_number" placeholder="AAAPZ1234C">
                                     </div>

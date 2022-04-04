@@ -34,18 +34,22 @@ class UsersController extends Controller
     public function manage($id){
         $location = Location::all();
         $user = User::find($id);
-        return view('admin.users.view', compact('location', 'user'));
+        $allRoles = Role::all();
+        return view('admin.users.view', compact('location', 'user', 'allRoles'));
     }
 
     public function update(Request $req, $id){
-        $this->validate($req, [
-            'name' => 'name|required',
-            'email' => 'email|required',
-            'password' => 'password|required',
-            'address' => 'address|required',
-            'location_id' => 'location_id|required',
-        ]);
         $user = User::find($id);
+        $roles = $user->getRoleNames();
+        $user->removeRole($roles[0]);
+        $user->assignRole($req->input('user_role'));
+        $user->name = $req->name;
+        $user->email = $req->email;
+        $user->assignRole($req->input('user_role'));
+        $user->pan_number = $req->pan_number;
+        $user->phone_number = $req->phone_number;
+        $user->address = $req->address;
+        $user->location_id = $req->location_id;
         if ($req->hasFile('avatar')) {
 
             $path = $req->file('avatar')->store('public/avatars');
@@ -62,12 +66,6 @@ class UsersController extends Controller
 
             $user->avatar = $url;
         }
-        $user->name = $req->name;
-        $user->email = $req->email;
-        $user->pan_number = $req->pan_number;
-        $user->phone_number = $req->phone_number;
-        $user->address = $req->address;
-        $user->location_id = $req->location_id;
         $user->save();
         return(redirect(route('admin.dashboard')));
     }
