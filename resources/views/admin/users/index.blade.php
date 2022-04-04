@@ -17,9 +17,49 @@
         // $('.form-control-sm')[0].value = role;
     }
     createUser = (id) => {
+        const name = document.getElementById('user_name').value;
+        const name_error = document.getElementById('name-error');
+
+        const address = document.getElementById('user_address').value;
+        const address_error = document.getElementById('address-error');
+
+        const email = document.getElementById('user_email').value;
+        const email_error = document.getElementById('email-error');
+
+        const role = document.getElementById('user_role').value;
+        const role_error = document.getElementById('role-error');
+
+        const location_id = document.getElementById('user_location_id').value;
+        const location_error = document.getElementById('location-error');
+
         const password = document.getElementById('password');
+        const password_error = document.getElementById('password-error');
         const cpassword = document.getElementById('confirm_password');
-        const error = document.getElementById('password-error');
+        const error = document.getElementById('cpassword-error');
+        if(!name){
+            name_error.classList.remove('visually-hidden');
+            return false;
+        }
+        if(!address){
+            address_error.classList.remove('visually-hidden');
+            return false;
+        }
+        if(!email){
+            email_error.classList.remove('visually-hidden');
+            return false;
+        }
+        if(!role){
+            role_error.classList.remove('visually-hidden');
+            return false;
+        }
+        if(password.value == ""){
+            password_error.classList.remove('visually-hidden');
+            return false;
+        }
+        if(!location_id){
+            location_error.classList.remove('visually-hidden');
+            return false;
+        }
         if(password.value == cpassword.value){
             document.getElementById('new_user_form').submit()
         }else{
@@ -122,53 +162,71 @@
                             @csrf
                             <div class="form-group mb-2">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="user_name" placeholder="Name of the user">
+                                <input id="user_name" type="text" class="form-control" name="user_name" placeholder="Name of the user">
+                                <small id="name-error" class="visually-hidden" style="color: red">
+                                    This field is required
+                                </small>
                             </div>
                             <div class="form-group mb-2">
                                 <label for="address" class="form-label">Address</label>
-                                <textarea class="form-control" id="address" name="user_address" placeholder="Enter full address of user"></textarea>
+                                <textarea class="form-control" id="user_address" name="user_address" placeholder="Enter full address of user"></textarea>
+                                <small id="address-error" class="visually-hidden" style="color: red">
+                                    This field is required
+                                </small>
                             </div>
                             <div class="form-group mb-2">
                                 <label for="email" class="form-label">E Mail</label>
-                                <input class="form-control" name="user_email" id="email" placeholder="E Mail">
+                                <input class="form-control" name="user_email" id="user_email" placeholder="E Mail">
+                                <small id="email-error" class="visually-hidden" style="color: red">
+                                    This field is required
+                                </small>
                             </div>
                             <div class="form-group mb-2">
                                 <label for="role" class="form-label">Role</label>
-                                <select name="user_role" id="role" class="form-control">
+                                <select name="user_role" id="user_role" class="form-control">
                                     <option value="" selected>Select a Role</option>
                                     @foreach ($allRoles as $role)
                                         <option value='{{$role->name}}'>{{$role->name}}</option>
                                     @endforeach
                                 </select>
+                                <small id="role-error" class="visually-hidden" style="color: red">
+                                    This field is required
+                                </small>
                             </div>
                             <div class="form-group mb-2">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control" name="user_password" id="password" placeholder="Password">
+                                <small id="password-error" class="visually-hidden" style="color: red">
+                                    This field is required
+                                </small>
                             </div>
                             <div class="form-group mb-2">
                                 <label for="confirm_password" class="form-label">Confirm Password</label>
                                 <input type="password" class="form-control" name="user_confirm_password" id="confirm_password" placeholder="Confirm Password">
-                                <small id="password-error" class="visually-hidden" style="color: red">
+                                <small id="cpassword-error" class="visually-hidden" style="color: red">
                                     The passwords do not match
                                 </small>
                             </div>
                             <div class="form-group mb-2">
                                 <label for="phone_number" class="form-label">Phone Number</label>
-                                <input type="number" class="form-control" id="phone_number" name="user_phone_number" value="" placeholder="Enter Phone Number of user">
+                                <input type="number" class="form-control" id="user_phone_number" name="user_phone_number" value="" placeholder="Enter Phone Number of user">
                             </div>
                             <div class="form-group mb-2">
                                 <label for="location_id" class="form-label">Location</label>
-                                <select name="user_location_id" id="location_id" class="form-control">
+                                <select name="user_location_id" id="user_location_id" class="form-control">
                                     <option value="" selected>Select a Location</option>
                                     @foreach ($location as $loc)
                                         <option value='{{$loc->id}}'>{{$loc->location_name}}</option>
                                     @endforeach
                                 </select>
+                                <small id="location-error" class="visually-hidden" style="color: red">
+                                    This field is required
+                                </small>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                 <span onclick="createUser('new_user_form')">
-                                    <x-loadingbutton type="submit">Create</x-loadingbutton>
+                                    <x-loadingbutton type="button">Create</x-loadingbutton>
                                 </span>
                             </div>
 
