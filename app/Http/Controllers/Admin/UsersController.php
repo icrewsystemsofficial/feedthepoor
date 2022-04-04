@@ -110,6 +110,6 @@ class UsersController extends Controller
         $user = User::find($id);
         alert()->success('Yay','User "'.$user->name.'" was successfully deleted');
         $user->delete();
-        return redirect()->back();
+        return (redirect(route('admin.users.index')));
     }
 }

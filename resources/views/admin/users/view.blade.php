@@ -53,6 +53,34 @@
             }
 
         }
+    function trigger_delete(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+
+            Swal.showLoading();
+
+            if (result.isConfirmed) {
+
+
+                setTimeout(() => {
+                    Swal.fire(
+                        'Alright!',
+                        'User is being deleted..',
+                        'success'
+                    );
+
+                    document.getElementById(`delete_user_form_${id}`).submit();
+                }, 1500);
+            }
+        });
+    }
     </script>
 @endsection
 @section('content')
@@ -76,9 +104,10 @@
                         <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#password" role="tab">
                             Password
                         </a>
-                        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#" role="tab">
+                        <a  onclick="trigger_delete({{$user->id}})" class="list-group-item list-group-item-action" data-bs-toggle="list" href="#" role="tab">
                             Delete account
                         </a>
+                        <form action="{{ route('admin.users.destroy', $user->id) }}" id="delete_user_form_{{$user->id}}" method="POST">@csrf @method('DELETE')</form>
                     </div>
                 </div>
             </div>
