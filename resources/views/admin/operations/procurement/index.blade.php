@@ -311,8 +311,7 @@
                         last_updated_by: {{ Auth::user()->id }}
                     },
                     success: function(data) {
-                        $('#table_'+data.status_new.slice(0,3)).text(parseInt($('#table_'+data.status_new.slice(0,3)).text())+1);
-                        console.log(data.status_old);
+                        $('#table_'+data.status_new.slice(0,3)).text(parseInt($('#table_'+data.status_new.slice(0,3)).text())+1);                        
                         $('#table_'+data.status_old.slice(0,3)).text(parseInt($('#table_'+data.status_old.slice(0,3)).text())-1);
                         let oldStatus = data.status_old;
                         let newStatus = data.status_new;
