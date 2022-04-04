@@ -120,7 +120,7 @@ class CampaignsHelper {
     public static function getLocationsForManage($arr){
         $arr = json_decode($arr);
         $locations = Location::groupBy('id')->get(['id','location_name']);
-        $html = '';   
+        $html = '';
         foreach($locations as $location) {
             if (in_array($location->id, $arr)) {
                 $html .= "<option value=".$location->id." selected>".$location->location_name."</option>";
@@ -135,7 +135,7 @@ class CampaignsHelper {
     public static function getCausesForManage($arr){
         $arr = json_decode($arr);
         $causes = Causes::groupBy('id')->get(['id','name']);
-        $html = '';        
+        $html = '';
         foreach($causes as $cause) {
             if (in_array($cause->id, $arr)) {
                 $html .= "<option value=".$cause->id." selected>".$cause->name."</option>";

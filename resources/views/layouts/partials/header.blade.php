@@ -68,16 +68,24 @@
                                     </div>
                                 </div> --}}
                                 <div class="col p-3">
+                                    <span class="h5 uppercase p-2 text-sm">
+                                        <small>
+                                            Causes
+                                        </small>
+                                    </span>
                                     <ul class="list-style-none">
-                                        <li><a class="dropdown-item" href="../../html/components/accordions.html">Accordions</a></li>
-                                        <li><a class="dropdown-item" href="../../html/components/alerts.html">Alerts</a></li>
-                                        <li><a class="dropdown-item" href="../../html/components/badges.html">Badges</a></li>
-                                        <li><a class="dropdown-item" href="../../html/components/cards.html">Cards</a></li>
-                                        <li><a class="dropdown-item" href="https://demo.themesberg.com/pixel-pro/v5/html/components/charts.html" target="_blank">Charts <span class="badge bg-tertiary">Pro</span></a></li>
-                                        <li><a class="dropdown-item" href="../../html/components/bootstrap-carousels.html">Carousels</a></li>
-                                        <li><a class="dropdown-item" href="../../html/components/breadcrumbs.html">Breadcrumbs</a></li>
-                                        <li><a class="dropdown-item" href="../../html/components/buttons.html">Buttons</a></li>
-                                        <li><a class="dropdown-item" href="https://demo.themesberg.com/pixel-pro/v5/html/components/counters.html" target="_blank">Counters <span class="badge bg-tertiary">Pro</span></a></li>
+
+                                        @php
+                                            $causes = App\Models\Causes::all();
+                                        @endphp
+
+                                        @foreach ($causes as $cause)
+                                            <li>
+                                                <a class="dropdown-item" href="#">
+                                                    {{ $cause->name }}
+                                                </a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
