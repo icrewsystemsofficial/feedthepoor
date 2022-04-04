@@ -267,7 +267,7 @@
                                 <tr>
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $user->name }}</td>
-                                    <td><a href="">{{ $user->email }}</a></td>
+                                    <td>{{ $user->email }}</td>
                                     <td>
                                         {!! $user->phone_number ? $user->phone_number : '<span class="badge bg-secondary">Not Updated</span>' !!}
                                     </td>
