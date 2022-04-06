@@ -62,9 +62,32 @@
                                     <div class="py-9 mx-auto text-center">
                                         <center>
                                             <img src="{{ asset('images/branding/roshni-foundation-black.png') }}"
-                                alt="Roshni_fondation_campaigns"
-                                style="width: 150px; height: auto;">
-                                </center>
+                                            alt="Roshni_fondation_campaigns"
+                                            style="width: 150px; height: auto;">
+                                        </center>
+                                    </div>
+                                </div> --}}
+                                <div class="col p-3">
+                                    <span class="h5 uppercase p-2 text-sm">
+                                        <small>
+                                            Causes
+                                        </small>
+                                    </span>
+                                    <ul class="list-style-none">
+
+                                        @php
+                                            $causes = App\Models\Causes::all();
+                                        @endphp
+
+                                        @foreach ($causes as $cause)
+                                            <li>
+                                                <a class="dropdown-item" href="#">
+                                                    {{ $cause->name }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
                         </div> --}}
                         <div class="col p-3">

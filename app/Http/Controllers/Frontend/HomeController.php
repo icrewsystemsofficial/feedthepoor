@@ -77,6 +77,10 @@ class HomeController extends Controller
         ]);
     }
 
+    public function partners () {
+        return view('frontend.partners.index');
+    }
+
     public function volunteer()
     {
         $causes = Causes::all();   

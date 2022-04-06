@@ -4,6 +4,7 @@ namespace App\Listeners\Donations;
 
 use App\Models\User;
 use App\Models\Donations;
+use App\Models\Operations;
 use App\Mail\DonationMail;
 use App\Mail\DonationAdminEmail;
 use Illuminate\Support\Facades\Mail;
@@ -16,6 +17,7 @@ use App\Jobs\Donation\AddOrUpdateDonationEntry;
 
 class DonationReceivedListener implements ShouldQueue
 {
+
     /**
      * Create the event listener.
      *
@@ -66,6 +68,15 @@ class DonationReceivedListener implements ShouldQueue
 
 
         # Add "Operations" logic TODO
+        Operations::create([
+            'donation_id' => $payment->id,            
+            'procurement_item' => $payment->cause,
+            'procurement_quantity' => $payment->quantity,
+            'vendor' => null,
+            'status' => 'UNACKNOWLEDGED',
+            'mission_id' => null,
+            'last_updated_by' => null,
+        ]);
 
 
     }

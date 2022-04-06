@@ -11,10 +11,11 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
+use romanzipp\QueueMonitor\Traits\IsMonitored;
 
 class AddOrUpdateUser implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, IsMonitored;
 
     public $name;
     public $email;
@@ -54,8 +55,6 @@ class AddOrUpdateUser implements ShouldQueue
             $user->pan_number = $this->pan_number;
             $user->account_claimed = $this->account_claimed;
             $user->save();
-
-            // TODO Send welcome e-mail, schedule it.
 
             Mail::to($this->email)->send(new NewDonorWelcomeEmail($user));
 
