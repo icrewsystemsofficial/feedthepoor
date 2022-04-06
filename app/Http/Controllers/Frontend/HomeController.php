@@ -69,11 +69,11 @@ class HomeController extends Controller
 
         $locations = Location::where('location_status', 1)->get();
 
-        $causes = Causes::all();    
+     
 
         return view('frontend.about.index', [
             'locations' => $locations,
-            'causes' => $causes
+           
         ]);
     }
 
@@ -105,7 +105,7 @@ class HomeController extends Controller
 
         return view('frontend.donation.index', [
             'donation_types' => $donation_types,
-            'causes' => $causes
+            
             
         ]);
     }
@@ -118,7 +118,7 @@ class HomeController extends Controller
      */
     public function donate_process($razorpay_order_id = null)
     {
-        $causes = Causes::all();
+        
         if ($razorpay_order_id == null) {
             return redirect()->route('frontend.donate');
         }
@@ -127,7 +127,7 @@ class HomeController extends Controller
         //TODO Handle failure
         return view('frontend.donation.payment', [
             'order' => $order,
-            'causes' => $causes
+            
         ]);
     }
 
@@ -139,11 +139,11 @@ class HomeController extends Controller
      */
     public function thank_you($payment_id = null)
     {
-        $causes = Causes::all();
+     
         return view('frontend.donation.thank_you', [
             'payment_id' => $payment_id,
             'payment' => app(RazorpayAPIController::class)->fetch_payment($payment_id),
-            'causes' => $causes
+          
         ]);
     }
 
@@ -152,32 +152,32 @@ class HomeController extends Controller
     public function track_donation($donation_id = '')
     {
 
-        $causes = Causes::all();
+       
         $faker = Factory::create('en_IN');
         $donation_name = $faker->firstName();
 
         // dd($names_json);
         return view('frontend.tracking.tracking', [
             'donation_name' => $donation_name,
-            'causes' => $causes
+          
         ]);
     }
 
 
     public function faq()
     {
-        $causes = Causes::all();
+        
         $faq_categories = DB::table('faq_categories')->where('category_status', 1)->get();
         $faq_entries =   FaqEntries::get();
         // dd($faq_entries);
         // dd($faq_categories);
-        return view('frontend.faq.index', ['faq_entries' => $faq_entries], ['faq_categories' => $faq_categories,'causes' => $causes]);
+        return view('frontend.faq.index', ['faq_entries' => $faq_entries], ['faq_categories' => $faq_categories]);
     }
 
     public function contact()
     {
-        $causes = Causes::all();
-        return view('frontend.contact.contactus',[ 'causes' => $causes]);
+        
+        return view('frontend.contact.contactus');
     }
 
     public function savecontact(Request $request)
