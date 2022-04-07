@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use romanzipp\QueueMonitor\Traits\IsMonitored;
+use App\Models\Donations;
 
 class CreateDonationReceipt implements ShouldQueue
 {
@@ -39,14 +40,11 @@ class CreateDonationReceipt implements ShouldQueue
      */
     public function handle()
     {
-        $file_name = 'donation_receipt_'. $this->payment->id;
-        $storage_path = storage_path('app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'receipts' . DIRECTORY_SEPARATOR . $file_name . '.pdf');
+        //$file_name = 'donation_receipt_'. $this->payment->id;
 
         $pdf = PDF::loadView('pdf.receipts.receipt', ['data' => $this->data])
-            ->setPaper('a4', 'portrait')
-            ->save($storage_path);
-
-
-        return $storage_path;
+            ->setPaper('a4', 'portrait');
+        
+        return $pdf->output();
     }
 }

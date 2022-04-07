@@ -199,7 +199,12 @@
                     <select class="form-control" id="donation_status" name="donation_status">
                         {!! App\Helpers\DonationsHelper::getAllStatuses($donation->donation_status) !!}
                     </select>
-                </div>                
+                </div>       
+                <div class="form-group mb-3">
+                    <a href="{{ route('donations.receipt', $donation->id) }}" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-eye"></i> View receipt
+                    </a>  
+                </div>         
                 <div class="form-group mb-3">
                     <span onclick="document.getElementById('update_form').submit();">
                         <x-loadingbutton>Save</x-loadingbutton>

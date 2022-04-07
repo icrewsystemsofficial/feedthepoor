@@ -153,7 +153,7 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::post('/store', [DonationsController::class, 'store'])->name('store');
         Route::get('/manage/{id}', [DonationsController::class, 'manage'])->name('manage');
         Route::delete('/destroy/{id}', [DonationsController::class, 'destroy'])->name('destroy');
-        Route::put('/update/{id}', [DonationsController::class, 'update'])->name('update');
+        Route::put('/update/{id}', [DonationsController::class, 'update'])->name('update');        
     });
 
     Route::prefix('operations')->as('operations.')->group(function(){
@@ -172,6 +172,7 @@ Route::prefix('admin/jobs')->group(function () {
     Route::queueMonitor();
 });
 
+Route::get('/donations/receipt/{id}', [DonationsController::class, 'receipt'])->name('donations.receipt');
 
 /*
   ------LARAVEL DEFAULT AUTHENTICATION ROUTES------

@@ -54,10 +54,16 @@ class DonationReceivedListener implements ShouldQueue
 
 
         # Generate Donation receipt
-        CreateDonationReceipt::dispatch([
+        /*CreateDonationReceipt::dispatch([
             'payment' => $payment,
             'user' => $user,
         ]);
+        
+        since we have a seperate route to display the receipt generated on the fly (/donation/receipt/{id}),
+        we can use that instead of this.
+        
+        Anirudh
+        */
 
 
         # Email admins
