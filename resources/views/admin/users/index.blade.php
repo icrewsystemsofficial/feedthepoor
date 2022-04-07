@@ -8,13 +8,14 @@
 <script defer>
     $(document).ready(function() {
         $('#table').DataTable();
+        $("input[type='search']").attr('id','search');
     } );
 
     const getUsers =async (role) => {
         const table = $('#table').DataTable();
-        table.search(role);
-        // $('.form-control-sm')[0].value = "";
-        // $('.form-control-sm')[0].value = role;
+        $("#search").val(role);
+        $("#search").keyup();
+        $("#search").focus();
     }
     createUser = (id) => {
         const name = document.getElementById('user_name').value;

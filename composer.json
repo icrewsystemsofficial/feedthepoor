@@ -25,7 +25,7 @@
         "razorpay/razorpay": "2.*",
         "realrashid/sweet-alert": "^5.0",
         "romanzipp/laravel-queue-monitor": "^2.3",
-        "spatie/laravel-activitylog": "^4.4",
+        "spatie/laravel-activitylog": "^3.17",
         "spatie/laravel-permission": "^5.5"
     },
     "require-dev": {
