@@ -21,9 +21,14 @@ class OperationsController extends Controller
             'last_updated_by' => 'required|exists:users,id',
         ]);
         
-        $operations = Operations::find($request->id);
-        $operations->update($request->all());
-        return OperationsHelper::getProcurementBadge($request->status);
+        $operation = Operations::find($request->id);        
+        $newBadge = OperationsHelper::getProcurementBadge($request->status);
+        $final = array();
+        $final['badge'] = $newBadge;
+        $final['status_new'] = $request->status;
+        $final['status_old'] = $operation->status;
+        $operation->update($request->all());
+        return response()->json($final);
     }
 
     public function procurement_destroy(Request $request){

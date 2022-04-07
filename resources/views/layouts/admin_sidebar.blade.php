@@ -26,16 +26,28 @@
     </li>
 
     <li class="sidebar-item {{ Nav::isRoute('admin.settings.index') }}">
+        <a data-bs-target="#donations" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
+            <i class="align-middle" data-feather="dollar-sign"></i>
+            <span class="align-middle">Donations</span>
+        </a>
+        <ul id="donations" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="#">All Donations</a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="#">Recipts</a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="sidebar-item {{ Nav::isRoute('admin.users.index') }}">
         <a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
             <i class="align-middle" data-feather="users"></i>
-            <span class="align-middle">Users</span>
+            <span class="align-middle">Users [WIP]</span>
         </a>
         <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
             <li class="sidebar-item">
-                <a class="sidebar-link" href="#">Donors</a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">Volunteers</a>
+                <a class="sidebar-link" href="{{ route('admin.users.index') }}">All Users</a>
             </li>
             <li class="sidebar-item">
                 <a class="sidebar-link" href="#">Volunteer Applications</a>
@@ -122,8 +134,7 @@
             </li>
         </ul>
     </li>
-
-    <li class="sidebar-item">
+   <li class="sidebar-item">
         <a data-bs-target="#admin_tools" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
             <i class="align-middle" data-feather="activity"></i>
             <span class="align-middle">Admin Tools</span>

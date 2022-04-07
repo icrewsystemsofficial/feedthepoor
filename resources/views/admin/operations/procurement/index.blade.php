@@ -103,11 +103,11 @@
                                 </div>
                             </div>
                         </div>
-                        <h1 class="mt-1 mb-3">{{ $procured }}</h1>
+                        <h1 class="mt-1 mb-3" id="procured">{{ $procured }}</h1>
                         <div class="mb-0">
                             <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i>
                                 @if($total > 0)
-                                {{ $procured / $total * 100 }}% <span class="text-muted">of total</span>
+                                <span id="procuredPercent">{{ round($procured / $total * 100,2) }}</span>% <span class="text-muted">of total</span>
                                 @else
                                 Not enough data
                                 @endif
@@ -131,11 +131,11 @@
                                 </div>
                             </div>
                         </div>
-                        <h1 class="mt-1 mb-3">{{ $toProcure }}</h1>
+                        <h1 class="mt-1 mb-3" id="toProcure">{{ $toProcure }}</h1>
                         <div class="mb-0">
                             <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i>
                                 @if($total > 0)
-                                {{ $toProcure/$total*100 }}% <span class="text-muted">of total</span>
+                                <span id="toProcurePercent">{{ round($toProcure/$total*100,2) }}</span>% <span class="text-muted">of total</span>
                                 @else
                                 Not enough data
                                 @endif
@@ -159,7 +159,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h1 class="mt-1 mb-3">{{ round($procured/12,2) }}</h1>
+                        <h1 class="mt-1 mb-3" id="avgProcured">{{ round($procured/12,2) }}</h1>
                     </div>
                 </div>
             </div>
@@ -189,7 +189,7 @@
                                 @foreach ($statuses as $status => $val)
                                     <tr>
                                         <td>{!! App\Helpers\OperationsHelper::getProcurementBadge($status) !!}</td>
-                                        <td>{{ $val }}</td>
+                                        <td id="table_{{ substr($status,0,3) }}">{{ $val }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -311,13 +311,34 @@
                         last_updated_by: {{ Auth::user()->id }}
                     },
                     success: function(data) {
+                        $('#table_'+data.status_new.slice(0,3)).text(parseInt($('#table_'+data.status_new.slice(0,3)).text())+1);                        
+                        $('#table_'+data.status_old.slice(0,3)).text(parseInt($('#table_'+data.status_old.slice(0,3)).text())-1);
+                        let oldStatus = data.status_old;
+                        let newStatus = data.status_new;
+                        let total = {{ $total }};
+                        if (newStatus == 'FULFILLED'){
+                            let newProcured = parseInt($('#procured').text()) + 1;
+                            let newToProcure = parseInt($('#toProcure').text()) - 1;
+                            $('#procured').text(newProcured);
+                            $('#toProcure').text(newToProcure);
+                            $('#procuredPercent').text((newProcured/total*100).toFixed(2));
+                            $('#toProcurePercent').text((newToProcure/total*100).toFixed(2));                            
+                            $('#avgProcured').text((newProcured/12).toFixed(2));
+                        }
+                        else if (oldStatus == 'FULFILLED'){
+                            let newProcured = parseInt($('#procured').text()) - 1;
+                            let newToProcure = parseInt($('#toProcure').text()) + 1;
+                            $('#procured').text(newProcured);
+                            $('#toProcure').text(newToProcure);
+                            $('#procuredPercent').text((newProcured/total*100).toFixed(2));
+                            $('#toProcurePercent').text((newToProcure/total*100).toFixed(2));
+                            $('#avgProcured').text((newProcured/12).toFixed(2));
+                        }
+                        $('#badge_'+id)[0].innerHTML = data.badge;
                         Toast.fire({
                             type: 'success',
                             title: 'Status updated successfully'
-                        });
-                        console.log(data);
-                        console.log($('#badge_'+id));
-                        $('#badge_'+id)[0].innerHTML = data;
+                        });                                            
                     },
                     error: function(data) {
                         console.log(data);
