@@ -14,7 +14,21 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+
+
+     /*
+    |--------------------------------------------------------------------------
+    | Address and other details of roshni foundation
+    |--------------------------------------------------------------------------
+    |
+    */
+
     'ngo_name' => 'Roshni Moolchandani Charitable Trust',
+    'address' => 'Office No. 3, PR Marg lodha market, Ajmer, Rajasthan, 305001 ',
+    'PAN' =>'AADTR8860J',
+    'facebook_link' => 'https://www.facebook.com/Roshnifoundationdahanu/',
+    'instagram_link' => 'https://www.instagram.com/roshni_foundation1/?hl=en',
+
 
     /*
     |--------------------------------------------------------------------------
@@ -126,23 +140,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Fake data for the receipt 
-    |--------------------------------------------------------------------------
-    |
-    */
-   
-
-    /*
-    |--------------------------------------------------------------------------
-    | Address and other details of roshni foundation
+    | Fake data for the receipt
     |--------------------------------------------------------------------------
     |
     */
 
-    'address' => 'Office No. 3, PR Marg lodha market, Ajmer, Rajasthan, 305001 ',
-    'PAN' =>'AADTR8860J',
-    'facebook_link' => 'https://www.facebook.com/Roshnifoundationdahanu/',
-    'instagram_link' => 'https://www.instagram.com/roshni_foundation1/?hl=en',
+
 
 
     /*
