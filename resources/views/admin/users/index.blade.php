@@ -251,6 +251,29 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-md-12">
+                        <div style="margin-bottom: 2%">
+                            @foreach ($allRoles as $role)
+                                <span class="badge 
+                                @if($role->name == 'superadmin')
+                                    bg-info
+                                @endif
+                                @if($role->name == 'administrator')
+                                    bg-primary
+                                @endif
+                                @if($role->name == 'manager')
+                                    bg-secondary
+                                @endif
+                                @if($role->name == 'volunteer')
+                                    bg-warning
+                                @endif
+                                @if($role->name == 'donor')
+                                    bg-danger
+                                @endif
+                                cursor-pointer" onclick="getUsers('{{$role->name}}')">{{strtoupper($role->name)}}
+                                </span>
+                            @endforeach                            
+                        </div>
+
                         <table id="table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
