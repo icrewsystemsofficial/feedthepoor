@@ -194,9 +194,9 @@
             let val = '#'+$('#location_status option:selected').text().split(' ')[0];
             console.log(val);
             $('.show-badge').addClass('hide-badge');
-            $('.show-badge').removeClass('show-badge');            
+            $('.show-badge').removeClass('show-badge');
             $(val).removeClass('hide-badge');
-            $(val).addClass('show-badge');            
+            $(val).addClass('show-badge');
         });
         $('#manager_id').select2();
     });

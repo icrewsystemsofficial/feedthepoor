@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature>
   <change type="minor">Welcome e-mail contents updated</change>
+  <change type="major">Users module is now complete and has been added to the app</change>
+  <change type="major">The input based question has been removed from the seeders</change>
+  <change type="minor">Location Module: Location mangager onclick redirects to the User &gt; Manage page</change>
 </feature>

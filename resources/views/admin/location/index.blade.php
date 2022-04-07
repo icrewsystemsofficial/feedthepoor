@@ -32,7 +32,7 @@
     }
     .select2-dropdown{
         z-index: 3051;
-    } 
+    }
 </style>
 @endsection
 
@@ -105,7 +105,7 @@
                             <div class="form-group mb-2">
                                 <label for="longitude" class="form-label">Longitude</label>
                                 <input type="text" class="form-control" id="longitude" name="location_longitude" value="" placeholder="Enter longitude of location">
-                            </div>                            
+                            </div>
                             <div class="form-group mb-2">
                                 <label for="status" class="form-label">Status</label>
                                 <select class="form-control" id="status" name="location_status">
@@ -155,7 +155,7 @@
                                 <tr>
                                     <td>{{ $location->id }}</td>
                                     <td>{{ $location->location_name }}</td>
-                                    <td><a href="">{{ $location->user->name }}</a> (TODO)</td>
+                                    <td><a href="{{ route('admin.users.manage', $location->location_manager_id) }}" target="_blank">{{ $location->user->name }}</a></td>
                                     <td>
                                         {!! App\Helpers\LocationHelper::getStatus($location->location_status) !!}
                                         {{-- {{ App\Helpers\LocationHelper::getStatus($location->location_status) }} --}}
