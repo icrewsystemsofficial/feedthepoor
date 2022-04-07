@@ -188,6 +188,7 @@
                     <hr>
                     ADDRESS: <br>
                     {{ config('app.address')}}
+                   
 
                 </p>
 

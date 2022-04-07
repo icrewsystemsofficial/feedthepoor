@@ -135,8 +135,8 @@
         <br><br>
 
         (Regd. as. {{ config('app.ngo_name') }},
-        {{config('app.PAN')}} <br>
-        {{ config('app.address') }}
+        PAN : {{config('app.PAN')}} <br>
+        ADDRESS : {{ config('app.address') }}
         <br><br>
         <i>For support, visit {{ config('app.url') }}/support or call +91 999999999</i>
 
