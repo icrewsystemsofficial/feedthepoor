@@ -1,70 +1,18 @@
 <ul class="sidebar-nav">
     <li class="sidebar-header">
-        Administration
+       Operations
     </li>
 
 
     <li class="sidebar-item {{ Nav::isRoute('admin.dashboard') }}">
-        <a class="sidebar-link" href="{{ route('admin.dashboard') }}">
-            <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-        </a>
+       <a class="sidebar-link" href="{{ route('admin.dashboard') }}">
+       <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+       </a>
     </li>
 
-    <li class="sidebar-item {{ Nav::isRoute('admin.settings.index') }}">
-        <a data-bs-target="#missions" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
-            <i class="align-middle" data-feather="briefcase"></i>
-            <span class="align-middle">Missions</span>
-        </a>
-        <ul id="missions" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">Mission Status</a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">Past Missions</a>
-            </li>
-        </ul>
-    </li>
-
-    <li class="sidebar-item {{ Nav::isRoute('admin.settings.index') }}">
-        <a data-bs-target="#donations" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
-            <i class="align-middle" data-feather="dollar-sign"></i>
-            <span class="align-middle">Donations</span>
-        </a>
-        <ul id="donations" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">All Donations</a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">Recipts</a>
-            </li>
-        </ul>
-    </li>
-
-    <li class="sidebar-item {{ Nav::isRoute('admin.users.index') }}">
-        <a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
-            <i class="align-middle" data-feather="users"></i>
-            <span class="align-middle">Users [WIP]</span>
-        </a>
-        <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('admin.users.index') }}">All Users</a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">Volunteer Applications</a>
-            </li>
-        </ul>
-    </li>
-
-
-    <li class="sidebar-item {{ Nav::isRoute('admin.settings.index') }}">
-        <a class="sidebar-link" href="{{ route('admin.settings.index') }}">
-            <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
-        </a>
-    </li>
-
-    <li class="sidebar-item {{ Nav::isRoute('admin.settings.activity') }}">
-        <a class="sidebar-link" href="{{ route('admin.settings.activity') }}">
-            <i class="align-middle" data-feather="activity"></i> <span class="align-middle">Activities</span>
+    <li class="sidebar-item {{ Nav::isRoute('admin.donations.index') }}">
+        <a class="sidebar-link" href="{{ route('admin.donations.index') }}">
+            <i class="align-middle" data-feather="dollar-sign"></i> <span class="align-middle">Donations</span>
         </a>
     </li>
 
@@ -88,19 +36,49 @@
     </ul>
 
 
-    <li class="sidebar-item {{ Nav::isRoute('admin.donations.index') }}">
-        <a class="sidebar-link" href="{{ route('admin.donations.index') }}">
-            <i class="align-middle" data-feather="dollar-sign"></i> <span class="align-middle">Donations</span>
+    <li class="sidebar-item {{ Nav::isRoute('admin.settings.index') }}">
+        <a data-bs-target="#missions" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
+            <i class="align-middle" data-feather="briefcase"></i>
+            <span class="align-middle">Missions</span>
         </a>
+        <ul id="missions" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="#">Mission Status</a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="#">Past Missions</a>
+            </li>
+        </ul>
     </li>
 
 
-    <li class="sidebar-item {{ Nav::isRoute('admin.location.index') }}">
+    <li class="sidebar-item {{ Nav::isRoute('admin.users.index') }}">
+        <a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
+            <i class="align-middle" data-feather="users"></i>
+            <span class="align-middle">Users [WIP]</span>
+        </a>
+        <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('admin.users.index') }}">All Users</a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="#">Volunteer Applications</a>
+            </li>
+        </ul>
+    </li>
+
+
+    <li class="sidebar-header">
+        Site Administration
+     </li>
+
+
+
+   <li class="sidebar-item {{ Nav::isRoute('admin.location.index') }}">
         <a class="sidebar-link" href="{{ route('admin.location.index') }}">
-            <i class="align-middle" data-feather="map-pin"></i> <span class="align-middle">Locations</span>
+        <i class="align-middle" data-feather="map-pin"></i> <span class="align-middle">Locations</span>
         </a>
-    </li>
-
+   </li>
 
    <li class="sidebar-item {{ Nav::isRoute('admin.contact.index') }}">
         <a class="sidebar-link" href="{{ route('admin.contact.index') }}">
@@ -127,13 +105,25 @@
         </a>
         <ul id="faqs" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
             <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('admin.faq.questions.index') }}">Questions</a>
+                <a class="sidebar-link" href="{{ route('admin.faq.questions.index') }}">FAQ Questions</a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('admin.faq.categories.index') }}">Categories</a>
+                <a class="sidebar-link" href="{{ route('admin.faq.categories.index') }}">FAQ Categories</a>
             </li>
         </ul>
     </li>
+
+    <li class="sidebar-header">
+        Settings & Admin Tools
+    </li>
+
+    <li class="sidebar-item {{ Nav::isRoute('admin.settings.index') }}">
+        <a class="sidebar-link" href="{{ route('admin.settings.index') }}">
+        <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
+        </a>
+    </li>
+
+
    <li class="sidebar-item">
         <a data-bs-target="#admin_tools" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
             <i class="align-middle" data-feather="activity"></i>
