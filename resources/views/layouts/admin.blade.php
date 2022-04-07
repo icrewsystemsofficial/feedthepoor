@@ -15,37 +15,44 @@
    <title>{{ config('app.name') }} | Dashboard</title>
 
    {{-- <link rel="stylesheet" href="https://demo.adminkit.io/css/dark.css"> --}}
-   {{-- BOOTSTRAP 5 CDN --}}
 
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
+
     {{-- APPs COMPILED CSS? --}}
     <link href="{{ asset('adminkit/static/css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet" type="text/css">
 
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    {{-- WEBSITE ICONS (FONTAWESOME) --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
+    {{--
+        THIS LINK TO BE DEPRECATED / UPDATED,
+        - LEONARD
 
+    <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet" type="text/css"> --}}
 
-   {{-- FONTAWESOME --}}
+    {{-- WEBSITE FONT --}}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-   {{-- WEBSITE FONT --}}
-   <link href="{{ asset('css/websitefont.css') }}" rel="stylesheet" type="text/css">
-
-   <style>
+    <style>
+    /* ALPINE JS CLOAK VARIABLE */
       [x-cloak] {
          display: none !important;
       }
-   </style>
+    </style>
 
    @yield('css')
 
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> --}}
+
+   {{-- BOTH THESE BOOTSTRAP JS FILES ARE REQUIRED! --}}
+   <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
    {{-- APP JS --}}
    <script src="{{ asset('adminkit/static/js/app.js') }}"></script>
    {{-- ALPINE JS --}}
    <script src="{{ asset('js/alpine.js') }}" defer></script>
-   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   {{-- SWEETALERT JS --}}
+   <script src="{{ asset('js/sweetalert.js') }}"></script>
    @yield('js')
 </head>
 
@@ -61,20 +68,23 @@
                   {{ config('app.name') }}
                </span>
             </a>
-
-            @include('layouts.admin_sidebar')
-
             <div class="sidebar-cta">
-               <div class="sidebar-cta-content">
-                  <strong class="d-inline-block mb-2">Upgrade to Pro</strong>
-                  <div class="mb-3 text-sm">
-                     Are you looking for more components? Check out our premium version.
-                  </div>
-                  <div class="d-grid">
-                     <a href="upgrade-to-pro.html" class="btn btn-primary">Upgrade to Pro</a>
-                  </div>
-               </div>
-            </div>
+                <div class="sidebar-cta-content">
+                   <strong class="d-inline-block mb-2">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    Action Required (WIP)</strong>
+                   <div class="mb-3">
+                      There are X unacknowledged items in
+                      procurement list.
+                   </div>
+                   <div class="d-grid">
+                      <a href="{{ route('admin.operations.procurement.index') }}" class="btn btn-primary">
+                        View
+                      </a>
+                   </div>
+                </div>
+             </div>
+            @include('layouts.admin_sidebar')
          </div>
       </nav>
       <div class="main">
