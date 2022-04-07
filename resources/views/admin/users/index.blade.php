@@ -126,7 +126,13 @@
     <div class="col-12">
         <h3>
             Users
+            <br>
+            <small class="text-muted text-sm">
+                All users present in the application. You can click on a role to filter, or search for a specific user.
+            </small>
         </h3>
+
+
 
         {{-- <p class="mt-n2">
             <small>
@@ -253,7 +259,7 @@
                     <div class="col-md-12">
                         <div style="margin-bottom: 2%">
                             @foreach ($allRoles as $role)
-                                <span class="badge 
+                                <span class="badge
                                 @if($role->name == 'superadmin')
                                     bg-info
                                 @endif
@@ -271,7 +277,7 @@
                                 @endif
                                 cursor-pointer" onclick="getUsers('{{$role->name}}')">{{strtoupper($role->name)}}
                                 </span>
-                            @endforeach                            
+                            @endforeach
                         </div>
 
                         <table id="table" class="table table-striped" style="width:100%">
@@ -296,7 +302,7 @@
                                         {!! $user->phone_number ? $user->phone_number : '<span class="badge bg-secondary">Not Updated</span>' !!}
                                     </td>
                                     <td>
-                                        <span class="badge 
+                                        <span class="badge
                                         @if($user->getRoleNames()[0] == 'superadmin')
                                             bg-info
                                         @endif
