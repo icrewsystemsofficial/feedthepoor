@@ -115,6 +115,8 @@ class DonationsController extends Controller
         DOMPDF replaces all classes in the view with inline styles 
         and this is very slow for a large css file like bootstrap
 
+        Take a look at https://stackoverflow.com/questions/54768375/slow-pdf-generation-with-phpdompdf
+
 
         Anirudh R
         */
