@@ -4,9 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-
-    "content-hash": "edf7f919f1e7529728c6280b0d628f5c",
-
+    "content-hash": "4d3f978ae2810238de1adfaf4144aa73",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -1350,73 +1348,6 @@
             "time": "2022-03-20T21:55:58+00:00"
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "name": "h4cc/wkhtmltoimage-amd64",
-            "version": "0.12.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/h4cc/wkhtmltoimage-amd64.git",
-                "reference": "c4e33f635207af89a704205b8902fb5715ca88be"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/h4cc/wkhtmltoimage-amd64/zipball/c4e33f635207af89a704205b8902fb5715ca88be",
-                "reference": "c4e33f635207af89a704205b8902fb5715ca88be",
-                "shasum": ""
-            },
-            "bin": [
-                "bin/wkhtmltoimage-amd64"
-            ],
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL Version 3"
-            ],
-            "authors": [
-                {
-                    "name": "Julius Beckmann",
-                    "email": "github@h4cc.de"
-                }
-            ],
-            "description": "Convert html to image using webkit (qtwebkit). Static linked linux binary for amd64 systems.",
-            "homepage": "http://wkhtmltopdf.org/",
-            "keywords": [
-                "binary",
-                "convert",
-                "image",
-                "snapshot",
-                "thumbnail",
-                "wkhtmltoimage"
-            ],
-            "support": {
-                "issues": "https://github.com/h4cc/wkhtmltoimage-amd64/issues",
-                "source": "https://github.com/h4cc/wkhtmltoimage-amd64/tree/master"
-            },
-            "time": "2018-01-15T07:23:40+00:00"
-        },
-        {
-            "name": "h4cc/wkhtmltopdf-amd64",
-            "version": "0.12.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/h4cc/wkhtmltopdf-amd64.git",
-                "reference": "4e2ab2d032a5d7fbe2a741de8b10b8989523c95b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/h4cc/wkhtmltopdf-amd64/zipball/4e2ab2d032a5d7fbe2a741de8b10b8989523c95b",
-                "reference": "4e2ab2d032a5d7fbe2a741de8b10b8989523c95b",
-                "shasum": ""
-            },
-            "bin": [
-                "bin/wkhtmltopdf-amd64"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "h4cc\\WKHTMLToPDF\\": ""
-=======
             "name": "intervention/image",
             "version": "2.7.1",
             "source": {
@@ -1461,36 +1392,10 @@
             "autoload": {
                 "psr-4": {
                     "Intervention\\Image\\": "src/Intervention/Image"
->>>>>>> 280faeae2b01cc7daac03ea0a541e83552e5014a
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-<<<<<<< HEAD
-                "LGPL Version 3"
-            ],
-            "authors": [
-                {
-                    "name": "Julius Beckmann",
-                    "email": "github@h4cc.de"
-                }
-            ],
-            "description": "Convert html to pdf using webkit (qtwebkit). Static linked linux binary for amd64 systems.",
-            "homepage": "http://wkhtmltopdf.org/",
-            "keywords": [
-                "binary",
-                "convert",
-                "pdf",
-                "snapshot",
-                "thumbnail",
-                "wkhtmltopdf"
-            ],
-            "support": {
-                "issues": "https://github.com/h4cc/wkhtmltopdf-amd64/issues",
-                "source": "https://github.com/h4cc/wkhtmltopdf-amd64/tree/master"
-            },
-            "time": "2018-01-15T06:57:33+00:00"
-=======
                 "MIT"
             ],
             "authors": [
@@ -1525,7 +1430,6 @@
                 }
             ],
             "time": "2021-12-16T16:49:26+00:00"
->>>>>>> 280faeae2b01cc7daac03ea0a541e83552e5014a
         },
         {
             "name": "laravel/breeze",
@@ -1537,17 +1441,6 @@
             },
             "dist": {
                 "type": "zip",
-=======
-            "name": "laravel/breeze",
-            "version": "v1.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/breeze.git",
-                "reference": "0d7633380c81d0827f40f6064d38f8884f5c5441"
-            },
-            "dist": {
-                "type": "zip",
->>>>>>> 3aab1dc9bd99e7be7bc09899f3327086e6debce5
                 "url": "https://api.github.com/repos/laravel/breeze/zipball/0d7633380c81d0827f40f6064d38f8884f5c5441",
                 "reference": "0d7633380c81d0827f40f6064d38f8884f5c5441",
                 "shasum": ""
@@ -6303,7 +6196,7 @@
         },
         {
             "name": "symfony/translation",
-  "version": "v5.4.6",
+            "version": "v5.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
@@ -6396,7 +6289,7 @@
                     "type": "tidelift"
                 }
             ],
-          "time": "2022-03-31T17:18:25+00:00"
+            "time": "2022-03-31T17:18:25+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -6829,61 +6722,6 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.10.0"
             },
             "time": "2021-03-09T10:59:23+00:00"
-        },
-        {
-            "name": "wemersonjanuario/wkhtmltopdf-windows",
-            "version": "0.12.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/wemersonjanuario/wkhtmltopdf-windows.git",
-                "reference": "90fcd3487cad5931287742113c449b926e9e48d8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/wemersonjanuario/wkhtmltopdf-windows/zipball/90fcd3487cad5931287742113c449b926e9e48d8",
-                "reference": "90fcd3487cad5931287742113c449b926e9e48d8",
-                "shasum": ""
-            },
-            "suggest": {
-                "h4cc/wkhtmltopdf-amd64": "*",
-                "h4cc/wkhtmltopdf-i386": "*",
-                "wemersonjanuario/laravelpdf": "1.0.*"
-            },
-            "bin": [
-                "bin/32bit/wkhtmltopdf.exe",
-                "bin/32bit/wkhtmltoimage.exe",
-                "bin/64bit/wkhtmltopdf.exe",
-                "bin/64bit/wkhtmltoimage.exe"
-            ],
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL Version 3"
-            ],
-            "authors": [
-                {
-                    "name": "Wemerson Januario",
-                    "email": "wemerson.januario@gmail.com",
-                    "homepage": "http://wemersonjanuario.com.br"
-                }
-            ],
-            "description": "Convert html to pdf using webkit (qtwebkit). Static linked windows binary for 32 bit and 64 bit systems.",
-            "homepage": "http://wkhtmltopdf.org/",
-            "keywords": [
-                "binary",
-                "convert",
-                "htmltoimage",
-                "htmltopdf",
-                "pdf",
-                "snapshot",
-                "thumbnail",
-                "wkhtmltopdf"
-            ],
-            "support": {
-                "issues": "https://github.com/wemersonjanuario/wkhtmltopdf-windows/issues?state=open",
-                "source": "https://github.com/wemersonjanuario/wkhtmltopdf-windows/tree/master"
-            },
-            "time": "2015-06-30T20:19:22+00:00"
         }
     ],
     "packages-dev": [
@@ -9849,5 +9687,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.2.0"
 }

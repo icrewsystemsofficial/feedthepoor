@@ -130,10 +130,7 @@ return [
     |--------------------------------------------------------------------------
     |
     */
-    'donor_name' => 'Sathish',
-    'donation_amount' => 10000,
-    'donor_PAN' => 'AGB123OK12',
-    'receiver_PAN' => 'AXI198OR19',
+   
 
     /*
     |--------------------------------------------------------------------------
@@ -142,7 +139,8 @@ return [
     |
     */
 
-    'address' => '4TH FLR, KAMLESHWAR BUILDING, 19-JAI HIND SOCIETY, N.S. ROAD, 11/12, J.V.P.D. SCHEME, JUHU, Mumbai, Maharashtra 400049',
+    'address' => 'Office No. 3, PR Marg lodha market, Ajmer, Rajasthan, 305001 ',
+    'PAN' =>'AADTR8860J',
     'facebook_link' => 'https://www.facebook.com/Roshnifoundationdahanu/',
     'instagram_link' => 'https://www.instagram.com/roshni_foundation1/?hl=en',
 
