@@ -14,6 +14,7 @@ use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactsController;
 
+
 /*
 
   ______            _ _______ _          _____
@@ -44,8 +45,6 @@ Route::name('frontend.')->group(function () {
 
     Route::get('/thank-you/{donation_id?}', [HomeController::class, 'thank_you'])->name('donate.thank_you');
 
-
-    Route::get('/activity', [HomeController::class, 'index'])->name('activity');
     Route::get('/campaigns', [HomeController::class, 'index'])->name('campaigns');
     Route::get('/track-donation/{donation_id?}', [HomeController::class, 'track_donation'])->name('track-donation');
     Route::get('/transparency-report', [HomeController::class, 'index'])->name('transparency-report');
@@ -59,8 +58,6 @@ Route::name('frontend.')->group(function () {
     Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     Route::post('/contact', [HomeController::class, 'savecontact'])->name('savecontact');
-
-    Route::get('/receipt', [HomeController::class, 'receipt'])->name('receipt');
 });
 
 /*
@@ -96,6 +93,8 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::post('/group/{id}/update', [SettingsController::class, 'group_update'])->name('group.update');
         Route::post('/group/{id}/delete', [SettingsController::class, 'group_delete'])->name('group.delete');
 
+        # Activity logs
+        Route::get('/activity', [SettingsController::class, 'activity_logs'])->name('activity');
     });
 
 
@@ -149,7 +148,7 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::post('/upload', [CampaignsController::class, 'upload'])->name('upload');
     });
 
-    Route::prefix('donations')->as('donations.')->group(function() {
+    Route::prefix('donations')->as('donations.')->group(function () {
         Route::get('/', [DonationsController::class, 'index'])->name('index');
         Route::post('/store', [DonationsController::class, 'store'])->name('store');
         Route::get('/manage/{id}', [DonationsController::class, 'manage'])->name('manage');
