@@ -15,21 +15,22 @@
    <title>{{ config('app.name') }} | Dashboard</title>
 
    {{-- <link rel="stylesheet" href="https://demo.adminkit.io/css/dark.css"> --}}
+   {{-- BOOTSTRAP 5 CDN --}}
 
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
     {{-- APPs COMPILED CSS? --}}
     <link href="{{ asset('adminkit/static/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet" type="text/css">
 
-
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
 
 
    {{-- FONTAWESOME --}}
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
    {{-- WEBSITE FONT --}}
-   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+   <link href="{{ asset('css/websitefont.css') }}" rel="stylesheet" type="text/css">
+
    <style>
       [x-cloak] {
          display: none !important;
