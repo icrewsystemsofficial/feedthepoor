@@ -209,6 +209,7 @@
                                     <th>ITEM</th>
                                     <th>STATUS</th>
                                     <td>UPDATE</td>
+                                    <td>LOCATION</td>
                                     <th>DONATION</th>
                                     <th>OPTIONS</th>
                                 </tr>
@@ -238,6 +239,13 @@
                                     </td>
                                     <td>
                                         {!! App\Helpers\OperationsHelper::getProcurementStatus($operation->status,$operation->id) !!}
+                                    </td>
+                                    <td>
+                                        @php
+                                            $location = App\Models\Location::first();
+                                            echo $location->location_name;
+                                        @endphp
+                                        (WIP)
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.donations.manage', $operation->donation_id) }}" class="btn btn-sm btn-primary" target="_blank">

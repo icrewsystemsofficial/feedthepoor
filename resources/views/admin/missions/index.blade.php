@@ -70,6 +70,10 @@
             dropdownAutoWidth : false,
             placeholder: 'Select field manager'
         });
+
+        $('.volunteers_select').select2({
+            placeholder: 'Select available volunteers to assign to this mission'
+        });
     } );
 </script>
 @endsection
@@ -238,8 +242,19 @@
                             </div>
                         </div>
 
-                        <div class="form-group mb-3">
 
+
+                        <div class="form-group mb-3">
+                            <label for="assigned_volunteers">
+                                Volunteers
+                            </label>
+                            <select name="assigned_volunteers[]" id="" multiple class="volunteers_select form-control">
+                                @foreach ($active_volunteers as $volunteer)
+                                    <option value="{{ $volunteer->id }}">
+                                        {{ $volunteer->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="modal-footer">
