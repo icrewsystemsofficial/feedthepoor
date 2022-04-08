@@ -42,7 +42,9 @@ class DonationsController extends Controller
     public function manage(Request $request)
     {
         $donation = Donations::find($request->id);
-        return view('admin.donations.manage', compact('donation'));
+        $user = User::find($donation->donor_id);
+        $all_donations = Donations::all()->where('donor_id', $donation->donor_id);
+        return view('admin.donations.manage', compact('donation', 'user', 'all_donations'));
     }
 
     public function update(Request $request){
@@ -97,7 +99,7 @@ class DonationsController extends Controller
         $payment['cause'] = $cause->name;
         $payment['tracking_url'] = route('frontend.track-donation', $donation->razorpay_payment_id);                
         
-        $pdf = PDF::loadView('pdf.receipts.receipt', ['data' => [
+        $pdf->loadView('pdf.receipts.receipt', ['data' => [
             'payment' => $payment,
             'user' => $user,
         ]])->setPaper('a4', 'portrait');
@@ -119,7 +121,7 @@ class DonationsController extends Controller
 
 
         Anirudh R
-        */
+        */        
 
         return $pdf->stream('receipt.pdf');
     }

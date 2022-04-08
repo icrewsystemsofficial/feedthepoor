@@ -2,8 +2,9 @@
 
 @section('css')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/js/bootstrap-switch.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/css/bootstrap-switch.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -215,8 +216,92 @@
         </div>
     </div>
 </div>
+<div class="card mt-3">
+    <div class="card-body">
+        <div class="row mb-3">
+            <h3>
+                Donor Details
+            </h3>
+        </div>
+        <div class="row mb-3">
+            <div class="card-title">
+                Name
+            </div>
+            <div class="card-text">
+                {{ $user->name }}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="card-title">
+                Email
+            </div>
+            <div class="card-text">
+                {{ $user->email }}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="card-title">
+                Contact
+            </div>
+            <div class="card-text">
+                {{ $user->phone_number }}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="card-title">
+                Joined on
+            </div>
+            <div class="card-text">
+                {{ $user->created_at->format('d M Y') }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card mt-3">
+    <div class="card-body">
+        <div class="row mb-3">
+            <h3>
+                All Donations From {{ $user->name }}
+            </h3>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <table id="table" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>AMOUNT</th>
+                            <th>CAUSE</th>
+                            <th>STATUS</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($all_donations as $per_donation)
+                        <tr>
+                            <td>{{ $per_donation->id }}</td>
+                            <td>₹ {{ $per_donation->donation_amount }}</td>
+                            <td>{{ $per_donation->cause_name }}</td>
+                            <td>
+                                {!! App\Helpers\DonationsHelper::getStatus($per_donation->donation_status) !!}
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.donations.manage', $per_donation->id) }}" class="btn btn-primary btn-sm">
+                                    <i class="fa-solid fa-edit"></i> &nbsp;
+                                    Manage
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     $(document).ready(function() {       
+        $('#table').DataTable();
         $('#donation_status').on('change',()=>{
             let val = '#'+$('#donation_status option:selected').text();
             $('.show-badge').addClass('hide-badge');

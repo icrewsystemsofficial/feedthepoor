@@ -182,4 +182,8 @@ Route::get('/dashboard', function () {
     return redirect()->route('admin.dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/test', function () {
+    return view('pdf.receipts.receipt');
+});
+
 require __DIR__ . '/auth.php';
