@@ -14,6 +14,7 @@ use App\Events\Donations\DonationReceived;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Jobs\Donation\CreateDonationReceipt;
 use App\Jobs\Donation\AddOrUpdateDonationEntry;
+use App\Jobs\Operations\CreateProcurementListEntries;
 
 class DonationReceivedListener implements ShouldQueue
 {
@@ -68,15 +69,7 @@ class DonationReceivedListener implements ShouldQueue
 
 
         # Add "Operations" logic TODO
-        $operation = new Operations;
-        $operation->donation_id = Donations::where('razorpay_payment_id', $payment->id)->first()->id;
-        $operation->procurement_item = $payment->cause;
-        $operation->procurement_quantity = $payment->quantity;
-        $operation->vendor = null; //TODO
-        $operation->status = 'UNACKNOWLEDGED';
-        $operation->mission_id = null; //TODO
-        $operation->last_updated_by = $user->id;
-        $operation->save();
+        CreateProcurementListEntries::dispatch($payment);
 
 
     }

@@ -108,7 +108,7 @@
                                     <option></option>
                                     {!! App\Helpers\DonationsHelper::getAllCauses() !!}
                                 </select>
-                            </div>                            
+                            </div>
                             <div class="form-group mb-3">
                                 <label for="payment_method" class="form-label">Payment method</label>
                                 <select name="payment_method" id="payment_method" class="form-control" style="width: 100%;">
@@ -213,7 +213,7 @@ $(document).ready(function() {
     });
 });
 $(document).on('select2:open', (e) => {
-    const selectId = e.target.id    
+    const selectId = e.target.id
     $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
         key,
         value,

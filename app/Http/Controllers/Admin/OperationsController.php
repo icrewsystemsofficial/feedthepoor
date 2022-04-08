@@ -20,8 +20,8 @@ class OperationsController extends Controller
             'status' => 'required|in:UNACKNOWLEDGED,ACKNOWLEDGED,PROCUREMENT ORDER INITIATED,DELAYED,READY FOR MISSION DISPATCH,ASSIGNED TO MISSION,FULFILLED',
             'last_updated_by' => 'required|exists:users,id',
         ]);
-        
-        $operation = Operations::find($request->id);        
+
+        $operation = Operations::find($request->id);
         $newBadge = OperationsHelper::getProcurementBadge($request->status);
         $final = array();
         $final['badge'] = $newBadge;
@@ -34,7 +34,7 @@ class OperationsController extends Controller
     public function procurement_destroy(Request $request){
         $operations = Operations::find($request->id);
         $operations->delete();
-        alert()->success('Yay','Procurement was successfully deleted');        
+        alert()->success('Yay','Procurement was successfully deleted');
         return redirect(route('admin.operations.procurement.index'));
     }
 }

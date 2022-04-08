@@ -1,7 +1,7 @@
 @section('js')
 @endsection
-<link rel="stylesheet" href="{{ asset ('/css/share.css')  }}">
-<script type="text/javascript" src="{{ asset('/javascript/share.js' )}}"></script>
+{{-- <link rel="stylesheet" href="{{ asset ('/css/share.css')  }}"> --}}
+{{-- <script type="text/javascript" src="{{ asset('/javascript/share.js' )}}"></script> --}}
 @if(!in_array(Route::currentRouteName(), ['frontend.donate', 'frontend.donate.payment', 'frontend.donate.thank_you']))
 <section class="section py-0">
    <div class="container z-2">

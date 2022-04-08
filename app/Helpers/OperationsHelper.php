@@ -81,13 +81,13 @@ class OperationsHelper {
     public static function getProcurementStatus($status, $i){
 
         if($status == ''){
-            throw new Exception('Error: status not passed.' . $id);
+            throw new Exception('Error: status not passed.' . $status);
         }
 
         $all_statuses = self::status();
 
         if(!isset($all_statuses[$status])){
-            throw new Exception('Error: No status with ID '. $id. ' was found');
+            throw new Exception('Error: No status with ID '. $status. ' was found');
         }
 
         $html = "<select id='status_".$i."' class='form-control'>";

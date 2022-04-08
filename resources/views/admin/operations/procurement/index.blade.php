@@ -205,11 +205,12 @@
                         <table id="table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>DATE</th>
                                     <th>ITEM</th>
-                                    <th>QUANTITY</th>
                                     <th>STATUS</th>
-                                    <th>ACTION</th>
+                                    <td>UPDATE</td>
+                                    <th>DONATION</th>
+                                    <th>OPTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -219,20 +220,32 @@
                                     array_push($tot, $operation->id);
                                 @endphp
                                 <tr>
-                                    <td>{{ $operation->id }}</td>
+                                    <td>{{ $operation->created_at->format('d/m/Y') }}</td>
                                     <td>
-                                        {{ $operation->procurement_item }}
+                                        <strong>
+                                            {{ $operation->procurement_item }}
+                                        </strong>
                                         <br>
+                                        <small>
+                                            Qty: {{ $operation->procurement_quantity }} items(s)
+                                        </small>
+                                        <br>
+                                    </td>
+                                    <td>
                                         <div id="badge_{{ $operation->id }}">
-                                        {!! App\Helpers\OperationsHelper::getProcurementBadge($operation->status) !!}
+                                            {!! App\Helpers\OperationsHelper::getProcurementBadge($operation->status) !!}
                                         </div>
                                     </td>
-                                    <td>{{ $operation->procurement_quantity }} Number(s)</td>
                                     <td>
                                         {!! App\Helpers\OperationsHelper::getProcurementStatus($operation->status,$operation->id) !!}
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger" type="button" onclick="trigger_delete({{ $operation->id }})">
+                                        <a href="{{ route('admin.donations.manage', $operation->donation_id) }}" class="btn btn-sm btn-primary" target="_blank">
+                                            Donation # {{ $operation->donation_id }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger btn-sm" type="button" onclick="trigger_delete({{ $operation->id }})">
                                             <i class="fa-solid fa-trash"></i> Delete
                                         </button>
                                         <form action="{{ route('admin.operations.procurement.destroy', $operation->id) }}" id="delete_procurement_{{ $operation->id }}" method="POST">@csrf @method('DELETE')</form>
@@ -271,7 +284,7 @@
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 2000
+            timer: 4000
         });
         let table = $('#table').DataTable({
             "columnDefs": [
@@ -311,7 +324,7 @@
                         last_updated_by: {{ Auth::user()->id }}
                     },
                     success: function(data) {
-                        $('#table_'+data.status_new.slice(0,3)).text(parseInt($('#table_'+data.status_new.slice(0,3)).text())+1);                        
+                        $('#table_'+data.status_new.slice(0,3)).text(parseInt($('#table_'+data.status_new.slice(0,3)).text())+1);
                         $('#table_'+data.status_old.slice(0,3)).text(parseInt($('#table_'+data.status_old.slice(0,3)).text())-1);
                         let oldStatus = data.status_old;
                         let newStatus = data.status_new;
@@ -322,7 +335,7 @@
                             $('#procured').text(newProcured);
                             $('#toProcure').text(newToProcure);
                             $('#procuredPercent').text((newProcured/total*100).toFixed(2));
-                            $('#toProcurePercent').text((newToProcure/total*100).toFixed(2));                            
+                            $('#toProcurePercent').text((newToProcure/total*100).toFixed(2));
                             $('#avgProcured').text((newProcured/12).toFixed(2));
                         }
                         else if (oldStatus == 'FULFILLED'){
@@ -337,8 +350,8 @@
                         $('#badge_'+id)[0].innerHTML = data.badge;
                         Toast.fire({
                             type: 'success',
-                            title: 'Status updated successfully'
-                        });                                            
+                            title: 'Status of this item has been updated successfully'
+                        });
                     },
                     error: function(data) {
                         console.log(data);

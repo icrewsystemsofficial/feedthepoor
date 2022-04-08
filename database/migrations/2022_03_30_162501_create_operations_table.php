@@ -18,9 +18,10 @@ class CreateOperationsTable extends Migration
             $table->unsignedBigInteger('donation_id')->references('id')->on('donations');
             $table->text('procurement_item');
             $table->integer('procurement_quantity');
+            // $table->integer('procurement_status')->default(0);
             $table->text('vendor')->nullable();
             $table->enum('status', ['UNACKNOWLEDGED', 'ACKNOWLEDGED', 'PROCUREMENT ORDER INITIATED','DELAYED','READY FOR MISSION DISPATCH','ASSIGNED TO MISSION','FULFILLED'])->default('UNACKNOWLEDGED');
-            $table->integer('last_updated_by')->references('id')->on('users');
+            $table->integer('last_updated_by')->references('id')->on('users')->nullable();
             $table->unsignedBigInteger('mission_id')->nullable();
             $table->timestamps();
         });
