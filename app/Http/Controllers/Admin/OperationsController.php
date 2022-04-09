@@ -16,19 +16,36 @@ class OperationsController extends Controller
     }
 
     public function procurement_update(Request $request){
-        $request->validate([
-            'status' => 'required|in:UNACKNOWLEDGED,ACKNOWLEDGED,PROCUREMENT ORDER INITIATED,DELAYED,READY FOR MISSION DISPATCH,ASSIGNED TO MISSION,FULFILLED',
-            'last_updated_by' => 'required|exists:users,id',
-        ]);
-        
-        $operation = Operations::find($request->id);        
-        $newBadge = OperationsHelper::getProcurementBadge($request->status);
-        $final = array();
-        $final['badge'] = $newBadge;
-        $final['status_new'] = $request->status;
-        $final['status_old'] = $operation->status;
-        $operation->update($request->all());
-        return response()->json($final);
+        if ($request->update == 1){
+            $request->validate([
+                'status' => 'in:UNACKNOWLEDGED,ACKNOWLEDGED,PROCUREMENT ORDER INITIATED,DELAYED,READY FOR MISSION DISPATCH,ASSIGNED TO MISSION,FULFILLED',
+                'last_updated_by' => 'required|exists:users,id',
+                'location' => 'exists:locations,id',
+            ]);
+            $operation = Operations::find($request->id);        
+            $newBadge = OperationsHelper::getProcurementBadge($request->status);
+            $final = array();
+            $final['badge'] = $newBadge;
+            $final['status_new'] = $request->status;
+            $final['status_old'] = $operation->status;
+            $operation->update($request->all());
+            return response()->json($final);
+        }
+        else if ($request->update == 2){
+            $request->validate([
+                'last_updated_by' => 'required|exists:users,id',
+                'location' => 'exists:locations,id',
+            ]);
+            $operation = Operations::find($request->id);
+            $location = $request->location;
+            $updated = $request->last_updated_by;
+            $operation->update([
+                'location' => $location,
+                'last_updated_by' => $updated,
+            ]);
+            return $operation->status;
+        }
+                
     }
 
     public function procurement_destroy(Request $request){

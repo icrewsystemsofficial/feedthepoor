@@ -209,6 +209,7 @@
                                     <th>ITEM</th>
                                     <th>QUANTITY</th>
                                     <th>STATUS</th>
+                                    <th>LOCATION</th>
                                     <th>ACTION</th>
                                 </tr>
                             </thead>
@@ -227,13 +228,16 @@
                                         {!! App\Helpers\OperationsHelper::getProcurementBadge($operation->status) !!}
                                         </div>
                                     </td>
-                                    <td>{{ $operation->procurement_quantity }} Number(s)</td>
+                                    <td>{{ $operation->procurement_quantity }}</td>
                                     <td>
                                         {!! App\Helpers\OperationsHelper::getProcurementStatus($operation->status,$operation->id) !!}
                                     </td>
                                     <td>
+                                        {!! App\Helpers\OperationsHelper::getProcurementLocation($operation->location_id,$operation->id) !!}
+                                    </td>
+                                    <td>
                                         <button class="btn btn-danger" type="button" onclick="trigger_delete({{ $operation->id }})">
-                                            <i class="fa-solid fa-trash"></i> Delete
+                                            <i class="fa-solid fa-trash"></i>
                                         </button>
                                         <form action="{{ route('admin.operations.procurement.destroy', $operation->id) }}" id="delete_procurement_{{ $operation->id }}" method="POST">@csrf @method('DELETE')</form>
                                     </td>
@@ -300,6 +304,7 @@
         let selects = {{ json_encode($tot) }};
         selects.forEach(id => {
             $('#status_'+id).select2();
+            $('#location_'+id).select2();
             $('#status_'+id).on('change', function() {
                 let status = $(this).val();
                 $.ajax({
@@ -308,6 +313,7 @@
                     data: {
                         _token: '{{ csrf_token() }}',
                         status: status,
+                        update: 1,
                         last_updated_by: {{ Auth::user()->id }}
                     },
                     success: function(data) {
@@ -342,9 +348,41 @@
                     },
                     error: function(data) {
                         console.log(data);
+                        Toast.fire({
+                            type: 'error',
+                            title: 'Unable to update status'
+                        });                                            
                     }
                 });
             });
+            $('#location_'+id).on('change', function() {
+                let location = $(this).val();
+                $.ajax({
+                    url: '/admin/operations/procurement/update/'+id,
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        location: location,
+                        update: 2,
+                        last_updated_by: {{ Auth::user()->id }}
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        Toast.fire({
+                            type: 'success',
+                            title: 'Location updated successfully'
+                        });                                            
+                    },
+                    error: function(data) {
+                        console.log(data);
+                        Toast.fire({
+                            type: 'error',
+                            title: 'Unable to update location'
+                        });
+                    }
+                });
+            });
+
         });
 
     });

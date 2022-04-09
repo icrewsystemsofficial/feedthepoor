@@ -99,7 +99,7 @@ class DonationsController extends Controller
         $payment['cause'] = $cause->name;
         $payment['tracking_url'] = route('frontend.track-donation', $donation->razorpay_payment_id);                
         
-        $pdf->loadView('pdf.receipts.receipt', ['data' => [
+        $pdf = PDF::loadView('pdf.receipts.receipt', ['data' => [
             'payment' => $payment,
             'user' => $user,
         ]])->setPaper('a4', 'portrait');

@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use Exception;
 use App\Models\Operations;
+use App\Models\Location;
 
 
 class OperationsHelper {
@@ -94,6 +95,20 @@ class OperationsHelper {
 
         foreach($all_statuses as $id => $val) {
             $html .= ($id == $status) ? "<option value='".$id."' selected>".$id."</option>" : "<option value='".$id."'>".$id."</option>";
+        }
+
+        return $html;
+
+    }
+
+    public static function getProcurementLocation($id,$i){
+
+        $locations = Location::all();
+
+        $html = "<select id='location_".$i."' class='form-control'>";
+
+        foreach ($locations as $location){
+            $html .= ($location->id == $id) ? "<option value='".$location->id."' selected>".$location->location_name."</option>" : "<option value='".$location->id."'>".$location->location_name."</option>";
         }
 
         return $html;
