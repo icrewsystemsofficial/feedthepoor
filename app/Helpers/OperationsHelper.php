@@ -108,7 +108,7 @@ class OperationsHelper {
         $html = "<select id='location_".$i."' class='form-control'>";
 
         foreach ($locations as $location){
-            $html .= ($location->id == $id) ? "<option value='".$location->id."' selected>".$location->location_name."</option>" : "<option value='".$location->id."'>".$location->location_name."</option>";
+            $html .= ($location->id == $id) ? "<option value=".$location->id." selected>".$location->location_name."</option>" : "<option value='".$location->id."'>".$location->location_name."</option>";
         }
 
         return $html;

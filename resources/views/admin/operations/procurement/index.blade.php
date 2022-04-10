@@ -316,7 +316,7 @@
                         update: 1,
                         last_updated_by: {{ Auth::user()->id }}
                     },
-                    success: function(data) {
+                    success: function(data) {                        
                         $('#table_'+data.status_new.slice(0,3)).text(parseInt($('#table_'+data.status_new.slice(0,3)).text())+1);                        
                         $('#table_'+data.status_old.slice(0,3)).text(parseInt($('#table_'+data.status_old.slice(0,3)).text())-1);
                         let oldStatus = data.status_old;
@@ -347,7 +347,6 @@
                         });                                            
                     },
                     error: function(data) {
-                        console.log(data);
                         Toast.fire({
                             type: 'error',
                             title: 'Unable to update status'
@@ -362,19 +361,17 @@
                     type: 'POST',
                     data: {
                         _token: '{{ csrf_token() }}',
-                        location: location,
+                        location_id: location,
                         update: 2,
                         last_updated_by: {{ Auth::user()->id }}
                     },
-                    success: function(data) {
-                        console.log(data);
+                    success: function(data) {                       
                         Toast.fire({
                             type: 'success',
                             title: 'Location updated successfully'
                         });                                            
                     },
                     error: function(data) {
-                        console.log(data);
                         Toast.fire({
                             type: 'error',
                             title: 'Unable to update location'
