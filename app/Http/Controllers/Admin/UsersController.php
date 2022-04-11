@@ -30,7 +30,7 @@ class UsersController extends Controller
         return view('admin.users.view', compact('location', 'user'));
     }
 
-    
+
     public function manage($id){
         $location = Location::all();
         $user = User::find($id);
@@ -67,7 +67,8 @@ class UsersController extends Controller
             $user->avatar = $url;
         }
         $user->save();
-        return(redirect(route('admin.dashboard')));
+
+        return redirect()->route('admin.users.index');
     }
 
     public function update_password(Request $req, $id){

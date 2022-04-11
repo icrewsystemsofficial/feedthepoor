@@ -107,7 +107,7 @@
                         <div class="mb-0">
                             <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i>
                                 @if($total > 0)
-                                <span id="procuredPercent">{{ $procured / $total * 100 }}</span>% <span class="text-muted">of total</span>
+                                <span id="procuredPercent">{{ round($procured / $total * 100,2) }}</span>% <span class="text-muted">of total</span>
                                 @else
                                 Not enough data
                                 @endif
@@ -135,7 +135,7 @@
                         <div class="mb-0">
                             <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i>
                                 @if($total > 0)
-                                <span id="toProcurePercent">{{ $toProcure/$total*100 }}</span>% <span class="text-muted">of total</span>
+                                <span id="toProcurePercent">{{ round($toProcure/$total*100,2) }}</span>% <span class="text-muted">of total</span>
                                 @else
                                 Not enough data
                                 @endif
@@ -311,8 +311,7 @@
                         last_updated_by: {{ Auth::user()->id }}
                     },
                     success: function(data) {
-                        $('#table_'+data.status_new.slice(0,3)).text(parseInt($('#table_'+data.status_new.slice(0,3)).text())+1);
-                        console.log(data.status_old);
+                        $('#table_'+data.status_new.slice(0,3)).text(parseInt($('#table_'+data.status_new.slice(0,3)).text())+1);                        
                         $('#table_'+data.status_old.slice(0,3)).text(parseInt($('#table_'+data.status_old.slice(0,3)).text())-1);
                         let oldStatus = data.status_old;
                         let newStatus = data.status_new;
@@ -322,8 +321,8 @@
                             let newToProcure = parseInt($('#toProcure').text()) - 1;
                             $('#procured').text(newProcured);
                             $('#toProcure').text(newToProcure);
-                            $('#procuredPercent').text(newProcured/total*100);
-                            $('#toProcurePercent').text(newToProcure/total*100);
+                            $('#procuredPercent').text((newProcured/total*100).toFixed(2));
+                            $('#toProcurePercent').text((newToProcure/total*100).toFixed(2));                            
                             $('#avgProcured').text((newProcured/12).toFixed(2));
                         }
                         else if (oldStatus == 'FULFILLED'){
@@ -331,8 +330,8 @@
                             let newToProcure = parseInt($('#toProcure').text()) + 1;
                             $('#procured').text(newProcured);
                             $('#toProcure').text(newToProcure);
-                            $('#procuredPercent').text(newProcured/total*100);
-                            $('#toProcurePercent').text(newToProcure/total*100);
+                            $('#procuredPercent').text((newProcured/total*100).toFixed(2));
+                            $('#toProcurePercent').text((newToProcure/total*100).toFixed(2));
                             $('#avgProcured').text((newProcured/12).toFixed(2));
                         }
                         $('#badge_'+id)[0].innerHTML = data.badge;

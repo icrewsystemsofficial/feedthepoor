@@ -8,13 +8,14 @@
 <script defer>
     $(document).ready(function() {
         $('#table').DataTable();
+        $("input[type='search']").attr('id','search');
     } );
 
     const getUsers =async (role) => {
         const table = $('#table').DataTable();
-        table.search(role);
-        // $('.form-control-sm')[0].value = "";
-        // $('.form-control-sm')[0].value = role;
+        $("#search").val(role);
+        $("#search").keyup();
+        $("#search").focus();
     }
     createUser = (id) => {
         const name = document.getElementById('user_name').value;
@@ -125,7 +126,13 @@
     <div class="col-12">
         <h3>
             Users
+            <br>
+            <small class="text-muted text-sm">
+                All users present in the application. You can click on a role to filter, or search for a specific user.
+            </small>
         </h3>
+
+
 
         {{-- <p class="mt-n2">
             <small>
@@ -250,6 +257,29 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-md-12">
+                        <div style="margin-bottom: 2%">
+                            @foreach ($allRoles as $role)
+                                <span class="badge
+                                @if($role->name == 'superadmin')
+                                    bg-info
+                                @endif
+                                @if($role->name == 'administrator')
+                                    bg-primary
+                                @endif
+                                @if($role->name == 'manager')
+                                    bg-secondary
+                                @endif
+                                @if($role->name == 'volunteer')
+                                    bg-warning
+                                @endif
+                                @if($role->name == 'donor')
+                                    bg-danger
+                                @endif
+                                cursor-pointer" onclick="getUsers('{{$role->name}}')">{{strtoupper($role->name)}}
+                                </span>
+                            @endforeach
+                        </div>
+
                         <table id="table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
@@ -272,7 +302,7 @@
                                         {!! $user->phone_number ? $user->phone_number : '<span class="badge bg-secondary">Not Updated</span>' !!}
                                     </td>
                                     <td>
-                                        <span class="badge 
+                                        <span class="badge
                                         @if($user->getRoleNames()[0] == 'superadmin')
                                             bg-info
                                         @endif

@@ -44,7 +44,7 @@ class DonationReceivedListener implements ShouldQueue
             'name' => $payment->name,
             'email' => $payment->email,
             'phone_number' => $payment->phone,
-            'pan_number' => ($payment->pan) ? $payment->pan : null,
+            'pan_number' => (isset($payment->pan)) ? $payment->pan : null,
             'account_claimed' => false,
         ]);
 
@@ -68,15 +68,15 @@ class DonationReceivedListener implements ShouldQueue
 
 
         # Add "Operations" logic TODO
-        Operations::create([
-            'donation_id' => $payment->id,            
-            'procurement_item' => $payment->cause,
-            'procurement_quantity' => $payment->quantity,
-            'vendor' => null,
-            'status' => 'UNACKNOWLEDGED',
-            'mission_id' => null,
-            'last_updated_by' => null,
-        ]);
+        $operation = new Operations;
+        $operation->donation_id = Donations::where('razorpay_payment_id', $payment->id)->first()->id;
+        $operation->procurement_item = $payment->cause;
+        $operation->procurement_quantity = $payment->quantity;
+        $operation->vendor = null; //TODO
+        $operation->status = 'UNACKNOWLEDGED';
+        $operation->mission_id = null; //TODO
+        $operation->last_updated_by = $user->id;
+        $operation->save();
 
 
     }
