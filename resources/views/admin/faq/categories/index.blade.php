@@ -10,6 +10,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/js/bootstrap-switch.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/css/bootstrap-switch.min.css" rel="stylesheet">
 <style>
+    .badge {
+        cursor: pointer;
+    }
     .badge-warning {
         background-color: #f0ad4e;
         color: #fff;
@@ -124,9 +127,9 @@
                                     <td>{{ $category->category_description }}</td>
                                     <td>
                                         @if($category->category_status == 1)
-                                            <span class="badge badge-success">Active</span>
+                                            <span class="badge badge-success" onclick='$("#search").val($(this).text());$("#search").keyup();$("#search").focus();'>Active</span>
                                         @else
-                                            <span class="badge badge-danger">Inactive</span>
+                                            <span class="badge badge-danger" onclick='$("#search").val($(this).text());$("#search").keyup();$("#search").focus();'>Inactive</span>
                                         @endif
                                     </td>
                                     <td>
@@ -158,6 +161,7 @@
 <script>
     $(document).ready(function() {
         $('#table2').DataTable();
+        $("input[type='search']").attr('id','search');
         $('#category_status').bootstrapSwitch({
             onText: 'Active',
             offText: 'Inactive',

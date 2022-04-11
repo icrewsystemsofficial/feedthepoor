@@ -10,6 +10,9 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <style>
+    .badge {
+        cursor: pointer;
+    }
     .badge-warning {
         background-color: #f0ad4e;
         color: #fff;
@@ -202,6 +205,7 @@ $(document).ready(function() {
         placeholder: 'Select cause'
     });
     $('#table').DataTable();
+    $("input[type='search']").attr('id','search');
     $('#payment_method').on('change', function() {
         if($(this).val() == 4) {
             $('.hide-goal').addClass('show-goal');

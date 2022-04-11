@@ -17,6 +17,9 @@
 <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
 <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
 <style>
+    .badge {
+        cursor: pointer;
+    }
     .badge-warning {
         background-color: #f0ad4e;
         color: #fff;
@@ -257,19 +260,8 @@
 <script>
     $("#newCampaignModalPrimary").css('position', 'fixed');
     $(document).ready(function() {
-        /*$('#campaign_has_cause').bootstrapSwitch({
-            onText: 'Yes',
-            offText: 'No',
-            onColor: 'primary',
-            offColor: 'danger',
-        });
-        $('#is_campaign_goal_based').bootstrapSwitch({
-            onText: 'Yes',
-            offText: 'No',
-            onColor: 'primary',
-            offColor: 'danger',
-        });*/
         $('#table').DataTable();
+        $("input[type='search']").attr('id','search');
         const picker = new Litepicker({ 
             element: document.getElementById('campaign_start_date'),
             resetButton: true,
