@@ -13,6 +13,7 @@ class Operations extends Model
 
     protected $fillable = [
         'donation_id',
+        'location_id',
         'procurement_item',
         'procurement_quantity',
         'vendor',
