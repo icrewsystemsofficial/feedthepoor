@@ -342,13 +342,13 @@
                         }
                         $('#badge_'+id)[0].innerHTML = data.badge;
                         Toast.fire({
-                            type: 'success',
+                            icon: 'success',
                             title: 'Status updated successfully'
                         });                                            
                     },
                     error: function(data) {
                         Toast.fire({
-                            type: 'error',
+                            icon: 'warning',
                             title: 'Unable to update status'
                         });                                            
                     }
@@ -367,13 +367,13 @@
                     },
                     success: function(data) {                       
                         Toast.fire({
-                            type: 'success',
+                            icon: 'success',
                             title: 'Location updated successfully'
                         });                                            
                     },
                     error: function(data) {
                         Toast.fire({
-                            type: 'error',
+                            icon: 'warning',
                             title: 'Unable to update location'
                         });
                     }
