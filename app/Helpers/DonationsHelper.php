@@ -30,15 +30,15 @@ class DonationsHelper {
 
 
         $status[Donations::$status['VERIFIED']] = array(
-            'text' => 'Verified',
+            'text' => 'Completed',
             'icon' => 'fa-solid fa-check-circle',
             'color' => 'success',
         );
 
         $status[Donations::$status['FAILED']] = array(
             'text' => 'Failed',
-            'icon' => 'fa-solid fa-times-circle',            
-            'color' => 'danger',            
+            'icon' => 'fa-solid fa-times-circle',
+            'color' => 'danger',
         );
 
         $status[Donations::$status['REFUNDED']] = array(
@@ -148,7 +148,7 @@ class DonationsHelper {
             }
         }
         return $html;
-    }    
+    }
 
 }
 

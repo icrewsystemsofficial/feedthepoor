@@ -1,86 +1,5 @@
 @extends('layouts.admin')
 
-@section('css')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/js/bootstrap-switch.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/css/bootstrap-switch.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-<script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
-<script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
-<script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
-<style>
-    .badge-warning {
-        background-color: #f0ad4e;
-        color: #fff;
-    }
-    .badge-success {
-        background-color: #5cb85c;
-        color: #fff;
-    }
-    .badge-danger {
-        background-color: #d9534f;
-        color: #fff;
-    }
-    .badge-info {
-        background-color: #5bc0de;
-        color: #fff;
-    }
-    .action-btns {
-        width: fit-content;
-    }
-    input[type="date"]::-webkit-inner-spin-button,
-    input[type="date"]::-webkit-calendar-picker-indicator {
-        display: none;
-        -webkit-appearance: none;
-    }
-    .hide-date, .hide-goal, .hide-cause {
-        display: none !important;
-    }
-    .show-date, .show-goal, .show-cause {
-        display: block !important;
-    }
-    .form-check {
-        padding-left: 0px !important;
-    }
-    .bootstrap-switch .bootstrap-switch-handle-on,
-    .bootstrap-switch .bootstrap-switch-handle-off,
-    .bootstrap-switch .bootstrap-switch-label {
-        display: inline-block;
-        width: 44%;
-    }
-    .select2 {
-        width: 100% !important;
-    }
-    .hide-badge {
-        display: none;
-    }
-    .show-badge {
-        display: block;
-        width: fit-content;
-    }
-</style>
-
-<style>
-    .badge-danger {
-        background-color: #d9534f;
-        color: #fff;
-        border-color: transparent;
-    }
-    .badge-danger:hover {
-        background-color: #d9534f;
-        color: #fff;
-        border-color: transparent;
-    }
-    .delete-modal {
-        font-size: 1.2rem !important;
-    }
-</style>
-@endsection
-
 @section('js')
 <script>
     function trigger_delete() {
@@ -248,18 +167,6 @@
             $(val).removeClass('hide-badge');
             $(val).addClass('show-badge');            
         });
-        /*$('#campaign_has_cause').bootstrapSwitch({
-            onText: 'Yes',
-            offText: 'No',
-            onColor: 'primary',
-            offColor: 'danger',
-        });
-        $('#is_campaign_goal_based').bootstrapSwitch({
-            onText: 'Yes',
-            offText: 'No',
-            onColor: 'primary',
-            offColor: 'danger',
-        });*/
         const picker = new Litepicker({ 
             element: document.getElementById('campaign_start_date'),
             resetButton: true,

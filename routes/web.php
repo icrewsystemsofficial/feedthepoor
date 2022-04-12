@@ -1,18 +1,19 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\SettingsController;
-use App\Http\Controllers\Admin\LocationController;
-use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\Admin\CausesController;
-use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\Admin\FaqController;
-use App\Http\Controllers\Admin\CampaignsController;
-use App\Http\Controllers\Admin\DonationsController;
-use App\Http\Controllers\Admin\OperationsController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\CausesController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\MissionsController;
+use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\CampaignsController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DonationsController;
+use App\Http\Controllers\Admin\OperationsController;
 
 
 /*
@@ -159,9 +160,18 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
     Route::prefix('operations')->as('operations.')->group(function(){
         Route::prefix('procurement')->as('procurement.')->group(function(){
             Route::get('/', [OperationsController::class, 'procurement_index'])->name('index');
-            Route::post('/update/{id}', [OperationsController::class, 'procurement_update'])->name('update');
-            Route::delete('/destroy/{id}', [OperationsController::class, 'procurement_destroy'])->name('destroy');
+            Route::post('/update/{id}', [OperationsController::class, 'procurement_update'])->name('update');            
         });
+
+        Route::delete('/destroy/{id}', [OperationsController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('missions')->as('missions.')->group(function() {
+        Route::get('/', [MissionsController::class, 'index'])->name('index');
+        Route::get('/manage/{id}', [MissionsController::class, 'view'])->name('manage');
+        Route::post('/store', [MissionsController::class, 'store'])->name('store');
+        Route::post('/update/{id}', [MissionsController::class, 'update'])->name('update');
+        Route::post('/delete/{id}', [MissionsController::class, 'destroy'])->name('destroy');
     });
 
 });

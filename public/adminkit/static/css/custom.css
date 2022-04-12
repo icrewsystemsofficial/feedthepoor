@@ -1,0 +1,62 @@
+/*
+
+Add all custom css declarations here
+
+*/
+
+
+/* Admin panel status badges */
+.badge {
+    cursor: pointer;
+}
+.badge-warning {
+    background-color: #f0ad4e;
+    color: #fff;
+}
+.badge-success {
+    background-color: #5cb85c;
+    color: #fff;
+}
+.badge-danger {
+    background-color: #d9534f;
+    color: #fff;
+}
+.badge-info {
+    background-color: #5bc0de;
+    color: #fff;
+}
+.select2 {
+    width: 100% !important;
+}
+.select2-close-mask{
+    z-index: 2099;
+}
+.select2-dropdown{
+    z-index: 3051;
+}
+.form-check {
+    padding-left: 0px !important;
+}
+.bootstrap-switch .bootstrap-switch-handle-on,
+.bootstrap-switch .bootstrap-switch-handle-off,
+.bootstrap-switch .bootstrap-switch-label {
+    display: inline-block;
+    width: 44%;
+}
+.action-btns {
+    width: fit-content;
+}
+.hide-badge {
+    display: none !important;
+}
+.show-badge {
+    display: block !important;
+    width: fit-content;
+}
+.form-group input[type="date"]::-webkit-inner-spin-button,
+.form-group input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+.required {
+    color: red;
+}

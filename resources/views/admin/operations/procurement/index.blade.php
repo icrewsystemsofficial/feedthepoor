@@ -1,44 +1,5 @@
 @extends('layouts.admin')
 
-@section('css')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<style>
-    .badge {
-        cursor: pointer;
-    }
-    .badge-warning {
-        background-color: #f0ad4e;
-        color: #fff;
-    }
-    .badge-success {
-        background-color: #5cb85c;
-        color: #fff;
-    }
-    .badge-danger {
-        background-color: #d9534f;
-        color: #fff;
-    }
-    .badge-info {
-        background-color: #5bc0de;
-        color: #fff;
-    }
-    .select2 {
-        width: 100% !important;
-    }
-    .select2-close-mask{
-        z-index: 2099;
-    }
-    .select2-dropdown{
-        z-index: 3051;
-    }
-</style>
-@endsection
-
 @section('content')
 <div class="row">
     <div class="col-12">
@@ -74,20 +35,6 @@
             </div>
 
         @endif
-        @php
-            $total = 0;
-            $toProcure = 0;
-            $procured = 0;
-            foreach ($operations as $operation) {
-                $total++;
-                if ($operation->status != 'FULFILLED'){
-                    $toProcure++;
-                }
-                else{
-                    $procured++;
-                }
-            }
-        @endphp
         <div class="row mb-3">
             <div class="col-md-4">
                 <div class="card" style="height: 100%;">
@@ -107,7 +54,7 @@
                         <div class="mb-0">
                             <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i>
                                 @if($total > 0)
-                                <span id="procuredPercent">{{ round($procured / $total * 100,2) }}</span>% <span class="text-muted">of total</span>
+                                <span id="procuredPercent">{{ $procuredPercent }}</span>% <span class="text-muted">of total</span>
                                 @else
                                 Not enough data
                                 @endif
@@ -135,7 +82,7 @@
                         <div class="mb-0">
                             <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i>
                                 @if($total > 0)
-                                <span id="toProcurePercent">{{ round($toProcure/$total*100,2) }}</span>% <span class="text-muted">of total</span>
+                                <span id="toProcurePercent">{{ $toProcurePercent }}</span>% <span class="text-muted">of total</span>
                                 @else
                                 Not enough data
                                 @endif
@@ -189,7 +136,7 @@
                                 @foreach ($statuses as $status => $val)
                                     <tr>
                                         <td>{!! App\Helpers\OperationsHelper::getProcurementBadge($status) !!}</td>
-                                        <td id="table_{{ substr($status,0,3) }}">{{ $val }}</td>
+                                        <td id="table_{{ $status }}">{{ $val }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -201,45 +148,53 @@
         <div class="card mt-3">
             <div class="card-body">
                 <div class="row mb-2">
-                    <div class="col-md-12">
-                        <table id="table" class="table table-striped" style="width:100%">
+                    <div class="container col-md-12 well">
+                        <table id="table" class="table table-striped nowrap dt-responsive" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>ITEM</th>
+                                    <th>DATE</th>
+                                    <th data-priority=1>ITEM</th>
                                     <th>QUANTITY</th>
-                                    <th>STATUS</th>
-                                    <th>LOCATION</th>
-                                    <th>ACTION</th>
+                                    <th data-priority=2>STATUS</th>
+                                    <th class="none">LOCATION</th>
+                                    <th class="none">DONATION</th>
+                                    <th class="none">ACTION</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @php $tot = array(); @endphp
                                 @foreach($operations as $operation)
-                                @php
-                                    array_push($tot, $operation->id);
-                                @endphp
                                 <tr>
-                                    <td>{{ $operation->id }}</td>
+                                    <td>{{ $operation->created_at->format('d/m/Y') }}</td>
                                     <td>
-                                        {{ $operation->procurement_item }}
+                                        <strong>
+                                            {{ $operation->procurement_item }}
+                                        </strong>
                                         <br>
+                                        
                                         <div id="badge_{{ $operation->id }}">
-                                        {!! App\Helpers\OperationsHelper::getProcurementBadge($operation->status) !!}
+                                            {!! App\Helpers\OperationsHelper::getProcurementBadge($operation->status) !!}
                                         </div>
+
                                     </td>
                                     <td>{{ $operation->procurement_quantity }}</td>
                                     <td>
                                         {!! App\Helpers\OperationsHelper::getProcurementStatus($operation->status,$operation->id) !!}
                                     </td>
                                     <td>
-                                        {!! App\Helpers\OperationsHelper::getProcurementLocation($operation->location_id,$operation->id) !!}
+                                        <span class="badge badge-info" onclick="showLocation({{ $operation->location_id }})">
+                                            {{ App\Helpers\OperationsHelper::getProcurementLocation($operation->location_id) }}
+                                        </span>
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger" type="button" onclick="trigger_delete({{ $operation->id }})">
-                                            <i class="fa-solid fa-trash"></i>
+                                        <a href="{{ route('admin.donations.manage', $operation->donation_id) }}" class="btn btn-sm btn-primary" target="_blank">
+                                            Donation #{{ $operation->donation_id }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger btn-sm" type="button" onclick="trigger_delete({{ $operation->id }})">
+                                            <i class="fa-solid fa-trash"></i> Delete
                                         </button>
-                                        <form action="{{ route('admin.operations.procurement.destroy', $operation->id) }}" id="delete_procurement_{{ $operation->id }}" method="POST">@csrf @method('DELETE')</form>
+                                        <form action="{{ route('admin.operations.destroy', $operation->id) }}" id="delete_procurement_{{ $operation->id }}" method="POST">@csrf @method('DELETE')</form>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -253,6 +208,7 @@
 </div>
 <script async>
     function trigger_delete(id) {
+
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -269,14 +225,22 @@
                 document.getElementById('delete_procurement_'+id).submit();
             }
         });
+
+    }
+    function showLocation(id){
+
+        window.open("{{ route('admin.location.manage', ':id') }}".replace(':id', id), '_blank');
+
     }
     $(document).ready(function() {
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 2000
+            timer: 4000
         });
+
         let table = $('#table').DataTable({
             "columnDefs": [
                 { "searchable": true, "targets": 0 },
@@ -284,8 +248,10 @@
                 { "searchable": false, "targets": 2 },
                 { "searchable": true, "targets": 3 },
                 { "searchable": false, "targets": 4 }
-            ]
+            ],
+            responsive: true,
         });
+
         $("input[type='search']").attr('id','search');
         $.fn.DataTable.ext.search.push((_,__,i) => {
             const currentTr = table.row(i).node();
@@ -297,11 +263,12 @@
                 .children()
                 .not('td:has("input,select")')
                 .toArray()
-                .some(x => $(x).text().toLowerCase().includes( $('input[type="search"]').val().toLowerCase()));
+                .some(x => $(x).text().toLowerCase().includes( $('input[type="search"]').val().toLowerCase()));                
             return inputMatch || textMatch || $('input[type="search"]').val() == '';
         });
         $('input[type="search"]').on('keyup', () => table.draw());
-        let selects = {{ json_encode($tot) }};
+        
+        let selects = {{ json_encode($allOperations) }};
         selects.forEach(id => {
             $('#status_'+id).select2();
             $('#location_'+id).select2();
@@ -313,12 +280,11 @@
                     data: {
                         _token: '{{ csrf_token() }}',
                         status: status,
-                        update: 1,
                         last_updated_by: {{ Auth::user()->id }}
                     },
-                    success: function(data) {                        
-                        $('#table_'+data.status_new.slice(0,3)).text(parseInt($('#table_'+data.status_new.slice(0,3)).text())+1);                        
-                        $('#table_'+data.status_old.slice(0,3)).text(parseInt($('#table_'+data.status_old.slice(0,3)).text())-1);
+                    success: function(data) {
+                        $('#table_'+data.status_new).text(parseInt($('#table_'+data.status_new).text())+1);
+                        $('#table_'+data.status_old).text(parseInt($('#table_'+data.status_old).text())-1);
                         let oldStatus = data.status_old;
                         let newStatus = data.status_new;
                         let total = {{ $total }};
@@ -328,7 +294,7 @@
                             $('#procured').text(newProcured);
                             $('#toProcure').text(newToProcure);
                             $('#procuredPercent').text((newProcured/total*100).toFixed(2));
-                            $('#toProcurePercent').text((newToProcure/total*100).toFixed(2));                            
+                            $('#toProcurePercent').text((newToProcure/total*100).toFixed(2));
                             $('#avgProcured').text((newProcured/12).toFixed(2));
                         }
                         else if (oldStatus == 'FULFILLED'){
@@ -343,8 +309,8 @@
                         $('#badge_'+id)[0].innerHTML = data.badge;
                         Toast.fire({
                             icon: 'success',
-                            title: 'Status updated successfully'
-                        });                                            
+                            title: 'Status of this item has been updated successfully'
+                        });
                     },
                     error: function(data) {
                         Toast.fire({
@@ -354,38 +320,12 @@
                     }
                 });
             });
-            $('#location_'+id).on('change', function() {
-                let location = $(this).val();
-                $.ajax({
-                    url: '/admin/operations/procurement/update/'+id,
-                    type: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        location_id: location,
-                        update: 2,
-                        last_updated_by: {{ Auth::user()->id }}
-                    },
-                    success: function(data) {                       
-                        Toast.fire({
-                            icon: 'success',
-                            title: 'Location updated successfully'
-                        });                                            
-                    },
-                    error: function(data) {
-                        Toast.fire({
-                            icon: 'warning',
-                            title: 'Unable to update location'
-                        });
-                    }
-                });
-            });
 
         });
 
     });
 </script>
-<script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
-<script src="https://unpkg.com/@chartisan/echarts/dist/chartisan_echarts.js"></script>
+
 <script>
     const chart1 = new Chartisan({
       el: '#chart1',

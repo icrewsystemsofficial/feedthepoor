@@ -1,7 +1,7 @@
 @section('js')
 @endsection
-<link rel="stylesheet" href="{{ asset ('/css/share.css')  }}">
-<script type="text/javascript" src="{{ asset('/javascript/share.js' )}}"></script>
+{{-- <link rel="stylesheet" href="{{ asset ('/css/share.css')  }}"> --}}
+{{-- <script type="text/javascript" src="{{ asset('/javascript/share.js' )}}"></script> --}}
 @if(!in_array(Route::currentRouteName(), ['frontend.donate', 'frontend.donate.payment', 'frontend.donate.thank_you']))
 <section class="section py-0">
    <div class="container z-2">
@@ -35,7 +35,7 @@
                            Share website
                            </a> -->
 
-                        <button class="share-button view">Share</button>
+                        <button class="share-button view">Share (WIP: Add sharable links)</button>
                         <div class="popup">
                            <div class="content">
                               <p>Share this link via</p>
@@ -49,7 +49,7 @@
                               <p>Or copy link</p>
                               <div class="field">
                                  <i class="url-icon uil uil-link"></i>
-                                 <input type="text" readonly value="example.com/share-link">
+                                 <input type="text" readonly value="{{ config('app.url') }}">
                                  <button>Copy</button>
                               </div>
                            </div>
@@ -102,11 +102,12 @@
          <div class="col-md-4">
             {{-- <img class="navbar-brand-dark mb-4" height="35" src="../../assets/img/brand/light.svg"
                alt="Logo light"> --}}
-            LOGO
+            <img src="{{ asset('images/branding/roshni-foundation-black.png') }}" alt="" srcset="" style="width: 100px; height: auto;">
+            <br><br>
             <p>
                {{ config('setting.app_description') }}
             <hr>
-            ADDRESS OF THE NGO!
+            {{ config('app.address') }}
             </p>
             <ul class="social-buttons mb-5 mb-lg-0">
                <li>
