@@ -1,10 +1,6 @@
 <ul class="sidebar-nav">
     <li class="sidebar-header">
-<<<<<<< HEAD
-        Administration
-=======
        Operations
->>>>>>> 525a5594a29278f0e0d856b92fa50eeb8d980e3a
     </li>
 
 
@@ -20,46 +16,6 @@
         </a>
     </li>
 
-<<<<<<< HEAD
-    <li class="sidebar-item {{ Nav::isRoute('admin.settings.index') }}">
-        <a data-bs-target="#donations" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
-            <i class="align-middle" data-feather="dollar-sign"></i>
-            <span class="align-middle">Donations</span>
-        </a>
-        <ul id="donations" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">All Donations</a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">Recipts</a>
-            </li>
-        </ul>
-    </li>
-
-    <li class="sidebar-item {{ Nav::isRoute('admin.users.index') }}">
-        <a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
-            <i class="align-middle" data-feather="users"></i>
-            <span class="align-middle">Users [WIP]</span>
-        </a>
-        <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('admin.users.index') }}">All Users</a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">Volunteer Applications</a>
-            </li>
-        </ul>
-    </li>
-
-
-    <li class="sidebar-item {{ Nav::isRoute('admin.settings.index') }}">
-        <a class="sidebar-link" href="{{ route('admin.settings.index') }}">
-            <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
-        </a>
-    </li>
-
-=======
->>>>>>> 525a5594a29278f0e0d856b92fa50eeb8d980e3a
     <a data-bs-target="#operations" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
         <i class="align-middle" data-feather="truck"></i>
         <span class="align-middle">Operations</span>
