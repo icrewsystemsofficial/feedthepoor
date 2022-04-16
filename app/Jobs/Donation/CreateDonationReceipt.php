@@ -41,10 +41,18 @@ class CreateDonationReceipt implements ShouldQueue
     public function handle()
     {
         //$file_name = 'donation_receipt_'. $this->payment->id;
+        // $pdf = PDF::loadView('pdf.receipts.receipt', ['data' => $this->data])
+        //     ->setPaper('a4', 'portrait');
+
+        // return $pdf->output();
+
+        $file_name = 'donation_receipt_'. $this->payment->id;
+        $storage_path = storage_path('app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'receipts' . DIRECTORY_SEPARATOR . $file_name . '.pdf');
 
         $pdf = PDF::loadView('pdf.receipts.receipt', ['data' => $this->data])
-            ->setPaper('a4', 'portrait');
-        
-        return $pdf->output();
+            ->setPaper('a4', 'portrait')
+            ->save($storage_path);
+
+        return $storage_path;
     }
 }

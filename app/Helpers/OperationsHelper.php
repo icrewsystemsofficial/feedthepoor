@@ -8,12 +8,12 @@ use App\Models\Location;
 
 
 class OperationsHelper {
-    
+
     /**
      * status
      *
      * Return status details for their respective IDs
-     * 
+     *
      * @return array
      */
     private static function status() : array {
@@ -64,12 +64,12 @@ class OperationsHelper {
 
         return $status;
     }
-    
+
     /**
      * getProcurementBadge
      *
      * Accept a status ID and return the status badge HTML markup
-     * 
+     *
      * @param  int $status
      * @return void
      */
@@ -93,12 +93,12 @@ class OperationsHelper {
 
         return $html;
     }
-    
+
     /**
      * getProcurementStatus
      *
      * Accept a status ID and Operation ID and return a select HTML element
-     * 
+     *
      * @param  int $status
      * @param  inr $i
      * @return string
@@ -124,28 +124,28 @@ class OperationsHelper {
         return $html;
 
     }
-    
+
     /**
      * getProcurementLocation
      *
      * Accept location ID as parameter and return the location name
-     * 
+     *
      * @param  int $id
      * @return string
      */
     public static function getProcurementLocation(int $id){
 
-        return Location::find($id)->location_name;
+        return Location::find($id)->location_name ?? 'Unable to find location';
 
     }
-    
+
     /**
      * getStatusNumbers
      *
      * Return an array of status numbers and their respective counts
-     * 
+     *
      * @return array
-     */     
+     */
     public static function getStatusNumbers(){
 
         $operations = Operations::all();
@@ -161,11 +161,11 @@ class OperationsHelper {
         ];
 
         foreach ($operations as $operation) {
-            
+
             $status[$operation->status]++;
 
         }
-        
+
         return $status;
     }
 

@@ -83,46 +83,4 @@ class DonationsController extends Controller
         return redirect()->route('admin.donations.index');
     }
 
-    public function receipt(Request $request)
-    {
-        $donation = Donations::find($request->id);
-        $user = User::find($donation->donor_id);
-        $cause = Causes::find($donation->cause_id);
-
-        $payment['name'] = $user->name;
-        $payment['email'] = $user->email;
-        $payment['phone'] = $user->phone_number;
-        $payment['pan'] = $user->pan_number;
-        $payment['amt_in_words'] = $donation->donation_in_words;
-        $payment['quantity'] = (int) $donation->donation_amount/$cause->per_unit_cost;
-        $payment['amount'] = $donation->donation_amount;
-        $payment['cause'] = $cause->name;
-        $payment['tracking_url'] = route('frontend.track-donation', $donation->razorpay_payment_id);                
-        
-        $pdf = PDF::loadView('pdf.receipts.receipt', ['data' => [
-            'payment' => $payment,
-            'user' => $user,
-        ]])->setPaper('a4', 'portrait');
-
-        /*
-        
-        Instead of having a job which generates bulky pdf files and then deletes them,
-        we can have this view which can dynamically generate the receipt and display them
-        Since it is a file stream the user can print/save/share etc without having to download the receipt
-        This also solves the problem of storage space being exhausted
-        
-        The url for this would be /donations/receipt/{id}
-
-        To generate the pdf much faster bootstrap needs to be eliminated (yikes)
-        DOMPDF replaces all classes in the view with inline styles 
-        and this is very slow for a large css file like bootstrap
-
-        Take a look at https://stackoverflow.com/questions/54768375/slow-pdf-generation-with-phpdompdf
-
-
-        Anirudh R
-        */        
-
-        return $pdf->stream('receipt.pdf');
-    }
 }
