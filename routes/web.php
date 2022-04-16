@@ -45,6 +45,11 @@ Route::name('frontend.')->group(function () {
     Route::get('/donate/process/{razorpay_order_id?}', [HomeController::class, 'donate_process'])->name('donate.process');
 
     Route::get('/thank-you/{donation_id?}', [HomeController::class, 'thank_you'])->name('donate.thank_you');
+
+    # As of now, this only accepts RAZORPAY PAYMENT ID, which is quite hard to "guess"
+    # If we have it as donation ID, people will go around guessing numbers and
+    # if they get access to someone else's donation receipt, we might leak their address, which is a
+    # MAJOR problem.
     Route::get('/receipt/{id?}', [HomeController::class, 'receipt'])->name('donations.receipt');
 
 
