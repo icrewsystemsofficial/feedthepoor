@@ -30,15 +30,15 @@ class DonationsHelper {
 
 
         $status[Donations::$status['VERIFIED']] = array(
-            'text' => 'Verified',
+            'text' => 'Completed',
             'icon' => 'fa-solid fa-check-circle',
             'color' => 'success',
         );
 
         $status[Donations::$status['FAILED']] = array(
             'text' => 'Failed',
-            'icon' => 'fa-solid fa-times-circle',            
-            'color' => 'danger',            
+            'icon' => 'fa-solid fa-times-circle',
+            'color' => 'danger',
         );
 
         $status[Donations::$status['REFUNDED']] = array(
@@ -70,8 +70,13 @@ class DonationsHelper {
         }
 
         $status = $all_statuses[$id];
+        
+        $onclick = '$("#search").val("' . $status['text'] . <<<EOF
+        ");$("#search").keyup();$("#search").focus();
+        EOF;
 
-        $html = "<span class='badge badge-".$status['color']."'><i class='".$status['icon']." me-1'></i>".$status['text']."</span>";
+        $html = "<span class='badge badge-".$status['color']."' onclick='".$onclick."'><i class='".$status['icon']." me-1'></i>".$status['text']."</span>";
+
         return $html;
     }
 
@@ -143,7 +148,7 @@ class DonationsHelper {
             }
         }
         return $html;
-    }    
+    }
 
 }
 

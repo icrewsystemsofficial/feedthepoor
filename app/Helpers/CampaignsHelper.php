@@ -79,7 +79,11 @@ class CampaignsHelper {
 
         $status = $all_statuses[$id];
 
-        $html = "<span class='badge badge-".$status['color']."'><i class='".$status['icon']." me-1'></i>".$status['text']."</span>";
+        $onclick = '$("#search").val("' . $status['text'] . <<<EOF
+        ");$("#search").keyup();$("#search").focus();
+        EOF;
+
+        $html = "<span class='badge badge-".$status['color']."' onclick='".$onclick."'><i class='".$status['icon']." me-1'></i>".$status['text']."</span>";
         return $html;
     }
 

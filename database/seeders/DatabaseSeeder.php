@@ -24,5 +24,9 @@ class DatabaseSeeder extends Seeder
         $this->call(CausesSeeder::class);
         $this->call(CampaignsSeeder::class);
         $this->call(DonationsSeeder::class);
+        $this->call(OperationsSeeder::class);
+
+        # Seeding so that we have volunteers
+        \App\Models\User::factory(10)->create();
     }
 }

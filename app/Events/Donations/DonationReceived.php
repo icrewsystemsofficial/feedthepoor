@@ -33,7 +33,7 @@ class DonationReceived
         $this->details['amt_in_words'] = Donations::Show_Amount_In_Words($details['notes']['amount']);
         $this->details['tracking_url'] = route('frontend.track-donation', $details['id']);
         $this->details['id'] = $details['id'];
-        $this->details['quantity'] = (int) $details['notes']['amount']/Causes::where('name', $details['notes']['cause'])->first()->per_unit_cost;        
+        $this->details['quantity'] = (int) $details['notes']['amount']/Causes::where('name', $details['notes']['cause'])->first()->per_unit_cost;
     }
 
     /**

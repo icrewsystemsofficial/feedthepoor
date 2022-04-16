@@ -1,18 +1,19 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\SettingsController;
-use App\Http\Controllers\Admin\LocationController;
-use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\Admin\CausesController;
-use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\Admin\FaqController;
-use App\Http\Controllers\Admin\CampaignsController;
-use App\Http\Controllers\Admin\DonationsController;
-use App\Http\Controllers\Admin\OperationsController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\CausesController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\MissionsController;
+use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\CampaignsController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DonationsController;
+use App\Http\Controllers\Admin\OperationsController;
 
 
 /*
@@ -44,6 +45,8 @@ Route::name('frontend.')->group(function () {
     Route::get('/donate/process/{razorpay_order_id?}', [HomeController::class, 'donate_process'])->name('donate.process');
 
     Route::get('/thank-you/{donation_id?}', [HomeController::class, 'thank_you'])->name('donate.thank_you');
+    Route::get('/receipt/{id?}', [HomeController::class, 'receipt'])->name('donations.receipt');
+
 
     Route::get('/campaigns', [HomeController::class, 'index'])->name('campaigns');
     Route::get('/track-donation/{donation_id?}', [HomeController::class, 'track_donation'])->name('track-donation');
@@ -160,8 +163,17 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::prefix('procurement')->as('procurement.')->group(function(){
             Route::get('/', [OperationsController::class, 'procurement_index'])->name('index');
             Route::post('/update/{id}', [OperationsController::class, 'procurement_update'])->name('update');
-            Route::delete('/destroy/{id}', [OperationsController::class, 'procurement_destroy'])->name('destroy');
         });
+
+        Route::delete('/destroy/{id}', [OperationsController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('missions')->as('missions.')->group(function() {
+        Route::get('/', [MissionsController::class, 'index'])->name('index');
+        Route::get('/manage/{id}', [MissionsController::class, 'view'])->name('manage');
+        Route::post('/store', [MissionsController::class, 'store'])->name('store');
+        Route::post('/update/{id}', [MissionsController::class, 'update'])->name('update');
+        Route::post('/delete/{id}', [MissionsController::class, 'destroy'])->name('destroy');
     });
 
 });
@@ -180,5 +192,9 @@ Route::get('/dashboard', function () {
     // return view('dashboard');
     return redirect()->route('admin.dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/test', function () {
+    return view('pdf.receipts.receipt');
+});
 
 require __DIR__ . '/auth.php';

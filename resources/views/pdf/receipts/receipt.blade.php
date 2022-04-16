@@ -1,3 +1,4 @@
+
 @extends('pdf.receipts.layout')
 @section('content')
 <div class="container">
@@ -134,7 +135,8 @@
         <br><br>
 
         (Regd. as. {{ config('app.ngo_name') }},
-        #3, Srinivasa Road, Nehru Nagar, <br> Chrompet, Chennai 600044.)
+        PAN : {{config('app.PAN')}} <br>
+        ADDRESS : {{ config('app.address') }}
         <br><br>
         <i>For support, visit {{ config('app.url') }}/support or call +91 999999999</i>
 
