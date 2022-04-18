@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use PDF;
 use Faker\Factory;
+use App\Models\User;
 use App\Models\Causes;
 use App\Models\Location;
-use App\Models\FaqCategories;
-use App\Models\FaqEntries;
-use App\Models\Contact;
-use Illuminate\Http\Request;
-use Illuminate\Mail\Markdown;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\API\RazorpayAPIController;
-use Illuminate\Support\Facades\DB;
 use App\Jobs\SendAdminJob;
+use App\Models\FaqEntries;
+use App\Models\userContact;
+use Illuminate\Http\Request;
+use App\Models\FaqCategories;
+use Illuminate\Mail\Markdown;
 use App\Jobs\SendConfirmationJob;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-use PDF;
+use Spatie\Activitylog\Models\Activity;
+use App\Http\Controllers\API\RazorpayAPIController;
 
 class HomeController extends Controller
 {
@@ -86,6 +88,7 @@ class HomeController extends Controller
         $causes = Causes::all();   
         return view('frontend.volunteer.index' , ['causes' => $causes]);
     }
+
     /**
      * donate - the page where users can donate money.
      *
@@ -94,8 +97,6 @@ class HomeController extends Controller
     public function donate()
     {
         $causes = Causes::all();
-
-
         // Argh, this is an uneccesary move ig. Will be fixed when sending data from controller.
 
         $donation_types = array();
@@ -162,7 +163,6 @@ class HomeController extends Controller
           
         ]);
     }
-
 
     public function faq()
     {

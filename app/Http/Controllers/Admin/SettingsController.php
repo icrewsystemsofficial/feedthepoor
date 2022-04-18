@@ -8,6 +8,7 @@ use App\Models\SettingGroup;
 use Illuminate\Http\Request;
 use App\Providers\SettingsProvider;
 use App\Http\Controllers\Controller;
+use Spatie\Activitylog\Models\Activity;
 
 class SettingsController extends Controller
 {
@@ -129,5 +130,11 @@ class SettingsController extends Controller
     public function group_delete($id) {
         $group = SettingGroup::where('id', $id)->delete();
         return redirect()->route('admin.settings.index');
+    }
+
+
+    public function activity_logs() {
+        $activities = Activity::orderBy('id', 'DESC')->get();
+        return view('admin.activitylog.index', ['activities' => $activities]);
     }
 }

@@ -71,14 +71,20 @@ class RolesandPermissionsSeeder extends Seeder
           $this->command->info('SUCCESS! All roles and permissions seeded');
 
           // Confirm roles needed
-          if ($this->command->confirm('Do you wish to grant administrator access to all seeded users?', true)) {
-              $users = User::all();
+        //   if ($this->command->confirm('Do you wish to grant administrator access to all seeded users?', true)) {
+        //       $users = User::all();
+        //       foreach($users as $user) {
+        //         $user->assignRole('superadmin');
+        //         $this->command->info("SUPER ADMIN: Access granted for $user->name.");
+        //       }
+        //   } else {
+        //       $this->command->error('No users were given administrator access. Add manually using artisan command to view the dashboard, OR run the seeder again');
+        //   }
+
+        $users = User::all();
               foreach($users as $user) {
                 $user->assignRole('superadmin');
                 $this->command->info("SUPER ADMIN: Access granted for $user->name.");
               }
-          } else {
-              $this->command->error('No users were given administrator access. Add manually using artisan command to view the dashboard, OR run the seeder again');
-          }
     }
 }
