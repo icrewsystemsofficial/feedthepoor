@@ -2,7 +2,7 @@
 # Hey {{ $details['name'] }}
 We have received your generous donation of <strong>₹{{ $details['amount'] }}</strong> ({{ $details['amt_in_words'] }}) successfully for <strong>{{ $details['cause'] }}</strong>
 
-The receipt for your donation is attached herewith this email.<br>
+The receipt for your donation is attached herewith this email as a PDF. <br>
 @if (isset($details['pan'])) This receipt will be valid for 80G tax exemptions @endif
 In an effort to keep the donations transparent, we have provided the ability to track your donation using a unique identification number.
 
@@ -12,7 +12,15 @@ In an effort to keep the donations transparent, we have provided the ability to 
 <strong>Amount : </strong> ₹{{ $details['amount'] }}<br>
 <strong>Donation ID : </strong> {{ $details['id'] }}<br>
 @endcomponent
+
 @component('mail::button', ['url' => $details['tracking_url']])Track donation @endcomponent
+
+<p>
+    <small>
+        Incase you are unable to open the PDF attachment, use this link to view your PDF online.
+        <a href="{{ route('frontend.donations.receipt', $details['id']) }}">{{ route('frontend.donations.receipt', $details['id']) }}</a>
+    </small>
+</p>
 
 Regards,<br>
 Operations Team,<br>

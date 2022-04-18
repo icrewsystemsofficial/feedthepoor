@@ -45,6 +45,8 @@ Route::name('frontend.')->group(function () {
     Route::get('/donate/process/{razorpay_order_id?}', [HomeController::class, 'donate_process'])->name('donate.process');
 
     Route::get('/thank-you/{donation_id?}', [HomeController::class, 'thank_you'])->name('donate.thank_you');
+    Route::get('/receipt/{id?}', [HomeController::class, 'receipt'])->name('donations.receipt');
+
 
     Route::get('/campaigns', [HomeController::class, 'index'])->name('campaigns');
     Route::get('/track-donation/{donation_id?}', [HomeController::class, 'track_donation'])->name('track-donation');
@@ -154,13 +156,13 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::post('/store', [DonationsController::class, 'store'])->name('store');
         Route::get('/manage/{id}', [DonationsController::class, 'manage'])->name('manage');
         Route::delete('/destroy/{id}', [DonationsController::class, 'destroy'])->name('destroy');
-        Route::put('/update/{id}', [DonationsController::class, 'update'])->name('update');        
+        Route::put('/update/{id}', [DonationsController::class, 'update'])->name('update');
     });
 
     Route::prefix('operations')->as('operations.')->group(function(){
         Route::prefix('procurement')->as('procurement.')->group(function(){
             Route::get('/', [OperationsController::class, 'procurement_index'])->name('index');
-            Route::post('/update/{id}', [OperationsController::class, 'procurement_update'])->name('update');            
+            Route::post('/update/{id}', [OperationsController::class, 'procurement_update'])->name('update');
         });
 
         Route::delete('/destroy/{id}', [OperationsController::class, 'destroy'])->name('destroy');
@@ -182,7 +184,6 @@ Route::prefix('admin/jobs')->group(function () {
     Route::queueMonitor();
 });
 
-Route::get('/donations/receipt/{id}', [DonationsController::class, 'receipt'])->name('donations.receipt');
 
 /*
   ------LARAVEL DEFAULT AUTHENTICATION ROUTES------
