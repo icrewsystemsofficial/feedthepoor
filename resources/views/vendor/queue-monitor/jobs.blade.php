@@ -30,7 +30,7 @@
 
         @isset($metrics)
         @foreach($metrics->all() as $metric)
-            <div class="card border shadow-lg d-flex col mx-3 mb-2   text-start">
+            <div class="card border shadow-lg d-flex col mx-3 mb-2 text-start">
                     @include('queue-monitor::partials.metrics-card', [
                         'metric' => $metric,
                     ])
