@@ -73,8 +73,14 @@ class HomeController extends Controller
             'locations' => $locations,
         ]);
     }
-
-    public function partners () {
+    
+    /**
+     * partners - Page which lists all the partners of the organisation
+     *
+     * @return void
+     */
+    public function partners () 
+    {
         return view('frontend.partners.index');
     }
 
