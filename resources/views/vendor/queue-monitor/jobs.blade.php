@@ -21,14 +21,21 @@
         </h3>
 
         <p class="mt-1">
-            <small>
-                The background tasks that are happening inside {{ config('app.name') }}. Please add <code>IsMonitored</code> trait to the jobs to monitor them.
-            </small>
+            The background tasks that are happening inside {{ config('app.name') }}. Please add <code>IsMonitored</code> trait to the jobs to monitor them.
         </p>
 
         <div class="row">
 
         @isset($metrics)
+
+        <h3 class="mx-1">
+            Statistics
+            <br>
+            <small class="text-sm">
+                Refresh page to update the stats
+            </small>
+        </h3>
+
         @foreach($metrics->all() as $metric)
             <div class="card border shadow-lg d-flex col mx-3 mb-2 text-start">
                     @include('queue-monitor::partials.metrics-card', [
@@ -39,16 +46,14 @@
         @endisset
         </div>
 
-        <div class="card border px-6 py-4 mb-6 ps-4 bg-white rounded shadow-lg">
+        {{-- <div class="card border px-6 py-4 mb-6 ps-4 bg-white rounded shadow-lg">
 
             <h2 class="mb-4 ps-3 fs-1 fw-bold text-dark">
                 @lang('Filter')
             </h2>
 
             <form action="" method="get">
-
                 <div class="row flex items-center my-2 mx-2">
-
                     <div class="col px-2 w-50">
                         <label for="filter_show" class="d-block mb-1 fs-5  text-uppercase fw-bold text-secondary">
                             @lang('Show jobs')
@@ -60,7 +65,6 @@
                             <option @if($filters['type'] === 'succeeded') selected @endif value="succeeded">@lang('Succeeded')</option>
                         </select>
                     </div>
-
                     <div class="col px-2 w-50">
                         <label for="filter_queues" class="d-block mb-1  fs-5  text-uppercase fw-bold text-secondary">
                             @lang('Queues')
@@ -87,199 +91,155 @@
 
             </form>
 
-        </div>
+        </div> --}}
 
-        <div class="overflow-x-auto shadow-lg">
+        <div class="overflow-x-auto shadow-lg mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="table" class="w-100 rounded whitespace-no-wrap">
+                            <thead>
+                                <tr>
+                                    <th class="px-4 py-3 font-medium text-center fs-5 text-secondary text-uppercase border-1 border-light">@lang('Status')</th>
+                                    <th class="px-4 py-3 font-medium text-center fs-5 text-secondary text-uppercase border-1 border-light">@lang('Job')</th>
+                                    <th class="px-4 py-3 font-medium text-center fs-5 text-secondary text-uppercase border-1 border-light">@lang('Details')</th>
 
-            <table id="table" class="w-100 rounded whitespace-no-wrap">
+                                    @if(config('queue-monitor.ui.show_custom_data'))
+                                        <th class="px-4 py-3 font-medium text-start fs-5 text-secondary text-uppercase border-1 border-light">@lang('Custom Data')</th>
+                                    @endif
 
-                <thead class="bg-gray-200">
+                                    <th class="px-4 py-3 font-medium text-center fs-5 text-secondary text-uppercase border-1 border-light">@lang('Progress')</th>
+                                    <th class="px-4 py-3 font-medium text-center fs-5 text-secondary text-uppercase border-1 border-light">@lang('Duration')</th>
+                                    <th class="px-4 py-3 font-medium text-center fs-5 text-secondary text-uppercase border-1 border-light">@lang('Started')</th>
+                                    <th class="px-4 py-3 font-medium text-center fs-5 text-secondary text-uppercase border-1 border-light">@lang('Error')</th>
 
-                    <tr>
-                        <th class="px-4 py-3 font-medium text-center fs-5 text-secondary text-uppercase border-1 border-light">@lang('Status')</th>
-                        <th class="px-4 py-3 font-medium text-center fs-5 text-secondary text-uppercase border-1 border-light">@lang('Job')</th>
-                        <th class="px-4 py-3 font-medium text-center fs-5 text-secondary text-uppercase border-1 border-light">@lang('Details')</th>
+                                    @if(config('queue-monitor.ui.allow_deletion'))
+                                        <th class="px-4 py-3 font-medium text-center fs-5 text-secondary text-uppercase border-1 border-light">@lang('Action')</th>
+                                    @endif
+                                </tr>
 
-                        @if(config('queue-monitor.ui.show_custom_data'))
-                            <th class="px-4 py-3 font-medium text-start fs-5 text-secondary text-uppercase border-1 border-light">@lang('Custom Data')</th>
-                        @endif
+                            </thead>
 
-                        <th class="px-4 py-3 font-medium text-center fs-5 text-secondary text-uppercase border-1 border-light">@lang('Progress')</th>
-                        <th class="px-4 py-3 font-medium text-center fs-5 text-secondary text-uppercase border-1 border-light">@lang('Duration')</th>
-                        <th class="px-4 py-3 font-medium text-center fs-5 text-secondary text-uppercase border-1 border-light">@lang('Started')</th>
-                        <th class="px-4 py-3 font-medium text-center fs-5 text-secondary text-uppercase border-1 border-light">@lang('Error')</th>
+                            <tbody class="bg-white">
+                                @forelse($jobs as $job)
+                                    <tr class="">
+                                        <td class="p-4 text-secondary fs-5 leading-5 border-1 border-light">
+                                            @if(!$job->isFinished())
+                                                <span class="badge bg-info">
+                                                    <i class="fa-solid fa-sync fa-spin"></i> Running
+                                                </span>
+                                            @elseif($job->hasSucceeded())
+                                                <span class="badge bg-success">
+                                                    <i class="fa-solid fa-check-circle"></i> Success
+                                                </span>
+                                            @else
+                                                <span class="badge bg-danger">
+                                                    <i class="fa-solid fa-times-circle"></i> Failed
+                                                </span>
+                                            @endif
 
-                        @if(config('queue-monitor.ui.allow_deletion'))
-                            <th class="px-4 py-3 font-medium text-center fs-5 text-secondary text-uppercase border-1 border-light">@lang('Action')</th>
-                        @endif
-                    </tr>
+                                        </td>
 
-                </thead>
+                                        <td class="p-2">
+                                            {{ $job->getBaseName() }}
+                                            <br>
+                                            <small>
+                                                #{{ $job->job_id }}
+                                            </small>
+                                        </td>
 
-                <tbody class="bg-white">
+                                        <td>
+                                            Queue: {{ $job->queue }}<br>
+                                            Attempt: {{ $job->attempt }}
+                                        </td>
 
-                    @forelse($jobs as $job)
+                                        @if(config('queue-monitor.ui.show_custom_data'))
+                                            <td class="p-4 text-secondary fs-5 leading-5 border-1 border-light">
+                                                    <textarea rows="4"
+                                                              class="w-50 fs-5 p-1 border rounded"
+                                                              readonly>{{ json_encode($job->getData(), JSON_PRETTY_PRINT) }}
+                                                    </textarea>
 
-                        <tr class="fs-5 leading-relaxed">
+                                            </td>
+                                        @endif
 
-                            <td class="p-4 text-secondary fs-5 leading-5 border-1 border-light">
+                                        <td>
 
-                                @if(!$job->isFinished())
+                                            @if($job->progress !== null)
 
-                                    <div class="inline-flex flex-1 px-2 fs-5 leading-5 rounded-full bg-primary text-light">
-                                        @lang('Running')
-                                    </div>
+                                                <div class="w-32">
 
-                                @elseif($job->hasSucceeded())
+                                                    <div class="flex items-stretch h-3 rounded-full bg-gray-300 overflow-hidden">
+                                                        <div class="h-full bg-success" style="width: {{ $job->progress }}%"></div>
+                                                    </div>
 
-                                    <div class="inline-flex flex-1 px-2 fs-5 leading-5 rounded-full bg-success text-light">
-                                        @lang('Success')
-                                    </div>
+                                                    <div class="flex justify-center mt-1 fs-5 text-secondary fw-normal">
+                                                        {{ $job->progress }}%
+                                                    </div>
 
-                                @else
+                                                </div>
 
-                                    <div class="inline-flex flex-1 px-2 fs-5 leading-5 rounded-full bg-danger text-light">
-                                        @lang('Failed')
-                                    </div>
+                                            @else
+                                                -
+                                            @endif
 
-                                @endif
+                                        </td>
 
-                            </td>
+                                        <td class="p-4 text-secondary fs-5 leading-5 border-1 border-light">
+                                            {{ $job->getElapsedInterval()->format('%H:%I:%S') }}
+                                        </td>
 
-                            <td class="p-4 text-secondary fs-5 leading-5 border-1 border-light">
+                                        <td class="p-4 text-secondary fs-5 leading-5 border-1 border-light">
+                                            {{ $job->started_at->diffForHumans() }}
+                                        </td>
 
-                                {{ $job->getBaseName() }}
+                                        <td class="p-4 text-secondary fs-5 leading-5 border-1 border-light">
 
-                                <span class="ms-1 fs-5 text-secondary">
-                                    #{{ $job->job_id }}
-                                </span>
+                                            @if($job->hasFailed() && $job->exception_message !== null)
 
-                            </td>
+                                                <textarea rows="4" class="w-50 fs-5 p-1 border rounded" readonly>{{ $job->exception_message }}</textarea>
 
-                            <td class="p-4 text-secondary fs-5 leading-5 border-1 border-light">
+                                            @else
+                                                -
+                                            @endif
 
-                                <div class="fs-3">
-                                    <span class="text-secondary fs-3">@lang('Queue'):</span>
-                                    <span class="fw-normal">{{ $job->queue }}</span>
-                                </div>
+                                        </td>
 
-                                <div class="fs-3
-                                ">
-                                    <span class="text-secondary fs-3">@lang('Attempt'):</span>
-                                    <span class="fw-normal">{{ $job->attempt }}</span>
-                                </div>
-
-                            </td>
-
-                            @if(config('queue-monitor.ui.show_custom_data'))
-
-                                <td class="p-4 text-secondary fs-5 leading-5 border-1 border-light">
-
-                                        <textarea rows="4"
-                                                  class="w-50 fs-5 p-1 border rounded"
-                                                  readonly>{{ json_encode($job->getData(), JSON_PRETTY_PRINT) }}
-                                        </textarea>
-
-                                </td>
-
-                            @endif
-
-                            <td class="p-4 text-secondary fs-5 leading-5 border-1 border-light">
-
-                                @if($job->progress !== null)
-
-                                    <div class="w-32">
-
-                                        <div class="flex items-stretch h-3 rounded-full bg-gray-300 overflow-hidden">
-                                            <div class="h-full bg-success" style="width: {{ $job->progress }}%"></div>
-                                        </div>
-
-                                        <div class="flex justify-center mt-1 fs-5 text-secondary fw-normal">
-                                            {{ $job->progress }}%
-                                        </div>
-
-                                    </div>
-
-                                @else
-                                    -
-                                @endif
-
-                            </td>
-
-                            <td class="p-4 text-secondary fs-5 leading-5 border-1 border-light">
-                                {{ $job->getElapsedInterval()->format('%H:%I:%S') }}
-                            </td>
-
-                            <td class="p-4 text-secondary fs-5 leading-5 border-1 border-light">
-                                {{ $job->started_at->diffForHumans() }}
-                            </td>
-
-                            <td class="p-4 text-secondary fs-5 leading-5 border-1 border-light">
-
-                                @if($job->hasFailed() && $job->exception_message !== null)
-
-                                    <textarea rows="4" class="w-50 fs-5 p-1 border rounded" readonly>{{ $job->exception_message }}</textarea>
-
-                                @else
-                                    -
-                                @endif
-
-                            </td>
-
-                            @if(config('queue-monitor.ui.allow_deletion'))
-
-                                <td class="p-4 text-secondary fs-5 leading-5 border-1 border-light">
-
-                                    <form action="{{ route('queue-monitor::destroy', [$job]) }}" method="post">
-
-                                        @csrf
-                                        @method('delete')
-
-                                        <button class="px-3 py-1 bg-danger bg-opacity-75 hover:bg-danger text-warning fs-5  text-uppercase tracking-wider text-white rounded">
-                                            @lang('Delete')
-                                        </button>
-
-                                    </form>
-
-                                </td>
-
-                            @endif
-
-                        </tr>
-
-                    @empty
-                    
-
-                       
-
-                    @endforelse
-
-                </tbody>
-
-                
-            </table>
-
+                                        @if(config('queue-monitor.ui.allow_deletion'))
+                                            <td class="text-center">
+                                                <form action="{{ route('queue-monitor::destroy', [$job]) }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="btn btn-danger btn-sm">
+                                                        @lang('Delete')
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        @endif
+                                    </tr>
+                                @empty
+                                    <p>
+                                        Whoops! No entries found
+                                    </p>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
 
         @if(config('queue-monitor.ui.allow_purge'))
-
             <div class="mt-5">
-
                 <form action="{{ route('queue-monitor::purge') }}" method="post">
-
                     @csrf
                     @method('delete')
-
                     <button class="px-3 py-1 bg-danger bg-opacity-75  hover:bg-opacity-100 text-danger fs-5 text-uppercase tracking-wider text-white rounded">
                         @lang('Delete all entries')
                     </button>
-
                 </form>
-
             </div>
-
         @endif
-
     </div>
 </div>
 @endsection
