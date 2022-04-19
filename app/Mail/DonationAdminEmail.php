@@ -3,13 +3,14 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use romanzipp\QueueMonitor\Traits\IsMonitored;
 
 class DonationAdminEmail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable, SerializesModels, IsMonitored;
     public $details;
     /**
      * Create a new message instance.

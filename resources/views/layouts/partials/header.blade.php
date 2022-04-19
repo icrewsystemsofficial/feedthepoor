@@ -53,7 +53,7 @@
 
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="componentsDropdown" aria-expanded="false" data-bs-toggle="dropdown">
-                            Campaigns
+                            Causes
                             <span class="fas fa-angle-down nav-link-arrow ms-1"></span>
                         </a>
                         <div class="dropdown-menu dropdown-megamenu-sm p-0" aria-labelledby="componentsDropdown">
@@ -89,46 +89,55 @@
                                     </ul>
                                 </div>
                             </div>
+                        </div> --}}
+                        <div class="col p-3">
+                            <ul class="list-style-none">
+                                @foreach($causes as $cause)
+                                <li><a class="dropdown-item" href="#">{{$cause->name}}</a></li>
+                                @endforeach
+                            </ul>
                         </div>
-                    </li>
+            </div>
+        </div>
+        </li>
 
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="supportDropdown" aria-expanded="false">
-                            Support
-                            <span class="fas fa-angle-down nav-link-arrow ms-1"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-lg" aria-labelledby="supportDropdown">
-                            <div class="col-auto px-0">
-                                <div class="list-group list-group-flush">
-                                    <a href="https://themesberg.com/docs/bootstrap-5/pixel/getting-started/quick-start/" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                        <span class="icon icon-sm"><span class="fas fa-comment-alt"></span></span>
-                                        <div class="ms-4">
-                                            <span class="d-block font-small fw-bold mb-0">Chat with us<span class="badge badge-sm badge-secondary ms-2">v3.1</span></span>
-                                        </div>
-                                    </a>
-                                    <a href="https://github.com/themesberg/pixel-bootstrap-ui-kit/issues" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                        <span class="icon icon-sm"><span class="fas fa-phone"></span></span>
-                                        <div class="ms-4">
-                                            <span class="d-block font-small fw-bold mb-0">Call us</span>
-                                        </div>
-                                    </a>
-                                </div>
+        <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="supportDropdown" aria-expanded="false">
+                Support
+                <span class="fas fa-angle-down nav-link-arrow ms-1"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg" aria-labelledby="supportDropdown">
+                <div class="col-auto px-0">
+                    <div class="list-group list-group-flush">
+                        <a href="https://themesberg.com/docs/bootstrap-5/pixel/getting-started/quick-start/" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
+                            <span class="icon icon-sm"><span class="fas fa-comment-alt"></span></span>
+                            <div class="ms-4">
+                                <span class="d-block font-small fw-bold mb-0">Chat with us<span class="badge badge-sm badge-secondary ms-2">v3.1</span></span>
                             </div>
-                        </div>
-                    </li>
-                </ul>
+                        </a>
+                        <a href="https://github.com/themesberg/pixel-bootstrap-ui-kit/issues" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
+                            <span class="icon icon-sm"><span class="fas fa-phone"></span></span>
+                            <div class="ms-4">
+                                <span class="d-block font-small fw-bold mb-0">Call us</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex align-items-center">
+        </li>
+        </ul>
+        </div>
+        <div class="d-flex align-items-center">
 
-                <a href="{{ route('frontend.donate') }}" target="_blank" class="btn btn-theme btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn">
-                    <span class="btn-inner--visible">Donate Now</span>
-                    <span class="btn-inner--hidden"><i class="fas fa-arrow-right"></i></span>
-                </a>
+            <a href="{{ route('frontend.donate') }}" target="_blank" class="btn btn-theme btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn">
+                <span class="btn-inner--visible">Donate Now</span>
+                <span class="btn-inner--hidden"><i class="fas fa-arrow-right"></i></span>
+            </a>
 
-                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
+            <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
         </div>
     </nav>
 </header>

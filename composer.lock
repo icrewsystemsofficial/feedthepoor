@@ -6200,7 +6200,11 @@
         },
         {
             "name": "symfony/translation",
+<<<<<<< HEAD
+            "version": "v5.4.6",
+=======
             "version": "v5.4.7",
+>>>>>>> 525a5594a29278f0e0d856b92fa50eeb8d980e3a
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
@@ -6293,7 +6297,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
+            "time": "2022-03-31T17:18:25+00:00"
+=======
             "time": "2022-03-24T17:09:09+00:00"
+>>>>>>> 525a5594a29278f0e0d856b92fa50eeb8d980e3a
         },
         {
             "name": "symfony/translation-contracts",
@@ -9691,5 +9699,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.2.0"
 }
