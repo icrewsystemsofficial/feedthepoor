@@ -1,7 +1,6 @@
 @section('js')
 @endsection
-{{-- <link rel="stylesheet" href="{{ asset ('/css/share.css')  }}"> --}}
-{{-- <script type="text/javascript" src="{{ asset('/javascript/share.js' )}}"></script> --}}
+
 @if(!in_array(Route::currentRouteName(), ['frontend.donate', 'frontend.donate.payment', 'frontend.donate.thank_you']))
 <section class="section py-0">
    <div class="container z-2">
@@ -28,32 +27,48 @@
                         </span>
                         Donate Now
                         </a>
-                        <!-- <a href="#" class="btn btn-primary btn-white">
-                           <span class="me-1">
-                               <span class="fas fa-share"></span>
-                           </span>
-                           Share website
-                           </a> -->
 
-                        <button class="share-button view">Share (WIP: Add sharable links)</button>
-                        <div class="popup">
-                           <div class="content">
-                              <p>Share this link via</p>
-                              <ul class="icons">
-                                 <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                 <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                                 <a href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
-                                 <a href="https://whatsapp.com/"><i class="fab fa-whatsapp"></i></a>
-                                 <a href="https://telegram.com/"><i class="fab fa-telegram-plane"></i></a>
-                              </ul>
-                              <p>Or copy link</p>
-                              <div class="field">
-                                 <i class="url-icon uil uil-link"></i>
-                                 <input type="text" readonly value="{{ config('app.url') }}">
-                                 <button>Copy</button>
-                              </div>
-                           </div>
-                        </div>
+                        @php
+
+                            $text = 'Hey! I discovered this NGO called '. config('app.ngo_name') .' which offers ' . count($causes) . ' causes to which you can donate with 100% transparency. Checkout their website to see how many people
+                            have donated with absolutely trust and transparnency today.';
+                            $share = Share::page(route('frontend.donate'), $text)
+                            ->whatsapp()
+                            ->telegram()
+                            ->facebook()
+                            ->twitter()
+                            ->linkedin()
+                            ->getRawLinks();
+                        @endphp
+
+
+
+
+                        <span x-data="{
+                            shareMenuOpen: false,
+                        }">
+                            <span
+                            @click.away="shareMenuOpen = !shareMenuOpen"
+                            x-show="shareMenuOpen"
+                            x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0 scale-90"
+                            x-transition:enter-end="opacity-100 scale-100"
+                            >
+                                @foreach ($share as $key => $value)
+                                    <a class="btn btn-white btn-sm" href="{{ $value }}" target="_blank">
+                                        <i class="fab fa-{{ $key }}"></i> {{ ucfirst($key) }}
+                                    </a>
+                                @endforeach
+                            </span>
+
+                            <button type="button" class="btn btn-primary btn-white" x-show="!shareMenuOpen" @click="shareMenuOpen = !shareMenuOpen"
+                            >
+                                <span class="me-1">
+                                    <span class="fas fa-share"></span>
+                                </span>
+                                Share website
+                             </button>
+                        </span>
                      </div>
                      {{--
                      <div class="col-12 col-md-6 mt-5 mt-md-0 text-md-right">
@@ -66,36 +81,10 @@
          </div>
       </div>
    </div>
-   <script defer>
-      const viewBtn = document.querySelector(".view"),
-              popup = document.querySelector(".popup"),
-              close = popup.querySelector(".close"),
-              field = popup.querySelector(".field"),
-              input = field.querySelector("input"),
-              copy = field.querySelector("button");
-
-          viewBtn.onclick = () => {
-              popup.classList.toggle("show");
-          }
-          close.onclick = () => {
-              viewBtn.click();
-          }
-
-          copy.onclick = () => {
-              input.select();
-              if (document.execCommand("copy")) {
-                  field.classList.add("active");
-                  copy.innerText = "Copied";
-                  setTimeout(() => {
-                      window.getSelection().removeAllRanges();
-                      field.classList.remove("active");
-                      copy.innerText = "Copy";
-                  }, 3000);
-              }
-          }
-   </script>
 </section>
 @endif
+
+
 <footer class="footer pt-6 pb-5 bg-gray text-white mt-n6">
    <div class="container mt-5">
       <div class="row">
@@ -182,5 +171,4 @@
          </div>
       </div>
    </div>
-   <script></script>
 </footer>
