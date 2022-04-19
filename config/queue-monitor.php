@@ -28,7 +28,7 @@ return [
         /*
          * Set the monitored jobs count to be displayed per page.
          */
-        'per_page' => 35,
+        'per_page' => 100,
 
         /*
          *  Show custom data stored on model
@@ -43,7 +43,7 @@ return [
         /**
          * Allow purging all monitor entries.
          */
-        'allow_purge' => true,
+        'allow_purge' => false,
 
         'show_metrics' => true,
 

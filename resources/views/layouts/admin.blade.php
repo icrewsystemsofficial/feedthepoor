@@ -9,9 +9,8 @@
    <meta name="author" content="icrewsystems">
    <link rel="preconnect" href="https://fonts.gstatic.com">
    <link rel="shortcut icon" href="{{ asset('adminkit/static/img/icons/icon-48x48.png') }}" />
-   {{--
-      <link rel="canonical" href="https://demo-basic.adminkit.io/" />
-      --}}
+   {{----}}
+   <link rel="canonical" href="https://demo-basic.adminkit.io/" />
    <title>{{ config('app.name') }} | Dashboard</title>
 
    {{-- <link rel="stylesheet" href="https://demo.adminkit.io/css/dark.css"> --}}

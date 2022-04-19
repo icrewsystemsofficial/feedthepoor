@@ -10,6 +10,8 @@
 <meta name="description" content="NO DESCRIPTION">
 <link rel="canonical" href="{{ config('app.url') }}">
 
+<link rel="icon" type="image/png" href="{{ asset('images/branding/roshni-foundation.png') }}">
+
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="theme-color" content="#ffffff">
 

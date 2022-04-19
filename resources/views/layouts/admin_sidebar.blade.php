@@ -5,9 +5,9 @@
 
 
     <li class="sidebar-item {{ Nav::isRoute('admin.dashboard') }}">
-       <a class="sidebar-link" href="{{ route('admin.dashboard') }}">
-       <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-       </a>
+        <a class="sidebar-link" href="{{ route('admin.dashboard') }}">
+            <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+        </a>
     </li>
 
     <li class="sidebar-item {{ Nav::isRoute('admin.donations.index') }}">
@@ -76,9 +76,15 @@
 
    <li class="sidebar-item {{ Nav::isRoute('admin.location.index') }}">
         <a class="sidebar-link" href="{{ route('admin.location.index') }}">
-        <i class="align-middle" data-feather="map-pin"></i> <span class="align-middle">Locations</span>
+            <i class="align-middle" data-feather="map-pin"></i> <span class="align-middle">Locations</span>
         </a>
-   </li>
+    </li>
+
+    <li class="sidebar-item {{ Nav::isRoute('admin.contact.index') }}">
+        <a class="sidebar-link" href="{{ route('admin.contact.index') }}">
+            <i class="align-middle" data-feather="mail"></i> <span class="align-middle">Contacts</span>
+        </a>
+    </li>
 
    <li class="sidebar-item {{ Nav::isRoute('admin.contact.index') }}">
         <a class="sidebar-link" href="{{ route('admin.contact.index') }}">

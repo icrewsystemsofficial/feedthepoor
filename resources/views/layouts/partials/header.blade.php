@@ -46,7 +46,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{ route('frontend.index') }}" class="nav-link">
                             Activity
                         </a>
                     </li>

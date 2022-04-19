@@ -43,7 +43,7 @@ class DonationsController extends Controller
     {
         $donation = Donations::find($request->id);
         $user = User::find($donation->donor_id);
-        $all_donations = Donations::all()->where('donor_id', $donation->donor_id);
+        $all_donations = Donations::all()->where('donor_id', $donation->donor_id)->where('id', '!=', $donation->id);
         return view('admin.donations.manage', compact('donation', 'user', 'all_donations'));
     }
 
