@@ -36,14 +36,14 @@
     </ul>
 
 
-    <li class="sidebar-item {{ Nav::isRoute('admin.settings.index') }}">
+    <li class="sidebar-item {{ Nav::isRoute('admin.missions') }}">
         <a data-bs-target="#missions" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
             <i class="align-middle" data-feather="briefcase"></i>
             <span class="align-middle">Missions</span>
         </a>
         <ul id="missions" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
             <li class="sidebar-item">
-                <a class="sidebar-link" href="#">Mission Status</a>
+                <a class="sidebar-link" href="{{ route('admin.missions.index') }}">Active Missions</a>
             </li>
             <li class="sidebar-item">
                 <a class="sidebar-link" href="#">Past Missions</a>

@@ -31,12 +31,112 @@
 
     {{-- WEBSITE FONT --}}
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+   
+   {{-- JQUERY --}}
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   
+   {{-- DATATABLES --}}  
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">   
+   <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+   <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+   
+   {{-- DATATABLES  RESPONSIVE EXTENSION--}}  
+   <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css" rel="stylesheet">
+   <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+   <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap5.min.js"></script>
+
+   {{-- SELECT2 --}}  
+   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+   {{-- CHARTISAN --}}
+   <script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
+   <script src="https://unpkg.com/@chartisan/echarts/dist/chartisan_echarts.js"></script>
+
+   {{-- RTF EDITOR --}}
+   <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+
+   {{-- BOOTSTRAP SWITCH --}}
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/js/bootstrap-switch.min.js"></script>
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/css/bootstrap-switch.min.css" rel="stylesheet">
+
+   {{-- FILEPOND --}}
+   <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+   <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+   <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
+   <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+
+   {{-- LITEPICKER --}}
+   <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css"/>
 
     <style>
     /* ALPINE JS CLOAK VARIABLE */
       [x-cloak] {
          display: none !important;
       }
+
+        .switch {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 24px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        }
+
+        /* The slider */
+        .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+        }
+
+        .slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .2s;
+        transition: .2s;
+        }
+
+        input:checked + .slider {
+        background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+        -webkit-transform: translateX(16px);
+        -ms-transform: translateX(16px);
+        transform: translateX(16px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+        border-radius: 34px;
+        }
+
+        .slider.round:before {
+        border-radius: 50%;
+        }
     </style>
 
    @yield('css')

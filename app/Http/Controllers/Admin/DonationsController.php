@@ -10,6 +10,7 @@ use App\Models\Donations;
 use App\Models\User;
 use App\Models\Causes;
 use App\Events\Donations\AddDonation;
+use PDF;
 
 class DonationsController extends Controller
 {
@@ -41,7 +42,9 @@ class DonationsController extends Controller
     public function manage(Request $request)
     {
         $donation = Donations::find($request->id);
-        return view('admin.donations.manage', compact('donation'));
+        $user = User::find($donation->donor_id);
+        $all_donations = Donations::all()->where('donor_id', $donation->donor_id)->where('id', '!=', $donation->id);
+        return view('admin.donations.manage', compact('donation', 'user', 'all_donations'));
     }
 
     public function update(Request $request){
@@ -79,4 +82,5 @@ class DonationsController extends Controller
         alert()->success('Yay','Donation was successfully deleted');
         return redirect()->route('admin.donations.index');
     }
+
 }

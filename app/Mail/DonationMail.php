@@ -37,6 +37,16 @@ class DonationMail extends Mailable implements ShouldQueue
 
         if(file_exists(storage_path('app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'receipts' . DIRECTORY_SEPARATOR . $file_name . '.pdf'))) {
             return storage_path('app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'receipts' . DIRECTORY_SEPARATOR . $file_name . '.pdf');
+        } else {
+
+            sleep(10); // Wait for 10 seconds, because the queue might be busy.
+
+            if(file_exists(storage_path('app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'receipts' . DIRECTORY_SEPARATOR . $file_name . '.pdf'))) {
+                return storage_path('app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'receipts' . DIRECTORY_SEPARATOR . $file_name . '.pdf');
+            } else {
+                throw new Exception("PDF not found for payment: " . $payment_id. ". If you see this exception, then something has gone wrong
+            while generating the PDF");
+            }
         }
     }
 

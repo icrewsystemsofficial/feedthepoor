@@ -16,11 +16,12 @@ class CreateOperationsTable extends Migration
         Schema::create('operations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('donation_id')->references('id')->on('donations');
+            $table->unsignedBigInteger('location_id')->references('id')->on('locations');
             $table->text('procurement_item');
             $table->integer('procurement_quantity');
             $table->text('vendor')->nullable();
-            $table->enum('status', ['UNACKNOWLEDGED', 'ACKNOWLEDGED', 'PROCUREMENT ORDER INITIATED','DELAYED','READY FOR MISSION DISPATCH','ASSIGNED TO MISSION','FULFILLED'])->default('UNACKNOWLEDGED');
-            $table->integer('last_updated_by')->references('id')->on('users');
+            $table->integer('status')->default(0);
+            $table->integer('last_updated_by')->references('id')->on('users')->nullable();
             $table->unsignedBigInteger('mission_id')->nullable();
             $table->timestamps();
         });

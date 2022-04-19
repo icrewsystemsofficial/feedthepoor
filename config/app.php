@@ -262,6 +262,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
         'PDF' => Barryvdh\DomPDF\Facade\PDF::class,
+        'MissionHelper' => App\Helpers\MissionHelper::class,
 
     ],
 

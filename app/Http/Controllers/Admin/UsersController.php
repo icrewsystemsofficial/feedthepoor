@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Location;
 use App\Models\User;
+use App\Models\Donations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -35,7 +36,8 @@ class UsersController extends Controller
         $location = Location::all();
         $user = User::find($id);
         $allRoles = Role::all();
-        return view('admin.users.view', compact('location', 'user', 'allRoles'));
+        $all_donations = Donations::all()->where('donor_id', $id);
+        return view('admin.users.view', compact('location', 'user', 'allRoles', 'all_donations'));
     }
 
     public function update(Request $req, $id){

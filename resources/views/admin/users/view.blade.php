@@ -1,7 +1,83 @@
 @extends('layouts.admin')
 
+@section('css')
+
+<style>
+    .badge-warning {
+        background-color: #f0ad4e;
+        color: #fff;
+    }
+    .badge-success {
+        background-color: #5cb85c;
+        color: #fff;
+    }
+    .badge-danger {
+        background-color: #d9534f;
+        color: #fff;
+    }
+    .badge-info {
+        background-color: #5bc0de;
+        color: #fff;
+    }
+    .action-btns {
+        width: fit-content;
+    }
+    input[type="date"]::-webkit-inner-spin-button,
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        display: none;
+        -webkit-appearance: none;
+    }
+    .hide-date, .hide-goal, .hide-cause {
+        display: none !important;
+    }
+    .show-date, .show-goal, .show-cause {
+        display: block !important;
+    }
+    .form-check {
+        padding-left: 0px !important;
+    }
+    .bootstrap-switch .bootstrap-switch-handle-on,
+    .bootstrap-switch .bootstrap-switch-handle-off,
+    .bootstrap-switch .bootstrap-switch-label {
+        display: inline-block;
+        width: 44%;
+    }
+    .select2 {
+        width: 100% !important;
+    }
+    .hide-badge {
+        display: none;
+    }
+    .show-badge {
+        display: block;
+        width: fit-content;
+    }
+</style>
+
+<style>
+    .badge-danger {
+        background-color: #d9534f;
+        color: #fff;
+        border-color: transparent;
+    }
+    .badge-danger:hover {
+        background-color: #d9534f;
+        color: #fff;
+        border-color: transparent;
+    }
+    .delete-modal {
+        font-size: 1.2rem !important;
+    }
+</style>
+
+@endsection
 
 @section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
     <script>
         passwordVerification = (id, password, cpassword) => {
             if(id === "update_password"){
@@ -239,6 +315,48 @@
         </div>
 
     </div>
+    <div class="card mt-3">
+        <div class="card-body">
+            <div class="row mb-3">
+                <h3>
+                    All Donations From {{ $user->name }}
+                </h3>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <table id="table" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>AMOUNT</th>
+                                <th>CAUSE</th>
+                                <th>STATUS</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($all_donations as $per_donation)
+                            <tr>
+                                <td>{{ $per_donation->id }}</td>
+                                <td>₹ {{ $per_donation->donation_amount }}</td>
+                                <td>{{ $per_donation->cause_name }}</td>
+                                <td>
+                                    {!! App\Helpers\DonationsHelper::getStatus($per_donation->donation_status) !!}
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.donations.manage', $per_donation->id) }}" class="btn btn-primary btn-sm">
+                                        <i class="fa-solid fa-edit"></i> &nbsp;
+                                        Manage
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>    
     <script>
         const inpAvatar = document.getElementById('input_avatar');
         inpAvatar.addEventListener('change', (event) => {
@@ -249,6 +367,9 @@
             })
             reader.readAsDataURL(event.target.files[0]);
         })
+        $('document').ready(function(){
+            $('#table').DataTable();
+        });
     </script>
 </main>
 @endsection

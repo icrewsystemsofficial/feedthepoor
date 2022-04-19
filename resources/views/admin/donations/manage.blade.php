@@ -1,82 +1,5 @@
 @extends('layouts.admin')
 
-@section('css')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/js/bootstrap-switch.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/css/bootstrap-switch.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<style>
-    .badge-warning {
-        background-color: #f0ad4e;
-        color: #fff;
-    }
-    .badge-success {
-        background-color: #5cb85c;
-        color: #fff;
-    }
-    .badge-danger {
-        background-color: #d9534f;
-        color: #fff;
-    }
-    .badge-info {
-        background-color: #5bc0de;
-        color: #fff;
-    }
-    .action-btns {
-        width: fit-content;
-    }
-    input[type="date"]::-webkit-inner-spin-button,
-    input[type="date"]::-webkit-calendar-picker-indicator {
-        display: none;
-        -webkit-appearance: none;
-    }
-    .hide-date, .hide-goal, .hide-cause {
-        display: none !important;
-    }
-    .show-date, .show-goal, .show-cause {
-        display: block !important;
-    }
-    .form-check {
-        padding-left: 0px !important;
-    }
-    .bootstrap-switch .bootstrap-switch-handle-on,
-    .bootstrap-switch .bootstrap-switch-handle-off,
-    .bootstrap-switch .bootstrap-switch-label {
-        display: inline-block;
-        width: 44%;
-    }
-    .select2 {
-        width: 100% !important;
-    }
-    .hide-badge {
-        display: none;
-    }
-    .show-badge {
-        display: block;
-        width: fit-content;
-    }
-</style>
-
-<style>
-    .badge-danger {
-        background-color: #d9534f;
-        color: #fff;
-        border-color: transparent;
-    }
-    .badge-danger:hover {
-        background-color: #d9534f;
-        color: #fff;
-        border-color: transparent;
-    }
-    .delete-modal {
-        font-size: 1.2rem !important;
-    }
-</style>
-@endsection
-
 @section('js')
 <script>
     function trigger_delete() {
@@ -162,62 +85,206 @@
         </div>
     </div>
 @endif
-<div class="card mt-3">
-    <div class="card-body">
-        <div class="row mb-3">
-            <div class="col-md-12">
-            <form action="{{ route('admin.donations.update', $donation->id) }}" id="update_form" method="POST" autocomplete="off">
-                @csrf
-                @method('PUT')
-                <div class="form-group mb-3">
-                    <label for="name" class="form-label">Donor</label>                    
-                    <input type="text" class="form-control" id="donor_name" name="donor_name" value="{{ $donation->donor_name }}">
-                </div>                
-                <div class="form-group mb-3">
-                    <label for="name" class="form-label">Donation amount (in INR)</label>
-                    <input type="text" id="donation_amount" name="donation_amount" class="form-control" value="{{ $donation->donation_amount }}"/>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mt-3">
+            <div class="card-body">
+                <h3 class="card-title">
+                    DONOR DETAILS
+                </h3>
+                <div class="row mb-3">
+                    <div class="card-title">
+                        Name
+                    </div>
+                    <div class="card-text">
+                        {{ $user->name }}
+                    </div>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="cause_name" class="form-label">Cause</label>
-                    <select name="cause_id" id="cause_id" class="form-control select2">
-                        {!! App\Helpers\DonationsHelper::getAllCauses($donation->cause_id) !!}
-                    </select>
+                <div class="row mb-3">
+                    <div class="card-title">
+                        Email
+                    </div>
+                    <div class="card-text">
+                        {{ $user->email }}
+                    </div>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="payment_method" class="form-label">Payment method</label>
-                    <select name="payment_method" id="payment_method" class="form-control select2">                        
-                        {!! App\Helpers\DonationsHelper::getAllPaymentMethods($donation->payment_method) !!}
-                    </select>
+                <div class="row mb-3">
+                    <div class="card-title">
+                        Contact
+                    </div>
+                    <div class="card-text">
+                        {!! $user->phone_number ?? '<span class="text-danger"><i class="fa-solid fa-exclamation-triangle"></i> NOT PROVIDED</span>' !!}
+                    </div>
                 </div>
-                <div class="form-group mb-3 hide-goal">
-                    <label for="razorpay_payment_id" class="form-label">Razorpay payment ID</label>
-                    <input type="text" id="razorpay_payment_id" name="razorpay_payment_id" class="form-control" value="{{ $donation->razorpay_payment_id }}"/>
+                <div class="row mb-3">
+                    <div class="card-title">
+                        Joined on
+                    </div>
+                    <div class="card-text">
+                        {{ $user->created_at->format('d M Y') }}
+                    </div>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="donation_status" class="form-label">Status</label>
-                    <div class="mb-2">{!! App\Helpers\DonationsHelper::getStatusBadges($donation->donation_status) !!}</div>
-                    <select class="form-control" id="donation_status" name="donation_status">
-                        {!! App\Helpers\DonationsHelper::getAllStatuses($donation->donation_status) !!}
-                    </select>
-                </div>                
-                <div class="form-group mb-3">
-                    <span onclick="document.getElementById('update_form').submit();">
-                        <x-loadingbutton>Save</x-loadingbutton>
-                    </span>
+
+                <a href="{{ route('admin.users.manage', $donation->donor_id) }}" target="_blank" class="btn btn-sm btn-primary">
+                    View donor profile
+                </a>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-body">
+                <h3 class="card-title">
+                    MISSION DETAILS
+                </h3>
+
+                <div class="alert alert-danger">
+                    This is still a work in progress.
+                    When complete, should be able to pull the details of the mission this donation was assigned to.
                 </div>
-            </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card mt-3">
+            <div class="card-body">
+                <h3 class="card-title">
+                    DONATION DETAILS
+                    <br>
+                    {!! App\Helpers\DonationsHelper::getStatusBadges($donation->donation_status) !!}
+                </h3>
+                <small class="text-muted">
+                    This donation was last updated on {{ $donation->updated_at->format('d M Y') }}
+                </small>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                    <form action="{{ route('admin.donations.update', $donation->id) }}" id="update_form" method="POST" autocomplete="off">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label">Donation amount (in INR)</label>
+                            <input type="text" id="donation_amount" name="donation_amount" class="form-control" value="{{ $donation->donation_amount }}" disabled/>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label">Donation amount (in words)</label>
+                            <input type="text" class="form-control" value="{{ $donation->donation_in_words }}" disabled/>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label">Date of Donation</label>
+                            <input type="text" class="form-control" value="{{ $donation->created_at->format('d M Y') }}" disabled/>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="payment_method" class="form-label">Payment method</label>
+                            <select name="payment_method" id="payment_method" class="form-control select2" disabled>
+                                {!! App\Helpers\DonationsHelper::getAllPaymentMethods($donation->payment_method) !!}
+                            </select>
+                        </div>
+                        <div class="form-group mb-3 hide-goal">
+                            <label for="razorpay_payment_id" class="form-label">Razorpay payment ID</label>
+                            <input type="text" id="razorpay_payment_id" name="razorpay_payment_id" class="form-control" value="{{ $donation->razorpay_payment_id }}" disabled/>
+                        </div>
+                        <div class="form-group mb-3">
+                            <a href="{{ route('frontend.donations.receipt', $donation->razorpay_payment_id) }}" target="_blank" class="btn btn-sm btn-primary">
+                                View receipt
+                            </a>
+
+                            @if($donation->payment_method == App\Models\Donations::$payment_methods['RAZORPAY'])
+                            <a href=" https://dashboard.razorpay.com/app/payments/{{ $donation->razorpay_payment_id }}" target="_blank" class="btn btn-sm btn-primary">
+                                View on Razorpay
+                            </a>
+                            @endif
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="cause_name" class="form-label">Cause</label>
+                            <select name="cause_id" id="cause_id" class="form-control select2">
+                                {!! App\Helpers\DonationsHelper::getAllCauses($donation->cause_id) !!}
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="donation_status" class="form-label">Status</label>
+                            <select class="form-control" id="donation_status" name="donation_status">
+                                {!! App\Helpers\DonationsHelper::getAllStatuses($donation->donation_status) !!}
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            {{-- These items are disabled --}}
+                            <input type="hidden" name="donor_name" value="{{ $donation->donor_name }}" />
+                            <input type="hidden" name="donation_amount" value="{{ $donation->donation_amount }}"/>
+                            <input type="hidden" name="payment_method" value="{{ $donation->payment_method }}"/>
+                            <input type="hidden" name="razorpay_payment_id" value="{{ $donation->razorpay_payment_id }}"/>
+                            <span onclick="document.getElementById('update_form').submit();">
+                                <x-loadingbutton>Save</x-loadingbutton>
+                            </span>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mt-3">
+            <div class="card-body">
+                <div class="row mb-3">
+                    <h3>
+                        Other donations from <strong>{{ $user->name }}</strong> ({{ count($all_donations) }})
+                    </h3>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <table id="table" class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>AMOUNT</th>
+                                    <th>CAUSE</th>
+                                    <th>STATUS</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($all_donations as $per_donation)
+                                <tr>
+                                    <td>{{ $per_donation->id }}</td>
+                                    <td>₹ {{ $per_donation->donation_amount }}</td>
+                                    <td>{{ $per_donation->cause_name }}</td>
+                                    <td>
+                                        {!! App\Helpers\DonationsHelper::getStatus($per_donation->donation_status) !!}
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('admin.donations.manage', $per_donation->id) }}" class="btn btn-primary btn-sm">
+                                            <i class="fa-solid fa-edit"></i> &nbsp;
+                                            Manage
+                                        </a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
 <script>
-    $(document).ready(function() {       
+    $(document).ready(function() {
+        $('#table').DataTable();
         $('#donation_status').on('change',()=>{
             let val = '#'+$('#donation_status option:selected').text();
             $('.show-badge').addClass('hide-badge');
-            $('.show-badge').removeClass('show-badge');            
+            $('.show-badge').removeClass('show-badge');
             $(val).removeClass('hide-badge');
-            $(val).addClass('show-badge');            
+            $(val).addClass('show-badge');
         });
         $('#cause_id').select2({
             placeholder: 'Select cause'

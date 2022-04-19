@@ -1,96 +1,5 @@
 @extends('layouts.admin')
 
-@section('css')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/js/bootstrap-switch.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/css/bootstrap-switch.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-<script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
-<script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
-<script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
-<style>
-    .badge-warning {
-        background-color: #f0ad4e;
-        color: #fff;
-    }
-    .badge-success {
-        background-color: #5cb85c;
-        color: #fff;
-    }
-    .badge-danger {
-        background-color: #d9534f;
-        color: #fff;
-    }
-    .badge-info {
-        background-color: #5bc0de;
-        color: #fff;
-    }
-    .action-btns {
-        width: fit-content;
-    }
-    input[type="date"]::-webkit-inner-spin-button,
-    input[type="date"]::-webkit-calendar-picker-indicator {
-        display: none;
-        -webkit-appearance: none;
-    }
-    .hide-date, .hide-goal, .hide-cause {
-        display: none !important;
-    }
-    .show-date, .show-goal, .show-cause {
-        display: block !important;
-    }
-    .form-check {
-        padding-left: 0px !important;
-    }
-    .select2-close-mask{
-        z-index: 2099;
-    }
-    .select2-dropdown{
-        z-index: 3051;
-    }
-    .required {
-        color: red;
-    }
-</style>
-@endsection
-
-@section('js')
-
-<script>
-    let toggleFunct = (ele) => {
-            if ($(ele).prop('checked')) {
-                $('.hide-date').addClass('show-date');
-                $('.hide-date').attr('required', true);
-            } else {
-                $('.show-date').removeClass('show-date');
-                $('.show-date').attr('required', false);
-            }
-
-    }
-    let toggleFunct2 = (ele) => {
-            if ($(ele).prop('checked')) {
-                $(this).attr('value', true);
-                $('.hide-cause').addClass('show-cause');
-                $('.hide-cause').attr('required', true);
-            } else {
-                $(this).attr('value', false);
-                $('.show-cause').removeClass('show-cause');
-                $('.show-cause').attr('required', false);
-            }
-
-    }
-</script>
-
-@endsection
-
 @section('content')
 <div class="row">
     <div class="col-12">
@@ -134,13 +43,7 @@
                             </div><div class="form-group mb-3">
                                 <label for="campaign_status">Expected campaign amount (in INR) <span class="required">*</span></label>
                                 <input type="number" class="form-control" id="campaign_goal_amount" name="campaign_goal_amount" placeholder="Enter campaign goal amount" required>
-                            </div>                               
-                            {{--<div class="form-group mb-3">
-                                <label for="campaign_description">Does the campaign have a goal ?</label>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="is_campaign_goal_based" name="is_campaign_goal_based" onchange="toggleFunct(this);">
-                                </div>                                
-                            </div>       --}}                     
+                            </div>                                
                             <div class="form-group mb-3">
                                 <label for="campaign_start_date">Start date <span class="required">*</span></label>
                                 <input type="date" class="form-control" id="campaign_start_date" name="campaign_start_date" required>
@@ -157,12 +60,6 @@
                                     @endforeach
                                 </select>
                             </div>
-                            {{--<div class="form-group mb-3">
-                                <label for="campaign_description">Does the campaign have a cause ?</label>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="campaign_has_cause" name="campaign_has_cause" onchange="toggleFunct2(this);">
-                                </div>                                
-                            </div>--}}
                             <div class="form-group mb-3">
                                 <label for="campaign_location">Campaign causes</label><br>
                                 <select class="form-control" id="campaign_causes" name="campaign_causes[]" multiple style="width: 100%;">                                                                                                        
@@ -257,19 +154,8 @@
 <script>
     $("#newCampaignModalPrimary").css('position', 'fixed');
     $(document).ready(function() {
-        /*$('#campaign_has_cause').bootstrapSwitch({
-            onText: 'Yes',
-            offText: 'No',
-            onColor: 'primary',
-            offColor: 'danger',
-        });
-        $('#is_campaign_goal_based').bootstrapSwitch({
-            onText: 'Yes',
-            offText: 'No',
-            onColor: 'primary',
-            offColor: 'danger',
-        });*/
         $('#table').DataTable();
+        $("input[type='search']").attr('id','search');
         const picker = new Litepicker({ 
             element: document.getElementById('campaign_start_date'),
             resetButton: true,
