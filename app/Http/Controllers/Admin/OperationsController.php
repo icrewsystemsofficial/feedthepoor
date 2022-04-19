@@ -54,18 +54,22 @@ class OperationsController extends Controller
     public function procurement_update(Request $request){
 
         $request->validate([
-            'status' => 'required|in:0,1,2,3,4,5,6',
+            'status' => 'in:0,1,2,3,4,5,6',
             'last_updated_by' => 'required|exists:users,id',
+            'location_id' => 'exists:locations,id',
         ]);
 
         $operation = Operations::find($request->id);
-        $newBadge = OperationsHelper::getProcurementBadge($request->status);
-        $final = array();
-        $final['badge'] = $newBadge;
-        $final['status_new'] = $request->status;
-        $final['status_old'] = $operation->status;
         $operation->update($request->all());
-        return response()->json($final);
+        
+        if ($request->status){
+            $newBadge = OperationsHelper::getProcurementBadge($request->status);
+            $final = array();
+            $final['badge'] = $newBadge;
+            $final['status_new'] = $request->status;
+            $final['status_old'] = $operation->status;        
+            return response()->json($final);
+        }
     }
     
     /**

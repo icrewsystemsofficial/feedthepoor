@@ -175,15 +175,17 @@
                                             {!! App\Helpers\OperationsHelper::getProcurementBadge($operation->status) !!}
                                         </div>
 
+                                        <span class="badge badge-info" onclick='$("#search").val("{{ App\Helpers\OperationsHelper::getLocationBadge($operation->location_id) }}");$("#search").keyup();$("#search").focus();'>
+                                            {{ App\Helpers\OperationsHelper::getLocationBadge($operation->location_id) }}
+                                        </span>
+
                                     </td>
                                     <td>{{ $operation->procurement_quantity }}</td>
                                     <td>
                                         {!! App\Helpers\OperationsHelper::getProcurementStatus($operation->status,$operation->id) !!}
                                     </td>
                                     <td>
-                                        <span class="badge badge-info" onclick="showLocation({{ $operation->location_id }})">
-                                            {{ App\Helpers\OperationsHelper::getProcurementLocation($operation->location_id) }}
-                                        </span>
+                                        {!! App\Helpers\OperationsHelper::getProcurementLocation($operation->location_id,$operation->id) !!}
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.donations.manage', $operation->donation_id) }}" class="btn btn-sm btn-primary" target="_blank">
@@ -249,7 +251,6 @@
                 { "searchable": true, "targets": 3 },
                 { "searchable": false, "targets": 4 }
             ],
-            responsive: true,
         });
 
         $("input[type='search']").attr('id','search');
@@ -316,6 +317,32 @@
                         Toast.fire({
                             icon: 'warning',
                             title: 'Unable to update status'
+                        });                                            
+                    }
+                });
+            });
+
+            $('#location_'+id).on('change', function() {
+                let locationId = $(this).val();
+                console.log(locationId);
+                $.ajax({
+                    url: '/admin/operations/procurement/update/'+id,
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        location_id: locationId,
+                        last_updated_by: {{ Auth::user()->id }}
+                    },
+                    success: function(data) {
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Location of this item has been updated successfully'
+                        });
+                    },
+                    error: function(data) {
+                        Toast.fire({
+                            icon: 'warning',
+                            title: 'Unable to update location'
                         });                                            
                     }
                 });
