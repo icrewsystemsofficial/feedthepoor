@@ -20,10 +20,10 @@
     </table>
     <br><br>
     <p style="line-height: 18px; margin-top: -25px;">
-        <strong>Dear USER</strong>, <br><br>
+        <strong>Dear {{ $data['payment']['name'] }}</strong>, <br><br>
 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Thank you for your generous donation towards CAUSE, CAMPAIGN. Please take comfort in knowing that this good deed,
+            Thank you for your generous donation towards {{ $data['payment']['cause'] }}. Please take comfort in knowing that this good deed,
         will be putting smiles in the faces of the less fortunate. Continue to support us, share the news with
         your friends and family, we need all the support we can get.
         <br><br>
@@ -39,10 +39,9 @@
     <table width="100%" style="border-collapse: collapse;">
       <tr>
         <td widdth="50%" style="background:#eee;padding:20px;">
-          <strong>Date:</strong> 2021/05/26<br>
-          <strong>Cause:</strong> CAUSE<br>
-          <strong>Campaign:</strong> NONE<br>
-          <strong>Tracking URL:</strong> <a href="{{ route('frontend.track-donation', '12345') }}">{{ route('frontend.track-donation', '12345') }}</a><br>
+          <strong>Date:</strong> {{ $data['payment']['date'] }}<br>
+          <strong>Cause:</strong> {{ $data['payment']['cause'] }}<br>          
+          <strong>Tracking URL:</strong> <a href="{{ $data['payment']['tracking_url'] }}">{{ $data['payment']['tracking_url'] }}</a><br>
         </td>
       </tr>
     </table><br>
@@ -66,22 +65,22 @@
                DONOR NAME & ADDRESS
            </span>
            <br>
-           Leonard Selvaraja, <br>
-           #3, Srinivasa Road, Nehru Nagar, Chrompet, Chennai 600044
+           {{ $data['payment']['name'] }}, <br>
+           {{ $data['user']->address }}
        </td>
         <td class="row">
            <span style="color:#777;font-size:11px;">
                RECEIPT #
            </span>
            <br>
-           --
+              {{ $data['payment']['receipt_no'] }}
         </td>
         <td class="row">
             <span style="color:#777;font-size:11px;">
                 AMOUNT RECEIVED
             </span>
             <br>
-            ₹12,938
+            Rs {{ $data['payment']['donation_amount'] }}
 
             <br><br>
 
@@ -94,26 +93,28 @@
          </td>
       </tr>
        <tr>
-        <td class="row">
-            <span style="color:#777;font-size:11px;">
-               PAN
-           </span>
-           <br>
-           AXWLP823C
-       </td>
+        @if ($data['payment']['pan'])                
+            <td class="row">
+                <span style="color:#777;font-size:11px;">
+                PAN
+            </span>
+            <br>
+            {{ $data['payment']['pan'] }}
+            </td>
+        @endif
         <td class="row">
            <span style="color:#777;font-size:11px;">
                PAYMENT #
            </span>
            <br>
-           --
+           {{ $data['payment']['razorpay_id'] }}
         </td>
         <td class="row">
             <span style="color:#777;font-size:11px;">
                 TRANSACTION DATE
             </span>
             <br>
-            12/03/2022
+            {{ $data['payment']['date'] }}
          </td>
       </tr>
 
