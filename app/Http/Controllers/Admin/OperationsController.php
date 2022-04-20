@@ -28,7 +28,7 @@ class OperationsController extends Controller
         foreach ($operations as $operation) {
             array_push($allOperations, $operation->id);
             $total++;
-            if ($operation->status != 'FULFILLED'){
+            if ($operation->status != 6){ //Check if status is FULFILLED i.e. 6
                 $toProcure++;
             }
             else{

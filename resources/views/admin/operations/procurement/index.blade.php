@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+<style>
+    .select2-container{ width: 90px !important; }
+</style>
 <div class="row">
     <div class="col-12">
         <h3>
@@ -165,7 +168,7 @@
                                 @foreach($operations as $operation)
                                 <tr>
                                     <td>{{ $operation->created_at->format('d/m/Y') }}</td>
-                                    <td>
+                                    <td style="max-width: 180px;white-space:normal;">
                                         <strong>
                                             {{ $operation->procurement_item }}
                                         </strong>
