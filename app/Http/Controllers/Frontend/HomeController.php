@@ -126,6 +126,7 @@ class HomeController extends Controller
         }
 
         $order = app(RazorpayAPIController::class)->fetch_order($razorpay_order_id);
+
         //TODO Handle failure
         return view('frontend.donation.payment', [
             'order' => $order,
@@ -141,6 +142,8 @@ class HomeController extends Controller
      */
     public function thank_you($payment_id = null)
     {
+       
+        
      
         return view('frontend.donation.thank_you', [
             'payment_id' => $payment_id,

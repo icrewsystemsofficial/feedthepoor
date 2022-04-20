@@ -30,7 +30,7 @@
 
                         @php
 
-                            $text = 'Hey! I discovered this NGO called '. config('app.ngo_name') .' which offers ' . count($causes) . ' causes to which you can donate with 100% transparency. Checkout their website to see how many people
+                            $text = 'Hey! I discovered this NGO called '. config('app.ngo_name') .' which offers '  . ' causes to which you can donate with 100% transparency. Checkout their website to see how many people
                             have donated with absolutely trust and transparnency today.';
                             $share = Share::page(route('frontend.donate'), $text)
                             ->whatsapp()
