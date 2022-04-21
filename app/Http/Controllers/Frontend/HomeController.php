@@ -56,7 +56,7 @@ class HomeController extends Controller
         $donation_names = json_encode($names);
 
         $causes = Causes::all();
-        
+
 
         return view('frontend.index', [
             'donation_images' => $donation_random_images,
@@ -72,22 +72,23 @@ class HomeController extends Controller
 
         $locations = Location::where('location_status', 1)->get();
 
-     
+
 
         return view('frontend.about.index', [
             'locations' => $locations,
-           
+
         ]);
     }
 
-    public function partners () {
+    public function partners()
+    {
         return view('frontend.partners.index');
     }
 
     public function volunteer()
     {
-        $causes = Causes::all();   
-        return view('frontend.volunteer.index' , ['causes' => $causes]);
+        $causes = Causes::all();
+        return view('frontend.volunteer.index', ['causes' => $causes]);
     }
 
     /**
@@ -107,8 +108,8 @@ class HomeController extends Controller
 
         return view('frontend.donation.index', [
             'donation_types' => $donation_types,
-            
-            
+
+
         ]);
     }
 
@@ -120,7 +121,7 @@ class HomeController extends Controller
      */
     public function donate_process($razorpay_order_id = null)
     {
-        
+
         if ($razorpay_order_id == null) {
             return redirect()->route('frontend.donate');
         }
@@ -130,7 +131,7 @@ class HomeController extends Controller
         //TODO Handle failure
         return view('frontend.donation.payment', [
             'order' => $order,
-            
+
         ]);
     }
 
@@ -140,15 +141,20 @@ class HomeController extends Controller
      * @param  mixed $payment_id
      * @return void
      */
-    public function thank_you($payment_id = null)
+    public function thank_you($payment_id=null)
     {
-       
-        
-     
+
+        $donationDetails = Donations::latest()->first();
+
+        if ($payment_id == null) {
+            return redirect()->route('frontend.donate');
+        } else if ($payment_id != $donationDetails->razorpay_payment_id) {
+            return redirect()->route('frontend.donate')->with('error','Oops, There is a problem with your payment id , Check it!!!');        
+        }
         return view('frontend.donation.thank_you', [
             'payment_id' => $payment_id,
             'payment' => app(RazorpayAPIController::class)->fetch_payment($payment_id),
-          
+
         ]);
     }
 
@@ -157,20 +163,20 @@ class HomeController extends Controller
     public function track_donation($donation_id = '')
     {
 
-       
+
         $faker = Factory::create('en_IN');
         $donation_name = $faker->firstName();
 
         // dd($names_json);
         return view('frontend.tracking.tracking', [
             'donation_name' => $donation_name,
-          
+
         ]);
     }
 
     public function faq()
     {
-        
+
         $faq_categories = DB::table('faq_categories')->where('category_status', 1)->get();
         $faq_entries =   FaqEntries::get();
         // dd($faq_entries);
@@ -180,7 +186,7 @@ class HomeController extends Controller
 
     public function contact()
     {
-        
+
         return view('frontend.contact.contactus');
     }
 
@@ -247,7 +253,7 @@ class HomeController extends Controller
     public function receipt($id)
     {
 
-        if($id == null) {
+        if ($id == null) {
             return redirect()->route('frontend.donate');
         }
 
@@ -260,7 +266,7 @@ class HomeController extends Controller
         $payment['phone'] = $user->phone_number;
         $payment['pan'] = $user->pan_number;
         $payment['amt_in_words'] = $donation->donation_in_words;
-        $payment['quantity'] = (int) $donation->donation_amount/$cause->per_unit_cost;
+        $payment['quantity'] = (int) $donation->donation_amount / $cause->per_unit_cost;
         $payment['amount'] = $donation->donation_amount;
         $payment['cause'] = $cause->name;
         $payment['tracking_url'] = route('frontend.track-donation', $donation->razorpay_payment_id);
