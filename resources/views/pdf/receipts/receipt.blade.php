@@ -54,7 +54,11 @@
             <strong>
                 Donation Receipt
             </strong> <br>
-            Eligible for 80G Tax Exemption
+            @if ($data['payment']['pan'])
+                Eligible for 80G Tax Exemption
+            @else
+                Not Eligible for 80G Tax Exemption
+            @endif
          </td>
          <td width="20%" class="column-header"></td>
          <td width="20%" class="column-header"></td>
@@ -100,6 +104,14 @@
             </span>
             <br>
             {{ $data['payment']['pan'] }}
+            </td>
+        @else
+            <td class="row">
+                <span style="color:#777;font-size:11px;">
+                PAN
+            </span>
+            <br>
+            NULL
             </td>
         @endif
         <td class="row">

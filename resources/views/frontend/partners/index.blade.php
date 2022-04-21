@@ -18,7 +18,8 @@
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
+        height: 90vh;
+        padding-bottom: 0.5rem !important;
     }
     .hero-header::before{
         content: '';
@@ -29,20 +30,12 @@
         height: 100%;
         background: rgba(0,0,0,0.5);
     }
-
-    .spotlight-partners{
-        filter: grayscale(100%);
-        opacity: 0.8;
-        width: 80%;
-        display: block;
-        margin: 0 auto;
-    }
 </style>
 @endsection
 
 @section('content')
 
-<section class="section section-header text-white hero-header">
+<section class="section section-header text-white hero-header d-flex align-items-center">
     <div class="container" style="position: relative;z-index: 2;">
         <div class="row justify-content-between align-items-center">
             <div class="col-12 col-md-7 col-lg-6 text-center text-md-left">
@@ -56,17 +49,12 @@
                     Read More <span class="ms-2"><span class="fas fa-arrow-down"></span></span>
                 </a>
             </div>
-
-            <div class="col-12 col-md-5 d-none d-md-block text-center">
-                <img src="{{ asset('images/branding/roshni-foundation.png') }}" alt="">
-            </div>
-
        </div>
     </div>
 </section>
 
 
-<section class="section text-black pb-md-8" id="partners">
+<section class="section text-black pb-md-6" id="partners">
 
     <div class="container">
         <div class="row">
@@ -80,8 +68,8 @@
             </div>
         </div>
 
-        <div class="row justify-content-between align-items-center">
-            <div class="col-12 col-md-6 col-lg-6 text-md-left" style="padding-right: 45px;">
+        <div class="row justify-content-between">
+            <div class="col-12 col-md-6 col-lg-6 text-md-left">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-12 col-md-6 col-lg-6">
                         <img src="{{ asset('images/branding/partners/success1.jpg') }}" alt="" srcset="" style="width: 100%; float: left; ">
@@ -92,22 +80,50 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-6 text-md-left">
-                <div class="row justify-content-between align-items-center">
-                    <div class="col-12 col-md-6 col-lg-6">
-                        <h2 class="text-center display-5">
-                            Partnership has its benefits
+            <div class="col-12 col-md-6 col-lg-6 text-md-left px-md-5 mt-3">
+                <div class="row justify-content-between align-items-center mb-4">
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <h2 class="text-left display-3 mb-4">
+                            Help us help the needy
                         </h2>
-                        <p class="text-center text-muted mb-6">
-                            You help us to make a difference and we give you a chance to be a part of it
+                        <p class="text-left text-muted display-5">
+                            Raise awareness by starting chapters within your organisations
                         </p>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-6">
-                        <h2 class="text-center display-5">
-                            Partnership has its benefits
+                </div>
+                <div class="row justify-content-between">
+                    <div class="col-12 col-md-6 col-lg-6 p-2">
+                        <h2 class="text-left display-5">
+                            Source materials
                         </h2>
-                        <p class="text-center text-muted mb-6">
-                            You help us to make a difference and we give you a chance to be a part of it
+                        <p class="text-left text-muted">
+                            Help us get the items and materials needed to improve someone's day
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-6 p-2" style="height: 100%;">
+                        <h2 class="text-left display-5">
+                            Hand out packets of joy
+                        </h2>
+                        <p class="text-left text-muted">
+                            Help us distribute bundles of joy to everyone all around the country
+                        </p>
+                    </div>
+                </div>
+                <div class="row justify-content-between">
+                    <div class="col-12 col-md-6 col-lg-6 p-2">
+                        <h2 class="text-left display-5">
+                            Spread the word
+                        </h2>
+                        <p class="text-left text-muted">
+                            Help us spread the word about the cause and help people to get involved
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-6 p-2">
+                        <h2 class="text-left display-5">
+                            Connect with others
+                        </h2>
+                        <p class="text-left text-muted">
+                            Helps us connect with people who are already doing good work
                         </p>
                     </div>
                 </div>
@@ -138,14 +154,14 @@
     <div class="container text-center">
         <div class="row justify-content-center p-6">
             <div class="col-12 col-md-10 col-lg-8">
-                <h2 class="display-3 mb-4">
-                    Join hands to <span class="font-bold fst-italic text-theme">make a difference</span>
+                <h2 class="display-3 mb-5">
+                    We can't help everyone <span class="font-bold fst-italic text-theme"><br>but everyone can help someone</span>
                 </h2>
-                <p class="display-5 mb-4">
+                <p class="display-5 mb-5">
                     Your support would mean more dreams fulfilled and a better future, together.
                 </p>
-                <a href="" class="btn btn-tertiary me-3 animate-up-2">
-                    Reach out to us<span class="ms-2"><span class="fas fa-arrow-down"></span></span>
+                <a href="" class="btn btn-theme btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn">
+                    Reach out to us<span class="ms-2"><span class="fas fa-arrow-right"></span></span>
                 </a>
             </div>
         </div>
@@ -165,40 +181,102 @@
             </div>
         </div>
 
-        <div class="row justify-content-between">
-            <div class="col-12 col-md-3">
-                <img class="spotlight-partners" src="{{ asset('images/branding/partners/logos/logo.png') }}" alt="">
+    <div class="container mb-8">
+        <div class="row justify-content-center align-items-center">            
+            <div class="col-12 col-md-6 col-lg-6 d-flex align-items-center" style="height: 330px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px;">
+                <img src="{{ asset('images/branding/partners/logos/nestle.jpg') }}" alt="" srcset="" style="width: 100%;">
             </div>
-            <div class="col-12 col-md-3">
-                <img class="spotlight-partners" src="{{ asset('images/branding/partners/logos/logo.png') }}" alt="">
-            </div>
-            <div class="col-12 col-md-3">
-                <img class="spotlight-partners" src="{{ asset('images/branding/partners/logos/logo.png') }}" alt="">
-            </div>
-            <div class="col-12 col-md-3">
-                <img class="spotlight-partners" src="{{ asset('images/branding/partners/logos/logo.png') }}" alt="">
+            <div class="col-12 col-md-6 col-lg-6 align-self-center px-md-4 mt-md-0 mt-5">
+                <h2 class="display-4 mb-4">
+                    Official Partner
+                </h2>
+                <p class="display-7">
+                    <span class="font-bold fst-italic text-theme">Nestle</span> keep helping us with materialistic things like they provided 4,000 units of Nestle Milo to our ngo in covid pandemic to needy , malnourished & unprivileged kids to improve their immunity to fight with covid
+                </p>
             </div>
         </div>
     </div>
-</section>
 
-<section class="section pb-md-8">
-    <div class="container">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-12 col-md-6 col-lg-6" style="padding-right: 0px !important;">
-                <img src="{{ asset('images/branding/partners/testimonial.jpg') }}" alt="" srcset="" style="width: 100%; float: left; height: 100vh !important;">
+    <div class="container d-none d-md-block mb-8">
+        <div class="row justify-content-center align-items-center">            
+            <div class="col-12 col-md-6 col-lg-6 align-self-center px-md-4 mt-md-0 mt-5">
+                <h2 class="display-4 mb-4">
+                    Official Partner
+                </h2>            
+                <p class="display-7">
+                    <span class="font-bold fst-italic text-theme">Britannia</span> keep helping us with materialistic things like they provided 2000 units of Britannia biscuits to our ngo in covid pandemic to needy , malnourished & unprivileged kids
+                </p>
             </div>
-            <div class="col-12 col-md-6 col-lg-6 bg-gray text-white" style="height: 100vh; padding: 60px;">
-                <div class="row align-items-center my-auto h-100">
-                    <h1 class="text-center display-4">
-                        "We are proud to drive towards change with the following organizations. We are proud to drive towards change with the following organizations."
-                    </h1>
-                    <p class="text-center text-muted" style="padding: 20px;">
-                        - {{ config('app.ngo_name') }}
-                    </p>
-                </div>
+            <div class="col-12 col-md-6 col-lg-6 d-flex align-items-center" style="height: 330px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px;">
+                <img class="d-block m-auto" src="{{ asset('images/branding/partners/logos/britannia.png') }}" alt="" srcset="" style="width: 90%;">
+            </div>            
+        </div>
+    </div>
+
+    <div class="container d-block d-md-none mb-8">
+        <div class="row justify-content-center align-items-center">            
+            <div class="col-12 col-md-6 col-lg-6 d-flex align-items-center" style="height: 330px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px;">
+                <img class="d-block m-auto" src="{{ asset('images/branding/partners/logos/britannia.png') }}" alt="" srcset="" style="width: 90%;">
+            </div>            
+            <div class="col-12 col-md-6 col-lg-6 align-self-center px-md-4 mt-md-0 mt-5">
+                <h2 class="display-4 mb-4">
+                    Official Partner
+                </h2>            
+                <p class="display-7">
+                    <span class="font-bold fst-italic text-theme">Britannia</span> keep helping us with materialistic things like they provided 2000 units of Britannia biscuits to our ngo in covid pandemic to needy , malnourished & unprivileged kids
+                </p>
+            </div>                    
+        </div>
+    </div>
+
+    <div class="container mb-8">
+        <div class="row justify-content-center align-items-center">            
+            <div class="col-12 col-md-6 col-lg-6 d-flex align-items-center" style="height: 330px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px;">
+                <img src="{{ asset('images/branding/partners/logos/zomato.png') }}" alt="" srcset="" style="width: 100%;">
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 align-self-center px-md-4 mt-md-0 mt-5">
+                <h2 class="display-4 mb-4">
+                    Official Partner
+                </h2>
+                <p class="display-7">
+                    <span class="font-bold fst-italic text-theme">Feeding India by Zomato</span> keep providing ration kits for handicap , old age & keep helping in daily feeding program  , we are feeding more than 8000 families in pan india in partnership with Zomato Feeding India
+                </p>
             </div>
         </div>
+    </div>
+
+    <div class="container d-none d-md-block">
+        <div class="row justify-content-center align-items-center">            
+            <div class="col-12 col-md-6 col-lg-6 align-self-center px-md-4 mt-md-0 mt-5">
+                <h2 class="display-4 mb-4">
+                    Technology Partner
+                </h2>            
+                <p class="display-7">
+                    <span class="font-bold fst-italic text-theme">Icrewsystems</span> help us with the technology behind our digital platform making it more user friendly and making donations easy, secure and transparent
+                </p>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 d-flex align-items-center" style="height: 330px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px;">
+                <img class="d-block m-auto" src="{{ asset('images/branding/partners/logos/icrew.png') }}" alt="" srcset="" style="width: 90%;">
+            </div>            
+        </div>
+    </div>
+
+    <div class="container d-block d-md-none">
+        <div class="row justify-content-center align-items-center">            
+            <div class="col-12 col-md-6 col-lg-6 d-flex align-items-center" style="height: 330px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px;">
+                <img class="d-block m-auto" src="{{ asset('images/branding/partners/logos/icrew.png') }}" alt="" srcset="" style="width: 90%;">
+            </div>            
+            <div class="col-12 col-md-6 col-lg-6 align-self-center px-md-4 mt-md-0 mt-5">
+                <h2 class="display-4 mb-4">
+                    Technology Partner
+                </h2>            
+                <p class="display-7">
+                    <span class="font-bold fst-italic text-theme">Icrewsystems</span> help us with the technology behind our digital platform making it more user friendly and making donations easy, secure and transparent
+                </p>
+            </div>                    
+        </div>
+    </div>
+
     </div>
 </section>
 

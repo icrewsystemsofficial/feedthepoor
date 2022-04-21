@@ -69,6 +69,7 @@ class HomeController extends Controller
 
     public function about()
     {
+        $causes = Causes::all();
 
         $locations = Location::where('location_status', 1)->get();
 
@@ -76,7 +77,7 @@ class HomeController extends Controller
 
         return view('frontend.about.index', [
             'locations' => $locations,
-           
+            'causes' => $causes
         ]);
     }
     
@@ -87,7 +88,8 @@ class HomeController extends Controller
      */
     public function partners () 
     {
-        return view('frontend.partners.index');
+        $causes = Causes::all();
+        return view('frontend.partners.index' , ['causes' => $causes]);
     }
 
     public function volunteer()
@@ -113,7 +115,7 @@ class HomeController extends Controller
 
         return view('frontend.donation.index', [
             'donation_types' => $donation_types,
-            
+            'causes' => $causes
             
         ]);
     }
