@@ -152,6 +152,7 @@
    <script src="{{ asset('js/alpine.js') }}" defer></script>
    {{-- SWEETALERT JS --}}
    <script src="{{ asset('js/sweetalert.js') }}"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    @yield('js')
 </head>
 
@@ -224,6 +225,17 @@
          </footer>
       </div>
    </div>
+<script>
+   function markNotificationsAsRead() {
+      axios.get("{{ route('admin.markasread', auth()->user()->id) }}")
+      .then(function(response) {
+            console.log(response.data);
+      })
+      .catch(function(error) {
+            toastr['error']('There was an error: ' + error, 'Whoopsie');
+      });
+   }
+</script>
 </body>
 
 </html>

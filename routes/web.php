@@ -77,6 +77,7 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
     Route::post('/profile/save', [DashboardController::class, 'edit_profile'])->name('profile.save');
+    Route::get('/markAllNotificationsAsRead/{userid}', [DashboardController::class, 'mark_as_read'])->name('markasread');
 
     Route::prefix('profile')->as('profile.')->group(function() {
         Route::get('view/{id}', [UsersController::class, 'view'])->name('view');
