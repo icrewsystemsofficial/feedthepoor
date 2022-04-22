@@ -136,13 +136,13 @@
         <br><br>
 
         (Regd. as. {{ config('app.ngo_name') }},
-        PAN : {{config('app.PAN')}} <br>
-        ADDRESS : {{ config('app.address') }}
+        PAN: {{config('app.PAN')}} <br>
+        ADDRESS: {{ config('app.address') }}
         <br><br>
         <i>For support, visit {{ config('app.url') }}/support or call +91 999999999</i>
 
         <br><br>
-        Our IT Infrastructure is proudly built & maintained by &nbsp; <a href="https://icrewsystems.com/en?_ref={{ config('app.url') }}">icrewsystems</a> for free-of-charge.
+        Our IT Infrastructure is proudly built & maintained by <a href="https://icrewsystems.com/en?_ref={{ config('app.url') }}">icrewsystems</a> for free-of-charge.
 
         <br><br>
         Follow us on instagram <small>@roshni_foundation1</small> to see daily updates about our day-to-day operations
