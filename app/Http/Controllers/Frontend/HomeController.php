@@ -141,16 +141,13 @@ class HomeController extends Controller
      * @param  mixed $payment_id
      * @return void
      */
-    public function thank_you($payment_id=null)
+    public function thank_you($payment_id = null)
     {
-
-        $donationDetails = Donations::latest()->first();
-
         if ($payment_id == null) {
-            return redirect()->route('frontend.donate');
-        } else if ($payment_id != $donationDetails->razorpay_payment_id) {
-            return redirect()->route('frontend.donate')->with('error','Oops, There is a problem with your payment id , Check it!!!');        
+            return redirect()->route('frontend.donate')->with('error','Oops, you tried to visit the payment page without the proper ID. If you are unaware of the
+            payment ID, please check the e-mail ID you provided during the time of donation. For more help, contact support.');
         }
+
         return view('frontend.donation.thank_you', [
             'payment_id' => $payment_id,
             'payment' => app(RazorpayAPIController::class)->fetch_payment($payment_id),
