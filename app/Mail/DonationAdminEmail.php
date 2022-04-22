@@ -8,7 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use romanzipp\QueueMonitor\Traits\IsMonitored;
 
-class DonationAdminEmail extends Mailable
+class DonationAdminEmail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels, IsMonitored;
     public $details;

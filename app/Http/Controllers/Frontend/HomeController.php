@@ -69,6 +69,7 @@ class HomeController extends Controller
 
     public function about()
     {
+        $causes = Causes::all();
 
         $locations = Location::where('location_status', 1)->get();
 
@@ -76,13 +77,18 @@ class HomeController extends Controller
 
         return view('frontend.about.index', [
             'locations' => $locations,
-
         ]);
     }
 
-    public function partners()
+    /**
+     * partners - Page which lists all the partners of the organisation
+     *
+     * @return void
+     */
+    public function partners ()
     {
-        return view('frontend.partners.index');
+        $causes = Causes::all();
+        return view('frontend.partners.index' , ['causes' => $causes]);
     }
 
     public function volunteer()
@@ -108,7 +114,7 @@ class HomeController extends Controller
 
         return view('frontend.donation.index', [
             'donation_types' => $donation_types,
-
+            'causes' => $causes
 
         ]);
     }
@@ -259,13 +265,17 @@ class HomeController extends Controller
         $cause = Causes::find($donation->cause_id);
 
         $payment['name'] = $user->name;
+        $payment['date'] = date('d-m-Y', strtotime($donation->created_at));
         $payment['email'] = $user->email;
         $payment['phone'] = $user->phone_number;
         $payment['pan'] = $user->pan_number;
+        $payment['donation_amount'] = $donation->donation_amount;
         $payment['amt_in_words'] = $donation->donation_in_words;
         $payment['quantity'] = (int) $donation->donation_amount / $cause->per_unit_cost;
         $payment['amount'] = $donation->donation_amount;
         $payment['cause'] = $cause->name;
+        $payment['receipt_no'] = $donation->id;
+        $payment['razorpay_id'] = $donation->razorpay_payment_id;
         $payment['tracking_url'] = route('frontend.track-donation', $donation->razorpay_payment_id);
 
         $pdf = PDF::loadView('pdf.receipts.receipt', ['data' => [
@@ -292,6 +302,7 @@ class HomeController extends Controller
         Anirudh R
         */
 
-        return $pdf->stream('receipt.pdf');
+        $filename = 'donation_receipt_'.$donation->razorpay_payment_id.'.pdf';
+        return $pdf->stream($filename);
     }
 }

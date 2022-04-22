@@ -46,6 +46,12 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="{{ route('frontend.partners') }}" class="nav-link">
+                            Partners
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{ route('frontend.index') }}" class="nav-link">
                             Activity
                         </a>
