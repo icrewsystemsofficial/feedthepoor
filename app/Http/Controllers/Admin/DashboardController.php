@@ -12,14 +12,6 @@ use App\Notifications\GeneralNotification;
 class DashboardController extends Controller
 {
     public function index() {
-        // Auth::user()->notify(new GeneralNotification(
-        //     $body = 'VOMM - Airport has been updated',
-        //     $title = 'Flight Operations',
-        //     $action = 'occ/admin/flightops/airports',
-        //     $type = '0',
-        //     $icon = 'shield',
-        //     $color = 'warning')
-        // );
         // NotificationHelper::notify()->users(Auth::user())->content("Check","Working");
         return view('admin.dashboard.index');
     }

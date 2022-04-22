@@ -229,7 +229,7 @@
    function markNotificationsAsRead() {
       axios.get("{{ route('admin.markasread', auth()->user()->id) }}")
       .then(function(response) {
-            console.log(response.data);
+            window.location.reload();
       })
       .catch(function(error) {
             toastr['error']('There was an error: ' + error, 'Whoopsie');
