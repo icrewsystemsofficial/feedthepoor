@@ -29,10 +29,8 @@ class RolesandPermissionsSeeder extends Seeder
           // Seed the default permissions
           $permissions = array(
             'supreme_control',
-
             'can_manage_settings',
             'can_manage_payments',
-
             'can_manage_missions',
             'can_manage_users',
             'can_manage_campaigns'
@@ -81,7 +79,7 @@ class RolesandPermissionsSeeder extends Seeder
         //       $this->command->error('No users were given administrator access. Add manually using artisan command to view the dashboard, OR run the seeder again');
         //   }
 
-        $users = User::all();
+              $users = User::all();
               foreach($users as $user) {
                 $user->assignRole('superadmin');
                 $this->command->info("SUPER ADMIN: Access granted for $user->name.");
