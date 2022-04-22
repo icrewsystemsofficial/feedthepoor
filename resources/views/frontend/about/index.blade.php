@@ -28,15 +28,7 @@
     var map = L.map('map').setView([23.23, 80], 2);
 
     @foreach($locations as $location)
-    L.marker([{
-            {
-                $location - > location_latitude
-            }
-        }, {
-            {
-                $location - > location_longitude
-            }
-        }])
+        L.marker([{{ $location->location_latitude}}, {{ $location->location_longitude }}])
         .bindTooltip('{{ $location->location_name }}')
         .addTo(map);
     @endforeach
@@ -309,103 +301,111 @@ We are doing these social welfare activities at national level & mass level , ou
 <section class="section section-lg pt-5">
     <div class="container text-center">
         <div class="row mb-1">
-            <div class="col">
-                <h2 class="h4 fw-light">
-                    We have partnered with over
-                    <span class="fw-bold">3</span> corparate brands
-                    across India
-                </h2>
+            <div class="col-md-6 mx-auto">
+                <h3 class="display-4">
+                    <span class="text-theme">Together</span>, we can do so much.
+                </h3>
+                <p>
+                    We have partnered with brands that
+                    have helped us directly by sponsoring donation campaigns, providing
+                    us with material goods for distribution or provide their
+                    valueable goods and services for the betterment of the NGO.
+                </p>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-10 col-lx-10">
                 <ul class="d-flex flex-wrap justify-content-center list-unstyled">
-                    <li class="mx-3 mb-1 "><img class="image-fluid" src="{{ asset('images/about_us/Nestle.jpeg') }}" width="250px" height="10px" alt="nestle logo"></li>
-                    <li class="mx-3 mb-1"><img class="image-fluid pt-4" src="{{ asset('images/about_us/Zomato.png') }}" width="250px" height="10px" alt="paypal logo"></li>
-                    <li class="mx-3 mb-1"><img class="image-fluid pt-4" src="{{ asset('images/about_us/Britannia_Industries_logo.svg.png') }}" width="250px" height="10px" alt="corsair logo"></li>
+                    {{-- <li class="mx-3 mb-1"><img class="image-fluid pt-4" src="{{ asset('images/about_us/Britannia_Industries_logo.svg.png') }}" width="150px" height="auto" alt="corsair logo"></li>
+                    <li class="mx-3 mb-1 "><img class="image-fluid" src="{{ asset('images/about_us/Nestle.jpeg') }}" width="250px" height="auto" alt="nestle logo"></li>
+                    <li class="mx-3 mb-1"><img class="image-fluid pt-4" src="{{ asset('images/about_us/Zomato.png') }}" width="250px" height="auto" alt="paypal logo"></li> --}}
+                    <li class="mx-3 mb-1"><img class="image-fluid pt-4" src="{{ asset('images/branding/partners/logos/logos-cluster.png') }}" width="550px" height="auto" alt="corsair logo"></li>
                 </ul>
+
+                <a href="{{ route('frontend.partners') }}" class="btn btn-theme text-white">View more about our partners</a>
             </div>
         </div>
     </div>
 </section>
 
+{{-- <section class="section">
+    <div class="container">
 
-<div class="container">
-
-    <div class="row mb-4">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{ asset('images/about_us/Nestle_donation_1.jpg') }}" class="d-block mx-auto w-50" alt="...">
+        <div class="row mb-4">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ asset('images/about_us/Nestle_donation_1.jpg') }}" class="d-block mx-auto w-50" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/about_us/Nestle_donation_2.jpg') }}" class="d-block mx-auto w-50" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/about_us/Nestle_donation_3.jpg') }}" class="d-block mx-auto w-50" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/about_us/Nestle_donation_4.jpg') }}" class="d-block mx-auto w-50" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/about_us/Nestle_donation_5.jpg') }}" class="d-block mx-auto w-50" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/about_us/Nestle_donation_6.jpg') }}" class="d-block mx-auto w-50" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/about_us/Nestle_donation_7.jpg') }}" class="d-block mx-auto w-50" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/about_us/Nestle_donation_8.jpg') }}" class="d-block mx-auto w-50" alt="...">
+                    </div>
                 </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('images/about_us/Nestle_donation_2.jpg') }}" class="d-block mx-auto w-50" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('images/about_us/Nestle_donation_3.jpg') }}" class="d-block mx-auto w-50" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('images/about_us/Nestle_donation_4.jpg') }}" class="d-block mx-auto w-50" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('images/about_us/Nestle_donation_5.jpg') }}" class="d-block mx-auto w-50" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('images/about_us/Nestle_donation_6.jpg') }}" class="d-block mx-auto w-50" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('images/about_us/Nestle_donation_7.jpg') }}" class="d-block mx-auto w-50" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('images/about_us/Nestle_donation_8.jpg') }}" class="d-block mx-auto w-50" alt="...">
-                </div>
+                <button class="carousel-control-prev text-secondary" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next text-secondary" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <button class="carousel-control-prev text-secondary" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next text-secondary" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
-    </div>
 
-    <div class="row mt-2">
-        <div class="col">
-            <img class="card shadow-lg image-fluid" src="{{ asset('images/about_us/Nestle.jpeg') }}" width="300px" height="10px" alt="nestle logo">
+        <div class="row mt-2">
+            <div class="col">
+                <img class="card shadow-lg image-fluid" src="{{ asset('images/about_us/Nestle.jpeg') }}" width="300px" height="10px" alt="nestle logo">
+            </div>
+            <div class="col pt-4">
+                <p class="text-secondary fs-5"> Nestle is our official partner , Nestle keep helping us with materialistic things like they provided <strong class="text-success fw-bolder"> 4,000 units of Nestle Milo </strong> to our ngo in covid pandemic to needy , malnourished & unprivileged kids to improve their immunity to fight with covid </p>
+            </div>
         </div>
-        <div class="col pt-4">
-            <p class="text-secondary fs-5"> Nestle is our official partner , Nestle keep helping us with materialistic things like they provided <strong class="text-success fw-bolder"> 4,000 units of Nestle Milo </strong> to our ngo in covid pandemic to needy , malnourished & unprivileged kids to improve their immunity to fight with covid </p>
-        </div>
-    </div>
 
-    <div class="row mt-2">
+        <div class="row mt-2">
 
-        <div class="col pt-4">
-            <p class="text-secondary fs-5"> Zomato Feeding India is also our official partner they keep providing ration kits for handicap , old age & keep helping in daily feeding program , we are <strong class="text-success fw-bolder"> feeding more than 8000 families in pan india </strong> in partnership with Zomato Feeding India </p>
+            <div class="col pt-4">
+                <p class="text-secondary fs-5"> Zomato Feeding India is also our official partner they keep providing ration kits for handicap , old age & keep helping in daily feeding program , we are <strong class="text-success fw-bolder"> feeding more than 8000 families in pan india </strong> in partnership with Zomato Feeding India </p>
+            </div>
+            <div class="col">
+                <img class=" my-4 mx-2 card shadow-lg image-fluid" src="{{ asset('images/about_us/Zomato.png') }}" width="300px" height="10px" alt="nestle logo">
+            </div>
         </div>
-        <div class="col">
-            <img class=" my-4 mx-2 card shadow-lg image-fluid" src="{{ asset('images/about_us/Zomato.png') }}" width="300px" height="10px" alt="nestle logo">
-        </div>
-    </div>
 
-    <div class="row mt-2">
-        <div class="col">
-            <img class=" my-4 mx-2  p-2 card shadow-lg image-fluid" src="{{ asset('images/about_us/Britannia_Industries_logo.svg.png') }}" width="300px" height="10px" alt="nestle logo">
+        <div class="row mt-2">
+            <div class="col">
+                <img class=" my-4 mx-2  p-2 card shadow-lg image-fluid" src="{{ asset('images/about_us/Britannia_Industries_logo.svg.png') }}" width="300px" height="10px" alt="nestle logo">
+            </div>
+            <div class="col pt-4">
+                <p class="text-secondary fs-5">Britannia is also our official partner , Britannia keep helping us with materialistic things like they provided <strong class="text-success fw-bolder"> 2000 units of Britannia biscuits </strong> to our ngo in covid pandemic to needy , malnourished & unprivileged kids </p>
+            </div>
         </div>
-        <div class="col pt-4">
-            <p class="text-secondary fs-5">Britannia is also our official partner , Britannia keep helping us with materialistic things like they provided <strong class="text-success fw-bolder"> 2000 units of Britannia biscuits </strong> to our ngo in covid pandemic to needy , malnourished & unprivileged kids </p>
-        </div>
-    </div>
 
-    <div class="row">
-        <p class="text-secondary fs-2 text-center pt-4"> For all Techinal & IT Support</p>
+        <div class="row">
+            <p class="text-secondary fs-2 text-center pt-4"> For all Techinal & IT Support</p>
+        </div>
+        <div class="d-flex justify-content-center ">
+            <img class=" my-2    mx-2  p-2 image-fluid" src="{{ asset('theme/assets/img/icrewsystems_logo_highres.png') }}" width="270px" height="10px" alt="icrew logo">
+        </div>
     </div>
-    <div class="d-flex justify-content-center ">
-        <img class=" my-2    mx-2  p-2 image-fluid" src="{{ asset('theme/assets/img/icrewsystems_logo_highres.png') }}" width="270px" height="10px" alt="icrew logo">
-    </div>
-</div>
+</section> --}}
 
 
 
