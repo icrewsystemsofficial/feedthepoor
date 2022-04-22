@@ -56,7 +56,7 @@ class HomeController extends Controller
         $donation_names = json_encode($names);
 
         $causes = Causes::all();
-        
+
 
         return view('frontend.index', [
             'donation_images' => $donation_random_images,
@@ -73,20 +73,20 @@ class HomeController extends Controller
 
         $locations = Location::where('location_status', 1)->get();
 
-     
+
 
         return view('frontend.about.index', [
             'locations' => $locations,
             'causes' => $causes
         ]);
     }
-    
+
     /**
      * partners - Page which lists all the partners of the organisation
      *
      * @return void
      */
-    public function partners () 
+    public function partners ()
     {
         $causes = Causes::all();
         return view('frontend.partners.index' , ['causes' => $causes]);
@@ -94,7 +94,7 @@ class HomeController extends Controller
 
     public function volunteer()
     {
-        $causes = Causes::all();   
+        $causes = Causes::all();
         return view('frontend.volunteer.index' , ['causes' => $causes]);
     }
 
@@ -116,7 +116,7 @@ class HomeController extends Controller
         return view('frontend.donation.index', [
             'donation_types' => $donation_types,
             'causes' => $causes
-            
+
         ]);
     }
 
@@ -128,7 +128,7 @@ class HomeController extends Controller
      */
     public function donate_process($razorpay_order_id = null)
     {
-        
+
         if ($razorpay_order_id == null) {
             return redirect()->route('frontend.donate');
         }
@@ -137,7 +137,7 @@ class HomeController extends Controller
         //TODO Handle failure
         return view('frontend.donation.payment', [
             'order' => $order,
-            
+
         ]);
     }
 
@@ -149,11 +149,11 @@ class HomeController extends Controller
      */
     public function thank_you($payment_id = null)
     {
-     
+
         return view('frontend.donation.thank_you', [
             'payment_id' => $payment_id,
             'payment' => app(RazorpayAPIController::class)->fetch_payment($payment_id),
-          
+
         ]);
     }
 
@@ -162,20 +162,20 @@ class HomeController extends Controller
     public function track_donation($donation_id = '')
     {
 
-       
+
         $faker = Factory::create('en_IN');
         $donation_name = $faker->firstName();
 
         // dd($names_json);
         return view('frontend.tracking.tracking', [
             'donation_name' => $donation_name,
-          
+
         ]);
     }
 
     public function faq()
     {
-        
+
         $faq_categories = DB::table('faq_categories')->where('category_status', 1)->get();
         $faq_entries =   FaqEntries::get();
         // dd($faq_entries);
@@ -185,7 +185,7 @@ class HomeController extends Controller
 
     public function contact()
     {
-        
+
         return view('frontend.contact.contactus');
     }
 
@@ -256,7 +256,7 @@ class HomeController extends Controller
             return redirect()->route('frontend.donate');
         }
 
-        $donation = Donations::where('id', $id)->firstOrFail();
+        $donation = Donations::where('razorpay_payment_id', $id)->firstOrFail();
         $user = User::find($donation->donor_id);
         $cause = Causes::find($donation->cause_id);
 
@@ -298,6 +298,7 @@ class HomeController extends Controller
         Anirudh R
         */
 
-        return $pdf->stream('receipt.pdf');
+        $filename = 'donation_receipt_'.$donation->razorpay_payment_id.'.pdf';
+        return $pdf->stream($filename);
     }
 }

@@ -59,7 +59,6 @@ class DonationMail extends Mailable implements ShouldQueue
     {
         // TODO Attach PDF along with this
         return $this->subject('['.config('app.ngo_name').'] Your donation was received successfully ✅💚')
-                    ->markdown('emails.donation', ['details' => $this->details])
-                    ->attach($this->get_receipt_pdf($this->details['id']));
+                    ->markdown('emails.donation', ['details' => $this->details]);
     }
 }

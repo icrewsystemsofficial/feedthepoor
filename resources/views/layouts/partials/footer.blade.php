@@ -1,7 +1,7 @@
 @section('js')
 @endsection
 
-@if(!in_array(Route::currentRouteName(), ['frontend.donate', 'frontend.donate.payment', 'frontend.donate.thank_you']))
+@if(!in_array(Route::currentRouteName(), ['frontend.donate', 'frontend.donate.payment', 'frontend.donate.thank_you', 'frontend.donate.process']))
 <section class="section py-0">
    <div class="container z-2">
       <div class="row position-relative justify-content-center align-items-center">

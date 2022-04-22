@@ -52,6 +52,7 @@ $donation_quantities = array(
                 email: '',
                 phone: '',
                 pan: '',
+                address: '',
                 checkbox_80g: true,
                 checkbox_updates: true,
                 checkbox_terms_and_conditions: false,
@@ -299,12 +300,17 @@ $donation_quantities = array(
                                 </div>
 
                                 <div class="mt-2 mb-3">
-                                    <label for="name">Phone</label>
-                                    <input type="phone" class="form-control" name="phone" maxlength="10" />
+                                    <label for="name">Phone <span class="text-danger">*</span></label>
+                                    <input type="phone" class="form-control" name="phone" maxlength="10" required="required" />
+                                </div>
+
+                                <div class="mt-2 mb-3">
+                                    <label for="name">Address <span class="text-danger">*</span></label>
+                                    <textarea name="address" class="form-control" placeholder="Enter your address (as per Govt. ID)" required="required"></textarea>
                                 </div>
 
                                 <div class="mt-2 mb-3" x-show="razorpayForm.checkbox_80g">
-                                    <label for="name">PAN Card</label>
+                                    <label for="name">PAN Card <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="pan" maxlength="10" />
                                     <span class=" text-muted mt-2">
                                         <small>
