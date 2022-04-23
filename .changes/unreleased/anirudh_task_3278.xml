@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature>
+  <change type="major">PDF receipts are now added via a link on the e-mails so that the user can view it whenever they want</change>
+</feature>

@@ -40,7 +40,7 @@
       <tr>
         <td widdth="50%" style="background:#eee;padding:20px;">
           <strong>Date:</strong> {{ $data['payment']['date'] }}<br>
-          <strong>Cause:</strong> {{ $data['payment']['cause'] }}<br>          
+          <strong>Cause:</strong> {{ $data['payment']['cause'] }}<br>
           <strong>Tracking URL:</strong> <a href="{{ $data['payment']['tracking_url'] }}">{{ $data['payment']['tracking_url'] }}</a><br>
         </td>
       </tr>
@@ -56,8 +56,6 @@
             </strong> <br>
             @if ($data['payment']['pan'])
                 Eligible for 80G Tax Exemption
-            @else
-                Not Eligible for 80G Tax Exemption
             @endif
          </td>
          <td width="20%" class="column-header"></td>
@@ -70,7 +68,7 @@
            </span>
            <br>
            {{ $data['payment']['name'] }}, <br>
-           {{ $data['user']->address }}
+           {{ $data['user']->address ?? 'ADDRESS NOT PROVIDED' }}
        </td>
         <td class="row">
            <span style="color:#777;font-size:11px;">
@@ -84,7 +82,7 @@
                 AMOUNT RECEIVED
             </span>
             <br>
-            Rs {{ $data['payment']['donation_amount'] }}
+            Rs. {{ $data['payment']['donation_amount'] }}
 
             <br><br>
 
@@ -97,23 +95,13 @@
          </td>
       </tr>
        <tr>
-        @if ($data['payment']['pan'])                
-            <td class="row">
-                <span style="color:#777;font-size:11px;">
-                PAN
-            </span>
-            <br>
-            {{ $data['payment']['pan'] }}
-            </td>
-        @else
-            <td class="row">
-                <span style="color:#777;font-size:11px;">
-                PAN
-            </span>
-            <br>
-            NULL
-            </td>
-        @endif
+        <td class="row">
+            <span style="color:#777;font-size:11px;">
+            PAN
+        </span>
+        <br>
+        {{ $data['payment']['pan'] ?? 'NOT PROVIDED' }}
+        </td>
         <td class="row">
            <span style="color:#777;font-size:11px;">
                PAYMENT #
@@ -148,13 +136,13 @@
         <br><br>
 
         (Regd. as. {{ config('app.ngo_name') }},
-        PAN : {{config('app.PAN')}} <br>
-        ADDRESS : {{ config('app.address') }}
+        PAN: {{config('app.PAN')}} <br>
+        ADDRESS: {{ config('app.address') }}
         <br><br>
         <i>For support, visit {{ config('app.url') }}/support or call +91 999999999</i>
 
         <br><br>
-        Our IT Infrastructure is proudly built & maintained by &nbsp; <a href="https://icrewsystems.com/en?_ref={{ config('app.url') }}">icrewsystems</a> for free-of-charge.
+        Our IT Infrastructure is proudly built & maintained by <a href="https://icrewsystems.com/en?_ref={{ config('app.url') }}">icrewsystems</a> for free-of-charge.
 
         <br><br>
         Follow us on instagram <small>@roshni_foundation1</small> to see daily updates about our day-to-day operations
