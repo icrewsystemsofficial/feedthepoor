@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Causes;
 use App\Models\Location;
 use App\Models\Donations;
+use App\Models\Campaigns;
 use App\Jobs\SendAdminJob;
 use App\Models\FaqEntries;
 use App\Models\userContact;
@@ -69,7 +70,6 @@ class HomeController extends Controller
 
     public function about()
     {
-        $causes = Causes::all();
 
         $locations = Location::where('location_status', 1)->get();
 
@@ -77,7 +77,6 @@ class HomeController extends Controller
 
         return view('frontend.about.index', [
             'locations' => $locations,
-            'causes' => $causes
         ]);
     }
     
@@ -88,14 +87,12 @@ class HomeController extends Controller
      */
     public function partners () 
     {
-        $causes = Causes::all();
-        return view('frontend.partners.index' , ['causes' => $causes]);
+        return view('frontend.partners.index');
     }
 
     public function volunteer()
     {
-        $causes = Causes::all();   
-        return view('frontend.volunteer.index' , ['causes' => $causes]);
+        return view('frontend.volunteer.index');
     }
 
     /**
@@ -118,6 +115,36 @@ class HomeController extends Controller
             'causes' => $causes
             
         ]);
+    }
+    
+    /**
+     * campaigns - the page where users can donate money towards a campaign
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function campaigns(Request $request)
+    {
+        
+        $campaign = Campaigns::where(['slug' => $request->slug, 'campaign_status' => Campaigns::$status['ACTIVE'] ])->first();
+        $donation_details = array(
+            'total' => 0,
+            'donation_amount' => 0,
+        );
+        $donations = Donations::where('campaign_id', $campaign->id)->get();
+        foreach ($donations as $donation) {
+            $donation_details['total']++;
+            $donation_details['donation_amount'] += $donation->donation_amount;
+        }
+        dd([
+            'campaign' => $campaign,
+            'donation_details' => $donation_details
+        ]);
+        return view('frontend.campaigns.index', [
+            'campaign' => $campaign,
+            'donation_details' => $donation_details
+        ]);
+
     }
 
     /**

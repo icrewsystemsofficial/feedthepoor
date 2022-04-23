@@ -53,7 +53,7 @@ Route::name('frontend.')->group(function () {
     Route::get('/receipt/{id?}', [HomeController::class, 'receipt'])->name('donations.receipt');
 
 
-    Route::get('/campaigns', [HomeController::class, 'index'])->name('campaigns');
+    Route::get('/campaigns/{slug?}', [HomeController::class, 'campaigns'])->name('campaigns');
     Route::get('/track-donation/{donation_id?}', [HomeController::class, 'track_donation'])->name('track-donation');
     Route::get('/transparency-report', [HomeController::class, 'index'])->name('transparency-report');
 
@@ -197,8 +197,5 @@ Route::get('/dashboard', function () {
     return redirect()->route('admin.dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/test', function () {
-    return view('pdf.receipts.receipt');
-});
 
 require __DIR__ . '/auth.php';

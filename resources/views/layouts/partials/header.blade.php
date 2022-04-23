@@ -74,21 +74,16 @@
                                     </div>
                                 </div> --}}
                                 <div class="col p-3">
-                                    <span class="h5 uppercase p-2 text-sm">
-                                        <small>
-                                            Causes
-                                        </small>
-                                    </span>
                                     <ul class="list-style-none">
 
                                         @php
-                                            $causes = App\Models\Causes::all();
+                                            $campaigns = App\Helpers\CampaignsHelper::getActiveCampaigns();
                                         @endphp
 
-                                        @foreach ($causes as $cause)
+                                        @foreach ($campaigns as $campaign)
                                             <li>
-                                                <a class="dropdown-item" href="#">
-                                                    {{ $cause->name }}
+                                                <a class="dropdown-item" href="{{ route('frontend.campaigns', $campaign->slug) }}">
+                                                    {{ $campaign->campaign_name }}
                                                 </a>
                                             </li>
                                         @endforeach

@@ -29,10 +29,10 @@ Add all custom css declarations here
     width: 100% !important;
 }
 .select2-close-mask{
-    z-index: 2099;
+    z-index: 2099 !important;
 }
 .select2-dropdown{
-    z-index: 3051;
+    z-index: 3051 !important;
 }
 .form-check {
     padding-left: 0px !important;

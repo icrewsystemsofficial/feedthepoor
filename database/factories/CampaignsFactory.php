@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Campaigns;
 use App\Models\Location;
 use App\Models\Causes;
+use Illuminate\Support\Str;
 
 class CampaignsFactory extends Factory
 {
@@ -32,8 +33,9 @@ class CampaignsFactory extends Factory
         }
         $cause_bool = rand(0, 1);
         $is_goal = rand(0, 1);
+        $name = $this->faker->name;
         return [
-            'campaign_name' => $this->faker->name,
+            'campaign_name' => $name,
             'campaign_description' => $this->faker->text,
             'campaign_poster' => $this->faker->imageUrl(),
             'is_campaign_goal_based' => $is_goal,
@@ -44,6 +46,7 @@ class CampaignsFactory extends Factory
             'campaign_has_cause' => $cause_bool,
             'campaign_causes' => ($cause_bool) ? json_encode($causes) : json_encode([]),
             'campaign_status' => $this->faker->numberBetween(0, 1),            
+            'slug' => Str::slug($name),
         ];
     }
 }
