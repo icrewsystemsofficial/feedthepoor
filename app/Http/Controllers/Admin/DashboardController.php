@@ -12,7 +12,6 @@ use App\Notifications\GeneralNotification;
 class DashboardController extends Controller
 {
     public function index() {
-        // NotificationHelper::notify()->users(Auth::user())->content("Check","Working");
         return view('admin.dashboard.index');
     }
 

@@ -4,6 +4,7 @@ namespace App\Helpers;
 use App\Models\User;
 use App\Notifications\GeneralNotification;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationHelper {
 
@@ -12,31 +13,57 @@ class NotificationHelper {
      *
      * @return array
      */
-    // public $users;
-    // public $title;
-    // public $body;
+    public $user;
+    public $title;
+    public $body;
+    public $action = '#';
+    public $type = 0;
+    public $icon;
+    public $color;
 
-    // public function content($title, $body){
-    //     $this->title = $title;
-    //     $this->body = $body;
-    //     return $this;
-    // }
+    public function action($action){
+        $this->action = $action;
+        return $this;
+    }
 
-    // public function users($users){
-    //     $this->users = $users;
-    //     return $this;
-    // }
+    public function tyoe($tyoe){
+        $this->tyoe = $tyoe;
+        return $this;
+    }
 
-    // public function notify(){
-    //     $this->users->notify(new GeneralNotification(
-    //         $body = 'VOMM - Airport has been updated',
-    //         $title = 'Flight Operations',
-    //         $action = 'occ/admin/flightops/airports',
-    //         $type = '0',
-    //         $icon = 'shield',
-    //         $color = 'warning')
-    //     );
-    // }
+    public function icon($icon){
+        $this->icon = $icon;
+        return $this;
+    }
+
+    public function color($color){
+        $this->color = $color;
+        return $this;
+    }
+
+    public function content($title, $body){
+        $this->title = $title;
+        $this->body = $body;
+        return $this;
+    }
+
+    public function user($users){
+        $this->user = $users;
+        return $this;
+    }
+
+    public function notify(){
+        $this->user->notify(new GeneralNotification(
+            $body = $this->body,
+            $title = $this->title,
+            $action = $this->action,
+            $type = $this->type,
+            $icon = $this->icon,
+            $color = $this->color
+            )
+        );
+        return $this;
+    }
 
     public static function getNotifications($howmany = '10') {
         return User::find(auth()->user()->id)
