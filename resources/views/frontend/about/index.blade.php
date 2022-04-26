@@ -459,11 +459,11 @@ We are doing these social welfare activities at national level & mass level , ou
             </div>
             <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
                 <div class="card shadow border-gray-300">
-                    <img src="{{ asset('images/board_members/person1.jpeg') }}" class="card-img-top rounded-top" alt="Bonnie portrait">
+                    <img src="{{ asset('images/board_members/jagdish.jpeg') }}" class="card-img-top rounded-top" alt="Jose Avatar">
                     <div class="card-body">
-                        <h3 class="h4 card-title mb-2">---------</h3>
-                        <span class="card-subtitle text-gray fw-normal">Board Member</span>
-                        <p class="card-text my-3">-- Board Member info --</p>
+                        <h3 class="h4 card-title mb-2"> Dr.Jagdish Moolchandani</h3>
+                        <span class="card-subtitle text-gray fw-normal">Co Founder</span>
+                        <p class="card-text my-3">-- INFORMATION ABOUT JAGDISH -- </p>
                         <ul class="list-unstyled d-flex mt-3 mb-0">
                             <li>
                                 <a href="#" target="_blank" aria-label="facebook social link" class="icon-facebook me-3">
@@ -491,11 +491,11 @@ We are doing these social welfare activities at national level & mass level , ou
             </div>
             <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
                 <div class="card shadow border-gray-300">
-                    <img src="{{ asset('images/board_members/person2.jpeg') }}" class="card-img-top rounded-top" alt="Jose Avatar">
+                    <img src="{{ asset('images/board_members/person1.jpeg') }}" class="card-img-top rounded-top" alt="Bonnie portrait">
                     <div class="card-body">
-                        <h3 class="h4 card-title mb-2">-----------</h3>
-                        <span class="card-subtitle text-gray fw-normal">Board member</span>
-                        <p class="card-text my-3">-- Board Member info -- </p>
+                        <h3 class="h4 card-title mb-2">Sapna Moolchandani</h3>
+                        <span class="card-subtitle text-gray fw-normal">Co Founder</span>
+                        <p class="card-text my-3">-- INFORMATION ABOUT SAPNA --</p>
                         <ul class="list-unstyled d-flex mt-3 mb-0">
                             <li>
                                 <a href="#" target="_blank" aria-label="facebook social link" class="icon-facebook me-3">
@@ -521,6 +521,7 @@ We are doing these social welfare activities at national level & mass level , ou
                     </div>
                 </div>
             </div>
+            
         </div>
 
         <div>
