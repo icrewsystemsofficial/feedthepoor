@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\NotificationHelper;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactsController;
@@ -14,7 +15,7 @@ use App\Http\Controllers\Admin\CampaignsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DonationsController;
 use App\Http\Controllers\Admin\OperationsController;
-
+use App\Models\User;
 
 /*
 
@@ -77,6 +78,23 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
     Route::post('/profile/save', [DashboardController::class, 'edit_profile'])->name('profile.save');
+    Route::get('/markAllNotificationsAsRead/{userid}', [DashboardController::class, 'mark_as_read'])->name('markasread');
+
+
+    # This is a test route, to be removed in production.
+    Route::get('/newnotification', function() {
+        // $notification = new NotificationHelper;
+        // $users = User::all()->pluck('id')->toArray();
+        // $notification
+        // // ->user($users)
+        // ->content('Pure test', 'This is the fourth test')
+        // ->notify();
+
+        app(NotificationHelper::class)
+        ->user(auth()->user())
+        ->content('This rocks', 'Yeah, it really does')
+        ->notify();
+    });
 
     Route::prefix('profile')->as('profile.')->group(function() {
         Route::get('view/{id}', [UsersController::class, 'view'])->name('view');
