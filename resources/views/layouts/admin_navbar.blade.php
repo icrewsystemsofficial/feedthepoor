@@ -8,7 +8,7 @@
              <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
                 <div class="position-relative">
                    <i class="align-middle" data-feather="bell"></i>
-                   
+
                    @if(App\Helpers\NotificationHelper::getUnreadCount() > 0)
                    <span class="indicator">{{ App\Helpers\NotificationHelper::getUnreadCount() }}</span>
                    @endif
@@ -31,9 +31,9 @@
                    </a>
                   @empty
                   <div class="container mt-3">
-                     <div class="alert alert-success">
-                        No notifications to show :D
-                     </div>
+                    <p>
+                        There are no new notifications 😀
+                    </p>
                   </div>
 
                   @endforelse

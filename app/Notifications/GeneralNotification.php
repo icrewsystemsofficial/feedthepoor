@@ -2,6 +2,9 @@
 
 namespace App\Notifications;
 
+
+use Exception;
+use App\Models\Notification as NotificationModel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -24,6 +27,10 @@ class GeneralNotification extends Notification
    public function __construct($body, $title = 'NO_TITLE', $action = '#', $type = '0', $icon = 'bell', $color = 'dark')
    {
 
+        if($body == '') {
+            throw new Exception('Notification body cannot be blank');
+        }
+
         $this->type = $type;
         $this->title = $title;
         $this->body = $body;
@@ -40,11 +47,11 @@ class GeneralNotification extends Notification
      */
    public function via($notifiable)
    {
-      if($this->type == 0) {
+      if($this->type == NotificationModel::$types['APP']) {
         return ['database'];
-      } else if($this->type == 1) {
+      } else if($this->type == NotificationModel::$types['MAIL']) {
         return ['mail'];
-      } else if($this->type == 2) {
+      } else if($this->type == NotificationModel::$types['BOTH']) {
         return  ['mail', 'database'];
       }
    }
@@ -73,7 +80,7 @@ class GeneralNotification extends Notification
      return (new MailMessage)
                ->subject('['.config('app.name').' Notification] '.$title.'')
                ->greeting('Hey there!')
-               ->line('You have a new notification Feed The Poor')
+               ->line('You have a new notification in '. config('app.name') .' ('.config('app.ngo_name').')')
                ->line($this->body)
                ->action('Take a look', url($action))
                ->line('This is an auto-generated email.');
