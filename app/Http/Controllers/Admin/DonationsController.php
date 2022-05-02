@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Donations;
 use App\Models\User;
 use App\Models\Causes;
+use App\Models\Campaigns;
 use App\Events\Donations\AddDonation;
 use PDF;
 
@@ -25,13 +26,14 @@ class DonationsController extends Controller
         $this->validate($request, [
             'donor_id' => 'required|integer',
             'donation_amount' => 'required|numeric',
-            'cause_id' => 'required|integer',
+            'cause_id' => 'integer|exists:causes,id',
+            'campaign_id' => 'integer|exists:campaigns,id',
             'donation_status' => 'required|integer',
             'payment_method' => 'required|integer',
             'razorpay_payment_id' => 'required_if:payment_method,4',
         ]);
         $donor_name = User::find($request->donor_id)->name;
-        $cause_name = Causes::find($request->cause_id)->name;
+        $cause_name = $request->cause_id ? Causes::find($request->cause_id)->name : Campaigns::find($request->campaign_id)->name;
         $donation_in_words = Donations::Show_Amount_In_Words($request->donation_amount);
         $request->merge(['donor_name' => $donor_name, 'cause_name' => $cause_name, 'donation_in_words' => $donation_in_words]);
         // event(new AddDonation($request->all(), 1));//1-> add record, 0-> update record
@@ -48,21 +50,33 @@ class DonationsController extends Controller
     }
 
     public function update(Request $request){
+        if ($request->cause_id == 0){
+            $request->request->remove('cause_id');
+        }
+        if ($request->campaign_id == 0){
+            $request->request->remove('campaign_id');
+        }
         $this->validate($request, [
             'donor_name' => 'required|string',
             'donation_amount' => 'required|numeric',
-            'cause_id' => 'required|integer',
+            'cause_id' => 'sometimes|integer|exists:causes,id',
+            'campaign_id' => 'sometimes|integer|exists:campaigns,id',
             'donation_status' => 'required|integer',
             'payment_method' => 'required|integer',
             'razorpay_payment_id' => 'required_if:payment_method,4',
         ]);
+        if ($request->cause_id && $request->campaign_id){
+            throw ValidationException::withMessages([
+                'cause_id' => ['Please select either cause or campaign'],
+            ]);            
+        }
         $donor = User::whereRaw('LOWER(`name`) LIKE ?', [strtolower($request->donor_name)])->first();
-        $cause_name = Causes::find($request->cause_id)->name;
+        $cause_name = $request->cause_id ? Causes::find($request->cause_id)->name : Campaigns::find($request->campaign_id)->name;
         $donor_name = $donor ? $donor->name : $request->donor_name;
         $donor_id = $donor ? $donor->id : null;
         $donor_id ? $request->merge(['donor_id' => $donor_id]) : null;
         $donation_in_words = Donations::Show_Amount_In_Words($request->donation_amount);
-        $request->merge(['donor_name' => $donor_name, 'cause_name' => $cause_name, 'donation_in_words' => $donation_in_words]);
+        $request->merge(['donor_name' => $donor_name, 'cause_name' => $cause_name, 'donation_in_words' => $donation_in_words]);        
         event(new AddDonation($request->all(), 0, $request->id));//1-> add record, 0-> update record
         alert()->success('Yay','Donation was successfully updated');
         return redirect()->route('admin.donations.index');

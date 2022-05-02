@@ -19,6 +19,7 @@ class Donations extends Model
         'donation_amount',
         'donation_in_words',
         'cause_id',
+        'campaign_id',
         'cause_name',
         'donation_status',
         'payment_method',

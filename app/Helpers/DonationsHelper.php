@@ -6,6 +6,7 @@ use Exception;
 use App\Models\Donations;
 use App\Models\User;
 use App\Models\Causes;
+use App\Models\Campaigns;
 
 class DonationsHelper {
 
@@ -56,7 +57,7 @@ class DonationsHelper {
      * @param  mixed $id
      * @return html
      */
-    public static function getStatus($id) {
+    public static function getStatus(int $id) {
         if($id == ''){
             if($id != 0) {
                 throw new Exception('Error: status ID not passed.' . $id);
@@ -80,7 +81,7 @@ class DonationsHelper {
         return $html;
     }
 
-    public static function getStatusBadges($id){
+    public static function getStatusBadges(int $id){
 
         $all_statuses = self::status();
         $html = '';
@@ -96,7 +97,7 @@ class DonationsHelper {
 
     }
 
-    public static function getAllDonors($id = null) {
+    public static function getAllDonors(int $id = null) {
         $html = '';
         foreach(User::all() as $user) {
             if ($user->id == $id) {
@@ -109,20 +110,41 @@ class DonationsHelper {
         return $html;
     }
 
-    public static function getAllCauses($id = null) {
+    public static function getAllCauses(int $id = null) {
         $html = '';
+        $selected = 0;
         foreach(Causes::all() as $cause) {
             if ($cause->id == $id) {
                 $html .= '<option value="'.$cause->id.'" selected>'.$cause->name.'</option>';
+                $selected = 1;
             }
             else {
                 $html .= '<option value="'.$cause->id.'">'.$cause->name.'</option>';
             }
         }
+        $html .= $selected ? '' : '<option value="0" selected>None</option>';
         return $html;
     }
 
-    public static function getAllPaymentMethods($method = null) {
+    public static function getAllCampaigns(int $id = null){
+
+        $html = '';
+        $selected = 0;
+        foreach(Campaigns::all() as $campaign) {
+            if ($campaign->id == $id) {
+                $html .= '<option value="'.$campaign->id.'" selected>'.$campaign->campaign_name.'</option>';
+                $selected = 1;
+            }
+            else {
+                $html .= '<option value="'.$campaign->id.'">'.$campaign->campaign_name.'</option>';
+            }
+        }
+        $html .= $selected ? '' : '<option value="0" selected>None</option>';
+        return $html;
+
+    }
+
+    public static function getAllPaymentMethods(string $method = null) {
         $html = '';
         $methods = self::all_payment_methods();
         foreach($methods as $method_name => $mid) {
@@ -136,7 +158,7 @@ class DonationsHelper {
         return $html;
     }
 
-    public static function getAllStatuses($status_id = null) {
+    public static function getAllStatuses(int $status_id = null) {
         $all_statuses = self::status();
         $html = '';
         foreach($all_statuses as $id => $status) {

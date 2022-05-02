@@ -202,6 +202,12 @@
                             </select>
                         </div>
                         <div class="form-group mb-3">
+                            <label for="campaign_name" class="form-label">Campaign</label>
+                            <select name="campaign_id" id="campaign_id" class="form-control select2">
+                                {!! App\Helpers\DonationsHelper::getAllCampaigns($donation->campaign_id) !!}
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
                             <label for="donation_status" class="form-label">Status</label>
                             <select class="form-control" id="donation_status" name="donation_status">
                                 {!! App\Helpers\DonationsHelper::getAllStatuses($donation->donation_status) !!}
@@ -288,6 +294,9 @@
         });
         $('#cause_id').select2({
             placeholder: 'Select cause'
+        });
+        $('#campaign_id').select2({
+            placeholder: 'Select campaign'
         });
         $('#payment_method').on('change', function() {
             if($(this).val() == 4) {

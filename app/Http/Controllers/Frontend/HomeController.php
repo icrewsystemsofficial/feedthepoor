@@ -63,8 +63,7 @@ class HomeController extends Controller
             'donation_images' => $donation_random_images,
             'donation_names' => $donation_names,
             'total_meals_fed' => $total_meals_fed,
-            'total_donations_received' => $total_donations_received,
-            'causes' => $causes
+            'total_donations_received' => $total_donations_received,            
         ]);
     }
 
@@ -140,10 +139,7 @@ class HomeController extends Controller
             'campaign' => $campaign,
             'donation_details' => $donation_details
         ]);
-        return view('frontend.campaigns.index', [
-            'campaign' => $campaign,
-            'donation_details' => $donation_details
-        ]);
+        return view('frontend.campaigns.index', compact('campaign', 'donation_details'));
 
     }
 
