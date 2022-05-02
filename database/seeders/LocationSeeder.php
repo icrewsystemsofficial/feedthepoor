@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Location;
+use App\Models\User;
 
 class LocationSeeder extends Seeder
 {
@@ -14,6 +15,8 @@ class LocationSeeder extends Seeder
      */
     public function run()
     {
+        $user = User::first()->id;
+
         $locations = [
             [
                 'location_name' => 'Koramangala, Bangalore',
@@ -21,6 +24,7 @@ class LocationSeeder extends Seeder
                 'location_pin_code' => '560095',
                 'location_latitude' => '12.9459162',
                 'location_longitude' => '77.6169457',
+                'location_manager_id' => $user,
                 'location_status' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -31,6 +35,7 @@ class LocationSeeder extends Seeder
                 'location_pin_code' => '302032',
                 'location_latitude' => '26.9687614',
                 'location_longitude' => '75.7536621',
+                'location_manager_id' => $user,
                 'location_status' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -41,6 +46,7 @@ class LocationSeeder extends Seeder
                 'location_pin_code' => '305004',
                 'location_latitude' => '26.487556',
                 'location_longitude' => '74.625583',
+                'location_manager_id' => $user,
                 'location_status' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
