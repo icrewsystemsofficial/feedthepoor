@@ -1,6 +1,75 @@
 @extends('layouts.frontend')
 
 @section('css')
+<style>
+:root{
+    --percentage: {{ $donation_details['donation_percentage'] }}%;
+}
+.timer-wrap {    
+    width: 100%;
+    text-align: center;
+}
+#timer {
+    width: 100%;
+    font-size: 3.5em;
+    color: #fff;
+    text-align: center;
+    animation: fromLeft .7s ease-in-out forwards;
+}
+
+#timer div {
+    font-family: 'Roboto', sans-serif;
+    display: inline-block;
+    width: 90px;
+    font-weight: 200;   
+    text-align: center;
+    margin-right: 20px; 
+}
+#timer div span {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #aaa;
+    display: block;
+    font-size: .35em;
+    font-weight: 200;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background-color: #ee5166;
+  background-image: linear-gradient(to right, #ee5166 0%, #f08efc var(--percentage),  #fff var(--percentage), #fff 100%);
+  outline: none;
+  border: 1px solid #ebc04c;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 35px;
+  height: 35px;
+  background: red;
+  background-clip:content-box;
+  border: 5px solid red;
+  padding: 2px;
+  border-radius: 50%;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: red;
+}
+
+</style>
+
 @php
 $amounts = array(
 1,
@@ -13,6 +82,30 @@ $amounts = array(
 )
 @endphp
 <script>
+
+    function updateTimer(date) {
+        let future = Date.parse(date);
+        let now = new Date();
+        let diff = future - now;
+
+        let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        let hours = Math.floor(diff / (1000 * 60 * 60));
+        let mins = Math.floor(diff / (1000 * 60));
+        let secs = Math.floor(diff / 1000);
+
+        let d = days;
+        let h = hours - days * 24;
+        let m = mins - hours * 60;
+        let s = secs - mins * 60;        
+
+        let final = '<div>' + d + '<span>Days</span></div>' +
+                    '<div>' + h + '<span>Hours</span></div>' +
+                    '<div>' + m + '<span>Minutes</span></div>' +
+                    '<div>' + s + '<span>Seconds</span></div>';
+        
+        return final;
+    }
+
     // Alpine JS function
 
     function donationPage() {
@@ -44,7 +137,11 @@ $amounts = array(
                 checkbox_terms_and_conditions: false,
             },
 
+            campaignName: '{{ $campaign->campaign_name }}',
+
             amountsArray: @json($amounts),
+
+            timerHtml: '',
 
             // FUNCTIONS START!
 
@@ -53,7 +150,9 @@ $amounts = array(
             */
 
             init() {
-                
+                setInterval(() => {
+                    this.updateTimerHtml();
+                }, 1000);
             },
 
             /*
@@ -65,16 +164,10 @@ $amounts = array(
                 calculates the yield based on that amount.
             */
 
-            updateDonationAmount(amount) {
-
-                this.donationAmount = amount;
-                // this.calculateYield(amount, this.selectedCause.PerUnitCost);
-                this.formatMoney();
-            },
-
             updateDonationAmount(quantity) {
                 this.donationAmount = quantity;
                 this.formatMoney();
+                this.showDonateButton();
             },
 
             updateDonationAmount_custom() {
@@ -87,39 +180,16 @@ $amounts = array(
 
                 this.showCustomDonationBlock = false;
                 this.showCustomDonationButton = true;
+
+                this.showDonateButton();
             },
 
+            updateTimerHtml() {
+                
+                let date = "{{ $campaign->campaign_end_date }}";
+                if (date){this.timerHtml = updateTimer(date);}
 
-
-
-
-            /*
-                Change Yield Context.
-
-                When a specific cause is selected, the context of the yield
-                is also updated from the js array.
-            */
-
-            changeYieldContext() {
-                if (this.donationAmount == 0) {
-                    this.selectedCause.YieldContext = '<span class="text-danger">Please select quantity and click donate</span>';
-                } else {
-                    var yield_context = this.causesArray[this.selectedCause.cause]['yield_context'];
-                    var yield = '<span class="fw-bolder text-success">' + this.selectedCause.Yield + '</span>';
-
-                    // In the DB, the context will be saved with a %YIELD% string.
-                    // we're replacing it using js.
-
-                    // yield_context = yield_context.replace("%YIELD%", yield); # DEPRECATED.
-                    yield_context = yield_context.replace("%CALCULATED_AMOUNT%", this.donationAmount);
-                    yield_context = yield_context.replace("%CAUSE%", this.selectedCause.cause);
-                    yield_context = yield_context.replace("%USER_INPUT_QUANTITY%", this.donationQuantity);
-
-                    this.selectedCause.YieldContext = '<span class="mt-2 fw-bold leading-1">' + yield_context + "</span>";
-                }
             },
-
-
 
             /*
                 toggleCustomDonation.
@@ -133,12 +203,12 @@ $amounts = array(
             },
 
             formatMoney() {
-                this.donationAmount_formatted = (this.donationAmount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                this.donationAmount_formatted = parseInt((this.donationAmount)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
             },
 
 
             showDonateButton() {
-                if (this.donationAmount != 0 && this.errors.insuffucientDonationAmount == false) {
+                if (this.donationAmount != 0) {
                     return true;
                 } else {
                     return false;
@@ -269,7 +339,8 @@ $amounts = array(
                                 </div>
 
                                 <input type="hidden" name="amount" x-model="donationAmount" />
-                                <input type="hidden" name="cause" x-model="selectedCause.cause" />
+                                <input type="hidden" name="cause" />
+                                <input type="hidden" name="campaign" x-model="campaignName" />
 
                                 <div class="mt-2 mb-3" x-show="razorpayForm.checkbox_terms_and_conditions">
                                     <x-frontend-loading-button class="btn btn-success btn-md text-white">
@@ -298,17 +369,70 @@ $amounts = array(
 
                                     <span class="mask bg-dark alpha-9"></span>
 
-                                    <div class="card-body px-5 py-5">
+                                    <div class="card-body px-5 py-3">
                                         <div style="min-height: 100px;">
-                                            <div class="mt-2 mb-1 lh-180">
+
+                                            <div class="mt-2 mb-1 h1">
                                                 <div style="padding-top: 50px;">
-                                                    <i x-bind:class="selectedCause.icon" x-transition:enter.duration.500ms x-transition:leave.duration.400ms></i>
+                                                    <span>{{ $campaign->campaign_name }}</span>    
                                                 </div>
                                             </div>
 
                                             <div class="mt-5 h3">
-                                                <span x-text="selectedCause.cause"></span>
+                                                <span>{{ $campaign->campaign_description }}</span>
+                                            </div>                                                                                        
+
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body px-5 py-5">
+                                        @if ($campaign->campaign_has_cause)                                                                                    
+                                            <div class="row">
+                                                <div class="col-md-12 col-12">
+                                                    <div class="mt-2 mb-3">
+                                                        <span class="h4">
+                                                            <span class="text-theme">Causes : </span>
+                                                        </span>
+                                                        <span class="h4">
+                                                            @foreach (json_decode($campaign->campaign_causes) as $cause)
+                                                                <span>{{ App\Models\Causes::where(['id'=>(int) $cause])->first()->name }}, </span>                                                            
+                                                            @endforeach
+                                                        </span>
+                                                    </div>
+                                                </div>                                            
+                                            </div>
+                                        @endif
+                                        <div class="row">
+                                            <div class="col-md-12 col-12">
+                                                <div class="mt-2 mb-3">
+                                                    <span class="h4">
+                                                        <span class="text-theme">Locations : </span>
+                                                    </span>
+                                                    <span class="h4">
+                                                        @foreach (json_decode($campaign->campaign_location) as $location)
+                                                            <span>{{ App\Models\Location::where(['id'=>(int) $location])->first()->location_name }}; </span>                                                            
+                                                        @endforeach
+                                                    </span>
+                                                </div>
                                             </div>                                            
+                                        </div>
+                                        @if ($campaign->campaign_end_date)                                                                                    
+                                            <div class="row">
+                                                <div class="col-md-12 col-12">
+                                                    <div class="mt-3 mb-3">
+                                                        <span class="h5">
+                                                            Campaign ends in
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        <div class="row">
+                                            <div class="col-md-12 col-12" id="countdown">
+                                                <div class="timer-wrap">
+                                                    <div id="timer" x-html="timerHtml"></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -332,6 +456,26 @@ $amounts = array(
                             </p>--}}
                         </div>                        
 
+                        <div class="col-md-12 mb-5">
+                            <center>
+                                <h2 class="display-4 mb-3">
+                                    A small step for man <span class="font-bold fst-italic text-theme"><br>A giant leap for mankind</span>
+                                </h2>
+                                <p class="display-7 mb-3">
+                                    Take your small step with us today and be part of the <strong class="text-theme">{{ $campaign->campaign_name }}</strong> campaign.
+                                </p>
+                            </center>
+                            @if ($campaign->is_campaign_goal_based)                                                        
+                                <input disabled="true" type="range" min="1" max="100" value="{{ $donation_details['donation_percentage'] }}" class="slider" id="myRange">
+                                <h2 class="display-5 mt-2">
+                                    <span class="font-bold fst-italic text-theme">
+                                        <span id="donation_amount">₹{{ $donation_details['donation_amount'] }}</span>
+                                    </span>
+                                     raised of ₹{{ $campaign->campaign_goal_amount }}
+                                </h2>
+                            @endif
+                        </div>
+
                         <div class="col-md-12 text-center">
                             <div class="mb-3">
                                 <label for="exampleInputEmail6">
@@ -340,7 +484,7 @@ $amounts = array(
 
                                 <div class="flex" style="flex-wrap: wrap">
 
-                                    @foreach ($donation_quantities as $quantity)
+                                    @foreach ($amounts as $quantity)
                                     <button type="button" class="border-3 m-1 rounded-lg" @click="updateDonationAmount({{ $quantity }});" style="width:80px;height:40px">
                                         {{ $quantity }}
                                     </button>
@@ -381,10 +525,6 @@ $amounts = array(
                                     <span class="btn-inner--hidden"><small>Process <i class="fas fa-arrow-right"></i></small></span>
                                 </button>
                             </div>
-
-                            <p class="text-sm text-bg-gray mt-2">
-                                <span x-html="selectedCause.YieldContext"></span>
-                            </p>
                         </div>
 
                     </div>

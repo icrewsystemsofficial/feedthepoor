@@ -129,16 +129,20 @@ class HomeController extends Controller
         $donation_details = array(
             'total' => 0,
             'donation_amount' => 0,
+            'donation_percentage' => 0,
         );
+
         $donations = Donations::where('campaign_id', $campaign->id)->get();
         foreach ($donations as $donation) {
             $donation_details['total']++;
             $donation_details['donation_amount'] += $donation->donation_amount;
         }
-        dd([
-            'campaign' => $campaign,
-            'donation_details' => $donation_details
-        ]);
+        if($campaign->is_campaign_goal_based){
+            $donation_details['donation_percentage'] = round(($donation_details['donation_amount'] / $campaign->campaign_goal_amount) * 100);
+        }else{
+            $donation_details['donation_percentage'] = 90;
+        }
+        
         return view('frontend.campaigns.index', compact('campaign', 'donation_details'));
 
     }
