@@ -83,15 +83,16 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
 
     # This is a test route, to be removed in production.
     Route::get('/newnotification', function() {
-        $notification = new NotificationHelper;
-        $users = User::all()->pluck('id')->toArray();
-        $notification
-        ->user($users)
-        ->content('Hello World', 'This is the second test')
-        ->icon('heart')
-        ->color('danger')
-        ->type('0')
-        ->action('#')
+        // $notification = new NotificationHelper;
+        // $users = User::all()->pluck('id')->toArray();
+        // $notification
+        // // ->user($users)
+        // ->content('Pure test', 'This is the fourth test')
+        // ->notify();
+
+        app(NotificationHelper::class)
+        ->user(auth()->user())
+        ->content('This rocks', 'Yeah, it really does')
         ->notify();
     });
 

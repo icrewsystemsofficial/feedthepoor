@@ -51,8 +51,10 @@ class GeneralNotification extends Notification
         return ['database'];
       } else if($this->type == NotificationModel::$types['MAIL']) {
         return ['mail'];
-      } else if($this->type == NotificationModel::$types['BOTH']) {
+      } else if($this->type == NotificationModel::$types['ALL']) {
         return  ['mail', 'database'];
+      } else {
+          throw new Exception('General Notification error: Notification channel not specified');
       }
    }
 

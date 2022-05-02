@@ -10,18 +10,31 @@ use Illuminate\Support\Facades\Auth;
 
 class NotificationHelper {
 
+
     /**
-     * all_statuses - Retrives all the status from the moodel.
      *
-     * @return array
+     * IMPORTNAT! READ THIS BEFORE YOU USE NOTIFICAITONS.
+     *
+     * This is a simple way to notify the
+     * users of our application.
+     *
+     * You can simply do this.
+     *
+     * app(NotificationHelper::class)->user(auth()->user())->content('Title', 'Body')->notify();
+     *
+     *
+     * @author(s) Dinesh Kumar, Leonard Selvaraja
+     * 3 MAY 2022
      */
-    public $user;
-    public $title;
-    public $body;
-    public $action;
-    public $type;
-    public $icon;
-    public $color;
+
+    # Setting up defaults for all the public vars we're going to use.
+    public $user = null;
+    public $title = null;
+    public $body = null;
+    public $action = '#';
+    public $type = null;
+    public $icon = 'bell';
+    public $color = 'dark';
 
     /**
      * action - "click" behaviour for the notification.
@@ -30,7 +43,7 @@ class NotificationHelper {
      * @param  mixed $action
      * @return object
      */
-    public function action($action = '#') {
+    public function action($action) {
         $this->action = $action;
         return $this;
     }
@@ -41,14 +54,10 @@ class NotificationHelper {
      * @param  mixed $type
      * @return object
      */
-    public function type($type = null){
+    public function type($type){
 
         # If the notification type is NULL,
         # Then it's assumed it's a app notification.
-        if($type == null) {
-            $type = Notification::$types['APP'];
-        }
-
         $this->type = $type;
         return $this;
     }
@@ -61,7 +70,7 @@ class NotificationHelper {
      * @param  mixed $icon
      * @return object
      */
-    public function icon($icon = 'bell'){
+    public function icon($icon){
         $this->icon = $icon;
         return $this;
     }
@@ -106,8 +115,6 @@ class NotificationHelper {
         if(empty($users)) {
             if(Auth::check()) {
                 $users = auth()->user();
-            } else {
-                throw new Exception('Notification Helper Error: No User ID passed');
             }
         } else {
 
@@ -120,12 +127,48 @@ class NotificationHelper {
     }
 
 
+
+    /**
+     * validations - Just to make sure all the "required"
+     * values are instantiatied and filled up.
+     *
+     * @return void
+     */
+    protected function validations() {
+
+        if($this->title == null) {
+            throw new Exception('Notification Helper Error: title cannot be blank.');
+        }
+
+        if($this->body == null) {
+            throw new Exception('Notification Helper Error: body cannot be blank.');
+        }
+
+        # Notification user
+        if($this->user == null) {
+            if(Auth::check()) {
+                $this->user = auth()->user();
+            } else {
+                throw new Exception('Notification Helper Error: No ID / Array passed in user() method. Whom exactly do you want to notify bestie?');
+            }
+        }
+        # Notification type.
+        if($this->type == null) {
+            $this->type = Notification::$types['APP'];
+        }
+    }
+
+
     /**
      * notify - This is where everything comes alive.
      *
      * @return object
      */
     public function notify() {
+
+
+        # just making sure all the required values are filled in.
+        $this->validations();
 
         # If the $this->user variable is a collection or an array.
         if($this->user instanceof Collection || is_array($this->user)) {
