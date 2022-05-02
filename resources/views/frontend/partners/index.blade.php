@@ -18,8 +18,6 @@
         top: 0;
         left: 0;
         width: 100%;
-        height: 90vh;
-        padding-bottom: 0.5rem !important;
     }
     .hero-header::before{
         content: '';
@@ -35,7 +33,7 @@
 
 @section('content')
 
-<section class="section section-header text-white hero-header d-flex align-items-center">
+<section class="section section-header text-white hero-header">
     <div class="container" style="position: relative;z-index: 2;">
         <div class="row justify-content-between align-items-center">
             <div class="col-12 col-md-7 col-lg-6 text-center text-md-left">
@@ -48,6 +46,9 @@
                 <a href="#partners" class="btn btn-tertiary me-3 animate-up-2">
                     Read More <span class="ms-2"><span class="fas fa-arrow-down"></span></span>
                 </a>
+            </div>
+            <div class="col-12 col-md-5 d-none d-md-block text-center">
+                <img src="{{ asset('images/branding/roshni-foundation.png') }}" alt="">
             </div>
        </div>
     </div>
@@ -160,7 +161,7 @@
                 <p class="display-5 mb-5">
                     Your support would mean more dreams fulfilled and a better future, together.
                 </p>
-                <a href="" class="btn btn-theme btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn">
+                <a href="{{ route('frontend.contact') }}" class="btn btn-theme btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn">
                     Reach out to us<span class="ms-2"><span class="fas fa-arrow-right"></span></span>
                 </a>
             </div>
@@ -183,16 +184,19 @@
 
     <div class="container mb-8">
         <div class="row justify-content-center align-items-center">            
-            <div class="col-12 col-md-6 col-lg-6 d-flex align-items-center" style="height: 330px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px;">
-                <img src="{{ asset('images/branding/partners/logos/nestle.jpg') }}" alt="" srcset="" style="width: 100%;">
+            <div class="col-12 col-md-6 col-lg-6 p-6 d-flex align-items-center" style="height: 330px; width: 330px; box-shadow: 0 2px 5px rgb(0 0 0 / 0.2); border-radius: 20px;">
+                <img class="d-block my-auto mx-auto" src="{{ asset('images/branding/partners/logos/nestle.png') }}" alt="" srcset="" style="width: 100%; height: 100%;">
             </div>
-            <div class="col-12 col-md-6 col-lg-6 align-self-center px-md-4 mt-md-0 mt-5">
+            <div class="col-12 col-md-6 col-lg-6 px-md-4 mt-md-0 mt-5">
                 <h2 class="display-4 mb-4">
                     Official Partner
                 </h2>
-                <p class="display-7">
-                    <span class="font-bold fst-italic text-theme">Nestle</span> keep helping us with materialistic things like they provided 4,000 units of Nestle Milo to our ngo in covid pandemic to needy , malnourished & unprivileged kids to improve their immunity to fight with covid
+                <p class="display-7 mb-4">
+                    <span class="font-bold fst-italic text-theme">Nestle</span> keep helping us with materialistic things like they provided 4,000 units of Nestle Milo to our ngo in covid pandemic to needy , malnourished & unprivileged kids to improve their immunity to fight with covid                    
                 </p>
+                <a class="btn btn-primary" href="https://www.nestle.in?_ref={{ config('app.url') }}" class="text-theme">
+                    <span class="font-bold fst-italic text-theme">Visit Nestle<span class="ms-2"></span><span class="fas fa-arrow-right"></span></span>
+                </a>
             </div>
         </div>
     </div>
@@ -203,44 +207,53 @@
                 <h2 class="display-4 mb-4">
                     Official Partner
                 </h2>            
-                <p class="display-7">
+                <p class="display-7 mb-4">
                     <span class="font-bold fst-italic text-theme">Britannia</span> keep helping us with materialistic things like they provided 2000 units of Britannia biscuits to our ngo in covid pandemic to needy , malnourished & unprivileged kids
                 </p>
+                <a class="btn btn-primary" href="https://www.britannia.co.in?_ref={{ config('app.url') }}" class="text-theme">
+                    <span class="font-bold fst-italic text-theme">Visit Britannia<span class="ms-2"></span><span class="fas fa-arrow-right"></span></span>
+                </a>
             </div>
-            <div class="col-12 col-md-6 col-lg-6 d-flex align-items-center" style="height: 330px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px;">
-                <img class="d-block m-auto" src="{{ asset('images/branding/partners/logos/britannia.png') }}" alt="" srcset="" style="width: 90%;">
+            <div class="col-12 col-md-6 col-lg-6 d-flex align-items-center" style="height: 330px; width: 330px; box-shadow: 0 2px 5px rgb(0 0 0 / 0.2); border-radius: 20px;">
+                <img class="d-block my-auto mx-auto" src="{{ asset('images/branding/partners/logos/britannia.png') }}" alt="" srcset="" style="width: 70%;">
             </div>            
         </div>
     </div>
 
     <div class="container d-block d-md-none mb-8">
         <div class="row justify-content-center align-items-center">            
-            <div class="col-12 col-md-6 col-lg-6 d-flex align-items-center" style="height: 330px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px;">
-                <img class="d-block m-auto" src="{{ asset('images/branding/partners/logos/britannia.png') }}" alt="" srcset="" style="width: 90%;">
+            <div class="col-12 col-md-6 col-lg-6 d-flex align-items-center" style="height: 330px; width: 330px; box-shadow: 0 2px 5px rgb(0 0 0 / 0.2); border-radius: 20px;">
+                <img class="d-block m-auto" src="{{ asset('images/branding/partners/logos/britannia.png') }}" alt="" srcset="" style="width: 70%;">
             </div>            
             <div class="col-12 col-md-6 col-lg-6 align-self-center px-md-4 mt-md-0 mt-5">
                 <h2 class="display-4 mb-4">
                     Official Partner
                 </h2>            
-                <p class="display-7">
+                <p class="display-7 mb-4">
                     <span class="font-bold fst-italic text-theme">Britannia</span> keep helping us with materialistic things like they provided 2000 units of Britannia biscuits to our ngo in covid pandemic to needy , malnourished & unprivileged kids
                 </p>
+                <a class="btn btn-primary" href="https://www.britannia.co.in?_ref={{ config('app.url') }}" class="text-theme">
+                    <span class="font-bold fst-italic text-theme">Visit Britannia<span class="ms-2"></span><span class="fas fa-arrow-right"></span></span>
+                </a>
             </div>                    
         </div>
     </div>
 
     <div class="container mb-8">
         <div class="row justify-content-center align-items-center">            
-            <div class="col-12 col-md-6 col-lg-6 d-flex align-items-center" style="height: 330px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px;">
-                <img src="{{ asset('images/branding/partners/logos/zomato.png') }}" alt="" srcset="" style="width: 100%;">
+            <div class="col-12 col-md-6 col-lg-6 d-flex align-items-center" style="height: 330px; width: 330px; box-shadow: 0 2px 5px rgb(0 0 0 / 0.2); border-radius: 20px;">
+                <img class="d-block m-auto" src="{{ asset('images/branding/partners/logos/zomato.png') }}" alt="" srcset="" style="width: 70%;">
             </div>
             <div class="col-12 col-md-6 col-lg-6 align-self-center px-md-4 mt-md-0 mt-5">
                 <h2 class="display-4 mb-4">
                     Official Partner
                 </h2>
-                <p class="display-7">
+                <p class="display-7 mb-4">
                     <span class="font-bold fst-italic text-theme">Feeding India by Zomato</span> keep providing ration kits for handicap , old age & keep helping in daily feeding program  , we are feeding more than 8000 families in pan india in partnership with Zomato Feeding India
                 </p>
+                <a class="btn btn-primary" href="https://www.feedingindia.org?_ref={{ config('app.url') }}" class="text-theme">
+                    <span class="font-bold fst-italic text-theme">Visit Feeding India<span class="ms-2"></span><span class="fas fa-arrow-right"></span></span>
+                </a>
             </div>
         </div>
     </div>
@@ -251,28 +264,34 @@
                 <h2 class="display-4 mb-4">
                     Technology Partner
                 </h2>            
-                <p class="display-7">
+                <p class="display-7 mb-4">
                     <span class="font-bold fst-italic text-theme">Icrewsystems</span> help us with the technology behind our digital platform making it more user friendly and making donations easy, secure and transparent
                 </p>
+                <a class="btn btn-primary" href="https://www.icrewsystems.com?_ref={{ config('app.url') }}" class="text-theme">
+                    <span class="font-bold fst-italic text-theme">Visit Icrewsystems<span class="ms-2"></span><span class="fas fa-arrow-right"></span></span>
+                </a>
             </div>
-            <div class="col-12 col-md-6 col-lg-6 d-flex align-items-center" style="height: 330px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px;">
-                <img class="d-block m-auto" src="{{ asset('images/branding/partners/logos/icrew.png') }}" alt="" srcset="" style="width: 90%;">
+            <div class="col-12 col-md-6 col-lg-6 d-flex align-items-center" style="height: 330px; width: 330px; box-shadow: 0 2px 5px rgb(0 0 0 / 0.2); border-radius: 20px;">
+                <img class="d-block m-auto" src="{{ asset('images/branding/partners/logos/icrew.png') }}" alt="" srcset="" style="width: 70%;">
             </div>            
         </div>
     </div>
 
     <div class="container d-block d-md-none">
         <div class="row justify-content-center align-items-center">            
-            <div class="col-12 col-md-6 col-lg-6 d-flex align-items-center" style="height: 330px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px;">
-                <img class="d-block m-auto" src="{{ asset('images/branding/partners/logos/icrew.png') }}" alt="" srcset="" style="width: 90%;">
+            <div class="col-12 col-md-6 col-lg-6 d-flex align-items-center" style="height: 330px; width: 330px; box-shadow: 0 2px 5px rgb(0 0 0 / 0.2); border-radius: 20px;">
+                <img class="d-block m-auto" src="{{ asset('images/branding/partners/logos/icrew.png') }}" alt="" srcset="" style="width: 70%;">
             </div>            
             <div class="col-12 col-md-6 col-lg-6 align-self-center px-md-4 mt-md-0 mt-5">
                 <h2 class="display-4 mb-4">
                     Technology Partner
                 </h2>            
-                <p class="display-7">
+                <p class="display-7 mb-4">
                     <span class="font-bold fst-italic text-theme">Icrewsystems</span> help us with the technology behind our digital platform making it more user friendly and making donations easy, secure and transparent
                 </p>
+                <a class="btn btn-primary" href="https://www.icrewsystems.com?_ref={{ config('app.url') }}" class="text-theme">
+                    <span class="font-bold fst-italic text-theme">Visit Icrewsystems<span class="ms-2"></span><span class="fas fa-arrow-right"></span></span>
+                </a>
             </div>                    
         </div>
     </div>

@@ -16,8 +16,10 @@
                         </h2>
                         <p class="lead">
                            Our donation window for {{ now()->addDay(1)->format('d F, Y') }} is open.
-                        </p>
+                        </p>                        
                         <p class="mb-4">
+                           We're more than excited in collaborating with you. Please reach out to us at <a href="tel:+919583186287">+91 95831 86287</a>
+                           <br>
                            If you are able to, please consider donating. If you're not able to donate,
                            <span class="fw-bolder">share this website</span> with others who might be able to donate.
                         </p>
@@ -30,7 +32,7 @@
 
                         @php
 
-                            $text = 'Hey! I discovered this NGO called '. config('app.ngo_name') .' which offers '  . ' causes to which you can donate with 100% transparency. Checkout their website to see how many people
+                            $text = 'Hey! I discovered this NGO called '. config('app.ngo_name') .' which offers ' . App\Helpers\CausesHelper::getTotalCauses() . ' causes to which you can donate with 100% transparency. Checkout their website to see how many people
                             have donated with absolutely trust and transparnency today.';
                             $share = Share::page(route('frontend.donate'), $text)
                             ->whatsapp()
@@ -94,7 +96,7 @@
             <img src="{{ asset('images/branding/roshni-foundation-black.png') }}" alt="" srcset="" style="width: 100px; height: auto;">
             <br><br>
             <p>
-               {{ config('setting.app_description') }}
+               {{ config('setting.app_description') }}               
             <hr>
             {{ config('app.address') }}
             </p>

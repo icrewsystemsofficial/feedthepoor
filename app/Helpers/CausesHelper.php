@@ -20,6 +20,22 @@ class CausesHelper {
         }
         return $icons;
     }
+    
+    /**
+     * getTotalCauses - Get the total number of causes
+     *
+     * @return int
+     */
+    public static function getTotalCauses(){
+
+        $causes = Causes::all();
+        $total = 0;
+        foreach($causes as $cause){
+            $total ++;
+        }
+        return $total;
+
+    }
 }
 
 ?>

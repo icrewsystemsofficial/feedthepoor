@@ -156,7 +156,7 @@
                             <thead>
                                 <tr>
                                     <th>DATE</th>
-                                    <th data-priority=1>ITEM</th>
+                                    <th data-priority=1>CAUSE/CAMPAIGN</th>
                                     <th>QUANTITY</th>
                                     <th data-priority=2>STATUS</th>
                                     <th class="none">LOCATION</th>

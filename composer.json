@@ -13,6 +13,7 @@
         "barryvdh/laravel-dompdf": "^1.0",
         "consoletvs/charts": "7.*",
         "devmarketer/easynav": "^1.0",
+        "doctrine/dbal": "^3.3",
         "fruitcake/laravel-cors": "^3.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.6",

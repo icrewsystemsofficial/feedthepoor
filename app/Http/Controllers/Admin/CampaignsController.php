@@ -9,6 +9,7 @@ use App\Models\Causes;
 use App\Models\Campaigns;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class CampaignsController extends Controller
 {
@@ -41,7 +42,8 @@ class CampaignsController extends Controller
         $filename = 'campaigns/'.$request->campaign_name.'/'.$request->campaign_name.'_poster.'.$ext;
         Storage::disk('public')->move($request->campaign_poster, $filename);
         Storage::disk('public')->delete($request->campaign_poster);
-        $request->merge(['campaign_poster' => $filename]);        
+        $request->merge(['campaign_poster' => config('app_url')."/storage/".$filename]); 
+        $request->merge(['slug' => Str::slug($request->campaign_name)]);       
         Campaigns::create($request->all());
         alert()->success('Yay','Campaign "'.$request->campaign_name.'" was successfully created');
         return redirect(route('admin.campaigns.index'));
@@ -87,6 +89,7 @@ class CampaignsController extends Controller
         else{
             $request->request->remove('campaign_poster');
         }        
+        $request->merge(['slug' => Str::slug($request->campaign_name)]);
         $campaign = Campaigns::find($request->id);
         $campaign->update($request->all());
         alert()->success('Yay','Campaign "'.$request->campaign_name.'" was successfully updated');

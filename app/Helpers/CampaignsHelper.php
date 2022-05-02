@@ -150,6 +150,18 @@ class CampaignsHelper {
         }
         return $html;
     }
+    
+    /**
+     * getActiveCampaigns - Retrieves all the active campaigns
+     *
+     * @return array     
+     */
+    public static function getActiveCampaigns()
+    {
+
+        return Campaigns::where('campaign_status', Campaigns::$status['ACTIVE'])->get();        
+
+    }
 
 }
 

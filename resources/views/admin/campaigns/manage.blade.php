@@ -103,18 +103,12 @@
                 <div class="form-group mb-3">
                     <label for="campaign_poster" class="form-label">Campaign poster</label>                    
                     <input type="file" id="campaign_poster" name="campaign_poster" class="form-control mb-3"/>
-                    <a href="/storage/{{ $campaign->campaign_poster }}" target="_blank" class="btn btn-primary"><i class="fa-solid fa-eye"></i> View poster</a>
+                    <a href="{{ $campaign->campaign_poster }}" target="_blank" class="btn btn-primary"><i class="fa-solid fa-eye"></i> View poster</a>
                 </div>
                 <div class="form-group mb-3">
                     <label for="campaign_goal_amount" class="form-label">Expected campaign amount (in INR)</label>
                     <input type="number" id="campaign_goal_amount" name="campaign_goal_amount" class="form-control" value="{{ $campaign->campaign_goal_amount }}"/>
-                </div>            
-                {{--<div class="form-group mb-3">
-                    <label for="is_campaign_based_on_goal" class="form-label">Does the campaign have a goal?</label>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="is_campaign_goal_based" name="is_campaign_goal_based" {{ $campaign->is_campaign_goal_based ? 'checked':'' }}>
-                    </div>   
-                </div> --}}
+                </div>     
                 <div class="form-group mb-3">
                     <label for="name" class="form-label">Campaign start date</label>
                     <input type="date" id="campaign_start_date" name="campaign_start_date" class="form-control" value="{{ $campaign->campaign_start_date }}"/>
@@ -129,12 +123,6 @@
                         {!! App\Helpers\CampaignsHelper::getLocationsForManage($campaign->campaign_location) !!}
                     </select>
                 </div>
-                {{--<div class="form-group mb-3">
-                    <label for="campaign_has_cause" class="form-label">Does the campaign have a cause?</label>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="campaign_has_cause" name="campaign_has_cause" {{ $campaign->campaign_has_cause ? 'checked':'' }}>
-                    </div>   
-                </div>--}}
                 <div class="form-group mb-3>
                     <label for="campaign_causes" class="form-label">Campaign causes</label><br>
                     <select name="campaign_causes[]" id="campaign_causes" class="form-control" multiple>                        
