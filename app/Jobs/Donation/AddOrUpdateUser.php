@@ -36,6 +36,7 @@ class AddOrUpdateUser
         $this->phone_number = $array['phone_number'];
         $this->pan_number = $array['pan_number'];
         $this->account_claimed = $array['account_claimed'];
+        $this->address = $array['address'];
     }
 
     /**
@@ -54,6 +55,7 @@ class AddOrUpdateUser
             $user->phone_number = $this->phone_number;
             $user->pan_number = $this->pan_number;
             $user->account_claimed = $this->account_claimed;
+            $user->address = $this->address;
             $user->save();
 
             Mail::to($this->email)->send(new NewDonorWelcomeEmail($user));

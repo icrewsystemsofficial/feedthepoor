@@ -48,6 +48,7 @@ class DonationReceivedListener implements ShouldQueue
             'email' => $payment->email,
             'phone_number' => $payment->phone,
             'pan_number' => (isset($payment->pan)) ? $payment->pan : null,
+            'address' => (isset($payment->address)) ? $payment->address : null,
             'account_claimed' => false,
         ])->onQueue('default');
 
@@ -58,10 +59,7 @@ class DonationReceivedListener implements ShouldQueue
 
 
         # Generate Donation receipt
-        CreateDonationReceipt::dispatch([
-            'payment' => $payment,
-            'user' => $user,
-        ])->onQueue('default');
+        // CreateDonationReceipt::dispatch(['payment' => $payment, 'user' => $user])->onQueue('default');
 
         /*since we have a seperate route to display the receipt generated on the fly (/donation/receipt/{id}),
         we can use that instead of this.
@@ -80,6 +78,14 @@ class DonationReceivedListener implements ShouldQueue
 
         - leonard,
         16/4/2022.
+
+
+        Soooooo, the PDF Jobs were failing on PROD! FML.
+        Good thing that Anirudh actually created a way for us to revert
+        back to stream PDFs from browser.
+
+        - Leonard
+        23/4/2022.
         */
 
 

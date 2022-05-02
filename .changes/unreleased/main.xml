@@ -4,4 +4,5 @@
   <change type="major">Users module is now complete and has been added to the app</change>
   <change type="major">The input based question has been removed from the seeders</change>
   <change type="minor">Location Module: Location mangager onclick redirects to the User &gt; Manage page</change>
+  <change type="minor">Thank you page logic tweaked</change>
 </feature>

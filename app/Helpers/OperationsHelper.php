@@ -126,16 +126,48 @@ class OperationsHelper {
     }
 
     /**
-     * getProcurementLocation
+     * getLocationBadge
      *
      * Accept location ID as parameter and return the location name
      *
      * @param  int $id
      * @return string
      */
-    public static function getProcurementLocation(int $id){
+    public static function getLocationBadge(int $id){
 
         return Location::find($id)->location_name ?? 'Unable to find location';
+
+    }
+    
+    /**
+     * getProcurementLocation 
+     * 
+     * Accept location ID as parameter and return a select HTML element
+     *
+     * @param  mixed $id
+     * @param  mixed $i
+     * @return void
+     */
+    public static function getProcurementLocation(int $id, int $i){        
+
+        if($id == ''){
+            throw new Exception('Error: location ID not passed.' . $status);
+        }
+
+        $locations = Location::all();
+
+        if(!Location::find($id)){
+            throw new Exception('Error: No location with ID '. $id. ' was found');
+        }
+
+        $html = "<select id='location_".$i."' class='form-control'>";
+
+        foreach($locations as $location) {
+            $html .= ($location->id == $id) ? "<option value='".$id."' selected>".$location->location_name."</option>" : "<option value='".$location->id."'>".$location->location_name."</option>";
+        }
+
+        return $html;
+
 
     }
 

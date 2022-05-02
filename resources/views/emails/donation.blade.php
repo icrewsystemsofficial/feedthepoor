@@ -6,6 +6,8 @@ The receipt for your donation is attached herewith this email as a PDF. <br>
 @if (isset($details['pan'])) This receipt will be valid for 80G tax exemptions @endif
 In an effort to keep the donations transparent, we have provided the ability to track your donation using a unique identification number.
 
+@component('mail::button', ['url' => $details['tracking_url']]) Track donation @endcomponent
+
 @component('mail::panel')
 ## Donation Details
 <strong>Date : </strong> {!! App\Helpers\CampaignsHelper::formatDate(date('Y-m-d')) !!}<br>
@@ -13,14 +15,13 @@ In an effort to keep the donations transparent, we have provided the ability to 
 <strong>Donation ID : </strong> {{ $details['id'] }}<br>
 @endcomponent
 
-@component('mail::button', ['url' => $details['tracking_url']])Track donation @endcomponent
-
-<p>
+@component('mail::button', ['url' => route('frontend.donations.receipt', $details['id'])]) Download Receipt @endcomponent
+{{-- <p>
     <small>
         Incase you are unable to open the PDF attachment, use this link to view your PDF online.
         <a href="{{ route('frontend.donations.receipt', $details['id']) }}">{{ route('frontend.donations.receipt', $details['id']) }}</a>
     </small>
-</p>
+</p> --}}
 
 Regards,<br>
 Operations Team,<br>

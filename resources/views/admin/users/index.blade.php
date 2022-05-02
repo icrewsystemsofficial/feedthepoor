@@ -303,21 +303,21 @@
                                     </td>
                                     <td>
                                         <span class="badge
-                                        @if($user->getRoleNames()[0] == 'superadmin')
-                                            bg-info
-                                        @endif
-                                        @if($user->getRoleNames()[0] == 'administrator')
-                                            bg-primary
-                                        @endif
-                                        @if($user->getRoleNames()[0] == 'manager')
-                                            bg-secondary
-                                        @endif
-                                        @if($user->getRoleNames()[0] == 'volunteer')
-                                            bg-warning
-                                        @endif
-                                        @if($user->getRoleNames()[0] == 'donor')
-                                            bg-danger
-                                        @endif
+                                            @if($user->getRoleNames()[0] == 'superadmin')
+                                                bg-info
+                                            @endif
+                                            @if($user->getRoleNames()[0] == 'administrator')
+                                                bg-primary
+                                            @endif
+                                            @if($user->getRoleNames()[0] == 'manager')
+                                                bg-secondary
+                                            @endif
+                                            @if($user->getRoleNames()[0] == 'volunteer')
+                                                bg-warning
+                                            @endif
+                                            @if($user->getRoleNames()[0] == 'donor')
+                                                bg-danger
+                                            @endif
                                         cursor-pointer" onclick="getUsers('{{$user->getRoleNames()[0]}}')">{{strtoupper($user->getRoleNames()[0])}}</span>
                                     </td>
                                     <td class="d-flex justify-content-around">
