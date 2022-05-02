@@ -1,16 +1,29 @@
 <x-guest-layout>
     <x-auth-card>
         <main>
-
-            
             <!-- Section -->
-            <section class="min-vh-100 d-flex align-items-center section-image overlay-soft-dark bg-primary " data-background="{{ asset('') }}">
+            <style>
+                .hero-header {
+                    min-height: 50vh;
+                    background: #000 url(https://i.imgur.com/5KfRXY1.png) center center no-repeat;
+                    background-size: cover;
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    box-shadow: 0 0 200px rgba(0, 0, 0, 0.9) inset;
+                }
+            </style>
+            <section class="min-vh-100 d-flex align-items-center section-image overlay-soft-dark bg-primary hero-header">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-12 d-flex align-items-center justify-content-center">
                             <div class="signin-inner my-4 my-lg-0 bg-white shadow-soft border rounded border-gray-300 p-4 p-lg-5 w-100 fmxw-500">
                                 <div class="text-center text-md-center mb-4 mt-md-0">
-                                    <h1 class="mb-0 h3">Sign in to our platform</h1>
+                                    <h1 class="mb-0 h3">
+                                        Login to {{ config('app.name') }}
+                                    </h1>
                                 </div>
 
                                 <!-- Validation Errors -->
@@ -23,7 +36,7 @@
                                         <label for="email">Your Email</label>
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon1"><span class="fas fa-envelope"></span></span>
-                                            <x-input id="email" type="email" name="email" :value="old('email')" required autofocus class="form-control" placeholder="example@company.com" />
+                                            <x-input id="email" type="email" name="email" :value="old('email')" required autofocus class="form-control" placeholder="john.doe@ngo.com" />
                                         </div>
                                     </div>
                                     <!-- End of Form -->
@@ -75,7 +88,11 @@
                             </div> -->
                                 <div class="d-flex justify-content-center align-items-center mt-4">
                                     <span class="fw-normal">
-                                        
+                                        &copy; {{ config('app.name') }} - {{ config('app.ngo_name') }}
+                                        <br>
+                                        <span class="text-center">
+                                            Made with <i class="fas fa-heart text-danger"></i> by icrewsystems
+                                        </span>
                                     </span>
                                 </div>
                             </div>
