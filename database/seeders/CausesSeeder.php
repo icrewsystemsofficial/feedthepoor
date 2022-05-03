@@ -47,22 +47,10 @@ class CausesSeeder extends Seeder
                 'yield_context' => 'This donation will help %USER_INPUT_QUANTITY% people',
             ],
             [
-                'name' => 'Feed children for 10 days',
+                'name' => 'Daily feeding program',
                 'icon' => 'pizza-slice',
-                'per_unit_cost' => 490,
-                'yield_context' => 'This donation will help %USER_INPUT_QUANTITY% people',
-            ],
-            [
-                'name' => 'Feed children for 20 days',
-                'icon' => 'pizza-slice',
-                'per_unit_cost' => 980,
-                'yield_context' => 'This donation will help %USER_INPUT_QUANTITY% people',
-            ],
-            [
-                'name' => 'Feed children for 30 days',
-                'icon' => 'pizza-slice',
-                'per_unit_cost' => 1470,
-                'yield_context' => 'This donation will help %USER_INPUT_QUANTITY% people',
+                'per_unit_cost' => 147,
+                'yield_context' => 'This donation will help %USER_INPUT_QUANTITY% people get 3 meals',
             ],
             [
                 'name' => 'Prosthetic leg',

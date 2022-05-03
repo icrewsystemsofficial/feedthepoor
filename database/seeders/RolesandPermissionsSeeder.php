@@ -33,7 +33,9 @@ class RolesandPermissionsSeeder extends Seeder
             'can_manage_payments',
             'can_manage_missions',
             'can_manage_users',
-            'can_manage_campaigns'
+            'can_manage_campaigns',
+            'is_mission_manager',
+            'is_volunteer',
           );
 
 

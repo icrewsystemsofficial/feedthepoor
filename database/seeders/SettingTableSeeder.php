@@ -14,12 +14,12 @@ class SettingTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('setting')->delete();
-        
+
         \DB::table('setting')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'group_id' => 1,
@@ -32,7 +32,7 @@ class SettingTableSeeder extends Seeder
                 'created_at' => '2022-02-26 17:12:04',
                 'updated_at' => '2022-02-26 17:12:04',
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 2,
                 'group_id' => 1,
@@ -45,7 +45,7 @@ class SettingTableSeeder extends Seeder
                 'created_at' => '2022-02-26 17:12:59',
                 'updated_at' => '2022-02-26 17:12:59',
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 3,
                 'group_id' => 2,
@@ -58,7 +58,7 @@ class SettingTableSeeder extends Seeder
                 'created_at' => '2022-02-26 17:15:23',
                 'updated_at' => '2022-02-26 17:16:01',
             ),
-            3 => 
+            3 =>
             array (
                 'id' => 4,
                 'group_id' => 2,
@@ -71,34 +71,34 @@ class SettingTableSeeder extends Seeder
                 'created_at' => '2022-02-26 17:16:51',
                 'updated_at' => '2022-02-26 17:16:51',
             ),
-            4 => 
+            4 =>
             array (
                 'id' => 5,
                 'group_id' => 1,
-                'key' => 'razorpay_public_key',
-                'name' => 'Razorpay Public Key',
-                'description' => 'Razorpay API\'s public key',
-                'value' => 'YEKcCNi0jMgLzY1Nkz82',
+                'key' => 'razorpay_api_id',
+                'name' => 'Razorpay API ID',
+                'description' => 'Razorpay API\'s public ID',
+                'value' => 'rzp_test_SmU75lqcibiulc',
                 'core' => 1,
                 'type' => 1,
                 'created_at' => '2022-02-26 17:18:21',
                 'updated_at' => '2022-02-26 17:18:21',
             ),
-            5 => 
+            5 =>
             array (
                 'id' => 6,
                 'group_id' => 1,
-                'key' => 'razorpay_private_key',
-                'name' => 'Razorpay Private Key',
-                'description' => 'Razorpay API private key',
-                'value' => '298139db-895f-4faf-82ee-d0310a72bf39',
+                'key' => 'razorpay_api_secret',
+                'name' => 'Razorpay API Secret',
+                'description' => 'Razorpay API secret key',
+                'value' => 'BSe2Who1QIS4heUJBapZImfr',
                 'core' => 1,
                 'type' => 1,
                 'created_at' => '2022-02-26 17:19:35',
                 'updated_at' => '2022-02-26 17:19:35',
             ),
         ));
-        
-        
+
+
     }
 }
