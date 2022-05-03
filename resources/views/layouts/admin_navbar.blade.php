@@ -47,6 +47,10 @@
                         <a href="#"  onclick="markNotificationsAsRead();" class="text-muted">Mark All Read</a>
                      </div>
                   @endif
+                  
+                     <div class="dropdown-menu-footer">
+                        <a href="{{ route('admin.notifications.index') }}" class="text-muted">See All</a>
+                     </div>
                 </div>
              </div>
           </li>

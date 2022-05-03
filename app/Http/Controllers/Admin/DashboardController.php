@@ -39,4 +39,8 @@ class DashboardController extends Controller
 
         return response($response);
     }
+
+    public function see_all(){
+        return view('admin.notifications.index');
+    }
 }

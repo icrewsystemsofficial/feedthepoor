@@ -110,6 +110,10 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::post('/store', [LocationController::class, 'store'])->name('store');
     });
 
+    Route::prefix('notifications')->as('notifications.')->group(function() {
+        Route::get('/see_all', [DashboardController::class, 'see_all'])->name('index');
+    });
+
     Route::prefix('settings')->as('settings.')->group(function() {
         Route::get('/', [SettingsController::class, 'index'])->name('index');
         Route::post('/create', [SettingsController::class, 'create'])->name('create');
