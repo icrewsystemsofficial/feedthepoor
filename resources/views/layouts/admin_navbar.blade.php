@@ -17,7 +17,12 @@
              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
                 <div class="list-group">
                    @forelse (App\Helpers\NotificationHelper::getNotifications(5) as $notification)
-                   <a href="{{ url($notification->data['action']) }}" class="list-group-item">
+                   <a href="{{ url($notification->data['action']) }}" class="list-group-item"
+                     @if (!$notification->read_at)
+                        style="background-color: rgb(229 229 229)"                         
+                     @endif
+
+                      >
                       <div class="row g-0 align-items-center">
                          <div class="col-2">
                             <i class="text-{{ $notification->data['color'] }}" data-feather="{{ $notification->data['icon'] }}"></i>
