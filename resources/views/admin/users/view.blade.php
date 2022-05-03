@@ -231,12 +231,12 @@
                                         </div>
                                     </div>
                                     <div class="form-check form-switch mb-3">
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Available for Mission</label>
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" 
+                                        <input class="form-check-input mx-1" type="checkbox" id="flexSwitchCheckChecked" 
                                             @if ($user->available_for_mission)
                                                 checked
                                             @endif
-                                        >
+                                        />
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Available for Mission</label>
                                     </div>
                                     <div class="mb-3">
                                         <label for="role" class="form-label">Role</label>
