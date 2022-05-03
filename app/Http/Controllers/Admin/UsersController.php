@@ -26,9 +26,11 @@ class UsersController extends Controller
     }
 
     public function view(){
+        $allRoles = Role::all();
         $location = Location::all();
         $user = Auth::user();
-        return view('admin.users.view', compact('location', 'user'));
+        $all_donations = Donations::all()->where('donor_id', Auth::user()->id);
+        return view('admin.users.view', compact('location', 'user', 'allRoles', 'all_donations'));
     }
 
 
