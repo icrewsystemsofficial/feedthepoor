@@ -290,7 +290,7 @@ class HomeController extends Controller
 
         $donation = Donations::where('razorpay_payment_id', $id)->firstOrFail();
         $user = User::find($donation->donor_id);
-        $cause = $donation->cause_id ? Causes::find($donation->cause_id)->name : Campaigns::find($donation->campaign_id)->campaign_name;
+        $cause = $donation->cause_id ? 'cause '.Causes::find($donation->cause_id)->name : 'campaign '.Campaigns::find($donation->campaign_id)->campaign_name;
 
         $payment['name'] = $user->name;
         $payment['date'] = date('d-m-Y', strtotime($donation->created_at));

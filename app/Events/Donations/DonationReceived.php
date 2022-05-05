@@ -30,7 +30,7 @@ class DonationReceived
     {
         $this->details = $details['notes'];
         $cause_id = isset($details['notes']['cause']) ? Causes::where('name', $details['notes']['cause'])->first()->id : null;
-        $campaign_id = Campaigns::where('campaign_name', $details['notes']['campaign'])->first()->id ?? null;
+        $campaign_id = isset($details['notes']['campaign']) ? Campaigns::where('campaign_name', $details['notes']['campaign'])->first()->id : null;
         $this->details['yield_context'] = $cause_id ? Causes::where('name', $details['notes']['cause'])->first()->yield_context : null;
         $this->details['amt_in_words'] = Donations::Show_Amount_In_Words($details['notes']['amount']);
         $this->details['tracking_url'] = route('frontend.track-donation', $details['id']);

@@ -50,7 +50,6 @@ class DonationsController extends Controller
     }
 
     public function update(Request $request){
-        dd($request->all());
         if ($request->cause_id == 0){
             $request->request->remove('cause_id');
         }
