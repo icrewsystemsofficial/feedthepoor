@@ -4,6 +4,7 @@ namespace App\Events\Donations;
 
 use App\Models\Causes;
 use App\Models\Donations;
+use App\Models\Campaigns;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -28,12 +29,13 @@ class DonationReceived
     public function __construct($details)
     {
         $this->details = $details['notes'];
-        $cause_id = Causes::where('name', $details['notes']['cause'])->first()->id;
-        $this->details['yield_context'] = Causes::where('name', $details['notes']['cause'])->first()->yield_context;
+        $cause_id = isset($details['notes']['cause']) ? Causes::where('name', $details['notes']['cause'])->first()->id : null;
+        $campaign_id = Campaigns::where('campaign_name', $details['notes']['campaign'])->first()->id ?? null;
+        $this->details['yield_context'] = $cause_id ? Causes::where('name', $details['notes']['cause'])->first()->yield_context : null;
         $this->details['amt_in_words'] = Donations::Show_Amount_In_Words($details['notes']['amount']);
         $this->details['tracking_url'] = route('frontend.track-donation', $details['id']);
         $this->details['id'] = $details['id'];
-        $this->details['quantity'] = (int) $details['notes']['amount']/Causes::where('name', $details['notes']['cause'])->first()->per_unit_cost;
+        $this->details['quantity'] = $cause_id ? (int) $details['notes']['amount']/Causes::where('name', $details['notes']['cause'])->first()->per_unit_cost : 1;
     }
 
     /**

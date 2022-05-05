@@ -290,7 +290,7 @@ class HomeController extends Controller
 
         $donation = Donations::where('razorpay_payment_id', $id)->firstOrFail();
         $user = User::find($donation->donor_id);
-        $cause = Causes::find($donation->cause_id);
+        $cause = $donation->cause_id ? Causes::find($donation->cause_id)->name : Campaigns::find($donation->campaign_id)->campaign_name;
 
         $payment['name'] = $user->name;
         $payment['date'] = date('d-m-Y', strtotime($donation->created_at));
@@ -301,7 +301,7 @@ class HomeController extends Controller
         $payment['amt_in_words'] = $donation->donation_in_words;
         $payment['quantity'] = (int) $donation->donation_amount / $cause->per_unit_cost;
         $payment['amount'] = $donation->donation_amount;
-        $payment['cause'] = $cause->name;
+        $payment['cause'] = $cause;
         $payment['receipt_no'] = $donation->id;
         $payment['razorpay_id'] = $donation->razorpay_payment_id;
         $payment['tracking_url'] = route('frontend.track-donation', $donation->razorpay_payment_id);

@@ -54,7 +54,7 @@ class DonationReceivedListener implements ShouldQueue
 
         # Add donation entry
         $user = User::where('email', $payment->email)->first();
-        AddOrUpdateDonationEntry::dispatch($payment, $user)->onQueue('default');
+        //AddOrUpdateDonationEntry::dispatch($payment, $user)->onQueue('default');
 
 
 
@@ -91,7 +91,7 @@ class DonationReceivedListener implements ShouldQueue
 
         # Email admins
         //TODO find out a way to e-mail / dispatch a notiffication to all users / admins
-        Mail::to('kashrayks@gmail.com')->send(new DonationAdminEmail($event->details));
+        //Mail::to('kashrayks@gmail.com')->send(new DonationAdminEmail($event->details));
 
         # Email donor about confirmation
         Mail::to($event->details['email'])->send(new DonationMail($event->details));

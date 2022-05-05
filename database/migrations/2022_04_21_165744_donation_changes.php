@@ -18,6 +18,7 @@ class DonationChanges extends Migration
         Schema::table('donations', function($table){
             $table->unsignedBigInteger('campaign_id')->references('id')->on('campaigns')->nullable();
             $table->unsignedBigInteger('cause_id')->references('id')->on('causes')->nullable()->change();
+            $table->string('cause_name')->nullable()->change();
         });
         
     }

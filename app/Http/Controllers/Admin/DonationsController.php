@@ -50,12 +50,13 @@ class DonationsController extends Controller
     }
 
     public function update(Request $request){
+        dd($request->all());
         if ($request->cause_id == 0){
             $request->request->remove('cause_id');
         }
         if ($request->campaign_id == 0){
             $request->request->remove('campaign_id');
-        }
+        }        
         $this->validate($request, [
             'donor_name' => 'required|string',
             'donation_amount' => 'required|numeric',

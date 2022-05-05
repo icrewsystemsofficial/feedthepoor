@@ -72,13 +72,14 @@
 
 @php
 $amounts = array(
-1,
-2,
-5,
-10,
-15,
-20,
-50
+500,
+1000,
+2000,
+5000,
+10000,
+15000,
+20000,
+50000
 )
 @endphp
 <script>
@@ -142,6 +143,8 @@ $amounts = array(
             amountsArray: @json($amounts),
 
             timerHtml: '',
+
+            causeName: null,
 
             // FUNCTIONS START!
 
@@ -339,7 +342,7 @@ $amounts = array(
                                 </div>
 
                                 <input type="hidden" name="amount" x-model="donationAmount" />
-                                <input type="hidden" name="cause" />
+                                <input type="hidden" name="cause" x-model="causeName"/>
                                 <input type="hidden" name="campaign" x-model="campaignName" />
 
                                 <div class="mt-2 mb-3" x-show="razorpayForm.checkbox_terms_and_conditions">
@@ -378,14 +381,14 @@ $amounts = array(
                                                 </div>
                                             </div>
 
-                                            <div class="mt-5 h3">
+                                            <div class="mt-5 h5">
                                                 <span>{{ $campaign->campaign_description }}</span>
                                             </div>                                                                                        
 
                                         </div>
                                     </div>
 
-                                    <div class="card-body px-5 py-5">
+                                    <div class="card-body px-5 py-3">
                                         @if ($campaign->campaign_has_cause)                                                                                    
                                             <div class="row">
                                                 <div class="col-md-12 col-12">
