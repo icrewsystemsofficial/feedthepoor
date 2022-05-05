@@ -184,6 +184,14 @@
                             Delete account
                         </a>
                         <form action="{{ route('admin.users.destroy', $user->id) }}" id="delete_user_form_{{$user->id}}" method="POST">@csrf @method('DELETE')</form>
+                        <a href="{{ route('admin.notifications.index') }}" class="list-group-item list-group-item-action" role="tab">
+                            View Notifications 
+
+                            @if(App\Helpers\NotificationHelper::getUnreadCount() > 0)
+                                <span class="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-danger">{{ App\Helpers\NotificationHelper::getUnreadCount() }}</span>
+                            @endif
+
+                        </a>
                     </div>
                 </div>
             </div>
