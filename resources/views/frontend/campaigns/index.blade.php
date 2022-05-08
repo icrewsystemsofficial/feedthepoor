@@ -14,7 +14,6 @@
     font-size: 3.5em;
     color: #fff;
     text-align: center;
-    animation: fromLeft .7s ease-in-out forwards;
 }
 
 #timer div {
@@ -32,40 +31,15 @@
     font-size: .35em;
     font-weight: 200;
 }
-
-.slider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 25px;
-  background-color: #ee5166;
-  background-image: linear-gradient(to right, #ee5166 0%, #f08efc var(--percentage),  #fff var(--percentage), #fff 100%);
-  outline: none;
-  border: 1px solid #ebc04c;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-}
-
-.slider:hover {
-  opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 35px;
-  height: 35px;
-  background: red;
-  background-clip:content-box;
-  border: 5px solid red;
-  padding: 2px;
-  border-radius: 50%;
-}
-
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  background: red;
+@media (max-width: 768px){
+    #timer {
+        font-size: 1em;
+        width: 100%;
+    }
+    #timer div {
+        margin-right: 10px;
+        width: auto;
+    }
 }
 
 </style>
@@ -102,7 +76,7 @@ $amounts = array(
         let final = '<div>' + d + '<span>Days</span></div>' +
                     '<div>' + h + '<span>Hours</span></div>' +
                     '<div>' + m + '<span>Minutes</span></div>' +
-                    '<div>' + s + '<span>Seconds</span></div>';
+                    '<div style="margin-right: 0px !important;">' + s + '<span>Seconds</span></div>';
         
         return final;
     }
@@ -362,21 +336,22 @@ $amounts = array(
                     <div class="row" x-show="form.page_1">
 
                         {{-- Campaign Details --}}
-                        <div class="col-md-12 mx-auto text-center border-top border-gray-300 my-4 ">
+                        <div class="col-md-12 mx-auto text-center my-3">
+                            <img src="{{ $campaign->campaign_poster }}" alt="{{ $campaign->title }}" class="img-fluid w-100 mx-auto rounded" />
+                        </div>
+                        <div class="col-md-12 mx-auto text-center border-top border-gray-300 my-2 ">
 
                             <div class="mb-3 mt-4">
-
-
                                 <div class="card alpha-container text-white border-0 overflow-hidden mt-2">
-                                    <div id="hero-section-image-container" class="card-img-bg" style="background-image: url('{{ $campaign->campaign_poster }}');"></div>
+                                    <div id="hero-section-image-container" class="card-img-bg"></div>
 
                                     <span class="mask bg-dark alpha-9"></span>
 
                                     <div class="card-body px-5 py-3">
                                         <div style="min-height: 100px;">
 
-                                            <div class="mt-2 mb-1 h1">
-                                                <div style="padding-top: 50px;">
+                                            <div class="mt-2 mb-1 h2">
+                                                <div style="padding-top: 20px;">
                                                     <span>{{ $campaign->campaign_name }}</span>    
                                                 </div>
                                             </div>
@@ -393,10 +368,10 @@ $amounts = array(
                                             <div class="row">
                                                 <div class="col-md-12 col-12">
                                                     <div class="mt-2 mb-3">
-                                                        <span class="h4">
+                                                        <span class="h5">
                                                             <span class="text-theme">Causes : </span>
                                                         </span>
-                                                        <span class="h4">
+                                                        <span class="h5">
                                                             @foreach (json_decode($campaign->campaign_causes) as $cause)
                                                                 <span>{{ App\Models\Causes::where(['id'=>(int) $cause])->first()->name }}, </span>                                                            
                                                             @endforeach
@@ -408,10 +383,10 @@ $amounts = array(
                                         <div class="row">
                                             <div class="col-md-12 col-12">
                                                 <div class="mt-2 mb-3">
-                                                    <span class="h4">
+                                                    <span class="h5">
                                                         <span class="text-theme">Locations : </span>
                                                     </span>
-                                                    <span class="h4">
+                                                    <span class="h5">
                                                         @foreach (json_decode($campaign->campaign_location) as $location)
                                                             <span>{{ App\Models\Location::where(['id'=>(int) $location])->first()->location_name }}; </span>                                                            
                                                         @endforeach
@@ -422,21 +397,19 @@ $amounts = array(
                                         @if ($campaign->campaign_end_date)                                                                                    
                                             <div class="row">
                                                 <div class="col-md-12 col-12">
-                                                    <div class="mt-3 mb-3">
-                                                        <span class="h5">
+                                                    <div class="mt-3 mb-2">
+                                                        <span class="h6 text-theme">
                                                             Campaign ends in
                                                         </span>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endif
-                                        <div class="row">
-                                            <div class="col-md-12 col-12" id="countdown">
-                                                <div class="timer-wrap">
-                                                    <div id="timer" x-html="timerHtml"></div>
+                                                <div class="col-md-12 col-12" id="countdown">
+                                                    <div class="timer-wrap">
+                                                        <div id="timer" x-html="timerHtml"></div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -469,13 +442,15 @@ $amounts = array(
                                 </p>
                             </center>
                             @if ($campaign->is_campaign_goal_based)                                                        
-                                <input disabled="true" type="range" min="1" max="100" value="{{ $donation_details['donation_percentage'] }}" class="slider" id="myRange">
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:{{ $donation_details['donation_percentage'] >= 100 ? 100: $donation_details['donation_percentage'] }}%; height: 10px;"></div>                                                                
+                                </div>
                                 <h2 class="display-5 mt-2">
                                     <span class="font-bold fst-italic text-theme">
                                         <span id="donation_amount">₹{{ $donation_details['donation_amount'] }}</span>
                                     </span>
                                      raised of ₹{{ $campaign->campaign_goal_amount }}
-                                </h2>
+                                </h2>                                
                             @endif
                         </div>
 
