@@ -4,51 +4,59 @@ namespace App\Helpers;
 
 use Exception;
 use App\Models\Operations;
+use App\Models\Location;
 
 
 class OperationsHelper {
 
+    /**
+     * status
+     *
+     * Return status details for their respective IDs
+     *
+     * @return array
+     */
     private static function status() : array {
 
         $status = array();
 
-        $status['UNACKNOWLEDGED'] = array(
+        $status[Operations::$status['UNACKNOWLEDGED']] = array(
             'text' => 'Unacknowledged',
             'icon' => 'fa-solid fa-exclamation-triangle',
             'color' => '#d9534f',
         );
 
-        $status['ACKNOWLEDGED'] = array(
+        $status[Operations::$status['ACKNOWLEDGED']] = array(
             'text' => 'Acknowledged',
             'icon' => 'fa-solid fa-check-circle',
             'color' => '#f59f00',
         );
 
-        $status['PROCUREMENT ORDER INITIATED'] = array(
+        $status[Operations::$status['PROCUREMENT ORDER INITIATED']] = array(
             'text' => 'Procurement Order Initiated',
             'icon' => 'fa-solid fa-check-circle',
             'color' => '#388299',
         );
 
-        $status['DELAYED'] = array(
+        $status[Operations::$status['DELAYED']] = array(
             'text' => 'Delayed',
             'icon' => 'fa-solid fa-times',
             'color' => '#ff0000',
         );
 
-        $status['READY FOR MISSION DISPATCH'] = array(
+        $status[Operations::$status['READY FOR MISSION DISPATCH']] = array(
             'text' => 'Ready for Mission Dispatch',
             'icon' => 'fa-solid fa-check-circle',
             'color' => '#5bc0de',
         );
 
-        $status['ASSIGNED TO MISSION'] = array(
+        $status[Operations::$status['ASSIGNED TO MISSION']] = array(
             'text' => 'Assigned to Mission',
             'icon' => 'fa-solid fa-check-circle',
             'color' => '#008000',
         );
 
-        $status['FULFILLED'] = array(
+        $status[Operations::$status['FULFILLED']] = array(
             'text' => 'Fulfilled',
             'icon' => 'fa-solid fa-check-circle',
             'color' => '#5cb85c',
@@ -57,7 +65,15 @@ class OperationsHelper {
         return $status;
     }
 
-    public static function getProcurementBadge($status) {
+    /**
+     * getProcurementBadge
+     *
+     * Accept a status ID and return the status badge HTML markup
+     *
+     * @param  int $status
+     * @return void
+     */
+    public static function getProcurementBadge(int $status) {
 
         if($status == ''){
             throw new Exception('Error: status not passed');
@@ -78,7 +94,16 @@ class OperationsHelper {
         return $html;
     }
 
-    public static function getProcurementStatus($status, $i){
+    /**
+     * getProcurementStatus
+     *
+     * Accept a status ID and Operation ID and return a select HTML element
+     *
+     * @param  int $status
+     * @param  inr $i
+     * @return string
+     */
+    public static function getProcurementStatus(int $status, int $i){
 
         if($status == ''){
             throw new Exception('Error: status not passed.' . $status);
@@ -93,28 +118,56 @@ class OperationsHelper {
         $html = "<select id='status_".$i."' class='form-control'>";
 
         foreach($all_statuses as $id => $val) {
-            $html .= ($id == $status) ? "<option value='".$id."' selected>".$id."</option>" : "<option value='".$id."'>".$id."</option>";
+            $html .= ($id == $status) ? "<option value='".$id."' selected>".$val['text']."</option>" : "<option value='".$id."'>".$val['text']."</option>";
         }
 
         return $html;
 
     }
 
+    /**
+     * getProcurementLocation
+     *
+     * Accept location ID as parameter and return the location name
+     *
+     * @param  int $id
+     * @return string
+     */
+    public static function getProcurementLocation(int $id){
+
+        return Location::find($id)->location_name ?? 'Unable to find location';
+
+    }
+
+    /**
+     * getStatusNumbers
+     *
+     * Return an array of status numbers and their respective counts
+     *
+     * @return array
+     */
     public static function getStatusNumbers(){
+
         $operations = Operations::all();
+
         $status = [
-                'UNACKNOWLEDGED' => 0,
-                'ACKNOWLEDGED' => 0,
-                'PROCUREMENT ORDER INITIATED' => 0,
-                'DELAYED' => 0,
-                'READY FOR MISSION DISPATCH' => 0,
-                'ASSIGNED TO MISSION' => 0,
-                'FULFILLED' => 0,
+            0 => 0,
+            1 => 0,
+            2 => 0,
+            3 => 0,
+            4 => 0,
+            5 => 0,
+            6 => 0,
         ];
+
         foreach ($operations as $operation) {
+
             $status[$operation->status]++;
+
         }
+
         return $status;
     }
+
 
 }

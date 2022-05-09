@@ -15,6 +15,7 @@ class Operations extends Model
 
     protected $fillable = [
         'donation_id',
+        'location_id',
         'procurement_item',
         'procurement_quantity',
         'vendor',
@@ -23,13 +24,15 @@ class Operations extends Model
         'mission_id',
     ];
 
-    // public $status = [
-    //     'UNACKNOWLEDGED',
-    //     'ACKNOWLEDGED',
-    //     'PROCUREMENT ORDER INITIATED',
-    //     'DELAYED',
-    //     'READY FOR MISSION DISPATCH',
-    //     'ASSIGNED TO MISSION',
-    //     'FULFILLED',
-    // ];
+    public static $status = [
+
+        'UNACKNOWLEDGED' => 0,
+        'ACKNOWLEDGED' => 1,
+        'PROCUREMENT ORDER INITIATED' => 2,
+        'DELAYED' => 3,
+        'READY FOR MISSION DISPATCH' => 4,
+        'ASSIGNED TO MISSION' => 5,
+        'FULFILLED' => 6,
+        
+    ];
 }

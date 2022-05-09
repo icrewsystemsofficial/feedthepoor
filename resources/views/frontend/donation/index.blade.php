@@ -3,13 +3,13 @@
 @section('css')
 @php
 $donation_quantities = array(
-    1,
-    2,
-    5,
-    10,
-    15,
-    20,
-    50
+1,
+2,
+5,
+10,
+15,
+20,
+50
 )
 @endphp
 <script>
@@ -176,7 +176,7 @@ $donation_quantities = array(
 
                     // yield_context = yield_context.replace("%YIELD%", yield); # DEPRECATED.
                     yield_context = yield_context.replace("%CALCULATED_AMOUNT%", this.donationAmount);
-                    yield_context = yield_context.replace("%CAUSE%", this.selectedCause.cause );
+                    yield_context = yield_context.replace("%CAUSE%", this.selectedCause.cause);
                     yield_context = yield_context.replace("%USER_INPUT_QUANTITY%", this.donationQuantity);
 
                     this.selectedCause.YieldContext = '<span class="mt-2 fw-bold leading-1">' + yield_context + "</span>";
@@ -380,6 +380,9 @@ $donation_quantities = array(
 
 
                         <div class="text-center col-md-12 mb-4">
+                            @if(Session::has('error'))
+                            <p class="alert alert-danger">{{Session::get('error')}}</p>
+                            @endif
                             <p class="small text-muted border-3 rounded-lg p-2">
                                 <i class="fas fa-info-circle"></i> We are currently supporting <strong class="underline">{{ count($donation_types) }} causes</strong>. You can choose any cause,
                                 and instantly see the calculated donation amount.
@@ -411,16 +414,16 @@ $donation_quantities = array(
 
 
                                     @php
-                                     $first_iteration = true;
+                                    $first_iteration = true;
                                     @endphp
 
                                     @foreach ($donation_types as $donation_type)
-                                        <option value="{{ $donation_type->name }}" {{ $first_iteration == true ? 'selected':'' }}>
-                                            {{ ucfirst($donation_type->name) }} - (₹{{ number_format($donation_type->per_unit_cost, 0, '.', ',') }} per donation/unit)
-                                        </option>
-                                        @php
-                                            $first_iteration = false;
-                                        @endphp
+                                    <option value="{{ $donation_type->name }}" {{ $first_iteration == true ? 'selected':'' }}>
+                                        {{ ucfirst($donation_type->name) }} - (₹{{ number_format($donation_type->per_unit_cost, 0, '.', ',') }} per donation/unit)
+                                    </option>
+                                    @php
+                                    $first_iteration = false;
+                                    @endphp
                                     @endforeach
                                 </select>
                             </div>
@@ -435,7 +438,7 @@ $donation_quantities = array(
 
 
 
-                                   <div class="flex" style="flex-wrap: wrap">
+                                <div class="flex" style="flex-wrap: wrap">
 
                                     @foreach ($donation_quantities as $quantity)
                                     <button type="button" class="border-3 m-1 rounded-lg" @click="updateDonationQuantity({{ $quantity }});" style="width:80px;height:40px">
@@ -446,27 +449,27 @@ $donation_quantities = array(
                                     <button type="button" class="border-3 border-success m-1 rounded-lg" @click="toggleCustomDonation" x-show="showCustomDonationButton" style="width:80px;height:40px">
                                         Custom?
                                     </button>
-                                    </div>
+                                </div>
 
 
 
-                                    <div class="" x-show="showCustomDonationBlock" @click.away="toggleCustomDonation">
+                                <div class="" x-show="showCustomDonationBlock" @click.away="toggleCustomDonation">
 
 
-                                        <p class="text-muted mt-2">
-                                            <small>
-                                                Enter a valid quantity and press "process" button.
-                                            </small>
-                                        </p>
+                                    <p class="text-muted mt-2">
+                                        <small>
+                                            Enter a valid quantity and press "process" button.
+                                        </small>
+                                    </p>
 
-                                        <input type="number" class="form-control mt-3 mb-3" id="custom_donation" value="3" />
+                                    <input type="number" class="form-control mt-3 mb-3" id="custom_donation" value="3" />
 
 
 
-                                        <button type="button" class="btn btn-md btn-primary text-white" @click="updateDonationQuantity_custom()">
-                                            Process
-                                        </button>
-                                    </div>
+                                    <button type="button" class="btn btn-md btn-primary text-white" @click="updateDonationQuantity_custom()">
+                                        Process
+                                    </button>
+                                </div>
 
                             </div>
                         </div>
@@ -486,32 +489,29 @@ $donation_quantities = array(
                                     <span class="mask bg-dark alpha-9"></span>
 
                                     <div class="card-body px-5 py-5">
-                                      <div style="min-height: 100px;">
+                                        <div style="min-height: 100px;">
                                             <div class="mt-2 mb-1 lh-180">
                                                 <div style="padding-top: 50px;">
-                                                  <i x-bind:class="selectedCause.icon"
-                                                      x-transition:enter.duration.500ms
-                                                      x-transition:leave.duration.400ms
-                                                  ></i>
+                                                    <i x-bind:class="selectedCause.icon" x-transition:enter.duration.500ms x-transition:leave.duration.400ms></i>
                                                 </div>
                                             </div>
 
                                             <div class="mt-5 h3">
-                                              <span x-text="selectedCause.cause"></span>
+                                                <span x-text="selectedCause.cause"></span>
                                             </div>
 
                                             <div class="text-center mt-4">
-                                              <div class="" x-show="showDonateButton()">
-                                                  <button type="button" class="btn btn-success btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="togglePages()">
-                                                      <span class="btn-inner--visible">Donate <span class="">₹<span x-text="donationAmount_formatted"></span></span></span>
-                                                      <span class="btn-inner--hidden"><small>Process <i class="fas fa-arrow-right"></i></small></span>
-                                                  </button>
-                                              </div>
+                                                <div class="" x-show="showDonateButton()">
+                                                    <button type="button" class="btn btn-success btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="togglePages()">
+                                                        <span class="btn-inner--visible">Donate <span class="">₹<span x-text="donationAmount_formatted"></span></span></span>
+                                                        <span class="btn-inner--hidden"><small>Process <i class="fas fa-arrow-right"></i></small></span>
+                                                    </button>
+                                                </div>
 
-                                              <p class="text-sm text-bg-gray mt-2">
-                                                  <span x-html="selectedCause.YieldContext"></span>
-                                              </p>
-                                          </div>
+                                                <p class="text-sm text-bg-gray mt-2">
+                                                    <span x-html="selectedCause.YieldContext"></span>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

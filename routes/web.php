@@ -46,6 +46,13 @@ Route::name('frontend.')->group(function () {
 
     Route::get('/thank-you/{donation_id?}', [HomeController::class, 'thank_you'])->name('donate.thank_you');
 
+    # As of now, this only accepts RAZORPAY PAYMENT ID, which is quite hard to "guess"
+    # If we have it as donation ID, people will go around guessing numbers and
+    # if they get access to someone else's donation receipt, we might leak their address, which is a
+    # MAJOR problem.
+    Route::get('/receipt/{id?}', [HomeController::class, 'receipt'])->name('donations.receipt');
+
+
     Route::get('/campaigns', [HomeController::class, 'index'])->name('campaigns');
     Route::get('/track-donation/{donation_id?}', [HomeController::class, 'track_donation'])->name('track-donation');
     Route::get('/transparency-report', [HomeController::class, 'index'])->name('transparency-report');
@@ -131,7 +138,6 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::delete('/destroy/{id}', [CausesController::class, 'destroy'])->name('destroy');
     });
 
-
     Route::prefix('contact')->as('contact.')->group(function () {
         Route::get('/', [ContactsController::class, 'index'])->name('index');
         Route::get('/view/{id}', [ContactsController::class, 'viewContact'])->name('view');
@@ -161,8 +167,9 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::prefix('procurement')->as('procurement.')->group(function(){
             Route::get('/', [OperationsController::class, 'procurement_index'])->name('index');
             Route::post('/update/{id}', [OperationsController::class, 'procurement_update'])->name('update');
-            Route::delete('/destroy/{id}', [OperationsController::class, 'procurement_destroy'])->name('destroy');
         });
+
+        Route::delete('/destroy/{id}', [OperationsController::class, 'destroy'])->name('destroy');
     });
 
     Route::prefix('missions')->as('missions.')->group(function() {
@@ -189,5 +196,9 @@ Route::get('/dashboard', function () {
     // return view('dashboard');
     return redirect()->route('admin.dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/test', function () {
+    return view('pdf.receipts.receipt');
+});
 
 require __DIR__ . '/auth.php';

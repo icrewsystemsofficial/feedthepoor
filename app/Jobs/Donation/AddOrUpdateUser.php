@@ -13,7 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use romanzipp\QueueMonitor\Traits\IsMonitored;
 
-class AddOrUpdateUser implements ShouldQueue
+class AddOrUpdateUser
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, IsMonitored;
 

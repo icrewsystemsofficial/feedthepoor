@@ -1,35 +1,5 @@
 @extends('layouts.admin')
 
-@section('css')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/js/bootstrap-switch.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/css/bootstrap-switch.min.css" rel="stylesheet">
-<style>
-    .badge-danger {
-        background-color: #d9534f;
-        color: #fff;
-        border-color: transparent;
-    }
-    .badge-danger:hover {
-        background-color: #d9534f;
-        color: #fff;
-        border-color: transparent;
-    }
-    .delete-modal {
-        font-size: 1.2rem !important;
-    }
-    .form-check {
-        padding-left: 0px !important;
-    }
-    .bootstrap-switch .bootstrap-switch-handle-on,
-    .bootstrap-switch .bootstrap-switch-handle-off,
-    .bootstrap-switch .bootstrap-switch-label {
-        display: inline-block;
-        width: 44%;
-    }
-</style>
-@endsection
-
 @section('js')
 <script>
     function trigger_delete() {

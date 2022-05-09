@@ -34,6 +34,8 @@ Route::prefix('v1')->as('api.v1.')->group(function() {
         Route::post('/authenticate', [FlutterAPIController::class, 'authenticate'])->name('authenticate');
 
         Route::middleware(['auth:sanctum'])->group(function () {
+
+            # Get basic details.
             Route::get('/user-details', [FlutterAPIController::class, 'user_details'])->name('user.details');
             Route::get('/app-details', [FlutterAPIController::class, 'app_details'])->name('app.details');
         });

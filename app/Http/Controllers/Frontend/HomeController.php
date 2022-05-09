@@ -7,6 +7,7 @@ use Faker\Factory;
 use App\Models\User;
 use App\Models\Causes;
 use App\Models\Location;
+use App\Models\Donations;
 use App\Jobs\SendAdminJob;
 use App\Models\FaqEntries;
 use App\Models\userContact;
@@ -54,13 +55,15 @@ class HomeController extends Controller
         $donation_random_images = json_encode($images);
         $donation_names = json_encode($names);
 
+        $causes = Causes::all();
 
 
         return view('frontend.index', [
             'donation_images' => $donation_random_images,
             'donation_names' => $donation_names,
             'total_meals_fed' => $total_meals_fed,
-            'total_donations_received' => $total_donations_received
+            'total_donations_received' => $total_donations_received,
+            'causes' => $causes
         ]);
     }
 
@@ -69,18 +72,23 @@ class HomeController extends Controller
 
         $locations = Location::where('location_status', 1)->get();
 
+
+
         return view('frontend.about.index', [
             'locations' => $locations,
+
         ]);
     }
 
-    public function partners () {
+    public function partners()
+    {
         return view('frontend.partners.index');
     }
 
     public function volunteer()
     {
-        return view('frontend.volunteer.index');
+        $causes = Causes::all();
+        return view('frontend.volunteer.index', ['causes' => $causes]);
     }
 
     /**
@@ -100,6 +108,8 @@ class HomeController extends Controller
 
         return view('frontend.donation.index', [
             'donation_types' => $donation_types,
+
+
         ]);
     }
 
@@ -111,14 +121,17 @@ class HomeController extends Controller
      */
     public function donate_process($razorpay_order_id = null)
     {
+
         if ($razorpay_order_id == null) {
             return redirect()->route('frontend.donate');
         }
 
         $order = app(RazorpayAPIController::class)->fetch_order($razorpay_order_id);
+
         //TODO Handle failure
         return view('frontend.donation.payment', [
             'order' => $order,
+
         ]);
     }
 
@@ -130,9 +143,15 @@ class HomeController extends Controller
      */
     public function thank_you($payment_id = null)
     {
+        if ($payment_id == null) {
+            return redirect()->route('frontend.donate')->with('error','Oops, you tried to visit the payment page without the proper ID. If you are unaware of the
+            payment ID, please check the e-mail ID you provided during the time of donation. For more help, contact support.');
+        }
+
         return view('frontend.donation.thank_you', [
             'payment_id' => $payment_id,
             'payment' => app(RazorpayAPIController::class)->fetch_payment($payment_id),
+
         ]);
     }
 
@@ -148,11 +167,13 @@ class HomeController extends Controller
         // dd($names_json);
         return view('frontend.tracking.tracking', [
             'donation_name' => $donation_name,
+
         ]);
     }
 
     public function faq()
     {
+
         $faq_categories = DB::table('faq_categories')->where('category_status', 1)->get();
         $faq_entries =   FaqEntries::get();
         // dd($faq_entries);
@@ -162,6 +183,7 @@ class HomeController extends Controller
 
     public function contact()
     {
+
         return view('frontend.contact.contactus');
     }
 
@@ -177,7 +199,7 @@ class HomeController extends Controller
         ]);
 
 
-        userContact::create($details);
+        Contact::create($details);
 
         SendConfirmationJob::dispatch($details);
         SendAdminJob::dispatch($details);
@@ -187,35 +209,89 @@ class HomeController extends Controller
         return redirect()->back()->with('message', 'Your contact request has been sent to our team successfully. One of our representatives will contact you within 72 hours. Thank you');
     }
 
-    public function receipt()
+    // public function receipt()
+    // {
+    //     $data = [
+    //         'donor_name' => 'Sathish',
+    //         'donation_amount' => 10000,
+    //         'donor_PAN' => 'AGB123OK12',
+    //         'receiver_PAN' => 'AXI198OR19',
+    //     ];
+
+    //     $markdown = new Markdown(view(), config('mail.markdown'));
+    //     // // return $markdown->render('receipt');
+
+    //     $file_name = 'filename_' . date('d_m_Y_H_i_A');
+    //     $html = $markdown->render('pdf.receipts.receipt', ['data' => $data]);
+
+    //     Storage::disk('public')->put($file_name .'.html', $html);
+
+    //     return PDF::loadFile(storage_path('app/public/' . $file_name . '.html'))
+    //         ->setPaper('a4', 'portrait')
+    //         ->stream($file_name . '.pdf');
+
+    //     // $storage_path = storage_path('app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'receipts' . DIRECTORY_SEPARATOR . $file_name . '.pdf');
+    //     // $pdf = PDF::loadView('pdf.receipts.receipt', ['data' => $data])
+    //     //     ->setPaper('a4', 'portrait')
+    //     //     ->save($storage_path);
+
+
+    //     // return view('receipt');
+    //     // $pdf = PDF::loadView('receipt', $data);
+    //     // return $pdf->download('receipts.pdf');
+    // }
+
+    /**
+     * receipt - Generates the PDF directly on browser.
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function receipt($id)
     {
-        $data = [
-            'donor_name' => 'Sathish',
-            'donation_amount' => 10000,
-            'donor_PAN' => 'AGB123OK12',
-            'receiver_PAN' => 'AXI198OR19',
-        ];
 
-        $markdown = new Markdown(view(), config('mail.markdown'));
-        // // return $markdown->render('receipt');
+        if ($id == null) {
+            return redirect()->route('frontend.donate');
+        }
 
-        $file_name = 'filename_' . date('d_m_Y_H_i_A');
-        $html = $markdown->render('pdf.receipts.receipt', ['data' => $data]);
+        $donation = Donations::where('razorpay_payment_id', $id)->firstOrFail();
+        $user = User::find($donation->donor_id);
+        $cause = Causes::find($donation->cause_id);
 
-        Storage::disk('public')->put($file_name .'.html', $html);
+        $payment['name'] = $user->name;
+        $payment['email'] = $user->email;
+        $payment['phone'] = $user->phone_number;
+        $payment['pan'] = $user->pan_number;
+        $payment['amt_in_words'] = $donation->donation_in_words;
+        $payment['quantity'] = (int) $donation->donation_amount / $cause->per_unit_cost;
+        $payment['amount'] = $donation->donation_amount;
+        $payment['cause'] = $cause->name;
+        $payment['tracking_url'] = route('frontend.track-donation', $donation->razorpay_payment_id);
 
-        return PDF::loadFile(storage_path('app/public/' . $file_name . '.html'))
-            ->setPaper('a4', 'portrait')
-            ->stream($file_name . '.pdf');
+        $pdf = PDF::loadView('pdf.receipts.receipt', ['data' => [
+            'payment' => $payment,
+            'user' => $user,
+        ]])->setPaper('a4', 'portrait');
 
-        // $storage_path = storage_path('app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'receipts' . DIRECTORY_SEPARATOR . $file_name . '.pdf');
-        // $pdf = PDF::loadView('pdf.receipts.receipt', ['data' => $data])
-        //     ->setPaper('a4', 'portrait')
-        //     ->save($storage_path);
+        /*
+
+        Instead of having a job which generates bulky pdf files and then deletes them,
+        we can have this view which can dynamically generate the receipt and display them
+        Since it is a file stream the user can print/save/share etc without having to download the receipt
+        This also solves the problem of storage space being exhausted
+
+        The url for this would be /donations/receipt/{id}
+
+        To generate the pdf much faster bootstrap needs to be eliminated (yikes)
+        DOMPDF replaces all classes in the view with inline styles
+        and this is very slow for a large css file like bootstrap
+
+        Take a look at https://stackoverflow.com/questions/54768375/slow-pdf-generation-with-phpdompdf
 
 
-        // return view('receipt');
-        // $pdf = PDF::loadView('receipt', $data);
-        // return $pdf->download('receipts.pdf');
+        Anirudh R
+        */
+
+        return $pdf->stream('receipt.pdf');
     }
 }

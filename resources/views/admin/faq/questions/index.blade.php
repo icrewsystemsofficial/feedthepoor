@@ -1,47 +1,5 @@
 @extends('layouts.admin')
 
-@section('css')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/1.3/bootstrapSwitch.min.js" integrity="sha512-DAc/LqVY2liDbikmJwUS1MSE3pIH0DFprKHZKPcJC7e3TtAOzT55gEMTleegwyuIWgCfOPOM8eLbbvFaG9F/cA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<style>
-    .badge-warning {
-        background-color: #f0ad4e;
-        color: #fff;
-    }
-    .badge-success {
-        background-color: #5cb85c;
-        color: #fff;
-    }
-    .badge-danger {
-        background-color: #d9534f;
-        color: #fff;
-    }
-    .badge-info {
-        background-color: #5bc0de;
-        color: #fff;
-    }
-    .action-btns {
-        width: fit-content;
-    }
-    .select2 {
-        width: 100% !important;
-    }
-    .select2-close-mask{
-        z-index: 2099;
-    }
-    .select2-dropdown{
-        z-index: 3051;
-    }
-</style>
-@endsection
-
 @section('content')
 <div class="row">
     <div class="col-12">

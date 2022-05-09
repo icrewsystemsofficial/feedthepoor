@@ -40,28 +40,51 @@ class DonationReceivedListener implements ShouldQueue
 
         $payment = $event->details;
 
-        # Add or update user, if new user, this job will dispatch a welcome email job as well.
+        # Add or update user, if new user, this JOB will dispatched a welcome email job as well.
+        # THIS SHOULD BE DONE ASYNCRONOUSLY, NOT QUEUED.
+
         AddOrUpdateUser::dispatch([
             'name' => $payment->name,
             'email' => $payment->email,
             'phone_number' => $payment->phone,
             'pan_number' => (isset($payment->pan)) ? $payment->pan : null,
             'account_claimed' => false,
-        ]);
+        ])->onQueue('default');
 
         # Add donation entry
         $user = User::where('email', $payment->email)->first();
-        AddOrUpdateDonationEntry::dispatch($payment, $user);
+        AddOrUpdateDonationEntry::dispatch($payment, $user)->onQueue('default');
+
 
 
         # Generate Donation receipt
         CreateDonationReceipt::dispatch([
             'payment' => $payment,
             'user' => $user,
-        ]);
+        ])->onQueue('default');
+
+        /*since we have a seperate route to display the receipt generated on the fly (/donation/receipt/{id}),
+        we can use that instead of this.
+
+        - Anirudh
+        08/4/2022
+
+        This is good! But it defeats the purpose of the admins getting the receipt.
+        After donating, we're directing them to their email, but in that e-mail we're
+        again directing them towards the website? We would have come full circle then haha.
+
+        Plus, the emails are designed only to handle PDFs as attachments.
+
+        This is a great fallback method we can rely upon. But as of now, let it remain as it
+        is.
+
+        - leonard,
+        16/4/2022.
+        */
 
 
         # Email admins
+        //TODO find out a way to e-mail / dispatch a notiffication to all users / admins
         Mail::to('kashrayks@gmail.com')->send(new DonationAdminEmail($event->details));
 
         # Email donor about confirmation
@@ -70,7 +93,5 @@ class DonationReceivedListener implements ShouldQueue
 
         # Add "Operations" logic TODO
         CreateProcurementListEntries::dispatch($payment);
-
-
     }
 }

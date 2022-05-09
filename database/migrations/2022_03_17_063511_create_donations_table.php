@@ -15,11 +15,11 @@ class CreateDonationsTable extends Migration
     {
         Schema::create('donations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('donor_id');            
+            $table->unsignedBigInteger('donor_id');
             $table->string('donor_name');
             $table->integer('donation_amount');
-            $table->text('donation_in_words');     
-            $table->unsignedBigInteger('cause_id');                   
+            $table->text('donation_in_words');
+            $table->unsignedBigInteger('cause_id');
             $table->string('cause_name');
             $table->integer('donation_status');
             $table->integer('payment_method')->default(0);
