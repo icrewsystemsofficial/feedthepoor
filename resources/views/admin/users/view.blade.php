@@ -237,7 +237,7 @@
                                         </div>
                                     </div>
                                     <div class="form-check form-switch mb-3">
-                                        <input class="form-check-input mx-1" type="checkbox" id="flexSwitchCheckChecked"
+                                        <input class="form-check-input mx-1" type="checkbox" id="flexSwitchCheckChecked" 
                                             @if ($user->available_for_mission)
                                                 checked
                                             @endif
