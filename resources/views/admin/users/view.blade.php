@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('css')
-
 <style>
     .badge-warning {
         background-color: #f0ad4e;
@@ -92,8 +91,8 @@
                     return true;
                 }
             }else{
-                return true;                
-            }       
+                return true;
+            }
 
         }
         async function updateProfile(id) {
@@ -125,7 +124,7 @@
                             document.getElementById(id).submit();
                         }, 1500);
                     }
-                });                
+                });
             }
 
         }
@@ -177,6 +176,13 @@
                         <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#account" role="tab">
                             Account
                         </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#notifications" role="tab">
+                            Notifications
+
+                            @if(App\Helpers\NotificationHelper::getUnreadCount() > 0)
+                                <span class="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-danger">{{ App\Helpers\NotificationHelper::getUnreadCount() }}</span>
+                            @endif
+                        </a>
                         <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#password" role="tab">
                             Password
                         </a>
@@ -184,14 +190,6 @@
                             Delete account
                         </a>
                         <form action="{{ route('admin.users.destroy', $user->id) }}" id="delete_user_form_{{$user->id}}" method="POST">@csrf @method('DELETE')</form>
-                        <a href="{{ route('admin.notifications.index') }}" class="list-group-item list-group-item-action" role="tab">
-                            View Notifications 
-
-                            @if(App\Helpers\NotificationHelper::getUnreadCount() > 0)
-                                <span class="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-danger">{{ App\Helpers\NotificationHelper::getUnreadCount() }}</span>
-                            @endif
-
-                        </a>
                     </div>
                 </div>
             </div>
@@ -221,7 +219,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="text-center">
-                                                <img id="avatar" alt="Charles Hall" 
+                                                <img id="avatar" alt="Charles Hall"
                                                 src="
                                                     @if($user->avatar == null)
                                                         https://ui-avatars.com/api/?name={{$user->name}}
@@ -239,7 +237,7 @@
                                         </div>
                                     </div>
                                     <div class="form-check form-switch mb-3">
-                                        <input class="form-check-input mx-1" type="checkbox" id="flexSwitchCheckChecked" 
+                                        <input class="form-check-input mx-1" type="checkbox" id="flexSwitchCheckChecked"
                                             @if ($user->available_for_mission)
                                                 checked
                                             @endif
@@ -251,7 +249,7 @@
                                         <select name="user_role" id="user_role" class="form-control">
                                             <option value="" selected>Select a Role</option>
                                             @foreach ($allRoles as $role)
-                                                <option 
+                                                <option
                                                 @if ($user->getRoleNames()[0] == $role->name)
                                                     selected
                                                 @endif value='{{$role->name}}'>{{$role->name}}</option>
@@ -276,7 +274,7 @@
                                             <select name="location_id" id="location_id" class="form-control">
                                                 <option value="" selected>Select a Location</option>
                                                 @foreach ($location as $loc)
-                                                    <option 
+                                                    <option
                                                     @if ($user->location_id == $loc->id)
                                                         selected
                                                     @endif
@@ -318,12 +316,52 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="tab-pane fade" id="notifications" role="notifications">
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    All notifications
+                               </h5>
+                                <div class="row mb-2">
+                                    <div class="col-md-12">
+                                   @forelse (App\Helpers\NotificationHelper::getNotifications('all') as $notification)
+                                   <a href="{{ url($notification->data['action']) }}" class="list-group-item m-3"
+                                     @if (!$notification->read_at)
+                                        style="background-color: rgb(229 229 229)"
+                                     @endif
+
+                                      >
+                                      <div class="row g-0 align-items-center m-1">
+                                         <div class="col-1">
+                                            <i class="text-{{ $notification->data['color'] }}" data-feather="{{ $notification->data['icon'] }}"></i>
+                                         </div>
+                                         <div class="col-10">
+                                            <div class="fw-bold">{{$notification->data['title']}}</div>
+                                            <div class="fw-normal mt-1">{{ $notification->data['body'] }}.</div>
+                                            <div class="text-muted small mt-1">{{ $notification->created_at->diffForHumans() }} &bull; {{ $notification->created_at->format('H:i A, d/m/Y') }}</div>
+                                         </div>
+                                      </div>
+                                   </a>
+                                  @empty
+                                  <div class="container mt-3">
+                                    <p>
+                                        There are no new notifications 😀
+                                    </p>
+                                  </div>
+
+                                  @endforelse
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
     </div>
-    <div class="card mt-3">
+    {{-- <div class="card mt-3">
         <div class="card-body">
             <div class="row mb-3">
                 <h3>
@@ -364,7 +402,7 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div> --}}
     <script>
         const inpAvatar = document.getElementById('input_avatar');
         inpAvatar.addEventListener('change', (event) => {

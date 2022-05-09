@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@php
+    //TODO This has been deprecated
+@endphp
+
 @section('content')
 <div class="row">
     <div class="col-12">
@@ -13,7 +17,7 @@
             </small>
         </p> --}}
 
-        
+
         <div class="card mt-3">
             <div class="card-body">
                 <div class="row mb-2">
@@ -21,7 +25,7 @@
                    @forelse (App\Helpers\NotificationHelper::getNotifications('all') as $notification)
                    <a href="{{ url($notification->data['action']) }}" class="list-group-item m-3"
                      @if (!$notification->read_at)
-                        style="background-color: rgb(229 229 229)"                         
+                        style="background-color: rgb(229 229 229)"
                      @endif
 
                       >

@@ -18,7 +18,7 @@
                    @forelse (App\Helpers\NotificationHelper::getNotifications(5) as $notification)
                    <a href="{{ url($notification->data['action']) }}" class="list-group-item"
                      @if (!$notification->read_at)
-                        style="background-color: rgb(229 229 229)"                         
+                        style="background-color: rgb(229 229 229)"
                      @endif
 
                       >
@@ -43,12 +43,22 @@
                   @endforelse
                    @if(App\Helpers\NotificationHelper::getUnreadCount() > 0)
                      <div class="dropdown-menu-footer">
-                        <a href="#"  onclick="markNotificationsAsRead();" class="text-muted">Mark All Read</a>
+                        <a href="#" onclick="markNotificationsAsRead();" class="text-muted">Mark all as read</a>
                      </div>
+                     <script>
+                        function markNotificationsAsRead() {
+                           axios.get("{{ route('admin.markasread', auth()->user()->id) }}")
+                           .then(function(response) {
+                                 window.location.reload();
+                           })
+                           .catch(function(error) {
+                                 toastr['error']('There was an error: ' + error, 'Whoopsie');
+                           });
+                        }
+                     </script>
                   @endif
-                  
                      <div class="dropdown-menu-footer">
-                        <a href="{{ route('admin.notifications.index') }}" class="text-muted">See All</a>
+                        <a href="{{ route('admin.profile.me') }}" class="text-muted">See all notifications</a>
                      </div>
                 </div>
              </div>
