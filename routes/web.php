@@ -98,10 +98,13 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
 
     Route::prefix('profile')->as('profile.')->group(function() {
         Route::get('/me', [UsersController::class, 'view'])->name('me');
-        Route::get('view/{id}', [UsersController::class, 'view'])->name('view');
         Route::post('{id}/update', [UsersController::class, 'update'])->name('update');
         Route::post('{id}/password_update', [UsersController::class, 'update_password'])->name('password_update');
+
+        // TODO Depcreate this
+        // Route::get('view/{id}', [UsersController::class, 'view'])->name('view');
     });
+
 
     Route::prefix('location')->as('location.')->group(function() {
         Route::get('/', [LocationController::class, 'index'])->name('index');
@@ -111,9 +114,7 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::post('/store', [LocationController::class, 'store'])->name('store');
     });
 
-    Route::prefix('notifications')->as('notifications.')->group(function() {
-        Route::get('/see_all', [DashboardController::class, 'see_all'])->name('index');
-    });
+
 
     Route::prefix('settings')->as('settings.')->group(function() {
         Route::get('/', [SettingsController::class, 'index'])->name('index');
