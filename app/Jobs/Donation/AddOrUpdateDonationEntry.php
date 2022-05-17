@@ -39,16 +39,19 @@ class AddOrUpdateDonationEntry implements ShouldQueue
      */
     public function handle()
     {
-        $cause = isset($this->payment->cause) ? Causes::where('name', $this->payment->cause)->first():0;
-        $campaign = isset($this->payment->campaign) ? Campaigns::where('campaign_name', $this->payment->campaign)->first():0;        
-        
+        $cause = isset($this->payment->cause) ? Causes::where('name', $this->payment->cause)->first() : 0;
+        $campaign = isset($this->payment->campaign) ? Campaigns::where('campaign_name', $this->payment->campaign)->first() : 0;
+
         # Check if there is a donation with the same ID.
         if(Donations::where('razorpay_payment_id', $this->payment->id)->count() == 0) {
             $donation = new Donations;
             $donation->donor_id = $this->user->id;
             $donation->donor_name = $this->user->name;
             $donation->donation_amount = $this->payment->amount;
-            $donation->donation_in_words = $this->payment->amt_in_words;            
+            $donation->donation_in_words = $this->payment->amt_in_words;
+
+
+            # If payment arrives through a campaign...
             if (isset($this->payment->campaign)){
                 $donation->campaign_id = $campaign->id;
                 $donation->cause_id = null;
@@ -59,15 +62,21 @@ class AddOrUpdateDonationEntry implements ShouldQueue
                 $donation->cause_name = $cause->name;
                 $donation->campaign_id = null;
             }
-            $donation->donation_status = Donations::$status['VERIFIED'];
+            $donation->donation_status = Donations::$status['PENDING'];
             $donation->payment_method = Donations::$payment_methods['RAZORPAY'];
             $donation->razorpay_payment_id = $this->payment->id;
             $donation->save();
 
-            activity()->log('New donation of ₹'.$this->payment->amount.' received from '. $this->user->name.' (#'.$this->user->id.') for '. isset($this->payment->campaign) ? 'campaign '.$campaign->campaign_name : 'cause '.$cause->name);
+            # Normal donations were failing because of this.
+            // $campaign_name = isset($this->payment->campaign) ? ', Campaign # (?) '.$campaign->campaign_name : '. (NO CAMPAIGN)';
+            // $addl = ' for Cause # '. $campaign_name;
+
+            activity()->log('New donation of ₹'.$this->payment->amount.' received from '. $this->user->name.' (#'.$this->user->id.')');
         } else {
             activity()->log('[Duplicate entry] Donation of ₹'.$this->payment->amount.' received from '. $this->user->name.' (#'.$this->user->id.') for '. isset($this->payment->campaign) ? 'campaign '.$campaign->campaign_name : 'cause '.$cause->name);
         }
 
     }
+
+
 }

@@ -31,6 +31,66 @@
         });
     }
 </script>
+<script>
+    $(document).ready(function() {
+        $('#status').on('change',()=>{
+            let val = '#'+$('#status option:selected').text();
+            $('.show-badge').addClass('hide-badge');
+            $('.show-badge').removeClass('show-badge');
+            $(val).removeClass('hide-badge');
+            $(val).addClass('show-badge');
+        });
+        const picker = new Litepicker({
+            element: document.getElementById('campaign_start_date'),
+            resetButton: true,
+        });
+        const picker2 = new Litepicker({
+            element: document.getElementById('campaign_end_date'),
+            resetButton: true,
+        });
+        $('#campaign_location').select2({
+            multiple: true,
+            placeholder: "Select location(s)",
+            allowClear: true,
+        });
+        $('#campaign_causes').select2({
+            multiple: true,
+            placeholder: "Select cause(s)",
+            allowClear: true
+        });
+        $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
+        FilePond.setOptions({
+            name: 'campaign_poster',
+            required: true,
+            server: {
+                url: '/admin/campaigns/upload',
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            }
+        });
+        let file = FilePond.create(
+            document.querySelector('#campaign_poster')
+        );
+        $.fn.filepond.setDefaults({
+            acceptedFileTypes: ['image/*'],
+        });
+    });
+    //
+</script>
+<script>
+    $(document).on('select2:open', (e) => {
+        const selectId = e.target.id
+
+        $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
+            key,
+            value,
+        ){
+            value.focus();
+        })
+    })
+</script>
 @endsection
 
 @section('content')
@@ -101,14 +161,14 @@
                     <textarea name="campaign_description" id="campaign_description" class="form-control">{{ $campaign->campaign_description }}</textarea>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="campaign_poster" class="form-label">Campaign poster</label>                    
+                    <label for="campaign_poster" class="form-label">Campaign poster</label>
                     <input type="file" id="campaign_poster" name="campaign_poster" class="form-control mb-3"/>
                     <a href="{{ $campaign->campaign_poster }}" target="_blank" class="btn btn-primary"><i class="fa-solid fa-eye"></i> View poster</a>
                 </div>
                 <div class="form-group mb-3">
                     <label for="campaign_goal_amount" class="form-label">Expected campaign amount (in INR)</label>
                     <input type="number" id="campaign_goal_amount" name="campaign_goal_amount" class="form-control" value="{{ $campaign->campaign_goal_amount }}"/>
-                </div>     
+                </div>
                 <div class="form-group mb-3">
                     <label for="name" class="form-label">Campaign start date</label>
                     <input type="date" id="campaign_start_date" name="campaign_start_date" class="form-control" value="{{ $campaign->campaign_start_date }}"/>
@@ -119,13 +179,13 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="campaign_location" class="form-label">Campaign location</label>
-                    <select name="campaign_location[]" id="campaign_location" class="form-control" multiple>                        
+                    <select name="campaign_location[]" id="campaign_location" class="form-control" multiple>
                         {!! App\Helpers\CampaignsHelper::getLocationsForManage($campaign->campaign_location) !!}
                     </select>
                 </div>
-                <div class="form-group mb-3>
+                <div class="form-group mb-3">
                     <label for="campaign_causes" class="form-label">Campaign causes</label><br>
-                    <select name="campaign_causes[]" id="campaign_causes" class="form-control" multiple>                        
+                    <select name="campaign_causes[]" id="campaign_causes" class="form-control" multiple required="required">
                         {!! App\Helpers\CampaignsHelper::getCausesForManage($campaign->campaign_causes) !!}
                     </select>
                 </div>
@@ -146,64 +206,4 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {       
-        $('#status').on('change',()=>{
-            let val = '#'+$('#status option:selected').text();
-            $('.show-badge').addClass('hide-badge');
-            $('.show-badge').removeClass('show-badge');            
-            $(val).removeClass('hide-badge');
-            $(val).addClass('show-badge');            
-        });
-        const picker = new Litepicker({ 
-            element: document.getElementById('campaign_start_date'),
-            resetButton: true,
-        });
-        const picker2 = new Litepicker({ 
-            element: document.getElementById('campaign_end_date'),
-            resetButton: true, 
-        });
-        $('#campaign_location').select2({
-            multiple: true,
-            placeholder: "Select location(s)",
-            allowClear: true,
-        });
-        $('#campaign_causes').select2({
-            multiple: true,
-            placeholder: "Select cause(s)",
-            allowClear: true
-        });
-        $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
-        FilePond.setOptions({
-            name: 'campaign_poster',
-            required: true,
-            server: {
-                url: '/admin/campaigns/upload',
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                }
-            }
-        });
-        let file = FilePond.create(
-            document.querySelector('#campaign_poster')
-        );
-        $.fn.filepond.setDefaults({
-            acceptedFileTypes: ['image/*'],
-        });
-    });
-    //
-</script>
-<script>    
-    $(document).on('select2:open', (e) => {
-        const selectId = e.target.id
-
-        $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
-            key,
-            value,
-        ){
-            value.focus();
-        })
-    })
-</script>
 @endsection

@@ -42,7 +42,7 @@ class CreateProcurementListEntries implements ShouldQueue
         $operation->procurement_item = isset($this->payment->cause) ? $this->payment->cause : $this->payment->campaign;
         $operation->procurement_quantity = isset($this->payment->cause) ? $this->payment->quantity : 1;
         $operation->vendor = null; //TODO
-        $operation->status = 'UNACKNOWLEDGED';
+        $operation->status = Operations::$status['UNACKNOWLEDGED'];
         $operation->mission_id = null; //TODO
         $operation->last_updated_by = null;
         $operation->save();
