@@ -8,7 +8,6 @@
              <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
                 <div class="position-relative">
                    <i class="align-middle" data-feather="bell"></i>
-
                    @if(App\Helpers\NotificationHelper::getUnreadCount() > 0)
                    <span class="indicator">{{ App\Helpers\NotificationHelper::getUnreadCount() }}</span>
                    @endif
@@ -17,7 +16,12 @@
              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
                 <div class="list-group">
                    @forelse (App\Helpers\NotificationHelper::getNotifications(5) as $notification)
-                   <a href="{{ url($notification->data['action']) }}" class="list-group-item">
+                   <a href="{{ url($notification->data['action']) }}" class="list-group-item"
+                     @if (!$notification->read_at)
+                        style="background-color: rgb(229 229 229)"
+                     @endif
+
+                      >
                       <div class="row g-0 align-items-center">
                          <div class="col-2">
                             <i class="text-{{ $notification->data['color'] }}" data-feather="{{ $notification->data['icon'] }}"></i>
@@ -39,9 +43,23 @@
                   @endforelse
                    @if(App\Helpers\NotificationHelper::getUnreadCount() > 0)
                      <div class="dropdown-menu-footer">
-                        <a href="#"  onclick="markNotificationsAsRead();" class="text-muted">Mark All Read</a>
+                        <a href="#" onclick="markNotificationsAsRead();" class="text-muted">Mark all as read</a>
                      </div>
+                     <script>
+                        function markNotificationsAsRead() {
+                           axios.get("{{ route('admin.markasread', auth()->user()->id) }}")
+                           .then(function(response) {
+                                 window.location.reload();
+                           })
+                           .catch(function(error) {
+                                 toastr['error']('There was an error: ' + error, 'Whoopsie');
+                           });
+                        }
+                     </script>
                   @endif
+                     <div class="dropdown-menu-footer">
+                        <a href="{{ route('admin.profile.me') }}" class="text-muted">See all notifications</a>
+                     </div>
                 </div>
              </div>
           </li>
@@ -62,7 +80,7 @@
              </a>
 
              <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="{{ route('admin.profile.view', Auth::user()->id) }}"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+                <a class="dropdown-item" href="{{ route('admin.profile.me', Auth::user()->id) }}"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
                 <div class="dropdown-divider"></div>
                 <form action="{{ route('logout') }}" id="logoutForm" method="POST">@csrf</form>
                 <a class="dropdown-item" onclick="document.getElementById('logoutForm').submit();">Log out</a>

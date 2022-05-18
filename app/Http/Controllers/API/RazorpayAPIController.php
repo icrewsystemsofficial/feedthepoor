@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Razorpay\Api\Api as RazorpayAPI;
 use App\Events\Donations\DonationReceived;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Models\Setting;
 
 class RazorpayAPIController extends Controller
 {
@@ -20,8 +21,10 @@ class RazorpayAPIController extends Controller
      */
     public function __construct()
     {
-        $this->key_id = 'rzp_test_SmU75lqcibiulc'; #Should be loaded from settings module.
-        $this->secret = 'BSe2Who1QIS4heUJBapZImfr'; #Should be loaded from settings module.
+        $razorpay_public_key = Setting::where('key', 'razorpay_public_key')->first()['value'];
+        $razorpay_private_key = Setting::where('key', 'razorpay_private_key')->first()['value'];
+        $this->key_id = $razorpay_private_key;
+        $this->secret =  $razorpay_public_key;
     }
 
     /**
