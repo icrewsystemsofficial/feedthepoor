@@ -122,6 +122,6 @@ class UsersController extends Controller
     //VLOUNTEER
 
     public function volunteer_apply(){
-        return('working');
+        return view('frontend.volunteer.apply');
     }
 }
