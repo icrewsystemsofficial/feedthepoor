@@ -143,6 +143,7 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::delete('/destroy/{id}', [UsersController::class, 'destroy'])->name('destroy');
         Route::get('/volunteer_applications', [UsersController::class, 'volunteer_applications'])->name('volunteer_applications');
         Route::get('/manage_applications/{id}', [UsersController::class, 'manage_application'])->name('manage_application');
+        Route::post('/volunteer_accept/{id}', [UsersController::class, 'volunteer_accept'])->name('volunteer_accept');
         Route::delete('/destroy_volunteer/{id}', [UsersController::class, 'destroy_volunteer'])->name('destroy_volunteer');
     });
 

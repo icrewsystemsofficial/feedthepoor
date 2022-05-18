@@ -144,7 +144,7 @@
                                 <h5 class="card-title mb-0">Request#{{$user->id}}</h5>
                             </div>
                             <div class="card-body">
-                                <form method="POST" action="{{ route('admin.profile.update', $user->id) }}" enctype="multipart/form-data" id="update_profile">
+                                <form method="POST" action="{{ route('admin.users.volunteer_accept', $user->id) }}" id="update_profile">
                                     @csrf
                                     <div class="row">
                                         <div class="mb-3">
@@ -208,7 +208,7 @@
                                         <label class="form-label" for="twitter">Twitter</label>
                                         <input readonly name="twitter" value="{{ $user->twitter }}" type="text" class="form-control" id="twitter" >
                                     </div>
-                                    <button type="button" onclick="updateProfile('update_profile')" class="btn btn-primary">Accept Request</button>
+                                    <button type="submit" class="btn btn-primary">Accept Request</button>
                                 </form>
 
                             </div>

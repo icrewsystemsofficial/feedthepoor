@@ -147,7 +147,28 @@ class UsersController extends Controller
         $user = VolunteerRequest::find($id);
         alert()->success('Yay','User "'.$user->name.'" was successfully deleted');
         $user->delete();
-        return (redirect(route('admin.users.volunteer')));
+        return (redirect(route('admin.users.volunteer_applications')));
+    }
+
+    public function volunteer_accept(Request $req, $id){
+        $user = new User;
+        $user->name = $req->input('name');
+        $user->email = $req->input('email');
+        $user->password = bcrypt($req->input('email'));
+        $user->address = $req->input('address');
+        $user->phone_number = $req->input('phone_number');
+        $loc = Location::where('location_name', $req->input('city'))->get();
+        if($loc){
+            $user->location_id = $loc;
+        }else{
+            $user->location_id = 1;
+        }
+        
+        $user->assignRole('volunteer');
+        $user->save();
+        VolunteerRequest::find($id)->delete();
+        alert()->success('Yay','A new volunteer has been added');
+        return (redirect(route('admin.users.volunteer_applications')));
     }
 
     public function manage_application($id){
