@@ -24,7 +24,8 @@
             <p>Cool! Let's talk about you</p>
           </div>
           <div class="card-body px-0 pt-0">
-            <form action="#">
+            <form action="{{ route('frontend.volunteer.submit')}}" method="POST">
+                @csrf
               <div class="mb-4">
                 <label for="name">Your Name</label>
                 <div class="input-group">
@@ -32,6 +33,7 @@
                     <span class="fas fa-user-circle"> </span>
                   </span>
                   <input
+                  name="name"
                     type="text"
                     class="form-control"
                     placeholder="e.g. Bonnie Green"
@@ -44,6 +46,7 @@
                 <label for="age">Your Age</label>
                 <div class="input-group">
                   <input
+                  name="age"
                     type="number"
                     class="form-control"
                     id="age"
@@ -58,6 +61,7 @@
                     <span class="fas fa-envelope"> </span>
                   </span>
                   <input
+                  name="email"
                     type="email"
                     class="form-control"
                     placeholder="example@company.com"
@@ -73,6 +77,7 @@
                     <span class="fas fa-phone"> </span>
                   </span>
                   <input
+                  name="number"
                     type="number"
                     class="form-control"
                     placeholder="e.g. Bonnie Green"
@@ -85,6 +90,7 @@
                 <label for="organization">Organization</label>
                 <div class="input-group">
                   <input
+                  name="organization"
                     type="text"
                     class="form-control"
                     placeholder="e.g. Roshini Foundations"
@@ -97,6 +103,7 @@
                 <label for="state">State Name</label>
                 <div class="input-group">
                   <input
+                  name="state"
                     type="text"
                     class="form-control"
                     placeholder="e.g. Tamil Nadu"
@@ -109,6 +116,7 @@
                 <label for="city">City Name</label>
                 <div class="input-group">
                   <input
+                  name="city"
                     type="text"
                     class="form-control"
                     placeholder="e.g. Chennai"
@@ -120,18 +128,19 @@
               <div class="mb-4">
                 <label for="address">Your Address</label>
                 <textarea
+                name="address"
                   placeholder="Your address"
                   class="form-control"
                   id="address"
                   rows="4"
                   required=""
-                >
-                </textarea>
+                ></textarea>
               </div>
               <div class="mb-4">
                 <label for="Pincode">Pincode</label>
                 <div class="input-group">
                   <input
+                  name="pincode"
                     type="number"
                     class="form-control"
                     placeholder="e.g. 600045"
@@ -143,18 +152,19 @@
               <div class="mb-4">
                 <label for="experience">Tell Us about your previous NGO experience</label>
                 <textarea
+                name="experience"
                   placeholder="Your message"
                   class="form-control"
                   id="experience"
                   rows="4"
                   required=""
-                >
-                </textarea>
+                ></textarea>
               </div>
               <div class="mb-4">
                 <label for="Education">Your Education Qualification</label>
                 <div class="input-group">
                   <input
+                  name="education"
                     type="text"
                     class="form-control"
                     id="Education"
@@ -166,6 +176,7 @@
                 <label for="Profession">Your Current Profession</label>
                 <div class="input-group">
                   <input
+                  name="profession"
                     type="text"
                     class="form-control"
                     id="Profession"
@@ -176,13 +187,13 @@
               <div class="mb-4">
                 <label for="reason">Why you want to join Roshni Moolchandani Charitable Trust?</label>
                 <textarea
+                name="reason"
                   placeholder="Your message"
                   class="form-control"
                   id="reason"
                   rows="4"
                   required=""
-                >
-                </textarea>
+                ></textarea>
               </div>
               <div class="mb-4">
                 <label for="Facebook">Facebook Profile Link</label>
@@ -191,6 +202,7 @@
                     <span class="fas fa-user-circle"> </span>
                   </span>
                   <input
+                  name="facebook"
                     type="text"
                     class="form-control"
                     id="Facebook"
@@ -205,6 +217,7 @@
                     <span class="fas fa-user-circle"> </span>
                   </span>
                   <input
+                  name="instagram"
                     type="text"
                     class="form-control"
                     id="Instagram"
@@ -219,6 +232,7 @@
                     <span class="fas fa-user-circle"> </span>
                   </span>
                   <input
+                  name="twitter"
                     type="text"
                     class="form-control"
                     id="twitter"

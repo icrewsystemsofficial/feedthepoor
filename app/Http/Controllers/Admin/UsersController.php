@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Location;
 use App\Models\User;
 use App\Models\Donations;
+use App\Models\VolunteerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -123,5 +124,10 @@ class UsersController extends Controller
 
     public function volunteer_apply(){
         return view('frontend.volunteer.apply');
+    }
+
+    public function submit_request(Request $request){
+        VolunteerRequest::create($request->all());
+        return redirect(route('frontend.index'));
     }
 }

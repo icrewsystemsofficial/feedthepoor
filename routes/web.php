@@ -71,6 +71,7 @@ Route::name('frontend.')->group(function () {
 
     Route::prefix('volunteer')->as('volunteer.')->group(function() {
         Route::get('/apply', [UsersController::class, 'volunteer_apply'])->name('apply');
+        Route::post('/submit', [UsersController::class, 'submit_request'])->name('submit');
     });
 });
 
