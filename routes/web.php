@@ -67,6 +67,11 @@ Route::name('frontend.')->group(function () {
     Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     Route::post('/contact', [HomeController::class, 'savecontact'])->name('savecontact');
+
+
+    Route::prefix('volunteer')->as('volunteer.')->group(function() {
+        Route::get('/apply', [UsersController::class, 'volunteer_apply'])->name('apply');
+    });
 });
 
 /*

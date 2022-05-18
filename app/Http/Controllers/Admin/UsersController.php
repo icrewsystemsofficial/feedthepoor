@@ -117,4 +117,11 @@ class UsersController extends Controller
         $user->delete();
         return (redirect(route('admin.users.index')));
     }
+
+
+    //VLOUNTEER
+
+    public function volunteer_apply(){
+        return('working');
+    }
 }

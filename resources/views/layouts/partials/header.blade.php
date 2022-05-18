@@ -117,6 +117,25 @@
                             </div>
                         </div>
                     </li>
+
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="volunteerDropdown" aria-expanded="false">
+                            Volunteer
+                            <span class="fas fa-angle-down nav-link-arrow ms-1"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg" aria-labelledby="volunteerDropdown">
+                            <div class="col-auto px-0">
+                                <div class="list-group list-group-flush">
+                                    <a href="{{ route('frontend.volunteer.apply')}}" class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
+                                        <span class="icon icon-md"><i class="fas fa-handshake"></i></span>
+                                        <div class="ms-4">
+                                            <span class="d-block font-small fw-bold mb-0">Apply<span class="badge badge-sm badge-secondary ms-2">v3.1</span></span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
             <div class="d-flex align-items-center">
