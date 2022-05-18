@@ -103,7 +103,7 @@
                                         {{ $user->organization }}
                                     </td>
                                     <td class="d-flex justify-content-around">
-                                        <a href="{{ route('admin.users.manage_applications', $user->id) }}" class="btn btn-primary btn-sm">
+                                        <a href="{{ route('admin.users.manage_application', $user->id) }}" class="btn btn-primary btn-sm">
                                             <i class="fa-solid fa-edit"></i> &nbsp;
                                             Manage
                                         </a>

@@ -147,6 +147,11 @@ class UsersController extends Controller
         $user = VolunteerRequest::find($id);
         alert()->success('Yay','User "'.$user->name.'" was successfully deleted');
         $user->delete();
-        return (redirect(route('admin.users.index')));
+        return (redirect(route('admin.users.volunteer')));
+    }
+
+    public function manage_application($id){
+        $user = VolunteerRequest::find($id);
+        return view('admin.users.view_volunteer')->with('user', $user);
     }
 }

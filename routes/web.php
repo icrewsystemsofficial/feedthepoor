@@ -142,7 +142,7 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::post('/create', [UsersController::class, 'create'])->name('create');
         Route::delete('/destroy/{id}', [UsersController::class, 'destroy'])->name('destroy');
         Route::get('/volunteer_applications', [UsersController::class, 'volunteer_applications'])->name('volunteer_applications');
-        Route::get('/manage_applications/{id}', [UsersController::class, 'manage_applications'])->name('manage_applications');
+        Route::get('/manage_applications/{id}', [UsersController::class, 'manage_application'])->name('manage_application');
         Route::delete('/destroy_volunteer/{id}', [UsersController::class, 'destroy_volunteer'])->name('destroy_volunteer');
     });
 
