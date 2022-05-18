@@ -49,7 +49,7 @@ class DonationsController extends Controller
         return view('admin.donations.manage', compact('donation', 'user', 'all_donations'));
     }
 
-    public function update(Request $request){
+    public function update(Request $request){        
         if ($request->cause_id == 0){
             $request->request->remove('cause_id');
         }
@@ -69,15 +69,12 @@ class DonationsController extends Controller
             throw ValidationException::withMessages([
                 'cause_id' => ['Please select either cause or campaign'],
             ]);            
-        }
-        $donor = User::whereRaw('LOWER(`name`) LIKE ?', [strtolower($request->donor_name)])->first();
+        }        
         $cause_name = $request->cause_id ? Causes::find($request->cause_id)->name : Campaigns::find($request->campaign_id)->name;
-        $donor_name = $donor ? $donor->name : $request->donor_name;
-        $donor_id = $donor ? $donor->id : null;
-        $donor_id ? $request->merge(['donor_id' => $donor_id]) : null;
         $donation_in_words = Donations::Show_Amount_In_Words($request->donation_amount);
-        $request->merge(['donor_name' => $donor_name, 'cause_name' => $cause_name, 'donation_in_words' => $donation_in_words]);        
-        event(new AddDonation($request->all(), 0, $request->id));//1-> add record, 0-> update record
+        $request->merge(['cause_name' => $cause_name, 'donation_in_words' => $donation_in_words]);        
+        $donation = Donations::find($request->id);
+        $donation->update($request->all());
         alert()->success('Yay','Donation was successfully updated');
         return redirect()->route('admin.donations.index');
     }
