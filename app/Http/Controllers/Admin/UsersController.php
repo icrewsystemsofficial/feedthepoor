@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Helpers\NotificationHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Location;
 use App\Models\User;
 use App\Models\Donations;
+use App\Models\Notification;
 use App\Models\VolunteerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -127,7 +129,24 @@ class UsersController extends Controller
     }
 
     public function submit_request(Request $request){
+        $users = User::role('superadmin')->get();
+        $notification = new NotificationHelper;
+        foreach ($users as $user) {
+            $notification->user($user)->content('Volunteer Request', 'A Request has been filed for new Volunteer')->action('{{route("admin.users.volunteer_applications")}}')->notify();
+        }
         VolunteerRequest::create($request->all());
         return redirect(route('frontend.index'));
+    }
+
+    public function volunteer_applications(){
+        $applicants = VolunteerRequest::all();
+        return view('admin.users.volunteer')->with('users', $applicants);
+    }
+
+    public function destroy_volunteer($id){
+        $user = VolunteerRequest::find($id);
+        alert()->success('Yay','User "'.$user->name.'" was successfully deleted');
+        $user->delete();
+        return (redirect(route('admin.users.index')));
     }
 }
