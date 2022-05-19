@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\NotificationHelper;
+use App\Http\Controllers\Admin\ModuleAccessController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactsController;
@@ -202,6 +203,11 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::post('/store', [MissionsController::class, 'store'])->name('store');
         Route::post('/update/{id}', [MissionsController::class, 'update'])->name('update');
         Route::post('/delete/{id}', [MissionsController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('module-access')->as('access.')->group(function () {
+       Route::get('/',[ModuleAccessController::class,'index'])->name('index');
+       Route::get('/create',[ModuleAccessController::class,'create_access']);
     });
 
 });
