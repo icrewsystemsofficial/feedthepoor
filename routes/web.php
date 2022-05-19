@@ -67,6 +67,12 @@ Route::name('frontend.')->group(function () {
     Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     Route::post('/contact', [HomeController::class, 'savecontact'])->name('savecontact');
+
+
+    Route::prefix('volunteer')->as('volunteer.')->group(function() {
+        Route::get('/apply', [UsersController::class, 'volunteer_apply'])->name('apply');
+        Route::post('/submit', [UsersController::class, 'submit_request'])->name('submit');
+    });
 });
 
 /*
@@ -135,6 +141,10 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::get('/manage/{id}', [UsersController::class, 'manage'])->name('manage');
         Route::post('/create', [UsersController::class, 'create'])->name('create');
         Route::delete('/destroy/{id}', [UsersController::class, 'destroy'])->name('destroy');
+        Route::get('/volunteer_applications', [UsersController::class, 'volunteer_applications'])->name('volunteer_applications');
+        Route::get('/manage_applications/{id}', [UsersController::class, 'manage_application'])->name('manage_application');
+        Route::post('/volunteer_accept/{id}', [UsersController::class, 'volunteer_accept'])->name('volunteer_accept');
+        Route::delete('/destroy_volunteer/{id}', [UsersController::class, 'destroy_volunteer'])->name('destroy_volunteer');
     });
 
     Route::prefix('faq')->as('faq.')->group(function() {

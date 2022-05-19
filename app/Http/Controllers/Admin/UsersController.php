@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Helpers\NotificationHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\VolunteerFormRequest;
+use App\Mail\VolunteerAccepted;
+use App\Mail\VolunteerApplied;
 use App\Models\Location;
 use App\Models\User;
 use App\Models\Donations;
+use App\Models\Notification;
+use App\Models\VolunteerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 use Spatie\Permission\Models\Role;
@@ -116,5 +123,79 @@ class UsersController extends Controller
         alert()->success('Yay','User "'.$user->name.'" was successfully deleted');
         $user->delete();
         return (redirect(route('admin.users.index')));
+    }
+
+
+    //VLOUNTEER
+
+    public function volunteer_apply(){
+        return view('frontend.volunteer.apply');
+    }
+
+    public function submit_request(VolunteerFormRequest $request){
+        $users = User::role('superadmin')->get();
+        $notification = new NotificationHelper;
+        foreach ($users as $user) {
+            $notification->user($user)->content('Volunteer Request', 'A Request has been filed for new Volunteer')->action('{{route("admin.users.volunteer_applications")}}')->notify();
+        }
+        VolunteerRequest::create($request->validated());
+
+        $details = [
+            'name' => $request->name,
+            'email' => $request->email
+        ];
+//        Sending an email to the volunteer that we have recived their request
+        $email = new VolunteerApplied($details);
+        Mail::to($request->email)->send($email);
+
+        return redirect(route('frontend.index'));
+    }
+
+    public function volunteer_applications(){
+        $applicants = VolunteerRequest::all();
+        return view('admin.users.volunteer')->with('users', $applicants);
+    }
+
+    public function destroy_volunteer($id){
+        $user = VolunteerRequest::find($id);
+        alert()->success('Yay','User "'.$user->name.'" was successfully deleted');
+        $user->delete();
+        return redirect(route('admin.users.volunteer_applications'));
+    }
+
+    public function volunteer_accept(Request $req, $id){
+        $user = new User;
+        $user->name = $req->input('name');
+        $user->email = $req->input('email');
+        $user->password = bcrypt($req->input('email'));
+        $user->address = $req->input('address');
+        $user->phone_number = $req->input('phone_number');
+        $loc = Location::where('location_name', $req->input('city'))->get();
+        if($loc){
+            $user->location_id = $loc;
+        }else{
+            $user->location_id = 1;
+        }
+        
+        $user->assignRole('volunteer');
+        $user->save();
+        VolunteerRequest::find($id)->delete();
+
+        $details = [
+          'name' => $user->name,
+          'email' => $user->email,
+          'password' => $user->email,
+        ];
+
+        $email = new VolunteerAccepted($details);
+        Mail::to($user->email)->send($email);
+
+        alert()->success('Yay','A new volunteer has been added');
+        return (redirect(route('admin.users.volunteer_applications')));
+    }
+
+    public function manage_application($id){
+        $user = VolunteerRequest::find($id);
+        return view('admin.users.view_volunteer')->with('user', $user);
     }
 }
