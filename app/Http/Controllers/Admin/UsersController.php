@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Helpers\NotificationHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VolunteerFormRequest;
+use App\Mail\VolunteerAccepted;
+use App\Mail\VolunteerApplied;
 use App\Models\Location;
 use App\Models\User;
 use App\Models\Donations;
@@ -12,6 +14,7 @@ use App\Models\Notification;
 use App\Models\VolunteerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 use Spatie\Permission\Models\Role;
@@ -136,6 +139,15 @@ class UsersController extends Controller
             $notification->user($user)->content('Volunteer Request', 'A Request has been filed for new Volunteer')->action('{{route("admin.users.volunteer_applications")}}')->notify();
         }
         VolunteerRequest::create($request->validated());
+
+        $details = [
+            'name' => $request->name,
+            'email' => $request->email
+        ];
+//        Sending an email to the volunteer that we have recived their request
+        $email = new VolunteerApplied($details);
+        Mail::to($request->email)->send($email);
+
         return redirect(route('frontend.index'));
     }
 
@@ -168,6 +180,16 @@ class UsersController extends Controller
         $user->assignRole('volunteer');
         $user->save();
         VolunteerRequest::find($id)->delete();
+
+        $details = [
+          'name' => $user->name,
+          'email' => $user->email,
+          'password' => $user->email,
+        ];
+
+        $email = new VolunteerAccepted($details);
+        Mail::to($user->email)->send($email);
+
         alert()->success('Yay','A new volunteer has been added');
         return (redirect(route('admin.users.volunteer_applications')));
     }
