@@ -1,6 +1,6 @@
 @component('mail::message')
 # Hey {{ $details['name'] }}
-We have received your generous donation of <strong>₹{{ $details['amount'] }}</strong> ({{ $details['amt_in_words'] }}) successfully for <strong>{{ $details['cause'] }}</strong>
+We have received your generous donation of <strong>₹{{ $details['amount'] }}</strong> ({{ $details['amt_in_words'] }}) successfully for <strong>{{ isset($details['cause']) ? 'cause '.$details['cause'] : 'campaign '.$details['campaign'] }}</strong>
 
 The receipt for your donation is attached herewith this email as a PDF. <br>
 @if (isset($details['pan'])) This receipt will be valid for 80G tax exemptions @endif

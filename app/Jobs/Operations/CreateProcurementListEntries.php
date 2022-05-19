@@ -3,6 +3,7 @@
 namespace App\Jobs\Operations;
 
 use App\Models\Donations;
+use App\Models\Location;
 use App\Models\Operations;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -37,8 +38,9 @@ class CreateProcurementListEntries implements ShouldQueue
     {
         $operation = new Operations;
         $operation->donation_id = Donations::where('razorpay_payment_id', $this->payment->id)->first()->id;
-        $operation->procurement_item = $this->payment->cause;
-        $operation->procurement_quantity = $this->payment->quantity;
+        $operation->location_id = 0;
+        $operation->procurement_item = isset($this->payment->cause) ? $this->payment->cause : $this->payment->campaign;
+        $operation->procurement_quantity = isset($this->payment->cause) ? $this->payment->quantity : 1;
         $operation->vendor = null; //TODO
         $operation->status = 'UNACKNOWLEDGED';
         $operation->mission_id = null; //TODO

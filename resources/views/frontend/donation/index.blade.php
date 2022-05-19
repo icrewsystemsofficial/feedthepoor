@@ -32,6 +32,7 @@ $donation_quantities = array(
             donationAmount_formatted: 0,
             showCustomDonationBlock: false,
             showCustomDonationButton: true,
+            campaignName: null,
             price: 0,
 
 
@@ -353,6 +354,7 @@ $donation_quantities = array(
 
                                 <input type="hidden" name="amount" x-model="donationAmount" />
                                 <input type="hidden" name="cause" x-model="selectedCause.cause" />
+                                <input type="hidden" name="campaign" x-model="campaignName" />
 
                                 <div class="mt-2 mb-3" x-show="razorpayForm.checkbox_terms_and_conditions">
                                     <x-frontend-loading-button class="btn btn-success btn-md text-white">

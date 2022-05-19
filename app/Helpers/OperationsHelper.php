@@ -135,7 +135,7 @@ class OperationsHelper {
      */
     public static function getLocationBadge(int $id){
 
-        return Location::find($id)->location_name ?? 'Unable to find location';
+        return Location::find($id)->location_name ?? 'None';
 
     }
     
@@ -156,14 +156,24 @@ class OperationsHelper {
 
         $locations = Location::all();
 
-        if(!Location::find($id)){
+        if(!Location::find($id) && $id != 0){
             throw new Exception('Error: No location with ID '. $id. ' was found');
         }
 
         $html = "<select id='location_".$i."' class='form-control'>";
+        $selected = 0;
 
         foreach($locations as $location) {
-            $html .= ($location->id == $id) ? "<option value='".$id."' selected>".$location->location_name."</option>" : "<option value='".$location->id."'>".$location->location_name."</option>";
+            if ($location->id == $id){
+                $html .= "<option value='".$id."' selected>".$location->location_name."</option>";
+                $selected = 1;
+            } else {
+                $html .= "<option value='".$location->id."'>".$location->location_name."</option>";
+            }
+        }
+
+        if (!$selected){
+            $html .= "<option value='0' selected>None</option>";
         }
 
         return $html;
