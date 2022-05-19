@@ -49,13 +49,14 @@ class DonationsController extends Controller
         return view('admin.donations.manage', compact('donation', 'user', 'all_donations'));
     }
 
-    public function update(Request $request){        
+    public function update(Request $request){
+//        dd($request->all());
         if ($request->cause_id == 0){
             $request->request->remove('cause_id');
         }
         if ($request->campaign_id == 0){
             $request->request->remove('campaign_id');
-        }        
+        }
         $this->validate($request, [
             'donor_name' => 'required|string',
             'donation_amount' => 'required|numeric',
@@ -65,11 +66,12 @@ class DonationsController extends Controller
             'payment_method' => 'required|integer',
             'razorpay_payment_id' => 'required_if:payment_method,4',
         ]);
-        if ($request->cause_id && $request->campaign_id){
-            throw ValidationException::withMessages([
-                'cause_id' => ['Please select either cause or campaign'],
-            ]);            
-        }        
+//        Commented this out because it was causing an error - Thirumalai
+//        if ($request->cause_id && $request->campaign_id){
+//            throw ValidationException::withMessages([
+//                'cause_id' => ['Please select either cause or campaign'],
+//            ]);
+//        }
         $cause_name = $request->cause_id ? Causes::find($request->cause_id)->name : Campaigns::find($request->campaign_id)->name;
         $donation_in_words = Donations::Show_Amount_In_Words($request->donation_amount);
         $request->merge(['cause_name' => $cause_name, 'donation_in_words' => $donation_in_words]);        
