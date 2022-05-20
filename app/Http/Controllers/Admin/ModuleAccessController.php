@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ModuleAccess;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -11,13 +12,50 @@ use Spatie\Permission\Models\Permission;
 class ModuleAccessController extends Controller
 {
 
+    public function index()
+    {
+        $module_accesses = ModuleAccess::all();
+
+        return view('admin.moduleaccess.index',compact('module_accesses'));
+    }
     public function create_access()
     {
         $permissions = Permission::all();
-        $routes =  Route::getRoutes()->getRoutesByName();
+        $routes = Route::getRoutes()->getRoutesByName();
 //        dd($routes);
+        $controllers = [];
 
+        foreach ($routes as $route) {
+            $action = $route->getAction();
 
-        return view('admin.moduleaccess.index',compact('permissions','routes'));
+            if (array_key_exists('controller', $action)) {
+                // You can also use explode('@', $action['controller']); here
+                // to separate the class name from the method
+                $controllers[] = explode('@', $action['controller']);
+            }
+        }
+
+//        dd($controllers);
+
+        return view('admin.moduleaccess.create', compact('permissions', 'routes', 'controllers'));
+    }
+
+    public function store_access(Request $request)
+    {
+//        dd($request->all());
+
+        $module_access = new ModuleAccess;
+        $module_access->module_name = strtolower($request->module_name);
+        $module_access->module_controller_class = $request->module_controller_class;
+        $module_access->module_route_path = json_encode($request->module_route_path);
+        $module_access->permissions_that_can_access = json_encode($request->permissions_that_can_access);
+        $module_access->save();
+
+        return redirect(route('admin.access.index'));
+
+//now i need to write a middleware that checks if the auth user has a permission to access a module
+//        so first get all the permissions that an auth user has and
+//    compare with the permissions in the module access table if true redirect else 403
+
     }
 }

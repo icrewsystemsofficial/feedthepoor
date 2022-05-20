@@ -207,7 +207,8 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
 
     Route::prefix('module-access')->as('access.')->group(function () {
        Route::get('/',[ModuleAccessController::class,'index'])->name('index');
-       Route::get('/create',[ModuleAccessController::class,'create_access']);
+       Route::get('/create',[ModuleAccessController::class,'create_access'])->name('create');
+       Route::post('/store',[ModuleAccessController::class,'store_access'])->name('store');
     });
 
 });

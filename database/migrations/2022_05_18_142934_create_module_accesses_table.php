@@ -18,7 +18,7 @@ class CreateModuleAccessesTable extends Migration
             $table->string('module_name');
             $table->string('module_controller_class');
             $table->string('module_route_path');
-            $table->string('permissions_that_can_access ');
+            $table->string('permissions_that_can_access');
             $table->timestamps();
         });
     }
