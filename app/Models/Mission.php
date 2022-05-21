@@ -19,6 +19,7 @@ class Mission extends Model
         'execution_date',
         'mission_status',
         'description',
+        'procurement_items',
     ];
 
     public static $status = [
