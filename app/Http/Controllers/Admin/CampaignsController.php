@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 class CampaignsController extends Controller
 {
     public function index(){
+
         $campaigns = Campaigns::all();
         $locations = Location::groupBy('id')->get(['id', 'location_name']);
         $causes = Causes::groupBy('id')->get(['id', 'name']);  
@@ -83,8 +84,8 @@ class CampaignsController extends Controller
             $info = pathinfo($request->campaign_poster);
             $ext = $info['extension'];
             $filename = 'campaigns/'.$request->campaign_name.'/'.$request->campaign_name.'_poster.'.$ext;
+            Storage::disk('public')->delete($campaign->campaign_poster);
             Storage::disk('public')->move($request->campaign_poster, $filename);
-            Storage::disk('public')->delete($request->campaign_poster);
             $request->merge(['campaign_poster' => $filename]);
         }
         else{

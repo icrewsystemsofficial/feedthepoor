@@ -39,8 +39,9 @@
                             </div>            
                             <div class="form-group mb-3">
                                 <label for="campaign_poster">Campaign poster <span class="required">*</span></label>
-                                <input type="file" class="form-control" id="campaign_poster" name="campaign_poster" accept="image/*">
-                            </div><div class="form-group mb-3">
+                                <input type="file" class="form-control" id="campaign_poster" name="campaign_poster" accept="image/*" required>
+                            </div>
+                            <div class="form-group mb-3">
                                 <label for="campaign_status">Expected campaign amount (in INR) <span class="required">*</span></label>
                                 <input type="number" class="form-control" id="campaign_goal_amount" name="campaign_goal_amount" placeholder="Enter campaign goal amount" required>
                             </div>                                

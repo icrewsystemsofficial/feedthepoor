@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-group mb-2">
                                 <label for="author_name">Author Name</label>
-                                <input type="text" class="form-control" id="author_name" name="author_name" required value="{{ auth()->user()->name }}" disabled>
+                                <input type="text" class="form-control" id="author_name" name="author_name" required value="{{ auth()->user()->name }}" readonly>
                             </div>                            
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
