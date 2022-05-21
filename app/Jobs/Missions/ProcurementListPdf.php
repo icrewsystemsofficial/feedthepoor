@@ -18,9 +18,9 @@ class ProcurementListPdf implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($procurement_items)
     {
-        //
+        $this->procurement_items = $procurement_items;
     }
 
     /**
@@ -30,6 +30,6 @@ class ProcurementListPdf implements ShouldQueue
      */
     public function handle()
     {
-        //
+        
     }
 }

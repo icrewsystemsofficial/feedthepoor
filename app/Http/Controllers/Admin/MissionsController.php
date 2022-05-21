@@ -12,6 +12,7 @@ use App\Helpers\NotificationHelper;
 use App\Models\Donations;
 use App\Mail\MissionCancelledDonorMail;
 use App\Events\Missions\MissionCreateOrUpdate;
+use App\Models\MissionAssignment;
 
 class NewMission{
     public $id = null;
@@ -91,28 +92,109 @@ class MissionsController extends Controller
         $mission->field_manager_id = $request->field_manager_id;
         $mission->execution_date = $request->execution_date;
         $mission->mission_status = 0;
-        $mission->assigned_volunteers = json_encode($request->assigned_volunteers);
+        $mission->assigned_volunteers = $request->assigned_volunteers;
         $procurement_items = array();
         foreach($request->all() as $key => $value){
             if(strpos($key, 'procurement_item_') !== false){
                 $procurement_items[] = explode('_', $key)[2];
             }
         }        
-        $mission->procurement_items = json_encode($procurement_items);        
+        $mission->procurement_items = $procurement_items;  
         event(new MissionCreateOrUpdate($mission, 1));
         alert()->success('Mission Created Successfully', 'Success');
         return redirect()->route('admin.missions.index');
     }
 
     /**
-     * Display the specified resource.
+     * Display the volunteer/field manager response page
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function reply_index(Request $request)
     {
-        //
+        $request->validate([
+            'mission_id' => 'required|exists:missions,id',
+            'user_id' => 'required|exists:user,id',
+        ]);
+        $mission = Mission::find($request->mission_id);
+        $location = Location::find($mission->location_id);
+        $active_volunteers = User::where('volunteer', 1)->where('available_for_mission', 1)->where('location_id', $location->id)->get();
+        $procurement_items = Operations::where('status', 4)->where('location_id', $location->id)->get();
+        $field_managers = $active_volunteers; //Update code when a permission "is_mission_manager" is defined
+        return view('admin.missions.reply', [
+            'mission' => $mission,
+            'location' => $location,
+            'active_volunteers' => $active_volunteers,
+            'procurement_items' => $procurement_items,
+            'field_managers' => $field_managers,
+        ]);
+    }
+    
+    /**
+     * Accept the volunteer/field manager
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function reply_accept(Request $request)
+    {
+        $request->validate([
+            'mission_id' => 'required|exists:missions,id',
+            'user_id' => 'required|exists:user,id',
+            'reply' => 'required|in:1,2'
+        ]);
+        $assignment = MissionAssignment::where('mission_id', $request->mission_id)->where('user_id', $request->user_id)->first();
+        $assignment->status = $request->reply;
+        $assignment->save();
+        alert()->success('Mission Accepted Successfully', 'Success');
+    }
+
+    /**
+     * Reject the volunteer/field manager
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function reply_reject(Request $request)
+    {
+        $request->validate([
+            'mission_id' => 'required|exists:missions,id',
+            'user_id' => 'required|exists:user,id',
+            'reply' => 'required|in:1,2',
+            'reason' => 'required|string'
+        ]);
+        $name = User::find($request->user_id)->name;
+        $assignment = MissionAssignment::where('mission_id', $request->mission_id)->where('user_id', $request->user_id)->first();
+        $assignment->status = $request->reply;
+        $assignment->save();
+        $notification = new NotificationHelper();
+        $notification->user([1])->content('User '.$name.' has rejected being a part of Mission #'.$request->mission_id.' citing the reason <br>'.$request->reason)->notify();//Replace with method to notify all SUs
+        alert()->success('Mission Rejected Successfully', 'Success');
+    }
+    
+    /**
+     * Display the specified mission details
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function details(Request $request)
+    {
+        $request->validate([
+            'mission_id' => 'required|exists:missions,id',
+        ]);
+        $mission = Mission::find($request->mission_id);
+        $location = Location::find($mission->location_id);
+        $procurement_items = Operations::whereIn('id', json_decode($mission->procurement_items))->get();
+        $field_manager = User::find($mission->field_manager_id);
+        return view('admin.missions.show', [
+            'mission' => $mission,
+            'location' => $location,
+            'procurement_items' => $procurement_items,
+            'field_manager' => $field_manager,
+            'users' => MissionAssignment::where('mission_id', $mission->id)->get(),//Get all users assigned to this mission and their status
+        ]);
     }
 
     /**
@@ -163,14 +245,14 @@ class MissionsController extends Controller
         $mission->field_manager_id = $request->field_manager_id;
         $mission->execution_date = $request->execution_date;
         $mission->mission_status = $request->mission_status;
-        $mission->assigned_volunteers = json_encode($request->assigned_volunteers);
+        $mission->assigned_volunteers = $request->assigned_volunteers;
         $procurement_items = array();
         foreach($request->all() as $key => $value){
             if(strpos($key, 'procurement_item_') !== false){
                 $procurement_items[] = explode('_', $key)[2];
             }
         }
-        $mission->procurement_items = json_encode($procurement_items);        
+        $mission->procurement_items = $procurement_items;        
         event(new MissionCreateOrUpdate($mission, 0));
         alert()->success('Mission Updated Successfully', 'Success');
         return redirect()->route('admin.missions.index');

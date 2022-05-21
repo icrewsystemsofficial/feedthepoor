@@ -122,6 +122,8 @@
                                 Description
                             </label>
                             <textarea name="description" id="description" class="form-control" rows="3" value="{{ $mission->description }}"></textarea>
+                            <input name="id" type="hidden" value="{{ $mission->id }}">
+                            <input name="location" type="hidden" value="{{ $location }}">
                         </div>
 
                         <div class="modal-footer">

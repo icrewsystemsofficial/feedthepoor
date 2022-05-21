@@ -16,9 +16,11 @@ class FieldManagerAcceptMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($mission, $user_name, $user_id)
     {
-        //
+        $this->mission = $mission;
+        $this->user_name = $user_name;
+        $this->user_id = $user_id;
     }
 
     /**
@@ -28,6 +30,10 @@ class FieldManagerAcceptMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->markdown('emails.FieldManagerAcceptMail', [
+            'mission' => $this->mission,
+            'user_name' => $this->user_name,
+            'user_id' => $this->user_id,
+        ])->subject('Your mission should you choose to accept it!');
     }
 }

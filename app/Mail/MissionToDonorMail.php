@@ -16,9 +16,11 @@ class MissionToDonorMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($mission, $user_name, $cause)
     {
-        //
+        $this->mission = $mission;
+        $this->user_name = $user_name;
+        $this->cause = $cause;
     }
 
     /**
@@ -28,6 +30,10 @@ class MissionToDonorMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->markdown('emails.MissionToDonor', [
+            'mission' => $this->mission,
+            'user_name' => $this->user_name,
+            'cause' => $this->cause,
+        ])->subject('Hey! Your donation is on its way!');
     }
 }
