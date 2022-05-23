@@ -50,7 +50,7 @@
         <div class="col-6">
             <div class="flex d-flex">
                 <div>
-                    <a href="{{ route('admin.location.index') }}" class="btn btn-primary">
+                    <a href="{{ route('admin.access.index') }}" class="btn btn-primary">
                         <i class="fa-solid fa-angle-left me-2"></i> Back
                     </a>
                 </div>

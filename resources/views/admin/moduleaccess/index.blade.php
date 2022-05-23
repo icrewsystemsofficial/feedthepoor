@@ -31,9 +31,9 @@
             {{--            </p>--}}
 
 
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#defaultModalPrimary">
+            <a href="{{ route('admin.access.create') }}" class="btn btn-primary">
                 <i class="fa-solid fa-plus"></i> &nbsp; Add
-            </button>
+            </a>
 
 
             @if(session('success'))

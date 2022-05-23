@@ -25,12 +25,15 @@ class AccessCheck
 //        dd($module_access);
 //        $user = auth()->user()->getAllPermissions();
 //            dd($user);
-        $allowed_perms = json_decode($module_access->permissions_that_can_access);
+        if ($module_access) {
+            $allowed_perms = json_decode($module_access->permissions_that_can_access);
 
-        foreach ($allowed_perms as $permission) {
-            if (!auth()->user()->can($permission)) {
-                abort(403);
+            foreach ($allowed_perms as $permission) {
+                if (!auth()->user()->can($permission)) {
+                    abort(403);
+                }
             }
+
         }
         return $next($request);
 

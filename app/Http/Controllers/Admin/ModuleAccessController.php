@@ -16,8 +16,9 @@ class ModuleAccessController extends Controller
     {
         $module_accesses = ModuleAccess::all();
 
-        return view('admin.moduleaccess.index',compact('module_accesses'));
+        return view('admin.moduleaccess.index', compact('module_accesses'));
     }
+
     public function create_access()
     {
         $permissions = Permission::all();
