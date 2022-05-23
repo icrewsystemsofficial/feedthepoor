@@ -26,7 +26,8 @@ return [
             'extra' => ['mini' => 'true'],
         ],
         'whatsapp' => [
-            'uri' => 'https://wa.me/?text=',
+            'uri' => "https://wa.me/?text=Hey! Checkout this website I came across. They enable donors to donate confidently with 100% transparency. 
+            You can see who is getting benefitted for each rupee of your money, it's truly awesome. Go check it out.   ",
             'extra' => ['mini' => 'true'],
         ],
         'pinterest' => [
