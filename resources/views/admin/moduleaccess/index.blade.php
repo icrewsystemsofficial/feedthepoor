@@ -76,7 +76,7 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.donations.manage', $module_access->id) }}" class="btn btn-primary btn-sm">
+                                            <a href="{{ route('admin.access.edit',$module_access->id) }}" class="btn btn-primary btn-sm">
                                                 <i class="fa-solid fa-edit"></i> &nbsp;
                                                 Manage
                                             </a>

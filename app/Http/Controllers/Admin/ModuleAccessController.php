@@ -59,4 +59,45 @@ class ModuleAccessController extends Controller
 //    compare with the permissions in the module access table if true redirect else 403
 
     }
+
+    public function edit_access($id)
+    {
+        $module_access = ModuleAccess::find($id);
+        $permissions = Permission::all();
+        $routes = Route::getRoutes()->getRoutesByName();
+//        dd($routes);
+        $controllers = [];
+
+        foreach ($routes as $route) {
+            $action = $route->getAction();
+
+            if (array_key_exists('controller', $action)) {
+                // You can also use explode('@', $action['controller']); here
+                // to separate the class name from the method
+                $controllers[] = explode('@', $action['controller']);
+            }
+        }
+        return view('admin.moduleaccess.edit', compact('module_access','controllers','routes','permissions'));
+    }
+
+    public function update_access(Request $request,$id)
+    {
+        $module_access = ModuleAccess::find($id);
+        $module_access->module_name = strtolower($request->module_name);
+        $module_access->module_controller_class = $request->module_controller_class;
+        $module_access->module_route_path = json_encode($request->module_route_path);
+        $module_access->permissions_that_can_access = json_encode($request->permissions_that_can_access);
+        $module_access->update();
+
+        return redirect(route('admin.access.index'));
+    }
+
+    public function delete_access($id)
+    {
+        $module_access = ModuleAccess::find($id);
+
+        $module_access->delete();
+
+        return  redirect(route('admin.access.index'));
+    }
 }

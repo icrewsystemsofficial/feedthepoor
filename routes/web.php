@@ -209,6 +209,10 @@ Route::prefix('admin')->middleware(['auth','access_check'])->as('admin.')->group
        Route::get('/',[ModuleAccessController::class,'index'])->name('index');
        Route::get('/create',[ModuleAccessController::class,'create_access'])->name('create');
        Route::post('/store',[ModuleAccessController::class,'store_access'])->name('store');
+       Route::get('/edit/{id}',[ModuleAccessController::class,'edit_access'])->name('edit');
+       Route::post('/update/{id}',[ModuleAccessController::class,'update_access'])->name('update');
+       Route::delete('/delete/{id}',[ModuleAccessController::class,'delete_access'])->name('delete');
+
     });
 
 });
