@@ -39,11 +39,36 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="{{ route('frontend.about') }}" class="nav-link">
-                            About
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="menudrop" aria-expanded="false" data-bs-toggle="dropdown">
+                            Organization
+                            <span class="fas fa-angle-down nav-link-arrow ms-1"></span>
                         </a>
+                        <div class="dropdown-menu dropdown-megamenu-sm p-0" aria-labelledby="menudrop">
+                            <div class="row g-0">
+                                <div class="p-3">
+                                    <ul class="list-style-none">
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('frontend.about') }}">
+                                                About Us
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('frontend.partners') }}">
+                                                Partners
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('frontend.volunteer') }}">
+                                                Volunteer with us
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </li>
+
 
                     <li class="nav-item">
                         <a href="{{ route('frontend.partners') }}" class="nav-link">
