@@ -124,7 +124,7 @@
             <span class="h5">QUICKLINKS</span>
             <ul class="footer-links mt-2">
                <li><a target="_blank" href="#">Track Donation</a></li>
-               <li><a target="_blank" href="{{ route('frontend.volunteer') }}">Volunteer</a></li>
+               <li><a target="_blank" href="{{ route('frontend.volunteer.apply') }}">Volunteer</a></li>
                <li><a target="_blank" href="#">View Certifications</a></li>
                <li><a target="_blank" href="#">Transparency Reports</a></li>
                <li><a target="_blank" href="#">Request for food</a></li>
