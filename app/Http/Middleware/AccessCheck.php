@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\ModuleAccess;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 class AccessCheck
@@ -30,6 +31,7 @@ class AccessCheck
 
             foreach ($allowed_perms as $permission) {
                 if (!auth()->user()->can($permission)) {
+                    activity()->log(Auth::user()->name.' is trying to access an unauthorized page');
                     abort(403);
                 }
             }
