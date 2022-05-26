@@ -50,6 +50,7 @@ class DonationsController extends Controller
     }
 
     public function update(Request $request){
+//        dd($request->all());
         if ($request->cause_id == 0){
             $request->request->remove('cause_id');
         }
@@ -65,19 +66,17 @@ class DonationsController extends Controller
             'payment_method' => 'required|integer',
             'razorpay_payment_id' => 'required_if:payment_method,4',
         ]);
-        if ($request->cause_id && $request->campaign_id){
-            throw ValidationException::withMessages([
-                'cause_id' => ['Please select either cause or campaign'],
-            ]);            
-        }
-        $donor = User::whereRaw('LOWER(`name`) LIKE ?', [strtolower($request->donor_name)])->first();
+//        Commented this out because it was causing an error - Thirumalai
+//        if ($request->cause_id && $request->campaign_id){
+//            throw ValidationException::withMessages([
+//                'cause_id' => ['Please select either cause or campaign'],
+//            ]);
+//        }
         $cause_name = $request->cause_id ? Causes::find($request->cause_id)->name : Campaigns::find($request->campaign_id)->name;
-        $donor_name = $donor ? $donor->name : $request->donor_name;
-        $donor_id = $donor ? $donor->id : null;
-        $donor_id ? $request->merge(['donor_id' => $donor_id]) : null;
         $donation_in_words = Donations::Show_Amount_In_Words($request->donation_amount);
-        $request->merge(['donor_name' => $donor_name, 'cause_name' => $cause_name, 'donation_in_words' => $donation_in_words]);        
-        event(new AddDonation($request->all(), 0, $request->id));//1-> add record, 0-> update record
+        $request->merge(['cause_name' => $cause_name, 'donation_in_words' => $donation_in_words]);        
+        $donation = Donations::find($request->id);
+        $donation->update($request->all());
         alert()->success('Yay','Donation was successfully updated');
         return redirect()->route('admin.donations.index');
     }

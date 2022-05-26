@@ -13,7 +13,7 @@ class NotificationHelper {
 
     /**
      *
-     * IMPORTNAT! READ THIS BEFORE YOU USE NOTIFICAITONS.
+     * IMPORTANT! READ THIS BEFORE YOU USE NOTIFICAITONS.
      *
      * This is a simple way to notify the
      * users of our application.

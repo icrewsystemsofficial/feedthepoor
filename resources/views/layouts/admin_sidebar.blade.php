@@ -62,7 +62,7 @@
                 <a class="sidebar-link" href="{{ route('admin.users.index') }}">All Users</a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link" href="#">Volunteer Applications</a>
+                <a class="sidebar-link" href="{{route('admin.users.volunteer_applications')}}">Volunteer Applications</a>
             </li>
         </ul>
     </li>
