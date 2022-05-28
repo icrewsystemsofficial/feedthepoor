@@ -74,6 +74,11 @@
                             @foreach($queues as $queue)
                                 <option @if($filters['queue'] === $queue) selected @endif value="{{ $queue }}">
                                     {{ __($queue) }}
+
+                                    @php
+                                    $this->dispatch($queue);
+                                    @endphp
+                                   
                                 </option>
                             @endforeach
                         </select>
