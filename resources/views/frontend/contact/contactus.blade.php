@@ -78,33 +78,20 @@
                             <label for="number" class="d-flex">
                                 <i class="fas fa-phone pe-2 fs-4"></i>
                                 Phone number : </label>
-<<<<<<< HEAD
                             <input  required="required" type="text" name="phone" class="form-control" id="phone" value="{{ old('phone') }}" placeholder="Enter your phone number...">
-=======
-                            <input required="required" type="text" name="phone" class="form-control" id="phone" value="{{ old('phone') }}" placeholder="Enter your phone number...">
->>>>>>> c59e8dbebb0aad057ecb9195d09bace58220fc59
                         </div>
 
                         <div class="mb-3">
                             <label for="message" class="d-flex">
                                 <i class="fas fa-comment pe-2 fs-4" id="font"></i>
                                 Message : </label>
-<<<<<<< HEAD
                             <textarea  required="required"  class="form-control" name="message" value="{{old('message') }}" id="message" rows="3" placeholder="Enter your message...">
                             </textarea>
-=======
-                            <textarea required="required" class="form-control" name="message" value="{{old('message') }}" placeholder="Enter your message..." id="message" rows="4"></textarea>
-
-
-
->>>>>>> c59e8dbebb0aad057ecb9195d09bace58220fc59
                         </div>
 
                         <div class="mb-3 mt-3">
                             {!! NoCaptcha::display(['data-theme' => 'dark']) !!}
                         </div>
-
-
 
                         <div class="m-auto w-25 mt-3">
                             <input type="submit" class="btn btn-outline-dark text-center" type="button">
