@@ -33,6 +33,6 @@ class Operations extends Model
         'READY FOR MISSION DISPATCH' => 4,
         'ASSIGNED TO MISSION' => 5,
         'FULFILLED' => 6,
-        
+
     ];
 }

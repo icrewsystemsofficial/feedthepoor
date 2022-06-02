@@ -1,5 +1,7 @@
 <?php
 
+use App\Helpers\CampaignsHelper;
+
 return [
 
     /*
@@ -263,6 +265,7 @@ return [
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
         'PDF' => Barryvdh\DomPDF\Facade\PDF::class,
         'MissionHelper' => App\Helpers\MissionHelper::class,
+        'CampaignsHelper' => CampaignsHelper::class,
 
     ],
 

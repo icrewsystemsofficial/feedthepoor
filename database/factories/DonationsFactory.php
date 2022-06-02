@@ -27,12 +27,12 @@ class DonationsFactory extends Factory
             'donor_name' => User::find($user)->name,
             'donation_amount' => $amt,
             'donation_in_words' => Donations::Show_Amount_In_Words($amt),
-            'cause_id' => $choice ? $cause:null,
-            'cause_name' => $choice ? Causes::find($cause)->name:null,
+            'cause_id' => $cause,
+            'cause_name' => Causes::find($cause)->name,
             'donation_status' => 0,
             'payment_method' => 4,
             'razorpay_payment_id' => 'pay_J3tG8jclByNtmN',
-            'campaign_id' => $choice ? null:$campaign,
+            'campaign_id' => $choice ? null : $campaign,
         ];
     }
 }
