@@ -11,6 +11,7 @@ use Illuminate\Queue\SerializesModels;
 use App\Mail\SendAdminMail;
 use Illuminate\Support\Facades\Mail;
 
+// TODO DEPCRECATED, remove this during next release.
 class SendAdminJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;

@@ -202,7 +202,10 @@
 
                                             @if($job->hasFailed() && $job->exception_message !== null)
 
-                                                <textarea rows="4" class="w-50 fs-5 p-1 border rounded" readonly>{{ $job->exception_message }}</textarea>
+                                                {{-- <textarea class="w-50 fs-5 p-1 border rounded">{{ $job->exception_message }}</textarea> --}}
+                                                <code>
+                                                    {{ $job->exception_message }}
+                                                </code>
 
                                             @else
                                                 -

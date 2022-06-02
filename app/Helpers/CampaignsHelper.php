@@ -150,17 +150,21 @@ class CampaignsHelper {
         }
         return $html;
     }
-    
+
     /**
      * getActiveCampaigns - Retrieves all the active campaigns
      *
-     * @return array     
+     * @return array
      */
     public static function getActiveCampaigns()
     {
 
-        return Campaigns::where('campaign_status', Campaigns::$status['ACTIVE'])->get();        
+        return Campaigns::where('campaign_status', Campaigns::$status['ACTIVE'])->get();
 
+    }
+
+    public static function processMoney(int $amount) {
+        return '₹'.number_format($amount, '0', '.', ',');
     }
 
 }

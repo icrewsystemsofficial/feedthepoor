@@ -1,8 +1,10 @@
 @component('mail::message')
 # Hey {{ $details['name'] }}
-We have received your generous donation of <strong>₹{{ $details['amount'] }}</strong> ({{ $details['amt_in_words'] }}) successfully for <strong>{{ isset($details['cause']) ? 'cause '.$details['cause'] : 'campaign '.$details['campaign'] }}</strong>
+We have received your generous donation of <strong>₹{{ number_format($details['amount'], '0', '.', ',') }}</strong> ({{ $details['amt_in_words'] }}) successfully towards
+<strong>{{ isset($details['cause']) ? 'the '.$details['cause'] . ' cause' : 'the '.$details['campaign'] . ' campaign' }}.</strong>
 
-The receipt for your donation is attached herewith this email as a PDF. <br>
+The receipt for your donation will be available on our website using a unique identification number, which is attached along with this e-mail. This receipt will be
+available to you till the end of this financial year. <br>
 @if (isset($details['pan'])) This receipt will be valid for 80G tax exemptions @endif
 In an effort to keep the donations transparent, we have provided the ability to track your donation using a unique identification number.
 
@@ -11,7 +13,7 @@ In an effort to keep the donations transparent, we have provided the ability to 
 @component('mail::panel')
 ## Donation Details
 <strong>Date : </strong> {!! App\Helpers\CampaignsHelper::formatDate(date('Y-m-d')) !!}<br>
-<strong>Amount : </strong> ₹{{ $details['amount'] }}<br>
+<strong>Amount : </strong> ₹{{ number_format($details['amount'], '0', '.', ',') }}<br>
 <strong>Donation ID : </strong> {{ $details['id'] }}<br>
 @endcomponent
 

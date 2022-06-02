@@ -51,10 +51,12 @@ class Donations extends Model
         return $this->belongsTo(Causes::class, 'cause_id', 'id');
     }
 
+    // TODO This is to be moved to a helper. To make sure changes don't brake, the fn can still call the model, but the code is
+    // to be referenced to the helper.
     public static function Show_Amount_In_Words($num) {
         $ones =array('',' One',' Two',' Three',' Four',' Five',' Six',' Seven',' Eight',' Nine',' Ten',' Eleven',' Twelve',' Thirteen',' Fourteen',' Fifteen',' Sixteen',' Seventeen',' Eighteen',' Nineteen');
         $tens = array('','',' Twenty',' Thirty',' Fourty',' Fifty',' Sixty',' Seventy',' Eighty',' Ninety',);
-        $triplets = array('',' Thousand',' Lac',' Crore',' Arab',' Kharab');
+        $triplets = array('',' Thousand',' Lakh',' Crore',' Arab',' Kharab');
 
         $str ="";
         $th= (int)($num/1000);

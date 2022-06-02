@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\NotificationHelper;
+use App\Http\Controllers\Admin\ModuleAccessController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactsController;
@@ -80,7 +81,7 @@ Route::name('frontend.')->group(function () {
   ------DASHBOARD ROUTES------
 */
 
-Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
+Route::prefix('admin')->middleware(['auth','access_check'])->as('admin.')->group(function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
@@ -213,6 +214,16 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::post('/store', [MissionsController::class, 'store'])->name('store');
         Route::post('/update/{id}', [MissionsController::class, 'update'])->name('update');
         Route::post('/delete/{id}', [MissionsController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('module-access')->as('access.')->group(function () {
+       Route::get('/',[ModuleAccessController::class,'index'])->name('index');
+       Route::get('/create',[ModuleAccessController::class,'create_access'])->name('create');
+       Route::post('/store',[ModuleAccessController::class,'store_access'])->name('store');
+       Route::get('/edit/{id}',[ModuleAccessController::class,'edit_access'])->name('edit');
+       Route::post('/update/{id}',[ModuleAccessController::class,'update_access'])->name('update');
+       Route::delete('/delete/{id}',[ModuleAccessController::class,'delete_access'])->name('delete');
+
     });
 
 });
