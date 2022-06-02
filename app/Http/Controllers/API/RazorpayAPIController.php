@@ -23,8 +23,13 @@ class RazorpayAPIController extends Controller
     {
         $razorpay_public_key = Setting::where('key', 'razorpay_public_key')->first()['value'];
         $razorpay_private_key = Setting::where('key', 'razorpay_private_key')->first()['value'];
-        $this->key_id = $razorpay_private_key;
-        $this->secret =  $razorpay_public_key;
+
+        if($razorpay_private_key == null || $razorpay_public_key == null) {
+            throw new Exception('Settings Error: The Razorpay API keys have not been properly configured in the application settings.');
+        }
+
+        $this->key_id = $razorpay_public_key;
+        $this->secret =  $razorpay_private_key;
     }
 
     /**
