@@ -33,19 +33,29 @@ class CampaignsFactory extends Factory
         }
         $cause_bool = rand(0, 1);
         $is_goal = rand(0, 1);
-        $name = $this->faker->name;
+
+        $campaign_names = array(
+            'Feeding poor children',
+            'Cyclone Amphan: Relief program',
+            'Help Assam: Relief Program',
+            'Feed stray dogs',
+        );
+
+        $name = $campaign_names[array_rand($campaign_names)];
+
+
         return [
             'campaign_name' => $name,
             'campaign_description' => $this->faker->text,
             'campaign_poster' => $this->faker->imageUrl(),
             'is_campaign_goal_based' => $is_goal,
-            'campaign_goal_amount' => $this->faker->numberBetween(1, 100),
+            'campaign_goal_amount' => $this->faker->numberBetween(50000, 100000),
             'campaign_start_date' => $this->faker->date,
             'campaign_end_date' => ($is_goal) ? $this->faker->date : null,
             'campaign_location' => json_encode($locations),
             'campaign_has_cause' => $cause_bool,
             'campaign_causes' => ($cause_bool) ? json_encode($causes) : json_encode([]),
-            'campaign_status' => $this->faker->numberBetween(0, 1),            
+            'campaign_status' => $this->faker->numberBetween(0, 1),
             'slug' => Str::slug($name),
         ];
     }

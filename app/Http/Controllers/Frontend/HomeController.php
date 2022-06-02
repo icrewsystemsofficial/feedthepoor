@@ -6,9 +6,10 @@ use PDF;
 use Faker\Factory;
 use App\Models\User;
 use App\Models\Causes;
+use App\Models\Contact;
 use App\Models\Location;
-use App\Models\Donations;
 use App\Models\Campaigns;
+use App\Models\Donations;
 use App\Jobs\SendAdminJob;
 use App\Models\FaqEntries;
 use App\Models\userContact;
@@ -63,7 +64,7 @@ class HomeController extends Controller
             'donation_images' => $donation_random_images,
             'donation_names' => $donation_names,
             'total_meals_fed' => $total_meals_fed,
-            'total_donations_received' => $total_donations_received,            
+            'total_donations_received' => $total_donations_received,
         ]);
     }
 
@@ -115,7 +116,7 @@ class HomeController extends Controller
 
         ]);
     }
-    
+
     /**
      * campaigns - the page where users can donate money towards a campaign
      *
@@ -124,8 +125,10 @@ class HomeController extends Controller
      */
     public function campaigns(Request $request)
     {
-        
-        $campaign = Campaigns::where(['slug' => $request->slug, 'campaign_status' => Campaigns::$status['ACTIVE'] ])->first();
+
+        # Prepare the
+        $campaign = Campaigns::where(['slug' => $request->slug, 'campaign_status' => Campaigns::$status['ACTIVE'] ])->firstOrFail();
+
         $donation_details = array(
             'total' => 0,
             'donation_amount' => 0,
@@ -142,9 +145,8 @@ class HomeController extends Controller
         }else{
             $donation_details['donation_percentage'] = 90;
         }
-        
-        return view('frontend.campaigns.index', compact('campaign', 'donation_details'));
 
+        return view('frontend.campaigns.index', compact('campaign', 'donation_details'));
     }
 
     /**
