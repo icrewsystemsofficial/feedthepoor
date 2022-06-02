@@ -68,7 +68,7 @@
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                }
+                },
             }
         });
         let file = FilePond.create(
