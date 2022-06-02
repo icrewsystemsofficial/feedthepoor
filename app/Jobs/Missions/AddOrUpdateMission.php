@@ -41,6 +41,7 @@ class AddOrUpdateMission implements ShouldQueue
      */
     public function handle()
     {
+        dd($this->mission);
         if (!$this->mission->id) {
             $mission = new Mission;
             $mission->location_id = $this->mission->location_id;

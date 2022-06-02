@@ -110,7 +110,7 @@
             </div>
 
 
-            <div class="modal fade" id="mediaModalPrimary" tabindex="-1" aria-hidden="true" style="display: none;">
+            {{--<div class="modal fade" id="mediaModalPrimary" tabindex="-1" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -126,7 +126,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--}}
 
 
             <div class="modal fade" id="defaultModalPrimary" tabindex="-1" aria-hidden="true" style="display: none;">
