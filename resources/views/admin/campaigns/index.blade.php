@@ -175,6 +175,7 @@
             allowClear: true
         });
         $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
+        $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
         FilePond.setOptions({
             name: 'campaign_poster',
             required: true,

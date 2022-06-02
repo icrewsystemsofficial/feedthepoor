@@ -26,6 +26,25 @@
             }
         }
     }
+
+    $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
+    $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
+    FilePond.setOptions({
+        name: 'mission_images',
+        required: true,
+        server: {
+            url: '/admin/campaigns/upload',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        }
+    });
+    let file = FilePond.create(
+        document.querySelector('#mission_images')
+    );
+    $.fn.filepond.setDefaults({
+        acceptedFileTypes: ['image/*'],
+    });
 </script>
 
 
@@ -90,6 +109,24 @@
                 </button>
             </div>
 
+
+            <div class="modal fade" id="mediaModalPrimary" tabindex="-1" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">
+                                Upload mission media
+                            </h3>
+                        </div>
+                        <div class="modal-body m-3">
+                            <form id="media_upload_form" method="POST" action="{{ route('admin.missions.mission_images') }}">
+                                <input type="hidden" name="mission_id" id="mission_images_id" value="">
+                                <input type="file" name="mission_images" id="mission_images" accept="image/*" multiple>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
             <div class="modal fade" id="defaultModalPrimary" tabindex="-1" aria-hidden="true" style="display: none;">
@@ -169,7 +206,7 @@
                             <table id="table" class="table table-striped" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th># ID</th>
+                                        <th>ID</th>
                                         <th>EXECUTION DATE</th>
                                         <th>LOC & FM</th>
                                         <th>ASSIGNED VOLUNTEERS</th>
@@ -204,6 +241,9 @@
                                             <td>
                                                 <button class="btn btn-sm btn-primary">
                                                     Manage
+                                                </button>
+                                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#mediaModalPrimary" onclick="$('#mission_images_id').val({{ $mission->id }})">
+                                                    Upload
                                                 </button>
                                             </td>
                                         </tr>

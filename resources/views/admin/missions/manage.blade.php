@@ -45,7 +45,7 @@
                         @csrf
                         <div class="form-group mb-3">
                             <label for="execution_date" class="form-label">Mission Execution Date</label>
-                            <input type="date" name="execution_date" id="execution_date" class="form-control" />
+                            <input type="date" name="execution_date" id="execution_date" class="form-control" value="{{ $mission->execution_date }}"/>
                         </div>
 
                         <div class="form-group mb-3">

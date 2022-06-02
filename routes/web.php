@@ -219,6 +219,8 @@ Route::prefix('admin')->middleware(['auth','access_check'])->as('admin.')->group
             Route::post('/reject', [MissionsController::class, 'reply_reject'])->name('reject');
         });
         Route::get('/details/{id}', [MissionsController::class, 'details'])->name('details');
+        Route::post('/upload', [MissionsController::class, 'upload'])->name('upload');
+        Route::post('/mission_images', [MissionsController::class, 'mission_images'])->name('mission_images');
     });
 
     Route::prefix('module-access')->as('access.')->group(function () {

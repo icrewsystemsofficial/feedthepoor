@@ -128,6 +128,7 @@ class MissionsController extends Controller
             'active_volunteers' => $active_volunteers,
             'procurement_items' => $procurement_items,
             'field_managers' => $field_managers,
+            'user_id' => $request->user_id,
         ]);
     }
     
@@ -188,12 +189,17 @@ class MissionsController extends Controller
         $location = Location::find($mission->location_id);
         $procurement_items = Operations::whereIn('id', json_decode($mission->procurement_items))->get();
         $field_manager = User::find($mission->field_manager_id);
+        $users = MissionAssignment::where('mission_id', $mission->id)->get();
+        $volunteers = array();
+        foreach($users as $user){
+            $volunteers[] = [$user->user_id, User::find($user->user_id)->name, $user->status];
+        }
         return view('admin.missions.show', [
             'mission' => $mission,
             'location' => $location,
             'procurement_items' => $procurement_items,
             'field_manager' => $field_manager,
-            'users' => MissionAssignment::where('mission_id', $mission->id)->get(),//Get all users assigned to this mission and their status
+            'volunteers' => $volunteers,//Get all users assigned to this mission and their status
         ]);
     }
 
@@ -289,5 +295,45 @@ class MissionsController extends Controller
         }
         alert()->success('Mission cancelled successfully', 'Success');
         return redirect()->route('admin.missions.index');
+    }
+    
+    /**
+     * upload mission images to the server
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function upload(Request $request){
+        
+        if ($request->hasFile('mission_images')) {
+            $file = $request->file('mission_images');
+            $filename = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $folder = $file->store('missions/tmp', ['disk' => 'public']);
+            return $folder;
+        }
+        return '';
+    }
+    
+    /**
+     * Add mission images and make it available for user download
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function mission_images(Request $request){
+        $request->validate([
+            'mission_images_id' => 'required|exists:missions,id',
+            'mission_images' => 'required',
+        ]);
+        $count = 0;
+        foreach($request->mission_images as $image){
+            $count++;
+            $info = pathinfo($image);
+            $ext = $info['extension'];
+            $filename = 'missions/'.$request->mission_images_id.'/image_'.$count.'.'.$ext;
+            Storage::disk('public')->move($image, $filename);
+            Storage::disk('public')->delete($image);
+        }
     }
 }
