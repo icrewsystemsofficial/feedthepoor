@@ -4,7 +4,7 @@
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
     var options = {
-        "key": "rzp_test_SmU75lqcibiulc", // Enter the Key ID generated from the Dashboard
+        "key": "{{ config('settings.razorpay_public_key') }}", // Enter the Key ID generated from the Dashboard
         "amount": "{{ $order->amount }}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
         "currency": "INR",
         "name": "{{ config('setting.app_name') }}",
@@ -12,10 +12,8 @@
         "image": "https://icrewsystems.com/logo.png",
         "order_id": "{{ $order->id }}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         "handler": function (response){
-
             // We are sending the payment ID to the API handler, from there
             // rest of the events & jobs are handled.
-
             window.location.href = '{{ route("api.v1.razorpay.payment_received") }}' + '/' + response.razorpay_payment_id
         },
         "prefill": {

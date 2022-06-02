@@ -56,7 +56,7 @@ class Donations extends Model
     public static function Show_Amount_In_Words($num) {
         $ones =array('',' One',' Two',' Three',' Four',' Five',' Six',' Seven',' Eight',' Nine',' Ten',' Eleven',' Twelve',' Thirteen',' Fourteen',' Fifteen',' Sixteen',' Seventeen',' Eighteen',' Nineteen');
         $tens = array('','',' Twenty',' Thirty',' Fourty',' Fifty',' Sixty',' Seventy',' Eighty',' Ninety',);
-        $triplets = array('',' Thousand',' Lac',' Crore',' Arab',' Kharab');
+        $triplets = array('',' Thousand',' Lakh',' Crore',' Arab',' Kharab');
 
         $str ="";
         $th= (int)($num/1000);
