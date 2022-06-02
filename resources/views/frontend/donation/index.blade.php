@@ -239,8 +239,13 @@ $donation_quantities = array(
             },
 
             togglePages() {
+                if(this.donationAmount > 500000){
+                    console.log(this.donationAmount)
+                    alert("Hello!🙏 We are unable to accept payments greater than Rupees Five Lakhs (5,00,000 INR) via Razorpay. We appreciate your kindness and generosity❤, please get in touch with our Relationship Manager Neha on 📞+91 95831 86287.");
+                }else{
                 this.form.page_1 = !this.form.page_1;
                 this.form.page_2 = !this.form.page_2;
+                }
             },
 
 
