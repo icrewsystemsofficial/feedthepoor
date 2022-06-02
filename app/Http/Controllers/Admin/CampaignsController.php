@@ -42,7 +42,7 @@ class CampaignsController extends Controller
         $filename = 'campaigns/'.$request->campaign_name.'/'.$request->campaign_name.'_poster.'.$ext;
         Storage::disk('public')->move($request->campaign_poster, $filename);
         Storage::disk('public')->delete($request->campaign_poster);
-        $request->merge(['campaign_poster' => config('app_url')."/storage/".$filename]);
+         $request->merge(['campaign_poster' => config('app_url')."/storage/".$filename]);
         $request->merge(['slug' => Str::slug($request->campaign_name)]);
         Campaigns::create($request->all());
         alert()->success('Yay','Campaign "'.$request->campaign_name.'" was successfully created');
@@ -84,7 +84,7 @@ class CampaignsController extends Controller
          */
 
         $request->merge(['campaign_causes' => json_encode($request->campaign_causes)]);
-
+        $campaign = Campaigns::find($request->id);
         if ($request->campaign_poster) {
             $info = pathinfo($request->campaign_poster);
             $ext = $info['extension'];
@@ -98,7 +98,6 @@ class CampaignsController extends Controller
         }
 
         $request->merge(['slug' => Str::slug($request->campaign_name)]);
-        $campaign = Campaigns::find($request->id);
         $campaign->update($request->all());
         alert()->success('Yay','Campaign "'.$request->campaign_name.'" was successfully updated');
         return redirect(route('admin.campaigns.index'));

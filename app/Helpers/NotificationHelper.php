@@ -13,7 +13,7 @@ class NotificationHelper {
 
     /**
      *
-     * IMPORTNAT! READ THIS BEFORE YOU USE NOTIFICAITONS.
+     * IMPORTANT! READ THIS BEFORE YOU USE NOTIFICAITONS.
      *
      * This is a simple way to notify the
      * users of our application.
@@ -213,6 +213,11 @@ class NotificationHelper {
      * @return object
      */
     public static function getNotifications($howmany = '10') {
+        if($howmany == 'all'){
+            return User::find(auth()->user()->id)
+                    ->notifications()
+                    ->get();           
+        }
         return User::find(auth()->user()->id)
                 ->notifications()
                 ->limit($howmany)

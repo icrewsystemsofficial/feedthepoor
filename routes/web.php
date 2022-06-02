@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\NotificationHelper;
+use App\Http\Controllers\Admin\ModuleAccessController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactsController;
@@ -67,13 +68,19 @@ Route::name('frontend.')->group(function () {
     Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     Route::post('/contact', [HomeController::class, 'savecontact'])->name('savecontact');
+
+
+    Route::prefix('volunteer')->as('volunteer.')->group(function() {
+        Route::get('/apply', [UsersController::class, 'volunteer_apply'])->name('apply');
+        Route::post('/submit', [UsersController::class, 'submit_request'])->name('submit');
+    });
 });
 
 /*
   ------DASHBOARD ROUTES------
 */
 
-Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
+Route::prefix('admin')->middleware(['auth','access_check'])->as('admin.')->group(function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
@@ -97,10 +104,14 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
     });
 
     Route::prefix('profile')->as('profile.')->group(function() {
-        Route::get('view/{id}', [UsersController::class, 'view'])->name('view');
+        Route::get('/me', [UsersController::class, 'view'])->name('me');
         Route::post('{id}/update', [UsersController::class, 'update'])->name('update');
         Route::post('{id}/password_update', [UsersController::class, 'update_password'])->name('password_update');
+
+        // TODO Depcreate this
+        // Route::get('view/{id}', [UsersController::class, 'view'])->name('view');
     });
+
 
     Route::prefix('location')->as('location.')->group(function() {
         Route::get('/', [LocationController::class, 'index'])->name('index');
@@ -109,6 +120,8 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::put('/update/{id}', [LocationController::class, 'update'])->name('update');
         Route::post('/store', [LocationController::class, 'store'])->name('store');
     });
+
+
 
     Route::prefix('settings')->as('settings.')->group(function() {
         Route::get('/', [SettingsController::class, 'index'])->name('index');
@@ -129,6 +142,10 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::get('/manage/{id}', [UsersController::class, 'manage'])->name('manage');
         Route::post('/create', [UsersController::class, 'create'])->name('create');
         Route::delete('/destroy/{id}', [UsersController::class, 'destroy'])->name('destroy');
+        Route::get('/volunteer_applications', [UsersController::class, 'volunteer_applications'])->name('volunteer_applications');
+        Route::get('/manage_applications/{id}', [UsersController::class, 'manage_application'])->name('manage_application');
+        Route::post('/volunteer_accept/{id}', [UsersController::class, 'volunteer_accept'])->name('volunteer_accept');
+        Route::delete('/destroy_volunteer/{id}', [UsersController::class, 'destroy_volunteer'])->name('destroy_volunteer');
     });
 
     Route::prefix('faq')->as('faq.')->group(function() {
@@ -196,6 +213,16 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
         Route::post('/store', [MissionsController::class, 'store'])->name('store');
         Route::post('/update/{id}', [MissionsController::class, 'update'])->name('update');
         Route::post('/delete/{id}', [MissionsController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('module-access')->as('access.')->group(function () {
+       Route::get('/',[ModuleAccessController::class,'index'])->name('index');
+       Route::get('/create',[ModuleAccessController::class,'create_access'])->name('create');
+       Route::post('/store',[ModuleAccessController::class,'store_access'])->name('store');
+       Route::get('/edit/{id}',[ModuleAccessController::class,'edit_access'])->name('edit');
+       Route::post('/update/{id}',[ModuleAccessController::class,'update_access'])->name('update');
+       Route::delete('/delete/{id}',[ModuleAccessController::class,'delete_access'])->name('delete');
+
     });
 
 });

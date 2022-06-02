@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature>
+  <change type="added">Module to permit/forbid access to a page for the users</change>
+</feature>

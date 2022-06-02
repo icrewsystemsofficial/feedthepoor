@@ -62,7 +62,7 @@
                 <a class="sidebar-link" href="{{ route('admin.users.index') }}">All Users</a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link" href="#">Volunteer Applications</a>
+                <a class="sidebar-link" href="{{route('admin.users.volunteer_applications')}}">Volunteer Applications</a>
             </li>
         </ul>
     </li>
@@ -132,6 +132,9 @@
         <ul id="admin_tools" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
             <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('queue-monitor::index') }}">Jobs</a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('admin.access.index') }}">Module Access</a>
             </li>
             <li class="sidebar-item">
                 <a class="sidebar-link" href="#">Server Monitor (WIP)</a>
