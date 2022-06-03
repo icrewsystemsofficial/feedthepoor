@@ -33,8 +33,7 @@ class MissionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        
+    {        
         $active_missions = Mission::where('mission_status', '!=', Mission::$status['COMPLETED'])->get();
         $locations = Location::all();
         $active_volunteers = User::where('volunteer', 1)->where('available_for_mission', 1)->get();
@@ -360,5 +359,5 @@ class MissionsController extends Controller
             Storage::disk('local')->move($image, 'public/'.$filename);
             Storage::disk('local')->delete($image);
         }
-    }
+    }    
 }

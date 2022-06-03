@@ -1,39 +1,24 @@
 
 @extends('pdf.receipts.layout')
+
 @section('content')
-<div class="container">
-    <table width="100%">
-      <tr>
-        <td width="75px">
-            <img src="{{ asset('images/branding/roshni-foundation.png') }}" alt="" srcset="" style="width: 90px; height: auto; padding-top: 20px;">
-        </td>
-        <td width="300px">
-            <p style="padding-left: 10px; ">
-                {{ config('app.ngo_name') }}
-            </p>
-            <div style="padding-left: 10px; font-size: 26px; margin-top: -15px; font-weight: bold;letter-spacing: -1px;">
-                Donation Receipt
+    @foreach ($data['donations'] as $donation)                    
+        @for ($i = 0; $i < $donation[3]; $i++)
+            <div class="container" style="margin-bottom: 50px;">            
+                <p style="line-height: 18px; margin-top: -25px;">
+                    Donated with love by <strong>{{ $donation[0] }}</strong> on <strong>{{ date('D M Y', strtotime($donation[1])) }}</strong>                
+                    <br>
+                    Thank you so much for your donation. We love you.
+                    <br>
+                    <i> <span style="font-size: 14px;">                        
+                            {{ config('app.ngo_name') }}
+                        </span>
+                        <span style="font-size: 10px">
+                            Item #{{ $donation[2] }}
+                        </span>
+                    </i>
+                </p>    
             </div>
-        </td>
-        <td></td>
-      </tr>
-    </table>
-    <br><br>
-    <p style="line-height: 18px; margin-top: -25px;">
-        <strong>Dear {{ $data['payment']['name'] }}</strong>, <br><br>
-
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Thank you for your generous donation towards {{ $data['payment']['cause'] }}. Please take comfort in knowing that this good deed,
-        will be putting smiles in the faces of the less fortunate. Continue to support us, share the news with
-        your friends and family, we need all the support we can get.
-        <br><br>
-        Warm regards, <br><br>
-        <i>Darpan Moolchandani, <br>
-            <span style="font-size: 12px;">
-                Founder, <br>
-                {{ config('app.ngo_name') }}
-            </span>
-
-        </i>
-    </p>    
+        @endfor
+    @endforeach
 @endsection

@@ -87,7 +87,6 @@ Route::prefix('admin')->middleware(['auth','access_check'])->as('admin.')->group
     Route::post('/profile/save', [DashboardController::class, 'edit_profile'])->name('profile.save');
     Route::get('/markAllNotificationsAsRead/{userid}', [DashboardController::class, 'mark_as_read'])->name('markasread');
 
-
     # This is a test route, to be removed in production.
     Route::get('/newnotification', function() {
         // $notification = new NotificationHelper;

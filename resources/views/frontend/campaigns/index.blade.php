@@ -360,7 +360,7 @@ $amounts = array(
                                                         </span>
                                                         <span class="h5">
                                                             @foreach (json_decode($campaign->campaign_causes) as $cause)
-                                                                <span>{{ App\Models\Causes::where(['id'=>(int) $cause])->first()->name }} </span>
+                                                                <span>{{ App\Models\Causes::where(['id'=>(int) $cause])->first()->name }}; </span>
                                                             @endforeach
                                                         </span>
                                                     </div>
