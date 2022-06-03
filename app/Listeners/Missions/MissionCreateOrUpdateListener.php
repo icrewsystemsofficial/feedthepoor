@@ -37,7 +37,7 @@ class MissionCreateOrUpdateListener
     {
         $mission = $event->mission;
         $message = $event->create ? 'A new mission has been created !!' : 'A mission has been updated !!';
-                
+        
         AddOrUpdateMission::dispatch($mission)->onQueue('default');
         //Creates or updates the mission
 
@@ -53,7 +53,7 @@ class MissionCreateOrUpdateListener
                 array_push($donors, [$donor->email, $proc->procurement_item, $donor->name]);                
             }
             foreach ($donors as $donor) {
-                Mail::to($donor[0])->send(new MissionToDonorMail($mission, $donor[3], $donor[1]));
+                //Mail::to($donor[0])->send(new MissionToDonorMail($mission, $donor[3], $donor[1]));
                 //Send mission details to donor
             }
 
