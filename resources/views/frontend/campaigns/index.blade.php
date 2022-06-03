@@ -19,7 +19,7 @@
 #timer div {
     font-family: 'Roboto', sans-serif;
     display: inline-block;
-    width: 90px;
+    width: 120px;
     font-weight: 200;
     text-align: center;
     margin-right: 20px;
