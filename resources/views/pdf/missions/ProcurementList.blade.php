@@ -12,7 +12,7 @@
                     <br>
                     <i> <span style="font-size: 14px;">                        
                             {{ config('app.ngo_name') }}
-                        </span>
+                        </span><br>
                         <span style="font-size: 10px">
                             Item #{{ $donation[2] }}
                         </span>
