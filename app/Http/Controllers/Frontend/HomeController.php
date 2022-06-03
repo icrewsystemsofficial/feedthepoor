@@ -312,7 +312,10 @@ class HomeController extends Controller
         $pdf = PDF::loadView('pdf.receipts.receipt', ['data' => [
             'payment' => $payment,
             'user' => $user,
-        ]])->setPaper('a4', 'portrait');
+        ]])->setPaper('a4', 'portrait')->setOptions([
+            'isRemoteEnabled' => true,
+            'isHtml5ParserEnabled' => true,
+        ]);
 
         /*
 
@@ -322,13 +325,6 @@ class HomeController extends Controller
         This also solves the problem of storage space being exhausted
 
         The url for this would be /donations/receipt/{id}
-
-        To generate the pdf much faster bootstrap needs to be eliminated (yikes)
-        DOMPDF replaces all classes in the view with inline styles
-        and this is very slow for a large css file like bootstrap
-
-        Take a look at https://stackoverflow.com/questions/54768375/slow-pdf-generation-with-phpdompdf
-
 
         Anirudh R
         */
