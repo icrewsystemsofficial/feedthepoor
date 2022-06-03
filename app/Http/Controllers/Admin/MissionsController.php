@@ -296,7 +296,27 @@ class MissionsController extends Controller
         alert()->success('Mission cancelled successfully', 'Success');
         return redirect()->route('admin.missions.index');
     }
-    
+
+    /**
+     * validate_directory - If path does not exist, create.
+     *
+     * @param  mixed $path
+     * @return void
+     */
+    public function validate_directory($path) {
+        if(!File::isDirectory($path)){
+            if(File::makeDirectory($path, 0777, true, true)) {
+                return true;
+            } else {
+                # Unable to create directory.
+                return false;
+            }
+
+        } else {
+            return true;
+        }
+    }
+
     /**
      * upload mission images to the server
      *
@@ -304,15 +324,20 @@ class MissionsController extends Controller
      * @return void
      */
     public function upload(Request $request){
-        
+
         if ($request->hasFile('mission_images')) {
             $file = $request->file('mission_images');
-            $filename = $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();            
             $extension = $file->getClientOriginalExtension();
-            $folder = $file->store('missions/tmp', ['disk' => 'public']);
-            return $folder;
+            $path = storage_path('missions' . DIRECTORY_SEPARATOR . 'tmp');            
+            if($this->validate_directory($path)) {
+                $folder = $file->store('missions' . DIRECTORY_SEPARATOR . 'tmp');
+                return $folder;
+            } else {
+                return false;
+            }
         }
-        return '';
+        return false;
     }
     
     /**
@@ -332,8 +357,8 @@ class MissionsController extends Controller
             $info = pathinfo($image);
             $ext = $info['extension'];
             $filename = 'missions/'.$request->mission_images_id.'/image_'.$count.'.'.$ext;
-            Storage::disk('public')->move($image, $filename);
-            Storage::disk('public')->delete($image);
+            Storage::disk('local')->move($image, 'public/'.$filename);
+            Storage::disk('local')->delete($image);
         }
     }
 }

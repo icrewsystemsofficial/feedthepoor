@@ -1,5 +1,22 @@
 @extends('layouts.admin')
 
+@section('js')
+
+<script>
+    $(document).ready(function() {        
+        $('#category_status').bootstrapSwitch({
+            onText: 'Active',
+            offText: 'Inactive',
+            onColor: 'primary',
+            offColor: 'danger',
+        });
+        $('#table2').DataTable();
+        $("input[type='search']").attr('id','search');
+    });
+</script>
+
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-12">
@@ -120,16 +137,4 @@
         @endif        
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('#table2').DataTable();
-        $("input[type='search']").attr('id','search');
-        $('#category_status').bootstrapSwitch({
-            onText: 'Active',
-            offText: 'Inactive',
-            onColor: 'primary',
-            offColor: 'danger',
-        });
-    });
-</script>
 @endsection

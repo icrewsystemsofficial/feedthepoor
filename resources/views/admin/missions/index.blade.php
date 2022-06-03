@@ -50,9 +50,6 @@
 
 <script>
     $(document).ready(function() {
-        $('#table').DataTable();
-        let itemsTable = $('#items_table').DataTable();
-        itemsTable.columns(3).search('Select mission location').draw();
         $('#location_id').select2({
             // dropdownParent: $("#defaultModalPrimary .modal-body"),
             dropdownAutoWidth : false,
@@ -64,6 +61,9 @@
         $('.volunteers_select').select2({
             placeholder: 'Select available volunteers to assign to this mission'
         });
+        $('#table').DataTable();
+        let itemsTable = $('#items_table').DataTable();
+        itemsTable.columns(3).search('Select mission location').draw();        
     } );
 </script>
 @endsection

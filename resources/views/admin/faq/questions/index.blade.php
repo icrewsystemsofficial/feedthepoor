@@ -1,5 +1,30 @@
 @extends('layouts.admin')
 
+@section('js')
+
+<script>
+    $(document).ready(function() {
+        CKEDITOR.replace('entry_answer');        
+        $('#category_id').select2({
+            dropdownParent: $("#newQuestionModalPrimary .modal-body"),
+            dropdownAutoWidth : false,
+            placeholder: 'Select a category',
+        });
+        $('#table').DataTable();
+    });
+    $(document).on('select2:open', (e) => {
+        const selectId = e.target.id    
+        $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
+            key,
+            value,
+        ){
+            value.focus();
+        })
+    });
+</script>
+
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-12">
@@ -121,24 +146,4 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        CKEDITOR.replace('entry_answer');
-        $('#table').DataTable();
-        $('#category_id').select2({
-            dropdownParent: $("#newQuestionModalPrimary .modal-body"),
-            dropdownAutoWidth : false,
-            placeholder: 'Select a category',
-        });
-    });
-    $(document).on('select2:open', (e) => {
-        const selectId = e.target.id    
-        $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
-            key,
-            value,
-        ){
-            value.focus();
-        })
-    });
-</script>
 @endsection
