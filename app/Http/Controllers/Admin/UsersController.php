@@ -52,7 +52,11 @@ class UsersController extends Controller
     public function update(Request $req, $id){
         $user = User::find($id);
         $roles = $user->getRoleNames();
-        $user->removeRole($roles[0]);
+
+        if($roles->count() > 0) {
+            $user->removeRole($roles[0]);
+        }
+
         $user->assignRole($req->input('user_role'));
         $user->name = $req->name;
         $user->email = $req->email;
@@ -79,6 +83,7 @@ class UsersController extends Controller
         }
         $user->save();
 
+        alert()->success('Yay!','User '. $user->name .' has been updated!');
         return redirect()->route('admin.users.index');
     }
 
@@ -176,7 +181,7 @@ class UsersController extends Controller
         }else{
             $user->location_id = 1;
         }
-        
+
         $user->assignRole('volunteer');
         $user->save();
         VolunteerRequest::find($id)->delete();

@@ -237,7 +237,7 @@
                                         </div>
                                     </div>
                                     <div class="form-check form-switch mb-3">
-                                        <input class="form-check-input mx-1" type="checkbox" id="flexSwitchCheckChecked" 
+                                        <input class="form-check-input mx-1" type="checkbox" id="flexSwitchCheckChecked"
                                             @if ($user->available_for_mission)
                                                 checked
                                             @endif
@@ -250,7 +250,7 @@
                                             <option value="" selected>Select a Role</option>
                                             @foreach ($allRoles as $role)
                                                 <option
-                                                @if ($user->getRoleNames()[0] == $role->name)
+                                                @if ($user->getRoleNames()->count() > 0 && $user->getRoleNames()[0] == $role->name)
                                                     selected
                                                 @endif value='{{$role->name}}'>{{$role->name}}</option>
                                             @endforeach
