@@ -3,14 +3,14 @@
 @section('css')
 @php
 $donation_quantities = array(
-1,
-2,
-5,
-10,
-15,
-20,
-50
-)
+    1,
+    2,
+    5,
+    10,
+    15,
+    20,
+    50
+);
 @endphp
 <style>
     .modal {
@@ -269,7 +269,7 @@ $donation_quantities = array(
 
 
             toggle80GExemption() {
-                this.razorpayForm.checkbox_80g = !this.razorpayForm.checkbox_80g;                
+                this.razorpayForm.checkbox_80g = !this.razorpayForm.checkbox_80g;
                 document.getElementById('pan').required = this.razorpayForm.checkbox_80g ? "required" : "";
             },
 
@@ -278,6 +278,11 @@ $donation_quantities = array(
             },
 
             togglePages() {
+
+                // This scrolls up the page
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
                 var modal = document.getElementById("max_amount_reached_modal");
                 var btn = document.getElementById("myBtn");
                 var span = document.getElementsByClassName("close")[0];
@@ -351,8 +356,8 @@ $donation_quantities = array(
                             <form action="{{ route('api.v1.razorpay.create_order') }}" method="GET">
                                 @csrf
                                 <div class="mt-2 mb-3">
-                                    <label for="name">Full Name (as per Govt. ID) <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" required="required" />
+                                    <label for="name" id="name">Full Name (as per Govt. ID) <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="name" required="required" autofocus/>
                                 </div>
 
                                 <div class="mt-2 mb-3">
