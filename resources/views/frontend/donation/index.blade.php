@@ -269,7 +269,8 @@ $donation_quantities = array(
 
 
             toggle80GExemption() {
-                this.razorpayForm.checkbox_80g = !this.razorpayForm.checkbox_80g;
+                this.razorpayForm.checkbox_80g = !this.razorpayForm.checkbox_80g;                
+                document.getElementById('pan').required = this.razorpayForm.checkbox_80g ? "required" : "";
             },
 
             toggleContinueButton() {
@@ -371,7 +372,7 @@ $donation_quantities = array(
 
                                 <div class="mt-2 mb-3" x-show="razorpayForm.checkbox_80g">
                                     <label for="name">PAN Card <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="pan" maxlength="10" />
+                                    <input type="text" class="form-control" name="pan" id="pan" maxlength="10"/>
                                     <span class=" text-muted mt-2">
                                         <small>
                                             80G excemption receipt will carry this PAN number
@@ -403,10 +404,10 @@ $donation_quantities = array(
                                 </div>
 
                                 <div class="mt-2 mb-3">
-                                    <div class="form-check" @click="toggleContinueButton()">
-                                        <input class="form-check-input" type="checkbox" value="" id="terms_and_conditions" x-bind:checked="razorpayForm.checkbox_terms_and_conditions">
+                                    <div class="form-check">
+                                        <input @click="toggleContinueButton()" class="form-check-input" type="checkbox" value="" id="terms_and_conditions" x-bind:checked="razorpayForm.checkbox_terms_and_conditions" required style="cursor: pointer;">
                                         <label class="form-check-label" for="terms_and_conditions">
-                                            I have read and I accept the <a href="#">terms & conditions</a>
+                                            I have read and I accept the <i><a href="#">terms & conditions</a></i>
                                         </label>
                                     </div>
                                 </div>
