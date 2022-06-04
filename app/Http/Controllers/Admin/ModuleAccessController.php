@@ -23,7 +23,6 @@ class ModuleAccessController extends Controller
     {
         $permissions = Permission::all();
         $routes = Route::getRoutes()->getRoutesByName();
-//        dd($routes);
         $controllers = [];
 
         foreach ($routes as $route) {
@@ -35,8 +34,6 @@ class ModuleAccessController extends Controller
                 $controllers[] = explode('@', $action['controller']);
             }
         }
-
-//        dd($controllers);
 
         return view('admin.moduleaccess.create', compact('permissions', 'routes', 'controllers'));
     }

@@ -3,9 +3,10 @@
 namespace App\Listeners\Donations;
 
 use App\Models\User;
+use App\Jobs\TestJob;
 use App\Models\Donations;
-use App\Models\Operations;
 use App\Mail\DonationMail;
+use App\Models\Operations;
 use App\Mail\DonationAdminEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Jobs\Donation\AddOrUpdateUser;
@@ -13,12 +14,13 @@ use Illuminate\Queue\InteractsWithQueue;
 use App\Events\Donations\DonationReceived;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Jobs\Donation\CreateDonationReceipt;
+use romanzipp\QueueMonitor\Traits\IsMonitored;
 use App\Jobs\Donation\AddOrUpdateDonationEntry;
 use App\Jobs\Operations\CreateProcurementListEntries;
-use App\Jobs\TestJob;
 
 class DonationReceivedListener implements ShouldQueue
 {
+    use IsMonitored;
 
     /**
      * Create the event listener.

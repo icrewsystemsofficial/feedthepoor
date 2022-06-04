@@ -257,28 +257,21 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-md-12">
-                        <div style="margin-bottom: 2%">
-                            @foreach ($allRoles as $role)
-                                <span class="badge
-                                @if($role->name == 'superadmin')
-                                    bg-info
-                                @endif
-                                @if($role->name == 'administrator')
-                                    bg-primary
-                                @endif
-                                @if($role->name == 'manager')
-                                    bg-secondary
-                                @endif
-                                @if($role->name == 'volunteer')
-                                    bg-warning
-                                @endif
-                                @if($role->name == 'donor')
-                                    bg-danger
-                                @endif
-                                cursor-pointer" onclick="getUsers('{{$role->name}}')">{{strtoupper($role->name)}}
+                        <div class="alert alert-info">
+                            <small>
+                                <span class="text-info">
+                                    <i class="fa-solid fa-info-circle"></i> Tip
                                 </span>
+                                To filter users by role, you can click on any role below.
+                            </small>
+                        </div>
+
+                        <div class="mb-4">
+                            @foreach ($allRoles as $role)
+                                {!! App\Helpers\UserHelper::generate_role_status_badges($role) !!}
                             @endforeach
                         </div>
+
 
                         <table id="table" class="table table-striped" style="width:100%">
                             <thead>
@@ -295,30 +288,14 @@
                                 @php $i = 0; @endphp
                                 @foreach($users as $user)
                                 <tr>
-                                    <td>{{ ++$i }}</td>
+                                    <td>{{ $user->id }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
                                         {!! $user->phone_number ? $user->phone_number : '<span class="badge bg-secondary">Not Updated</span>' !!}
                                     </td>
                                     <td>
-                                        <span class="badge
-                                            @if($user->getRoleNames()[0] == 'superadmin')
-                                                bg-info
-                                            @endif
-                                            @if($user->getRoleNames()[0] == 'administrator')
-                                                bg-primary
-                                            @endif
-                                            @if($user->getRoleNames()[0] == 'manager')
-                                                bg-secondary
-                                            @endif
-                                            @if($user->getRoleNames()[0] == 'volunteer')
-                                                bg-warning
-                                            @endif
-                                            @if($user->getRoleNames()[0] == 'donor')
-                                                bg-danger
-                                            @endif
-                                        cursor-pointer" onclick="getUsers('{{$user->getRoleNames()[0]}}')">{{strtoupper($user->getRoleNames()[0])}}</span>
+                                        {!!  App\Helpers\UserHelper::get_user_roles($user) !!}
                                     </td>
                                     <td class="d-flex justify-content-around">
                                         <a href="{{ route('admin.users.manage', $user->id) }}" class="btn btn-primary btn-sm">
