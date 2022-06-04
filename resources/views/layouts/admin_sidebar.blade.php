@@ -134,7 +134,7 @@
                 <a class="sidebar-link" href="{{ route('queue-monitor::index') }}">Jobs</a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('admin.module-access.index') }}">Module Access</a>
+                <a class="sidebar-link" href="{{ route('admin.access.index') }}">Module Access</a>
             </li>
             <li class="sidebar-item">
                 <a class="sidebar-link" href="#">Server Monitor (WIP)</a>
