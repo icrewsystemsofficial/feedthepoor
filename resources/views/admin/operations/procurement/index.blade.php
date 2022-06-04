@@ -1,5 +1,180 @@
 @extends('layouts.admin')
 
+@section('js')
+
+<script>
+    function trigger_delete(id) {
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+
+        Swal.showLoading();
+
+        if (result.isConfirmed) {
+            document.getElementById('delete_procurement_'+id).submit();
+        }
+    });
+
+    }
+    function showLocation(id){
+
+    window.open("{{ route('admin.location.manage', ':id') }}".replace(':id', id), '_blank');
+
+    }
+</script>
+
+<script>//rendering select2 before dataTable is loaded
+    $(document).ready(function() {
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000
+        });        
+        
+        let selects = {{ json_encode($allOperations) }};
+        selects.forEach(id => {
+            $('#status_'+id).select2();
+            $('#location_'+id).select2();
+            $('#status_'+id).on('change', function() {
+                let status = $(this).val();
+                $.ajax({
+                    url: '/admin/operations/procurement/update/'+id,
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        status: status,
+                        last_updated_by: {{ Auth::user()->id }}
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        $('#table_'+data.status_new).text(parseInt($('#table_'+data.status_new).text())+1);
+                        $('#table_'+data.status_old).text(parseInt($('#table_'+data.status_old).text())-1);
+                        let oldStatus = data.status_old;
+                        let newStatus = data.status_new;
+                        let total = {{ $total }};
+                        if (newStatus == 'FULFILLED'){
+                            let newProcured = parseInt($('#procured').text()) + 1;
+                            let newToProcure = parseInt($('#toProcure').text()) - 1;
+                            $('#procured').text(newProcured);
+                            $('#toProcure').text(newToProcure);
+                            $('#procuredPercent').text((newProcured/total*100).toFixed(2));
+                            $('#toProcurePercent').text((newToProcure/total*100).toFixed(2));
+                            $('#avgProcured').text((newProcured/12).toFixed(2));
+                        }
+                        else if (oldStatus == 'FULFILLED'){
+                            let newProcured = parseInt($('#procured').text()) - 1;
+                            let newToProcure = parseInt($('#toProcure').text()) + 1;
+                            $('#procured').text(newProcured);
+                            $('#toProcure').text(newToProcure);
+                            $('#procuredPercent').text((newProcured/total*100).toFixed(2));
+                            $('#toProcurePercent').text((newToProcure/total*100).toFixed(2));
+                            $('#avgProcured').text((newProcured/12).toFixed(2));
+                        }
+                        $('#badge_'+id)[0].innerHTML = data.badge;
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Status of this item has been updated successfully'
+                        });
+                    },
+                    error: function(data) {
+                        Toast.fire({
+                            icon: 'warning',
+                            title: 'Unable to update status'
+                        });                                            
+                    }
+                });
+            });
+
+            $('#location_'+id).on('change', function() {
+                let locationId = $(this).val();
+                console.log(locationId);
+                $.ajax({
+                    url: '/admin/operations/procurement/update/'+id,
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        location_id: locationId,
+                        last_updated_by: {{ Auth::user()->id }}
+                    },
+                    success: function(data) {
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Location of this item has been updated successfully'
+                        });
+                    },
+                    error: function(data) {
+                        Toast.fire({
+                            icon: 'warning',
+                            title: 'Unable to update location'
+                        });                                            
+                    }
+                });
+            });
+
+        });
+
+    });
+</script>
+
+<script>//render dataTable
+    $(document).ready(function() {
+        let table = $('#table').DataTable({
+            "columnDefs": [
+                { "searchable": true, "targets": 0 },
+                { "searchable": true, "targets": 1 },
+                { "searchable": false, "targets": 2 },
+                { "searchable": true, "targets": 3 },
+                { "searchable": false, "targets": 4 }
+            ],
+        });
+        $("input[type='search']").attr('id','search');
+        $.fn.DataTable.ext.search.push((_,__,i) => {
+            const currentTr = table.row(i).node();
+            const inputMatch = $(currentTr)
+                .find('select,input')
+                .toArray()
+                .some(x => $(x).val().toLowerCase().includes( $('input[type="search"]').val().toLowerCase()));
+            const textMatch = $(currentTr)
+                .children()
+                .not('td:has("input,select")')
+                .toArray()
+                .some(x => $(x).text().toLowerCase().includes( $('input[type="search"]').val().toLowerCase()));                
+            return inputMatch || textMatch || $('input[type="search"]').val() == '';
+        });
+        $('input[type="search"]').on('keyup', () => table.draw());
+    });
+</script>
+
+<script>//render chart
+    $(document).ready(function() {
+        const chart1 = new Chartisan({
+        el: '#chart1',
+        url: "@chart('daily_procurement')",
+        hooks: new ChartisanHooks()
+                    .colors(['#388299', '#ff9c9c'])
+                    .legend({ bottom: 0 })
+                    .datasets('line')
+                    .title({
+                        textAlign: 'center',
+                        left: '50%',
+                        text: 'Monthly orders',
+                    })
+                    .tooltip(),
+        });
+    });
+</script>
+
+@endsection
+
 @section('content')
 <style>
     .select2-container{ width: 90px !important; }
@@ -211,165 +386,4 @@
         </div>
     </div>
 </div>
-<script async>
-    function trigger_delete(id) {
-
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-
-            Swal.showLoading();
-
-            if (result.isConfirmed) {
-                document.getElementById('delete_procurement_'+id).submit();
-            }
-        });
-
-    }
-    function showLocation(id){
-
-        window.open("{{ route('admin.location.manage', ':id') }}".replace(':id', id), '_blank');
-
-    }
-    $(document).ready(function() {
-
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 4000
-        });
-
-        let table = $('#table').DataTable({
-            "columnDefs": [
-                { "searchable": true, "targets": 0 },
-                { "searchable": true, "targets": 1 },
-                { "searchable": false, "targets": 2 },
-                { "searchable": true, "targets": 3 },
-                { "searchable": false, "targets": 4 }
-            ],
-        });
-
-        $("input[type='search']").attr('id','search');
-        $.fn.DataTable.ext.search.push((_,__,i) => {
-            const currentTr = table.row(i).node();
-            const inputMatch = $(currentTr)
-                .find('select,input')
-                .toArray()
-                .some(x => $(x).val().toLowerCase().includes( $('input[type="search"]').val().toLowerCase()));
-            const textMatch = $(currentTr)
-                .children()
-                .not('td:has("input,select")')
-                .toArray()
-                .some(x => $(x).text().toLowerCase().includes( $('input[type="search"]').val().toLowerCase()));                
-            return inputMatch || textMatch || $('input[type="search"]').val() == '';
-        });
-        $('input[type="search"]').on('keyup', () => table.draw());
-        
-        let selects = {{ json_encode($allOperations) }};
-        selects.forEach(id => {
-            $('#status_'+id).select2();
-            $('#location_'+id).select2();
-            $('#status_'+id).on('change', function() {
-                let status = $(this).val();
-                $.ajax({
-                    url: '/admin/operations/procurement/update/'+id,
-                    type: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        status: status,
-                        last_updated_by: {{ Auth::user()->id }}
-                    },
-                    success: function(data) {
-                        $('#table_'+data.status_new).text(parseInt($('#table_'+data.status_new).text())+1);
-                        $('#table_'+data.status_old).text(parseInt($('#table_'+data.status_old).text())-1);
-                        let oldStatus = data.status_old;
-                        let newStatus = data.status_new;
-                        let total = {{ $total }};
-                        if (newStatus == 'FULFILLED'){
-                            let newProcured = parseInt($('#procured').text()) + 1;
-                            let newToProcure = parseInt($('#toProcure').text()) - 1;
-                            $('#procured').text(newProcured);
-                            $('#toProcure').text(newToProcure);
-                            $('#procuredPercent').text((newProcured/total*100).toFixed(2));
-                            $('#toProcurePercent').text((newToProcure/total*100).toFixed(2));
-                            $('#avgProcured').text((newProcured/12).toFixed(2));
-                        }
-                        else if (oldStatus == 'FULFILLED'){
-                            let newProcured = parseInt($('#procured').text()) - 1;
-                            let newToProcure = parseInt($('#toProcure').text()) + 1;
-                            $('#procured').text(newProcured);
-                            $('#toProcure').text(newToProcure);
-                            $('#procuredPercent').text((newProcured/total*100).toFixed(2));
-                            $('#toProcurePercent').text((newToProcure/total*100).toFixed(2));
-                            $('#avgProcured').text((newProcured/12).toFixed(2));
-                        }
-                        $('#badge_'+id)[0].innerHTML = data.badge;
-                        Toast.fire({
-                            icon: 'success',
-                            title: 'Status of this item has been updated successfully'
-                        });
-                    },
-                    error: function(data) {
-                        Toast.fire({
-                            icon: 'warning',
-                            title: 'Unable to update status'
-                        });                                            
-                    }
-                });
-            });
-
-            $('#location_'+id).on('change', function() {
-                let locationId = $(this).val();
-                console.log(locationId);
-                $.ajax({
-                    url: '/admin/operations/procurement/update/'+id,
-                    type: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        location_id: locationId,
-                        last_updated_by: {{ Auth::user()->id }}
-                    },
-                    success: function(data) {
-                        Toast.fire({
-                            icon: 'success',
-                            title: 'Location of this item has been updated successfully'
-                        });
-                    },
-                    error: function(data) {
-                        Toast.fire({
-                            icon: 'warning',
-                            title: 'Unable to update location'
-                        });                                            
-                    }
-                });
-            });
-
-        });
-
-    });
-</script>
-
-<script>
-    const chart1 = new Chartisan({
-      el: '#chart1',
-      url: "@chart('daily_procurement')",
-      hooks: new ChartisanHooks()
-                .colors(['#388299', '#ff9c9c'])
-                .legend({ bottom: 0 })
-                .datasets('line')
-                .title({
-                    textAlign: 'center',
-                    left: '50%',
-                    text: 'Monthly orders',
-                })
-                .tooltip(),
-    });
-</script>
 @endsection

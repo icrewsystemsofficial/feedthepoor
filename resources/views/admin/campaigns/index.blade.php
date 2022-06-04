@@ -1,5 +1,64 @@
 @extends('layouts.admin')
 
+@section('js')
+
+<script>
+    $("#newCampaignModalPrimary").css('position', 'fixed');
+    $(document).ready(function() {        
+        const picker = new Litepicker({ 
+            element: document.getElementById('campaign_start_date'),
+            resetButton: true,
+        });
+        const picker2 = new Litepicker({ 
+            element: document.getElementById('campaign_end_date'),
+            resetButton: true, 
+        });
+        $('#campaign_location').select2({
+            multiple: true,
+            placeholder: "Select location(s)",
+            allowClear: true,
+        });
+        $('#campaign_causes').select2({
+            multiple: true,
+            placeholder: "Select cause(s)",
+            allowClear: true
+        });
+        $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
+        $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
+        FilePond.setOptions({
+            name: 'campaign_poster',
+            required: true,
+            server: {
+                url: '/admin/campaigns/upload',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            }
+        });
+        let file = FilePond.create(
+            document.querySelector('#campaign_poster')
+        );
+        $.fn.filepond.setDefaults({
+            acceptedFileTypes: ['image/*'],
+        });
+        $('#table').DataTable();
+        $("input[type='search']").attr('id','search');
+    });
+    $(document).on('select2:open', (e) => {
+        const selectId = e.target.id
+
+        $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
+            key,
+            value,
+        ){
+            value.focus();
+        })
+    });
+    //
+</script>
+
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-12">
@@ -151,57 +210,5 @@
         @endif        
     </div>
 </div>  
-<script>
-    $("#newCampaignModalPrimary").css('position', 'fixed');
-    $(document).ready(function() {
-        $('#table').DataTable();
-        $("input[type='search']").attr('id','search');
-        const picker = new Litepicker({ 
-            element: document.getElementById('campaign_start_date'),
-            resetButton: true,
-        });
-        const picker2 = new Litepicker({ 
-            element: document.getElementById('campaign_end_date'),
-            resetButton: true, 
-        });
-        $('#campaign_location').select2({
-            multiple: true,
-            placeholder: "Select location(s)",
-            allowClear: true,
-        });
-        $('#campaign_causes').select2({
-            multiple: true,
-            placeholder: "Select cause(s)",
-            allowClear: true
-        });
-        $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
-        FilePond.setOptions({
-            name: 'campaign_poster',
-            required: true,
-            server: {
-                url: '/admin/campaigns/upload',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                }
-            }
-        });
-        let file = FilePond.create(
-            document.querySelector('#campaign_poster')
-        );
-        $.fn.filepond.setDefaults({
-            acceptedFileTypes: ['image/*'],
-        });
-    });
-    $(document).on('select2:open', (e) => {
-        const selectId = e.target.id
 
-        $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
-            key,
-            value,
-        ){
-            value.focus();
-        })
-    });
-    //
-</script>
 @endsection

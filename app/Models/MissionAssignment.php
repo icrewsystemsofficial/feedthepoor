@@ -14,4 +14,10 @@ class MissionAssignment extends Model
         'user_id',
         'status',
     ];
+
+    public static $status = [
+        'PENDING' => 0,
+        'ACCEPTED' => 1,
+        'REJECTED' => 2,
+    ];
 }

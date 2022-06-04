@@ -31,7 +31,7 @@ class CampaignsFactory extends Factory
                 $cause_names[] = $cause->id;
             }
         }
-        $cause_bool = rand(0, 1);
+        $cause_bool = 1; //rand(0, 1) A campaign must have a cause right ?
         $is_goal = rand(0, 1);
 
         $campaign_names = array(
