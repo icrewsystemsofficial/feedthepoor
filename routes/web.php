@@ -82,7 +82,7 @@ Route::name('frontend.')->group(function () {
   ------DASHBOARD ROUTES------
 */
 
-Route::prefix('admin')->middleware(['auth','access_check'])->as('admin.')->group(function () {
+Route::prefix('admin')->middleware(['auth','access_check', 'can:can_access_dashboard'])->as('admin.')->group(function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');

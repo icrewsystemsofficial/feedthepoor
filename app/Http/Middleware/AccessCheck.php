@@ -21,22 +21,19 @@ class AccessCheck
     {
 
         $route_name = Route::current()->getName();
-
         $module_access = ModuleAccess::whereJsonContains('module_route_path', $route_name)->first();
-//        dd($module_access);
-//        $user = auth()->user()->getAllPermissions();
-//            dd($user);
         if ($module_access) {
+
             $allowed_perms = json_decode($module_access->permissions_that_can_access);
 
             foreach ($allowed_perms as $permission) {
                 if (!auth()->user()->can($permission)) {
-                    activity()->log(Auth::user()->name.' is trying to access an unauthorized page');
-                    abort(403);
+                    activity()->log(Auth::user()->name.' is trying to access an unauthorized page.' . $route_name);
+                    abort(403, 'Whoops! Unauthorized access');
                 }
             }
-
         }
+
         return $next($request);
 
     }
