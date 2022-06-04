@@ -12,6 +12,44 @@ $donation_quantities = array(
 50
 )
 @endphp
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 45%;
+    }
+
+    .close {
+        color: red;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
 <script>
     // Alpine JS function
 
@@ -239,8 +277,29 @@ $donation_quantities = array(
             },
 
             togglePages() {
-                this.form.page_1 = !this.form.page_1;
-                this.form.page_2 = !this.form.page_2;
+                var modal = document.getElementById("max_amount_reached_modal");
+                var btn = document.getElementById("myBtn");
+                var span = document.getElementsByClassName("close")[0];
+
+                // 5 Lakhs INR is the max amount that's
+                // accepted by Razorpay API.
+
+                if (this.donationAmount > 500000) {
+                    btn.onclick = function() {
+                        modal.style.display = "block";
+                    }
+                    span.onclick = function() {
+                        modal.style.display = "none";
+                    }
+                    window.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    }
+                } else {
+                    this.form.page_1 = !this.form.page_1;
+                    this.form.page_2 = !this.form.page_2;
+                }
             },
 
 
@@ -510,7 +569,7 @@ $donation_quantities = array(
 
                                             <div class="text-center mt-4">
                                                 <div class="" x-show="showDonateButton()">
-                                                    <button type="button" class="btn btn-success btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="togglePages()">
+                                                    <button type="button" class="btn btn-success btn-block btn-lg text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x donate-btn" @click="togglePages()" id="myBtn">
                                                         <span class="btn-inner--visible">Donate <span class="">₹<span x-text="donationAmount_formatted"></span></span></span>
                                                         <span class="btn-inner--hidden"><small>Process <i class="fas fa-arrow-right"></i></small></span>
                                                     </button>
@@ -519,6 +578,27 @@ $donation_quantities = array(
                                                 <p class="text-sm text-bg-gray mt-2">
                                                     <span x-html="selectedCause.YieldContext"></span>
                                                 </p>
+
+
+                                                <!-- Button trigger modal -->
+                                                <div id="max_amount_reached_modal" class="modal">
+                                                    <div class="modal-dialog modal-xl">
+                                                        <div class="modal-content bg-danger">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Whoops!</h5>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p class="">Hello!🙏 We are unable to accept payments greater than 5,00,000 INR via Razorpay. We appreciate your kindness and generosity ❤, please get in touch with our Relationship Manager, Ms. Neha on 📞 (+091) 95831 86287 to know how to continue with this donation.</p>
+
+                                                                <p>
+                                                                    <small>
+                                                                        You can refresh this page to reset.
+                                                                    </small>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -15,6 +15,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Jobs\Donation\CreateDonationReceipt;
 use App\Jobs\Donation\AddOrUpdateDonationEntry;
 use App\Jobs\Operations\CreateProcurementListEntries;
+use App\Jobs\TestJob;
 
 class DonationReceivedListener implements ShouldQueue
 {
@@ -99,5 +100,8 @@ class DonationReceivedListener implements ShouldQueue
 
         # Add "Operations" logic TODO
         CreateProcurementListEntries::dispatch($payment);
+
+        TestJob::dispatch();
+
     }
 }
