@@ -89,7 +89,6 @@ Route::prefix('admin')->middleware(['auth','access_check'])->as('admin.')->group
     Route::post('/profile/save', [DashboardController::class, 'edit_profile'])->name('profile.save');
     Route::get('/markAllNotificationsAsRead/{userid}', [DashboardController::class, 'mark_as_read'])->name('markasread');
 
-
     # This is a test route, to be removed in production.
     Route::get('/newnotification', function() {
         // $notification = new NotificationHelper;
@@ -98,7 +97,6 @@ Route::prefix('admin')->middleware(['auth','access_check'])->as('admin.')->group
         // // ->user($users)
         // ->content('Pure test', 'This is the fourth test')
         // ->notify();
-
         app(NotificationHelper::class)
         ->user(auth()->user())
         ->content('This rocks', 'Yeah, it really does')
@@ -211,10 +209,19 @@ Route::prefix('admin')->middleware(['auth','access_check'])->as('admin.')->group
 
     Route::prefix('missions')->as('missions.')->group(function() {
         Route::get('/', [MissionsController::class, 'index'])->name('index');
-        Route::get('/manage/{id}', [MissionsController::class, 'view'])->name('manage');
+        Route::get('/create', [MissionsController::class, 'create'])->name('create');
+        Route::get('/manage/{id}', [MissionsController::class, 'manage'])->name('manage');
         Route::post('/store', [MissionsController::class, 'store'])->name('store');
         Route::post('/update/{id}', [MissionsController::class, 'update'])->name('update');
         Route::post('/delete/{id}', [MissionsController::class, 'destroy'])->name('destroy');
+        Route::prefix('reply')->as('reply.')->group(function() {
+            Route::get('/', [MissionsController::class, 'reply_index'])->name('index');
+            Route::post('/accept', [MissionsController::class, 'reply_accept'])->name('accept');
+            Route::post('/reject', [MissionsController::class, 'reply_reject'])->name('reject');
+        });
+        Route::get('/details/{id}', [MissionsController::class, 'details'])->name('details');
+        Route::post('/upload', [MissionsController::class, 'upload'])->name('upload');
+        Route::post('/mission_images', [MissionsController::class, 'mission_images'])->name('mission_images');
     });
 
     Route::prefix('module-access')->as('access.')->group(function () {

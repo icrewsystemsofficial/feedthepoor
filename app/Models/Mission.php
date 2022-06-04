@@ -19,6 +19,7 @@ class Mission extends Model
         'execution_date',
         'mission_status',
         'description',
+        'procurement_items',
     ];
 
     public static $status = [
@@ -66,9 +67,9 @@ class Mission extends Model
     }
 
     public $casts = [
-        'execution_date' => 'dateTime',
-        'created_at' => 'dateTime',
-        'updated_at' => 'dateTime',
+        'execution_date' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
 

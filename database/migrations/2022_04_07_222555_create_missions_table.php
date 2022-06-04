@@ -21,6 +21,7 @@ class CreateMissionsTable extends Migration
             $table->integer('assigned_volunteers')->default('0');
             $table->dateTime('execution_date')->nullable();
             $table->integer('mission_status')->default('0');
+            $table->longText('procurement_items')->nullable();
             $table->timestamps();
         });
     }

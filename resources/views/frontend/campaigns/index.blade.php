@@ -19,7 +19,7 @@
 #timer div {
     font-family: 'Roboto', sans-serif;
     display: inline-block;
-    width: 90px;
+    width: 120px;
     font-weight: 200;
     text-align: center;
     margin-right: 20px;
@@ -340,7 +340,7 @@ $amounts = array(
 
                         {{-- Campaign Details --}}
                         <div class="col-md-12 mx-auto text-center my-3">
-                            <img src="{{ $campaign->campaign_poster }}" alt="{{ $campaign->title }}" class="img-fluid w-100 mx-auto rounded" />
+                            <img src="/storage/{{ $campaign->campaign_poster }}" alt="{{ $campaign->title }}" class="img-fluid mx-auto rounded" style="max-height: 500px; max-width: 100%;"/>
                         </div>
                         <div class="col-md-12 mx-auto text-center border-top border-gray-300 my-2 ">
 
@@ -360,7 +360,7 @@ $amounts = array(
                                                         </span>
                                                         <span class="h5">
                                                             @foreach (json_decode($campaign->campaign_causes) as $cause)
-                                                                <span>{{ App\Models\Causes::where(['id'=>(int) $cause])->first()->name }} </span>
+                                                                <span>{{ App\Models\Causes::where(['id'=>(int) $cause])->first()->name }}; </span>
                                                             @endforeach
                                                         </span>
                                                     </div>

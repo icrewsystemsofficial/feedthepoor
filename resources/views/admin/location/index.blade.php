@@ -141,24 +141,24 @@
     </div>
 </div>
 <script>
-    $(document).ready(function() {
-        $('#table').DataTable();
-        $("input[type='search']").attr('id','search');
+    $(document).ready(function() {        
         $('#manager_id').select2({
             dropdownParent: $("#defaultModalPrimary .modal-body"),
             dropdownAutoWidth : false,
             placeholder: 'Select a manager'
         });
+        $('#table').DataTable();
+        $("input[type='search']").attr('id','search');
     });
-$(document).on('select2:open', (e) => {
-    const selectId = e.target.id
+    $(document).on('select2:open', (e) => {
+        const selectId = e.target.id
 
-    $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
-        key,
-        value,
-    ){
-        value.focus();
+        $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
+            key,
+            value,
+        ){
+            value.focus();
+        })
     })
-})
 </script>
 @endsection

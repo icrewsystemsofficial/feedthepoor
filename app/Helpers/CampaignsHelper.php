@@ -137,7 +137,7 @@ class CampaignsHelper {
     }
 
     public static function getCausesForManage($arr){
-        $arr = json_decode($arr);
+        $arr = json_decode($arr) ?? [];
         $causes = Causes::groupBy('id')->get(['id','name']);
         $html = '';
         foreach($causes as $cause) {

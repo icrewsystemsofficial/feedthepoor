@@ -1,5 +1,39 @@
 @extends('layouts.admin')
 
+@section('js')
+
+<script>
+    function showIcon(state){
+        return $("<span><i class='fas fa-"+state.text+"'></i>&nbsp;"+state.text+"</span>");
+    }
+    $(document).ready(function() {        
+        let icon = $('#icon');
+        icon.select2({
+            dropdownParent: $("#defaultModalPrimary .modal-body"),
+            dropdownAutoWidth : false,
+            placeholder: "Choose a display icon",
+            templateResult : showIcon
+        });
+        icon.on('change',function (){
+            $('#iconPreview')[0].className = "fas fa-"+$(this)[0].value;
+        });
+        $('#table').DataTable();
+    });
+    $(document).on('select2:open', (e) => {
+        const selectId = e.target.id
+
+        $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
+            key,
+            value,
+        ){
+            value.focus();
+        })
+    });    
+</script>
+
+
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-12">
@@ -119,32 +153,4 @@
         </div>
     </div>
 </div>
-<script>
-    function showIcon(state){
-        return $("<span><i class='fas fa-"+state.text+"'></i>&nbsp;"+state.text+"</span>");
-    }
-    $(document).ready(function() {
-        $('#table').DataTable();
-        let icon = $('#icon');
-        icon.select2({
-            dropdownParent: $("#defaultModalPrimary .modal-body"),
-            dropdownAutoWidth : false,
-            placeholder: "Choose a display icon",
-            templateResult : showIcon
-        });
-        icon.on('change',function (){
-            $('#iconPreview')[0].className = "fas fa-"+$(this)[0].value;
-        });
-    });
-    $(document).on('select2:open', (e) => {
-        const selectId = e.target.id
-
-        $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
-            key,
-            value,
-        ){
-            value.focus();
-        })
-    });
-</script>
 @endsection

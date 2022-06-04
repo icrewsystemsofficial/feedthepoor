@@ -3,6 +3,9 @@ namespace App\Helpers;
 
 use Exception;
 use App\Models\Mission;
+use App\Models\Location;
+use App\Models\User;
+use App\Models\Operations;
 
 class MissionHelper {
 
@@ -49,6 +52,12 @@ class MissionHelper {
             'text' => 'Completed',
             'icon' => 'fa-solid fa-check-circle',
             'color' => 'success',
+        );
+
+        $status[Mission::$status['DISCREPENCIES']] = array(
+            'text' => 'Discrepencies',
+            'icon' => 'fa-solid fa-exclamation-triangle',
+            'color' => 'danger',
         );
 
         return $status;
@@ -98,6 +107,19 @@ class MissionHelper {
         return $html;
     }
 
+    public static function getLocationName($location_id) {
+        $location = Location::find($location_id);
+        return $location->location_name;
+    }
+
+    public static function getUserName($id) {
+        return User::find($id)->name.' ';
+    }
+
+    public static function getStatusName($status_id) {
+        $all_statuses = self::status();
+        return $all_statuses[$status_id]['text'];
+    }
 
 }
 

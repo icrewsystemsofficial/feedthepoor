@@ -40,9 +40,9 @@ class CampaignsController extends Controller
         $ext = $info['extension'];
 
         $filename = 'campaigns/'.$request->campaign_name.'/'.$request->campaign_name.'_poster.'.$ext;
-        Storage::disk('public')->move($request->campaign_poster, $filename);
-        Storage::disk('public')->delete($request->campaign_poster);
-         $request->merge(['campaign_poster' => config('app_url')."/storage/".$filename]);
+        Storage::disk('local')->move($request->campaign_poster, 'public/'.$filename);
+        Storage::disk('local')->delete($request->campaign_poster);
+        $request->merge(['campaign_poster' => config('app_url')."/storage/".$filename]);
         $request->merge(['slug' => Str::slug($request->campaign_name)]);
         Campaigns::create($request->all());
         alert()->success('Yay','Campaign "'.$request->campaign_name.'" was successfully created');
@@ -89,8 +89,9 @@ class CampaignsController extends Controller
             $info = pathinfo($request->campaign_poster);
             $ext = $info['extension'];
             $filename = 'campaigns/'.$request->campaign_name.'/'.$request->campaign_name.'_poster.'.$ext;
-            Storage::disk('public')->move($request->campaign_poster, $filename);
-            Storage::disk('public')->delete($request->campaign_poster);
+            Storage::disk('public')->delete($campaign->campaign_poster);
+            Storage::disk('local')->move($request->campaign_poster, 'public/'.$filename);
+            Storage::disk('local')->delete($request->campaign_poster);
             $request->merge(['campaign_poster' => $filename]);
         }
         else{
@@ -129,11 +130,11 @@ class CampaignsController extends Controller
 
         if ($request->hasFile('campaign_poster')) {
             $file = $request->file('campaign_poster');
-            $filename = $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();            
             $extension = $file->getClientOriginalExtension();
-            $path = storage_path('campaigns' . DIRECTORY_SEPARATOR . 'tmp');
+            $path = storage_path('campaigns' . DIRECTORY_SEPARATOR . 'tmp');            
             if($this->validate_directory($path)) {
-                $folder = $file->store($path);
+                $folder = $file->store('campaigns' . DIRECTORY_SEPARATOR . 'tmp');
                 return $folder;
             } else {
                 return false;
