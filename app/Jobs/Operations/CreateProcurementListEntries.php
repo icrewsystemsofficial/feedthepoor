@@ -6,6 +6,7 @@ use App\Models\Location;
 use App\Models\Donations;
 use App\Models\Operations;
 use Illuminate\Bus\Queueable;
+use App\Helpers\NotificationHelper;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -48,6 +49,19 @@ class CreateProcurementListEntries implements ShouldQueue
         $operation->last_updated_by = null;
         $operation->save();
 
+
+
+        $admins = NotificationHelper::getAllAdmins();
+        foreach($admins as $admin) {
+            app(NotificationHelper::class)->user($admin)
+            ->icon('briefcase')
+            ->color('success')
+            ->action(route('admin.operations.procurement.index'))
+            ->content(
+                '[Operations] Procurement list updated - (donation #'. $operation->donation_id .')',
+                'Item: ' . $operation->procurement_item .', Quantity: '. $operation->procurement_quantity . '. Kindly initiate procurement order for this donation. ',
+            )->notify();
+        }
 
         // Adding activity log
         activity()

@@ -115,6 +115,14 @@
                     </div>
                     <div class="card-text">
                         {!! $user->phone_number ?? '<span class="text-danger"><i class="fa-solid fa-exclamation-triangle"></i> NOT PROVIDED</span>' !!}
+
+                        @if($user->phone_number)
+                            <br>
+                            <a class="btn btn-success text-white btn-sm" href="http://wa.me/+91{{ $user->phone_number }}?text=Hi, this is {{ auth()->user()->name }} from {{ config('app.ngo_name') }}" target="_blank">
+                                Contact on <i class="fab fa-whatsapp"></i>
+                            </a>
+                        @endif
+
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -122,7 +130,7 @@
                         Joined on
                     </div>
                     <div class="card-text">
-                        {{ $user->created_at->format('d M Y') }}
+                        {{ $user->created_at->format('d F Y, H:i A') }}
                     </div>
                 </div>
 
@@ -155,7 +163,7 @@
                     {!! App\Helpers\DonationsHelper::getStatusBadges($donation->donation_status) !!}
                 </h3>
                 <small class="text-muted">
-                    This donation was last updated on {{ $donation->updated_at->format('d M Y') }}
+                    This donation was last updated on {{ $donation->updated_at->format('d F Y, H:i A') }}
                 </small>
                 <div class="row mb-3">
                     <div class="col-md-12">
@@ -164,7 +172,7 @@
                         @method('PUT')
                         <div class="form-group mb-3">
                             <label for="name" class="form-label">Donation amount (in INR)</label>
-                            <input type="text" id="donation_amount" name="donation_amount" class="form-control" value="{{ $donation->donation_amount }}" disabled/>
+                            <input type="text" id="donation_amount" name="donation_amount" class="form-control" value="{{ number_format($donation->donation_amount) }}" disabled/>
                         </div>
                         <div class="form-group mb-3">
                             <label for="name" class="form-label">Donation amount (in words)</label>

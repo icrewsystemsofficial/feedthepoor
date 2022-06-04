@@ -128,6 +128,7 @@ class NotificationHelper {
 
 
 
+
     /**
      * validations - Just to make sure all the "required"
      * values are instantiatied and filled up.
@@ -216,7 +217,7 @@ class NotificationHelper {
         if($howmany == 'all'){
             return User::find(auth()->user()->id)
                     ->notifications()
-                    ->get();           
+                    ->get();
         }
         return User::find(auth()->user()->id)
                 ->notifications()
@@ -232,5 +233,16 @@ class NotificationHelper {
     public static function getUnreadCount() {
         return count(auth()->user()->unreadNotifications);
     }
+
+    /**
+     * getAllAdmins
+     *
+     * @return object
+     */
+    public static function getAllAdmins() {
+        return User::permission('can_access_dashboard')->get();
+    }
+
+
 
 }

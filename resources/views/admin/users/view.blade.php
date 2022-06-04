@@ -176,6 +176,8 @@
                         <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#account" role="tab">
                             Account
                         </a>
+
+                        @if(request()->route()->getName() == 'admin.profile.me')
                         <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#notifications" role="tab">
                             Notifications
 
@@ -183,6 +185,7 @@
                                 <span class="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-danger">{{ App\Helpers\NotificationHelper::getUnreadCount() }}</span>
                             @endif
                         </a>
+                        @endif
                         <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#password" role="tab">
                             Password
                         </a>

@@ -2,9 +2,11 @@
 
 namespace App\Jobs\Donation;
 
+use App\Helpers\NotificationHelper;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use App\Mail\NewDonorWelcomeEmail;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -65,6 +67,18 @@ class AddOrUpdateUser
             // event.
 
             $user->assignRole('donor');
+
+            $admins = NotificationHelper::getAllAdmins();
+            foreach($admins as $admin) {
+                app(NotificationHelper::class)->user($admin)
+                ->icon('user-plus')
+                ->color('success')
+                ->action(route('admin.users.manage', $user->id))
+                ->content(
+                    'New donor account',
+                    'A new donor ' . $user->name . ' ('.$user->email.') has been created. ',
+                )->notify();
+            }
 
             return $user->id;
         }

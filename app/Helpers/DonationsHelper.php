@@ -24,14 +24,14 @@ class DonationsHelper {
         $status = array();
 
         $status[Donations::$status['PENDING']] = array(
-            'text' => 'Pending',
+            'text' => 'Processing',
             'icon' => 'fa-solid fa-exclamation-triangle',
             'color' => 'info',
         );
 
 
         $status[Donations::$status['VERIFIED']] = array(
-            'text' => 'Completed',
+            'text' => 'Fullfilled',
             'icon' => 'fa-solid fa-check-circle',
             'color' => 'success',
         );
@@ -71,7 +71,7 @@ class DonationsHelper {
         }
 
         $status = $all_statuses[$id];
-        
+
         $onclick = '$("#search").val("' . $status['text'] . <<<EOF
         ");$("#search").keyup();$("#search").focus();
         EOF;
