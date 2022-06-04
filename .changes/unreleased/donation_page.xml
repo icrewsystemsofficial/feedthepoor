@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature>
+  <change type="fix">Added ScrollToTop on the second page of the donation form</change>
+</feature>

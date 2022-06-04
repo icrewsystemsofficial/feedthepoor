@@ -58,17 +58,19 @@ class OperationsController extends Controller
             'last_updated_by' => 'required|exists:users,id',
             'location_id' => 'exists:locations,id',
         ]);
-
-        $operation = Operations::find($request->id);
-        $operation->update($request->all());
+        $operation = Operations::find($request->id);     
+        $final = array();
+        $final['status_old'] = $operation->status;                                             
+        $operation->update($request->all());    
         
-        if ($request->status){
-            $newBadge = OperationsHelper::getProcurementBadge($request->status);
-            $final = array();
+        if (isset($request->status)){
+            $newBadge = OperationsHelper::getProcurementBadge($request->status);            
             $final['badge'] = $newBadge;
-            $final['status_new'] = $request->status;
-            $final['status_old'] = $operation->status;        
+            $final['status_new'] = $request->status;            
             return response()->json($final);
+        }
+        if ($request->location_id){
+            $operation->update($request->all());
         }
     }
     

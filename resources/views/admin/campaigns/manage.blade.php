@@ -59,6 +59,7 @@
             allowClear: true
         });
         $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
+        $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
         FilePond.setOptions({
             name: 'campaign_poster',
             required: true,
@@ -67,7 +68,7 @@
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                }
+                },
             }
         });
         let file = FilePond.create(

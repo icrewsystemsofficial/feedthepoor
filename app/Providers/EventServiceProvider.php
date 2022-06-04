@@ -10,6 +10,8 @@ use App\Events\Donations\AddDonation;
 use App\Listeners\Donations\AddDonationListener;
 use App\Events\Donations\DonationReceived;
 use App\Listeners\Donations\DonationReceivedListener;
+use App\Events\Mission\MissionCreateOrUpdate;
+use App\Listeners\Mission\MissionCreateOrUpdateListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -28,6 +30,9 @@ class EventServiceProvider extends ServiceProvider
         DonationReceived::class => [
             DonationReceivedListener::class,
             // AddDonationListener::class,
+        ],
+        MissionCreateOrUpdate::class => [
+            MissionCreateOrUpdateListener::class,
         ],
     ];
 
