@@ -582,20 +582,23 @@ $donation_quantities = array(
 
                                                 <!-- Button trigger modal -->
                                                 <div id="max_amount_reached_modal" class="modal">
-                                                    <div class="modal-dialog modal-lg">
+                                                    <div class="modal-dialog modal-xl">
                                                         <div class="modal-content bg-danger">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="exampleModalLabel">Whoops!</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <p class="">Hello!🙏 We are unable to accept payments greater than 5,00,000 INR via Razorpay. We appreciate your kindness and generosity ❤, please get in touch with our Relationship Manager, Ms. Neha on 📞 (+091) 95831 86287 to know how to continue with this donation.</p>
+
+                                                                <p>
+                                                                    <small>
+                                                                        You can refresh this page to reset.
+                                                                    </small>
+                                                                </p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
-
                                             </div>
                                         </div>
                                     </div>
