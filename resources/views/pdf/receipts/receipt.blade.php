@@ -5,7 +5,8 @@
     <table width="100%">
       <tr>
         <td width="75px">
-            <img src="{{ asset('images/branding/roshni-foundation.png') }}" alt="" srcset="" style="width: 90px; height: auto; padding-top: 20px;">
+            <img src="data:image/png;base64,{{ base64_encode(file_get_contents(asset('/images/branding/roshni-foundation.png'))) }}" alt="" srcset="" style="width: 90px; height: auto; padding-top: 20px;">
+            {{-- For testing server, use public_path instead of asset --}}
         </td>
         <td width="300px">
             <p style="padding-left: 10px; ">
@@ -23,7 +24,7 @@
         <strong>Dear {{ $data['payment']['name'] }}</strong>, <br><br>
 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Thank you for your generous donation towards {{ $data['payment']['cause'] }}. Please take comfort in knowing that this good deed,
+            Thank you for your generous donation towards the {{ $data['payment']['cause'] }}. Please take comfort in knowing that this good deed,
         will be putting smiles in the faces of the less fortunate. Continue to support us, share the news with
         your friends and family, we need all the support we can get.
         <br><br>
@@ -40,7 +41,7 @@
       <tr>
         <td widdth="50%" style="background:#eee;padding:20px;">
           <strong>Date:</strong> {{ $data['payment']['date'] }}<br>
-          <strong>Cause:</strong> {{ $data['payment']['cause'] }}<br>
+          <strong>Cause:</strong> {{ implode(' ',array_slice(explode(' ',$data['payment']['cause']),1)) }}<br>
           <strong>Tracking URL:</strong> <a href="{{ $data['payment']['tracking_url'] }}">{{ $data['payment']['tracking_url'] }}</a><br>
         </td>
       </tr>

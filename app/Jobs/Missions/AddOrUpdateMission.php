@@ -11,6 +11,8 @@ use Illuminate\Queue\SerializesModels;
 use App\Models\Mission;
 use App\Models\User;
 use App\Models\MissionAssignment;
+use App\Models\Donations;
+use App\Models\Operations;
 
 class AddOrUpdateMission implements ShouldQueue
 {
@@ -41,27 +43,32 @@ class AddOrUpdateMission implements ShouldQueue
      */
     public function handle()
     {
-        dd($this->mission);
-        if (!$this->mission->id) {
+        if ($this->mission->id == null) {
+            foreach($this->missions->procurment_items as $item) {
+                $proc = Operations::where('id', $item)->first();
+                $proc->status = 5;
+                $proc->save();
+            }
             $mission = new Mission;
             $mission->location_id = $this->mission->location_id;
             $mission->field_manager_id = $this->mission->field_manager_id;
             $mission->assigned_volunteers = json_encode($this->mission->assigned_volunteers);
             $mission->execution_date = $this->mission->execution_date;
             $mission->mission_status = $this->mission->mission_status;
-            $mission->description = $this->mission->description;
+            $mission->description = $this->mission->description;            
             $mission->procurement_items = json_encode($this->mission->procurement_items);
             $mission->save();
             activity()->log('Added mission with id: #' . $this->mission->id.' by user with id: #'.auth()->user()->id);
-            $users = $mission->assigned_volunteers;
+            $users = $this->mission->assigned_volunteers;            
             array_push($users, $this->mission->field_manager_id);
             foreach ($users as $user) {
                 $missionAssignment = new MissionAssignment;
                 $missionAssignment->mission_id = $mission->id;
-                $missionAssignment->user_id = $user->id;
+                $missionAssignment->user_id = $user;
                 $missionAssignment->status = 0;
                 $missionAssignment->save();
             }
+
         }
         else {
             $mission = Mission::where('id', $this->mission->id)->first();
@@ -75,6 +82,7 @@ class AddOrUpdateMission implements ShouldQueue
                 'procurement_items' => json_encode($this->mission->procurement_items)
             ]);
             activity()->log('Updated mission with id: #' . $this->mission->id.' by user with id: #'.auth()->user()->id);
+                    
         }
     }
 }

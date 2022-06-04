@@ -30,7 +30,7 @@ class FieldManagerAcceptMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.FieldManagerAcceptMail', [
+        return $this->markdown('emails.FieldManagerAccept', [
             'mission' => $this->mission,
             'user_name' => $this->user_name,
             'user_id' => $this->user_id,

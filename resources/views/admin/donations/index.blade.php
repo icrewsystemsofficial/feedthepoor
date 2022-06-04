@@ -1,5 +1,44 @@
 @extends('layouts.admin')
 
+@section('js')
+
+<script>
+    $(document).ready(function() {
+        $('#donor_id').select2({
+            dropdownParent: $("#defaultModalPrimary .modal-body"),
+            dropdownAutoWidth : false,
+            placeholder: 'Select donor'
+        });
+        $('#cause_id').select2({
+            dropdownParent: $("#defaultModalPrimary .modal-body"),
+            dropdownAutoWidth : false,
+            placeholder: 'Select cause'
+        });    
+        $('#payment_method').on('change', function() {
+            if($(this).val() == 4) {
+                $('.hide-goal').addClass('show-goal');
+                $('.hide-goal').removeClass('hide-goal');
+            } else {
+                $('.show-goal').addClass('hide-goal');
+                $('.show-goal').removeClass('show-goal');
+            }
+        });
+        $('#table').DataTable();
+        $("input[type='search']").attr('id','search');
+    });
+    $(document).on('select2:open', (e) => {
+        const selectId = e.target.id
+        $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
+            key,
+            value,
+        ){
+            value.focus();
+        })
+    })
+</script>    
+
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-12">
@@ -137,38 +176,5 @@
         </div>
     </div>
 </div>
-<script>
-$(document).ready(function() {
-    $('#donor_id').select2({
-        dropdownParent: $("#defaultModalPrimary .modal-body"),
-        dropdownAutoWidth : false,
-        placeholder: 'Select donor'
-    });
-    $('#cause_id').select2({
-        dropdownParent: $("#defaultModalPrimary .modal-body"),
-        dropdownAutoWidth : false,
-        placeholder: 'Select cause'
-    });
-    $('#table').DataTable();
-    $("input[type='search']").attr('id','search');
-    $('#payment_method').on('change', function() {
-        if($(this).val() == 4) {
-            $('.hide-goal').addClass('show-goal');
-            $('.hide-goal').removeClass('hide-goal');
-        } else {
-            $('.show-goal').addClass('hide-goal');
-            $('.show-goal').removeClass('show-goal');
-        }
-    });
-});
-$(document).on('select2:open', (e) => {
-    const selectId = e.target.id
-    $(".select2-search__field[aria-controls='select2-" + selectId + "-results']").each(function (
-        key,
-        value,
-    ){
-        value.focus();
-    })
-})
-</script>
+
 @endsection

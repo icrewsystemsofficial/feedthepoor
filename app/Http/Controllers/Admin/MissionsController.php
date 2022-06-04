@@ -22,7 +22,7 @@ class NewMission{
     public $execution_date = '';
     public $mission_status = 0;
     public $assigned_volunteers = [];
-    public $procurment_items = [];
+    public $procurment_items = [];    
 }
 
 class MissionsController extends Controller
@@ -33,15 +33,13 @@ class MissionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        
+    {        
         $active_missions = Mission::where('mission_status', '!=', Mission::$status['COMPLETED'])->get();
         $locations = Location::all();
         $active_volunteers = User::where('volunteer', 1)->where('available_for_mission', 1)->get();
 
         $procurement_items = Operations::where('status', 4)->get();
-        $total_procurement_items = Operations::where('status', 4)->count();
-        //dd($procurement_items);
+        $total_procurement_items = Operations::where('status', 4)->count();        
 
         return view('admin.missions.index', [
             'active_missions' => $active_missions,
@@ -296,7 +294,27 @@ class MissionsController extends Controller
         alert()->success('Mission cancelled successfully', 'Success');
         return redirect()->route('admin.missions.index');
     }
-    
+
+    /**
+     * validate_directory - If path does not exist, create.
+     *
+     * @param  mixed $path
+     * @return void
+     */
+    public function validate_directory($path) {
+        if(!File::isDirectory($path)){
+            if(File::makeDirectory($path, 0777, true, true)) {
+                return true;
+            } else {
+                # Unable to create directory.
+                return false;
+            }
+
+        } else {
+            return true;
+        }
+    }
+
     /**
      * upload mission images to the server
      *
@@ -304,15 +322,20 @@ class MissionsController extends Controller
      * @return void
      */
     public function upload(Request $request){
-        
+
         if ($request->hasFile('mission_images')) {
             $file = $request->file('mission_images');
-            $filename = $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();            
             $extension = $file->getClientOriginalExtension();
-            $folder = $file->store('missions/tmp', ['disk' => 'public']);
-            return $folder;
+            $path = storage_path('missions' . DIRECTORY_SEPARATOR . 'tmp');            
+            if($this->validate_directory($path)) {
+                $folder = $file->store('missions' . DIRECTORY_SEPARATOR . 'tmp');
+                return $folder;
+            } else {
+                return false;
+            }
         }
-        return '';
+        return false;
     }
     
     /**
@@ -332,8 +355,8 @@ class MissionsController extends Controller
             $info = pathinfo($image);
             $ext = $info['extension'];
             $filename = 'missions/'.$request->mission_images_id.'/image_'.$count.'.'.$ext;
-            Storage::disk('public')->move($image, $filename);
-            Storage::disk('public')->delete($image);
+            Storage::disk('local')->move($image, 'public/'.$filename);
+            Storage::disk('local')->delete($image);
         }
-    }
+    }    
 }

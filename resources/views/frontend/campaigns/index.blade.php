@@ -19,7 +19,7 @@
 #timer div {
     font-family: 'Roboto', sans-serif;
     display: inline-block;
-    width: 90px;
+    width: 120px;
     font-weight: 200;
     text-align: center;
     margin-right: 20px;
@@ -360,7 +360,7 @@ $amounts = array(
                                                         </span>
                                                         <span class="h5">
                                                             @foreach (json_decode($campaign->campaign_causes) as $cause)
-                                                                <span>{{ App\Models\Causes::where(['id'=>(int) $cause])->first()->name }} </span>
+                                                                <span>{{ App\Models\Causes::where(['id'=>(int) $cause])->first()->name }}; </span>
                                                             @endforeach
                                                         </span>
                                                     </div>
