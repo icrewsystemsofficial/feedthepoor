@@ -63,7 +63,7 @@
         });
         $('#table').DataTable();
         let itemsTable = $('#items_table').DataTable();
-        itemsTable.columns(3).search('Select mission location').draw();        
+        itemsTable.columns(3).search('Select mission location').draw();
     } );
 </script>
 @endsection
@@ -174,7 +174,7 @@
                                                 </tr>
                                             @endforeach
                                         </tbody>
-                                    </table>                                
+                                    </table>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

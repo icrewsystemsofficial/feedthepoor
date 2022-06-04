@@ -17,6 +17,9 @@ class RolesandPermissionsSeeder extends Seeder
     public function run()
     {
           //Seed the default roles
+
+
+
           $roles = array(
             'superadmin',
             'administrator',
@@ -29,13 +32,16 @@ class RolesandPermissionsSeeder extends Seeder
           // Seed the default permissions
           $permissions = array(
             'supreme_control',
+            'can_access_dashboard',
             'can_manage_settings',
             'can_manage_payments',
             'can_manage_missions',
             'can_manage_users',
+            'can_manage_causes',
             'can_manage_campaigns',
             'is_mission_manager',
             'is_volunteer',
+            'is_donor',
           );
 
 
@@ -57,13 +63,38 @@ class RolesandPermissionsSeeder extends Seeder
             }
             else if( $role->name == 'manager' ) {
                 // assign all permissions
-                $role->syncPermissions(Permission::where('name', 'can_manage_settings')->where('name', 'can_manage_payments')->get());
-                $this->command->info('SUPER ADMIN: Created, granted can_manage_settings, can_manage_payments permissions');
+                $role->syncPermissions(
+                    Permission::where('name', 'can_manage_settings')
+                    ->where('name', 'can_access_dashboard')
+                    ->where('name', 'can_manage_payments')
+                    ->where('name', 'can_manage_users')
+                    ->where('name', 'can_manage_causes')
+                    ->where('name', 'can_manage_campaigns')
+                    ->where('name', 'can_manage_missions')
+                    ->get()
+                );
+                $this->command->info('Manager: Created, granted can_manage_settings, can_manage_payments permissions');
 
+            }
+
+            else if($role->name == 'donor') {
+                $role->syncPermissions(
+                    Permission::where('name', 'is_donor')
+                    ->get()
+                );
+                $this->command->info('Manager: Created, granted can_manage_settings, can_manage_payments permissions');
             }
             else if($role->name == 'volunteer'){
                 // for others by default only read access
-                $role->syncPermissions(Permission::where('name', 'can_manage_missions')->where('name', 'can_manage_users')->where('name', 'can_manage_campaigns')->get());
+
+                $role->syncPermissions(
+                    Permission::where('name', 'can_manage_settings')
+                    ->where('name', 'can_access_dashboard')
+                    ->where('name', 'can_manage_payments')
+                    ->where('name', 'can_manage_missions')
+                    ->where('name', 'is_volunteer')
+                    ->get()
+                );
                 $this->command->info($role->name.': Created, granted can_manage_missions, can_manage_users, can_manage_campaigns permissions');
             }
           }

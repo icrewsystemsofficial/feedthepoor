@@ -3,10 +3,11 @@
 namespace App\Jobs\Donation;
 
 use App\Models\User;
-use App\Models\Campaigns;
 use App\Models\Causes;
+use App\Models\Campaigns;
 use App\Models\Donations;
 use Illuminate\Bus\Queueable;
+use App\Helpers\NotificationHelper;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -71,8 +72,32 @@ class AddOrUpdateDonationEntry implements ShouldQueue
             // $campaign_name = isset($this->payment->campaign) ? ', Campaign # (?) '.$campaign->campaign_name : '. (NO CAMPAIGN)';
             // $addl = ' for Cause # '. $campaign_name;
 
+            $admins = NotificationHelper::getAllAdmins();
+            foreach($admins as $admin) {
+                app(NotificationHelper::class)->user($admin)
+                ->icon('dollar-sign')
+                ->color('success')
+                ->action(route('admin.donations.manage', $donation->id))
+                ->content(
+                    'New donation received',
+                    '₹'.$this->payment->amount.' received from '. $this->user->name.' (user #'.$this->user->id.'), for cause: '.$cause->name,
+                )->notify();
+            }
+
             activity()->log('New donation of ₹'.$this->payment->amount.' received from '. $this->user->name.' (#'.$this->user->id.')');
         } else {
+
+            $admins = NotificationHelper::getAllAdmins();
+            foreach($admins as $admin) {
+                app(NotificationHelper::class)->user($admin)
+                ->icon('money-bill')
+                ->color('success')
+                ->content(
+                    '[Duplicate entry] New donation received',
+                    '₹'.$this->payment->amount.' received from '. $this->user->name.' (#'.$this->user->id.')',
+                )->notify();
+            }
+
             activity()->log('[Duplicate entry] Donation of ₹'.$this->payment->amount.' received from '. $this->user->name.' (#'.$this->user->id.') for '. isset($this->payment->campaign) ? 'campaign '.$campaign->campaign_name : 'cause '.$cause->name);
         }
 

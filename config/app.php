@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\CampaignsHelper;
+use App\Helpers\UserHelper;
 
 return [
 
@@ -266,6 +267,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade\PDF::class,
         'MissionHelper' => App\Helpers\MissionHelper::class,
         'CampaignsHelper' => CampaignsHelper::class,
+        'UserHelper' => UserHelper::class,
 
     ],
 

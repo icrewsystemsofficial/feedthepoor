@@ -36,10 +36,10 @@ class MissionCreateOrUpdateListener
         $mission = $event->mission;
         $message = $event->create ? 'A new mission has been created !!' : 'A mission has been updated !!';
         
-        AddOrUpdateMission::dispatch($mission, $message)->onQueue('default');
+        AddOrUpdateMission::dispatch($mission, $message)->delay(now());
         //Creates or updates the mission and sends an email to the field manager, donors and the assigned volunteers
 
-        MissionNotifications::dispatch($mission, $event->create, $message)->onQueue('default');
+        MissionNotifications::dispatch($mission, $event->create, $message)->delay(now());
         //Sends notifications to the donors, field managers and volunteers
 
         

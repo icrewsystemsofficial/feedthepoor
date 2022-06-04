@@ -55,7 +55,7 @@
     <li class="sidebar-item {{ Nav::isRoute('admin.users.index') }}">
         <a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
             <i class="align-middle" data-feather="users"></i>
-            <span class="align-middle">Users [WIP]</span>
+            <span class="align-middle">Users</span>
         </a>
         <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
             <li class="sidebar-item">
@@ -133,9 +133,9 @@
             <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('queue-monitor::index') }}">Jobs</a>
             </li>
-            {{--<li class="sidebar-item">
+            <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('admin.access.index') }}">Module Access</a>
-            </li>--}}
+            </li>
             <li class="sidebar-item">
                 <a class="sidebar-link" href="#">Server Monitor (WIP)</a>
             </li>

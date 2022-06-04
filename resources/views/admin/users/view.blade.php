@@ -176,6 +176,8 @@
                         <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#account" role="tab">
                             Account
                         </a>
+
+                        @if(request()->route()->getName() == 'admin.profile.me')
                         <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#notifications" role="tab">
                             Notifications
 
@@ -183,6 +185,7 @@
                                 <span class="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-danger">{{ App\Helpers\NotificationHelper::getUnreadCount() }}</span>
                             @endif
                         </a>
+                        @endif
                         <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#password" role="tab">
                             Password
                         </a>
@@ -237,7 +240,7 @@
                                         </div>
                                     </div>
                                     <div class="form-check form-switch mb-3">
-                                        <input class="form-check-input mx-1" type="checkbox" id="flexSwitchCheckChecked" 
+                                        <input class="form-check-input mx-1" type="checkbox" id="flexSwitchCheckChecked"
                                             @if ($user->available_for_mission)
                                                 checked
                                             @endif
@@ -250,7 +253,7 @@
                                             <option value="" selected>Select a Role</option>
                                             @foreach ($allRoles as $role)
                                                 <option
-                                                @if ($user->getRoleNames()[0] == $role->name)
+                                                @if ($user->getRoleNames()->count() > 0 && $user->getRoleNames()[0] == $role->name)
                                                     selected
                                                 @endif value='{{$role->name}}'>{{$role->name}}</option>
                                             @endforeach

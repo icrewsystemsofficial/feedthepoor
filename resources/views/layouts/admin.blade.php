@@ -170,13 +170,19 @@
                   {{ config('app.name') }}
                </span>
             </a>
+
+            @php
+                $unacknowledged_items = App\Models\Operations::where('status', 0)->count();
+            @endphp
+
+            @if($unacknowledged_items > 0)
             <div class="sidebar-cta">
                 <div class="sidebar-cta-content">
                    <strong class="d-inline-block mb-2">
                     <i class="fas fa-exclamation-triangle me-2"></i>
-                    Action Required (WIP)</strong>
+                    Action Required</strong>
                    <div class="mb-3">
-                      There are X unacknowledged items in
+                      There are {{ $unacknowledged_items }} unacknowledged items in
                       procurement list.
                    </div>
                    <div class="d-grid">
@@ -186,6 +192,7 @@
                    </div>
                 </div>
              </div>
+             @endif
             @include('layouts.admin_sidebar')
          </div>
       </nav>

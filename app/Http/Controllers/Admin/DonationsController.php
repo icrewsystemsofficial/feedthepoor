@@ -17,7 +17,7 @@ class DonationsController extends Controller
 {
     public function index()
     {
-        $donations = Donations::all();
+        $donations = Donations::orderBy('id', 'DESC')->get();
         return view('admin.donations.index', compact('donations'));
     }
 
@@ -74,7 +74,7 @@ class DonationsController extends Controller
 //        }
         $cause_name = $request->cause_id ? Causes::find($request->cause_id)->name : Campaigns::find($request->campaign_id)->name;
         $donation_in_words = Donations::Show_Amount_In_Words($request->donation_amount);
-        $request->merge(['cause_name' => $cause_name, 'donation_in_words' => $donation_in_words]);        
+        $request->merge(['cause_name' => $cause_name, 'donation_in_words' => $donation_in_words]);
         $donation = Donations::find($request->id);
         $donation->update($request->all());
         alert()->success('Yay','Donation was successfully updated');

@@ -12,12 +12,8 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
-
                 Swal.showLoading();
-
                 if (result.isConfirmed) {
-
-
                     setTimeout(() => {
                         Swal.fire(
                             'Alright!',
@@ -39,11 +35,11 @@
             <h3>
                 Module Access <span class="text-muted">></span> Create
             </h3>
-            {{--            <p class="mt-n2">--}}
+            {{-- <p class="mt-n2">--}}
             {{--                <small>--}}
             {{--                    Edit/delete existing locations--}}
             {{--                </small>--}}
-            {{--            </p>--}}
+            {{--            </p> --}}
         </div>
     </div>
     <div class="row mb-3">
@@ -75,6 +71,20 @@
         <div class="card-body">
             <div class="row mb-2">
                 <div class="col-md-12">
+
+                    <div class="alert alert-info">
+                        <h3 class="h4 text-info">
+                            <strong>
+                            <i class="fas fa-info-circle"></i> How to use?
+                            </strong>
+                        </h3>
+                        <p>
+                            This is a module from which you can centrally govern the access permissions of the entire app.
+                            You need basic understanding of Laravel Routes to manipulate this, hence, if you don't know what you're doing, please
+                            reachout to development team.
+                        </p>
+                    </div>
+
                     <form action="{{ route('admin.access.store') }}" id="update_form" method="POST" autocomplete="off">
                         @csrf
 

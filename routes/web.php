@@ -82,26 +82,12 @@ Route::name('frontend.')->group(function () {
   ------DASHBOARD ROUTES------
 */
 
-Route::prefix('admin')->middleware(['auth','access_check'])->as('admin.')->group(function () {
+Route::prefix('admin')->middleware(['auth','access_check', 'can:can_access_dashboard'])->as('admin.')->group(function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
     Route::post('/profile/save', [DashboardController::class, 'edit_profile'])->name('profile.save');
     Route::get('/markAllNotificationsAsRead/{userid}', [DashboardController::class, 'mark_as_read'])->name('markasread');
-
-    # This is a test route, to be removed in production.
-    Route::get('/newnotification', function() {
-        // $notification = new NotificationHelper;
-        // $users = User::all()->pluck('id')->toArray();
-        // $notification
-        // // ->user($users)
-        // ->content('Pure test', 'This is the fourth test')
-        // ->notify();
-        app(NotificationHelper::class)
-        ->user(auth()->user())
-        ->content('This rocks', 'Yeah, it really does')
-        ->notify();
-    });
 
     Route::prefix('profile')->as('profile.')->group(function() {
         Route::get('/me', [UsersController::class, 'view'])->name('me');

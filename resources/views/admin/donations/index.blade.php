@@ -13,7 +13,7 @@
             dropdownParent: $("#defaultModalPrimary .modal-body"),
             dropdownAutoWidth : false,
             placeholder: 'Select cause'
-        });    
+        });
         $('#payment_method').on('change', function() {
             if($(this).val() == 4) {
                 $('.hide-goal').addClass('show-goal');
@@ -35,7 +35,7 @@
             value.focus();
         })
     })
-</script>    
+</script>
 
 @endsection
 
@@ -48,7 +48,7 @@
 
         <p class="mt-n2">
             <small>
-                Contributions to make someones life better
+                All the donations recorded within the application.
             </small>
         </p>
 
@@ -144,8 +144,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>DONOR</th>
-                                    <th>AMOUNT</th>
-                                    <th>CAUSE</th>
+                                    <th>DONATION</th>
+                                    <th>DATE</th>
                                     <th>STATUS</th>
                                     <th>ACTION</th>
                                 </tr>
@@ -154,11 +154,26 @@
                                 @foreach($donations as $donation)
                                 <tr>
                                     <td>{{ $donation->id }}</td>
-                                    <td>{{ $donation->donor_name }}</td>
-                                    <td>₹ {{ $donation->donation_amount }}</td>
-                                    <td>{{ $donation->cause_name }}</td>
+                                    <td><a href="{{ route('admin.users.manage', $donation->donor_id) }}" target="_blank" class="text-primary">{{ $donation->donor_name }}</a></td>
                                     <td>
-                                        {!! App\Helpers\DonationsHelper::getStatus($donation->donation_status) !!}
+                                        Amount: <strong>₹{{ number_format($donation->donation_amount) }} </strong><br>
+                                        <small>
+                                            Cause: <strong>{{ $donation->cause_name }}</strong>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        {{ $donation->created_at->format('d F Y') }}
+                                        <br>
+                                        <small>
+                                            {{ $donation->created_at->diffForHumans() }}
+                                        </small>
+                                    </td>
+                                    <td>
+                                        {!! App\Helpers\DonationsHelper::getStatus($donation->donation_status) !!} <br>
+                                        <small>
+                                            Last updated: {{ $donation->updated_at->diffForHumans() }}
+                                        </small>
+
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.donations.manage', $donation->id) }}" class="btn btn-primary btn-sm">

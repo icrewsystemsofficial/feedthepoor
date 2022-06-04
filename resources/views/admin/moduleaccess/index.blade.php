@@ -35,6 +35,10 @@
                 <i class="fa-solid fa-plus"></i> &nbsp; Add
             </a>
 
+            <a href="{{ route('admin.users.index') }}" target="_blank" class="btn btn-primary">
+                <i class="fa-solid fa-users"></i> &nbsp; View Users, their roles and permissions
+            </a>
+
 
             @if(session('success'))
 
@@ -50,6 +54,20 @@
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-md-12">
+
+                            <div class="alert alert-info">
+                                <h3 class="h4 text-info">
+                                    <strong>
+                                    <i class="fas fa-info-circle"></i> How to use?
+                                    </strong>
+                                </h3>
+                                <p>
+                                    This is a module from which you can centrally govern the access permissions of the entire app.
+                                    You need basic understanding of Laravel Routes to manipulate this, hence, if you don't know what you're doing, please
+                                    reachout to development team.
+                                </p>
+                            </div>
+
                             <table id="table" class="table table-striped" style="width:100%">
                                 <thead>
                                 <tr>

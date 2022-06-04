@@ -22,7 +22,7 @@ class NewMission{
     public $execution_date = '';
     public $mission_status = 0;
     public $assigned_volunteers = [];
-    public $procurment_items = [];    
+    public $procurment_items = [];
 }
 
 class MissionsController extends Controller
@@ -33,13 +33,13 @@ class MissionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {        
+    {
         $active_missions = Mission::where('mission_status', '!=', Mission::$status['COMPLETED'])->get();
         $locations = Location::all();
         $active_volunteers = User::where('volunteer', 1)->where('available_for_mission', 1)->get();
 
         $procurement_items = Operations::where('status', 4)->get();
-        $total_procurement_items = Operations::where('status', 4)->count();        
+        $total_procurement_items = Operations::where('status', 4)->count();
 
         return view('admin.missions.index', [
             'active_missions' => $active_missions,
@@ -56,17 +56,17 @@ class MissionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {   
+    {
         $location_id = Location::where('location_name', $request->location_id)->first()->id;
-        $active_volunteers = User::where('volunteer', 1)->where('available_for_mission', 1)->where('location_id', $location_id)->get();        
-        $procurement_items = Operations::where('status', 4)->where('location_id', $location_id)->get();        
+        $active_volunteers = User::permission('is_volunteer')->where('location_id', $location_id)->get();
+        $procurement_items = Operations::where('status', 4)->where('location_id', $location_id)->get();
         $field_managers = $active_volunteers; //Update code when a permission "is_mission_manager" is defined
         return view('admin.missions.create', [
             'active_volunteers' => $active_volunteers,
             'procurement_items' => $procurement_items,
             'location' => $request->location_id,
             'field_managers' => $field_managers,
-        ]);   
+        ]);
     }
 
     /**
@@ -76,7 +76,7 @@ class MissionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
+    {
         $request->validate([
             'description' => 'required',
             'execution_date' => 'required',
@@ -96,9 +96,11 @@ class MissionsController extends Controller
             if(strpos($key, 'procurement_item_') !== false){
                 $procurement_items[] = explode('_', $key)[2];
             }
-        }        
-        $mission->procurement_items = $procurement_items;  
+        }
+        $mission->procurement_items = $procurement_items;
+
         event(new MissionCreateOrUpdate($mission, 1));
+
         alert()->success('Mission Created Successfully', 'Success');
         return redirect()->route('admin.missions.index');
     }
@@ -129,7 +131,7 @@ class MissionsController extends Controller
             'user_id' => $request->user_id,
         ]);
     }
-    
+
     /**
      * Accept the volunteer/field manager
      *
@@ -171,7 +173,7 @@ class MissionsController extends Controller
         $notification->user([1])->content('User '.$name.' has rejected being a part of Mission #'.$request->mission_id.' citing the reason <br>'.$request->reason)->notify();//Replace with method to notify all SUs
         alert()->success('Mission Rejected Successfully', 'Success');
     }
-    
+
     /**
      * Display the specified mission details
      *
@@ -211,9 +213,9 @@ class MissionsController extends Controller
     {
         $mission = Mission::find($request->mission_id);
         $location_id = $mission->location_id;
-        $active_volunteers = User::where('volunteer', 1)->where('available_for_mission', 1)->where('location_id', $location_id)->get();        
+        $active_volunteers = User::where('volunteer', 1)->where('available_for_mission', 1)->where('location_id', $location_id)->get();
         $field_managers = $active_volunteers; //Update code when a permission "is_mission_manager" is defined
-        $procurement_items = Operations::where('status', 4)->where('location_id', $location_id)->get();        
+        $procurement_items = Operations::where('status', 4)->where('location_id', $location_id)->get();
         return view('admin.missions.manage', [
             'mission' => $mission,
             'procurement_items' => json_decode($mission->procurement_items),
@@ -256,7 +258,7 @@ class MissionsController extends Controller
                 $procurement_items[] = explode('_', $key)[2];
             }
         }
-        $mission->procurement_items = $procurement_items;        
+        $mission->procurement_items = $procurement_items;
         event(new MissionCreateOrUpdate($mission, 0));
         alert()->success('Mission Updated Successfully', 'Success');
         return redirect()->route('admin.missions.index');
@@ -272,7 +274,7 @@ class MissionsController extends Controller
     {
         $reason = $request->reason;
         $personnel = array();
-        array_push($personnel, $request->field_manager_id);        
+        array_push($personnel, $request->field_manager_id);
         $mission = Mission::find($request->mission_id);
         foreach(json_decode($mission->assigned_volunteers) as $volunteer) {
             array_push($personnel, $volunteer);
@@ -325,9 +327,9 @@ class MissionsController extends Controller
 
         if ($request->hasFile('mission_images')) {
             $file = $request->file('mission_images');
-            $filename = $file->getClientOriginalName();            
+            $filename = $file->getClientOriginalName();
             $extension = $file->getClientOriginalExtension();
-            $path = storage_path('missions' . DIRECTORY_SEPARATOR . 'tmp');            
+            $path = storage_path('missions' . DIRECTORY_SEPARATOR . 'tmp');
             if($this->validate_directory($path)) {
                 $folder = $file->store('missions' . DIRECTORY_SEPARATOR . 'tmp');
                 return $folder;
@@ -337,7 +339,7 @@ class MissionsController extends Controller
         }
         return false;
     }
-    
+
     /**
      * Add mission images and make it available for user download
      *
@@ -358,5 +360,5 @@ class MissionsController extends Controller
             Storage::disk('local')->move($image, 'public/'.$filename);
             Storage::disk('local')->delete($image);
         }
-    }    
+    }
 }
