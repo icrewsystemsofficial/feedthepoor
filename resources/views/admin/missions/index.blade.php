@@ -226,15 +226,20 @@
                                                 </small>
                                             </td>
                                             <td>
-                                                <a target="_blank" href="{{ route('admin.location.manage', $mission->location->id) }}">{{ $mission->location->location_name }}</a>
+                                                <a target="_blank" href="{{ route('admin.location.manage', $mission->location) }}">{{ App\Models\Location::find($mission->location)->location_name }}</a>
                                                 <br>
                                                 <small>
-                                                    Field Manager: <a href="{{ route('admin.users.manage', $mission->field_manager->id) }}" target="_blank">
-                                                        {{ $mission->field_manager->name }}
+                                                    Field Manager: <a href="{{ route('admin.users.manage', $mission->field_manager) }}" target="_blank">
+                                                        {{ App\Models\User::find($mission->field_manager)->name }}
                                                     </a>
                                                 </small>
                                             </td>
-                                            <td>{{ $mission->assigned_volunteers }}</td>
+                                            <td>
+                                                @foreach(json_decode($mission->assigned_volunteers) as $volunteer)
+                                                    <a href="{{ route('admin.users.manage', $volunteer) }}" target="_blank">{{ App\Models\User::find($volunteer)->name }}</a>
+                                                    <br>
+                                                @endforeach
+                                            </td>
                                             <td>
                                                 {!! MissionHelper::getStatus_html($mission->mission_status) !!}
                                             </td>

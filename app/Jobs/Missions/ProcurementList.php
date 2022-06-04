@@ -1,13 +1,19 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\Missions;
 
+use PDF;
 use Illuminate\Bus\Queueable;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use App\Models\User;
+use App\Models\Operations;
+use App\Models\Donations;
+use App\Mail\ProcurementListMail;
 
 class ProcurementList implements ShouldQueue
 {
@@ -46,6 +52,6 @@ class ProcurementList implements ShouldQueue
             'isHtml5ParserEnabled' => true,
         ]);
         $output = $pdf->output();
-        Mail::to($field_manager->email)->send(new ProcurementList($output, $field_manager->name ));        
+        Mail::to($field_manager->email)->send(new ProcurementListMail($output, $field_manager->name ));        
     }
 }

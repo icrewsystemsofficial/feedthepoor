@@ -9,7 +9,7 @@ use Illuminate\Queue\SerializesModels;
 use App\Models\Operations;
 use App\Models\Donations;
 
-class ProcurementList extends Mailable
+class ProcurementListMail extends Mailable
 {
     use Queueable, SerializesModels;
 

@@ -30,7 +30,7 @@ class VolunteerAcceptMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.VolunteerAcceptMail', [
+        return $this->markdown('emails.VolunteerAccept', [
             'mission' => $this->mission,
             'user_name' => $this->user_name,
             'user_id' => $this->user_id,

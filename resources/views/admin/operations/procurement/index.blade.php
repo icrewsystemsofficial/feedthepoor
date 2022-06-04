@@ -55,6 +55,7 @@
                         last_updated_by: {{ Auth::user()->id }}
                     },
                     success: function(data) {
+                        console.log(data);
                         $('#table_'+data.status_new).text(parseInt($('#table_'+data.status_new).text())+1);
                         $('#table_'+data.status_old).text(parseInt($('#table_'+data.status_old).text())-1);
                         let oldStatus = data.status_old;

@@ -22,7 +22,7 @@ class NewMission{
     public $execution_date = '';
     public $mission_status = 0;
     public $assigned_volunteers = [];
-    public $procurment_items = [];
+    public $procurment_items = [];    
 }
 
 class MissionsController extends Controller
@@ -39,8 +39,7 @@ class MissionsController extends Controller
         $active_volunteers = User::where('volunteer', 1)->where('available_for_mission', 1)->get();
 
         $procurement_items = Operations::where('status', 4)->get();
-        $total_procurement_items = Operations::where('status', 4)->count();
-        //dd($procurement_items);
+        $total_procurement_items = Operations::where('status', 4)->count();        
 
         return view('admin.missions.index', [
             'active_missions' => $active_missions,
