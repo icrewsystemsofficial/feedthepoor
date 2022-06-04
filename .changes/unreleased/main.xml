@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature>
+  <change type="fix">Frontend footer: Whatapp share button custom text added</change>
+  <change type="fix">Frontend donate page: Modal warning added if donation amount exceeds 5 Lakhs INR</change>
+</feature>
