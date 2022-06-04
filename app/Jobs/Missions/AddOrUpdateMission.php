@@ -44,6 +44,11 @@ class AddOrUpdateMission implements ShouldQueue
     public function handle()
     {
         if ($this->mission->id == null) {
+            foreach($this->missions->procurment_items as $item) {
+                $proc = Operations::where('id', $item)->first();
+                $proc->status = 5;
+                $proc->save();
+            }
             $mission = new Mission;
             $mission->location_id = $this->mission->location_id;
             $mission->field_manager_id = $this->mission->field_manager_id;
