@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DonationsController;
 use App\Http\Controllers\Admin\OperationsController;
 use App\Http\Controllers\SendWebhookController;
+use App\Http\Controllers\TestController;
 use App\Models\User;
 
 /*
@@ -235,6 +236,7 @@ Route::prefix('admin/jobs')->group(function () {
 });
 
 Route::get('sendwebhook', [SendWebhookController::class, 'send'])->name('sendwebhook');
+Route::get('test', [TestController::class, 'test'])->name('test');
 
 
 /*
