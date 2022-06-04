@@ -3,11 +3,7 @@
 namespace App\Listeners\Donations;
 
 use App\Models\User;
-use App\Jobs\TestJob;
-use App\Models\Donations;
 use App\Mail\DonationMail;
-use App\Models\Operations;
-use App\Mail\DonationAdminEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Jobs\Donation\AddOrUpdateUser;
 use Illuminate\Queue\InteractsWithQueue;
@@ -103,7 +99,7 @@ class DonationReceivedListener implements ShouldQueue
         # Add "Operations" logic TODO
         CreateProcurementListEntries::dispatch($payment);
 
-        TestJob::dispatch();
+
 
     }
 }
