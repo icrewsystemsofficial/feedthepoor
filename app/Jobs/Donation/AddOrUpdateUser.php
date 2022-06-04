@@ -60,6 +60,12 @@ class AddOrUpdateUser
 
             Mail::to($this->email)->send(new NewDonorWelcomeEmail($user));
 
+
+            // Assign the user the role of donor, since this is triggered by a donation
+            // event.
+
+            $user->assignRole('donor');
+
             return $user->id;
         }
 
