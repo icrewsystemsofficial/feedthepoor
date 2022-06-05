@@ -206,6 +206,19 @@
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-md-12">
+                            <div class="alert alert-info">
+                                <small>
+                                    <span class="text-info">
+                                        <i class="fa-solid fa-info-circle"></i> Tip
+                                    </span>
+                                    To filter missions by status, you can click on any role below.
+                                </small>
+                            </div>
+                            <div class="mb-4">
+                                @foreach (App\Helpers\MissionHelper::all_statuses() as $id)
+                                    {!! App\Helpers\MissionHelper::getStatus_html($id) !!}
+                                @endforeach
+                            </div>  
                             <table id="table" class="table table-striped" style="width:100%">
                                 <thead>
                                     <tr>

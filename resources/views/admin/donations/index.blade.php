@@ -139,6 +139,19 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-md-12">
+                        <div class="alert alert-info">
+                            <small>
+                                <span class="text-info">
+                                    <i class="fa-solid fa-info-circle"></i> Tip
+                                </span>
+                                To filter donations by status, you can click on any status below.
+                            </small>
+                        </div>
+                        <div class="mb-4">
+                            @foreach (App\Helpers\DonationsHelper::all_statuses() as $id)
+                                {!! App\Helpers\DonationsHelper::getStatus($id) !!}
+                            @endforeach
+                        </div>                        
                         <table id="table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>

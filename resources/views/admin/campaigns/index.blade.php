@@ -163,6 +163,19 @@
             <div class="card-body">
                 <div class="row mb-3">
                     <div class="col-md-12">
+                        <div class="alert alert-info">
+                            <small>
+                                <span class="text-info">
+                                    <i class="fa-solid fa-info-circle"></i> Tip
+                                </span>
+                                To filter campaigns by status, you can click on any status below.
+                            </small>
+                        </div>
+                        <div class="mb-4">
+                            @foreach (App\Helpers\CampaignsHelper::all_statuses() as $id)
+                                {!! App\Helpers\CampaignsHelper::getStatus($id) !!}
+                            @endforeach
+                        </div>                        
                         <table id="table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
