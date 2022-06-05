@@ -95,19 +95,22 @@
                 </div>
             @endif
 
+            
 
-            <div class="alert alert-info" role="alert">
+                @if($total_procurement_items)
+                <div class="alert alert-info" role="alert">
+                    <h3>
+                        <i class="fa-solid fa-exclamation-triangle me-1"></i> Attention
+                    </h3>
 
-                <h3>
-                    <i class="fa-solid fa-exclamation-triangle me-1"></i> Attention
-                </h3>
-
-                {{ $total_procurement_items }} items in procurement list ready for dispatch, but not assigned to mission.
-                <br><br>
+                    {{ $total_procurement_items }} items in procurement list ready for dispatch, but not assigned to mission.
+                    <br><br>
+                </div>
+                @endif
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#defaultModalPrimary">
                     <i class="fa-solid fa-plus"></i> &nbsp; Create new mission
                 </button>
-            </div>
+            
 
 
             {{--<div class="modal fade" id="mediaModalPrimary" tabindex="-1" aria-hidden="true" style="display: none;">
@@ -226,17 +229,17 @@
                                                 </small>
                                             </td>
                                             <td>
-                                                <a target="_blank" href="{{ route('admin.location.manage', $mission->location) }}">{{ App\Models\Location::find($mission->location)->location_name }}</a>
+                                                <a target="_blank" href="{{ route('admin.location.manage', $mission->location_id) }}">{{ App\Helpers\MissionHelper::getLocationName($mission->location_id) }}</a>
                                                 <br>
                                                 <small>
-                                                    Field Manager: <a href="{{ route('admin.users.manage', $mission->field_manager) }}" target="_blank">
-                                                        {{ App\Models\User::find($mission->field_manager)->name }}
+                                                    Field Manager: <a href="{{ route('admin.users.manage', $mission->field_manager_id) }}" target="_blank">
+                                                        {{ App\Helpers\MissionHelper::getUserName($mission->field_manager_id) }}
                                                     </a>
                                                 </small>
                                             </td>
                                             <td>
                                                 @foreach(json_decode($mission->assigned_volunteers) as $volunteer)
-                                                    <a href="{{ route('admin.users.manage', $volunteer) }}" target="_blank">{{ App\Models\User::find($volunteer)->name }}</a>
+                                                    <a href="{{ route('admin.users.manage', $volunteer) }}" target="_blank">{{ App\Helpers\MissionHelper::getUserName($volunteer) }}</a>
                                                     <br>
                                                 @endforeach
                                             </td>
@@ -245,10 +248,12 @@
                                             </td>
                                             <td>
                                                 <button class="btn btn-sm btn-primary">
-                                                    Manage
+                                                    <a href="{{ route('admin.missions.manage', $mission->id) }}" target="_blank" style="color: #fff;">
+                                                        <i class="fa-solid fa-edit"></i>
+                                                    </a>
                                                 </button>
                                                 <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#mediaModalPrimary" onclick="$('#mission_images_id').val({{ $mission->id }})">
-                                                    Upload
+                                                    <i class="fas fa-images"></i>
                                                 </button>
                                             </td>
                                         </tr>

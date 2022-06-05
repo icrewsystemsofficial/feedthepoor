@@ -92,7 +92,13 @@ class MissionHelper {
         $html = "<span class='badge badge-".$status['color']."'><i class='".$status['icon']." me-1'></i>".$status['text']."</span>";
         return $html;
     }
-
+    
+    /**
+     * Returns a select list of all the statuses
+     *
+     * @param  mixed $status_id
+     * @return void
+     */
     public static function getAllStatuses($status_id = null) {
         $all_statuses = self::status();
         $html = '';
@@ -106,16 +112,34 @@ class MissionHelper {
         }
         return $html;
     }
-
+    
+    /**
+     * Returns location name
+     *
+     * @param  mixed $location_id
+     * @return void
+     */
     public static function getLocationName($location_id) {
         $location = Location::find($location_id);
         return $location->location_name;
     }
-
+    
+    /**
+     * Returns user name
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public static function getUserName($id) {
         return User::find($id)->name.' ';
     }
-
+    
+    /**
+     * Returns status
+     *
+     * @param  mixed $status_id
+     * @return void
+     */
     public static function getStatusName($status_id) {
         $all_statuses = self::status();
         return $all_statuses[$status_id]['text'];

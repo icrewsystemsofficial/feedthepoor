@@ -19,6 +19,8 @@ class ProcurementList implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    protected $procurement_items;
+    protected $field_manager;
     /**
      * Create a new job instance.
      *
@@ -38,8 +40,8 @@ class ProcurementList implements ShouldQueue
     public function handle()
     {
         $donations = [];
-        $procurement_list = [1,2,3];
-        $field_manager = User::find(5);
+        $procurement_list = $this->procurement_items;
+        $field_manager = User::find($this->field_manager);
         foreach ($procurement_list as $id) {
             $operation = Operations::find($id);
             $donation = Donations::find($operation->donation_id);
