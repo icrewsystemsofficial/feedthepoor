@@ -354,9 +354,7 @@ $amounts = array(
                                                 </div>
                                                 <div class="col-12 mb-4">
                                                     <b>5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>The Trust reserves the right to change the Payment Mechanism or take such necessary
-                                                    steps as it may deem fit in its sole and absolute discretion. It is clarified that Donations towards
-                                                    the Trust are immediate and irrevocable. Once a Donation has been made for the Trust, no refund can be made of the
-                                                    Donation; nor can the end purpose be changed. Additionally, the Donors represents and
+                                                    steps as it may deem fit in its sole and absolute discretion.The Donor(s) represents and
                                                     undertakes that in case of a misappropriation whilst making a Donation, the Donor shall
                                                     address and seek redressal towards this issue strictly from the Trust and/or the Bank.
                                                 </div>
