@@ -14,7 +14,7 @@ class OperationsChanges extends Migration
     public function up()
     {
         Schema::table('operations', function (Blueprint $table) {
-            //
+            $table->longText('timestamps')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class OperationsChanges extends Migration
     public function down()
     {
         Schema::table('operations', function (Blueprint $table) {
-            //
+            $table->dropColumn('timestamps');        
         });
     }
 }
