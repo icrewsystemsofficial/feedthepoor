@@ -5,10 +5,25 @@
 <!-- Primary Meta Tags -->
 <title>{{ config('setting.app_name') }}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="title" content="{{ config('setting.app_name') }}">
-<meta name="author" content="icrewsystems"
-<meta name="description" content="NO DESCRIPTION">
-<link rel="canonical" href="{{ config('app.url') }}">
+
+<!-- Primary Meta Tags -->
+<title>{{ config('app.ngo_name') }} | Powered by FeedThePoor v2</title>
+<meta name="title" content="{{ config('app.ngo_name') }} | Powered by FeedThePoor v2">
+<meta name="description" content="We are one of India's primier charity organization that offers 100% transparency for every donation irrespective of size and amount. We achieve this with the help of modern information technology.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://roshnicharitabletrust.org/">
+<meta property="og:title" content="{{ config('app.ngo_name') }} | Powered by FeedThePoor v2">
+<meta property="og:description" content="We are one of India's primier charity organization that offers 100% transparency for every donation irrespective of size and amount. We achieve this with the help of modern information technology.">
+<meta property="og:image" content=https://cdn.discordapp.com/attachments/861662752174506035/983210476521553960/roshni_foundation_meta_poster.png"">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://roshnicharitabletrust.org/">
+<meta property="twitter:title" content="{{ config('app.ngo_name') }} | Powered by FeedThePoor v2">
+<meta property="twitter:description" content="We are one of India's primier charity organization that offers 100% transparency for every donation irrespective of size and amount. We achieve this with the help of modern information technology.">
+<meta property="twitter:image" content="https://cdn.discordapp.com/attachments/861662752174506035/983210476521553960/roshni_foundation_meta_poster.png">
 
 <link rel="icon" type="image/png" href="{{ asset('images/branding/roshni-foundation.png') }}">
 

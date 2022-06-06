@@ -185,6 +185,26 @@ class DonationsHelper {
         return $html;
     }
 
+
+    /**
+     * getTotalDonationsForCause
+     *
+     * @param  mixed $cause
+     * @return void
+     */
+    public static function getTotalDonationsForCause(Causes $cause) {
+
+        $donations = Donations::where('cause_id', $cause->id)->count();
+
+        if($donations == 0) {
+            $total_donations = '(Unable to fetch)';
+        } else {
+            $total_donations = $donations;
+        }
+
+        return $total_donations;
+    }
+
 }
 
 ?>

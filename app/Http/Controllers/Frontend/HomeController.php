@@ -66,6 +66,7 @@ class HomeController extends Controller
             'donation_names' => $donation_names,
             'total_meals_fed' => $total_meals_fed,
             'total_donations_received' => $total_donations_received,
+            'all_causes' => $causes,
         ]);
     }
 
