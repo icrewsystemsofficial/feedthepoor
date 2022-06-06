@@ -67,15 +67,18 @@ class OperationsController extends Controller
             /*if ($request->status > count(json_decode($operation->timestamps))){
                 $final['status'] = $request->status;
                 $final['timestamps'] = json_encode(json_decode($operation->timestamps) + array_fill(0, $request->status - count(json_decode($operation->timestamps)), date('Y-m-d H:i:s')));
-            }*/
+            }*/ 
+            //This will help keep a track of timestamps when status is updated so we can display it in the track donation view
             $operation->update($request->all());
             $newBadge = OperationsHelper::getProcurementBadge($request->status);            
             $final['badge'] = $newBadge;
-            $final['status_new'] = $request->status;            
+            $final['status_new'] = $request->status;  
+            activity()->log('Updated procurement status of operation with id: #' . $operation->id.' by user with id: #'.auth()->user()->id);          
             return response()->json($final);
         }
         if ($request->location_id){
             $operation->update($request->all());
+            activity()->log('Updated location of operation with id: #' . $operation->id.' by user with id: #'.auth()->user()->id);
         }
     }
     
