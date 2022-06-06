@@ -2,6 +2,7 @@
 
 namespace App\Jobs\Donation;
 
+use App\Helpers\DonationsHelper;
 use App\Models\User;
 use App\Models\Causes;
 use App\Models\Campaigns;
@@ -83,6 +84,10 @@ class AddOrUpdateDonationEntry implements ShouldQueue
                     '₹'.$this->payment->amount.' received from '. $this->user->name.' (user #'.$this->user->id.'), for cause: '.$cause->name,
                 )->notify();
             }
+
+            # This is for the frontend-tracking page.
+            $log = 'A donation entry created for ₹'.$this->payment->amount.', received from '. $this->user->name.' (user #'.$this->user->id.'), for cause: '.$cause->name;
+            DonationsHelper::addDonationActivity($donation, $log);
 
             activity()->log('New donation of ₹'.$this->payment->amount.' received from '. $this->user->name.' (#'.$this->user->id.')');
         } else {

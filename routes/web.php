@@ -77,6 +77,9 @@ Route::name('frontend.')->group(function () {
         Route::post('/submit', [UsersController::class, 'submit_request'])->name('submit');
     });
 
+
+    Route::get('/activity', [HomeController::class, 'activity'])->name('activity');
+
     Route::view('coming-soon', 'frontend.coming_soon')->name('coming_soon');
 });
 

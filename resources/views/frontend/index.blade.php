@@ -137,7 +137,7 @@
 
 
                         We're a <span class="fw-bold">GuideStar India certified 100% transparent
-                            organization***</span>.
+                            organization*** (pending)</span>.
 
                         <br>
 

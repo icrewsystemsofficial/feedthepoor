@@ -138,17 +138,17 @@ class OperationsHelper {
         return Location::find($id)->location_name ?? 'None';
 
     }
-    
+
     /**
-     * getProcurementLocation 
-     * 
+     * getProcurementLocation
+     *
      * Accept location ID as parameter and return a select HTML element
      *
      * @param  mixed $id
      * @param  mixed $i
      * @return void
      */
-    public static function getProcurementLocation(int $id, int $i){        
+    public static function getProcurementLocation(int $id, int $i){
 
         if($id == ''){
             throw new Exception('Error: location ID not passed.' . $status);
@@ -209,6 +209,17 @@ class OperationsHelper {
         }
 
         return $status;
+    }
+
+    /**
+     * get_operations_status_badge - for the tracking page.
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public static function get_operations_status_badge(int $id) {
+        $all_statuses = self::status();
+        return $all_statuses[$id];
     }
 
 

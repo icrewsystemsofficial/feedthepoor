@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Causes;
 use App\Models\Campaigns;
 use App\Events\Donations\AddDonation;
+use App\Helpers\DonationsHelper;
 use PDF;
 
 class DonationsController extends Controller
@@ -50,7 +51,6 @@ class DonationsController extends Controller
     }
 
     public function update(Request $request){
-//        dd($request->all());
         if ($request->cause_id == 0){
             $request->request->remove('cause_id');
         }
@@ -66,18 +66,26 @@ class DonationsController extends Controller
             'payment_method' => 'required|integer',
             'razorpay_payment_id' => 'required_if:payment_method,4',
         ]);
+
 //        Commented this out because it was causing an error - Thirumalai
 //        if ($request->cause_id && $request->campaign_id){
 //            throw ValidationException::withMessages([
 //                'cause_id' => ['Please select either cause or campaign'],
 //            ]);
 //        }
+
         $cause_name = $request->cause_id ? Causes::find($request->cause_id)->name : Campaigns::find($request->campaign_id)->name;
         $donation_in_words = Donations::Show_Amount_In_Words($request->donation_amount);
         $request->merge(['cause_name' => $cause_name, 'donation_in_words' => $donation_in_words]);
         $donation = Donations::find($request->id);
         $donation->update($request->all());
+
+
+        // DonationsHelper::addDonationActivity($donation, 'Donation updated');
+
         alert()->success('Yay','Donation was successfully updated');
+
+
         return redirect()->route('admin.donations.index');
     }
 

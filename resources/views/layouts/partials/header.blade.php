@@ -77,7 +77,7 @@
 {{--                    </li>--}}
 
                     <li class="nav-item">
-                        <a href="{{ route('frontend.index') }}" class="nav-link">
+                        <a href="{{ route('frontend.activity') }}" class="nav-link">
                             Activity
                         </a>
                     </li>
@@ -126,16 +126,20 @@
                         <div class="dropdown-menu dropdown-menu-lg" aria-labelledby="supportDropdown">
                             <div class="col-auto px-0">
                                 <div class="list-group list-group-flush">
-                                    <a href="https://themesberg.com/docs/bootstrap-5/pixel/getting-started/quick-start/" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                        <span class="icon icon-sm"><span class="fas fa-comment-alt"></span></span>
+                                    <a href="{{ route('frontend.contact') }}"class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
+                                        <span class="icon icon-sm"><span class="fas fa-envelope"></span></span>
                                         <div class="ms-4">
-                                            <span class="d-block font-small fw-bold mb-0">Chat with us<span class="badge badge-sm badge-secondary ms-2">v3.1</span></span>
+                                            <span class="d-block font-small fw-bold mb-0">
+                                                Submit a contact form
+                                            </span>
                                         </div>
                                     </a>
-                                    <a href="https://github.com/themesberg/pixel-bootstrap-ui-kit/issues" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
+                                    <a href="tel:+0919583186287" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
                                         <span class="icon icon-sm"><span class="fas fa-phone"></span></span>
                                         <div class="ms-4">
-                                            <span class="d-block font-small fw-bold mb-0">Call us</span>
+                                            <span class="d-block font-small fw-bold mb-0">
+                                                Call us
+                                            </span>
                                         </div>
                                     </a>
                                 </div>

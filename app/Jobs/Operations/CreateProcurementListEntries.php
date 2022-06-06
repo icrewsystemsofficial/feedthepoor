@@ -6,6 +6,7 @@ use App\Models\Location;
 use App\Models\Donations;
 use App\Models\Operations;
 use Illuminate\Bus\Queueable;
+use App\Helpers\DonationsHelper;
 use App\Helpers\NotificationHelper;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -64,6 +65,10 @@ class CreateProcurementListEntries implements ShouldQueue
                 'Item: ' . $operation->procurement_item .', Quantity: '. $operation->procurement_quantity . '. Kindly initiate procurement order for this donation. ',
             )->notify();
         }
+
+
+        $log = 'Procurement list (#'.$operation->id.') created for this donation. Item: ' . $operation->procurement_item .', Quantity: '. $operation->procurement_quantity . '. Procurement process will begin shortly.';
+        DonationsHelper::addDonationActivity($donation, $log);
 
         // Adding activity log
         activity()

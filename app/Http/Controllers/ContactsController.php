@@ -14,7 +14,7 @@ class ContactsController extends Controller
     }
 
     public function viewContact($id)
-    {   
+    {
         $contact = Contact::find($id);
         return view('admin.emailContact.contact', ['contact' => $contact]);
     }

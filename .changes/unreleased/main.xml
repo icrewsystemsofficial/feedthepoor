@@ -5,4 +5,7 @@
   <change type="feature">Added `IsMonitored` trait to all the jobs. This will allow us to monitor all the jobs that are happening in the app</change>
   <change type="fix">Edited UI for Module Access</change>
   <change type="feature">Added dynamic swappable values in the yield context textarea for the causes module</change>
+  <change type="feature">Frontend homepage causes section added</change>
+  <change type="fix">Campaign slug fallback method added</change>
+  <change type="feature">Activity logs dynamic for Donation Status, Procurement List using activity log monitor</change>
 </feature>
