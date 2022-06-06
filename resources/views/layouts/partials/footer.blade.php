@@ -16,14 +16,14 @@
                         </h2>
                         <p class="lead">
                            Our donation window for {{ now()->addDay(1)->format('d F, Y') }} is open.
-                        </p>                        
+                        </p>
                         <p class="mb-4">
                            We're more than excited in collaborating with you. Please reach out to us at <a href="tel:+919583186287">+91 95831 86287</a>
                            <br>
                            If you are able to, please consider donating. If you're not able to donate,
                            <span class="fw-bolder">share this website</span> with others who might be able to donate.
                         </p>
-                        <a href="#" class="btn btn-primary me-2">
+                        <a href="{{ route('frontend.donate') }}" class="btn btn-primary me-2">
                         <span class="me-1">
                         <span class="fas fa-arrow-right"></span>
                         </span>
@@ -95,7 +95,7 @@
             <img src="{{ asset('images/branding/roshni-foundation-black.png') }}" alt="" srcset="" style="width: 100px; height: auto;">
             <br><br>
             <p>
-               {{ config('setting.app_description') }}               
+               {{ config('setting.app_description') }}
             <hr>
             {{ config('app.address') }}
             </p>
