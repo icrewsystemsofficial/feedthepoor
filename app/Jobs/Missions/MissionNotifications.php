@@ -23,6 +23,9 @@ class MissionNotifications implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public $mission;
+    public $create;
+    public $message;
     /**
      * Create a new job instance.
      *

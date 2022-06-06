@@ -38,8 +38,9 @@ class CreateProcurementListEntries implements ShouldQueue
      */
     public function handle()
     {
+        $donation = Donations::where('razorpay_payment_id', $this->payment->id)->first();
         $operation = new Operations;
-        $operation->donation_id = Donations::where('razorpay_payment_id', $this->payment->id)->first()->id;
+        $operation->donation_id = $donation->id;
         $operation->location_id = 0;
         $operation->procurement_item = isset($this->payment->cause) ? $this->payment->cause : $this->payment->campaign;
         $operation->procurement_quantity = isset($this->payment->cause) ? $this->payment->quantity : 1;
@@ -47,6 +48,7 @@ class CreateProcurementListEntries implements ShouldQueue
         $operation->status = Operations::$status['UNACKNOWLEDGED'];
         $operation->mission_id = null; //TODO
         $operation->last_updated_by = null;
+        /*$operation->timestamps = json_encode([$operation->created_at, $operation->updated_at]);*/
         $operation->save();
 
 

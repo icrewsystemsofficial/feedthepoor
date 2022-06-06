@@ -10,8 +10,8 @@ use App\Events\Donations\AddDonation;
 use App\Listeners\Donations\AddDonationListener;
 use App\Events\Donations\DonationReceived;
 use App\Listeners\Donations\DonationReceivedListener;
-use App\Events\Mission\MissionCreateOrUpdate;
-use App\Listeners\Mission\MissionCreateOrUpdateListener;
+use App\Events\Missions\MissionCreateOrUpdate;
+use App\Listeners\Missions\MissionCreateOrUpdateListener;
 
 class EventServiceProvider extends ServiceProvider
 {

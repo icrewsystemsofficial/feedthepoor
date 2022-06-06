@@ -300,6 +300,16 @@
             <div class="col-md-6">
                 <div class="card" style="height: 90%;">
                     <div class="card-body">
+                        <div class="mb-2">
+                            <div class="alert alert-info">
+                                <small>
+                                    <span class="text-info">
+                                        <i class="fa-solid fa-info-circle"></i> Tip
+                                    </span>
+                                    To filter operations by status, you can click on any status below.
+                                </small>
+                            </div>
+                        </div>
                         @php
                             $statuses = App\Helpers\OperationsHelper::getStatusNumbers();
                         @endphp

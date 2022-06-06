@@ -59,11 +59,16 @@ class OperationsController extends Controller
             'location_id' => 'exists:locations,id',
         ]);
         $operation = Operations::find($request->id);     
-        $final = array();
-        $final['status_old'] = $operation->status;                                             
-        $operation->update($request->all());    
+            
         
         if (isset($request->status)){
+            $final = array();
+            $final['status_old'] = $operation->status;                                             
+            /*if ($request->status > count(json_decode($operation->timestamps))){
+                $final['status'] = $request->status;
+                $final['timestamps'] = json_encode(json_decode($operation->timestamps) + array_fill(0, $request->status - count(json_decode($operation->timestamps)), date('Y-m-d H:i:s')));
+            }*/
+            $operation->update($request->all());
             $newBadge = OperationsHelper::getProcurementBadge($request->status);            
             $final['badge'] = $newBadge;
             $final['status_new'] = $request->status;            

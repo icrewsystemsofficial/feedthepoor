@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class OperationsChanges extends Migration
+class MissionsTableEdits extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class OperationsChanges extends Migration
      */
     public function up()
     {
-        Schema::table('operations', function (Blueprint $table) {
-            $table->longText('timestamps')->nullable();
+        Schema::table('missions', function ($table) {
+            $table->longText('assigned_volunteers')->change();
         });
     }
 
@@ -25,8 +25,6 @@ class OperationsChanges extends Migration
      */
     public function down()
     {
-        Schema::table('operations', function (Blueprint $table) {
-            $table->dropColumn('timestamps');        
-        });
+        Schema::dropIfExists('missions');
     }
 }

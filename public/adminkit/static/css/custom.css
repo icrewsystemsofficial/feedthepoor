@@ -25,6 +25,10 @@ Add all custom css declarations here
     background-color: #5bc0de;
     color: #fff;
 }
+.badge-muted{
+    background-color: #777;
+    color: #fff;
+}
 .select2 {
     width: 100% !important;
 }

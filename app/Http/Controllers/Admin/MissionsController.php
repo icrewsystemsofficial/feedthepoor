@@ -14,6 +14,8 @@ use App\Mail\MissionCancelledDonorMail;
 use App\Events\Missions\MissionCreateOrUpdate;
 use App\Models\MissionAssignment;
 
+use App\Jobs\Missions\MissionNotifications;
+
 class NewMission{
     public $id = null;
     public $description = '';
@@ -97,8 +99,7 @@ class MissionsController extends Controller
                 $procurement_items[] = explode('_', $key)[2];
             }
         }
-        $mission->procurement_items = $procurement_items;
-
+        $mission->procurement_items = $procurement_items;        
         event(new MissionCreateOrUpdate($mission, 1));
 
         alert()->success('Mission Created Successfully', 'Success');

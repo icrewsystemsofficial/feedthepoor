@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Causes;
 use App\Models\Contact;
 use App\Models\Location;
+use App\Models\Operations;
 use App\Models\Campaigns;
 use App\Models\Donations;
 use App\Jobs\SendAdminJob;
@@ -192,18 +193,23 @@ class HomeController extends Controller
     }
 
 
-    // function created by sathish
+        
+    /**
+     * track_donation - The page where users can track their donation
+     *
+     * @param  mixed $donation_id
+     * @return void
+     */
     public function track_donation($donation_id = '')
     {
 
+        $donation = Donations::where('razorpay_payment_id', $donation_id)->first();
+        $operation = Operations::where('donation_id', $donation->id)->first();
+        
 
-        $faker = Factory::create('en_IN');
-        $donation_name = $faker->firstName();
-
-        // dd($names_json);
         return view('frontend.tracking.tracking', [
-            'donation_name' => $donation_name,
-
+            'donation' => $donation,
+            'operation' => $operation,
         ]);
     }
 

@@ -139,11 +139,17 @@
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-12 col-lg-12">
 
-                {{-- FORM | FIRST PAGE --}}
+                {{-- FORM | FIRST PAGE 
+
+                Little time to implement this so I guess this goes under coming soon
+
+                June 6,
+                Anirudh R
+
                 <div x-show="showTrackingForm" class="card shadow-lg border-gray-300 p-4 p-lg-5">
 
                     <span class="mt-2 text-muted p-2">
-                        Demo tracking ID: FTP-RMCT-12389
+                        Demo tracking ID: pay_JdtcQrQ6uddkqS
                     </span>
 
                     <div class="flex">
@@ -159,59 +165,35 @@
                         </div>
                     </div>
 
-                </div>
+                </div>--}}
+
+                
 
                 {{-- TRACKING | SECOND PAGE --}}
-                <div x-show="showTrackingPage" class="card shadow-lg border-gray-300 p-4 p-lg-5">
+                <div class="card shadow-lg border-gray-300 p-4 p-lg-5">
 
 
-                    <div class="accordion card shadow-xl cursor-pointer bg-success text-white mt-n6 sm:mt-n5 border-success" id="accordionExample1" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                        <div class="card-body">
-                            <div class="">
-                                <div >
-                                    <span class="font-extrabold">₹5,000 INR</span> was donated with <i class="fas fa-heart text-danger"></i> by
-                                    <span class="font-bold">{{ $donation_name }}</span>, from <span class="font-bold">Chennai</span>.
+                    <div class="card shadow-xl bg-success text-white mt-n7 border-success">
+                        <div class="card-body text-center text-md-left">
+                           <div class="row align-items-center">
+                                <div class="col-md-12">
+
+                                    <p class="display-5"><b>Donor name : </b><span class="display-6">{{ $donation->donor_name }}</span></p>
+                                    <p class="display-5"><b>Donation ID : </b><span class="display-6">{{ $donation->razorpay_payment_id }}</span></p>
+                                    <p class="display-5"><b>Donation Amount : </b><span class="display-6">{{ $donation->donation_amount }} ({{ $donation->donation_in_words }})</span></p>
+                                    <p class="display-5"><b>Cause/Campaign : </b><span class="display-6">{{ $donation->cause_name }}</span></p>
+                                    <p class="display-5"><b>Donated on : </b><span class="display-6">{{ date('d F Y',strtotime($donation->created_at)) }}</span></p>
+
+                                    <a href="{{ route('frontend.donations.receipt', $donation->razorpay_payment_id) }}" target="_blank" class="btn btn-primary text-white">
+                                        Download Receipt
+                                    </a>
+
                                 </div>
-
-                                {{-- <div class="float-right">
-                                    <i class="fas fa-check-circle"></i>
-                                </div> --}}
-                            </div>
-
-                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample1" style="">
-
-                                <br>
-
-                                <div class="card-body text-left">
-                                    Donation ID # <span class="font-bold">FPT-RMCT-01042022-19823</span>
-                                    <br>
-                                    Donation date <span class="font-bold">{{ now()->subDays(2)->format('d F, Y H:i A')}}</span>
-                                    <br>
-                                    Donated via <span class="font-bold">Razorpay</span>
-                                    <br>
-                                    80 G Tax Excemption <span class="font-bold">Eligible <i class="fas fa-check-circle"></i></span>
-                                </div>
-                            </div>
+                           </div>
                         </div>
                     </div>
 
-                    <span class="text-muted px-2 py-3 text-sm">
-                        <i class="fas fa-info-circle"></i> Click the green box to know more about the donation
-                    </span>
-
-                    {{-- <div class="card shadow-xl bg-success text-white mt-n7 border-success">
-                        <div class="card-body px-5 py-5 text-center text-md-left">
-                           <div class="row align-items-center">
-                            <div class="col-md-12">
-
-
-
-                            </div>
-                           </div>
-                        </div>
-                    </div> --}}
-
-                    <div class="float-top mb-4 mt-4">
+                    {{--<div class="float-top mb-4 mt-4">
                         <button class="btn btn-danger btn-sm text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x" type="button" @click="togglePages()">
                             <span class="btn-inner--visible">
                                 <i class="fas fa-arrow-left mr-1"></i>
@@ -229,9 +211,11 @@
                         </button>
                     </div>
 
-                    {{-- DONATION STATUS --}}
+                    Coming soon...
 
-                    <div class="">
+                     DONATION STATUS --}}
+
+                    <div class="mt-5">
 
                         <h5 class="display-5">
                             Donation Status
@@ -239,44 +223,7 @@
 
                         <div class="progress-wrapper ">
 
-                            <script>
-                                function runProgress() {
-                                    return {
-                                        progress_bar_start: 0,
-                                        progress_bar_end: 45,
-                                        progress_bar_style: 'width: 10%',
-                                        progress_bar_class: null,
-
-                                        init() {
-
-                                            this.progress_bar_class = 'bg-muted';
-
-                                            setInterval(() => {
-
-                                                for(i = this.progress_bar_start; i < this.progress_bar_end; i++) {
-                                                    if(i > 20) {
-                                                        this.progress_bar_class = 'bg-success';
-                                                    }
-
-                                                    this.progress_bar_style = 'width: ' + i + '%';
-                                                    // console.log(this.progress_bar_style);
-                                                }
-
-                                            }, 2000);
-                                        }
-                                    }
-                                }
-                            </script>
-
-
-                            <div class="progress progress-lg" x-data="runProgress()" x-init="init()">
-                                <div class="progress-bar" :class="progress_bar_class" role="progressbar" :style="progress_bar_style" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-
-                            <div class="text-center mb-5">
-
-
-                                @php
+                            @php
 
                                     $statuses = array(
                                         0 => array(
@@ -304,35 +251,63 @@
                                         ),
 
                                         4 => array(
-                                            'title' => 'Volunteers Assigned',
-                                            'complete' => false,
-                                            'in_progress' => false,
-                                        ),
-
-                                        5 => array(
                                             'title' => 'Fieldwork done',
                                             'complete' => false,
                                             'in_progress' => false,
                                         ),
 
-                                        6 => array(
+                                        5 => array(
                                             'title' => 'Pictures Updated',
-                                            'complete' => false,
-                                            'in_progress' => false,
-                                        ),
-
-                                        7 => array(
-                                            'title' => 'Mission Complete',
                                             'complete' => false,
                                             'in_progress' => false,
                                         )
                                     );
 
-                                @endphp
+                                    $donation_status = $operation->status>=2 ? $operation->status : 1;
+                                    if ($donation_status > 5) {
+                                        $donation_status = 5;
+                                    }
+                            @endphp
 
+                            <script>
+                                function runProgress() {
+                                    return {
+                                        progress_bar_start: 0,
+                                        progress_bar_end: {{ round(($donation_status+1)*(100/6)) }},
+                                        progress_bar_style: 'width: 0%',
+                                        progress_bar_class: null,
+
+                                        init() {
+
+                                            this.progress_bar_class = 'bg-muted';
+
+                                            setInterval(() => {
+
+                                                for(i = this.progress_bar_start; i < this.progress_bar_end; i++) {
+                                                    if(i > 20) {
+                                                        this.progress_bar_class = 'bg-success';
+                                                    }
+
+                                                    this.progress_bar_style = 'width: ' + i + '%';
+                                                    // console.log(this.progress_bar_style);
+                                                }
+
+                                            }, 500);
+                                        }
+                                    }
+                                }
+                                runProgress().init();
+                            </script>
+
+
+                            <div class="progress progress-lg" x-data="runProgress()" x-init="init()">
+                                <div class="progress-bar" :class="progress_bar_class" role="progressbar" :style="progress_bar_style" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+
+                            <div class="text-center mb-5">
 
                                 <div class="flex flex-col">
-                                    @foreach ($statuses as $status)
+                                    @foreach ($statuses as $id => $status)
                                         <span class="p-2 fw-bold">
                                             <span class="float-left uppercase">
                                                 {{ $status['title']}}
@@ -345,26 +320,20 @@
 
                                                         $color = '';
                                                         $icon = '';
-
-                                                        if($status['complete'] == true) {
+                                                        
+                                                        if ($id <= $donation_status) {
                                                             $color = 'success';
-                                                        }
-                                                        elseif($status['in_progress'] == true) {
-                                                            $color = 'info';
-                                                        }
-                                                        else {
-                                                            $color = 'dark';
-                                                        }
-
-                                                        if($status['complete'] == true) {
                                                             $icon = 'fa-check-circle';
                                                         }
-                                                        elseif($status['in_progress'] == true) {
+                                                        elseif ($id == $donation_status+1) {
+                                                            $color = 'info';
                                                             $icon = 'fa-sync fa-spin';
                                                         }
                                                         else {
+                                                            $color = 'dark';
                                                             $icon = 'fa-times-circle';
-                                                        }
+                                                        }                                                         
+
                                                     @endphp
 
 
@@ -391,19 +360,51 @@
 
                                 @php
 
+                                    $timestamp = [];//json_decode($operation->timestamps)
+
+                                    //timestamps coming soon...
+
                                     $donation_timeline = array(
-                                        array(
+                                        0 => array(
                                             'header' => 'Donation was received',
-                                            'body' => 'Donation was initiated by ' . $donation_name .' through Razorpay. The amount was received successfully by ' . config('app.ngo_name'),
-                                            'time' => now()->subDays(2)->format('d F, Y | H:i A'),
+                                            'body' => 'Donation was initiated by ' . $donation->donor_name .' through Razorpay. The amount was received successfully by ' . config('app.ngo_name'),
+                                            'time' => isset($timestamp[0]) ? date('d F Y', strtotime($timestamp[0])):'',
                                             'icon' => 'fas fa-check-circle text-success',
                                         ),
 
 
-                                        array(
+                                        1 => array(
                                             'header' => 'Receipt was generated',
-                                            'body' => 'Donation was initiated by through Razorpay. The amount was received successfully by ' . config('app.ngo_name'),
-                                            'time' => now()->subDays(2)->format('d F, Y | H:i A'),
+                                            'body' => 'Receipt for the donation was generated succesfully and sent to the donor',
+                                            'time' => isset($timestamp[1]) ? date('d F Y', strtotime($timestamp[1])):'',
+                                            'icon' => 'fas fa-check-circle text-success',
+                                        ),
+
+                                        2 => array(
+                                            'header' => 'Order was placed',
+                                            'body' => 'Procurement order was initiated successfully by ' . config('app.ngo_name'),
+                                            'time' => isset($timestamp[2]) ? date('d F Y', strtotime($timestamp[2])):'',
+                                            'icon' => 'fas fa-check-circle text-success',
+                                        ),
+
+                                        3 => array(
+                                            'header' => 'Mission was assigned',
+                                            'body' => 'Mission was assigned to deliver smiles to the needy',
+                                            'time' => isset($timestamp[3]) ? date('d F Y', strtotime($timestamp[3])):'',
+                                            'icon' => 'fas fa-check-circle text-success',
+                                        ),
+
+                                        4 => array(
+                                            'header' => 'Fieldwork was done',
+                                            'body' => 'Fieldwork was completed successfully by ',
+                                            'time' => isset($timestamp[4]) ? date('d F Y', strtotime($timestamp[4])):'',
+                                            'icon' => 'fas fa-check-circle text-success',
+                                        ),
+
+                                        5 => array(
+                                            'header' => 'Pictures were updated',
+                                            'body' => 'Pictures of the happiness shared through your donation were updated successfully',
+                                            'time' => isset($timestamp[5]) ? date('d F Y', strtotime($timestamp[5])):'',
                                             'icon' => 'fas fa-check-circle text-success',
                                         ),
                                     );
@@ -429,22 +430,24 @@
                                                 }
                                             </style>
 
-                                            @foreach ($donation_timeline as $log)
-                                                <div class="vertical-timeline-item vertical-timeline-element">
-                                                    <div> <span class="vertical-timeline-element-icon bounce-in"> <i class="{{ $log['icon'] }}"></i> </span>
-                                                        <div class="vertical-timeline-element-content bounce-in">
+                                            @foreach ($donation_timeline as $id => $log)
+                                                @if ($id <= $donation_status)
+                                                    <div class="vertical-timeline-item vertical-timeline-element">
+                                                        <div> <span class="vertical-timeline-element-icon bounce-in"> <i class="{{ $log['icon'] }}"></i> </span>
+                                                            <div class="vertical-timeline-element-content bounce-in">
 
-                                                            <span class="uppercase text-muted">
-                                                                {{ $log['time'] }}
-                                                            </span>
+                                                                <span class="uppercase text-muted">
+                                                                    {{ $log['time'] }}
+                                                                </span>
 
-                                                            <h4 class="timeline-title font-bold">{{ $log['header'] }}</h4>
-                                                            <p>
-                                                                {!! $log['body'] !!}
-                                                            </p>
+                                                                <h4 class="timeline-title font-bold">{{ $log['header'] }}</h4>
+                                                                <p>
+                                                                    {!! $log['body'] !!}
+                                                                </p>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                @endif
                                             @endforeach
                                     </div>
                                 </div>
