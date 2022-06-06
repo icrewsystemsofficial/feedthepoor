@@ -93,22 +93,43 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group mb-2">
-                    <label for="name">Name</label>
+                    <label class="font-bold mb-2"  for="name">Name</label>
                     <input type="text" class="form-control" id="name" name="name" value="{{ $cause->name }}" required>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="name" class="form-label">Icon &nbsp;&nbsp;</label><i class="" id="iconPreview" style="font-size: 30px;"></i><br>
+                    <label class="font-bold mb-2"  for="name" class="form-label">Icon &nbsp;&nbsp;</label><i class="" id="iconPreview" style="font-size: 30px;"></i><br>
                     <select class="form-control" id="icon" name="icon" style="width: 100%;">
                         {!! App\Helpers\CausesHelper::getIcons($cause->icon) !!}
                     </select>
-                </div>       
+                </div>
                 <div class="form-group mb-2">
-                    <label for="per_unit_cost">Cost per unit (in INR)</label>
+                    <label class="font-bold mb-2"  for="per_unit_cost">Cost per unit (in INR)</label>
                     <input type="number" class="form-control" id="per_unit_cost" name="per_unit_cost" value="{{ $cause->per_unit_cost }}" required>
                 </div>
                 <div class="form-group mb-2">
-                    <label for="yield_context">Yield context</label>
+                    <label class="font-bold mb-2"  for="yield_context">Yield context</label>
                     <textarea class="form-control" id="yield_context" name="yield_context" required>{{ $cause->yield_context }}</textarea>
+
+                    <div class="mt-2 mb-2">
+                        <div class="alert alert-info">
+                            <i class="fa-solid fa-info-circle"></i> You can use these variables in the description. They will be swapped out with calculated, dynamic values in the
+                            <a href="{{ route('frontend.donate') }}" class="" target="_blank">donation</a> page.
+                        </div>
+
+                        <div class="flex mb-2">
+                            <span class="badge bg-secondary">
+                                %USER_INPUT_QUANTITY%
+                            </span> - the number of donations the user wishes to make.
+                            <br>
+                            <span class="badge bg-secondary">
+                                %CALCULATED_AMOUNT%
+                            </span> - the amount calculated based on the user input quantity.
+                            <br>
+                            <span class="badge bg-secondary">
+                                %CAUSE%
+                            </span> - the cause towards which the user wishes to donate.
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group mb-2">
                     <span onclick="document.getElementById('update_form').submit();">
