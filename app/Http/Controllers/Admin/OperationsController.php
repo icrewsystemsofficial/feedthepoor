@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Operations;
 use App\Helpers\OperationsHelper;
+use App\Jobs\Operations\OperationsUpdateMail;
 
 class OperationsController extends Controller
 {
@@ -74,11 +75,13 @@ class OperationsController extends Controller
             $final['badge'] = $newBadge;
             $final['status_new'] = $request->status;  
             activity()->log('Updated procurement status of operation with id: #' . $operation->id.' by user with id: #'.auth()->user()->id);          
+            OperationsUpdateMail::dispatch($operation)->delay(now());
             return response()->json($final);
         }
         if ($request->location_id){
             $operation->update($request->all());
             activity()->log('Updated location of operation with id: #' . $operation->id.' by user with id: #'.auth()->user()->id);
+            OperationsUpdateMail::dispatch($operation)->delay(now());
         }
     }
     

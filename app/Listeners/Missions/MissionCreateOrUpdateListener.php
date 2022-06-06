@@ -70,6 +70,13 @@ class MissionCreateOrUpdateListener
         }
         else {
             $mission = Mission::where('id', $mission_data->id)->first();
+            if ($mission_data->procurement_items != json_decode($mission->procurement_items)) {
+                foreach($mission_data->procurment_items as $item) {
+                    $proc = Operations::where('id', $item)->first();
+                    $proc->status = 5;
+                    $proc->save();
+                }                
+            }
             $mission->update([
                 'location_id' => $mission_data->location_id,
                 'field_manager_id' => $mission_data->field_manager_id,
@@ -79,6 +86,13 @@ class MissionCreateOrUpdateListener
                 'description' => $mission_data->description,
                 'procurement_items' => json_encode($mission_data->procurement_items)
             ]);
+            if ($mission->mission_status == 3) {
+                foreach($mission_data->procurment_items as $item) {
+                    $proc = Operations::where('id', $item)->first();
+                    $proc->status = 6;
+                    $proc->save();
+                }
+            }
             activity()->log('Updated mission with id: #' . $mission->id.' by user with id: #'.auth()->user()->id);
                     
         }
