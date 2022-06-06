@@ -193,19 +193,32 @@ class HomeController extends Controller
     }
 
 
-        
+
     /**
      * track_donation - The page where users can track their donation
      *
      * @param  mixed $donation_id
      * @return void
      */
-    public function track_donation($donation_id = '')
+    public function track_donation($donation_id = null)
     {
 
+        if($donation_id == null) {
+            alert()->error('Whoops', 'In order to track a donation, you need to provide a proper donation ID');
+            return redirect()->route('frontend.donate');
+        }
+
+
         $donation = Donations::where('razorpay_payment_id', $donation_id)->first();
-        $operation = Operations::where('donation_id', $donation->id)->first();
-        
+
+        # If the donation is not found, instead of throwing a blank 404, it gives a humane error.
+        # - Leonard.
+        if(!$donation) {
+            alert()->error('Whoops', 'We were not able to fetch any donations with the Razorpay payment ID of `'.$donation_id.'`. If you think this is a mistake, kindly contact us at the earliest convenience.');
+            return redirect()->route('frontend.donate');
+        }
+
+        $operation = Operations::where('donation_id', $donation->id)->firstOrFail();
 
         return view('frontend.tracking.tracking', [
             'donation' => $donation,

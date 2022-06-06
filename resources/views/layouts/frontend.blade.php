@@ -34,6 +34,7 @@
 
 <body>
     @include('layouts.partials.header')
+    @include('sweetalert::alert')
     <main>
 
         {{-- <div class="preloader bg-dark flex-column justify-content-center align-items-center">
