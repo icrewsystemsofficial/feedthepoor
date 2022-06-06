@@ -167,6 +167,23 @@ class CampaignsHelper {
         return '₹'.number_format($amount, '0', '.', ',');
     }
 
+    /**
+     * getCampaignName
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public static function getCampaignName(int $id) {
+
+        $campaign = Campaigns::find($id);
+
+        if($campaign) {
+            return $campaign->name;
+        } else {
+            return "(Error: Unable to determine campaign name)";
+        }
+    }
+
 }
 
 ?>

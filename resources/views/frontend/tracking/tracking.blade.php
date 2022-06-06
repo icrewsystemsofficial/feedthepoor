@@ -129,6 +129,12 @@
                     </small>
 
                 </h1>
+
+                <div class="alert alert-danger">
+                    <small>
+                        <i class="fas fa-info-circle"></i> Certain items of this page are currently under development, we'll let you know once they're live.
+                    </small>
+                </div>
             </div>
         </div>
     </div>
@@ -139,7 +145,7 @@
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-12 col-lg-12">
 
-                {{-- FORM | FIRST PAGE 
+                {{-- FORM | FIRST PAGE
 
                 Little time to implement this so I guess this goes under coming soon
 
@@ -167,13 +173,75 @@
 
                 </div>--}}
 
-                
+
 
                 {{-- TRACKING | SECOND PAGE --}}
+
+
+
                 <div class="card shadow-lg border-gray-300 p-4 p-lg-5">
 
+                    <div class="accordion card shadow-xl cursor-pointer bg-success text-white mt-n6 sm:mt-n5 border-success" id="accordionExample1" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                        <div class="card-body">
+                            <div class="">
+                                <div >
+                                    <span class="font-extrabold">₹{{ number_format($donation->donation_amount) }} INR ({{ $donation->donation_in_words }})</span> was donated with <i class="fas fa-heart text-danger"></i> by
+                                    <span class="font-bold">{{ $donation->donor_name }}</span>, for
 
-                    <div class="card shadow-xl bg-success text-white mt-n7 border-success">
+                                    @if($donation->campaign_id != null)
+                                        campaign <span class="font-bold"> {{ App\Helpers\CampaignsHelper::getCampaignName($donation->campaign_id) }}, {{ $donation->cause_name }}</span>.
+                                    @else
+                                        the cause <span class="font-bold"> {{ $donation->cause_name }}</span>.
+                                    @endif
+
+                                </div>
+
+                                {{-- <div class="float-right">
+                                    <i class="fas fa-check-circle"></i>
+                                </div> --}}
+                            </div>
+
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample1" style="">
+
+                                <br>
+
+                                <div class="card-body text-left">
+                                    Donation ID # <span class="font-bold">{{ $donation->id }} | {{ $donation->razorpay_payment_id }}</span>
+                                    <br>
+                                    Donation date <span class="font-bold">{{ $donation->created_at->format('d F, Y H:i A')}}</span>
+                                    <br>
+                                    Donated via <span class="font-bold">{{ Str::ucfirst(Str::lower(\App\Helpers\DonationsHelper::get_payment_method($donation->payment_method))) }}</span>
+                                    <br>
+
+                                    @php
+
+                                        // We're only getting it if the payment method is Razorpay
+                                        if($donation->payment_method == App\Models\Donations::$payment_methods['RAZORPAY']) {
+                                            $razorpay_data = app(App\Http\Controllers\API\RazorpayAPIController::class)->fetch_payment($donation->razorpay_payment_id);
+                                            if($razorpay_data->notes->checkbox_80g == "on") {
+                                                $excemption = 'Eligible <i class="fas fa-check-circle"></i>';
+                                            } else {
+                                                $excemption = 'Not eligible <i class="fas fa-times-circle"></i>';
+                                            }
+                                        } else {
+                                            $excemption = 'Unable to determine <i class="fas fa-times-circle"></i>';
+                                        }
+
+                                    @endphp
+
+                                    80 G Tax Excemption <span class="font-bold">{!! $excemption !!}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <span class="text-muted px-2 py-3 text-sm">
+                        <i class="fas fa-info-circle"></i> Click the green box to know more about the donation
+                    </span>
+
+
+
+                    {{-- <div class="card shadow-xl bg-success text-white mt-n7 border-success">
                         <div class="card-body text-center text-md-left">
                            <div class="row align-items-center">
                                 <div class="col-md-12">
@@ -191,7 +259,7 @@
                                 </div>
                            </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     {{--<div class="float-top mb-4 mt-4">
                         <button class="btn btn-danger btn-sm text-white btn-zoom--hover btn-shadow--hover btn-animated btn-animated-x" type="button" @click="togglePages()">
@@ -320,7 +388,7 @@
 
                                                         $color = '';
                                                         $icon = '';
-                                                        
+
                                                         if ($id <= $donation_status) {
                                                             $color = 'success';
                                                             $icon = 'fa-check-circle';
@@ -332,7 +400,7 @@
                                                         else {
                                                             $color = 'dark';
                                                             $icon = 'fa-times-circle';
-                                                        }                                                         
+                                                        }
 
                                                     @endphp
 
@@ -622,3 +690,5 @@
 </section>
 
 @endsection
+
+

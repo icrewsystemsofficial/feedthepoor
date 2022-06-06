@@ -19,6 +19,19 @@ class DonationsHelper {
         return Donations::$payment_methods;
     }
 
+    public static function get_payment_method(int $id) {
+        $all_methods = self::all_payment_methods();
+        $all_methods = array_flip($all_methods);
+
+        if(array_key_exists($id, $all_methods)) {
+            return $all_methods[$id];
+        } else {
+            throw new Exception("Given payment method was not found on Donation Model");
+        }
+
+
+    }
+
     private static function status() : array {
 
         $status = array();
