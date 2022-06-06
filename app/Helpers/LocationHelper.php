@@ -147,6 +147,15 @@ class LocationHelper {
 
     }
 
+    /**
+     * getTotalLocations
+     *
+     * @return void
+     */
+    public static function getTotalLocations() {
+        return Location::where('location_status', Location::$status['ACTIVE'])->count();
+    }
+
 }
 
 ?>

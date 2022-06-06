@@ -3,10 +3,13 @@
 namespace App\Helpers;
 
 use Exception;
-use App\Models\Donations;
 use App\Models\User;
 use App\Models\Causes;
 use App\Models\Campaigns;
+use App\Models\Donations;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Models\Activity;
 
 class DonationsHelper {
 
@@ -60,6 +63,26 @@ class DonationsHelper {
             'icon' => 'fa-solid fa-times',
             'color' => 'warning',
         );
+
+
+        $status[Donations::$status['MISSION ASSIGNED']] = array(
+            'text' => 'Mission Assigned',
+            'icon' => 'fa-solid fa-times',
+            'color' => 'warning',
+        );
+
+        $status[Donations::$status['FIELD WORK DONE']] = array(
+            'text' => 'Field Work Done',
+            'icon' => 'fa-solid fa-times',
+            'color' => 'warning',
+        );
+
+        $status[Donations::$status['PICTURES UPDATED']] = array(
+            'text' => 'Pictures updated',
+            'icon' => 'fa-solid fa-times',
+            'color' => 'warning',
+        );
+
 
         return $status;
     }
@@ -183,6 +206,172 @@ class DonationsHelper {
             }
         }
         return $html;
+    }
+
+
+    /**
+     * getTotalDonationsForCause
+     *
+     * @param  mixed $cause
+     * @return void
+     */
+    public static function getTotalDonationsForCause(Causes $cause) {
+
+        $donations = Donations::where('cause_id', $cause->id)->count();
+
+        if($donations == 0) {
+            $total_donations = '(Unable to fetch)';
+        } else {
+            $total_donations = $donations;
+        }
+
+        return $total_donations;
+    }
+
+
+    /**
+     * addDonationActivity - This is required for tracking a donation activity.
+     *
+     * @param  mixed $donation
+     * @param  mixed $description
+     * @return void
+     */
+    public static function addDonationActivity(Donations $donation, string $description) {
+
+        if(!Auth::check()) {
+            /**
+             * User is not logged in, this event
+             * is likely caused by a background Job.
+             *
+             */
+
+
+
+
+        }
+
+        activity()
+        ->performedOn($donation)
+        ->tap(function(Activity $activity) {
+            $activity->event = 'Automated Background Task';
+         })
+        ->log($description);
+
+        return;
+    }
+
+
+    /**
+     * get_donation_status_badge - for the tracking page.
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public static function get_donation_status_badge(int $id) {
+        $all_statuses = self::status();
+        return $all_statuses[$id];
+    }
+
+
+    /**
+     * get_status_change_context
+     *
+     * @param  mixed $activity
+     * @return string
+     */
+    public static function get_status_change_context($activity, int $style = 1) : string {
+
+
+
+        switch($activity->subject_type) {
+            case "App\Models\Donations":
+                if(!isset($activity->changes['old']) && !isset($activity->changes['old'])) {
+                    /**
+                     *
+                     * This function is executed when Model entries are "created" or "destroyed"
+                     *
+                     */
+
+                    return "Donation entry (#".$activity->subject_id.") has been ". $activity->description;
+                }
+
+                $old = $activity->changes['old']['donation_status'];
+                $new = $activity->changes['attributes']['donation_status'];
+
+                $previous = self::get_donation_status_badge($old)['text'];
+                $current = self::get_donation_status_badge($new)['text'];
+
+
+                $all_status = self::status();
+
+                $previous_color = $all_status[$old]['color'];
+                $current_color = $all_status[$new]['color'];
+
+                switch($style) {
+                    case 1:
+                        $context = 'Donation status has been updated. <span class="line-through text-'.$previous_color.'">'. $previous .'</span> <span class="text-'.$current_color.' font-bold">' . $current.'</span>';
+                    break;
+
+                    case 2:
+
+                        $context = 'Donation status has been updated from <span class="text-'.$previous_color.' font-bold">'. $previous .'</span> to <span class="text-'.$current_color.' font-bold">' . $current.'</span>';
+                    break;
+
+                    default:
+                        $context = 'Donation status has been updated. <span class="line-through text-'.$previous_color.'">'. $previous .'</span> <span class="text-'.$current_color.' font-bold">' . $current.'</span>';
+                    break;
+                }
+
+            break;
+
+
+            case "App\Models\Operations":
+                if(!isset($activity->changes['old']) && !isset($activity->changes['old'])) {
+                    /**
+                     *
+                     * This function is executed when Model entries are "created" or "destroyed"
+                     *
+                     */
+
+                    return "Procurement list entry (#".$activity->subject_id.") has been ". $activity->description;
+                }
+
+                $old = $activity->changes['old']['status'];
+                $new = $activity->changes['attributes']['status'];
+
+                $previous = OperationsHelper::get_operations_status_badge($old)['text'];
+                $current = OperationsHelper::get_operations_status_badge($new)['text'];
+
+
+                $all_status = self::status();
+
+                $previous_color = $all_status[$old]['color'];
+                $current_color = $all_status[$new]['color'];
+
+                switch($style) {
+                    case 1:
+                        $context = 'Procurement list status has been updated. <span class="line-through text-'.$previous_color.'">'. $previous .'</span> <span class="text-'.$current_color.' font-bold">' . $current.'</span>';
+                    break;
+
+                    case 2:
+
+                        $context = 'Procurement list status has been updated from <span class="text-'.$previous_color.' font-bold">'. $previous .'</span> to <span class="text-'.$current_color.' font-bold">' . $current.'</span>';
+                    break;
+
+                    default:
+                        $context = 'Procurement list status has been updated. <span class="line-through text-'.$previous_color.'">'. $previous .'</span> <span class="text-'.$current_color.' font-bold">' . $current.'</span>';
+                    break;
+                }
+            break;
+
+            default:
+                $context = 'Unable to handle activity. Please report this to our team';
+            break;
+
+        }
+
+
+        return $context;
     }
 
 }

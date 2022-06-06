@@ -76,6 +76,11 @@ Route::name('frontend.')->group(function () {
         Route::get('/apply', [UsersController::class, 'volunteer_apply'])->name('apply');
         Route::post('/submit', [UsersController::class, 'submit_request'])->name('submit');
     });
+
+
+    Route::get('/activity', [HomeController::class, 'activity'])->name('activity');
+
+    Route::view('coming-soon', 'frontend.coming_soon')->name('coming_soon');
 });
 
 /*

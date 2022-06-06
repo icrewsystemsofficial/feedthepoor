@@ -116,10 +116,11 @@ We are doing these social welfare activities at national level & mass level , ou
 </section>
 <!-- End of section -->
 
-<section class="section bg-gray section-lg pt-0 text-white">
+<section class="section bg-gray pt-0 text-white">
     <div class="container text-center">
-        <div class="row justify-content-center p-8">
-            <div class="col-12 col-md-8 text-center">
+
+        <div class="row justify-content-center pt-8">
+            <div class="col-md-12">
                 <h3 class="display-5">
                     What's different about <br>
                     <span class="text-theme">{{ config('app.ngo_name') }}?</span>
@@ -145,7 +146,6 @@ We are doing these social welfare activities at national level & mass level , ou
 
             <div class="col-12 col-lg-4">
                 <div class="icon-box text-center mb-5">
-                    <div class="icon icon-shape icon-shape-secondary rounded-circle mb-4"><span class="far fa-lightbulb"></span></div>
                     <h3 class="h5">Ideas and Concepts</h3>
                     <p class="icon-box-text">
                         We put alot of thought into each of our causes and campaigns
@@ -154,7 +154,6 @@ We are doing these social welfare activities at national level & mass level , ou
                 </div>
 
                 <div class="icon-box text-center mb-5 mb-lg-0">
-                    <div class="icon icon-shape icon-shape-secondary rounded-circle mb-4"><span class="fas fa-fingerprint"></span></div>
                     <h3 class="h5">
                         Exellence through transparency
                     </h3>
@@ -175,7 +174,6 @@ We are doing these social welfare activities at national level & mass level , ou
 
             <div class="col-12 col-lg-4">
                 <div class="icon-box text-center mb-5">
-                    <div class="icon icon-shape icon-shape-secondary rounded-circle mb-4"><span class="fas fa-code"></span></div>
                     <h3 class="h5">Embracing modern technology</h3>
                     <p class="icon-box-text">
                         We've partnered with the best IT service providers in the country
@@ -185,7 +183,6 @@ We are doing these social welfare activities at national level & mass level , ou
                 </div>
 
                 <div class="icon-box text-center mb-5 mb-lg-0">
-                    <div class="icon icon-shape icon-shape-secondary rounded-circle mb-4"><span class="far fa-grin-stars"></span></div>
                     <h3 class="h5">Social Responsibility Platform</h3>
                     <p class="icon-box-text">
                         We provide a platform for enthusiastic volunteers of all ages
@@ -434,10 +431,9 @@ We are doing these social welfare activities at national level & mass level , ou
                             Darpan Moolchandani
                         </h3>
                         <span class="card-subtitle text-gray fw-normal">Founder</span>
-                        <p class="card-text my-3">
-                            -- INFORMATION ABOUT DARPAN --
-                        </p>
-                        <ul class="list-unstyled d-flex mt-3 mb-0">
+                        {{-- <p class="card-text my-3">
+                        </p> --}}
+                        {{-- <ul class="list-unstyled d-flex mt-3 mb-0">
                             <li>
                                 <a href="#" target="_blank" aria-label="facebook social link" class="icon-facebook me-3">
                                     <span class="fab fa-facebook-f"></span>
@@ -453,7 +449,7 @@ We are doing these social welfare activities at national level & mass level , ou
                                     <span class="fab fa-instagram"></span>
                                 </a>
                             </li>
-                        </ul>
+                        </ul> --}}
                     </div>
                 </div>
             </div>
@@ -463,8 +459,8 @@ We are doing these social welfare activities at national level & mass level , ou
                     <div class="card-body">
                         <h3 class="h4 card-title mb-2"> Dr.Jagdish Moolchandani</h3>
                         <span class="card-subtitle text-gray fw-normal">Co Founder</span>
-                        <p class="card-text my-3">-- INFORMATION ABOUT JAGDISH -- </p>
-                        <ul class="list-unstyled d-flex mt-3 mb-0">
+                        {{-- <p class="card-text my-3">-- INFORMATION ABOUT JAGDISH -- </p> --}}
+                        {{-- <ul class="list-unstyled d-flex mt-3 mb-0">
                             <li>
                                 <a href="#" target="_blank" aria-label="facebook social link" class="icon-facebook me-3">
                                     <span class="fab fa-facebook-f"></span>
@@ -485,7 +481,7 @@ We are doing these social welfare activities at national level & mass level , ou
                                     <span class="fab fa-dribbble"></span>
                                 </a>
                             </li>
-                        </ul>
+                        </ul> --}}
                     </div>
                 </div>
             </div>
@@ -495,7 +491,7 @@ We are doing these social welfare activities at national level & mass level , ou
                     <div class="card-body">
                         <h3 class="h4 card-title mb-2">Sapna Moolchandani</h3>
                         <span class="card-subtitle text-gray fw-normal">Co Founder</span>
-                        <p class="card-text my-3">-- INFORMATION ABOUT SAPNA --</p>
+                        {{-- <p class="card-text my-3">-- INFORMATION ABOUT SAPNA --</p>
                         <ul class="list-unstyled d-flex mt-3 mb-0">
                             <li>
                                 <a href="#" target="_blank" aria-label="facebook social link" class="icon-facebook me-3">
@@ -517,11 +513,11 @@ We are doing these social welfare activities at national level & mass level , ou
                                     <span class="fab fa-dribbble"></span>
                                 </a>
                             </li>
-                        </ul>
+                        </ul> --}}
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
         <div>

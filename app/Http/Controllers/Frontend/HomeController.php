@@ -40,42 +40,43 @@ class HomeController extends Controller
         $total_donations_received = 42500;
         $howmany = 50;
 
-        $images = array();
-        $height = 300;
-        for ($i = 0; $i < $howmany; $i++) {
-            $url = "https://picsum.photos/800/" . $height . "";
-            $images[$i] = $url;
-            $height++;
-        }
+        // $images = array();
+        // $height = 300;
+        // for ($i = 0; $i < $howmany; $i++) {
+        //     $url = "https://picsum.photos/800/" . $height . "";
+        //     $images[$i] = $url;
+        //     $height++;
+        // }
 
 
-        $names = array();
-        $faker = Factory::create('en_IN');
-        for ($i = 0; $i < $howmany; $i++) {
-            $names[$i] = $faker->firstName;
-        }
+        // $names = array();
+        // $faker = Factory::create('en_IN');
+        // for ($i = 0; $i < $howmany; $i++) {
+        //     $names[$i] = $faker->firstName;
+        // }
 
-        $donation_random_images = json_encode($images);
-        $donation_names = json_encode($names);
+        // $donation_random_images = json_encode($images);
+        // $donation_names = json_encode($names);
 
-        $causes = Causes::all();
-
+        // Not using Causes::all(); because of n+1 problem.
+        $causes = Causes::where('name', '!=', null)->get();
 
         return view('frontend.index', [
-            'donation_images' => $donation_random_images,
-            'donation_names' => $donation_names,
             'total_meals_fed' => $total_meals_fed,
             'total_donations_received' => $total_donations_received,
+            'all_causes' => $causes,
         ]);
     }
 
+    /**
+     * about
+     *
+     * @return void
+     */
     public function about()
     {
 
         $locations = Location::where('location_status', 1)->get();
-
-
-
         return view('frontend.about.index', [
             'locations' => $locations,
         ]);
@@ -103,7 +104,7 @@ class HomeController extends Controller
      */
     public function donate()
     {
-        $causes = Causes::all();
+        $causes = Causes::where('name', '!=', null)->get();
         // Argh, this is an uneccesary move ig. Will be fixed when sending data from controller.
 
         $donation_types = array();
@@ -124,11 +125,16 @@ class HomeController extends Controller
      * @param  mixed $request
      * @return void
      */
-    public function campaigns(Request $request)
+    public function campaigns($slug = null)
     {
 
+        if($slug == null) {
+            alert()->error('Whoops!', 'Campaign\'s slug missing. Try clicking on another one?');
+            return redirect()->route('frontend.index');
+        }
+
         # Prepare the
-        $campaign = Campaigns::where(['slug' => $request->slug, 'campaign_status' => Campaigns::$status['ACTIVE'] ])->firstOrFail();
+        $campaign = Campaigns::where(['slug' => $slug, 'campaign_status' => Campaigns::$status['ACTIVE'] ])->firstOrFail();
 
         $donation_details = array(
             'total' => 0,
@@ -220,9 +226,30 @@ class HomeController extends Controller
 
         $operation = Operations::where('donation_id', $donation->id)->firstOrFail();
 
+
+        # Activities
+
+        $donation_activities = Activity::where('subject_type', 'App\Models\Donations')
+            ->where('subject_id', $donation->id)
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        $operations_activities = Activity::where('subject_type', 'App\Models\Operations')
+            ->where('subject_id', $operation->id)
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        # Two levels of collection cuz once merged, the collection becomes an array.
+        # - Leonard
+        $merged_activities = collect(collect($donation_activities)->merge($operations_activities)->all())->sortBy([
+            ['id', 'desc'],
+            ['created_at', 'desc'],
+        ]);
+
         return view('frontend.tracking.tracking', [
             'donation' => $donation,
             'operation' => $operation,
+            'activities' => $merged_activities,
         ]);
     }
 
@@ -350,5 +377,15 @@ class HomeController extends Controller
 
         $filename = 'donation_receipt_'.$donation->razorpay_payment_id.'.pdf';
         return $pdf->stream($filename);
+    }
+
+
+    /**
+     * activity
+     *
+     * @return void
+     */
+    public function activity() {
+        return view('frontend.activity.index');
     }
 }

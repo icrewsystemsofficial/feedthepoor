@@ -87,6 +87,18 @@
     display: table;
     clear: both
     }
+
+    .vertical-timeline-element-content .vertical-timeline-element-date {
+        display: block;
+        position: absolute;
+        left: -130px;
+        top: 0;
+        padding-right: 10px;
+        text-align: right;
+        color: #adb5bd;
+        font-size: .7619rem;
+        white-space: nowrap;
+    }
 </style>
 
 <script>
@@ -219,7 +231,7 @@
                                         if($donation->payment_method == App\Models\Donations::$payment_methods['RAZORPAY']) {
                                             $razorpay_data = app(App\Http\Controllers\API\RazorpayAPIController::class)->fetch_payment($donation->razorpay_payment_id);
                                             if($razorpay_data->notes->checkbox_80g == "on") {
-                                                $excemption = 'Eligible <i class="fas fa-check-circle"></i>';
+                                                $excemption = 'Eligible <i class="fas fa-check-circle"></i>, <br><span class="font-light">(Check e-mail for download link)</span>';
                                             } else {
                                                 $excemption = 'Not eligible <i class="fas fa-times-circle"></i>';
                                             }
@@ -425,6 +437,9 @@
                                 <h5 class="card-title">
                                     Donation Timeline
                                 </h5>
+                                <small>
+                                    Last update was on {{ $donation->updated_at->format('d, F Y, H:i A') . ', '. $donation->updated_at->diffForHumans() }}.
+                                </small>
 
                                 @php
 
@@ -480,25 +495,14 @@
 
                                 @endphp
 
-                                <div class="card-body" style="height: 400px; overflow: scroll;">
+
+
+
+                                        @if($activities->count() > 0)
+                                        <div class="card-body" style="height: 400px; overflow: scroll;">
                                         <div class="vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-
-
-                                            <style>
-                                                .vertical-timeline-element-content .vertical-timeline-element-date {
-                                                    display: block;
-                                                    position: absolute;
-                                                    left: -130px;
-                                                    top: 0;
-                                                    padding-right: 10px;
-                                                    text-align: right;
-                                                    color: #adb5bd;
-                                                    font-size: .7619rem;
-                                                    white-space: nowrap;
-                                                }
-                                            </style>
-
-                                            @foreach ($donation_timeline as $id => $log)
+                                        @endif
+                                            {{-- @foreach ($donation_timeline as $id => $log)
                                                 @if ($id <= $donation_status)
                                                     <div class="vertical-timeline-item vertical-timeline-element">
                                                         <div> <span class="vertical-timeline-element-icon bounce-in"> <i class="{{ $log['icon'] }}"></i> </span>
@@ -516,9 +520,62 @@
                                                         </div>
                                                     </div>
                                                 @endif
-                                            @endforeach
-                                    </div>
-                                </div>
+                                            @endforeach --}}
+
+
+
+
+                                            @forelse ($activities as $activity)
+                                            <div class="vertical-timeline-item vertical-timeline-element">
+                                                <div> <span class="vertical-timeline-element-icon bounce-in"> <i class="fas fa-info-circle text-secondary"></i> </span>
+                                                    <div class="vertical-timeline-element-content bounce-in">
+
+                                                        <span class="uppercase text-muted">
+                                                            {{ $activity->created_at->diffForHumans() }}
+                                                        </span>
+
+                                                        <h4 class="timeline-title font-bold">
+                                                            @if($activity->causer_id != null)
+                                                                {{-- If it's a manual update, like status change, then activity
+                                                                    logger records the user who performs that update.
+                                                                 --}}
+                                                                {{ App\Models\User::find($activity->causer_id)->name }}
+                                                            @else
+                                                                {{--
+                                                                    If not, we tap into the "event" property and update it there
+                                                                    here we parse for that.
+
+                                                                    - Leonard,
+                                                                    6th June 2022.
+                                                                --}}
+
+                                                            {{ ($activity->event != null) ? $activity->event : 'Operations Team'  }}
+                                                            @endif
+                                                        </h4>
+                                                        <p>
+                                                            @if($activity->changes != '[]')
+                                                                {!! App\Helpers\DonationsHelper::get_status_change_context($activity, 2) !!}
+                                                            @else
+                                                                (#) {{ $activity->description }}
+                                                            @endif
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @empty
+                                                <div class="alert alert-info">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    This donation was received only {{ $donation->created_at->diffForHumans() }}, our operations team will acknowledge this donation and start the fulfillment processes very soon. We'll send you all updates via e-mail. Please check back later.
+                                                </div>
+                                            @endforelse
+
+
+                                    @if($activities->count() > 0)
+                                        </div>
+                                        </div>
+                                    @endif
+
+
                             </div>
                         </div>
                     </div>

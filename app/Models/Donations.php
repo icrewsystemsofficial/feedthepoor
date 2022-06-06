@@ -2,14 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Users;
 use App\Models\Causes;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Contracts\Activity;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Donations extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
+
+
+
+    # The attributes we wish to monitor for this model.
+    protected static $logAttributes = ['donation_status'];
+    // protected static $logName = 'system';
+
+    # We want to log ONLY if there are changes.
+    protected static $logOnlyDirty = true;
+
+    # The events we wish to fire the activity log
+    protected static $recordEvents = ['updated'];
+
+
+
 
     protected $table = 'donations';
 
@@ -31,6 +48,9 @@ class Donations extends Model
         'VERIFIED' => 1,
         'FAILED' => 2,
         'REFUNDED' => 3,
+        'MISSION ASSIGNED' => 4,
+        'FIELD WORK DONE' => 5,
+        'PICTURES UPDATED' => 6
     ];
 
     public static $payment_methods = [

@@ -2,14 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 // This is the table for procurements.
 
 class Operations extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
+
+    # The attributes we wish to monitor for this model.
+    protected static $logAttributes = ['status'];
+    // protected static $logName = 'system';
+
+    # We want to log ONLY if there are changes.
+    protected static $logOnlyDirty = true;
+
+    # The events we wish to fire the activity log
+    protected static $recordEvents = ['updated'];
 
     protected $table = 'operations';
 
