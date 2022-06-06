@@ -4,29 +4,26 @@
 
 <script>
     function trigger_delete(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
 
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
+            Swal.showLoading();
 
-        Swal.showLoading();
-
-        if (result.isConfirmed) {
-            document.getElementById('delete_procurement_'+id).submit();
-        }
-    });
-
+            if (result.isConfirmed) {
+                document.getElementById('delete_procurement_'+id).submit();
+            }
+        });
     }
+
     function showLocation(id){
-
-    window.open("{{ route('admin.location.manage', ':id') }}".replace(':id', id), '_blank');
-
+        window.open("{{ route('admin.location.manage', ':id') }}".replace(':id', id), '_blank');
     }
 </script>
 
@@ -38,8 +35,8 @@
             position: 'top-end',
             showConfirmButton: false,
             timer: 4000
-        });        
-        
+        });
+
         let selects = {{ json_encode($allOperations) }};
         selects.forEach(id => {
             $('#status_'+id).select2();
@@ -89,7 +86,7 @@
                         Toast.fire({
                             icon: 'warning',
                             title: 'Unable to update status'
-                        });                                            
+                        });
                     }
                 });
             });
@@ -115,7 +112,7 @@
                         Toast.fire({
                             icon: 'warning',
                             title: 'Unable to update location'
-                        });                                            
+                        });
                     }
                 });
             });
@@ -147,7 +144,7 @@
                 .children()
                 .not('td:has("input,select")')
                 .toArray()
-                .some(x => $(x).text().toLowerCase().includes( $('input[type="search"]').val().toLowerCase()));                
+                .some(x => $(x).text().toLowerCase().includes( $('input[type="search"]').val().toLowerCase()));
             return inputMatch || textMatch || $('input[type="search"]').val() == '';
         });
         $('input[type="search"]').on('keyup', () => table.draw());
@@ -300,16 +297,7 @@
             <div class="col-md-6">
                 <div class="card" style="height: 90%;">
                     <div class="card-body">
-                        <div class="mb-2">
-                            <div class="alert alert-info">
-                                <small>
-                                    <span class="text-info">
-                                        <i class="fa-solid fa-info-circle"></i> Tip
-                                    </span>
-                                    To filter operations by status, you can click on any status below.
-                                </small>
-                            </div>
-                        </div>
+
                         @php
                             $statuses = App\Helpers\OperationsHelper::getStatusNumbers();
                         @endphp
@@ -337,6 +325,28 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="container col-md-12 well">
+
+                        <div class="mb-2">
+                            <div class="alert alert-info">
+                                <small>
+                                    <span class="text-info">
+                                        <i class="fa-solid fa-info-circle"></i> Tip
+                                    </span>
+                                    To filter operations by status, you can click on any status below.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            @php
+                                $statuses = App\Helpers\OperationsHelper::getStatusNumbers();
+                            @endphp
+
+                            @foreach ($statuses as $status => $val)
+                                {!! App\Helpers\OperationsHelper::getProcurementBadge($status) !!}
+                            @endforeach
+                        </div>
+
                         <table id="table" class="table table-striped nowrap dt-responsive" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
@@ -358,7 +368,7 @@
                                             {{ $operation->procurement_item }}
                                         </strong>
                                         <br>
-                                        
+
                                         <div id="badge_{{ $operation->id }}">
                                             {!! App\Helpers\OperationsHelper::getProcurementBadge($operation->status) !!}
                                         </div>
