@@ -328,6 +328,12 @@
                                             </span>
                                             <br><br>
                                         </div>
+                                    @else
+                                            <div class="form-group">
+                                                <span>
+                                                    <a href="{{ route('admin.settings.delete', $setting->id ) }}" type="button" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i> &nbsp; Delete</a>
+                                                </span>
+                                            </div>
                                     @endif
                                 </div>
                                 <div class="col-md-9">

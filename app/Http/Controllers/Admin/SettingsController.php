@@ -104,9 +104,11 @@ class SettingsController extends Controller
      * @param  \App\Models\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Setting $setting)
+    public function delete(Setting $setting, $id)
     {
-        //
+        Setting::find($id)->delete();
+        return redirect(route('admin.settings.index'));
+
     }
 
 

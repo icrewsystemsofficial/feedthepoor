@@ -118,6 +118,7 @@ Route::prefix('admin')->middleware(['auth','access_check', 'can:can_access_dashb
         Route::get('/', [SettingsController::class, 'index'])->name('index');
         Route::post('/create', [SettingsController::class, 'create'])->name('create');
         Route::post('/update', [SettingsController::class, 'update'])->name('update');
+        Route::get('/{id}/delete', [SettingsController::class, 'delete'])->name('delete');
 
         Route::post('/group/create', [SettingsController::class, 'group_save'])->name('group.create');
         Route::post('/group/{id}/update', [SettingsController::class, 'group_update'])->name('group.update');
