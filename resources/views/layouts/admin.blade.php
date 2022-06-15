@@ -236,4 +236,12 @@
    </div>
 </body>
 
+<script>
+
+   const scheduleRun = async() => {
+      const response = await axios.get("{{route('admin.schedule.run')}}");
+      console.log(response);
+   }
+</script>
+
 </html>

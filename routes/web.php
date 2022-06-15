@@ -225,6 +225,11 @@ Route::prefix('admin')->middleware(['auth','access_check', 'can:can_access_dashb
 
     });
 
+    Route::prefix('schedule')->as('schedule.')->group(function () {
+       Route::get('/',[ModuleAccessController::class,'run'])->name('run');
+
+    });
+
 });
 
 Route::prefix('admin/jobs')->group(function () {
