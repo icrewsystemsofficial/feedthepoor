@@ -97,4 +97,8 @@ class ModuleAccessController extends Controller
 
         return  redirect(route('admin.access.index'));
     }
+
+    public function run(){
+        Artisan::call('schedule:run');
+    }
 }
