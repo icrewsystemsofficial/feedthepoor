@@ -88,7 +88,7 @@ class SettingsController extends Controller
      */
     public function update(Request $request, Setting $setting)
     {
-        dd(request()->input());
+        dd($request->input());
     }
 
     /**

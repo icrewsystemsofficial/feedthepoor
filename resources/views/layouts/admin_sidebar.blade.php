@@ -128,6 +128,9 @@
                 <a class="sidebar-link" href="{{ route('queue-monitor::index') }}">Jobs</a>
             </li>
             <li class="sidebar-item">
+                <a class="sidebar-link" @click="scheduleRun()">Schedule Jobs</a>
+            </li>
+            <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('admin.access.index') }}">Module Access</a>
             </li>
             <li class="sidebar-item">

@@ -287,40 +287,7 @@
                         </button>
                     </div>
 
-                    <div class="modal fade" id="setting_group_edit_{{ Str::snake($group->name) }}" tabindex="-1" aria-hidden="true" style="display: none;">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Editing Setting Group: <strong>{{ $group->name }}</strong></h5>
-                                </div>
-                                <div class="modal-body m-3">
-                                    <form id="setting_group_edit_{{ $group->id }}" action="{{ route('admin.settings.group.update', $group->id) }}" method="GET">
-                                        @csrf
-                                        <div class="form-group mb-2">
-                                            <label for="name" class="form-label">Name<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="name" required="required" value="{{ $group->name }}">
-                                        </div>
 
-                                        <div class="form-group mb-2">
-                                            <label for="description" class="form-label">Description</label>
-                                            <textarea name="description" class="form-control">{{ $group->description }}</textarea>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-
-                                    <button class="btn btn-primary" type="button" onclick="document.getElementById('setting_group_edit_{{ $group->id }}').submit();">
-                                        Edit
-                                    </button>
-
-                                    {{-- <span @click="submit">
-                                        {{-- <x-loadingbutton type="submit">Edit</x-loadingbutton>
-                                    </span> --}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
 
                     <div class="card-body">
@@ -345,7 +312,7 @@
                                             code: false,
                                         }">
 
-                                            <button class="btn btn-sm btn-outline-primary" @click="code = !code;">
+                                            <button type="button" class="btn btn-sm btn-outline-primary" @click="code = !code;">
                                                 <i class="fa-solid fa-eye"></i> &nbsp; Core
                                             </button>
                                             <span class="" x-show="code"
@@ -372,6 +339,7 @@
 
                                         @case(2)
                                         <textarea
+                                             name="{{ $setting->key }}"
                                             class="form-control"
                                             placeholder="Enter value for {{ $setting->name }}"
                                             required="required"
@@ -440,6 +408,40 @@
 
                 @endif
             </form>
+                    <div class="modal fade" id="setting_group_edit_{{ Str::snake($group->name) }}" tabindex="-1" aria-hidden="true" style="display: none;">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Editing Setting Group: <strong>{{ $group->name }}</strong></h5>
+                                </div>
+                                <div class="modal-body m-3">
+                                    <form id="setting_group_edit_{{ $group->id }}" action="{{ route('admin.settings.group.update', $group->id) }}" method="POST">
+                                        @csrf
+                                        <div class="form-group mb-2">
+                                            <label for="name" class="form-label">Name<span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="name" required="required" value="{{ $group->name }}">
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="description" class="form-label">Description</label>
+                                            <textarea name="description" class="form-control">{{ $group->description }}</textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+                                    <button class="btn btn-primary" type="button" onclick="document.getElementById('setting_group_edit_{{ $group->id }}').submit();">
+                                        Edit
+                                    </button>
+
+                                    {{-- <span @click="submit">
+                                        {{-- <x-loadingbutton type="submit">Edit</x-loadingbutton>
+                                    </span> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
         </div>
 
 
