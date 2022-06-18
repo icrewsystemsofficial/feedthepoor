@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Operations;
+use App\Models\Donations;
 use App\Helpers\OperationsHelper;
 use App\Jobs\Operations\OperationsUpdateMail;
+use App\Helpers\NotificationHelper;
 
 class OperationsController extends Controller
 {
@@ -75,13 +77,17 @@ class OperationsController extends Controller
             $final['badge'] = $newBadge;
             $final['status_new'] = $request->status;  
             activity()->log('Updated procurement status of operation with id: #' . $operation->id.' by user with id: #'.auth()->user()->id);          
-            OperationsUpdateMail::dispatch($operation)->delay(now());
+            $donation = Donations::find($operation->donation_id);                
+            NotificationHelper::user($donation->donor_id)
+            ->title('Operation status changed')
+            ->body('Status for the operation for your donation (operation #'.$operation->id.') has been updated to '.OperationsHelper::get_operations_status_badge($operation->status))
+            ->type('MAIL')
+            ->notify();
             return response()->json($final);
         }
         if ($request->location_id){
             $operation->update($request->all());
-            activity()->log('Updated location of operation with id: #' . $operation->id.' by user with id: #'.auth()->user()->id);
-            OperationsUpdateMail::dispatch($operation)->delay(now());
+            activity()->log('Updated location of operation with id: #' . $operation->id.' by user with id: #'.auth()->user()->id);            
         }
     }
     
