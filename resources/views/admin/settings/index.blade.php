@@ -101,6 +101,28 @@
             },
         }
     }
+
+    const deleteSetting = (name, url) => {
+        Swal.fire({
+            title: `Delete ${name}`,
+            text: 'Are you sure?',
+            icon: 'question',
+            iconHtml: '?',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+            showCancelButton: true,
+            showCloseButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = url;
+                swalWithBootstrapButtons.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            }
+        });
+    }
 </script>
 @endsection
 @section('content')
@@ -328,6 +350,12 @@
                                             </span>
                                             <br><br>
                                         </div>
+                                    @else
+                                            <div class="form-group">
+                                                <span @click="deleteSetting('{{$setting->name}}','{{route('admin.settings.delete', $setting->id)}}')">
+                                                    <a type="button" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i> &nbsp; Delete</a>
+                                                </span>
+                                            </div>
                                     @endif
                                 </div>
                                 <div class="col-md-9">

@@ -88,7 +88,14 @@ class SettingsController extends Controller
      */
     public function update(Request $request, Setting $setting)
     {
-        dd($request->input());
+        foreach ($request->input() as $input => $value) {
+            if ($input != '_token') {
+                $setting = Setting::where('key', $input)->first();
+                $setting->value = $value;
+                $setting->update();
+            }
+        }
+        return redirect(route('admin.settings.index'));
     }
 
     /**
@@ -97,9 +104,11 @@ class SettingsController extends Controller
      * @param  \App\Models\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Setting $setting)
+    public function delete(Setting $setting, $id)
     {
-        //
+        Setting::find($id)->delete();
+        return redirect(route('admin.settings.index'));
+
     }
 
 
