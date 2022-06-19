@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
+use App\Jobs\NotifyAllAdmins;
 
 
 class CausesController extends Controller
@@ -50,8 +51,10 @@ class CausesController extends Controller
         // if (!$yield){
         //     throw ValidationException::withMessages(['yield_context' => 'Yield context must have a value %YIELD% denoting the number of people benifiting from the donation']);
         // }
-        Causes::create($request->all());
+        $cause = Causes::create($request->all());
+        $cause = $cause->fresh();
         alert()->success('Yay','Cause "'.$request->name.'" was successfully created');
+        NotifyAllAdmins::dispatch('New cause created', 'A new cause '.$request->name.' has been created by '.auth()->user()->name, 'ALL', route('admin.causes.manage', $cause->id))->delay(now());
         return redirect(route('admin.causes.index'));
     }
 
@@ -96,8 +99,9 @@ class CausesController extends Controller
         // if (!str_contains($request->yield_context,"%YIELD%")){
         //     throw ValidationException::withMessages(['yield_context' => 'Yield context must have a value %YIELD% denoting the number of people benifiting from the donation']);
         // }
-        Causes::find($request->id)->update($request->all());
+        $cause = Causes::find($request->id)->update($request->all());
         alert()->success('Yay','Cause "'.$request->name.'" was successfully updated');
+        NotifyAllAdmins::dispatch('Cause modified', 'A cause '.$request->name.' has been modified by '.auth()->user()->name, 'ALL', route('admin.causes.manage', $cause->id))->delay(now());
         return redirect(route('admin.causes.index'));
     }
 
@@ -112,6 +116,7 @@ class CausesController extends Controller
         $cause = Causes::find($request->id);
         $cause->delete();
         alert()->success('Yay','Cause "'.$cause->name.'" was successfully deleted');
+        NotifyAllAdmins::dispatch('Cause modified', 'A cause '.$request->name.' has been modified by '.auth()->user()->name, 'ALL')->delay(now());
         return redirect(route('admin.causes.index'));
     }
 }

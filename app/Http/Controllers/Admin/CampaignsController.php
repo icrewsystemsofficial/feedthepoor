@@ -10,10 +10,11 @@ use App\Models\Campaigns;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use App\Jobs\NotifyAllAdmins;
 
 class CampaignsController extends Controller
 {
-    public function index(){
+    public function index(){       
         $campaigns = Campaigns::all();
         $locations = Location::groupBy('id')->get(['id', 'location_name']);
         $causes = Causes::groupBy('id')->get(['id', 'name']);
@@ -44,8 +45,10 @@ class CampaignsController extends Controller
         Storage::disk('local')->delete($request->campaign_poster);
         $request->merge(['campaign_poster' => config('app_url')."/storage/".$filename]);
         $request->merge(['slug' => Str::slug($request->campaign_name)]);
-        Campaigns::create($request->all());
-        alert()->success('Yay','Campaign "'.$request->campaign_name.'" was successfully created');
+        $campaign = Campaigns::create($request->all());
+        $campaign = $campaign->fresh();
+        alert()->success('Yay','Campaign "'.$request->campaign_name.'" was successfully created');         
+        NotifyAllAdmins::dispatch('New campaign created', 'A new campaign '.$request->campaign_name.' has been created by '.auth()->user()->name, 'ALL', route('admin.campaigns.manage', $campaign->id))->delay(now());
         return redirect(route('admin.campaigns.index'));
     }
 
@@ -59,6 +62,7 @@ class CampaignsController extends Controller
         Storage::disk('public')->deleteDirectory('campaigns/'.$campaign->campaign_name);
         $campaign->delete();
         alert()->success('Yay','Campaign "'.$campaign->campaign_name.'" was successfully deleted');
+        NotifyAllAdmins::dispatch('Campaign '.$campaign->campaign_name.' deleted', 'Campaign '.$campaign->campaign_name.' has been deleted by '.auth()->user()->name, 'ALL')->delay(now());
         return redirect(route('admin.campaigns.index'));
     }
 
@@ -101,6 +105,7 @@ class CampaignsController extends Controller
         $request->merge(['slug' => Str::slug($request->campaign_name)]);
         $campaign->update($request->all());
         alert()->success('Yay','Campaign "'.$request->campaign_name.'" was successfully updated');
+        NotifyAllAdmins::dispatch('Campaign '.$campaign->campaign_name.' modified', 'Campaign '.$campaign->campaign_name.' has been edited by '.auth()->user()->name, 'ALL', route('admin.campaigns.manage', $campaign->id))->delay(now());
         return redirect(route('admin.campaigns.index'));
     }
 
