@@ -208,6 +208,38 @@ class NotificationHelper {
     }
 
     /**
+     * notifyAllAdmins
+     *
+     * @param  mixed $title
+     * @param  mixed $body
+     * @return void
+     */
+    public function notifyAllAdmins($title, $body, string $type = 'APP', string $action = '#', string $color = 'dark'){
+        
+        $this->title = $title ?? throw new Exception('Notification Helper Error: title cannot be blank.');
+        $this->body = $body ?? throw new Exception('Notification Helper Error: body cannot be blank.');
+        $this->color = $color;
+        if ($type == 'ALL'){
+            $this->type = Notification::$types['ALL'];
+        }
+        else if($type == 'MAIL'){
+            $this->type = Notification::$types['MAIL'];
+        }
+        else{
+            $this->type = Notification::$types['APP'];
+        }
+
+        $users = [];
+        foreach(self::getAllAdmins() as $user){
+            $users[] = $user->id;
+        }
+        $this->user = $users;
+
+        self::notify();
+
+    }
+
+    /**
      * getNotifications
      *
      * @param  mixed $howmany
@@ -242,7 +274,6 @@ class NotificationHelper {
     public static function getAllAdmins() {
         return User::permission('can_access_dashboard')->get();
     }
-
-
+        
 
 }

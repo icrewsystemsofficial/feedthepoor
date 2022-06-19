@@ -49,6 +49,7 @@ class FaqController extends Controller
         $entry = FaqEntries::find($request->id);
         $entry->update($request->all());
         alert()->success('Yay','Entry "'.$request->entry_question.'" was successfully updated');
+        NotifyAllAdmins::dispatch('FAQ Entry modified', 'A FAQ entry '.$request->entry_question.' has been modified by '.auth()->user()->name, 'ALL', route('admin.faq.manage', $request->id))->delay(now());
         return redirect(route('admin.faq.questions.questions.index'));
     }
 
@@ -68,8 +69,10 @@ class FaqController extends Controller
             'entry_answer' => 'required|string',
             'author_name' => 'required|string',
         ]);
-        FaqEntries::create($request->all());
+        $entry = FaqEntries::create($request->all());
+        $entry = $entry->fresh();
         alert()->success('Yay','Entry "'.$request->entry_question.'" was successfully added');
+        NotifyAllAdmins::dispatch('FAQ Entry added', 'A FAQ entry '.$request->entry_question.' has been added by '.auth()->user()->name, 'ALL', route('admin.faq.manage', $entry->id))->delay(now());
         return redirect(route('admin.faq.questions.index'));
     }
 
@@ -96,8 +99,10 @@ class FaqController extends Controller
             'category_status' => 'required|string|in:off,on',
         ]);
         $request->merge(['category_status' => $request->category_status == 'on' ? 1 : 0]);
-        FaqCategories::create($request->all());
+        $cat = FaqCategories::create($request->all());
+        $cat = $cat->fresh();
         alert()->success('Yay','Category "'.$request->category_name.'" was successfully added');
+        NotifyAllAdmins::dispatch('FAQ Category added', 'A FAQ category '.$request->category_name.' has been added by '.auth()->user()->name, 'ALL', route('admin.faq.categories.manage', $cat->id))->delay(now());
         return redirect(route('admin.faq.categories.index'));
     }
 
@@ -115,6 +120,7 @@ class FaqController extends Controller
         $category = FaqCategories::find($request->id);
         $category->update($request->all());
         alert()->success('Yay','Category "'.$request->category_name.'" was successfully updated');
+        NotifyAllAdmins::dispatch('FAQ Category updated', 'A FAQ category '.$request->category_name.' has been updated by '.auth()->user()->name, 'ALL', route('admin.faq.categories.manage', $request->id))->delay(now());
         return redirect(route('admin.faq.categories.index'));
     }
 
@@ -129,6 +135,7 @@ class FaqController extends Controller
             $i++;
         }
         alert()->success('Yay','Category "'.$category->category_name.'" and '.$i.' questions were successfully deleted');
+        NotifyAllAdmins::dispatch('FAQ Category deleted', 'A FAQ category '.$category->category_name.' has been deleted by '.auth()->user()->name, 'ALL')->delay(now());
         return redirect(route('admin.faq.categories.index'));
     }
 }

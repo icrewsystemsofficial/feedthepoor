@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Providers\SettingsProvider;
 use App\Http\Controllers\Controller;
 use Spatie\Activitylog\Models\Activity;
+use App\Jobs\NotifyAllAdmins;
 
 class SettingsController extends Controller
 {
@@ -43,6 +44,7 @@ class SettingsController extends Controller
         $setting->core = request('core_setting');
         $setting->type = request('setting_type');
         $setting->save();
+        NotifyAllAdmins::dispatch('New setting created', 'A new setting '.$setting->name.' has been created by '.auth()->user()->name, 'ALL')->delay(now());
         return redirect(route('admin.settings.index'));
     }
 
@@ -95,6 +97,7 @@ class SettingsController extends Controller
                 $setting->update();
             }
         }
+        NotifyAllAdmins::dispatch('Setting updated', 'A setting '.$setting->name.' has been updated by '.auth()->user()->name, 'ALL')->delay(now());
         return redirect(route('admin.settings.index'));
     }
 
@@ -107,6 +110,7 @@ class SettingsController extends Controller
     public function delete(Setting $setting, $id)
     {
         Setting::find($id)->delete();
+        NotifyAllAdmins::dispatch('Setting deleted', 'A setting '.$setting->name.' has been deleted by '.auth()->user()->name, 'ALL')->delay(now());
         return redirect(route('admin.settings.index'));
 
     }
@@ -125,6 +129,7 @@ class SettingsController extends Controller
         $group->name = request('name');
         $group->description = request('description');
         $group->save();
+        NotifyAllAdmins::dispatch('New setting group created', 'A new setting group '.$group->name.' has been created by '.auth()->user()->name, 'ALL')->delay(now());
         return redirect()->route('admin.settings.index');
     }
 
@@ -133,11 +138,13 @@ class SettingsController extends Controller
         $group->name = request('name');
         $group->description = request('description');
         $group->save();
+        NotifyAllAdmins::dispatch('Setting group updated', 'A setting group '.$group->name.' has been updated by '.auth()->user()->name, 'ALL')->delay(now());
         return redirect()->route('admin.settings.index');
     }
 
     public function group_delete($id) {
         $group = SettingGroup::where('id', $id)->delete();
+        NotifyAllAdmins::dispatch('Setting group deleted', 'A setting group '.$group->name.' has been deleted by '.auth()->user()->name, 'ALL')->delay(now());
         return redirect()->route('admin.settings.index');
     }
 
