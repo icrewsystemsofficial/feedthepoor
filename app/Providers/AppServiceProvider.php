@@ -57,6 +57,21 @@ class AppServiceProvider extends ServiceProvider
                                     'value' => $event->job->attempts(),
                                     'inline' => true,
                                 ],
+                                [
+                                    'name' => 'File',
+                                    'value' => $event->exception->getFile(),
+                                    'inline' => false,
+                                ],
+                                [
+                                    'name' => 'Line',
+                                    'value' => $event->exception->getLine(),
+                                    'inline' => true,
+                                ],
+                                [
+                                    'name' => 'Code',
+                                    'value' => $event->exception->getCode(),
+                                    'inline' => false,
+                                ]
                             ],                            
                         ]
                     ]
@@ -64,11 +79,11 @@ class AppServiceProvider extends ServiceProvider
 
             app(NotificationHelper::class)->notifyAllAdmins('Job failed', 'Job failed: ' . $event->connectionName . ' / ' . $event->job->getName() . ' / ' . $event->exception->getMessage(), 'APP');
 
-            if ($event->job->attempts() > 3) {
+            if ($event->job->attempts() == 3) {
                 $event->job->delete();
             }
             else{
-                $event->job->release(5);
+                $event->job->release(5 * $event->job->attempts());
             }
 
         });
