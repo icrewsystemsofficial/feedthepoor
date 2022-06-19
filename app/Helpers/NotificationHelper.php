@@ -214,7 +214,7 @@ class NotificationHelper {
      * @param  mixed $body
      * @return void
      */
-    public function notifyAllAdmins($title, $body, string $type, string $color = 'dark'){
+    public function notifyAllAdmins($title, $body, string $type = 'APP', string $action = '#', string $color = 'dark'){
         
         $this->title = $title ?? throw new Exception('Notification Helper Error: title cannot be blank.');
         $this->body = $body ?? throw new Exception('Notification Helper Error: body cannot be blank.');

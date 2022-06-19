@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Location;
 use App\Models\User;
+use App\Jobs\NotifyAllAdmins;
 
 class LocationController extends Controller
 {
@@ -47,13 +48,15 @@ class LocationController extends Controller
         $location = Location::find($request->id);
         $location->update($request->all());
         alert()->success('Yay','Location "'.$request->location_name.'" was successfully updated');
+        NotifyAllAdmins::dispatch('Location modified', 'A location '.$request->location_name.' has been modified by '.auth()->user()->name, 'ALL', route('admin.location.manage', $location->id))->delay(now());
         return redirect(route('admin.location.index'));
     }
 
     public function destroy(Request $request){
         $location = Location::find($request->id);
-        alert()->success('Yay','Location "'.$location->location_name.'" was successfully deleted');
         $location->delete();
+        alert()->success('Yay','Location "'.$location->location_name.'" was successfully deleted');        
+        NotifyAllAdmins::dispatch('Location deleted', 'A location '.$location->location_name.' has been deleted by '.auth()->user()->name, 'ALL')->delay(now());
         return redirect(route('admin.location.index'));
     }
 
@@ -68,8 +71,10 @@ class LocationController extends Controller
             'location_manager_id' => 'required|numeric',
             'location_status' => 'required|in:0,1,2,3',
         ]);
-        Location::create($request->all());
+        $location = Location::create($request->all());
+        $location = $location->fresh();
         alert()->success('Yay','Location "'.$request->location_name.'" was successfully deleted');
+        NotifyAllAdmins::dispatch('New location created', 'A new location '.$request->location_name.' has been created by '.auth()->user()->name, 'ALL', route('admin.location.manage', $location->id))->delay(now());
         return redirect(route('admin.location.index'));
     }
 }

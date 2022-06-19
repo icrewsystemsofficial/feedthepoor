@@ -15,6 +15,7 @@ use App\Events\Missions\MissionCreateOrUpdate;
 use App\Models\MissionAssignment;
 
 use App\Jobs\Missions\MissionNotifications;
+use App\Jobs\NotifyAllAdmins;
 
 class NewMission{
     public $id = null;
@@ -103,6 +104,7 @@ class MissionsController extends Controller
         event(new MissionCreateOrUpdate($mission, 1));
 
         alert()->success('Mission Created Successfully', 'Success');
+        NotifyAllAdmins::dispatch('New mission created', 'A new mission has been created by '.auth()->user()->name, 'ALL', route('admin.missions.index'));
         return redirect()->route('admin.missions.index');
     }
 
@@ -262,6 +264,7 @@ class MissionsController extends Controller
         $mission->procurement_items = $procurement_items;
         event(new MissionCreateOrUpdate($mission, 0));
         alert()->success('Mission Updated Successfully', 'Success');
+        NotifyAllAdmins::dispatch('Mission Updated', 'Mission #'.$request->id.' has been updated by '.auth()->user()->name, 'ALL', route('admin.missions.index'));
         return redirect()->route('admin.missions.index');
     }
 
@@ -295,6 +298,7 @@ class MissionsController extends Controller
             \Mail::to($donor)->send(new MissionCancelledDonorMail($reason));
         }
         alert()->success('Mission cancelled successfully', 'Success');
+        NotifyAllAdmins::dispatch('Mission Cancelled', 'Mission #'.$mission->id.' has been cancelled by '.auth()->user()->name, 'ALL');
         return redirect()->route('admin.missions.index');
     }
 
