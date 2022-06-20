@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
                     [
                         [
                             'title' => '[FeedThePoor] Job failed',
-                            'description' => 'Job failed: ' . $event->connectionName . ' / ' . $event->job->getName() . ' / ' . $event->exception->getMessage(),
+                            'description' => 'Job failed: ' . $event->connectionName . ' - ' . $event->job->getName() . ' - ' . $event->exception->getMessage(),
                             'color' => '7506394',
                             'timestamp' => now()->toISOString(),
                             'fields' => [
@@ -65,12 +65,12 @@ class AppServiceProvider extends ServiceProvider
                                 [
                                     'name' => 'Line',
                                     'value' => $event->exception->getLine(),
-                                    'inline' => true,
+                                    'inline' => false,
                                 ],
                                 [
-                                    'name' => 'Code',
-                                    'value' => $event->exception->getCode(),
-                                    'inline' => false,
+                                    'name' => 'Status Code',
+                                    'value' => $event->exception->getStatusCode(),
+                                    'inline' => true,
                                 ]
                             ],                            
                         ]
@@ -79,7 +79,7 @@ class AppServiceProvider extends ServiceProvider
 
             app(NotificationHelper::class)->notifyAllAdmins('Job failed', 'Job failed: ' . $event->connectionName . ' / ' . $event->job->getName() . ' / ' . $event->exception->getMessage(), 'APP');
 
-            if ($event->job->attempts() == 3) {
+            if ($event->job->attempts() == 2) {
                 $event->job->delete();
             }
             else{

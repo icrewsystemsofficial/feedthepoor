@@ -43,16 +43,14 @@
             $('#location_'+id).select2();
             $('#status_'+id).on('change', function() {
                 let status = $(this).val();
-                $.ajax({
-                    url: '/admin/operations/procurement/update/'+id,
-                    type: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        status: status,
-                        last_updated_by: {{ Auth::user()->id }}
-                    },
-                    success: function(data) {
-                        console.log(data);
+                
+                axios.post('/admin/operations/procurement/update/'+id, {
+                    _token: '{{ csrf_token() }}',
+                    status: status,
+                    last_updated_by: {{ Auth::user()->id }}
+                })
+                .then(function (response) {
+                        data = response.data;
                         $('#table_'+data.status_new).text(parseInt($('#table_'+data.status_new).text())+1);
                         $('#table_'+data.status_old).text(parseInt($('#table_'+data.status_old).text())-1);
                         let oldStatus = data.status_old;
@@ -81,40 +79,35 @@
                             icon: 'success',
                             title: 'Status of this item has been updated successfully'
                         });
-                    },
-                    error: function(data) {
-                        Toast.fire({
-                            icon: 'warning',
-                            title: 'Unable to update status'
-                        });
-                    }
-                });
+                })
+                .catch(function (error) {
+                    Toast.fire({
+                        icon: 'warning',
+                        title: 'Unable to update status'
+                    });
+                });                
             });
 
             $('#location_'+id).on('change', function() {
                 let locationId = $(this).val();
-                console.log(locationId);
-                $.ajax({
-                    url: '/admin/operations/procurement/update/'+id,
-                    type: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        location_id: locationId,
-                        last_updated_by: {{ Auth::user()->id }}
-                    },
-                    success: function(data) {
+
+                axios.post('/admin/operations/procurement/update/'+id, {
+                    _token: '{{ csrf_token() }}',
+                    location_id: locationId,
+                    last_updated_by: {{ Auth::user()->id }}
+                })
+                .then(function (response) {
                         Toast.fire({
                             icon: 'success',
                             title: 'Location of this item has been updated successfully'
                         });
-                    },
-                    error: function(data) {
-                        Toast.fire({
-                            icon: 'warning',
-                            title: 'Unable to update location'
-                        });
-                    }
-                });
+                })
+                .catch(function (error) {
+                    Toast.fire({
+                        icon: 'warning',
+                        title: 'Unable to update location'
+                    });
+                });                
             });
 
         });

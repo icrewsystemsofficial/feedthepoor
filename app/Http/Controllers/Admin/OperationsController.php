@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Operations;
+use App\Models\Donations;
 use App\Helpers\OperationsHelper;
+use App\Jobs\Operations\OperationsUpdateMail;
+use App\Jobs\NotifyUserViaMail;
 
 class OperationsController extends Controller
 {
@@ -64,18 +67,18 @@ class OperationsController extends Controller
         if (isset($request->status)){
             $final = array();
             $final['status_old'] = $operation->status;                                             
-            /*if ($request->status > count(json_decode($operation->timestamps))){
-                $final['status'] = $request->status;
-                $final['timestamps'] = json_encode(json_decode($operation->timestamps) + array_fill(0, $request->status - count(json_decode($operation->timestamps)), date('Y-m-d H:i:s')));
-            }*/
             $operation->update($request->all());
             $newBadge = OperationsHelper::getProcurementBadge($request->status);            
             $final['badge'] = $newBadge;
-            $final['status_new'] = $request->status;            
+            $final['status_new'] = $request->status;  
+            activity()->log('Updated procurement status of operation with id: #' . $operation->id.' by user with id: #'.auth()->user()->id);          
+            $donation = Donations::find($operation->donation_id);     
+            NotifyUserViaMail::dispatch('Operation status changed', 'Status for the operation of your donation (operation #'.$operation->id.') has been updated to '.OperationsHelper::get_operations_status_badge($operation->status)['text'], $donation->donor_id)->delay(now());
             return response()->json($final);
         }
         if ($request->location_id){
             $operation->update($request->all());
+            activity()->log('Updated location of operation with id: #' . $operation->id.' by user with id: #'.auth()->user()->id);            
         }
     }
     
