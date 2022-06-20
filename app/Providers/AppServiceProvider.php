@@ -38,26 +38,19 @@ class AppServiceProvider extends ServiceProvider
         ]);
         Queue::failing(function (JobFailed $event) {
             
-            $discordUrl = 'https://discord.com/api/webhooks/976253549778440253/slWh5d-vECU0_C6h-cZAULTtpIBnTgOO1g5S1Z2BEydr1Bgi8CWLfpjm1MntcXnog-xt';
-
-            Http::post($discordUrl, [
+            Http::post(env('DISCORD_WEBHOOK_URL'), [
                 'embeds' => 
                     [
                         [
                             'title' => '[FeedThePoor] Job failed',
-                            'description' => 'Job failed: ' . $event->connectionName . ' - ' . $event->job->getName() . ' - ' . $event->exception->getMessage(),
+                            'description' => 'Job failed: ' . $event->connectionName . ' - ' . $event->job->getName(),
                             'color' => '7506394',
                             'timestamp' => now()->toISOString(),
                             'fields' => [
                                 [
-                                    'name' => 'Class',
-                                    'value' => $event->job->resolveName(),
-                                    'inline' => true,
-                                ],
-                                [
-                                    'name' => 'Attempts',
-                                    'value' => $event->job->attempts(),
-                                    'inline' => true,
+                                    'name' => 'Message',
+                                    'value' => $event->exception->getMessage(),
+                                    'inline' => false,
                                 ],
                                 [
                                     'name' => 'File',
@@ -65,21 +58,26 @@ class AppServiceProvider extends ServiceProvider
                                     'inline' => false,
                                 ],
                                 [
-                                    'name' => 'Line',
-                                    'value' => $event->exception->getLine(),
+                                    'name' => 'Class',
+                                    'value' => $event->job->resolveName(),
                                     'inline' => false,
                                 ],
                                 [
-                                    'name' => 'Status Code',
-                                    'value' => $event->exception->getStatusCode(),
+                                    'name' => 'Attempts',
+                                    'value' => $event->job->attempts(),
                                     'inline' => true,
-                                ]
+                                ],                                
+                                [
+                                    'name' => 'Line',
+                                    'value' => $event->exception->getLine(),
+                                    'inline' => true,
+                                ],                                
                             ],                            
                         ]
                     ]
             ]);        
 
-            app(NotificationHelper::class)->notifyAllAdmins('Job failed', 'Job failed: ' . $event->connectionName . ' / ' . $event->job->getName() . ' / ' . $event->exception->getMessage(), 'APP');
+            app(NotificationHelper::class)->notifyAllAdmins('Job failed', 'Job failed: ' . $event->connectionName . ' - ' . $event->job->getName() . ' - ' . $event->exception->getMessage(), 'APP');
 
             if ($event->job->attempts() == 2) {
                 $event->job->delete();
