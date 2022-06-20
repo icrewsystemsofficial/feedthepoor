@@ -38,7 +38,9 @@ class AppServiceProvider extends ServiceProvider
         ]);
         Queue::failing(function (JobFailed $event) {
             
-            Http::post(env('DISCORD_WEBHOOK_URL'), [
+            $discordUrl = 'https://discord.com/api/webhooks/976253549778440253/slWh5d-vECU0_C6h-cZAULTtpIBnTgOO1g5S1Z2BEydr1Bgi8CWLfpjm1MntcXnog-xt';
+
+            Http::post($discordUrl, [
                 'embeds' => 
                     [
                         [
