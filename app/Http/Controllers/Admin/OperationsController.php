@@ -74,7 +74,7 @@ class OperationsController extends Controller
             $final['status_new'] = $request->status;  
             activity()->log('Updated procurement status of operation with id: #' . $operation->id.' by user with id: #'.auth()->user()->id);          
             $donation = Donations::find($operation->donation_id);     
-            NotifyUserViaMail::dispatch('Operation status changed', 'Status for the operation of your donation (operation #'.$operation->id.') has been updated to '.OperationsHelper::get_operations_status_badge($operation->status)['text'], $donation->donor_id)->delay(now());
+            NotifyUserViaMail::dispatch('Operation status changed', 'Status for the operation of your donation has been updated to '.OperationsHelper::get_operations_status_badge($operation->status)['text'], $donation->donor_id)->delay(now());
             NotifyAllAdmins::dispatch('Operation status changed', 'Status for the operation of donation (operation #'.$operation->id.') has been updated to '.OperationsHelper::get_operations_status_badge($operation->status)['text'], 'APP')->delay(now());
             return response()->json($final);
         }
