@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature>
+  <change type="fix">Replaced AJAX calls with AXIOS and made changes to UI in Operations module</change>
+  <change type="feature">Added user notifications on operation status update</change>
+  <change type="feature">Added admin notifications for major changes across modules</change>
+  <change type="feature">Introduced a graceful failing method for jobs. When jobs fail admins will be notified via the app and the IT team will be notified via discord</change>  
+</feature>

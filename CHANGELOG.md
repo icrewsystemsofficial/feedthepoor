@@ -1,4 +1,4 @@
-______            _ _______ _          _____
+   ______            _ _______ _          _____
   |  ____|          | |__   __| |        |  __ \
   | |__ ___  ___  __| |  | |  | |__   ___| |__) |__   ___  _ __
   |  __/ _ \/ _ \/ _` |  | |  | '_ \ / _ \  ___/ _ \ / _ \| '__|
@@ -13,6 +13,17 @@ This was last generated on 06 June, 2022
 
 
 ## [Unreleased]
+
+## [2.6.20]
+
+### Features
+ - Added user notifications on operation status update
+ - Added admin notifications for major changes across modules
+ - Introduced admin notification via app and IT team notification via discord when a job fails
+
+### Fixes
+ - Edited UI for Operations Module
+ - Replaced AJAX with AXIOS for Operations Module
 
 ## [2.6.6]
 
