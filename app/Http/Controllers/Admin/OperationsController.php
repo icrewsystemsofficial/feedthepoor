@@ -9,6 +9,7 @@ use App\Models\Donations;
 use App\Helpers\OperationsHelper;
 use App\Jobs\Operations\OperationsUpdateMail;
 use App\Jobs\NotifyUserViaMail;
+use App\Jobs\NotifyAllAdmins;
 
 class OperationsController extends Controller
 {
@@ -74,6 +75,7 @@ class OperationsController extends Controller
             activity()->log('Updated procurement status of operation with id: #' . $operation->id.' by user with id: #'.auth()->user()->id);          
             $donation = Donations::find($operation->donation_id);     
             NotifyUserViaMail::dispatch('Operation status changed', 'Status for the operation of your donation (operation #'.$operation->id.') has been updated to '.OperationsHelper::get_operations_status_badge($operation->status)['text'], $donation->donor_id)->delay(now());
+            NotifyAllAdmins::dispatch('Operation status changed', 'Status for the operation of donation (operation #'.$operation->id.') has been updated to '.OperationsHelper::get_operations_status_badge($operation->status)['text'], 'APP')->delay(now());
             return response()->json($final);
         }
         if ($request->location_id){
@@ -95,6 +97,7 @@ class OperationsController extends Controller
         $operations = Operations::find($request->id);
         $operations->delete();
         alert()->success('Yay','Procurement was successfully deleted');
+        NotifyAllAdmins::dispatch('Operation deleted', 'Operation with id: #'.$request->id.' was deleted by user '.auth()->user()->name, 'ALL')->delay(now());
         return redirect(route('admin.operations.procurement.index'));
     }
 }

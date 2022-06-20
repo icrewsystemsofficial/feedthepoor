@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\FaqEntries;
 use App\Helpers\FaqHelper;
 use App\Models\FaqCategories;
+use App\Jobs\NotifyAllAdmins;
 
 use Illuminate\Http\Request;
 
