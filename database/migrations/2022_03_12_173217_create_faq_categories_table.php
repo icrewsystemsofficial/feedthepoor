@@ -14,7 +14,7 @@ class CreateFaqCategoriesTable extends Migration
     public function up()
     {
         Schema::create('faq_categories', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->unique()->primary();
             $table->string('category_name', 100);
             $table->longText('category_description')->nullable();
             $table->integer('category_status')->default(0);

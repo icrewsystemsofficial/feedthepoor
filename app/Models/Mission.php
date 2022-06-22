@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Traits\Uuid;
 
 class Mission extends Model
 {
-    use HasFactory;
+    use HasFactory, Uuid;
 
     protected $fillable = [
         'location_id',

@@ -14,9 +14,9 @@ class CreateMissionObjectivesTable extends Migration
     public function up()
     {
         Schema::create('mission_objectives', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('donation_id')->references('id')->on('donations')->nullable();
-            $table->integer('assigned_volunteer_id')->references('id')->on('users')->onDelete('cascade');
+            $table->uuid('id')->unique()->primary();
+            $table->uuid('donation_id')->references('id')->on('donations')->nullable();
+            $table->uuid('assigned_volunteer_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('instructions')->nullable();
             $table->integer('media_items')->default(0);
             $table->integer('objective_status')->default(0);

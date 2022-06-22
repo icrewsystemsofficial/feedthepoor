@@ -28,11 +28,11 @@
 
                     <br><br>
 
-                    <a href="{{ route('frontend.track-donation', $payment->id) }}" target="_blank" class="btn btn-theme text-white">
+                    <a href="{{ route('frontend.track-donation', $id) }}" target="_blank" class="btn btn-theme text-white">
                         Track Donation
                     </a>
 
-                    <a href="{{ route('frontend.donations.receipt', $payment->id) }}" target="_blank" class="btn btn-success text-white">
+                    <a href="{{ route('frontend.donations.receipt', $id) }}" target="_blank" class="btn btn-success text-white">
                         Download Receipt
                     </a>
 

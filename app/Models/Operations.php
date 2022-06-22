@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\Uuid;
 
 // This is the table for procurements.
 
 class Operations extends Model
 {
-    use HasFactory, LogsActivity;
+    use HasFactory, LogsActivity, Uuid;
 
     # The attributes we wish to monitor for this model.
     protected static $logAttributes = ['status'];

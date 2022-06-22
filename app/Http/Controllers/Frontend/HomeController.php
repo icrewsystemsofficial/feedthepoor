@@ -191,10 +191,12 @@ class HomeController extends Controller
             payment ID, please check the e-mail ID you provided during the time of donation. For more help, contact support.');
         }
 
+        $id = Donations::where('razorpay_payment_id', $payment_id)->first()->id;
+
         return view('frontend.donation.thank_you', [
             'payment_id' => $payment_id,
             'payment' => app(RazorpayAPIController::class)->fetch_payment($payment_id),
-
+            'id' => $id,
         ]);
     }
 
@@ -215,12 +217,12 @@ class HomeController extends Controller
         }
 
 
-        $donation = Donations::where('razorpay_payment_id', $donation_id)->first();
+        $donation = Donations::where('id', $donation_id)->first();
 
         # If the donation is not found, instead of throwing a blank 404, it gives a humane error.
         # - Leonard.
         if(!$donation) {
-            alert()->error('Whoops', 'We were not able to fetch any donations with the Razorpay payment ID of `'.$donation_id.'`. If you think this is a mistake, kindly contact us at the earliest convenience.');
+            alert()->error('Whoops', 'We were not able to fetch any donations with the ID of `'.$donation_id.'`. If you think this is a mistake, kindly contact us at the earliest convenience.');
             return redirect()->route('frontend.donate');
         }
 
@@ -336,7 +338,7 @@ class HomeController extends Controller
             return redirect()->route('frontend.donate');
         }
 
-        $donation = Donations::where('razorpay_payment_id', $id)->firstOrFail();
+        $donation = Donations::where('id', $id)->firstOrFail();
         $user = User::find($donation->donor_id);
         $cause = $donation->cause_id ? Causes::find($donation->cause_id) : Campaigns::find($donation->campaign_id);
         $cause_name = $donation->cause_id ? 'cause '.$cause->name : 'campaign '.$cause->campaign_name;
@@ -353,7 +355,7 @@ class HomeController extends Controller
         $payment['cause'] = $cause_name;
         $payment['receipt_no'] = $donation->id;
         $payment['razorpay_id'] = $donation->razorpay_payment_id;
-        $payment['tracking_url'] = route('frontend.track-donation', $donation->razorpay_payment_id);
+        $payment['tracking_url'] = route('frontend.track-donation', $donation->id);
 
         $pdf = PDF::loadView('pdf.receipts.receipt', ['data' => [
             'payment' => $payment,
@@ -375,7 +377,7 @@ class HomeController extends Controller
         Anirudh R
         */
 
-        $filename = 'donation_receipt_'.$donation->razorpay_payment_id.'.pdf';
+        $filename = 'donation_receipt_'.$donation->id.'.pdf';
         return $pdf->stream($filename);
     }
 

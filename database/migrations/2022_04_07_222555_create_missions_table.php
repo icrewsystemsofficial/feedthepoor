@@ -14,9 +14,9 @@ class CreateMissionsTable extends Migration
     public function up()
     {
         Schema::create('missions', function (Blueprint $table) {
-            $table->id();
-            $table->integer('location_id')->references('id')->on('locations')->nullable();
-            $table->integer('field_manager_id')->references('id')->on('users')->nullable();
+            $table->uuid('id')->unique()->primary();
+            $table->uuid('location_id')->references('id')->on('locations')->nullable();
+            $table->uuid('field_manager_id')->references('id')->on('users')->nullable();
             $table->longText('description')->nullable();
             $table->integer('assigned_volunteers')->default('0');
             $table->dateTime('execution_date')->nullable();

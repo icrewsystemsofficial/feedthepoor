@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Contracts\Activity;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\Uuid;
 
 class Donations extends Model
 {
-    use HasFactory, LogsActivity;
+    use HasFactory, LogsActivity, Uuid;
 
 
 

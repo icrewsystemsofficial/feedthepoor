@@ -10,10 +10,11 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Permission\Traits\HasRoles;
+use App\Traits\Uuid;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, Uuid;
 
     /**
      * The attributes that are mass assignable.

@@ -14,7 +14,7 @@ class CreateSettingsGroupTable extends Migration
     public function up()
     {
         Schema::create('setting_group', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->unique()->primary();
             $table->string('name');
             $table->mediumText('description');
             $table->timestamps();

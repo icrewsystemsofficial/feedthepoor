@@ -16,8 +16,8 @@ class DonationChanges extends Migration
     public function up()
     {
         Schema::table('donations', function($table){
-            $table->unsignedBigInteger('campaign_id')->references('id')->on('campaigns')->nullable();
-            $table->unsignedBigInteger('cause_id')->references('id')->on('causes')->nullable()->change();
+            $table->uuid('campaign_id')->references('id')->on('campaigns')->nullable();
+            $table->uuid('cause_id')->references('id')->on('causes')->nullable()->change();
             $table->string('cause_name')->nullable()->change();
         });
         
