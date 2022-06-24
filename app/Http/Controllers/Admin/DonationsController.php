@@ -27,8 +27,8 @@ class DonationsController extends Controller
         $this->validate($request, [
             'donor_id' => 'required|integer',
             'donation_amount' => 'required|numeric',
-            'cause_id' => 'integer|exists:causes,id',
-            'campaign_id' => 'integer|exists:campaigns,id',
+            'cause_id' => 'string|exists:causes,id',
+            'campaign_id' => 'string|exists:campaigns,id',
             'donation_status' => 'required|integer',
             'payment_method' => 'required|integer',
             'razorpay_payment_id' => 'required_if:payment_method,4',
@@ -60,8 +60,8 @@ class DonationsController extends Controller
         $this->validate($request, [
             'donor_name' => 'required|string',
             'donation_amount' => 'required|numeric',
-            'cause_id' => 'sometimes|integer|exists:causes,id',
-            'campaign_id' => 'sometimes|integer|exists:campaigns,id',
+            'cause_id' => 'sometimes|string|exists:causes,id',
+            'campaign_id' => 'sometimes|string|exists:campaigns,id',
             'donation_status' => 'required|integer',
             'payment_method' => 'required|integer',
             'razorpay_payment_id' => 'required_if:payment_method,4',

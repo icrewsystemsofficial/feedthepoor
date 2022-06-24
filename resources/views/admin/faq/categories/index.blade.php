@@ -91,7 +91,7 @@
                         <table id="table2" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+{{--                                    <th>ID</th>--}}
                                     <th>NAME</th>
                                     <th>DESCRIPTION</th>
                                     <th>STATUS</th>
@@ -101,7 +101,7 @@
                             <tbody>
                                 @foreach($categories as $category)
                                 <tr>
-                                    <td>{{ $category->id }}</td>
+{{--                                    <td>{{ $category->id }}</td>--}}
                                     <td>{{ $category->category_name }}</td>
                                     <td>{{ $category->category_description }}</td>
                                     <td>

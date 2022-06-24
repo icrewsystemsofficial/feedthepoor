@@ -276,7 +276,7 @@
                         <table id="table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+{{--                                    <th>ID</th>--}}
                                     <th>NAME</th>
                                     <th>E Mail</th>
                                     <th>Phone number</th>
@@ -288,7 +288,7 @@
                                 @php $i = 0; @endphp
                                 @foreach($users as $user)
                                 <tr>
-                                    <td>{{ $user->id }}</td>
+{{--                                    <td>{{ $user->id }}</td>--}}
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
@@ -302,7 +302,7 @@
                                             <i class="fa-solid fa-edit"></i> &nbsp;
                                             Manage
                                         </a>
-                                        <button onclick="trigger_delete({{$user->id}})" class="btn btn-danger btn-sm">
+                                        <button onclick="trigger_delete('{{$user->id}}')" class="btn btn-danger btn-sm">
                                             <i class="fa-solid fa-trash-can"></i> &nbsp;
                                             Delete
                                         </button>

@@ -125,7 +125,7 @@
                         <table id="table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+{{--                                    <th>ID</th>--}}
                                     <th>NAME</th>
                                     <th>COST PER UNIT</th>
                                     <th>ACTION</th>
@@ -134,7 +134,7 @@
                             <tbody>
                                 @foreach($causes as $cause)
                                 <tr>
-                                    <td>{{ $cause->id }}</td>
+{{--                                    <td>{{ $cause->id }}</td>--}}
                                     <td><i class="fas fa-{{ $cause->icon }}"></i> {{ $cause->name }}</td>
                                     <td>₹ {{ $cause->per_unit_cost }}</td>
                                     <td>

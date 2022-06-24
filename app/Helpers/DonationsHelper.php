@@ -146,7 +146,7 @@ class DonationsHelper {
         return $html;
     }
 
-    public static function getAllCauses(int $id = null) {
+    public static function getAllCauses( $id = null) {
         $html = '';
         $selected = 0;
         foreach(Causes::all() as $cause) {
@@ -162,7 +162,7 @@ class DonationsHelper {
         return $html;
     }
 
-    public static function getAllCampaigns(int $id = null){
+    public static function getAllCampaigns(string $id = null){
 
         $html = '';
         $selected = 0;

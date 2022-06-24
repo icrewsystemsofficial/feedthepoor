@@ -380,11 +380,11 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.donations.manage', $operation->donation_id) }}" class="btn btn-sm btn-primary" target="_blank">
-                                            Donation #{{ $operation->donation_id }}
+                                            View Donation
                                         </a>
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger btn-sm" type="button" onclick="trigger_delete({{ $operation->id }})">
+                                        <button class="btn btn-danger btn-sm" type="button" onclick="trigger_delete('{{ $operation->id }}')">
                                             <i class="fa-solid fa-trash"></i> Delete
                                         </button>
                                         <form action="{{ route('admin.operations.destroy', $operation->id) }}" id="delete_procurement_{{ $operation->id }}" method="POST">@csrf @method('DELETE')</form>

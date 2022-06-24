@@ -103,7 +103,7 @@ class OperationsHelper {
      * @param  inr $i
      * @return string
      */
-    public static function getProcurementStatus(int $status, int $i){
+    public static function getProcurementStatus(string $status, string $i){
 
         if($status == ''){
             throw new Exception('Error: status not passed.' . $status);
@@ -133,7 +133,7 @@ class OperationsHelper {
      * @param  int $id
      * @return string
      */
-    public static function getLocationBadge(int $id){
+    public static function getLocationBadge(string $id){
 
         return Location::find($id)->location_name ?? 'None';
 
@@ -148,7 +148,7 @@ class OperationsHelper {
      * @param  mixed $i
      * @return void
      */
-    public static function getProcurementLocation(int $id, int $i){
+    public static function getProcurementLocation( string $id, string $i){
 
         if($id == ''){
             throw new Exception('Error: location ID not passed.' . $status);

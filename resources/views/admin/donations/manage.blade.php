@@ -193,7 +193,7 @@
                             <input type="text" id="razorpay_payment_id" name="razorpay_payment_id" class="form-control" value="{{ $donation->razorpay_payment_id }}" disabled/>
                         </div>
                         <div class="form-group mb-3">
-                            <a href="{{ route('frontend.donations.receipt', $donation->razorpay_payment_id) }}" target="_blank" class="btn btn-sm btn-primary">
+                            <a href="{{ route('frontend.donations.receipt', $donation->id) }}" target="_blank" class="btn btn-sm btn-primary">
                                 View receipt
                             </a>
 
