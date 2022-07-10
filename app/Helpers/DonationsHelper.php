@@ -41,7 +41,7 @@ class DonationsHelper {
 
         $status[Donations::$status['PENDING']] = array(
             'text' => 'Processing',
-            'icon' => 'fa-solid fa-exclamation-triangle',
+            'icon' => 'fa-solid fa-sync fa-spin',
             'color' => 'info',
         );
 
@@ -60,27 +60,27 @@ class DonationsHelper {
 
         $status[Donations::$status['REFUNDED']] = array(
             'text' => 'Refunded',
-            'icon' => 'fa-solid fa-times',
+            'icon' => 'fa-solid fa-check-circle',
             'color' => 'warning',
         );
 
 
         $status[Donations::$status['MISSION ASSIGNED']] = array(
             'text' => 'Mission Assigned',
-            'icon' => 'fa-solid fa-times',
-            'color' => 'warning',
+            'icon' => 'fa-solid fa-check-circle',
+            'color' => 'info',
         );
 
         $status[Donations::$status['FIELD WORK DONE']] = array(
             'text' => 'Field Work Done',
-            'icon' => 'fa-solid fa-times',
-            'color' => 'warning',
+            'icon' => 'fa-solid fa-check-circle',
+            'color' => 'info',
         );
 
         $status[Donations::$status['PICTURES UPDATED']] = array(
             'text' => 'Pictures updated',
-            'icon' => 'fa-solid fa-times',
-            'color' => 'warning',
+            'icon' => 'fa-solid fa-check-circle',
+            'color' => 'info',
         );
 
 
@@ -372,6 +372,89 @@ class DonationsHelper {
 
 
         return $context;
+    }
+
+    public static function Show_Amount_In_Words($num) {
+        $ones =array('',' One',' Two',' Three',' Four',' Five',' Six',' Seven',' Eight',' Nine',' Ten',' Eleven',' Twelve',' Thirteen',' Fourteen',' Fifteen',' Sixteen',' Seventeen',' Eighteen',' Nineteen');
+        $tens = array('','',' Twenty',' Thirty',' Fourty',' Fifty',' Sixty',' Seventy',' Eighty',' Ninety',);
+        $triplets = array('',' Thousand',' Lakh',' Crore',' Arab',' Kharab');
+
+        $str ="";
+        $th= (int)($num/1000);
+        $x = (int)($num/100) %10;
+        $fo= explode('.',$num);
+
+        if($fo[0] !=null){
+            $y=(int) substr($fo[0],-2);
+
+        }else{
+            $y=0;
+        }
+
+        if($x > 0){
+            $str =$ones[$x].' Hundred';
+        }
+        if($y>0){
+            if($y<20){
+                $str .=$ones[$y];
+            }
+        else {
+            $str .=$tens[($y/10)].$ones[($y%10)];
+        }
+        }
+        $tri=1;
+        while($th!=0){
+
+            $lk = $th%100;
+            $th = (int)($th/100);
+            $count =$tri;
+
+            if($lk<20){
+                if($lk == 0){
+                $tri =0;}
+                $str = $ones[$lk].$triplets[$tri].$str;
+                $tri=$count;
+                $tri++;
+            }else{
+                $str = $tens[$lk/10].$ones[$lk%10].$triplets[$tri].$str;
+                $tri++;
+            }
+        }
+        $num =(float)$num;
+        if(is_float($num)){
+            $fo= (String) $num;
+            $fo= explode('.',$fo);
+            $fo1= @$fo[1];
+
+        }else{
+            $fo1 =0;
+        }
+        $check = (int) $num;
+        if($check !=0){
+            return $str.' Rupees'.self::forDecimal($fo1);
+        }
+        else{
+            return self::forDecimal($fo1);
+        }
+    }
+
+    private static function forDecimal($num){
+        $ones =array('',' One',' Two',' Three',' Four',' Five',' Six',' Seven',' Eight',' Nine',' Ten',' Eleven',' Twelve',' Thirteen',' Fourteen',' Fifteen',' Sixteen',' Seventeen',' Eighteen',' Nineteen');
+        $tens = array('','',' Twenty',' Thirty',' Fourty',' Fifty',' Sixty',' Seventy',' Eighty',' Ninety',);
+        $str="";
+        $len = strlen($num);
+        if($len==1){
+            $num=$num*10;
+        }
+        $x= $num%100;
+        if($x>0){
+        if($x<20){
+            $str = $ones[$x].' Paise';
+        }else{
+            $str = $tens[$x/10].$ones[$x%10].' Paise';
+        }
+        }
+        return $str;
     }
 
 }

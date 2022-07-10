@@ -65,6 +65,9 @@ class MissionCreateOrUpdateListener
                 $missionAssignment->user_id = $user;
                 $missionAssignment->status = 0;
                 $missionAssignment->save();
+                $vol = User::where('id', $user)->first();
+                $vol->available_for_mission = 0;
+                $vol->save();
             }
 
         }
@@ -91,6 +94,16 @@ class MissionCreateOrUpdateListener
                     $proc = Operations::where('id', $item)->first();
                     $proc->status = 6;
                     $proc->save();
+                }
+                foreach($mission_data->donations as $donation) {
+                    $don = Donations::where('id', $donation)->first();
+                    $don->status = 5;
+                    $don->save();
+                }
+                foreach($mission_data->assigned_volunteers as $volunteer) {
+                    $user = User::where('id', $volunteer)->first();
+                    $user->available_for_mission = 1;
+                    $user->save();
                 }
             }
             activity()->log('Updated mission with id: #' . $mission->id.' by user with id: #'.auth()->user()->id);

@@ -18,14 +18,23 @@ use App\Jobs\Missions\MissionNotifications;
 use App\Jobs\NotifyAllAdmins;
 
 class NewMission{
-    public $id = null;
+    /*public $id = null;
     public $description = '';
     public $location_id = 0;
     public $field_manager_id = 0;
     public $execution_date = '';
     public $mission_status = 0;
     public $assigned_volunteers = [];
-    public $procurment_items = [];
+    public $procurment_items = [];*/
+
+    public $id = 2;
+    public $description = 'Test mission';
+    public $location_id = 2;
+    public $field_manager_id = 4;
+    public $execution_date = '2022-07-24 00:00:00';
+    public $mission_status = 0;
+    public $assigned_volunteers = [4];
+    public $procurment_items = [2];
 }
 
 class MissionsController extends Controller
@@ -37,6 +46,8 @@ class MissionsController extends Controller
      */
     public function index()
     {
+        $mission = new NewMission();
+        MissionNotifications::dispatch($mission, 1, 'A new mission has been created !!')->delay(now());
         $active_missions = Mission::where('mission_status', '!=', Mission::$status['COMPLETED'])->get();
         $locations = Location::all();
         $active_volunteers = User::where('volunteer', 1)->where('available_for_mission', 1)->get();
@@ -214,16 +225,17 @@ class MissionsController extends Controller
      */
     public function manage(Request $request)
     {
-        $mission = Mission::find($request->mission_id);
+        $mission = Mission::find($request->id);
         $location_id = $mission->location_id;
         $active_volunteers = User::where('volunteer', 1)->where('available_for_mission', 1)->where('location_id', $location_id)->get();
         $field_managers = $active_volunteers; //Update code when a permission "is_mission_manager" is defined
-        $procurement_items = Operations::where('status', 4)->where('location_id', $location_id)->get();
+        $procurement_items_loc = Operations::where('status', 4)->where('location_id', $location_id)->get();
         return view('admin.missions.manage', [
             'mission' => $mission,
             'procurement_items' => json_decode($mission->procurement_items),
             'active_volunteers' => $active_volunteers,
             'volunteers' => json_decode($mission->assigned_volunteers),
+            'procurement_items_loc' => $procurement_items_loc,
             'location' => $request->location_id,
             'field_managers' => $field_managers,
         ]);

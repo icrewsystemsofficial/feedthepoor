@@ -380,7 +380,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.donations.manage', $operation->donation_id) }}" class="btn btn-sm btn-primary" target="_blank">
-                                            Donation #{{ $operation->donation_id }}
+                                            View Donation
                                         </a>
                                     </td>
                                     <td>

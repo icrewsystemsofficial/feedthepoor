@@ -70,10 +70,10 @@ class OperationsHelper {
      *
      * Accept a status ID and return the status badge HTML markup
      *
-     * @param  int $status
+     * @param  $status
      * @return void
      */
-    public static function getProcurementBadge(int $status) {
+    public static function getProcurementBadge($status) {
 
         if($status == ''){
             throw new Exception('Error: status not passed');
@@ -99,11 +99,11 @@ class OperationsHelper {
      *
      * Accept a status ID and Operation ID and return a select HTML element
      *
-     * @param  int $status
+     * @param  $status
      * @param  inr $i
      * @return string
      */
-    public static function getProcurementStatus(int $status, int $i){
+    public static function getProcurementStatus($status, $i){
 
         if($status == ''){
             throw new Exception('Error: status not passed.' . $status);
@@ -130,10 +130,10 @@ class OperationsHelper {
      *
      * Accept location ID as parameter and return the location name
      *
-     * @param  int $id
+     * @param  $id
      * @return string
      */
-    public static function getLocationBadge(int $id){
+    public static function getLocationBadge($id){
 
         return Location::find($id)->location_name ?? 'None';
 
@@ -148,7 +148,7 @@ class OperationsHelper {
      * @param  mixed $i
      * @return void
      */
-    public static function getProcurementLocation(int $id, int $i){
+    public static function getProcurementLocation($id, $i){
 
         if($id == ''){
             throw new Exception('Error: location ID not passed.' . $status);
@@ -217,7 +217,7 @@ class OperationsHelper {
      * @param  mixed $id
      * @return void
      */
-    public static function get_operations_status_badge(int $id) {
+    public static function get_operations_status_badge($id) {
         $all_statuses = self::status();
         return $all_statuses[$id];
     }

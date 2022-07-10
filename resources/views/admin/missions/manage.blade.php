@@ -15,6 +15,7 @@
             resetButton: true,
             minDate: new Date(),
         });
+        alert("{{ $mission->description }}");
     } );
 </script>
 @endsection
@@ -45,7 +46,7 @@
                         @csrf
                         <div class="form-group mb-3">
                             <label for="execution_date" class="form-label">Mission Execution Date</label>
-                            <input type="date" name="execution_date" id="execution_date" class="form-control" value="{{ $mission->execution_date }}"/>
+                            <input type="date" name="execution_date" id="execution_date" class="form-control" value="{{ explode(' ', $mission->execution_date)[0] }}"/>
                         </div>
 
                         <div class="form-group mb-3">
@@ -71,7 +72,7 @@
                                             <th>ADD TO MISSION</th>
                                         </thead>
                                         <tbody>
-                                            @foreach ($procurement_items as $list)
+                                            @foreach ($procurement_items_loc as $list)
                                                 <tr>
                                                     <td>
                                                         {{ $list->id }}
@@ -110,7 +111,7 @@
                             </label>
                             <select name="assigned_volunteers[]" id="volunteers_id" multiple class="volunteers_select form-control">
                                 @foreach ($active_volunteers as $volunteer)
-                                    <option value="{{ $volunteer->id }}" {{ in_array($volunteer->id,$volunteers) 'selected':'' }}>
+                                    <option value="{{ $volunteer->id }}" {{ in_array($volunteer->id,$volunteers) ? 'selected':'' }}>
                                         {{ $volunteer->name }}
                                     </option>
                                 @endforeach
