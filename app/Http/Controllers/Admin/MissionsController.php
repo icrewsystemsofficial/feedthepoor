@@ -18,23 +18,14 @@ use App\Jobs\Missions\MissionNotifications;
 use App\Jobs\NotifyAllAdmins;
 
 class NewMission{
-    /*public $id = null;
+    public $id = null;
     public $description = '';
     public $location_id = 0;
     public $field_manager_id = 0;
     public $execution_date = '';
     public $mission_status = 0;
     public $assigned_volunteers = [];
-    public $procurment_items = [];*/
-
-    public $id = 2;
-    public $description = 'Test mission';
-    public $location_id = 2;
-    public $field_manager_id = 4;
-    public $execution_date = '2022-07-24 00:00:00';
-    public $mission_status = 0;
-    public $assigned_volunteers = [4];
-    public $procurment_items = [2];
+    public $procurment_items = [];
 }
 
 class MissionsController extends Controller
@@ -46,8 +37,6 @@ class MissionsController extends Controller
      */
     public function index()
     {
-        $mission = new NewMission();
-        MissionNotifications::dispatch($mission, 1, 'A new mission has been created !!')->delay(now());
         $active_missions = Mission::where('mission_status', '!=', Mission::$status['COMPLETED'])->get();
         $locations = Location::all();
         $active_volunteers = User::where('volunteer', 1)->where('available_for_mission', 1)->get();
