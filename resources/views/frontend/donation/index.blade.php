@@ -434,8 +434,47 @@ $donation_quantities = array(
                                     </div>                
                                 </div>
                             </div>
-                        </div>                    
+                        </div> 
+                        
+                        {{-- DONATIONS POLICY --}}
 
+                        <div class="modal fade" id="donationsPolicyModal" tabindex="1" aria-hidden="true" style="display: none;">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content" style="width: 100%;">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Donations Policy And Guidelines</h5>
+                                    </div>                    
+                                    <div class="modal-body m-3">                
+                                        <div class="row">
+                                            <div class="col-12 mb-4">
+                                                Donations and other income enable Roshni Moolchandani Charitable Trust to fight corruption. Roshni Moolchandani Charitable Trust needs to secure the funding necessary to undertake its vital work. Secure and diverse funding enables Roshni Moolchandani Charitable Trust to maintain its independence, protect its reputation and operate effectively.
+                                            </div>
+                                            <div class="col-12 mb-4">
+                                                <p class="display-5">Policy</p>
+                                                It is Roshni Moolchandani Charitable Trust's policy to accept funding from any donor and whether monetary or in kind, provided that acceptance does not:
+                                                <br>
+                                                - Impair Roshni Moolchandani Charitable Trust's independence to pursue its mission
+                                                <br>
+                                                - Endanger its integrity and reputation.
+                                            </div>
+                                            <div class="col-12 mb-4">
+                                                <p class="display-5">Scope</p>
+                                                This Policy applies to all fundraising, regardless of types of donor or amounts involved, unless otherwise stated in this document. It is to be applied to all new funding from existing donors and to all new donors in the future. It does not apply to income raised from the sale of publications or from fees for participation in conferences, events and other activities. Appropriate care to protect the reputation of Roshni Moolchandani Charitable Trust should always be taken.
+                                            </div>
+                                            <div class="col-12 mb-4">
+                                                <p class="display-5">Guidelines</p>
+                                                Funding to enable Roshni Moolchandani Charitable Trust to carry out their work should be sought from a wide range of sources. Care should be taken to ensure that project-related funding does not result in undue influence over Roshni Moolchandani Charitable Trust's programme work. Subject to maintaining Roshni Moolchandani Charitable Trust's independence and reputation, Roshni Moolchandani Charitable Trust may accept funding from all kinds of sources.
+                                                <br>
+                                                If there is a significant risk that receiving funds from a particular source would impair Roshni Moolchandani Charitable Trust's independence or if there is a significant risk to Roshni Moolchandani Charitable Trust’s reputation from public association with the donor, then funding from that source must not be accepted by Roshni Moolchandani Charitable Trust.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                        
+                                    </div>                
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-12 mx-auto">
                             <div class="mt-2 mb-3">
                                 <span class="h5">
@@ -495,6 +534,12 @@ $donation_quantities = array(
                                             </small>
                                         </label>
                                     </div>
+                                </div>
+
+                                <div class="mt-2 mb-3">
+                                    <a class="btn btn-primary btn-block" data-bs-toggle="modal" data-bs-target="#donationsPolicyModal">
+                                        Donations Policy
+                                    </a>
                                 </div>
 
                                 <div class="mt-2 mb-3">
