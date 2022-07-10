@@ -14,7 +14,6 @@ use App\Mail\MissionCancelledDonorMail;
 use App\Events\Missions\MissionCreateOrUpdate;
 use App\Models\MissionAssignment;
 
-use App\Jobs\Missions\MissionNotifications;
 use App\Jobs\NotifyAllAdmins;
 
 class NewMission{
@@ -118,19 +117,32 @@ class MissionsController extends Controller
     {
         $request->validate([
             'mission_id' => 'required|exists:missions,id',
-            'user_id' => 'required|exists:user,id',
+            'user_id' => 'required|exists:users,id',
         ]);
+        if ($request->user_id != auth()->user()->id) {
+            return redirect()->route('admin.missions.index');
+        }
+        if (MissionAssignment::where('mission_id', $request->mission_id)->where('user_id', $request->user_id)->first()->status == MissionAssignment::$status['ACCEPTED']) {
+            alert()->error('You have already accepted this mission', 'Error');
+            return redirect()->route('admin.missions.index');
+        }
         $mission = Mission::find($request->mission_id);
         $location = Location::find($mission->location_id);
-        $active_volunteers = User::where('volunteer', 1)->where('available_for_mission', 1)->where('location_id', $location->id)->get();
-        $procurement_items = Operations::where('status', 4)->where('location_id', $location->id)->get();
-        $field_managers = $active_volunteers; //Update code when a permission "is_mission_manager" is defined
+        $volunteers = array();
+        $procurement_items = array();
+        $field_manager = User::where('id', $mission->field_manager_id)->first(); //Update code when a permission "is_mission_manager" is defined
+        foreach(json_decode($mission->assigned_volunteers) as $volunteer){
+            $volunteers[] = [User::where('id', $volunteer)->first(), MissionAssignment::where('mission_id', $mission->id)->where('user_id', $volunteer)->first()];
+        }
+        foreach(json_decode($mission->procurement_items) as $procurement_item){
+            $procurement_items[] = Operations::where('id', $procurement_item)->first();
+        }
         return view('admin.missions.reply', [
             'mission' => $mission,
             'location' => $location,
-            'active_volunteers' => $active_volunteers,
+            'volunteers' => $volunteers,
             'procurement_items' => $procurement_items,
-            'field_managers' => $field_managers,
+            'field_manager' => $field_manager,
             'user_id' => $request->user_id,
         ]);
     }
@@ -145,9 +157,16 @@ class MissionsController extends Controller
     {
         $request->validate([
             'mission_id' => 'required|exists:missions,id',
-            'user_id' => 'required|exists:user,id',
+            'user_id' => 'required|exists:users,id',
             'reply' => 'required|in:1,2'
         ]);
+        if ($request->user_id != auth()->user()->id) {
+            return redirect()->route('admin.missions.index');
+        }
+        if (MissionAssignment::where('mission_id', $request->mission_id)->where('user_id', $request->user_id)->first()->status == MissionAssignment::$status['ACCEPTED']) {
+            alert()->error('You have already accepted this mission', 'Error');
+            return redirect()->route('admin.missions.index');
+        }
         $assignment = MissionAssignment::where('mission_id', $request->mission_id)->where('user_id', $request->user_id)->first();
         $assignment->status = $request->reply;
         $assignment->save();
@@ -164,10 +183,22 @@ class MissionsController extends Controller
     {
         $request->validate([
             'mission_id' => 'required|exists:missions,id',
-            'user_id' => 'required|exists:user,id',
+            'user_id' => 'required|exists:users,id',
             'reply' => 'required|in:1,2',
             'reason' => 'required|string'
         ]);
+        if ($request->user_id != auth()->user()->id) {
+            return redirect()->route('admin.missions.index');
+        }
+        if (MissionAssignment::where('mission_id', $request->mission_id)->where('user_id', $request->user_id)->first()->status == MissionAssignment::$status['ACCEPTED']) {
+            alert()->error('You have already accepted this mission', 'Error');
+            return redirect()->route('admin.missions.index');
+        }
+        $mission = Mission::find($request->mission_id);
+        $volunteers = json_decode($mission->assigned_volunteers);
+        $volunteers = array_diff($volunteers, [$request->user_id]);
+        $mission->assigned_volunteers = json_encode($volunteers);
+        $mission->save();
         $name = User::find($request->user_id)->name;
         $assignment = MissionAssignment::where('mission_id', $request->mission_id)->where('user_id', $request->user_id)->first();
         $assignment->status = $request->reply;

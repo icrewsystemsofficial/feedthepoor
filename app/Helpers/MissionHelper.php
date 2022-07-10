@@ -6,6 +6,7 @@ use App\Models\Mission;
 use App\Models\Location;
 use App\Models\User;
 use App\Models\Operations;
+use App\Models\MissionAssignment;
 
 class MissionHelper {
 
@@ -143,6 +144,15 @@ class MissionHelper {
     public static function getStatusName($status_id) {
         $all_statuses = self::status();
         return $all_statuses[$status_id]['text'];
+    }
+
+    public static function getVolunteerStatus($status_id) {        
+        $all_statuses = MissionAssignment::$status;
+        foreach($all_statuses as $name => $id) {
+            if ($id == $status_id) {
+                return $name;
+            }
+        }
     }
 
 }

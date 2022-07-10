@@ -11,6 +11,53 @@
 
 @endsection
 
+@section('css')
+
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-backdrop {
+        z-index: 0 !important;
+    }
+
+    .modal-content {
+
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .close {
+        color: red;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+@endsection
+
 @section('content')
 
 
@@ -69,14 +116,12 @@
                         <div class="col-md-12 mx-auto text-center border-top border-gray-300 my-2 ">
 
                             <div class="mb-3 mt-4">
-                                <div class="card alpha-container text-white border-0 overflow-hidden mt-2">
-
-                                    <span class="mask bg-dark alpha-9"></span>
+                                <div class="card alpha-container text-white border-0 overflow-hidden mt-2 bg-dark">
 
                                     <div class="card-body px-5 py-3">
-                                        <div style="min-height: 100px;">
+                                        <div style="min-height: 50px;">
 
-                                            <div class="mt-5 h5">
+                                            <div class="mt-2 h2">
                                                 <span>{{ $mission->description }}</span>
                                             </div>                                                                                        
 
@@ -103,14 +148,14 @@
                             <div class="mb-3">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div style="min-height: 100px;">
+                                        <div style="min-height: 50px;">
                                             <div class="mt-5 h5">
-                                                <b>Location : </b><span>{{ $location }}</span>
+                                                <b>Location : </b><span>{{ $location->location_name }}</span>
                                             </div>                                                                                        
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div style="min-height: 100px;">
+                                        <div style="min-height: 50px;">
                                             <div class="mt-5 h5">
                                                 <b>Execution Date : </b><span>{{ $mission->execution_date }}</span>
                                             </div>                                                                                        
@@ -121,8 +166,8 @@
                             <div class="mb-3">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div style="min-height: 100px;">
-                                            <div class="mt-5 h5">
+                                        <div style="min-height: 50px;">
+                                            <div class="mt-0 h5">
                                                 <b>Field Manager : </b><span>{{ $field_manager->name }}</span>
                                             </div>                                                                                        
                                         </div>
@@ -132,8 +177,8 @@
                             <div class="mb-3">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div style="min-height: 100px;">
-                                            <div class="mt-5 h5">
+                                        <div style="min-height: 50px;">
+                                            <div class="mt-0 h5">
                                                 <b>Volunteers</b>
                                             </div>               
                                             <table id="volunteers" class="table table-striped table-bordered" style="width:100%">
@@ -145,12 +190,10 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach($volunteers as $volunteer)
-                                                        @if ($volunteer[0] != $field_manager->id)
-                                                            <tr>
-                                                                <td>{{ $volunteer[1] }}</td>
-                                                                <td>{{ $volunteer[2] }}</td>
-                                                            </tr>
-                                                        @endif
+                                                        <tr>
+                                                            <td>{{ $volunteer[0]->name }}</td>
+                                                            <td>{{ App\Helpers\MissionHelper::getVolunteerStatus($volunteer[1]->status) }}</td>
+                                                        </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -161,8 +204,8 @@
                             <div class="mb-3">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div style="min-height: 100px;">
-                                            <div class="mt-5 h5">
+                                        <div style="min-height: 50px;">
+                                            <div class="mt-0 h5">
                                                 <b>Procurement List</b>
                                             </div>               
                                             <table id="procurement_list" class="table table-striped table-bordered" style="width:100%">
