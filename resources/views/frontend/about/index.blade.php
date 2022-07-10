@@ -425,7 +425,7 @@ We are doing these social welfare activities at national level & mass level , ou
         <div class="row mb-5 mb-lg-6">
             <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
                 <div class="card shadow border-gray-300">
-                    <img src="{{ asset('images/team/darpan-moolchandani.jpg') }}" class="card-img-top rounded-top" alt="Joseph Portrait">
+                    <img src="{{ asset('images/team/darpan.jpeg') }}" class="card-img-top rounded-top" alt="Joseph Portrait">
                     <div class="card-body">
                         <h3 class="h4 card-title mb-2">
                             Darpan Moolchandani
@@ -454,8 +454,8 @@ We are doing these social welfare activities at national level & mass level , ou
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
-                <div class="card shadow border-gray-300">
-                    <img src="{{ asset('images/board_members/jagdish.jpeg') }}" class="card-img-top rounded-top" alt="Jose Avatar">
+                <div class="card shadow border-gray-300" style="height: 100%;">
+                    <img src="{{ asset('images/board_members/jagdish.jpeg') }}" class="card-img-top rounded-top" alt="Jose Avatar" style="height: 100%;">
                     <div class="card-body">
                         <h3 class="h4 card-title mb-2"> Dr.Jagdish Moolchandani</h3>
                         <span class="card-subtitle text-gray fw-normal">Co Founder</span>
@@ -486,8 +486,8 @@ We are doing these social welfare activities at national level & mass level , ou
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
-                <div class="card shadow border-gray-300">
-                    <img src="{{ asset('images/board_members/person1.jpeg') }}" class="card-img-top rounded-top" alt="Bonnie portrait">
+                <div class="card shadow border-gray-300" style="height: 100%;">
+                    <img src="{{ asset('images/board_members/person1.jpeg') }}" class="card-img-top rounded-top" alt="Bonnie portrait" style="height: 100%;">
                     <div class="card-body">
                         <h3 class="h4 card-title mb-2">Sapna Moolchandani</h3>
                         <span class="card-subtitle text-gray fw-normal">Co Founder</span>
