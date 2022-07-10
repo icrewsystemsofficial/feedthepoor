@@ -360,9 +360,9 @@ $donation_quantities = array(
                                 <div class="modal-content" style="width: 100%;">
                                     <div class="modal-header">
                                         <h5 class="modal-title">Terms and conditions</h5>
-                                    </div>                    
-                                    <div class="modal-body m-3"> 
-                                        
+                                    </div>
+                                    <div class="modal-body m-3">
+
                                         <div class="row">
                                             <div class="col-12 mb-4">
                                                 These rules and regulations (<b>“Terms and Conditions”</b>) shall be binding on each participant (<b>“Donor”</b> and/or <b>“You”</b>) who voluntarily desire to make monetary donations towards {{ config('app.ngo_name') }} (hereinafter referred to as <b>“trust”</b>).
@@ -428,14 +428,14 @@ $donation_quantities = array(
                                             </div>
                                         </div>
                                     </div>
-                                        
+
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                        
-                                    </div>                
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div> 
-                        
+                        </div>
+
                         {{-- DONATIONS POLICY --}}
 
                         <div class="modal fade" id="donationsPolicyModal" tabindex="1" aria-hidden="true" style="display: none;">
@@ -443,8 +443,8 @@ $donation_quantities = array(
                                 <div class="modal-content" style="width: 100%;">
                                     <div class="modal-header">
                                         <h5 class="modal-title">Donations Policy And Guidelines</h5>
-                                    </div>                    
-                                    <div class="modal-body m-3">                
+                                    </div>
+                                    <div class="modal-body m-3">
                                         <div class="row">
                                             <div class="col-12 mb-4">
                                                 Donations and other income enable Roshni Moolchandani Charitable Trust to fight corruption. Roshni Moolchandani Charitable Trust needs to secure the funding necessary to undertake its vital work. Secure and diverse funding enables Roshni Moolchandani Charitable Trust to maintain its independence, protect its reputation and operate effectively.
@@ -470,8 +470,8 @@ $donation_quantities = array(
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                        
-                                    </div>                
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
