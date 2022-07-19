@@ -16,6 +16,12 @@
         </a>
     </li>
 
+    <li class="sidebar-item {{ Nav::isRoute('admin.donations.media.index') }}">
+        <a class="sidebar-link" href="{{ route('admin.donations.media.index') }}">
+            <i class="align-middle" data-feather="image"></i> <span class="align-middle">Donations Media</span>
+        </a>
+    </li>
+
     <a data-bs-target="#operations" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
         <i class="align-middle" data-feather="truck"></i>
         <span class="align-middle">Operations</span>

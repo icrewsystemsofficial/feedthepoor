@@ -374,6 +374,12 @@ class DonationsHelper {
         return $context;
     }
 
+    public static function getDonation($id){
+
+        return Donations::find($id);
+
+    }
+
 }
 
 ?>
