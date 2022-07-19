@@ -163,10 +163,7 @@
                                             <td>{{ $donation->created_at->todatestring() }}</td>                                            
                                             <td>
                                                 <center><a href="{{ route('admin.donations.media.manage', $donation->id) }}" class="btn btn-primary btn-sm mb-2">
-                                                    <i class="fa-solid fa-edit"></i>
-                                                </a>
-                                                <a href="{{ route('admin.donations.media.destroy', $donation->id) }}" class="btn btn-danger btn-sm badge-danger mb-2">
-                                                    <i class="fa-solid fa-trash-can"></i>
+                                                    <i class="fa-solid fa-edit"></i>&nbsp; Manage
                                                 </a></center>
                                                 <a href="{{ route('admin.donations.manage', $donation->donation_id) }}" class="btn btn-primary btn-sm">
                                                     <i class="fa-solid fa-eye"></i>&nbsp; View donation
