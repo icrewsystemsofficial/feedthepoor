@@ -141,8 +141,8 @@
                <li><a target="_blank" href="{{ route('frontend.coming_soon') }}">View Certifications</a></li>
                <li><a target="_blank" href="{{ route('frontend.coming_soon') }}">Transparency Reports</a></li>
                <li><a target="_blank" href="{{ route('frontend.coming_soon') }}">Request for food</a></li>
-               <li><a target="_blank" href="#">Cookie Policy</a></li>
-               <li><a target="_blank" href="#">Privacy Policy</a></li>
+               <li><a target="_blank" href="{{ route('frontend.cookie.policy') }}">Cookie Policy</a></li>
+               <li><a target="_blank" href="{{ route('frontend.privacy.policy') }}">Privacy Policy</a></li>
             </ul>
          </div>
          <div class="col-6 col-md-2 mb-5 mb-lg-0">

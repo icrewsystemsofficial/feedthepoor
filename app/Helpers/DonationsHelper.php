@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Carbon\Carbon;
 use Exception;
 use App\Models\User;
 use App\Models\Causes;
@@ -11,22 +12,26 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Models\Activity;
 
-class DonationsHelper {
+class DonationsHelper
+{
 
 
-    public static function all_statuses() : array {
+    public static function all_statuses(): array
+    {
         return Donations::$status;
     }
 
-    public static function all_payment_methods() : array {
+    public static function all_payment_methods(): array
+    {
         return Donations::$payment_methods;
     }
 
-    public static function get_payment_method(int $id) {
+    public static function get_payment_method(int $id)
+    {
         $all_methods = self::all_payment_methods();
         $all_methods = array_flip($all_methods);
 
-        if(array_key_exists($id, $all_methods)) {
+        if (array_key_exists($id, $all_methods)) {
             return $all_methods[$id];
         } else {
             throw new Exception("Given payment method was not found on Donation Model");
@@ -35,7 +40,8 @@ class DonationsHelper {
 
     }
 
-    private static function status() : array {
+    private static function status(): array
+    {
 
         $status = array();
 
@@ -90,20 +96,21 @@ class DonationsHelper {
     /**
      * getStatus Pass the status ID, and get the HTML markup for that status.
      *
-     * @param  mixed $id
+     * @param mixed $id
      * @return html
      */
-    public static function getStatus(int $id) {
-        if($id == ''){
-            if($id != 0) {
+    public static function getStatus(int $id)
+    {
+        if ($id == '') {
+            if ($id != 0) {
                 throw new Exception('Error: status ID not passed.' . $id);
             }
         }
 
         $all_statuses = self::status();
 
-        if(!isset($all_statuses[$id])){
-            throw new Exception('Error: No status with ID '. $id. ' was found');
+        if (!isset($all_statuses[$id])) {
+            throw new Exception('Error: No status with ID ' . $id . ' was found');
         }
 
         $status = $all_statuses[$id];
@@ -112,67 +119,67 @@ class DonationsHelper {
         ");$("#search").keyup();$("#search").focus();
         EOF;
 
-        $html = "<span class='badge badge-".$status['color']."' onclick='".$onclick."'><i class='".$status['icon']." me-1'></i>".$status['text']."</span>";
+        $html = "<span class='badge badge-" . $status['color'] . "' onclick='" . $onclick . "'><i class='" . $status['icon'] . " me-1'></i>" . $status['text'] . "</span>";
 
         return $html;
     }
 
-    public static function getStatusBadges(int $id){
+    public static function getStatusBadges(int $id)
+    {
 
         $all_statuses = self::status();
         $html = '';
-        foreach($all_statuses as $sid => $status){
+        foreach ($all_statuses as $sid => $status) {
             if ($sid == $id) {
-                $html .= "<span id='".$status['text']."' class='show-badge badge badge-".$status['color']."'><i class='".$status['icon']." me-1'></i>".$status['text']."</span>";
-            }
-            else {
-                $html .= "<span id='".$status['text']."' class='hide-badge badge badge-".$status['color']."'><i class='".$status['icon']." me-1'></i>".$status['text']."</span>";
+                $html .= "<span id='" . $status['text'] . "' class='show-badge badge badge-" . $status['color'] . "'><i class='" . $status['icon'] . " me-1'></i>" . $status['text'] . "</span>";
+            } else {
+                $html .= "<span id='" . $status['text'] . "' class='hide-badge badge badge-" . $status['color'] . "'><i class='" . $status['icon'] . " me-1'></i>" . $status['text'] . "</span>";
             }
         }
         return $html;
 
     }
 
-    public static function getAllDonors(int $id = null) {
+    public static function getAllDonors(int $id = null)
+    {
         $html = '';
-        foreach(User::all() as $user) {
+        foreach (User::all() as $user) {
             if ($user->id == $id) {
-                $html .= '<option value="'.$user->id.'" selected>'.$user->name.'</option>';
-            }
-            else {
-                $html .= '<option value="'.$user->id.'">'.$user->name.'</option>';
+                $html .= '<option value="' . $user->id . '" selected>' . $user->name . '</option>';
+            } else {
+                $html .= '<option value="' . $user->id . '">' . $user->name . '</option>';
             }
         }
         return $html;
     }
 
-    public static function getAllCauses(int $id = null) {
+    public static function getAllCauses(int $id = null)
+    {
         $html = '';
         $selected = 0;
-        foreach(Causes::all() as $cause) {
+        foreach (Causes::all() as $cause) {
             if ($cause->id == $id) {
-                $html .= '<option value="'.$cause->id.'" selected>'.$cause->name.'</option>';
+                $html .= '<option value="' . $cause->id . '" selected>' . $cause->name . '</option>';
                 $selected = 1;
-            }
-            else {
-                $html .= '<option value="'.$cause->id.'">'.$cause->name.'</option>';
+            } else {
+                $html .= '<option value="' . $cause->id . '">' . $cause->name . '</option>';
             }
         }
         $html .= $selected ? '' : '<option value="0" selected>None</option>';
         return $html;
     }
 
-    public static function getAllCampaigns(int $id = null){
+    public static function getAllCampaigns(int $id = null)
+    {
 
         $html = '';
         $selected = 0;
-        foreach(Campaigns::all() as $campaign) {
+        foreach (Campaigns::all() as $campaign) {
             if ($campaign->id == $id) {
-                $html .= '<option value="'.$campaign->id.'" selected>'.$campaign->campaign_name.'</option>';
+                $html .= '<option value="' . $campaign->id . '" selected>' . $campaign->campaign_name . '</option>';
                 $selected = 1;
-            }
-            else {
-                $html .= '<option value="'.$campaign->id.'">'.$campaign->campaign_name.'</option>';
+            } else {
+                $html .= '<option value="' . $campaign->id . '">' . $campaign->campaign_name . '</option>';
             }
         }
         $html .= $selected ? '' : '<option value="0" selected>None</option>';
@@ -180,29 +187,29 @@ class DonationsHelper {
 
     }
 
-    public static function getAllPaymentMethods(string $method = null) {
+    public static function getAllPaymentMethods(string $method = null)
+    {
         $html = '';
         $methods = self::all_payment_methods();
-        foreach($methods as $method_name => $mid) {
+        foreach ($methods as $method_name => $mid) {
             if ($mid == $method) {
-                $html .= '<option value="'.$mid.'" selected>'.ucfirst(strtolower($method_name)).'</option>';
-            }
-            else {
-                $html .= '<option value="'.$mid.'">'.ucfirst(strtolower($method_name)).'</option>';
+                $html .= '<option value="' . $mid . '" selected>' . ucfirst(strtolower($method_name)) . '</option>';
+            } else {
+                $html .= '<option value="' . $mid . '">' . ucfirst(strtolower($method_name)) . '</option>';
             }
         }
         return $html;
     }
 
-    public static function getAllStatuses(int $status_id = null) {
+    public static function getAllStatuses(int $status_id = null)
+    {
         $all_statuses = self::status();
         $html = '';
-        foreach($all_statuses as $id => $status) {
+        foreach ($all_statuses as $id => $status) {
             if ($id == $status_id) {
-                $html .= "<option value='".$id."' selected>".$status['text']."</option>";
-            }
-            else {
-                $html .= "<option value='".$id."'>".$status['text']."</option>";
+                $html .= "<option value='" . $id . "' selected>" . $status['text'] . "</option>";
+            } else {
+                $html .= "<option value='" . $id . "'>" . $status['text'] . "</option>";
             }
         }
         return $html;
@@ -212,14 +219,15 @@ class DonationsHelper {
     /**
      * getTotalDonationsForCause
      *
-     * @param  mixed $cause
+     * @param mixed $cause
      * @return void
      */
-    public static function getTotalDonationsForCause(Causes $cause) {
+    public static function getTotalDonationsForCause(Causes $cause)
+    {
 
         $donations = Donations::where('cause_id', $cause->id)->count();
 
-        if($donations == 0) {
+        if ($donations == 0) {
             $total_donations = '(Unable to fetch)';
         } else {
             $total_donations = $donations;
@@ -232,13 +240,14 @@ class DonationsHelper {
     /**
      * addDonationActivity - This is required for tracking a donation activity.
      *
-     * @param  mixed $donation
-     * @param  mixed $description
+     * @param mixed $donation
+     * @param mixed $description
      * @return void
      */
-    public static function addDonationActivity(Donations $donation, string $description) {
+    public static function addDonationActivity(Donations $donation, string $description)
+    {
 
-        if(!Auth::check()) {
+        if (!Auth::check()) {
             /**
              * User is not logged in, this event
              * is likely caused by a background Job.
@@ -246,16 +255,14 @@ class DonationsHelper {
              */
 
 
-
-
         }
 
         activity()
-        ->performedOn($donation)
-        ->tap(function(Activity $activity) {
-            $activity->event = 'Automated Background Task';
-         })
-        ->log($description);
+            ->performedOn($donation)
+            ->tap(function (Activity $activity) {
+                $activity->event = 'Automated Background Task';
+            })
+            ->log($description);
 
         return;
     }
@@ -264,10 +271,11 @@ class DonationsHelper {
     /**
      * get_donation_status_badge - for the tracking page.
      *
-     * @param  mixed $id
+     * @param mixed $id
      * @return void
      */
-    public static function get_donation_status_badge(int $id) {
+    public static function get_donation_status_badge(int $id)
+    {
         $all_statuses = self::status();
         return $all_statuses[$id];
     }
@@ -276,23 +284,23 @@ class DonationsHelper {
     /**
      * get_status_change_context
      *
-     * @param  mixed $activity
+     * @param mixed $activity
      * @return string
      */
-    public static function get_status_change_context($activity, int $style = 1) : string {
+    public static function get_status_change_context($activity, int $style = 1): string
+    {
 
 
-
-        switch($activity->subject_type) {
+        switch ($activity->subject_type) {
             case "App\Models\Donations":
-                if(!isset($activity->changes['old']) && !isset($activity->changes['old'])) {
+                if (!isset($activity->changes['old']) && !isset($activity->changes['old'])) {
                     /**
                      *
                      * This function is executed when Model entries are "created" or "destroyed"
                      *
                      */
 
-                    return "Donation entry (#".$activity->subject_id.") has been ". $activity->description;
+                    return "Donation entry (#" . $activity->subject_id . ") has been " . $activity->description;
                 }
 
                 $old = $activity->changes['old']['donation_status'];
@@ -307,33 +315,33 @@ class DonationsHelper {
                 $previous_color = $all_status[$old]['color'];
                 $current_color = $all_status[$new]['color'];
 
-                switch($style) {
+                switch ($style) {
                     case 1:
-                        $context = 'Donation status has been updated. <span class="line-through text-'.$previous_color.'">'. $previous .'</span> <span class="text-'.$current_color.' font-bold">' . $current.'</span>';
-                    break;
+                        $context = 'Donation status has been updated. <span class="line-through text-' . $previous_color . '">' . $previous . '</span> <span class="text-' . $current_color . ' font-bold">' . $current . '</span>';
+                        break;
 
                     case 2:
 
-                        $context = 'Donation status has been updated from <span class="text-'.$previous_color.' font-bold">'. $previous .'</span> to <span class="text-'.$current_color.' font-bold">' . $current.'</span>';
-                    break;
+                        $context = 'Donation status has been updated from <span class="text-' . $previous_color . ' font-bold">' . $previous . '</span> to <span class="text-' . $current_color . ' font-bold">' . $current . '</span>';
+                        break;
 
                     default:
-                        $context = 'Donation status has been updated. <span class="line-through text-'.$previous_color.'">'. $previous .'</span> <span class="text-'.$current_color.' font-bold">' . $current.'</span>';
-                    break;
+                        $context = 'Donation status has been updated. <span class="line-through text-' . $previous_color . '">' . $previous . '</span> <span class="text-' . $current_color . ' font-bold">' . $current . '</span>';
+                        break;
                 }
 
-            break;
+                break;
 
 
             case "App\Models\Operations":
-                if(!isset($activity->changes['old']) && !isset($activity->changes['old'])) {
+                if (!isset($activity->changes['old']) && !isset($activity->changes['old'])) {
                     /**
                      *
                      * This function is executed when Model entries are "created" or "destroyed"
                      *
                      */
 
-                    return "Procurement list entry (#".$activity->subject_id.") has been ". $activity->description;
+                    return "Procurement list entry (#" . $activity->subject_id . ") has been " . $activity->description;
                 }
 
                 $old = $activity->changes['old']['status'];
@@ -348,30 +356,44 @@ class DonationsHelper {
                 $previous_color = $all_status[$old]['color'];
                 $current_color = $all_status[$new]['color'];
 
-                switch($style) {
+                switch ($style) {
                     case 1:
-                        $context = 'Procurement list status has been updated. <span class="line-through text-'.$previous_color.'">'. $previous .'</span> <span class="text-'.$current_color.' font-bold">' . $current.'</span>';
-                    break;
+                        $context = 'Procurement list status has been updated. <span class="line-through text-' . $previous_color . '">' . $previous . '</span> <span class="text-' . $current_color . ' font-bold">' . $current . '</span>';
+                        break;
 
                     case 2:
 
-                        $context = 'Procurement list status has been updated from <span class="text-'.$previous_color.' font-bold">'. $previous .'</span> to <span class="text-'.$current_color.' font-bold">' . $current.'</span>';
-                    break;
+                        $context = 'Procurement list status has been updated from <span class="text-' . $previous_color . ' font-bold">' . $previous . '</span> to <span class="text-' . $current_color . ' font-bold">' . $current . '</span>';
+                        break;
 
                     default:
-                        $context = 'Procurement list status has been updated. <span class="line-through text-'.$previous_color.'">'. $previous .'</span> <span class="text-'.$current_color.' font-bold">' . $current.'</span>';
-                    break;
+                        $context = 'Procurement list status has been updated. <span class="line-through text-' . $previous_color . '">' . $previous . '</span> <span class="text-' . $current_color . ' font-bold">' . $current . '</span>';
+                        break;
                 }
-            break;
+                break;
 
             default:
                 $context = 'Unable to handle activity. Please report this to our team';
-            break;
+                break;
 
         }
 
 
         return $context;
+    }
+
+    public static function getPerdayDonations()
+    {
+        $donations = Donations::whereDate('created_at', '=', Carbon::yesterday())->get();
+        $total_amount = $donations->sum('donation_amount');
+
+        return $total_amount;
+    }
+
+    public static function getTotalDonars()
+    {
+        $donations = Donations::whereDate('created_at', '=', Carbon::yesterday())->get();
+        return $donations->count();
     }
 
 }

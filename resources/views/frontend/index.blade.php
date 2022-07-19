@@ -93,8 +93,8 @@
                             class="underline">{{ now()->format('d F, Y') }}</span>
                     </h1>
                     <p class="mb-1">
-                        <span class="text-theme fw-bold">₹19,823</span> was donated by <span
-                            class="text-theme fw-bold">592</span> donors on <span
+                        <span class="text-theme fw-bold">₹{{ App\Helpers\DonationsHelper::getPerdayDonations() }}</span> was donated by <span
+                            class="text-theme fw-bold">{{ App\Helpers\DonationsHelper::getTotalDonars() }}</span> donors on <span
                             class="fw-bold text-theme">{{ now()->subDay(1)->format('d F, Y') }}</span>.
 
                         <br>

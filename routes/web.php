@@ -92,7 +92,7 @@ Route::name('frontend.')->group(function () {
     Route::view('coming-soon', 'frontend.coming_soon')->name('coming_soon');
 
     Route::view('cookie-policy','frontend.policy.cookie')->name('cookie.policy');
-    Route::view('privacy-policy','frontend.policy.privacy')->name('cookie.policy');
+    Route::view('privacy-policy','frontend.policy.privacy')->name('privacy.policy');
 });
 
 /*
