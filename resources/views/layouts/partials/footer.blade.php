@@ -122,11 +122,24 @@
          <div class="col-6 col-md-2 mb-5 mb-lg-0">
             <span class="h5">QUICKLINKS</span>
             <ul class="footer-links mt-2">
-               <li><a target="_blank" href="#">Track Donation</a></li>
+
+
+                @if ($errors->any())
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: '{{ $errors->first() }}',
+                        confirmButtonText: 'OK'
+                    })
+                </script>
+                @endif
+
+               <li><a data-bs-toggle="modal" id="track-donation-modal-button" data-bs-target="#track-donation-modal">Track Donation</a></li>
                <li><a target="_blank" href="{{ route('frontend.volunteer.apply') }}">Volunteer</a></li>
-               <li><a target="_blank" href="#">View Certifications</a></li>
-               <li><a target="_blank" href="#">Transparency Reports</a></li>
-               <li><a target="_blank" href="#">Request for food</a></li>
+               <li><a target="_blank" href="{{ route('frontend.coming_soon') }}">View Certifications</a></li>
+               <li><a target="_blank" href="{{ route('frontend.coming_soon') }}">Transparency Reports</a></li>
+               <li><a target="_blank" href="{{ route('frontend.coming_soon') }}">Request for food</a></li>
             </ul>
          </div>
          <div class="col-6 col-md-2 mb-5 mb-lg-0">
@@ -138,6 +151,9 @@
                <li>
                   <a href="{{ route('frontend.contact') }}">Contact Us</a>
                </li>
+                <li>
+                    <a href="{{ route('frontend.policies.donation') }}">Donation Policy</a>
+                </li>
             </ul>
          </div>
          <div class="col-12 col-md-4 mb-5 mb-lg-0">
@@ -173,3 +189,53 @@
       </div>
    </div>
 </footer>
+
+
+{{-- MODALS --}}
+
+<div class="modal fade" id="track-donation-modal" tabindex="-1" role="dialog" aria-labelledby="track-donation-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+             <h3 class="text-dark">
+                 Track your donation
+                 <span class="text-sm">
+                     <small>
+                         <br>
+                         We at {{ config('app.ngo_name') }} pride ourselves with 100% transparency
+                     </small>
+                 </span>
+             </h3>
+            </div>
+            <div class="modal-body text-dark">
+             <form action="{{ route('frontend.track.donation.footer_form') }}" class="GET">
+                 @csrf
+
+                 @if($errors->any())
+                 <div class="alert alert-danger">
+                     <ul>
+                         @foreach ($errors->all() as $error)
+                             <li>{{ $error }}</li>
+                         @endforeach
+                     </ul>
+                 </div>
+                 @endif
+                 <label for="">Donation ID</label>
+                 <input type="text" class="form-control has-success" id="tracking-id" name="tracking-id" placeholder="Enter your donation ID" required="required">
+
+                 <span class="text-sm text-muted font-light italic">
+                     <br>
+                     <i class="fas fa-info-circle"></i>
+                     You can find your unique donation identification number in your e-mail that you used to donate.
+                 </span>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary">Track</button>
+                </form>
+                <button type="button" class="btn btn-link text-gray ms-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

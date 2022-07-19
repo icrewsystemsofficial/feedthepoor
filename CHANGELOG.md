@@ -14,6 +14,14 @@ This was last generated on 06 June, 2022
 
 ## [Unreleased]
 
+## [2.7.10]
+
+### Feature
+ - Added donations policy
+
+## Fixes
+ - Changed the picture of Darpan Moolchandani
+
 ## [2.6.6]
 
 ### Feature

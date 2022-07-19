@@ -34,7 +34,6 @@ class CreateDonationsMediaTable extends Migration
     public function down()
     {
         Schema::dropIfExists('donations_media');
-
         Schema::table('donations', function($table) {
             $table->dropColumn('media_count');
         });
