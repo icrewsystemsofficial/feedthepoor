@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Schema;
 use ConsoleTVs\Charts\Registrar as Charts;
 use App\Charts\DailyProcurement;
 
+use Spatie\Health\Facades\Health;
+use Spatie\Health\Checks\Checks\UsedDiskSpaceCheck;
+use Spatie\Health\Checks\Checks\DatabaseCheck;
+use Spatie\Health\Checks\Checks\ScheduleCheck;
+use Spatie\Health\Checks\Checks\CacheCheck;
+use Spatie\Health\Checks\Checks\EnvironmentCheck;
+use Spatie\CpuLoadHealthCheck\CpuLoadCheck;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,7 +25,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Health::checks([
+            UsedDiskSpaceCheck::new(),
+            DatabaseCheck::new(),
+            ScheduleCheck::new(),
+            CacheCheck::new(),
+            EnvironmentCheck::new(),
+            CpuLoadCheck::new()
+                ->failWhenLoadIsHigherInTheLast5Minutes(3.5)
+                ->failWhenLoadIsHigherInTheLast15Minutes(4.0),
+        ]);
     }
 
     /**

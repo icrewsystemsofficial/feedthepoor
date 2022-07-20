@@ -3,6 +3,7 @@
 use App\Helpers\NotificationHelper;
 use App\Http\Controllers\Admin\ModuleAccessController;
 use Illuminate\Routing\RouteGroup;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\Admin\FaqController;
@@ -196,7 +197,7 @@ Route::prefix('admin')->middleware(['auth','access_check', 'can:can_access_dashb
         Route::post('/store', [DonationsController::class, 'store'])->name('store');
         Route::get('/manage/{id}', [DonationsController::class, 'manage'])->name('manage');
         Route::delete('/destroy/{id}', [DonationsController::class, 'destroy'])->name('destroy');
-        Route::put('/update/{id}', [DonationsController::class, 'update'])->name('update');
+        Route::put('/update/{id}', [DonationsController::class, 'update'])->name('update');        
     });
 
     Route::prefix('operations')->as('operations.')->group(function(){
@@ -240,6 +241,17 @@ Route::prefix('admin')->middleware(['auth','access_check', 'can:can_access_dashb
 
     });
 
+    Route::prefix('server')->as('server.')->group(function () {
+        Route::get('/status', \Spatie\Health\Http\Controllers\HealthCheckResultsController::class)->name('status');
+        Route::get('/', function(){
+            return view('admin.server.index');
+        })->name('index');
+    });
+
+    Route::post('/jobs/retry', function(Request $request){        
+        Artisan::call('queue:retry', ['id' => $request->jobId]);
+        return route('admin/jobs');
+    })->name('jobs.retry');
 });
 
 Route::prefix('admin/jobs')->group(function () {
