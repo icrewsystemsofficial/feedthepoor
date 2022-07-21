@@ -120,7 +120,7 @@
                         <table id="table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+{{--                                    <th>ID</th>--}}
                                     <th>NAME</th>
                                     <th>MANAGER</th>
                                     <th>STATUS</th>
@@ -130,7 +130,7 @@
                             <tbody>
                                 @foreach($locations as $location)
                                 <tr>
-                                    <td>{{ $location->id }}</td>
+{{--                                    <td>{{ $location->id }}</td>--}}
                                     <td>{{ $location->location_name }}</td>
                                     <td><a href="{{ route('admin.users.manage', $location->location_manager_id) }}" target="_blank">{{ $location->user->name }}</a></td>
                                     <td>

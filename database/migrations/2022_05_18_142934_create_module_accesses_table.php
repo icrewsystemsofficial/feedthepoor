@@ -14,7 +14,7 @@ class CreateModuleAccessesTable extends Migration
     public function up()
     {
         Schema::create('module_accesses', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->unique()->primary();
             $table->string('module_name');
             $table->string('module_controller_class');
             $table->string('module_route_path');

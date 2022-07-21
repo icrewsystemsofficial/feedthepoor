@@ -112,7 +112,7 @@
                         <table id="table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+{{--                                    <th>ID</th>--}}
                                     <th>QUESTION</th>
                                     <th>CATEGORY</th>
                                     <th>AUTHOR</th>
@@ -123,7 +123,7 @@
                                 @php $i = 0; @endphp
                                 @foreach($entries as $entry)
                                 <tr>
-                                    <td>{{ $entry->id }}</td>
+{{--                                    <td>{{ $entry->id }}</td>--}}
                                     <td>{{ $entry->entry_question }}</td>
                                     <td>{{ $entry->category }}</td>
                                     <td>{{ $entry->author_name }}</td>

@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Location;
 use App\Models\Causes;
+use App\Traits\Uuid;
 
 class Campaigns extends Model
 {
-    use HasFactory;
+    use HasFactory, Uuid;
 
     protected $table = 'campaigns';
 

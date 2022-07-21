@@ -14,7 +14,7 @@ class CreateVolunteerRequestTable extends Migration
     public function up()
     {
         Schema::create('volunteer_request', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->unique()->primary();
             $table->string('name');
             $table->string('age');
             $table->string('email');

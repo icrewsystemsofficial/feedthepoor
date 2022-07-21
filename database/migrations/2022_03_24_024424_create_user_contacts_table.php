@@ -14,7 +14,7 @@ class CreateUserContactsTable extends Migration
     public function up()
     {
         Schema::create('user_contacts', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->unique()->primary();
             $table->string('name');
             $table->string('email')->unique();
             $table->unsignedInteger('phone');

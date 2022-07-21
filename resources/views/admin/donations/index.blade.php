@@ -155,8 +155,8 @@
                         <table id="table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>DONOR</th>
+{{--                                    <th>ID</th>--}}
+                                    <th>DONOR NAME</th>
                                     <th>DONATION</th>
                                     <th>DATE</th>
                                     <th>STATUS</th>
@@ -166,7 +166,7 @@
                             <tbody>
                                 @foreach($donations as $donation)
                                 <tr>
-                                    <td>{{ $donation->id }}</td>
+{{--                                    <td>{{ $donation->id }}</td>--}}
                                     <td><a href="{{ route('admin.users.manage', $donation->donor_id) }}" target="_blank" class="text-primary">{{ $donation->donor_name }}</a></td>
                                     <td>
                                         Amount: <strong>₹{{ number_format($donation->donation_amount) }} </strong><br>

@@ -14,8 +14,8 @@ class CreateDonationsMediaTable extends Migration
     public function up()
     {
         Schema::create('donations_media', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('donation_id')->references('id')->on('donations')->onDelete('cascade');
+            $table->uuid('id')->unique()->primary();
+            $table->foreign('donation_id')->references('id')->on('donations')->onDelete('cascade');
             $table->string('media');
             $table->unsignedBigInteger('last_modified_by')->nullable()->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

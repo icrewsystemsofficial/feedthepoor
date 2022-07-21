@@ -14,19 +14,19 @@ class CreateDonationsTable extends Migration
     public function up()
     {
         Schema::create('donations', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('donor_id');
+            $table->uuid('id')->unique()->primary();
+            $table->uuid('donor_id');
             $table->string('donor_name');
             $table->integer('donation_amount');
             $table->text('donation_in_words');
-            $table->unsignedBigInteger('cause_id');
+            $table->uuid('cause_id');
             $table->string('cause_name');
             $table->integer('donation_status');
             $table->integer('payment_method')->default(0);
             $table->text('razorpay_payment_id')->nullable();
             $table->timestamps();
             $table->foreign('donor_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('cause_id')->references('id')->on('causes')->onDelete('cascade');
+            $table->foreign('cause_id')->references('id')->on('causes')->onDelete('cascade');            
         });
     }
 

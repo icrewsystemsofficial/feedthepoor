@@ -222,7 +222,7 @@
                             <table id="table" class="table table-striped" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+{{--                                        <th>ID</th>--}}
                                         <th>EXECUTION DATE</th>
                                         <th>LOC & FM</th>
                                         <th>ASSIGNED VOLUNTEERS</th>

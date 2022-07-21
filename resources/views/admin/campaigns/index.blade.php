@@ -179,7 +179,7 @@
                         <table id="table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+{{--                                    <th>ID</th>--}}
                                     <th>NAME</th>
                                     <th>START</th>
                                     <th>END</th>
@@ -190,7 +190,7 @@
                             <tbody>
                                 @foreach($campaigns as $campaign)
                                 <tr>
-                                    <td>{{ $campaign->id }}</td>
+{{--                                    <td>{{ $campaign->id }}</td>--}}
                                     <td>{{ $campaign->campaign_name }}</td>
                                     <td>{!! App\Helpers\CampaignsHelper::formatDate($campaign->campaign_start_date) !!}</td>
                                     <td>{!! App\Helpers\CampaignsHelper::formatDate($campaign->campaign_end_date) !!}</td>
