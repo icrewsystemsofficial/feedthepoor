@@ -468,7 +468,7 @@ $amounts = array(
 
                         {{-- Campaign Details --}}
                         <div class="col-md-12 mx-auto text-center my-3">
-                            <img src="/storage/{{ $campaign->campaign_poster }}" alt="{{ $campaign->title }}" class="img-fluid mx-auto rounded" style="max-height: 500px; max-width: 100%;"/>
+                            <img src="{{ asset('/storage/'.$campaign->campaign_poster) }}" alt="{{ $campaign->title }}" class="img-fluid mx-auto rounded" style="max-height: 500px; max-width: 100%;"/>
                         </div>
                         <div class="col-md-12 mx-auto text-center border-top border-gray-300 my-2 ">
 

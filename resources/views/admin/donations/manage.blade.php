@@ -1,8 +1,11 @@
 @extends('layouts.admin')
 
 @section('js')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-    function trigger_delete() {
+    function trigger_delete(id, quantity) {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -21,15 +24,62 @@
                 setTimeout(() => {
                     Swal.fire(
                         'Alright!',
-                        'Campaign is being deleted..',
+                        quantity+' is being deleted..',
                         'success'
                     );
 
-                    document.getElementById('delete_donation_form').submit();
+                    document.getElementById(id).submit();
                 }, 1500);
             }
         });
-    }
+    }    
+</script>
+
+<script>
+
+$('document').ready(function() {
+    $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
+    FilePond.setOptions({
+        name: 'donation_media',
+        required: true,
+        server: {
+            url: '/admin/donations/media/upload',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        }
+    });
+    let file = FilePond.create(
+        document.querySelector('#donation_media_input')
+    );
+    $.fn.filepond.setDefaults({
+        acceptedFileTypes: ['image/*', 'video/*'],
+    });
+    $(".owl-carousel").owlCarousel(
+        {
+            margin: 10,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1400: {
+                    items: 5
+                }
+            },
+            autoplay:true,
+            autoplayTimeout:3000,
+            autoplayHoverPause:true,
+            video:true,
+            lazyLoad:true,
+            center:true,
+        }
+    );
+});
+
 </script>
 @endsection
 
@@ -62,7 +112,7 @@
 
 
             <div class="">
-                <button class="btn btn-danger" type="button" onclick="trigger_delete();">
+                <button class="btn btn-danger" type="button" onclick="trigger_delete('delete_donation_form', 'Donation');">
                     <i class="fa-solid fa-trash"></i> Delete
                 </button>
 
@@ -87,7 +137,7 @@
 @endif
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="card mt-3">
             <div class="card-body">
                 <h3 class="card-title">
@@ -152,9 +202,42 @@
                 </div>
             </div>
         </div>
+
+        <div class="card mt-3">
+            <div class="card-body">
+                <h3 class="card-title">
+                    DONATION MEDIA
+                </h3>
+                @if($donation->media_count == 0)
+                    <form action="{{ route('admin.donations.media.store') }}" id="new_donation_media_form" method="POST" autocomplete="off" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="donation_id" value="{{ $donation->id }}">
+                        <div class="form-group mb-3">
+                            <label for="campaign_poster">Media <span class="required">*</span></label>
+                            <input type="file" class="donation_media" id="donation_media_input" name="donation_media[]" accept="image/*, video/*" multiple>
+                        </div>
+                        <span onclick="document.getElementById('new_donation_media_form').submit()">
+                            <x-loadingbutton type="submit">Upload</x-loadingbutton>
+                        </span>
+                    </form>
+                @else
+                    <div class="alert alert-info">
+                        <i class="fa-solid fa-info-circle"></i>
+                        This donation has {{ $donation->media_count }} media.
+                    </div>
+                    <button class="btn btn-danger" type="button" onclick="trigger_delete('delete_donation_media_form', 'Donation media')">
+                        <i class="fa-solid fa-trash"></i> Delete Media
+                    </button>
+                    <form action="{{ route('admin.donations.media.destroy', $donation_media->id) }}" id="delete_donation_media_form" method="POST" autocomplete="off">
+                        @csrf
+                        @method('DELETE')                        
+                    </form>
+                @endif
+            </div>
+        </div>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-6">
         <div class="card mt-3">
             <div class="card-body">
                 <h3 class="card-title">
@@ -240,6 +323,45 @@
     </div>
 </div>
 
+@if($donation->media_count > 0)
+<style>
+.owl-carousel .owl-stage{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+.owl-carousel .owl-item img, .owl-carousel .owl-item video{
+    width: 100%;
+    height: 100% !important;
+}
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mt-3">
+            <div class="card-body">
+                <h3 class="card-title">
+                    MEDIA
+                </h3>
+                <div class="owl-carousel owl-theme">
+                    @foreach(json_decode($donation_media->media) as $media)
+                    @if (mime_content_type($media) == 'image/jpeg' || mime_content_type($media) == 'image/png' || mime_content_type($media) == 'image/gif' || mime_content_type($media) == 'image/jpg' || mime_content_type($media) == 'image/heic')
+                        <div class="item">
+                            <img src="{{ asset($media) }}" alt="image" class="img-fluid">
+                        </div>
+                    @elseif (mime_content_type($media) == 'video/mp4' || mime_content_type($media) == 'video/webm')
+                        <div class="item">
+                            <video controls style="height: fit-content">
+                                <source src="{{ asset($media) }}" alt="video">
+                            </video>
+                        </div>
+                    @endif
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 
 
 <div class="row">

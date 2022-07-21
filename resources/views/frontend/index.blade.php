@@ -246,14 +246,16 @@
             <div class="elfsight-app-b37396fb-2d16-45e6-a146-d6e37fd6a553"></div>
 
 
-            <div class="row justify-content-between align-items-center">
+            {{-- <div class="row justify-content-between align-items-center">
                 <div class="col-12 col-md-7 col-lg-6 text-center text-md-left">
                     <p>
                         WORK IN PROGRESS
                     </p>
                 </div>
 
-            </div>
+            </div> --}}
+
+
         </div>
     </section>
 

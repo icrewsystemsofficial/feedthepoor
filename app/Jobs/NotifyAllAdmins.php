@@ -9,10 +9,11 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Helpers\NotificationHelper;
+use romanzipp\QueueMonitor\Traits\IsMonitored;
 
 class NotifyAllAdmins implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, IsMonitored;
 
     //Using a job to do this because ALL/MAIL type notifications will take quite a while to be sent    
     public $title;

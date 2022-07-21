@@ -201,6 +201,19 @@ class HomeController extends Controller
     }
 
 
+    /**
+     * track_donation_footer_form - redirect the users from the frontend-footer.
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function track_donation_footer_form(Request $request) {
+
+        // Validation will be handled in the next step.
+        $tracking_id = $request->input('tracking-id');
+        $url = route('frontend.track-donation'). '/' . $tracking_id;
+        return redirect($url);
+    }
 
     /**
      * track_donation - The page where users can track their donation
@@ -254,6 +267,8 @@ class HomeController extends Controller
             'activities' => $merged_activities,
         ]);
     }
+
+
 
     public function faq()
     {
@@ -381,6 +396,12 @@ class HomeController extends Controller
         return $pdf->stream($filename);
     }
 
+
+    // public function to show the policies/donation_policy page
+    public function donation_policy()
+    {
+        return view('frontend.policies.donation_policy');
+    }
 
     /**
      * activity

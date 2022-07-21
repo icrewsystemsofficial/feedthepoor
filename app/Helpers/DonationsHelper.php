@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Causes;
 use App\Models\Campaigns;
 use App\Models\Donations;
+use App\Models\DonationMedia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Models\Activity;
@@ -372,6 +373,24 @@ class DonationsHelper {
 
 
         return $context;
+    }
+
+    public static function getDonation($id){
+
+        return Donations::find($id);
+
+    }
+    
+    /**
+     * getDonationMedia - Get all media files uploaded for a donation
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public static function getDonationMedia($id)
+    {
+        $d_media = DonationMedia::where('donation_id', $id)->first();        
+        return $d_media->media;
     }
 
 }

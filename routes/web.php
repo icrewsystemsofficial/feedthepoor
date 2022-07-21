@@ -3,6 +3,7 @@
 use App\Helpers\NotificationHelper;
 use App\Http\Controllers\Admin\ModuleAccessController;
 use Illuminate\Routing\RouteGroup;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\Admin\FaqController;
@@ -58,6 +59,8 @@ Route::name('frontend.')->group(function () {
 
 
     Route::get('/campaigns/{slug?}', [HomeController::class, 'campaigns'])->name('campaigns');
+
+    Route::get('/track-donation-footer-form', [HomeController::class, 'track_donation_footer_form'])->name('track.donation.footer_form');
     Route::get('/track-donation/{donation_id?}', [HomeController::class, 'track_donation'])->name('track-donation');
     Route::get('/transparency-report', [HomeController::class, 'index'])->name('transparency-report');
 
@@ -77,6 +80,13 @@ Route::name('frontend.')->group(function () {
         Route::post('/submit', [UsersController::class, 'submit_request'])->name('submit');
     });
 
+    Route::prefix('/policies')->as('policies.')->group(function() {
+        Route::get('/donation-policy', [HomeController::class, 'donation_policy'])->name('donation');
+        //TODO
+        Route::get('/privacy-policy', [HomeController::class, 'privacy_policy'])->name('privacy');
+        Route::get('/cookie-policy', [HomeController::class, 'cookie_policy'])->name('cookie');
+
+    });
 
     Route::get('/activity', [HomeController::class, 'activity'])->name('activity');
 
@@ -188,6 +198,12 @@ Route::prefix('admin')->middleware(['auth','access_check', 'can:can_access_dashb
         Route::get('/manage/{id}', [DonationsController::class, 'manage'])->name('manage');
         Route::delete('/destroy/{id}', [DonationsController::class, 'destroy'])->name('destroy');
         Route::put('/update/{id}', [DonationsController::class, 'update'])->name('update');
+        Route::prefix('media')->as('media.')->group(function () {
+            Route::post('/store', [DonationsController::class, 'media_store'])->name('store');
+            Route::get('/manage/{id}', [DonationsController::class, 'media_manage'])->name('manage');
+            Route::delete('/destroy/{id}', [DonationsController::class, 'media_destroy'])->name('destroy');
+            Route::post('/upload', [DonationsController::class, 'media_upload'])->name('upload');
+        });
     });
 
     Route::prefix('operations')->as('operations.')->group(function(){
@@ -231,6 +247,17 @@ Route::prefix('admin')->middleware(['auth','access_check', 'can:can_access_dashb
 
     });
 
+    Route::prefix('server')->as('server.')->group(function () {
+        Route::get('/status', \Spatie\Health\Http\Controllers\HealthCheckResultsController::class)->name('status');
+        Route::get('/', function(){
+            return view('admin.server.index');
+        })->name('index');
+    });
+
+    Route::post('/jobs/retry', function(Request $request){        
+        Artisan::call('queue:retry', ['id' => $request->jobId]);
+        return route('admin/jobs');
+    })->name('jobs.retry');
 });
 
 Route::prefix('admin/jobs')->group(function () {
