@@ -134,7 +134,7 @@
                 <a class="sidebar-link" href="{{ route('admin.access.index') }}">Module Access</a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link" href="#">Server Monitor (WIP)</a>
+                <a class="sidebar-link" href="{{ route('admin.server.index') }}">Server Monitor</a>
             </li>
         </ul>
     </li>

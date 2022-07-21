@@ -99,7 +99,8 @@ class CausesController extends Controller
         // if (!str_contains($request->yield_context,"%YIELD%")){
         //     throw ValidationException::withMessages(['yield_context' => 'Yield context must have a value %YIELD% denoting the number of people benifiting from the donation']);
         // }
-        $cause = Causes::find($request->id)->update($request->all());
+        $cause = Causes::find($request->id);
+        $cause->update($request->all());
         alert()->success('Yay','Cause "'.$request->name.'" was successfully updated');
         NotifyAllAdmins::dispatch('Cause modified', 'A cause '.$request->name.' has been modified by '.auth()->user()->name, 'ALL', route('admin.causes.manage', $cause->id))->delay(now());
         return redirect(route('admin.causes.index'));

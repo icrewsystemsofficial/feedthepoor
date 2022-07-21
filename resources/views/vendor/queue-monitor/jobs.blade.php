@@ -222,6 +222,15 @@
                                                         @lang('Delete')
                                                     </button>
                                                 </form>
+                                                @if($job->hasFailed())
+                                                    <form action="{{ route('admin.jobs.retry') }}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" value="{{ $job->getId() }}" name="jobId">
+                                                        <button class="btn btn-primary btn-sm mt-2">
+                                                            Retry
+                                                        </button>
+                                                    </form>
+                                                @endif
                                             </td>
                                         @endif
                                     </tr>
