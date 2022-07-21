@@ -51,7 +51,8 @@ class DonationsController extends Controller
         $donation = Donations::find($request->id);
         $user = User::find($donation->donor_id);
         $all_donations = Donations::all()->where('donor_id', $donation->donor_id)->where('id', '!=', $donation->id);
-        return view('admin.donations.manage', compact('donation', 'user', 'all_donations'));
+        $donation_media = ($donation->media_count) ? DonationMedia::where('donation_id', $donation->id)->first() : null;                
+        return view('admin.donations.manage', compact('donation', 'user', 'all_donations', 'donation_media'));
     }
 
     public function update(Request $request){
@@ -86,7 +87,7 @@ class DonationsController extends Controller
 
 
         // DonationsHelper::addDonationActivity($donation, 'Donation updated');
-
+        NotifyAllAdmins::dispatch('Donation updated', 'Donation #'.$donation->id.' has been updated by '.auth()->user()->name, 'ALL')->delay(now());
         alert()->success('Yay','Donation was successfully updated');
 
 
@@ -107,25 +108,6 @@ class DonationsController extends Controller
         return redirect()->route('admin.donations.index');
     }
 
-
-    public function media_index()
-    {
-        $donations = Donations::all()->where('donation_status', 5);
-        $donation_media = DonationMedia::orderBy('id', 'DESC')->get();
-        return view('admin.donations.media.index', compact('donations', 'donation_media'));
-    }
-
-    public function media_manage(Request $request)
-    {
-        $this->validate($request, [
-            'id' => 'required|exists:donation_media'
-        ]);
-        $donation_media = DonationMedia::find($request->id);
-        $donations = Donations::all()->where('donation_status', 5);
-        $donation = Donations::find($donation_media->donation_id);
-        return view('admin.donations.media.manage', compact('donations', 'donation_media'));
-    }
-
     public function media_store(Request $request)
     {
         $this->validate($request, [
@@ -143,7 +125,13 @@ class DonationsController extends Controller
             $filename = DIRECTORY_SEPARATOR . 'donation_media'. DIRECTORY_SEPARATOR . $request->donation_id . DIRECTORY_SEPARATOR . "img_$c." . $ext;
             Storage::disk('local')->move($image, 'public/'.$filename);
             Storage::disk('local')->delete($image);
-            $imageList[] = config('app_url'). DIRECTORY_SEPARATOR ."storage".$filename;
+            if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif' || $ext == 'heic') {
+                DonationMedia::imageWatermark("storage".$filename, "Donated with love by ".$donation->donor_name);
+            }
+            else if ($ext == 'mp4' || $ext == 'mov' || $ext == 'avi' || $ext == 'mpg' || $ext == 'mpeg') {
+                DonationMedia::videoWatermark("storage".$filename);
+            }
+            $imageList[] = "storage".$filename;
         }
         $donation_media = new DonationMedia();
         $donation_media->donation_id = $request->donation_id;
@@ -154,52 +142,21 @@ class DonationsController extends Controller
         $donation->donation_status = 6;
         $donation->save();
         alert()->success('Yay','Media was successfully added');
-        return redirect()->route('admin.donations.media.index');
+        return redirect()->route('admin.donations.index');
     }
 
-    public function media_update(Request $request)
+    public function media_destroy($id)
     {
-        $this->validate($request, [
-            'donation_id' => 'required|integer',
-            'donation_media' => 'required',
-        ]);
-        $donation_media = DonationMedia::find($request->id);
-        $donation = Donations::find($donation_media->donation_id);
-        $images = $request->donaiton_media;
-        $c = 0;
-        $imageList = array();
-        Storage::disk('public')->exists('donation_media' . DIRECTORY_SEPARATOR . $request->donation_id) ? Storage::disk('public')->deleteDirectory('donation_media' . DIRECTORY_SEPARATOR . $request->donation_id) : null;
-        foreach($images as $image){
-            $info = pathinfo($image);
-            $c++;
-            $ext = $info['extension'];
-            $filename = DIRECTORY_SEPARATOR . 'donation_media'. DIRECTORY_SEPARATOR . $request->donation_id . DIRECTORY_SEPARATOR . "img_$c." . $ext;
-            Storage::disk('local')->move($image, 'public/'.$filename);
-            Storage::disk('local')->delete($image);
-            $imageList[] = config('app_url'). DIRECTORY_SEPARATOR ."storage".$filename;
-        }
-        $donation_media->donation_id = $request->donation_id;
-        $donation_media->media = json_encode($imageList);
-        $donation_media->last_modified_by = auth()->user()->id;        
-        $donation_media->save();
-        $donation->media_count = $c;
-        $donation->donation_status = 6;
-        $donation->save();
-        alert()->success('Yay','Media was successfully updated');
-        return redirect()->route('admin.donations.media.index');
-    }
-
-    public function media_destroy(Request $request)
-    {
-        $donation_media = DonationMedia::find($request->id);
+        $donation_media = DonationMedia::find($id);
         $donation = Donations::find($donation_media->donation_id);
         $donation_media->delete();
         $donation->media_count = 0;
         $donation->donation_status = 5;
         $donation->save();
+        Storage::disk('public')->deleteDirectory('donation_media/'.$donation->id);
         NotifyAllAdmins::dispatch('Donation Media deleted', 'Donation Media for donation #'.$donation->id.' has been deleted by '.auth()->user()->name, 'ALL')->delay(now());
-        alert()->success('Yay','Donation was successfully deleted');
-        return redirect()->route('admin.donations.media.index');
+        alert()->success('Yay','Media was successfully deleted');
+        return redirect()->route('admin.donations.index');
     }
 
     public function media_upload(Request $request)

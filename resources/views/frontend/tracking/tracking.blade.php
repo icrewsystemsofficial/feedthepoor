@@ -1,9 +1,27 @@
 @extends('layouts.frontend')
 
 @section('css')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0/lightgallery.min.js" integrity="sha512-FDbnUqS6P7md6VfBoH57otIQB3rwZKvvs/kQ080nmpK876/q4rycGB0KZ/yzlNIDuNc+ybpu0HV3ePdUYfT5cA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chocolat/1.1.0/js/chocolat.min.js" integrity="sha512-f0RyyfsrXaAqNTCqDXt0A7GDr5YauTMYj42P7Y6DNNQ+KjU7cYZpxqLzqncnWMXPZy9h4XtpKPcvsQ/3C2PA1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chocolat/1.1.0/css/chocolat.min.css" integrity="sha512-0Wtl14JWThNlRkEer0rCPKk6ZVa8DfCb2bpvi8hMM5XqBLygHTJbWcrDP/3Qomp2LMuWMdAZK+E93HFF1puBOQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
 
     /* TODO Put this CSS in a separate file */
+
+    .owl-carousel .owl-stage{
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+    .owl-carousel .owl-item img, .owl-carousel .owl-item video{
+        width: 100%;
+        height: 100% !important;
+    }
 
     .vertical-timeline {
         width: 100%;
@@ -119,6 +137,12 @@
             }
         }
     }
+    $('document').ready(function(){
+        Chocolat(document.querySelectorAll('.chocolat-parent .chocolat-image'), {
+            imageSize: 'contain',
+            loop: true,
+        });
+    });
 </script>
 @endsection
 
@@ -142,11 +166,11 @@
 
                 </h1>
 
-                <div class="alert alert-danger">
+                {{-- <div class="alert alert-danger">
                     <small>
                         <i class="fas fa-info-circle"></i> Certain items of this page are currently under development, we'll let you know once they're live.
                     </small>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -231,7 +255,7 @@
                                         if($donation->payment_method == App\Models\Donations::$payment_methods['RAZORPAY']) {
                                             $razorpay_data = app(App\Http\Controllers\API\RazorpayAPIController::class)->fetch_payment($donation->razorpay_payment_id);
                                             if($razorpay_data->notes->checkbox_80g == "on") {
-                                                $excemption = 'Eligible <i class="fas fa-check-circle"></i>, <br><span class="font-light">(Check e-mail for download link)</span>';
+                                                $excemption = 'Eligible <i class="fas fa-check-circle"></i>, <br><span class="font-light"></span>';
                                             } else {
                                                 $excemption = 'Not eligible <i class="fas fa-times-circle"></i>';
                                             }
@@ -321,7 +345,7 @@
                                         2 => array(
                                             'title' => 'Order Placed',
                                             'complete' => false,
-                                            'in_progress' => true,
+                                            'in_progress' => false,
                                         ),
 
                                         3 => array(
@@ -337,16 +361,20 @@
                                         ),
 
                                         5 => array(
+                                            'title' => 'Fieldwork done',
+                                            'complete' => false,
+                                            'in_progress' => false,
+                                        ),
+
+                                        6 => array(
                                             'title' => 'Pictures Updated',
                                             'complete' => false,
                                             'in_progress' => false,
                                         )
                                     );
 
-                                    $donation_status = $operation->status>=2 ? $operation->status : 1;
-                                    if ($donation_status > 5) {
-                                        $donation_status = 5;
-                                    }
+                                    $donation_status = $donation->donation_status>=2 ? $donation->donation_status : 1;
+                                    
                             @endphp
 
                             <script>
@@ -405,7 +433,7 @@
                                                             $color = 'success';
                                                             $icon = 'fa-check-circle';
                                                         }
-                                                        elseif ($id == $donation_status+1) {
+                                                        elseif ($id == $donation_status+1) {                                                            
                                                             $color = 'info';
                                                             $icon = 'fa-sync fa-spin';
                                                         }
@@ -413,7 +441,8 @@
                                                             $color = 'dark';
                                                             $icon = 'fa-times-circle';
                                                         }
-
+                                                    $images = [];
+                                                    $videos = [];
                                                     @endphp
 
 
@@ -428,6 +457,48 @@
                         </div>
                     </div>
 
+                    @if ($donation->donation_status == 6)
+                    <div class="border-top border-gray-300 mb-5"></div>
+                    <div class="row d-flex justify-content-center mt-70 mb-70">
+                        <div class="col-md-12">
+                            <div class="main-card mb-3">
+                                    <h5 class="card-title">
+                                        Pictures
+                                    </h5>
+                                    <small>
+                                        Take a look at the bundles of joy made possible by YOU!
+                                    </small>                                                                 
+                                    @foreach(json_decode(App\Helpers\DonationsHelper::getDonationMedia($donation->id)) as $media)                                        
+                                        @if (mime_content_type($media) == 'image/jpeg' || mime_content_type($media) == 'image/png' || mime_content_type($media) == 'image/gif' || mime_content_type($media) == 'image/jpg' || mime_content_type($media) == 'image/heic')
+                                            @php $images[] = $media; @endphp
+                                        @elseif (mime_content_type($media) == 'video/mp4' || mime_content_type($media) == 'video/webm')
+                                            @php $videos[] = $media; @endphp
+                                        @endif
+                                    @endforeach    
+                                    @if ($images)
+                                        <div class="chocolat-parent">
+                                        @foreach ($images as $media)
+                                            <a class="chocolat-image" href="{{ asset($media) }}">
+                                                <img src="{{ asset($media) }}" />
+                                            </a>
+                                        @endforeach                                
+                                        </div>
+                                    @endif
+                                    @if ($videos)
+                                        <div class="owl-carousel owl-theme mt-3">
+                                            @foreach ($videos as $media)
+                                                <div class="item">
+                                                    <video controls style="height: fit-content">
+                                                        <source src="{{ asset($media) }}" alt="video">
+                                                    </video>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>                    
+                    @endif
 
                     {{-- DONATION TIMELINE --}}
                     <div class="border-top border-gray-300 mb-5"></div>

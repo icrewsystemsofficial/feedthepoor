@@ -198,11 +198,9 @@ Route::prefix('admin')->middleware(['auth','access_check', 'can:can_access_dashb
         Route::delete('/destroy/{id}', [DonationsController::class, 'destroy'])->name('destroy');
         Route::put('/update/{id}', [DonationsController::class, 'update'])->name('update');
         Route::prefix('media')->as('media.')->group(function () {
-            Route::get('/', [DonationsController::class, 'media_index'])->name('index');
             Route::post('/store', [DonationsController::class, 'media_store'])->name('store');
             Route::get('/manage/{id}', [DonationsController::class, 'media_manage'])->name('manage');
             Route::delete('/destroy/{id}', [DonationsController::class, 'media_destroy'])->name('destroy');
-            Route::put('/update/{id}', [DonationsController::class, 'media_update'])->name('update');
             Route::post('/upload', [DonationsController::class, 'media_upload'])->name('upload');
         });
     });
