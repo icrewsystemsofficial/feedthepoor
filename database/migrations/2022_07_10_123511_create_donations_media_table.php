@@ -15,7 +15,14 @@ class CreateDonationsMediaTable extends Migration
     {
         Schema::create('donations_media', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('donation_id')->references('id')->on('donations')->onDelete('cascade');
+            $table->string('media');
+            $table->unsignedBigInteger('last_modified_by')->nullable()->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+        });
+
+        Schema::table('donations', function($table){
+            $table->integer('media_count')->default(0);
         });
     }
 
@@ -27,5 +34,8 @@ class CreateDonationsMediaTable extends Migration
     public function down()
     {
         Schema::dropIfExists('donations_media');
+        Schema::table('donations', function($table) {
+            $table->dropColumn('media_count');
+        });
     }
 }
