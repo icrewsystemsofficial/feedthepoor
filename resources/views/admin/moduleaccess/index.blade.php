@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-12">
             <h3>
-                Module Access
+                <strong>Admin Tools</strong> Module Access
             </h3>
 
             {{--            <p class="mt-n2">--}}

@@ -87,7 +87,7 @@ $('document').ready(function() {
 <div class="row">
     <div class="col-12">
         <h3>
-            Donations <span class="text-muted">></span> Manage
+            <strong>Donations</strong> Manage
         </h3>
         <p class="mt-n2">
             <small>

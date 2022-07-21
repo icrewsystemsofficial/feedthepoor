@@ -15,10 +15,11 @@ class CreateDonationsMediaTable extends Migration
     {
         Schema::create('donations_media', function (Blueprint $table) {
             $table->uuid('id')->unique()->primary();
-            $table->foreign('donation_id')->references('id')->on('donations')->onDelete('cascade');
+            $table->uuid('donation_id');
             $table->string('media');
             $table->unsignedBigInteger('last_modified_by')->nullable()->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+            $table->foreign('donation_id')->references('id')->on('donations')->onDelete('cascade');
         });
 
         Schema::table('donations', function($table){

@@ -33,7 +33,7 @@
     <div class="row">
         <div class="col-12">
             <h3>
-                Module Access <span class="text-muted">></span> Create
+                <strong>Admin Tools</strong> <b>Module Access</b> Create
             </h3>
             {{-- <p class="mt-n2">--}}
             {{--                <small>--}}

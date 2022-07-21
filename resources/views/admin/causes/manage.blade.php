@@ -37,7 +37,7 @@
 <div class="row">
     <div class="col-12">
         <h3>
-            Causes <span class="text-muted">></span> Manage
+            <strong>Causes</strong> Manage
         </h3>
         <p class="mt-n2">
             <small>

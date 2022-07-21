@@ -37,7 +37,7 @@
 <div class="row">
     <div class="col-12">
         <h3>
-            Locations <span class="text-muted">></span> Manage
+            <strong>Locations</strong> Manage
         </h3>
         <p class="mt-n2">
             <small>

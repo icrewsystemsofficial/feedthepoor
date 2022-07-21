@@ -37,7 +37,7 @@
     <div class="row">
         <div class="col-12">
             <h3>
-                Module Access <span class="text-muted">></span> Edit
+                <strong>Admin Tools</strong> <b>Module Access</b> Edit
             </h3>
         </div>
     </div>

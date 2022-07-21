@@ -147,7 +147,7 @@
         <div class="row">
             <div class="col-12">
                 <h3>
-                    Campaigns
+                    <strong>Campaigns</strong>
                 </h3>
                 <p class="mt-n2">
                     <small>

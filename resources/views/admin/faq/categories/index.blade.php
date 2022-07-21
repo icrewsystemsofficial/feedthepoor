@@ -72,7 +72,7 @@
         <div class="row">
             <div class="col-12">
                 <h3>
-                    FAQs <span class="text-muted">></span> Categories
+                    <strong>FAQs</strong> Categories
                 </h3>
                 <p class="mt-n2">
                     <small>

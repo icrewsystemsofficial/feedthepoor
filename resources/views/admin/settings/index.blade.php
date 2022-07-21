@@ -131,7 +131,7 @@
 <div class="row">
     <div class="col-12">
         <h3>
-            Settings
+            <strong>Settings</strong>
         </h3>
 
         {{-- START CREATE SETTING MODAL --}}

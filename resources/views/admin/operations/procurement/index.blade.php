@@ -172,7 +172,7 @@
 <div class="row">
     <div class="col-12">
         <h3>
-            Operations <span class="text-muted">></span> Procurement
+            <strong>Operations</strong> Procurement
         </h3>
 
         <p class="mt-n2">

@@ -40,7 +40,7 @@
 <div class="row">
     <div class="col-12">
         <h3>
-            FAQs <span class="text-muted">></span> Questions <span class="text-muted">></span> Manage
+            <strong>FAQs</strong> <b>Questions</b> Manage
         </h3>
         <p class="mt-n2">
             <small>

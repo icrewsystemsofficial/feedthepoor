@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-12">
         <h3>
-            Locations
+            <strong>Locations</strong>
         </h3>
 
         <p class="mt-n2">

@@ -125,7 +125,7 @@
 <div class="row">
     <div class="col-12">
         <h3>
-            Users
+            <strong>Users</strong>
             <br>
             <small class="text-muted text-sm">
                 All users present in the application. You can click on a role to filter, or search for a specific user.

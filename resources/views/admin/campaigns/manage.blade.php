@@ -98,7 +98,7 @@
 <div class="row">
     <div class="col-12">
         <h3>
-            Campaigns <span class="text-muted">></span> Manage
+            <strong>Campaigns</strong> Manage
         </h3>
         <p class="mt-n2">
             <small>
