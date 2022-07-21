@@ -28,7 +28,7 @@ class DonationMedia extends Model
     public static function imageWatermark($imagePath, $text)
     {
         $image = Image::make($imagePath);
-        $watermark = Image::make(public_path('images/branding/roshni-foundation-watermark.png'));
+        $watermark = Image::make(public_path('images/branding/roshni-foundation.png'))->resize(50, 50);
         $image->insert($watermark, 'bottom-right', 10, 10);
         $image->text($text, 10, $image->height()-10, function ($font) {
             $font->file(public_path('fonts/Roboto-Bold.ttf'));
