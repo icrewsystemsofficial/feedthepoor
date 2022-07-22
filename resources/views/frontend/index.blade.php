@@ -77,7 +77,7 @@
 
                                     <div class="mt-3">
                                         <span class="">
-                                            {{ now()->subDay(2)->format('d F, Y') }}
+                                            {{ now()->subDay(1)->format('d F, Y') }}
                                         </span>
                                     </div>
                                 </div>

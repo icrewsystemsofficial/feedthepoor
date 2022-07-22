@@ -54,14 +54,14 @@ return [
          * With this setting, notifications are throttled. By default, you'll
          * only get one notification per hour.
          */
-        'throttle_notifications_for_minutes' => 60,
+        'throttle_notifications_for_minutes' => 30,
 
         'mail' => [
-            'to' => 'your@example.com',
+            'to' => env('MAIL_USERNAME'),
 
             'from' => [
-                'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-                'name' => env('MAIL_FROM_NAME', 'Example'),
+                'address' => env('MAIL_USERNAME'),
+                'name' => env('MAIL_FROM_NAME'),
             ],
         ],
 

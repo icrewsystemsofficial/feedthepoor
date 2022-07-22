@@ -15,6 +15,7 @@ use Spatie\Health\Checks\Checks\ScheduleCheck;
 use Spatie\Health\Checks\Checks\CacheCheck;
 use Spatie\Health\Checks\Checks\EnvironmentCheck;
 use Spatie\CpuLoadHealthCheck\CpuLoadCheck;
+use Spatie\Health\Checks\Checks\OptimizedAppCheck;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,7 +31,8 @@ class AppServiceProvider extends ServiceProvider
             DatabaseCheck::new(),
             ScheduleCheck::new(),
             CacheCheck::new(),
-            EnvironmentCheck::new(),
+            OptimizedAppCheck::new(),
+            //EnvironmentCheck::new(),
             CpuLoadCheck::new()
                 ->failWhenLoadIsHigherInTheLast5Minutes(3.5)
                 ->failWhenLoadIsHigherInTheLast15Minutes(4.0),
