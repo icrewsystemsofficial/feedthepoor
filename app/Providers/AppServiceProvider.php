@@ -17,6 +17,9 @@ use Spatie\Health\Checks\Checks\EnvironmentCheck;
 use Spatie\CpuLoadHealthCheck\CpuLoadCheck;
 use Spatie\Health\Checks\Checks\OptimizedAppCheck;
 
+use App\Jobs\NotifyAllAdmins;
+use Illuminate\Queue\Events\JobFailed;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -50,5 +53,9 @@ class AppServiceProvider extends ServiceProvider
         $charts->register([
             DailyProcurement::class,
         ]);
+
+        Queue::failings(function (JobFailed $event) {
+            NotifyAllAdmins::dispatch('Job failed', "Job $event->getName() has failed", 'APP');            
+        });
     }
 }
