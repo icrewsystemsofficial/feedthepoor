@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature>
+  <change type="fix">Frontend: All data regarding donations and campaigns were made dynamic</change>
+  <change type="feature">Added `queue:check` command which checks if queue worker is running and restarts it if not</change>
+  <change type="fix">Made admin panel UI uniform throughout the app</change>
+  <change type="feature">Added a way for admins to upload media for donation to the server</change>
+  <change type="feature">Added a server health monitor to the admin panel</change>
+  <change type="fix">Replaced incrementing IDs with UUIDs in the database</change>
+</feature>
