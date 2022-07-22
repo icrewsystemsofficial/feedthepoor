@@ -36,9 +36,14 @@ class HomeController extends Controller
         //Stats that are passed into the frontend page.
         // This will have to be made dyanmic.
 
-        $total_meals_fed = 850;
-        $total_donations_received = 42500;
-        $howmany = 50;
+        $total_meals_fed = 0;
+        foreach (Donations::all() as $donation) {
+            $total_meals_fed += round($donation->donation_amount / Causes::find($donation->cause_id)->per_unit_cost);
+        }
+
+        $total_donations_received = Donations::all()->sum('donation_amount');
+        $today_donations = Donations::all()->where('created_at', '<=', date('Y-m-d 00:00:00'))->where('created_at', '>=', date('Y-m-d 00:00:00', strtotime('-30 day')))->sum('donation_amount');        
+        $today_donors = Donations::all()->where('created_at', '<=', date('Y-m-d 00:00:00'))->where('created_at', '>=', date('Y-m-d 00:00:00', strtotime('-30 day')))->count();
 
         // $images = array();
         // $height = 300;
@@ -62,9 +67,11 @@ class HomeController extends Controller
         $causes = Causes::where('name', '!=', null)->get();
 
         return view('frontend.index', [
-            'total_meals_fed' => $total_meals_fed,
+            'total_meals_fed' => (int) $total_meals_fed,
             'total_donations_received' => $total_donations_received,
             'all_causes' => $causes,
+            'today_donations' => $today_donations,
+            'today_donors' => $today_donors,
         ]);
     }
 
@@ -75,10 +82,18 @@ class HomeController extends Controller
      */
     public function about()
     {
-
+        $total_donations_received = Donations::all()->sum('donation_amount');
+        $total_meals_fed = 0;
+        foreach (Donations::all() as $donation) {
+            $total_meals_fed += round($donation->donation_amount / Causes::find($donation->cause_id)->per_unit_cost);
+        }
+        $campaigns = Campaigns::all()->count();
         $locations = Location::where('location_status', 1)->get();
         return view('frontend.about.index', [
             'locations' => $locations,
+            'campaigns' => $campaigns,
+            'total_donations_received' => $total_donations_received,
+            'total_meals_fed' => (int) $total_meals_fed,
         ]);
     }
 

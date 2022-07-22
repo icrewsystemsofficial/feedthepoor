@@ -221,7 +221,7 @@ We are doing these social welfare activities at national level & mass level , ou
                     </div>
                     <h3 class="h5">Donations Collected</h3>
                     <span class="counter display-3 text-gray d-block">
-                        9,500,000+
+                        {{ $total_donations_received }}+
                     </span>
                 </div>
                 <!-- End of Visit Box -->
@@ -233,7 +233,7 @@ We are doing these social welfare activities at national level & mass level , ou
                         <span class="fas fa-users"></span>
                     </div>
                     <h3 class="h5">People helped</h3>
-                    <span class="counter display-3 text-gray d-block">15,000,000+</span>
+                    <span class="counter display-3 text-gray d-block">{{ $total_meals_fed }}+</span>
                 </div>
                 <!-- End of Call Box -->
             </div>
@@ -244,7 +244,7 @@ We are doing these social welfare activities at national level & mass level , ou
                         <span class="fas fa-gift"></span>
                     </div>
                     <h3 class="h5">Campaigns</h3>
-                    <span class="counter display-3 text-gray d-block">50+</span>
+                    <span class="counter display-3 text-gray d-block">{{ $campaigns }}+</span>
                 </div>
                 <!-- End of Email Box -->
             </div>

@@ -138,7 +138,7 @@
         <div class="row justify-content-center align-items-center">
             <div class="col-12 col-md-6 col-lg-6">
                 <h1 class="text-center mt-auto">
-                    <span class="display-1">15M+</span><br> People helped
+                    <span class="display-1">1M+</span><br> People helped since inception
                 </h1>
                 <p class="text-center text-muted">
                     {{ config('app.ngo_name') }} <br>connects those in need with those who can help them.

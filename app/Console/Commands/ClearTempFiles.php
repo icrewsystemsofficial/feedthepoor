@@ -39,8 +39,8 @@ class ClearTempFiles extends Command
      */
     public function handle()
     {             
-        activity()->log('Clearing temporary files from campaigns/tmp folder');
-        $files = Storage::disk('public')->files('campaigns/tmp');        
+        activity()->log('Clearing temporary files from campaigns/tmp and donation_media/tmp folder');
+        $files = Storage::disk('public')->files('campaigns/tmp') + Storage::disk('public')->files('donation_media/tmp');        
         foreach($files as $file){
             if (time() - filemtime(storage_path('app/public/'.$file)) >= 15 * 60) {
                 Storage::disk('public')->delete($file);

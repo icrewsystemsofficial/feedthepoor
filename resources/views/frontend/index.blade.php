@@ -89,16 +89,14 @@
 
                 <div class="col-lg-8 col-md-6 p-5 col-sm-12">
                     <h1 class="display-4 mb-4">
-                        We fed <span class="underline">859</span> hungry souls on <span
-                            class="underline">{{ now()->format('d F, Y') }}</span>
+                        We have helped <span class="text-theme">{{ $total_meals_fed }}</span> people find joy
                     </h1>
                     <p class="mb-1">
-                        <span class="text-theme fw-bold">₹19,823</span> was donated by <span
-                            class="text-theme fw-bold">592</span> donors on <span
-                            class="fw-bold text-theme">{{ now()->subDay(1)->format('d F, Y') }}</span>.
+                        <span class="text-theme fw-bold">₹{{ $today_donations }}</span> was donated by <span
+                            class="text-theme fw-bold">{{ $today_donors }}</span> donors in the past month.
 
                         <br>
-                        We have donated <span class="text-theme fw-bold">1,23,973,682 meals</span> since inception.
+                        We have received <span class="text-theme fw-bold">₹{{ $total_donations_received }}</span> donation since inception.
                     </p>
 
                     <br>

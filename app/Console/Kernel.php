@@ -21,7 +21,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         $schedule->command('ClearTempFiles')->everyMinute();
         $schedule->command(\Spatie\Health\Commands\RunHealthChecksCommand::class)->everyMinute();
-        $schedule->command('queue:work --daemon')->everyMinute()->withoutOverlapping();
+        $schedule->command('queue:check')->everyMinute();
 
         //One caveat with this is after every new deployment we need to run queue:restart so that the daemon worker will restart
     }
