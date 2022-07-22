@@ -5,5 +5,7 @@
   <change type="fix">Made admin panel UI uniform throughout the app</change>
   <change type="feature">Added a way for admins to upload media for donation to the server</change>
   <change type="feature">Added a server health monitor to the admin panel</change>
-  <change type="fix">Replaced incrementing IDs with UUIDs in the database</change>
+  <change type="fix">Replaced incrementing IDs with randomised IDs in the database</change>
+  <change type="feature">Admins and IT team now get notified on the app and on discord if a job fails</change>
+  <change type="fix">Removed the ID column from all tables in the admin panel</change>
 </feature>

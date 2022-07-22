@@ -14,12 +14,26 @@ This was last generated on 06 June, 2022
 
 ## [Unreleased]
 
+## [3.7.22]
+
+### Features
+ - Added `queue:check` command which checks if queue worker is running and restarts it if not
+ - Added a way for admins to upload media for donation to the server
+ - Added a server health monitor to the admin panel
+ - Admins and IT team now get notified on the app and on discord if a job fails
+
+### Fixes
+ - Frontend: All data regarding donations and campaigns were made dynamic
+ - Made admin panel UI uniform throughout the app
+ - Replaced incrementing IDs with randomised IDs in the database
+ - Removed the ID column from all tables in the admin panel
+
 ## [2.7.10]
 
 ### Feature
  - Added donations policy
 
-## Fixes
+### Fixes
  - Changed the picture of Darpan Moolchandani
 
 ## [2.6.6]
@@ -30,7 +44,7 @@ This was last generated on 06 June, 2022
  - Added dynamic swappable values in the yield context textarea for the causes module
  - Frontend homepage causes section added
 
-### Fix
+### Fixes
  - Added ScrollToTop on the second page of the donation form
  - Campaign slug fallback method added
  - Edited UI for Module Access

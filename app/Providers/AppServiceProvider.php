@@ -19,6 +19,7 @@ use Spatie\Health\Checks\Checks\OptimizedAppCheck;
 
 use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Support\Facades\Queue;
+use App\Helpers\NotificationHelper;
 
 class AppServiceProvider extends ServiceProvider
 {
