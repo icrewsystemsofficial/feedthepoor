@@ -230,7 +230,7 @@ $('document').ready(function() {
                     </button>
                     <form action="{{ route('admin.donations.media.destroy', $donation_media->id) }}" id="delete_donation_media_form" method="POST" autocomplete="off">
                         @csrf
-                        @method('DELETE')                        
+                        @method('DELETE')      
                     </form>
                 @endif
             </div>
@@ -378,7 +378,6 @@ $('document').ready(function() {
                         <table id="table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>AMOUNT</th>
                                     <th>CAUSE</th>
                                     <th>STATUS</th>
@@ -388,7 +387,6 @@ $('document').ready(function() {
                             <tbody>
                                 @foreach($all_donations as $per_donation)
                                 <tr>
-                                    <td>{{ $per_donation->id }}</td>
                                     <td>₹ {{ $per_donation->donation_amount }}</td>
                                     <td>{{ $per_donation->cause_name }}</td>
                                     <td>
