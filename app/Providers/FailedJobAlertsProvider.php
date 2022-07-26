@@ -73,7 +73,7 @@ class FailedJobAlertsProvider extends ServiceProvider
                 app(NotificationHelper::class)->notifyAllAdmins('Job failed', 'Job failed: ' . $event->connectionName . ' - ' . $event->job->getName() . ' - ' . $event->exception->getMessage(), 'APP');
 
                 if ($event->job->attempts() == 2) {
-                    $event->job->delete();
+                    return;
                 }
                 else{
                     $event->job->release(5 * $event->job->attempts());

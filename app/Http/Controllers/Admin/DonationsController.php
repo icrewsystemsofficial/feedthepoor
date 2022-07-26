@@ -51,7 +51,8 @@ class DonationsController extends Controller
         $donation = Donations::find($request->id);
         $user = User::find($donation->donor_id);
         $all_donations = Donations::all()->where('donor_id', $donation->donor_id)->where('id', '!=', $donation->id);
-        $donation_media = ($donation->media_count) ? DonationMedia::where('donation_id', $donation->id)->first() : null;                
+        $donation_media = ($donation->media_count) ? DonationMedia::where('donation_id', $donation->id)->first() : null;      
+        
         return view('admin.donations.manage', compact('donation', 'user', 'all_donations', 'donation_media'));
     }
 
@@ -110,10 +111,7 @@ class DonationsController extends Controller
 
     public function media_store(Request $request)
     {
-        $this->validate($request, [
-            'donation_id' => 'required|integer',
-            'donation_media' => 'required',
-        ]);
+        DonationsHelper::validateDonationMediaRequest($request);
         $donation = Donations::find($request->donation_id);
         $images = $request->donation_media;
         $c = 0;
@@ -122,15 +120,24 @@ class DonationsController extends Controller
             $info = pathinfo($image);
             $c++;
             $ext = $info['extension'];
-            $filename = DIRECTORY_SEPARATOR . 'donation_media'. DIRECTORY_SEPARATOR . $request->donation_id . DIRECTORY_SEPARATOR . "img_$c." . $ext;
-            Storage::disk('local')->move($image, 'public/'.$filename);
-            Storage::disk('local')->delete($image);
-            if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif' || $ext == 'heic') {
-                DonationMedia::imageWatermark("storage".$filename, "Donated with love by ".$donation->donor_name);
+            $filename = DIRECTORY_SEPARATOR . 'donation_media'. DIRECTORY_SEPARATOR . $request->donation_id . DIRECTORY_SEPARATOR . "img_$c." . $ext;                        
+            if (!File::exists(public_path('storage'.$filename))) {
+                if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif' || $ext == 'heic') {
+                    DonationsHelper::imageWatermark(Storage::disk('local')->path($image), "Donated with love by ".$donation->donor_name);
+                }
+                else if ($ext == 'mp4' || $ext == 'mov' || $ext == 'avi' || $ext == 'mpg' || $ext == 'mpeg') {
+                    DonationsHelper::videoWatermark(Storage::disk('local')->path($image));
+                }
+                Storage::disk('local')->move($image, 'public/'.$filename);
+                Storage::disk('local')->delete($image);
             }
-            else if ($ext == 'mp4' || $ext == 'mov' || $ext == 'avi' || $ext == 'mpg' || $ext == 'mpeg') {
-                DonationMedia::videoWatermark("storage".$filename);
-            }
+            else {
+                File::deleteDirectory(public_path('storage'. DIRECTORY_SEPARATOR . 'donation_media'. DIRECTORY_SEPARATOR . $request->donation_id));
+                throw ValidationException::withMessages([
+                    ['Unable to upload media. Please try again'],
+                ])
+                ->status(422);
+            }            
             $imageList[] = "storage".$filename;
         }
         $donation_media = new DonationMedia();
@@ -147,6 +154,7 @@ class DonationsController extends Controller
 
     public function media_destroy($id)
     {
+        dd($id);
         $donation_media = DonationMedia::find($id);
         $donation = Donations::find($donation_media->donation_id);
         $donation_media->delete();
