@@ -38,14 +38,20 @@ class DonationsHelper {
             return redirect()->back()->withErrors($validator)->withInput();
         }
     }
-
+    
+    /**
+     * validateDonationMediaRequest - Validate the request data for the donation media
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public static function validateDonationMediaRequest($request) {
         $validator = Validator::make($request->all(), [
             'donation_id' => 'required|string|exists:donations,id',
-            'donation_media' => 'required|max:4112',
+            'donation_media' => 'required|max:4112|accepted:jpg,jpeg,png,gif,heic,mp4,mov,avi,webm,mpeg',
         ]);
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            return redirect()->back()->withErrors($validator);
         }
     }
 
@@ -80,7 +86,7 @@ class DonationsHelper {
         $status[Donations::$status['PENDING']] = array(
             'text' => 'Processing',
             'icon' => 'fa-solid fa-exclamation-triangle',
-            'color' => 'info',
+            'color' => 'warning',
         );
 
 
@@ -105,20 +111,20 @@ class DonationsHelper {
 
         $status[Donations::$status['MISSION ASSIGNED']] = array(
             'text' => 'Mission Assigned',
-            'icon' => 'fa-solid fa-times',
-            'color' => 'warning',
+            'icon' => 'fa-solid fa-check',
+            'color' => 'info',
         );
 
         $status[Donations::$status['FIELD WORK DONE']] = array(
             'text' => 'Field Work Done',
-            'icon' => 'fa-solid fa-times',
-            'color' => 'warning',
+            'icon' => 'fa-solid fa-check',
+            'color' => 'success',
         );
 
         $status[Donations::$status['PICTURES UPDATED']] = array(
             'text' => 'Pictures updated',
-            'icon' => 'fa-solid fa-times',
-            'color' => 'warning',
+            'icon' => 'fa-solid fa-check-circle',
+            'color' => 'success',
         );
 
 
@@ -253,15 +259,15 @@ class DonationsHelper {
      * @param  mixed $cause
      * @return void
      */
-    public static function getTotalDonationsForCause(Causes $cause): int {
+    public static function getTotalDonationsForCause(Causes $cause): string {
 
         $donations = Donations::where('cause_id', $cause->id)->count();
 
-        /*if($donations == 0) {
+        if($donations == 0) {
             $total_donations = '(Unable to fetch)';
         } else {
             $total_donations = $donations;
-        }*/
+        }
 
         return $total_donations;
     }

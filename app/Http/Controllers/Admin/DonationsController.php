@@ -125,7 +125,7 @@ class DonationsController extends Controller
                 if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif' || $ext == 'heic') {
                     DonationsHelper::imageWatermark(Storage::disk('local')->path($image), "Donated with love by ".$donation->donor_name);
                 }
-                else if ($ext == 'mp4' || $ext == 'mov' || $ext == 'avi' || $ext == 'mpg' || $ext == 'mpeg') {
+                else if ($ext == 'mp4' || $ext == 'mov' || $ext == 'avi' || $ext == 'webm' || $ext == 'mpeg') {
                     DonationsHelper::videoWatermark(Storage::disk('local')->path($image));
                 }
                 Storage::disk('local')->move($image, 'public/'.$filename);
