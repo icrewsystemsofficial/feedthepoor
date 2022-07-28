@@ -19,9 +19,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('ClearTempFiles')->everyMinute();
-        $schedule->command(\Spatie\Health\Commands\RunHealthChecksCommand::class)->everyMinute();
-        $schedule->command('queue:check')->everyMinute();
+        $schedule->command('queue:work')->everyMinute()->description('Runs queue worker');
+        $schedule->command('ClearTempFiles')->hourly()->description('Clear existing temporary files from campaigns/tmp folder');
+        $schedule->command(\Spatie\Health\Commands\RunHealthChecksCommand::class)->hourly();
+
 
         //One caveat with this is after every new deployment we need to run queue:restart so that the daemon worker will restart
     }
