@@ -13,6 +13,11 @@ use App\Jobs\Donation\CreateDonationReceipt;
 use romanzipp\QueueMonitor\Traits\IsMonitored;
 use App\Jobs\Donation\AddOrUpdateDonationEntry;
 use App\Jobs\Operations\CreateProcurementListEntries;
+use App\Models\Causes;
+use App\Models\Campaigns;
+use App\Helpers\DonationsHelper;
+use App\Models\Donations;
+use App\Helpers\NotificationHelper;
 
 class DonationReceivedListener implements ShouldQueue
 {
