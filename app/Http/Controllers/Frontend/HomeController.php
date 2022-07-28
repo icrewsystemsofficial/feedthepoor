@@ -206,7 +206,15 @@ class HomeController extends Controller
             payment ID, please check the e-mail ID you provided during the time of donation. For more help, contact support.');
         }
 
-        $id = Donations::where('razorpay_payment_id', $payment_id)->first()->id;
+        while (1){
+            try {
+                $id = Donations::where('razorpay_payment_id', $payment_id)->first()->id;
+                break;
+            }
+            catch (\Exception $e) {
+                sleep(1);
+            }
+        }
 
         return view('frontend.donation.thank_you', [
             'payment_id' => $payment_id,

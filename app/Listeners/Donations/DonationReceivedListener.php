@@ -53,7 +53,72 @@ class DonationReceivedListener implements ShouldQueue
 
         # Add donation entry
         $user = User::where('email', $payment->email)->first();
-        AddOrUpdateDonationEntry::dispatch($payment, $user)->onQueue('default');
+
+        $cause = isset($payment->cause) ? Causes::where('name', $payment->cause)->first() : 0;
+        $campaign = isset($payment->campaign) ? Campaigns::where('campaign_name', $payment->campaign)->first() : 0;
+
+        # Check if there is a donation with the same ID.
+        if(Donations::where('razorpay_payment_id', $payment->id)->count() == 0) {
+            $donation = new Donations;
+            $donation->donor_id = $user->id;
+            $donation->donor_name = $user->name;
+            $donation->donation_amount = $payment->amount;
+            $donation->donation_in_words = $payment->amt_in_words;
+
+
+            # If payment arrives through a campaign...
+            if (isset($payment->campaign)){
+                $donation->campaign_id = $campaign->id;
+                $donation->cause_id = null;
+                $donation->cause_name = null;
+            }
+            else {
+                $donation->cause_id = $cause->id;
+                $donation->cause_name = $cause->name;
+                $donation->campaign_id = null;
+            }
+            $donation->donation_status = Donations::$status['PENDING'];
+            $donation->payment_method = Donations::$payment_methods['RAZORPAY'];
+            $donation->razorpay_payment_id = $payment->id;
+            $donation->save();
+
+            # Normal donations were failing because of this.
+            // $campaign_name = isset($payment->campaign) ? ', Campaign # (?) '.$campaign->campaign_name : '. (NO CAMPAIGN)';
+            // $addl = ' for Cause # '. $campaign_name;
+
+            $admins = NotificationHelper::getAllAdmins();
+            foreach($admins as $admin) {
+                app(NotificationHelper::class)->user($admin)
+                ->icon('dollar-sign')
+                ->color('success')
+                ->action(route('admin.donations.manage', $donation->id))
+                ->content(
+                    'New donation received',
+                    '₹'.$payment->amount.' received from '. $user->name.' (user #'.$user->id.'), for cause: '.$cause->name,
+                )->notify();
+            }
+
+            # This is for the frontend-tracking page.
+            $log = 'A donation entry created for ₹'.$payment->amount.', received from '. $user->name.' (user #'.$user->id.'), for cause: '.$cause->name;
+            DonationsHelper::addDonationActivity($donation, $log);
+
+            activity()->log('New donation of ₹'.$payment->amount.' received from '. $user->name.' (#'.$user->id.')');
+        } else {
+
+            $admins = NotificationHelper::getAllAdmins();
+            foreach($admins as $admin) {
+                app(NotificationHelper::class)->user($admin)
+                ->icon('money-bill')
+                ->color('success')
+                ->content(
+                    '[Duplicate entry] New donation received',
+                    '₹'.$payment->amount.' received from '. $user->name.' (#'.$user->id.')',
+                )->notify();
+            }
+
+            activity()->log('[Duplicate entry] Donation of ₹'.$payment->amount.' received from '. $user->name.' (#'.$user->id.') for '. isset($payment->campaign) ? 'campaign '.$campaign->campaign_name : 'cause '.$cause->name);
+        }
+        //AddOrUpdateDonationEntry::dispatch($payment, $user)->onQueue('default');
 
 
 
