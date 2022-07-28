@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\FlutterAPIController;
+use App\Http\Controllers\API\QueueRunnerAPIController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,9 @@ Route::prefix('v1')->as('api.v1.')->group(function() {
         });
     });
 
+
+    Route::get('queue/run', [QueueRunnerAPIController::class, 'run'])->name('queue.run');
+    Route::get('queue/list', [QueueRunnerAPIController::class, 'list'])->name('queue.list');
 
 
     /**
