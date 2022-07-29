@@ -42,11 +42,12 @@ class CheckQueueStatus extends Command
 
         $command = "ps aux | grep 'queue:work' | grep -v grep";
         $output = shell_exec($command);
+        $discord = config('services.discord.webhook');
         if (strlen($output) == 0) {
             $command = "php artisan queue:work";
             shell_exec($command);
 
-            Http::post('https://discord.com/api/webhooks/976253549778440253/slWh5d-vECU0_C6h-cZAULTtpIBnTgOO1g5S1Z2BEydr1Bgi8CWLfpjm1MntcXnog-xt', [
+            Http::post($discord, [
                 'username' => 'Queue Worker',
                 'content' => 'Queue worker restarted',
             ]);
@@ -55,7 +56,7 @@ class CheckQueueStatus extends Command
             echo "Queue worker is running\n";
 
 
-            Http::post('https://discord.com/api/webhooks/976253549778440253/slWh5d-vECU0_C6h-cZAULTtpIBnTgOO1g5S1Z2BEydr1Bgi8CWLfpjm1MntcXnog-xt', [
+            Http::post($discord, [
                 'username' => 'Queue Worker',
                 'content' => 'Queue worker is already running',
             ]);

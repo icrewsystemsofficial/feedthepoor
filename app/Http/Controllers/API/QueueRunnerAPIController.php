@@ -13,8 +13,9 @@ class QueueRunnerAPIController extends Controller
 
         //Since we're getting errors while runing cron jobs via cPanel, this
         //is a work around.
+        $discord = config('services.discord.webhook');
 
-        Http::post('https://discord.com/api/webhooks/976253549778440253/slWh5d-vECU0_C6h-cZAULTtpIBnTgOO1g5S1Z2BEydr1Bgi8CWLfpjm1MntcXnog-xt', [
+        Http::post($discord, [
             'username' => config('app.name') .' ('. config('app.env') .') '. config('app.url') .'',
             'content' => 'The schedule:run command has been triggered by the API',
         ]);
