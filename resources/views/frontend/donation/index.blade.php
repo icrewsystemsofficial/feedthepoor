@@ -153,9 +153,16 @@ $donation_quantities = array(
             },
 
             updateDonationQuantity(quantity) {
+                var btn = document.getElementById('btn-'+ quantity);
                 this.donationQuantity = quantity;
+
+                btn.classList.add("border-success");
                 this.calculatePrice(quantity);
                 this.formatMoney();
+
+                setTimeout(() => {
+                    btn.classList.remove('border-success');
+                }, 2000);
             },
 
             updateDonationQuantity_custom() {
@@ -648,7 +655,7 @@ $donation_quantities = array(
                                 <div class="flex" style="flex-wrap: wrap">
 
                                     @foreach ($donation_quantities as $quantity)
-                                    <button type="button" class="border-3 m-1 rounded-lg" @click="updateDonationQuantity({{ $quantity }});" style="width:80px;height:40px">
+                                    <button type="button" class="border-3 m-1 rounded-lg" id="btn-{{ $quantity }}"  @click="updateDonationQuantity({{ $quantity }});" style="width:80px;height:40px">
                                         {{ $quantity }}
                                     </button>
                                     @endforeach
