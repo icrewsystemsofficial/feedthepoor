@@ -37,7 +37,8 @@
             timer: 4000
         });
 
-        let selects = {{ json_encode($allOperations) }};
+        let selects = {!! json_encode($allOperations) !!}
+        //console.log({{ '"'.implode('","', $allOperations).'"' }});
         selects.forEach(id => {
             $('#status_'+id).select2();
             $('#location_'+id).select2();
@@ -47,7 +48,7 @@
                 axios.post('/admin/operations/procurement/update/'+id, {
                     _token: '{{ csrf_token() }}',
                     status: status,
-                    last_updated_by: {{ Auth::user()->id }}
+                    last_updated_by: "{{ Auth::user()->id }}"
                 })
                 .then(function (response) {
                         data = response.data;
@@ -94,7 +95,7 @@
                 axios.post('/admin/operations/procurement/update/'+id, {
                     _token: '{{ csrf_token() }}',
                     location_id: locationId,
-                    last_updated_by: {{ Auth::user()->id }}
+                    last_updated_by: "{{ Auth::user()->id }}"
                 })
                 .then(function (response) {
                         Toast.fire({
