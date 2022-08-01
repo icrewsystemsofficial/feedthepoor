@@ -222,7 +222,7 @@
                                                         @lang('Delete')
                                                     </button>
                                                 </form>
-                                                @if($job->hasFailed())
+                                                {{--@if($job->hasFailed())
                                                     <form action="{{ route('admin.jobs.retry') }}" method="post">
                                                         @csrf
                                                         <input type="hidden" value="{{ $job->getId() }}" name="jobId">
@@ -230,7 +230,7 @@
                                                             Retry
                                                         </button>
                                                     </form>
-                                                @endif
+                                                @endif--}}
                                             </td>
                                         @endif
                                     </tr>
