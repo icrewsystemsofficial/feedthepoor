@@ -26,7 +26,7 @@
           <div class="card-body px-0 pt-0">
             <div class="row">
                 <div class="col-12 mb-4 mt-2">
-                    <h3>Terms and Conditions</h3>
+                    <h3>Terms and Conditions & Privacy Policy</h3>
                 </div>
                 <div class="col-12 mb-4">
                     These rules and regulations (<b>“Terms and Conditions”</b>) shall be binding on each participant (<b>“Donor”</b> and/or <b>“You”</b>) who voluntarily desire to make monetary donations towards {{ config('app.ngo_name') }} (hereinafter referred to as <b>“trust”</b>).

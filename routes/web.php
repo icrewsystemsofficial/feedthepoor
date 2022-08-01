@@ -270,8 +270,8 @@ Route::prefix('admin/jobs')->group(function () {
     Route::queueMonitor();
 });
 
-Route::get('sendwebhook', [SendWebhookController::class, 'send'])->name('sendwebhook');
-Route::get('test', [TestController::class, 'test'])->name('test');
+/*Route::get('sendwebhook', [SendWebhookController::class, 'send'])->name('sendwebhook');
+Route::get('test', [TestController::class, 'test'])->name('test');*/
 
 
 /*
