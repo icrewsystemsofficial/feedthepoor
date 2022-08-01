@@ -14,14 +14,16 @@ use App\Jobs\NotifyAllAdmins;
 
 class CampaignsController extends Controller
 {
-    public function index(){       
+    public function index()
+    {
         $campaigns = Campaigns::all();
         $locations = Location::groupBy('id')->get(['id', 'location_name']);
         $causes = Causes::groupBy('id')->get(['id', 'name']);
         return view('admin.campaigns.index', compact('campaigns', 'locations', 'causes'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'campaign_name' => 'required|string|max:50',
             'campaign_description' => 'required|string|max:150',
@@ -40,33 +42,36 @@ class CampaignsController extends Controller
         $info = pathinfo($request->campaign_poster);
         $ext = $info['extension'];
 
-        $filename = 'campaigns/'.$request->campaign_name.'/'.$request->campaign_name.'_poster.'.$ext;
-        Storage::disk('local')->move($request->campaign_poster, 'public/'.$filename);
+        $filename = 'campaigns/' . $request->campaign_name . '/' . $request->campaign_name . '_poster.' . $ext;
+        Storage::disk('local')->move($request->campaign_poster, 'public/' . $filename);
         Storage::disk('local')->delete($request->campaign_poster);
-        $request->merge(['campaign_poster' => config('app_url')."/storage/".$filename]);
+        $request->merge(['campaign_poster' => config('app_url') . "/storage/" . $filename]);
         $request->merge(['slug' => Str::slug($request->campaign_name)]);
         $campaign = Campaigns::create($request->all());
         $campaign = $campaign->fresh();
-        alert()->success('Yay','Campaign "'.$request->campaign_name.'" was successfully created');         
-        NotifyAllAdmins::dispatch('New campaign created', 'A new campaign '.$request->campaign_name.' has been created by '.auth()->user()->name, 'ALL', route('admin.campaigns.manage', $campaign->id))->delay(now());
+        alert()->success('Yay', 'Campaign "' . $request->campaign_name . '" was successfully created');
+        NotifyAllAdmins::dispatch('New campaign created', 'A new campaign ' . $request->campaign_name . ' has been created by ' . auth()->user()->name, 'ALL', route('admin.campaigns.manage', $campaign->id))->delay(now());
         return redirect(route('admin.campaigns.index'));
     }
 
-    public function manage(Request $request){
+    public function manage(Request $request)
+    {
         $campaign = Campaigns::find($request->id);
         return view('admin.campaigns.manage', compact('campaign'));
     }
 
-    public function destroy(Request $request){
+    public function destroy(Request $request)
+    {
         $campaign = Campaigns::find($request->id);
-        Storage::disk('public')->deleteDirectory('campaigns/'.$campaign->campaign_name);
+        Storage::disk('public')->deleteDirectory('campaigns/' . $campaign->campaign_name);
         $campaign->delete();
-        alert()->success('Yay','Campaign "'.$campaign->campaign_name.'" was successfully deleted');
-        NotifyAllAdmins::dispatch('Campaign '.$campaign->campaign_name.' deleted', 'Campaign '.$campaign->campaign_name.' has been deleted by '.auth()->user()->name, 'ALL')->delay(now());
+        alert()->success('Yay', 'Campaign "' . $campaign->campaign_name . '" was successfully deleted');
+        NotifyAllAdmins::dispatch('Campaign ' . $campaign->campaign_name . ' deleted', 'Campaign ' . $campaign->campaign_name . ' has been deleted by ' . auth()->user()->name, 'ALL')->delay(now());
         return redirect(route('admin.campaigns.index'));
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $request->validate([
             'campaign_name' => 'required|string|max:50',
             'campaign_description' => 'required|string|max:150',
@@ -92,11 +97,11 @@ class CampaignsController extends Controller
         if ($request->campaign_poster) {
             $info = pathinfo($request->campaign_poster);
             $ext = $info['extension'];
-            $filename = 'campaigns/'.$request->campaign_name.'/'.$request->campaign_name.'_poster.'.$ext;
+            $filename = 'campaigns/' . $request->campaign_name . '/' . $request->campaign_name . '_poster_updated.' . $ext;
             Storage::disk('public')->delete($campaign->campaign_poster);
-            Storage::disk('local')->move($request->campaign_poster, 'public/'.$filename);
+            Storage::disk('local')->move($request->campaign_poster, 'public/' . $filename);
             Storage::disk('local')->delete($request->campaign_poster);
-            $request->merge(['campaign_poster' => $filename]);
+            $request->merge(['campaign_poster' => config('app_url') . "/storage/" . $filename]);
         }
         else{
             $request->request->remove('campaign_poster');
@@ -104,20 +109,21 @@ class CampaignsController extends Controller
 
         $request->merge(['slug' => Str::slug($request->campaign_name)]);
         $campaign->update($request->all());
-        alert()->success('Yay','Campaign "'.$request->campaign_name.'" was successfully updated');
-        NotifyAllAdmins::dispatch('Campaign '.$campaign->campaign_name.' modified', 'Campaign '.$campaign->campaign_name.' has been edited by '.auth()->user()->name, 'ALL', route('admin.campaigns.manage', $campaign->id))->delay(now());
+        alert()->success('Yay', 'Campaign "' . $request->campaign_name . '" was successfully updated');
+        NotifyAllAdmins::dispatch('Campaign ' . $campaign->campaign_name . ' modified', 'Campaign ' . $campaign->campaign_name . ' has been edited by ' . auth()->user()->name, 'ALL', route('admin.campaigns.manage', $campaign->id))->delay(now());
         return redirect(route('admin.campaigns.index'));
     }
 
     /**
      * validate_directory - If path does not exist, create.
      *
-     * @param  mixed $path
+     * @param mixed $path
      * @return void
      */
-    public function validate_directory($path) {
-        if(!File::isDirectory($path)){
-            if(File::makeDirectory($path, 0777, true, true)) {
+    public function validate_directory($path)
+    {
+        if (!File::isDirectory($path)) {
+            if (File::makeDirectory($path, 0777, true, true)) {
                 return true;
             } else {
                 # Unable to create directory.
@@ -131,14 +137,15 @@ class CampaignsController extends Controller
 
     }
 
-    public function upload(Request $request){
+    public function upload(Request $request)
+    {
 
         if ($request->hasFile('campaign_poster')) {
             $file = $request->file('campaign_poster');
-            $filename = $file->getClientOriginalName();            
+            $filename = $file->getClientOriginalName();
             $extension = $file->getClientOriginalExtension();
-            $path = storage_path('campaigns' . DIRECTORY_SEPARATOR . 'tmp');            
-            if($this->validate_directory($path)) {
+            $path = storage_path('campaigns' . DIRECTORY_SEPARATOR . 'tmp');
+            if ($this->validate_directory($path)) {
                 $folder = $file->store('campaigns' . DIRECTORY_SEPARATOR . 'tmp');
                 return $folder;
             } else {

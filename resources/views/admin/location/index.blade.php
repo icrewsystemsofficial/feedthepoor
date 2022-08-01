@@ -73,7 +73,7 @@
                             <div class="form-group mb-2">
                                 <label for="status" class="form-label">Status</label>
                                 <select class="form-control" id="status" name="location_status">
-                                    <option vallue="" selected>Select a status</option>
+                                    <option value="" selected>Select a status</option>
                                     {!! App\Helpers\LocationHelper::getAllStatuses() !!}
                                 </select>
                             </div>

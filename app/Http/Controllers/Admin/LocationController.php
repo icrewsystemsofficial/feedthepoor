@@ -42,7 +42,7 @@ class LocationController extends Controller
             'location_pin_code' => 'required|numeric|max:999999|min:100000',
             'location_latitude' => 'required|string|max:12',
             'location_longitude' => 'required|string|max:13',
-            'location_manager_id' => 'required|numeric',
+            'location_manager_id' => 'required',
             'location_status' => 'required|in:0,1,2,3',
         ]);
         $location = Location::find($request->id);
@@ -68,7 +68,7 @@ class LocationController extends Controller
             'location_pin_code' => 'required|numeric|max:999999|min:100000',
             'location_latitude' => 'required|string|max:12',
             'location_longitude' => 'required|string|max:13',
-            'location_manager_id' => 'required|numeric',
+            'location_manager_id' => 'required',
             'location_status' => 'required|in:0,1,2,3',
         ]);
         $location = Location::create($request->all());

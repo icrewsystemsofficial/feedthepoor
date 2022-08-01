@@ -153,7 +153,7 @@ class UsersController extends Controller
         $email = new VolunteerApplied($details);
         Mail::to($request->email)->send($email);
 
-        return redirect(route('frontend.index'));
+        return redirect(route('frontend.volunteer.apply'))->with('status','Your volunteer request submitted successfully');
     }
 
     public function volunteer_applications(){
