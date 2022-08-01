@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\OperationsController;
 use App\Http\Controllers\SendWebhookController;
 use App\Http\Controllers\TestController;
 use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 
@@ -257,7 +258,7 @@ Route::prefix('admin')->middleware(['auth','access_check', 'can:can_access_dashb
         })->name('index');
     });
 
-    Route::post('/jobs/retry', function(Request $request){        
+    Route::post('/jobs/retry', function(Request $request){
         Artisan::call('queue:retry', ['id' => $request->jobId]);
         return route('admin/jobs');
     })->name('jobs.retry');
@@ -269,8 +270,8 @@ Route::prefix('admin/jobs')->group(function () {
     Route::queueMonitor();
 });
 
-Route::get('sendwebhook', [SendWebhookController::class, 'send'])->name('sendwebhook');
-Route::get('test', [TestController::class, 'test'])->name('test');
+/*Route::get('sendwebhook', [SendWebhookController::class, 'send'])->name('sendwebhook');
+Route::get('test', [TestController::class, 'test'])->name('test');*/
 
 
 /*

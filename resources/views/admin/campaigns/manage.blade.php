@@ -164,7 +164,8 @@
                 <div class="form-group mb-3">
                     <label for="campaign_poster" class="form-label">Campaign poster</label>
                     <input type="file" id="campaign_poster" name="campaign_poster" class="form-control mb-3"/>
-                    <a href="{{ asset('storage'.DIRECTORY_SEPARATOR.$campaign->campaign_poster) }}" target="_blank" class="btn btn-primary"><i class="fa-solid fa-eye"></i> View poster</a>
+{{--                    <a href="{{ asset('storage'.DIRECTORY_SEPARATOR.$campaign->campaign_poster) }}" target="_blank" class="btn btn-primary"><i class="fa-solid fa-eye"></i> View poster</a>--}}
+                    <a href="{{ asset($campaign->campaign_poster) }}" target="_blank" class="btn btn-primary"><i class="fa-solid fa-eye"></i> View poster</a>
                 </div>
                 <div class="form-group mb-3">
                     <label for="campaign_goal_amount" class="form-label">Expected campaign amount (in INR)</label>
