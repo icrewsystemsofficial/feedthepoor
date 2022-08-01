@@ -26,7 +26,7 @@
           <div class="card-body px-0 pt-0">
             <div class="row">
                 <div class="col-12 mb-4 mt-2">
-                    <h3>Terms and Conditions & Privacy Policy</h3>
+                    <h3 id="tnc_privacy_policy">Terms and Conditions & Privacy Policy</h3>
                 </div>
                 <div class="col-12 mb-4">
                     These rules and regulations (<b>“Terms and Conditions”</b>) shall be binding on each participant (<b>“Donor”</b> and/or <b>“You”</b>) who voluntarily desire to make monetary donations towards {{ config('app.ngo_name') }} (hereinafter referred to as <b>“trust”</b>).
@@ -95,7 +95,7 @@
           <div class="card-body px-0 pt-0">
             <div class="row">
                 <div class="col-12 mb-4 mt-2">
-                    <h3>Donations Policy</h3>
+                    <h3 id="donations_policy">Donations Policy</h3>
                 </div>
                 <div class="col-12 mb-4">
                     Donations and other income enable Roshni Moolchandani Charitable Trust to fight corruption. Roshni Moolchandani Charitable Trust needs to secure the funding necessary to undertake its vital work. Secure and diverse funding enables Roshni Moolchandani Charitable Trust to maintain its independence, protect its reputation and operate effectively.
@@ -123,7 +123,7 @@
             <div class="card-body px-0 pt-0">
                 <div class="row">
                     <div class="col-12 mb-4 mt-2">
-                        <h3>Cancellation and Refund Policy</h3>
+                        <h3 id="cancellation_policy">Cancellation and Refund Policy</h3>
                     </div>
                     <div class="col-12 mb-4">
                         All donaitons made towards Roshni Moolchandani Charitable Trust will be duly refunded in a case where no action is taken by Roshni Moolchandani Charitable Trust on the donation received within 7 working days of the donation.

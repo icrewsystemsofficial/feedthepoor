@@ -254,9 +254,9 @@
                                             $excemption = 'Unable to determine <i class="fas fa-times-circle"></i>';
                                              // We're only getting it if the payment method is Razorpay
                                             if($donation->payment_method == App\Models\Donations::$payment_methods['RAZORPAY']) {
-                                                $razorpay_data = app(App\Http\Controllers\API\RazorpayAPIController::class)->fetch_payment($donation->razorpay_payment_id);
-                                                  if(isset($payment->notes->checkbox_80g)) {
-                                                  if($razorpay_data->notes->checkbox_80g == "on") {
+                                                $razorpay_data = app(App\Http\Controllers\API\RazorpayAPIController::class)->fetch_payment($donation->razorpay_payment_id);                                                
+                                                  if(isset($razorpay_data->notes->checkbox_80g)) {
+                                                  if($razorpay_data->notes->checkbox_80g) {
                                                     $excemption = 'Eligible <i class="fas fa-check-circle"></i>, <br><span class="font-light"></span>';
                                                   } else {
                                                     $excemption = 'Not eligible <i class="fas fa-times-circle"></i>';
@@ -265,7 +265,7 @@
                                             }
                                         @endphp
 
-                                        80 G Tax Excemption <span class="font-bold">{!! $excemption !!}</span>
+                                        80 G Tax Exemption <span class="font-bold">{!! $excemption !!}</span>
                                     </div>
                                 </div>
                             </div>

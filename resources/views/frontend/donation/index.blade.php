@@ -516,7 +516,7 @@ $donation_quantities = array(
                                     <input type="text" class="form-control" name="pan" id="pan" maxlength="10" required/>
                                     <span class=" text-muted mt-2">
                                         <small>
-                                            80G excemption receipt will carry this PAN number
+                                            80G exemption receipt will carry this PAN number
                                         </small>
                                     </span>
                                 </div>
@@ -526,7 +526,7 @@ $donation_quantities = array(
                                         <div @click="toggle80GExemption">
                                             <input class="form-check-input" type="checkbox" name="checkbox_80g" id="checkbox_80g" x-bind:checked="razorpayForm.checkbox_80g">
                                             <label class="form-check-label" for="checkbox_80g">
-                                                I want 80G Income Tax Excemption
+                                                I want 80G Income Tax exemption
                                             </label>
                                         </div>
                                     </div>
