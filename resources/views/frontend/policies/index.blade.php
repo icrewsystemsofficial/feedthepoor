@@ -16,15 +16,18 @@
 @endsection
 <section class="section section-lg pt-6">
   <div class="container">
-    <div class="row justify-content-center mb-5 mb-lg-6">
+    <div class="row justify-content-center">
       <div class="col-12 col-lg-8">
         <div class="card border-0 p-2 p-md-3 p-lg-5">
           <div class="card-header bg-white border-0 text-center">
-            <h2>Policies</h2>
-            <p>Donation Policy last updated on 11th day of July, 2022</p>
+            <h1>Policies</h1>
+            {{--<p>Donation Policy last updated on 11th day of July, 2022</p>--}}
           </div>
           <div class="card-body px-0 pt-0">
             <div class="row">
+                <div class="col-12 mb-4 mt-2">
+                    <h3>Terms and Conditions</h3>
+                </div>
                 <div class="col-12 mb-4">
                     These rules and regulations (<b>“Terms and Conditions”</b>) shall be binding on each participant (<b>“Donor”</b> and/or <b>“You”</b>) who voluntarily desire to make monetary donations towards {{ config('app.ngo_name') }} (hereinafter referred to as <b>“trust”</b>).
                 </div>
@@ -85,6 +88,45 @@
                         be considered divisible and shall not be part of the consideration, and the remainder of these
                         Terms and Conditions shall be valid and binding and of like effect as though such provision
                         was not included herein.
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="card-body px-0 pt-0">
+            <div class="row">
+                <div class="col-12 mb-4 mt-2">
+                    <h3>Donations Policy</h3>
+                </div>
+                <div class="col-12 mb-4">
+                    Donations and other income enable Roshni Moolchandani Charitable Trust to fight corruption. Roshni Moolchandani Charitable Trust needs to secure the funding necessary to undertake its vital work. Secure and diverse funding enables Roshni Moolchandani Charitable Trust to maintain its independence, protect its reputation and operate effectively.
+                </div>
+                <div class="col-12 mb-4">
+                    <p class="display-5">Policy</p>
+                    It is Roshni Moolchandani Charitable Trust's policy to accept funding from any donor and whether monetary or in kind, provided that acceptance does not:
+                    <br>
+                    - Impair Roshni Moolchandani Charitable Trust's independence to pursue its mission
+                    <br>
+                    - Endanger its integrity and reputation.
+                </div>
+                <div class="col-12 mb-4">
+                    <p class="display-5">Scope</p>
+                    This Policy applies to all fundraising, regardless of types of donor or amounts involved, unless otherwise stated in this document. It is to be applied to all new funding from existing donors and to all new donors in the future. It does not apply to income raised from the sale of publications or from fees for participation in conferences, events and other activities. Appropriate care to protect the reputation of Roshni Moolchandani Charitable Trust should always be taken.
+                </div>
+                <div class="col-12 mb-4">
+                    <p class="display-5">Guidelines</p>
+                    Funding to enable Roshni Moolchandani Charitable Trust to carry out their work should be sought from a wide range of sources. Care should be taken to ensure that project-related funding does not result in undue influence over Roshni Moolchandani Charitable Trust's programme work. Subject to maintaining Roshni Moolchandani Charitable Trust's independence and reputation, Roshni Moolchandani Charitable Trust may accept funding from all kinds of sources.
+                    <br>
+                    If there is a significant risk that receiving funds from a particular source would impair Roshni Moolchandani Charitable Trust's independence or if there is a significant risk to Roshni Moolchandani Charitable Trust’s reputation from public association with the donor, then funding from that source must not be accepted by Roshni Moolchandani Charitable Trust.
+                </div>
+                </div>
+            </div>
+            <div class="card-body px-0 pt-0">
+                <div class="row">
+                    <div class="col-12 mb-4 mt-2">
+                        <h3>Cancellation and Refund Policy</h3>
+                    </div>
+                    <div class="col-12 mb-4">
+                        All donaitons made towards Roshni Moolchandani Charitable Trust will be duly refunded in a case where no action is taken by Roshni Moolchandani Charitable Trust on the donation received within 7 working days of the donation.
                     </div>
                 </div>
             </div>
