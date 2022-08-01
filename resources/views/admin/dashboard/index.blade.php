@@ -4,17 +4,29 @@
 <div class="container-fluid p-0">
 
     <h1 class="h3 mb-3"><strong>Dashboard</strong></h1>
-
+    <div class="row mb-2">
+        <div class="col-6" style="width: fit-content !important;">
+            <h3>Show stats for</h3>
+        </div>
+        <div class="col-6">
+            <select class="form-control mb-2" id="stats-select" style="width: 50%;margin-left: -15px;">
+                <option value="day">Today</option>
+                <option value="week">This week</option>
+                <option value="month">This month</option>
+                <option value="year">This year</option>
+            </select>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-6 d-flex">
             <div class="w-100">
-                <div class="row">
+                <div class="row">                    
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col mt-0">
-                                        <h5 class="card-title">Donations Today</h5>
+                                        <h5 class="card-title">Donations</h5>
                                     </div>
 
                                     <div class="col-auto">
@@ -23,10 +35,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h1 class="mt-1 mb-3">{{ $donations_today }}</h1>
+                                <h1 class="mt-1 mb-3" id="donations">{{ $donations }}</h1>
                                 <div class="mb-0">
-                                    <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> {{ $donations_difference }} </span>
-                                    <span class="text-muted">Since yesterday</span>
+                                    <span class="text-success" id="donations_difference"> {{ $donations_difference }}<br> </span>
+                                    <span class="text-muted" id="donations_difference_text">Since the last day</span>
                                 </div>
                             </div>
                         </div>
@@ -43,10 +55,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h1 class="mt-1 mb-3">{{ $users_today }}</h1>
+                                <h1 class="mt-1 mb-3" id="users">{{ $users }}</h1>
                                 <div class="mb-0">
-                                    <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> {{ $users_difference }} </span>
-                                    <span class="text-muted">Since last week</span>
+                                    <span class="text-success" id="users_difference"> {{ $users_difference }}<br> </span>
+                                    <span class="text-muted" id="users_difference_text">Since the last day</span>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +68,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col mt-0">
-                                        <h5 class="card-title">Donation Received</h5>
+                                        <h5 class="card-title">Amount Received</h5>
                                     </div>
 
                                     <div class="col-auto">
@@ -65,10 +77,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h1 class="mt-1 mb-3">₹{{ $donations_received_today }}</h1>
+                                <h1 class="mt-1 mb-3" id="amount_received">₹{{ $amount_received }}</h1>
                                 <div class="mb-0">
-                                    <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> ₹{{ $donations_received_difference }} </span>
-                                    <span class="text-muted">Since last week</span>
+                                    <span class="text-success" id="amount_received_difference"> ₹{{ $amount_received_difference }}<br> </span>
+                                    <span class="text-muted" id="amount_received_difference_text">Since the last day</span>
                                 </div>
                             </div>
                         </div>
@@ -85,10 +97,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h1 class="mt-1 mb-3">{{ $procurement_orders_today }}</h1>
+                                <h1 class="mt-1 mb-3" id="procurement_orders">{{ $procurement_orders }}</h1>
                                 <div class="mb-0">
-                                    <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> {{ $procurement_orders_difference }} </span>
-                                    <span class="text-muted">Since last week</span>
+                                    <span class="text-success" id="procurement_orders_difference"> {{ $procurement_orders_difference }}<br> </span>
+                                    <span class="text-muted" id="procurement_orders_difference_text">Since the last day</span>
                                 </div>
                             </div>
                         </div>
@@ -272,37 +284,64 @@
 @endsection
 
 @section('js')
-<script>
+<script>    
     document.addEventListener("DOMContentLoaded", function() {
-        var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
-        var gradient = ctx.createLinearGradient(0, 0, 0, 225);
+        // Pie chart
+        new Chart(document.getElementById("chartjs-dashboard-pie"), {
+            type: "pie",
+            data: {
+                labels: [
+                    @foreach ($orders_per_location as $location => $count)
+                        "{{ $location }}",
+                    @endforeach
+                ],
+                datasets: [{
+                    data: [
+                        @foreach ($orders_per_location as $location => $count)
+                        {{ $count }},
+                    @endforeach
+                    ],
+                    backgroundColor: [
+                        window.theme.primary,
+                        window.theme.warning,
+                        window.theme.danger
+                    ],
+                    borderWidth: 5
+                }]
+            },
+            options: {
+                responsive: !window.MSInputMethodContext,
+                maintainAspectRatio: false,
+                legend: {
+                    display: false
+                },
+                cutoutPercentage: 75
+            }
+        });
+    });
+
+document.addEventListener("DOMContentLoaded", function() { 
+        let canvas = document.getElementById("chartjs-dashboard-line");
+        var ctx = canvas.getContext("2d");
+        var gradient = ctx.createLinearGradient(0, 0, 0, 225);        
         gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
         gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
         // Line chart
-        new Chart(document.getElementById("chartjs-dashboard-line"), {
+        new Chart(canvas, {
             type: "line",
             data: {
                 labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                 datasets: [{
+                    data: [
+                        @foreach ($donations_received_every_month as $location => $count)
+                        {{ $count }},
+                    @endforeach
+                    ],
                     label: "Donations (₹)",
                     fill: true,
                     backgroundColor: gradient,
-                    borderColor: window.theme.primary,
-                    data: [
-                        {!! $donations_received_every_month[1] !!},
-                        {!! $donations_received_every_month[2] !!},
-                        {!! $donations_received_every_month[3] !!},
-                        {!! $donations_received_every_month[4] !!},
-                        {!! $donations_received_every_month[5] !!},
-                        {!! $donations_received_every_month[6] !!},
-                        {!! $donations_received_every_month[7] !!},
-                        {!! $donations_received_every_month[8] !!},
-                        {!! $donations_received_every_month[9] !!},
-                        {!! $donations_received_every_month[10] !!},
-                        {!! $donations_received_every_month[11] !!},
-                        {!! $donations_received_every_month[12] !!}
-                    ]
-                }]
+                    borderColor: window.theme.primary,                    
+                }],
             },
             options: {
                 maintainAspectRatio: false,
@@ -341,42 +380,51 @@
             }
         });
     });
-
-    document.addEventListener("DOMContentLoaded", function() {
-        // Pie chart
-        new Chart(document.getElementById("chartjs-dashboard-pie"), {
-            type: "pie",
-            data: {
-                labels: [
-                    @foreach ($orders_per_location as $location => $count)
-                        "{{ $location }}",
-                    @endforeach
-                ],
-                datasets: [{
-                    data: [
-                        @foreach ($orders_per_location as $location => $count)
-                        {{ $count }},
-                    @endforeach
-                    ],
-                    backgroundColor: [
-                        window.theme.primary,
-                        window.theme.warning,
-                        window.theme.danger
-                    ],
-                    borderWidth: 5
-                }]
-            },
-            options: {
-                responsive: !window.MSInputMethodContext,
-                maintainAspectRatio: false,
-                legend: {
-                    display: false
-                },
-                cutoutPercentage: 75
-            }
-        });
-    });
-
 </script>
 
+<script>        
+
+    let changeStats = function (stats, text){            
+        $.each(stats, (key, value) => {
+            $('#' + key).html(value+"<br>");
+            if (key.includes('difference')){
+                $('#' + key + '_text').html('Since the last ' + text);
+                if (value > 0){
+                    toggleClassOn($('#' + key + '_text'), 'text-success');
+                    toggleClassOff($('#' + key + '_text'), 'text-danger');
+                } else {
+                    toggleClassOn($('#' + key + '_text'), 'text-danger');
+                    toggleClassOff($('#' + key + '_text'), 'text-success');
+                }
+            }
+        });
+    };
+
+    let toggleClassOn = function (element, className){
+        if (!element.hasClass(className)) {
+            element.addClass(className);
+        }
+    };  
+    
+    let toggleClassOff = function (element, className){
+        if (element.hasClass(className)) {
+            element.removeClass(className);
+        }
+    };
+
+    $('document').ready(() => {
+
+        let statsSelect = $('#stats-select');            
+
+        statsSelect.on('change', () => {
+            axios.post('{{ route("admin.dashboard.stats") }}', {
+                duration: statsSelect.val()
+            }).then(response => {
+                let stats = response.data;
+                changeStats(stats, statsSelect.val());
+            });
+        });
+
+    });
+</script>
 @endsection

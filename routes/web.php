@@ -104,6 +104,7 @@ Route::name('frontend.')->group(function () {
 Route::prefix('admin')->middleware(['auth','access_check', 'can:can_access_dashboard'])->as('admin.')->group(function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::post('/dashboard/stats', [DashboardController::class, 'displayStats'])->name('dashboard.stats');
     Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
     Route::post('/profile/save', [DashboardController::class, 'edit_profile'])->name('profile.save');
     Route::get('/markAllNotificationsAsRead/{userid}', [DashboardController::class, 'mark_as_read'])->name('markasread');
