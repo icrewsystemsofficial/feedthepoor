@@ -3,8 +3,8 @@
 /public/storage
 /storage/*.key
 /storage/logs/*.log
-/storage/app/public/campaigns/*
-/storage/app/public/donation_media/*
+/storage/app/public/*
+/storage/app/public/*
 /vendor
 .env
 .env.backup
