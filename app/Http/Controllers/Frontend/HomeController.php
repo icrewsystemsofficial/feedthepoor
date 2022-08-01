@@ -111,6 +111,15 @@ class HomeController extends Controller
     {
         return view('frontend.volunteer.index');
     }
+    
+    /**
+     * policies - Page which lists all the policies of the organisation
+     *
+     * @return void
+     */
+    public function policies(){
+        return view('frontend.policies.index');
+    }
 
     /**
      * donate - the page where users can donate money.
@@ -186,6 +195,9 @@ class HomeController extends Controller
 
         $order = app(RazorpayAPIController::class)->fetch_order($razorpay_order_id);
 
+        if ($order['status'] == "paid"){
+            return redirect()->route('frontend.donate');
+        }
         //TODO Handle failure
         return view('frontend.donation.payment', [
             'order' => $order,

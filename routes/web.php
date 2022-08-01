@@ -46,6 +46,7 @@ Route::name('frontend.')->group(function () {
 
 
     // DYNAMIC PAGES
+    Route::get('/policies', [HomeController::class, 'policies'])->name('policies');
 
     Route::get('/donate', [HomeController::class, 'donate'])->name('donate');
     Route::get('/donate/process/{razorpay_order_id?}', [HomeController::class, 'donate_process'])->name('donate.process');
@@ -56,6 +57,8 @@ Route::name('frontend.')->group(function () {
     # If we have it as donation ID, people will go around guessing numbers and
     # if they get access to someone else's donation receipt, we might leak their address, which is a
     # MAJOR problem.
+
+    //This has been addressed by changing the ID to a UUID and accesing the receipts through this UUID
     Route::get('/receipt/{id?}', [HomeController::class, 'receipt'])->name('donations.receipt');
 
 
