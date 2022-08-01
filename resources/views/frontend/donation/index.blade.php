@@ -283,6 +283,7 @@ $donation_quantities = array(
             toggle80GExemption() {
                 this.razorpayForm.checkbox_80g = !this.razorpayForm.checkbox_80g;
                 document.getElementById('pan').required = this.razorpayForm.checkbox_80g ? "required" : "";
+                document.getElementById('pan').value = this.razorpayForm.checkbox_80g ? document.getElementById('pan').value : "";
             },
 
             toggleContinueButton() {
@@ -512,7 +513,7 @@ $donation_quantities = array(
 
                                 <div class="mt-2 mb-3" x-show="razorpayForm.checkbox_80g">
                                     <label for="name">PAN Card <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="pan" id="pan" maxlength="10"/>
+                                    <input type="text" class="form-control" name="pan" id="pan" maxlength="10" required/>
                                     <span class=" text-muted mt-2">
                                         <small>
                                             80G excemption receipt will carry this PAN number
@@ -563,9 +564,9 @@ $donation_quantities = array(
                                 <input type="hidden" name="campaign" x-model="campaignName" />
 
                                 <div class="mt-2 mb-3" x-show="razorpayForm.checkbox_terms_and_conditions">
-                                    <x-frontend-loading-button class="btn btn-success btn-md text-white">
+                                    <button class="btn btn-success btn-md text-white">
                                         Proceed to donate via Razorpay
-                                    </x-frontend-loading-button>
+                                    </button>
 
                                 </div>
                             </form>
