@@ -23,10 +23,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h1 class="mt-1 mb-3">234</h1>
+                                <h1 class="mt-1 mb-3">{{ $donations_today }}</h1>
                                 <div class="mb-0">
-                                    <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 3.65% </span>
-                                    <span class="text-muted">Since last week</span>
+                                    <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> {{ $donations_difference }} </span>
+                                    <span class="text-muted">Since yesterday</span>
                                 </div>
                             </div>
                         </div>
@@ -43,9 +43,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h1 class="mt-1 mb-3">14</h1>
+                                <h1 class="mt-1 mb-3">{{ $users_today }}</h1>
                                 <div class="mb-0">
-                                    <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
+                                    <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> {{ $users_difference }} </span>
                                     <span class="text-muted">Since last week</span>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col mt-0">
-                                        <h5 class="card-title">Donation Amount</h5>
+                                        <h5 class="card-title">Donation Received</h5>
                                     </div>
 
                                     <div class="col-auto">
@@ -65,9 +65,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h1 class="mt-1 mb-3">₹50,300</h1>
+                                <h1 class="mt-1 mb-3">₹{{ $donations_received_today }}</h1>
                                 <div class="mb-0">
-                                    <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 6.65% </span>
+                                    <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> ₹{{ $donations_received_difference }} </span>
                                     <span class="text-muted">Since last week</span>
                                 </div>
                             </div>
@@ -85,9 +85,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h1 class="mt-1 mb-3">64</h1>
+                                <h1 class="mt-1 mb-3">{{ $procurement_orders_today }}</h1>
                                 <div class="mb-0">
-                                    <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.25% </span>
+                                    <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> {{ $procurement_orders_difference }} </span>
                                     <span class="text-muted">Since last week</span>
                                 </div>
                             </div>
@@ -101,21 +101,42 @@
             <div class="card flex-fill w-100">
                 <div class="card-header">
                     <h5 class="card-title mb-100">
-                        Actions for Managers
+                        Actions
                     </h5>
                 </div>
 
                 <div class="card-body py-3" style="height: 275px;">
                     <form action="#">
-                        <div class="flex flex-col">
-                            <p>
-                                Process orders for { X } food donations
-                            </p>
-
-                            <a href="#" class="btn btn-primary">
-                                Process
-                            </a>
-                        </div>
+                        @if ($procurement_orders_unacknowledged > 0)                                                    
+                            <div class="flex flex-col mb-4">
+                                <h5>
+                                    <b>{{ $procurement_orders_unacknowledged }}</b> items are <font color="red">UNACKNOWLEDGED</font> in procurement list
+                                </h5>
+                                <a href="{{ route('admin.operations.procurement.index') }}" class="btn btn-primary">
+                                    View
+                                </a>
+                            </div>
+                        @endif
+                        @if ($donations_pending > 0)
+                            <div class="flex flex-col">
+                                <h5>
+                                    <b>{{ $donations_pending }}</b> donations are <font color="red">PENDING</font>
+                                </h5>
+                                <a href="{{ route('admin.donations.index') }}" class="btn btn-primary">
+                                    View
+                                </a>
+                            </div>
+                        @endif
+                        @if ($donations_fulfilled_and_without_media > 0)
+                            <div class="flex flex-col">
+                                <h5>
+                                    <b>{{ $donations_fulfilled_and_without_media }}</b> donations are <font color="green">FULFILLED</font> but <font color="red">WITHOUT MEDIA</font>
+                                </h5>
+                                <a href="{{ route('admin.donations.index') }}" class="btn btn-primary">
+                                    View
+                                </a>
+                            </div>
+                        @endif
                     </form>
                 </div>
             </div>
@@ -128,7 +149,7 @@
             <div class="card flex-fill w-100">
                 <div class="card-header">
 
-                    <h5 class="card-title mb-0">Recent Movement</h5>
+                    <h5 class="card-title mb-0">Donations received per month</h5>
                 </div>
                 <div class="card-body py-3">
                     <div class="chart chart-sm">
@@ -141,7 +162,7 @@
             <div class="card flex-fill w-100">
                 <div class="card-header">
 
-                    <h5 class="card-title mb-0">Campaigns Breakdown</h5>
+                    <h5 class="card-title mb-0">Procurement Orders per location</h5>
                 </div>
                 <div class="card-body d-flex">
                     <div class="align-self-center w-100">
@@ -153,18 +174,12 @@
 
                         <table class="table mb-0">
                             <tbody>
-                                <tr>
-                                    <td>Food</td>
-                                    <td class="text-end">4306</td>
-                                </tr>
-                                <tr>
-                                    <td>Sweater</td>
-                                    <td class="text-end">3801</td>
-                                </tr>
-                                <tr>
-                                    <td>Prosthetic Leg</td>
-                                    <td class="text-end">1689</td>
-                                </tr>
+                                @foreach($orders_per_location as $location => $count)
+                                    <tr>
+                                        <td>{{ $location }}</td>
+                                        <td class="text-end">{{ $count }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -173,7 +188,7 @@
         </div>
     </div>
 
-    <div class="row">
+    {{--<div class="row">
         <div class="col-md-12 d-flex">
             <div class="card flex-fill">
                 <div class="card-header">
@@ -251,7 +266,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div>--}}
 
 </div>
 @endsection
@@ -269,23 +284,23 @@
             data: {
                 labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                 datasets: [{
-                    label: "Sales ($)",
+                    label: "Donations (₹)",
                     fill: true,
                     backgroundColor: gradient,
                     borderColor: window.theme.primary,
                     data: [
-                        2115,
-                        1562,
-                        1584,
-                        1892,
-                        1587,
-                        1923,
-                        2566,
-                        2448,
-                        2805,
-                        3438,
-                        2917,
-                        3327
+                        {!! $donations_received_every_month[1] !!},
+                        {!! $donations_received_every_month[2] !!},
+                        {!! $donations_received_every_month[3] !!},
+                        {!! $donations_received_every_month[4] !!},
+                        {!! $donations_received_every_month[5] !!},
+                        {!! $donations_received_every_month[6] !!},
+                        {!! $donations_received_every_month[7] !!},
+                        {!! $donations_received_every_month[8] !!},
+                        {!! $donations_received_every_month[9] !!},
+                        {!! $donations_received_every_month[10] !!},
+                        {!! $donations_received_every_month[11] !!},
+                        {!! $donations_received_every_month[12] !!}
                     ]
                 }]
             },
@@ -314,7 +329,7 @@
                     }],
                     yAxes: [{
                         ticks: {
-                            stepSize: 1000
+                            stepSize: 10000
                         },
                         display: true,
                         borderDash: [3, 3],
@@ -332,9 +347,17 @@
         new Chart(document.getElementById("chartjs-dashboard-pie"), {
             type: "pie",
             data: {
-                labels: ["Food", "Sweater", "Boots"],
+                labels: [
+                    @foreach ($orders_per_location as $location => $count)
+                        "{{ $location }}",
+                    @endforeach
+                ],
                 datasets: [{
-                    data: [4306, 3801, 1689],
+                    data: [
+                        @foreach ($orders_per_location as $location => $count)
+                        {{ $count }},
+                    @endforeach
+                    ],
                     backgroundColor: [
                         window.theme.primary,
                         window.theme.warning,
