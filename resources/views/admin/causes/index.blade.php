@@ -70,27 +70,29 @@
                         <h5 class="modal-title">Adding new cause</h5>
                     </div>
                     <div class="modal-body m-3">
-
+                        <div class="mb-3">
+                            <strong><span class="required">*</span> -> Required fields</strong>
+                        </div>
                         <form action="{{ route('admin.causes.store') }}" id="new_causes_form" method="POST" autocomplete="off">
                             @csrf
                             <div class="form-group">
-                                <label for="name" class="form-label">Name</label>
+                                <label for="name" class="form-label">Name <span class="required">*</span></label>
                                 <input type="text" class="form-control" name="name" placeholder="Name of the cause">
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="name" class="form-label">Icon &nbsp;&nbsp;</label><i class="" id="iconPreview" style="font-size: 30px;"></i><br>
+                                <label for="name" class="form-label">Icon <span class="required">*</span> &nbsp;&nbsp;</label><i class="" id="iconPreview" style="font-size: 30px;"></i><br>
                                 <select class="form-control" id="icon" name="icon" style="width: 100%;">
                                     <option></option>
                                     {!! App\Helpers\CausesHelper::getIcons() !!}
                                 </select>
                             </div>                     
                             <div class="form-group mb-2">
-                                <label for="name" class="form-label">Cost per unit (in INR)</label>
+                                <label for="name" class="form-label">Cost per unit (in INR) <span class="required">*</span></label>
                                 <input type="text" class="form-control" name="per_unit_cost" placeholder="Cost per unit for the cause">
                             </div>
                             <div class="form-group mb-2">
-                                <label for="yield_context" class="form-label">Yield context</label>                                
+                                <label for="yield_context" class="form-label">Yield context <span class="required">*</span></label>
                                 <textarea class="form-control mb-2" id="yield_context" name="yield_context" required></textarea>
                                 <div class="alert alert-info">
                                     <p class="form-text">This conveys details about the number of benfeciaries to the end user.<br> Your input needs to contain the character %YIELD% which signifies the number of people benefiting from the aid</p>

@@ -36,43 +36,45 @@
                         <h5 class="modal-title">Adding new location</h5>
                     </div>
                     <div class="modal-body m-3">
-
-                        <form action="{{ route('admin.location.store') }}" id="new_location_form" method="POST" autocomplete="off">
+                        <div class="mb-3">
+                            <strong><span class="required">*</span> -> Required fields</strong>
+                        </div>
+                        <form action="{{ route('admin.location.store') }}"  id="new_location_form" method="POST" autocomplete="off">
                             @csrf
                             <div class="form-group mb-2">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="location_name" placeholder="Name of the location">
+                                <label for="name" class="form-label">Name <span class="required">*</span></label>
+                                <input type="text" class="form-control" name="location_name" placeholder="Name of the location" required>
                             </div>
                             <div class="form-group mb-2">
-                                <label for="address" class="form-label">Address</label>
-                                <textarea class="form-control" id="address" name="location_address" placeholder="Enter full address of location"></textarea>
+                                <label for="address" class="form-label">Address <span class="required">*</span></label>
+                                <textarea class="form-control" id="address" name="location_address" placeholder="Enter full address of location" required></textarea>
                             </div>
                             <div class="form-group mb-2">
-                                <label for="description" class="form-label">Description</label>
-                                <textarea class="form-control" name="location_description" id="description" placeholder="Location's Description"></textarea>
+                                <label for="description" class="form-label">Description <span class="required">*</span></label>
+                                <textarea class="form-control" name="location_description" id="description" placeholder="Location's Description" required></textarea>
                             </div>
                             <div class="form-group mb-2">
-                                <label for="pin_code" class="form-label">Pin Code</label>
-                                <input type="number" class="form-control" id="pin_code" name="location_pin_code" value="" placeholder="Enter PIN code of location">
+                                <label for="pin_code" class="form-label">Pin Code <span class="required">*</span></label>
+                                <input type="number" class="form-control" id="pin_code" name="location_pin_code" value="" placeholder="Enter PIN code of location" required>
                             </div>
                             <div class="form-group mb-2">
-                                <label for="manager_id" class="form-label">Manager</label>
-                                <select name="location_manager_id" id="manager_id" class="form-control">
+                                <label for="manager_id" class="form-label">Manager <span class="required">*</span></label>
+                                <select required name="location_manager_id" id="manager_id" class="form-control">
                                     <option></option>
                                     {!! App\Helpers\LocationHelper::getAllManagers() !!}
                                 </select>
                             </div>
                             <div class="form-group mb-2">
-                                <label for="latitude" class="form-label">Latitude</label>
-                                <input type="text" class="form-control" id="latitude" name="location_latitude" value="" placeholder="Enter latitude of location">
+                                <label for="latitude" class="form-label">Latitude <span class="required">*</span></label>
+                                <input type="text" class="form-control" id="latitude" name="location_latitude" value="" placeholder="Enter latitude of location" required>
                             </div>
                             <div class="form-group mb-2">
-                                <label for="longitude" class="form-label">Longitude</label>
-                                <input type="text" class="form-control" id="longitude" name="location_longitude" value="" placeholder="Enter longitude of location">
+                                <label for="longitude" class="form-label">Longitude <span class="required">*</span></label>
+                                <input type="text" class="form-control" id="longitude" name="location_longitude" value="" placeholder="Enter longitude of location" required>
                             </div>
                             <div class="form-group mb-2">
-                                <label for="status" class="form-label">Status</label>
-                                <select class="form-control" id="status" name="location_status">
+                                <label for="status" class="form-label">Status <span class="required">*</span></label>
+                                <select  required class="form-control" id="status" name="location_status">
                                     <option value="" selected>Select a status</option>
                                     {!! App\Helpers\LocationHelper::getAllStatuses() !!}
                                 </select>
@@ -116,7 +118,7 @@
                             @foreach (App\Helpers\LocationHelper::all_statuses() as $id)
                                 {!! App\Helpers\LocationHelper::getStatus($id) !!}
                             @endforeach
-                        </div>  
+                        </div>
                         <table id="table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
