@@ -4,6 +4,7 @@
 /storage/*.key
 /storage/logs/*.log
 /storage/app/public/campaigns/*
+/storage/app/public/donation_media/*
 /vendor
 .env
 .env.backup
