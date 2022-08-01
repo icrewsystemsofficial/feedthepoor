@@ -17,7 +17,7 @@ In an effort to keep the donations transparent, we have provided the ability to 
 <strong>Donation ID : </strong> {{ $details['id'] }}<br>
 @endcomponent
 
-@component('mail::button', ['url' => route('frontend.donations.receipt', $details['id'])]) Download Receipt @endcomponent
+@component('mail::button', ['url' => $details['receipt_url']]) Download Receipt @endcomponent
 {{-- <p>
     <small>
         Incase you are unable to open the PDF attachment, use this link to view your PDF online.

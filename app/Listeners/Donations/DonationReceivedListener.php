@@ -108,6 +108,14 @@ class DonationReceivedListener implements ShouldQueue
             DonationsHelper::addDonationActivity($donation, $log);
 
             activity()->log('New donation of ₹'.$payment->amount.' received from '. $user->name.' (#'.$user->id.')');
+
+            # Email donor about confirmation
+            $event->details->tracking_url = route('frontend.track-donation', $donation->id);
+            $event->details->receipt_url = route('frontend.donations.receipt', $donation->id);
+            Mail::to($event->details['email'])->send(new DonationMail($event->details));
+            # Add "Operations" logic TODO
+            CreateProcurementListEntries::dispatch($payment);
+
         } else {
 
             $admins = NotificationHelper::getAllAdmins();
@@ -160,14 +168,7 @@ class DonationReceivedListener implements ShouldQueue
 
         # Email admins
         //TODO find out a way to e-mail / dispatch a notiffication to all users / admins
-        //Mail::to('kashrayks@gmail.com')->send(new DonationAdminEmail($event->details));
-
-        # Email donor about confirmation
-        Mail::to($event->details['email'])->send(new DonationMail($event->details));
-
-
-        # Add "Operations" logic TODO
-        CreateProcurementListEntries::dispatch($payment);
+        //Mail::to('kashrayks@gmail.com')->send(new DonationAdminEmail($event->details));        
 
 
 
