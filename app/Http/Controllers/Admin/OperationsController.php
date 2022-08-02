@@ -74,20 +74,20 @@ class OperationsController extends Controller
             $final['status_new'] = $request->status;  
             activity()->log('Updated procurement status of operation with id: #' . $operation->id.' by user with id: #'.auth()->user()->id);          
             $donation = Donations::find($operation->donation_id);     
-            if ($donation->donation_status == Donations::status['PENDING'] && $request->status == Operations::status['ACKNOWLEDGED']){
-                $donation->donation_status = Donations::status['VERIFIED'];
+            if ($donation->donation_status == Donations::$status['PENDING'] && $request->status == Operations::$status['ACKNOWLEDGED']){
+                $donation->donation_status = Donations::$status['VERIFIED'];
                 $donation->save();
             }
-            if ($donation->donation_status == Donations::status['VERIFIED'] && $request->status == Operations::status['ASSIGNED TO MISSION']){
-                $donation->donation_status = Donations::status['MISSION ASSIGNED'];
+            if ($donation->donation_status == Donations::$status['VERIFIED'] && $request->status == Operations::$status['ASSIGNED TO MISSION']){
+                $donation->donation_status = Donations::$status['MISSION ASSIGNED'];
                 $donation->save();
             }
-            if ($donation->donation_status == Donations::status['MISSION ASSIGNED'] && $request->status == Operations::status['FULFILLED']){
-                $donation->donation_status = Donations::status['FIELD WORK DONE'];
+            if ($donation->donation_status == Donations::$status['MISSION ASSIGNED'] && $request->status == Operations::$status['FULFILLED']){
+                $donation->donation_status = Donations::$status['FIELD WORK DONE'];
                 $donation->save();
             }
-            if ($request->status == Operations::status['DELAYED']){
-                $donation->donation_status = Donations::status['MISSION ASSIGNED'];
+            if ($request->status == Operations::$status['DELAYED']){
+                $donation->donation_status = Donations::$status['MISSION ASSIGNED'];
                 $donation->save();
             }
             NotifyUserViaMail::dispatch('Operation status changed', 'Status for the operation of your donation has been updated to '.OperationsHelper::get_operations_status_badge($operation->status)['text'], $donation->donor_id)->delay(now());

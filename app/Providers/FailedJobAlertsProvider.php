@@ -31,7 +31,7 @@ class FailedJobAlertsProvider extends ServiceProvider
         // ONLY Trigger if the app env is prod or production.
         if(config('app.env') == 'prod' || config('app.env') == 'production') {
             Queue::failing(function (JobFailed $event) {
-                Http::post(env('DISCORD_WEBHOOK_URL'), [
+                Http::post(config('services.discord.webhook'), [
                     'embeds' =>
                         [
                             [
