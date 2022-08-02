@@ -104,7 +104,7 @@ class DonationReceivedListener implements ShouldQueue
             }
 
             # This is for the frontend-tracking page.
-            $log = 'A donation entry created for ₹'.$payment->amount.', received from '. $user->name.' (user #'.$user->id.'), for cause: '.$cause->name;
+            $log = 'A donation entry (#'.$donation->id.') created for ₹'.$payment->amount.', received from '. $user->name.', for cause: '.$cause->name;
             DonationsHelper::addDonationActivity($donation, $log);
 
             activity()->log('New donation of ₹'.$payment->amount.' received from '. $user->name.' (#'.$user->id.')');

@@ -598,43 +598,45 @@
 
 
 
-                                                @forelse ($activities as $activity)
-                                                    <div class="vertical-timeline-item vertical-timeline-element">
-                                                        <div><span class="vertical-timeline-element-icon bounce-in"> <i class="fas fa-info-circle text-secondary"></i> </span>
-                                                            <div class="vertical-timeline-element-content bounce-in">
+                                                @forelse ($activities as $activity)                                                
+                                                    @if (strpos($activity->description, $donation->id) > -1)                                                                                                            
+                                                        <div class="vertical-timeline-item vertical-timeline-element">
+                                                            <div><span class="vertical-timeline-element-icon bounce-in"> <i class="fas fa-info-circle text-secondary"></i> </span>
+                                                                <div class="vertical-timeline-element-content bounce-in">
 
-                                                        <span class="uppercase text-muted">
-                                                            {{ $activity->created_at->diffForHumans() }}
-                                                        </span>
+                                                            <span class="uppercase text-muted">
+                                                                {{ $activity->created_at->diffForHumans() }}
+                                                            </span>
 
-                                                                <h4 class="timeline-title font-bold">
-                                                                    @if($activity->causer_id != null)
-                                                                        {{-- If it's a manual update, like status change, then activity
-                                                                            logger records the user who performs that update.
-                                                                         --}}
-                                                                        {{ App\Models\User::find($activity->causer_id)->name }}
-                                                                    @else
-                                                                        {{--
-                                                                            If not, we tap into the "event" property and update it there
-                                                                            here we parse for that.
+                                                                    <h4 class="timeline-title font-bold">                                                                    
+                                                                            {{-- If it's a manual update, like status change, then activity
+                                                                                logger records the user who performs that update.
+                                                                            --}}
+                                                                        @if(0)
+                                                                            {{ App\Models\User::find($activity->causer_id)->name }}
+                                                                        @else
+                                                                            {{--
+                                                                                If not, we tap into the "event" property and update it there
+                                                                                here we parse for that.
 
-                                                                            - Leonard,
-                                                                            6th June 2022.
-                                                                        --}}
+                                                                                - Leonard,
+                                                                                6th June 2022.
+                                                                            --}}
 
-                                                                        {{ ($activity->event != null) ? $activity->event : 'Operations Team'  }}
-                                                                    @endif
-                                                                </h4>
-                                                                <p>
-                                                                    @if($activity->changes != '[]')
-                                                                        {!! App\Helpers\DonationsHelper::get_status_change_context($activity, 2) !!}
-                                                                    @else
-                                                                        (#) {{ $activity->description }}
-                                                                    @endif
-                                                                </p>
+                                                                            {{ ($activity->event != null) ? $activity->event : 'Operations Team'  }}
+                                                                        @endif
+                                                                    </h4>
+                                                                    <p>
+                                                                        @if($activity->changes != '[]')
+                                                                            {!! App\Helpers\DonationsHelper::get_status_change_context($activity, 2) !!}
+                                                                        @else
+                                                                            (#) {{ $activity->description }}                                                                        
+                                                                        @endif
+                                                                    </p>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    @endif
                                                 @empty
                                                     <div class="alert alert-info">
                                                         <i class="fas fa-info-circle"></i>

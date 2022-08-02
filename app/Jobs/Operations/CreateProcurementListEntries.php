@@ -67,12 +67,12 @@ class CreateProcurementListEntries implements ShouldQueue
         }
 
 
-        $log = 'Procurement list (#'.$operation->id.') created for this donation. Item: ' . $operation->procurement_item .', Quantity: '. $operation->procurement_quantity . '. Procurement process will begin shortly.';
+        $log = 'Procurement list created for this donation (#'.$operation->donation_id.'). Item: ' . $operation->procurement_item .', Quantity: '. $operation->procurement_quantity . '. Procurement process will begin shortly.';
         DonationsHelper::addDonationActivity($donation, $log);
 
         // Adding activity log
         activity()
         ->performedOn($operation)
-        ->log('Procurement list updated for Donation # '. $this->payment->id);
+        ->log('Procurement list updated for Donation (#'. $operation->donation_id.')');
     }
 }
